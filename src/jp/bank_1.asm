@@ -565,8 +565,8 @@ Loc_B1_8D8B:
   cmp ObjectCount              ; $8DB6
   bcc Loc_B1_8D8B              ; $8DB9
 Loc_B1_8DBB:
-  lda z:$3A                    ; $8DBB
-  ora z:$3B                    ; $8DBD
+  lda z:AmmoLo                 ; $8DBB
+  ora z:AmmoHi                 ; $8DBD
   bne Loc_B1_8DCE              ; $8DBF
   lda z:PaletteSetIndex        ; $8DC1
   cmp #$69                     ; $8DC3
@@ -2775,29 +2775,29 @@ Sub_B1_AE43:
   lda Data_B1_AE76,x           ; $AE45
   beq Loc_B1_AE59              ; $AE48
   clc                          ; $AE4A
-  adc z:$38                    ; $AE4B
+  adc z:PlayerLifeLo           ; $AE4B
   bcs Loc_B1_AE55              ; $AE4D
-  sta z:$38                    ; $AE4F
+  sta z:PlayerLifeLo           ; $AE4F
   cmp #$C9                     ; $AE51
   bcc Loc_B1_AE59              ; $AE53
 Loc_B1_AE55:
   lda #$C8                     ; $AE55
-  sta z:$38                    ; $AE57
+  sta z:PlayerLifeLo           ; $AE57
 Loc_B1_AE59:
   lda Data_B1_AE77,x           ; $AE59
   beq Loc_B1_AE75              ; $AE5C
   clc                          ; $AE5E
-  adc z:$3A                    ; $AE5F
-  sta z:$3A                    ; $AE61
+  adc z:AmmoLo                 ; $AE5F
+  sta z:AmmoLo                 ; $AE61
   lda #$00                     ; $AE63
-  adc z:$3B                    ; $AE65
-  sta z:$3B                    ; $AE67
+  adc z:AmmoHi                 ; $AE65
+  sta z:AmmoHi                 ; $AE67
   beq Loc_B1_AE75              ; $AE69
-  lda z:$3A                    ; $AE6B
+  lda z:AmmoLo                 ; $AE6B
   cmp #$91                     ; $AE6D
   bcc Loc_B1_AE75              ; $AE6F
   lda #$90                     ; $AE71
-  sta z:$3A                    ; $AE73
+  sta z:AmmoLo                 ; $AE73
 Loc_B1_AE75:
   rts                          ; $AE75
 Data_B1_AE76:
@@ -2808,8 +2808,8 @@ Data_B1_AE77:
   lda z:PaletteSetIndex        ; $AF03
   cmp #$69                     ; $AF05
   beq Loc_B1_AF0F              ; $AF07
-  lda z:$3A                    ; $AF09
-  ora z:$3B                    ; $AF0B
+  lda z:AmmoLo                 ; $AF09
+  ora z:AmmoHi                 ; $AF0B
   beq Loc_B1_AF4E              ; $AF0D
 Loc_B1_AF0F:
   lda $0497                    ; $AF0F
@@ -2949,8 +2949,8 @@ Sub_B1_B013:
   beq Loc_B1_B09B              ; $B025
   jmp Loc_B1_B030              ; $B027
 Loc_B1_B02A:
-  lda z:$3A                    ; $B02A
-  ora z:$3B                    ; $B02C
+  lda z:AmmoLo                 ; $B02A
+  ora z:AmmoHi                 ; $B02C
   beq Loc_B1_B09B              ; $B02E
 Loc_B1_B030:
   lda $0497                    ; $B030
@@ -2964,13 +2964,13 @@ Loc_B1_B030:
   tay                          ; $B041
   lda Data_B1_B11F,y           ; $B042
   jsr EnqueueByte              ; $B045
-  lda z:$3A                    ; $B048
+  lda z:AmmoLo                 ; $B048
   bne Loc_B1_B052              ; $B04A
-  lda z:$3B                    ; $B04C
+  lda z:AmmoHi                 ; $B04C
   beq Loc_B1_B054              ; $B04E
-  dec z:$3B                    ; $B050
+  dec z:AmmoHi                 ; $B050
 Loc_B1_B052:
-  dec z:$3A                    ; $B052
+  dec z:AmmoLo                 ; $B052
 Loc_B1_B054:
   lda #$01                     ; $B054
   sta $0490                    ; $B056

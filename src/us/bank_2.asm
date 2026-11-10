@@ -34,9 +34,9 @@
   sta $04A8                    ; $804E
   lda #$A7                     ; $8051
   sta $049E                    ; $8053
-  lda z:$3A                    ; $8056
+  lda z:AmmoLo                 ; $8056
   sta $04AE                    ; $8058
-  lda z:$3B                    ; $805B
+  lda z:AmmoHi                 ; $805B
   sta $04AF                    ; $805D
   lda #$03                     ; $8060
   sta $049D                    ; $8062
@@ -372,13 +372,13 @@ Loc_B2_8404:
   tax                          ; $8413
   lda Data_B2_843A,x           ; $8414
   sta z:Tmp03                  ; $8417
-  lda z:$38                    ; $8419
+  lda z:PlayerLifeLo           ; $8419
   sec                          ; $841B
   sbc z:Tmp03                  ; $841C
-  sta z:$38                    ; $841E
+  sta z:PlayerLifeLo           ; $841E
   bcs Loc_B2_8426              ; $8420
   lda #$00                     ; $8422
-  sta z:$38                    ; $8424
+  sta z:PlayerLifeLo           ; $8424
 Loc_B2_8426:
   ldy #$07                     ; $8426
   lda (Tmp00),y                ; $8428
@@ -723,9 +723,9 @@ Data_B2_887C:
 Data_B2_887D:
   .incbin "prg_bank_2.bin", $087D, $5  ; $887D
 Sub_B2_8882:
-  lda z:$39                    ; $8882
+  lda z:PlayerLifeHi           ; $8882
   bne Loc_B2_889C              ; $8884
-  lda z:$38                    ; $8886
+  lda z:PlayerLifeLo           ; $8886
   cmp #$32                     ; $8888
   bcs Loc_B2_889C              ; $888A
   lda $04A9                    ; $888C
@@ -754,15 +754,15 @@ Sub_B2_88AA:
   cmp #$06                     ; $88BD
   bne Loc_B2_88D4              ; $88BF
 Loc_B2_88C1:
-  lda z:$39                    ; $88C1
+  lda z:PlayerLifeHi           ; $88C1
   beq Loc_B2_88D0              ; $88C3
   lda #$00                     ; $88C5
-  sta z:$39                    ; $88C7
+  sta z:PlayerLifeHi           ; $88C7
   lda #$C8                     ; $88C9
-  sta z:$38                    ; $88CB
+  sta z:PlayerLifeLo           ; $88CB
   jmp Loc_B2_8937              ; $88CD
 Loc_B2_88D0:
-  lda z:$38                    ; $88D0
+  lda z:PlayerLifeLo           ; $88D0
   bne Loc_B2_8937              ; $88D2
 Loc_B2_88D4:
   lda #$00                     ; $88D4
@@ -807,9 +807,9 @@ Loc_B2_8911:
   cmp #$69                     ; $8929
   bne Loc_B2_8937              ; $892B
   lda $04AE                    ; $892D
-  sta z:$3A                    ; $8930
+  sta z:AmmoLo                 ; $8930
   lda $04AF                    ; $8932
-  sta z:$3B                    ; $8935
+  sta z:AmmoHi                 ; $8935
 Loc_B2_8937:
   rts                          ; $8937
 Sub_B2_8938:

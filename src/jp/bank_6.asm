@@ -348,13 +348,13 @@ Loc_B6_8311:
   bne Loc_B6_8303              ; $8319
   rts                          ; $831B
 Sub_B6_831C:
-  lda z:$38                    ; $831C
+  lda z:PlayerLifeLo           ; $831C
   beq Loc_B6_8353              ; $831E
   ldy #$00                     ; $8320
   lda (Tmp00),y                ; $8322
   and #$3F                     ; $8324
   tay                          ; $8326
-  lda z:$38                    ; $8327
+  lda z:PlayerLifeLo           ; $8327
   clc                          ; $8329
   adc Data_B6_8354,y           ; $832A
   bcs Loc_B6_8333              ; $832D
@@ -363,21 +363,21 @@ Sub_B6_831C:
 Loc_B6_8333:
   lda #$C8                     ; $8333
 Loc_B6_8335:
-  sta z:$38                    ; $8335
-  lda z:$3A                    ; $8337
+  sta z:PlayerLifeLo           ; $8335
+  lda z:AmmoLo                 ; $8337
   clc                          ; $8339
   adc Data_B6_837E,y           ; $833A
-  sta z:$3A                    ; $833D
-  lda z:$3B                    ; $833F
+  sta z:AmmoLo                 ; $833D
+  lda z:AmmoHi                 ; $833F
   adc #$00                     ; $8341
-  sta z:$3B                    ; $8343
+  sta z:AmmoHi                 ; $8343
   cmp #$01                     ; $8345
   bcc Loc_B6_8353              ; $8347
-  lda z:$3A                    ; $8349
+  lda z:AmmoLo                 ; $8349
   cmp #$90                     ; $834B
   bcc Loc_B6_8353              ; $834D
   lda #$90                     ; $834F
-  sta z:$3A                    ; $8351
+  sta z:AmmoLo                 ; $8351
 Loc_B6_8353:
   rts                          ; $8353
 Data_B6_8354:

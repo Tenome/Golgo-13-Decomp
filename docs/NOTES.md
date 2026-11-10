@@ -26,8 +26,11 @@ The Japanese ROM is the original release. Bank 7 differs by 201 bytes, banks 3-5
 
 Blind routes plateau at about 9.8K opcodes (first scenes of the acts). Directed routes (or hand-written input scripts that play through each act) are needed for the rest. Do not mutate game RAM to force scenes: executing garbage would record bogus code.
 
+## Coverage search result (2026-11-09)
+`tools/goexplore.py` branches from save states on the seeded headless native build and treats any ROM instruction the recompiler had not compiled (`--miss-log`) as new code. Starting from 89 states taken along eight 20,000-frame random routes, with a QA assist that keeps life (`PlayerLifeLo` `$38`) and ammo (`AmmoLo` `$3A`) up (data-only holds, the game's code is untouched), 1,289 branch runs of 300-1,200 frames found **no new opcodes**, in states spanning banks 1-6. The classified code is therefore probably most of what these scenes execute; the unclassified bytes (all of bank 0 and large parts of banks 1-6) look like scene scripts, text and graphics data. Later acts and endings are still unvisited.
+
 ## Open work
-- Directed play for deeper coverage (banks 0, 1, 4, 6 especially), then re-run the classifier.
+- Reach the later acts (a scripted play-through, or a memory-searched act selector) and re-run the classifier.
 - Names: RAM variables (object fields, enemy state, inventory), scene routines, per-bank state tables.
 - Structured data: text (kana/Latin), map/scroll data, palettes, pointer tables.
 

@@ -17,11 +17,12 @@ output_prefix = "golgo13-$Version"
 cycle_accurate = true
 cycle_seed_file = "$($seeds.Replace('\','/'))"
 "@ | Set-Content $toml -Encoding ascii
-$bd = Join-Path $work 'cmake'
+$bd = Join-Path $work ($(if ($Headless) {'cmake_headless'} else {'cmake'}))
 $cfg = @('-S', (Join-Path $NesRecomp 'runner\cyc\project'), '-B', $bd, '-G', $Generator, '-A', 'x64',
          "-DNESRECOMP_ROM=$rom", "-DNESRECOMP_GAME_CONFIG=$($toml.Replace('\','/'))")
 if ($Headless) { $cfg += '-DNESRECOMP_HEADLESS=ON' }
 cmake @cfg
 cmake --build $bd --config Release --parallel
-Copy-Item (Join-Path $bd 'Release\nes_game.exe') (Join-Path $work "golgo13-$Version.exe") -Force
-"Built $work\golgo13-$Version.exe  (run it with your ROM: golgo13-$Version.exe `"$($rom.Replace('/','\'))`")"
+$outName = if ($Headless) { "golgo13-$Version-headless.exe" } else { "golgo13-$Version.exe" }
+Copy-Item (Join-Path $bd 'Release\nes_game.exe') (Join-Path $work $outName) -Force
+"Built $work\$outName  (run it with your ROM: golgo13-$Version.exe `"$($rom.Replace('/','\'))`")"

@@ -35,5 +35,9 @@
  "0526": "SceneTimer",
  "052C": "AnimCounter",
  "052D": "SceneSubState",
- "06E0": "ByteQueue"
+ "06E0": "ByteQueue",
+ "38": "PlayerLifeLo",
+ "39": "PlayerLifeHi",
+ "3A": "AmmoLo",
+ "3B": "AmmoHi"
 }

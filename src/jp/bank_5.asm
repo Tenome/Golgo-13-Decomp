@@ -396,7 +396,7 @@ Sub_B5_83C9:
   sta z:MmcPrgShadow           ; $83D2
   sta z:$14                    ; $83D4
   lda #$C8                     ; $83D6
-  sta z:$38                    ; $83D8
+  sta z:PlayerLifeLo           ; $83D8
   jsr Sub_B5_8946              ; $83DA
   lda $050F                    ; $83DD
   beq Loc_B5_83EF              ; $83E0
@@ -1636,7 +1636,7 @@ Loc_B5_8FCC:
   lda #$B0                     ; $9005
   sta $0531                    ; $9007
   lda #$C8                     ; $900A
-  sta z:$38                    ; $900C
+  sta z:PlayerLifeLo           ; $900C
   ldx #$4A                     ; $900E
 Loc_B5_9010:
   lda Data_B5_8DF0,x           ; $9010
@@ -2288,7 +2288,7 @@ Loc_B5_9DCF:
   sta $0153                    ; $9DDA
   inc $050F                    ; $9DDD
   lda #$C8                     ; $9DE0
-  sta z:$38                    ; $9DE2
+  sta z:PlayerLifeLo           ; $9DE2
   lda #$1E                     ; $9DE4
   sta SceneTimer               ; $9DE6
   lda #$80                     ; $9DE9

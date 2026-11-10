@@ -152,15 +152,15 @@ Sub_B4_818C:
   ldx z:$7C                    ; $819E
   lda Data_B4_81BC,x           ; $81A0
   sta SceneState               ; $81A3
-  lda z:$39                    ; $81A6
+  lda z:PlayerLifeHi           ; $81A6
   bne Loc_B4_81B0              ; $81A8
-  lda z:$38                    ; $81AA
+  lda z:PlayerLifeLo           ; $81AA
   cmp #$C9                     ; $81AC
   bcc Loc_B4_81BB              ; $81AE
 Loc_B4_81B0:
   lda #$00                     ; $81B0
-  sta z:$38                    ; $81B2
-  sta z:$39                    ; $81B4
+  sta z:PlayerLifeLo           ; $81B2
+  sta z:PlayerLifeHi           ; $81B4
   lda #$1F                     ; $81B6
   sta SceneState               ; $81B8
 Loc_B4_81BB:
@@ -868,7 +868,7 @@ Loc_B4_8BDC:
 Data_B4_8BEC:
   .incbin "prg_bank_4.bin", $0BEC, $1B  ; $8BEC
 Sub_B4_8C07:
-  lda z:$38                    ; $8C07
+  lda z:PlayerLifeLo           ; $8C07
   cmp #$32                     ; $8C09
   ldx z:$8B                    ; $8C0B
   bcs Loc_B4_8C18              ; $8C0D
@@ -937,16 +937,16 @@ Loc_B4_8D48:
   bmi Loc_B4_8D9E              ; $8D59
   rts                          ; $8D5B
 Loc_B4_8D5C:
-  ldy z:$3A                    ; $8D5C
-  ldx z:$3B                    ; $8D5E
+  ldy z:AmmoLo                 ; $8D5C
+  ldx z:AmmoHi                 ; $8D5E
   bne Loc_B4_8D72              ; $8D60
   lda JoyNew1                  ; $8D62
   and #$04                     ; $8D65
   beq Loc_B4_8D71              ; $8D67
   cpy #$0A                     ; $8D69
   bcs Loc_B4_8D71              ; $8D6B
-  dec z:$38                    ; $8D6D
-  inc z:$3A                    ; $8D6F
+  dec z:PlayerLifeLo           ; $8D6D
+  inc z:AmmoLo                 ; $8D6F
 Loc_B4_8D71:
   rts                          ; $8D71
 Loc_B4_8D72:
@@ -956,14 +956,14 @@ Loc_B4_8D72:
   bcc Loc_B4_8D81              ; $8D77
 Loc_B4_8D79:
   lda #$90                     ; $8D79
-  sta z:$3A                    ; $8D7B
+  sta z:AmmoLo                 ; $8D7B
   lda #$01                     ; $8D7D
-  sta z:$3B                    ; $8D7F
+  sta z:AmmoHi                 ; $8D7F
 Loc_B4_8D81:
   rts                          ; $8D81
 Loc_B4_8D82:
-  lda z:$3A                    ; $8D82
-  ora z:$3B                    ; $8D84
+  lda z:AmmoLo                 ; $8D82
+  ora z:AmmoHi                 ; $8D84
   beq Loc_B4_8D95              ; $8D86
   inc z:$6F                    ; $8D88
   ldx #$07                     ; $8D8A
@@ -1018,11 +1018,11 @@ Loc_B4_8DDE:
   dey                          ; $8DE3
   bne Loc_B4_8DDE              ; $8DE4
 Loc_B4_8DE6:
-  ldx z:$3A                    ; $8DE6
+  ldx z:AmmoLo                 ; $8DE6
   bne Loc_B4_8DEC              ; $8DE8
-  dec z:$3B                    ; $8DEA
+  dec z:AmmoHi                 ; $8DEA
 Loc_B4_8DEC:
-  dec z:$3A                    ; $8DEC
+  dec z:AmmoLo                 ; $8DEC
   rts                          ; $8DEE
 Loc_B4_8DEF:
   bit JoyNew1                  ; $8DEF

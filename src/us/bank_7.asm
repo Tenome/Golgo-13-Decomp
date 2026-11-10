@@ -54,11 +54,11 @@ Loc_C025:
   sta $0100                    ; $C062
   sta $0104                    ; $C065
   lda #$C8                     ; $C068
-  sta z:$38                    ; $C06A
+  sta z:PlayerLifeLo           ; $C06A
   lda #$00                     ; $C06C
-  sta z:$39                    ; $C06E
-  sta z:$3A                    ; $C070
-  sta z:$3B                    ; $C072
+  sta z:PlayerLifeHi           ; $C06E
+  sta z:AmmoLo                 ; $C070
+  sta z:AmmoHi                 ; $C072
   lda #$01                     ; $C074
   sta z:$3C                    ; $C076
 MainIdleLoop:
@@ -1282,9 +1282,9 @@ Sub_C941:
 Loc_C94F:
   ldy #$00                     ; $C94F
   jsr Sub_C983                 ; $C951
-  lda z:$38                    ; $C954
+  lda z:PlayerLifeLo           ; $C954
   sta z:Tmp03                  ; $C956
-  lda z:$39                    ; $C958
+  lda z:PlayerLifeHi           ; $C958
   sta z:$04                    ; $C95A
   ldx #$00                     ; $C95C
   jsr Sub_C994                 ; $C95E
@@ -1300,9 +1300,9 @@ Sub_C962:
 Loc_C970:
   ldy #$10                     ; $C970
   jsr Sub_C983                 ; $C972
-  lda z:$3A                    ; $C975
+  lda z:AmmoLo                 ; $C975
   sta z:Tmp03                  ; $C977
-  lda z:$3B                    ; $C979
+  lda z:AmmoHi                 ; $C979
   sta z:$04                    ; $C97B
   ldx #$10                     ; $C97D
   jsr Sub_C994                 ; $C97F
@@ -1511,7 +1511,7 @@ Loc_CB74:
   rts                          ; $CB74
 Loc_CB75:
   jsr ReadJoypads              ; $CB75
-  lda z:$38                    ; $CB78
+  lda z:PlayerLifeLo           ; $CB78
   beq Loc_CB80                 ; $CB7A
   lda z:$35                    ; $CB7C
   beq Loc_CB88                 ; $CB7E
@@ -3698,14 +3698,14 @@ Sub_E042:
   lda z:FrameCounter           ; $E048
   and #$07                     ; $E04A
   bne Loc_E05D                 ; $E04C
-  lda z:$38                    ; $E04E
+  lda z:PlayerLifeLo           ; $E04E
   clc                          ; $E050
   adc #$0A                     ; $E051
-  sta z:$38                    ; $E053
+  sta z:PlayerLifeLo           ; $E053
   cmp #$C8                     ; $E055
   bcc Loc_E05D                 ; $E057
   lda #$C8                     ; $E059
-  sta z:$38                    ; $E05B
+  sta z:PlayerLifeLo           ; $E05B
 Loc_E05D:
   rts                          ; $E05D
 Sub_E05E:
@@ -4048,24 +4048,24 @@ Data_E713:
   .incbin "prg_bank_7.bin", $2713, $14B  ; $E713
 Sub_E85E:
   lda #$C8                     ; $E85E
-  sta z:$38                    ; $E860
+  sta z:PlayerLifeLo           ; $E860
   lda #$00                     ; $E862
-  sta z:$39                    ; $E864
-  lda z:$3B                    ; $E866
+  sta z:PlayerLifeHi           ; $E864
+  lda z:AmmoHi                 ; $E866
   and #$01                     ; $E868
   lsr a                        ; $E86A
-  sta z:$3B                    ; $E86B
-  lda z:$3A                    ; $E86D
+  sta z:AmmoHi                 ; $E86B
+  lda z:AmmoLo                 ; $E86D
   ror a                        ; $E86F
-  sta z:$3A                    ; $E870
-  lda z:$3A                    ; $E872
+  sta z:AmmoLo                 ; $E870
+  lda z:AmmoLo                 ; $E872
   cmp #$0A                     ; $E874
   bcs Loc_E882                 ; $E876
   lda z:$29                    ; $E878
   cmp #$77                     ; $E87A
   beq Loc_E882                 ; $E87C
   lda #$0A                     ; $E87E
-  sta z:$3A                    ; $E880
+  sta z:AmmoLo                 ; $E880
 Loc_E882:
   rts                          ; $E882
 Sub_E883:
@@ -4079,8 +4079,8 @@ Sub_E883:
   bcs Loc_E8A5                 ; $E896
   rts                          ; $E898
 Loc_E899:
-  lda z:$38                    ; $E899
-  ora z:$39                    ; $E89B
+  lda z:PlayerLifeLo           ; $E899
+  ora z:PlayerLifeHi           ; $E89B
   bne Loc_E8BE                 ; $E89D
   lda #$01                     ; $E89F
   sta $013D                    ; $E8A1
@@ -4104,10 +4104,10 @@ Loc_E8BE:
   lda z:FrameInSecond          ; $E8C4
   cmp #$09                     ; $E8C6
   bne Loc_E8D2                 ; $E8C8
-  dec z:$38                    ; $E8CA
+  dec z:PlayerLifeLo           ; $E8CA
   cmp #$FF                     ; $E8CC
   bne Loc_E8D2                 ; $E8CE
-  dec z:$39                    ; $E8D0
+  dec z:PlayerLifeHi           ; $E8D0
 Loc_E8D2:
   rts                          ; $E8D2
 Sub_E8D3:
@@ -4155,14 +4155,14 @@ Loc_E915:
 Sub_E916:
   lda $0117                    ; $E916
   bne Loc_E928                 ; $E919
-  lda z:$38                    ; $E91B
+  lda z:PlayerLifeLo           ; $E91B
   cmp #$32                     ; $E91D
   bcs Loc_E938                 ; $E91F
   ldx #$01                     ; $E921
   lda #$42                     ; $E923
   jmp Loc_E932                 ; $E925
 Loc_E928:
-  lda z:$38                    ; $E928
+  lda z:PlayerLifeLo           ; $E928
   cmp #$32                     ; $E92A
   bcc Loc_E938                 ; $E92C
   ldx #$00                     ; $E92E
@@ -4308,8 +4308,8 @@ Sub_EA61:
   beq Loc_EAA9                 ; $EA66
   lda z:$3C                    ; $EA68
   beq Loc_EA81                 ; $EA6A
-  lda z:$3A                    ; $EA6C
-  ora z:$3B                    ; $EA6E
+  lda z:AmmoLo                 ; $EA6C
+  ora z:AmmoHi                 ; $EA6E
   beq Loc_EA81                 ; $EA70
   lda z:$36                    ; $EA72
   and #$0F                     ; $EA74
@@ -4566,20 +4566,20 @@ Data_EC30:
   .incbin "prg_bank_7.bin", $2C30, $287  ; $EC30
 Sub_EEB7:
   clc                          ; $EEB7
-  adc z:$3A                    ; $EEB8
-  sta z:$3A                    ; $EEBA
+  adc z:AmmoLo                 ; $EEB8
+  sta z:AmmoLo                 ; $EEBA
   bcs Loc_EEC8                 ; $EEBC
-  dec z:$3B                    ; $EEBE
+  dec z:AmmoHi                 ; $EEBE
   bpl Loc_EEC8                 ; $EEC0
   lda #$00                     ; $EEC2
-  sta z:$3A                    ; $EEC4
-  sta z:$3B                    ; $EEC6
+  sta z:AmmoLo                 ; $EEC4
+  sta z:AmmoHi                 ; $EEC6
 Loc_EEC8:
   rts                          ; $EEC8
 Sub_EEC9:
-  lda z:$3A                    ; $EEC9
+  lda z:AmmoLo                 ; $EEC9
   bne Loc_EED2                 ; $EECB
-  lda z:$3B                    ; $EECD
+  lda z:AmmoHi                 ; $EECD
   bne Loc_EED2                 ; $EECF
   rts                          ; $EED1
 Loc_EED2:
@@ -4763,8 +4763,8 @@ Sub_F23D:
   lda JoyNew1                  ; $F246
   and #$01                     ; $F249
   beq Loc_F29C                 ; $F24B
-  lda z:$3A                    ; $F24D
-  ora z:$3B                    ; $F24F
+  lda z:AmmoLo                 ; $F24D
+  ora z:AmmoHi                 ; $F24F
   beq Loc_F29C                 ; $F251
   ldx #$54                     ; $F253
 Loc_F255:
@@ -5056,8 +5056,8 @@ Loc_F44C:
 Data_F461:
   .incbin "prg_bank_7.bin", $3461, $F  ; $F461
 Sub_F470:
-  lda z:$3A                    ; $F470
-  ora z:$3B                    ; $F472
+  lda z:AmmoLo                 ; $F470
+  ora z:AmmoHi                 ; $F472
   beq Loc_F4B7                 ; $F474
   lda JoyNew1                  ; $F476
   and #$01                     ; $F479
@@ -5660,13 +5660,13 @@ Loc_F9B4:
   lda (Tmp00),y                ; $F9C0
   and #$3F                     ; $F9C2
   tay                          ; $F9C4
-  lda z:$38                    ; $F9C5
+  lda z:PlayerLifeLo           ; $F9C5
   sec                          ; $F9C7
   sbc Data_FA1D,y              ; $F9C8
   bcs Loc_F9CF                 ; $F9CB
   lda #$00                     ; $F9CD
 Loc_F9CF:
-  sta z:$38                    ; $F9CF
+  sta z:PlayerLifeLo           ; $F9CF
   ldy #$00                     ; $F9D1
   lda (Tmp00),y                ; $F9D3
   and #$3F                     ; $F9D5
@@ -5704,7 +5704,7 @@ Loc_FA05:
   lda #$00                     ; $FA09
   sta z:$34                    ; $FA0B
   lda #$C8                     ; $FA0D
-  sta z:$38                    ; $FA0F
+  sta z:PlayerLifeLo           ; $FA0F
   ldy #$0B                     ; $FA11
   lda #$F0                     ; $FA13
   sta (Tmp00),y                ; $FA15
@@ -5955,7 +5955,7 @@ Loc_FC09:
   lda #$16                     ; $FC0F
   jmp Loc_FC16                 ; $FC11
 Loc_FC14:
-  lda z:$38                    ; $FC14
+  lda z:PlayerLifeLo           ; $FC14
 Loc_FC16:
   sta $0153                    ; $FC16
   rts                          ; $FC19
@@ -6221,7 +6221,7 @@ Loc_FE38:
 Loc_FE44:
   lda #$32                     ; $FE44
 Loc_FE46:
-  sta z:$3A                    ; $FE46
+  sta z:AmmoLo                 ; $FE46
   ldx #$00                     ; $FE48
 Loc_FE4A:
   lda Data_FE8C,x              ; $FE4A
