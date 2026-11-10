@@ -2417,7 +2417,7 @@
    ]
   ]
  },
- "Sub_B4_80B3": {
+ "DispatchSceneStateBank4": {
   "addr": 32947,
   "bank": 4,
   "instrs": 8,
@@ -2903,7 +2903,7 @@
    ]
   ]
  },
- "Sub_B4_846E": {
+ "HideSpritesFromStart": {
   "addr": 33902,
   "bank": 4,
   "instrs": 10,
@@ -2920,7 +2920,7 @@
    ]
   ]
  },
- "Sub_B4_8473": {
+ "HideAllSprites": {
   "addr": 33907,
   "bank": 4,
   "instrs": 9,
@@ -2946,7 +2946,7 @@
    ]
   ]
  },
- "Sub_B4_84F5": {
+ "ClearSceneStateTail": {
   "addr": 34037,
   "bank": 4,
   "instrs": 5,
@@ -2959,7 +2959,7 @@
    ]
   ]
  },
- "Sub_B4_84FF": {
+ "ClearWorkVars60": {
   "addr": 34047,
   "bank": 4,
   "instrs": 6,
@@ -3184,7 +3184,7 @@
    ]
   ]
  },
- "Sub_B4_86D1": {
+ "ClearObjectTable": {
   "addr": 34513,
   "bank": 4,
   "instrs": 7,
@@ -3197,7 +3197,7 @@
    ]
   ]
  },
- "Sub_B4_8B2D": {
+ "InitAllObjectAnims": {
   "addr": 35629,
   "bank": 4,
   "instrs": 10,
@@ -3236,7 +3236,7 @@
    ]
   ]
  },
- "Sub_B4_8BFB": {
+ "CheckLowLifeSound": {
   "addr": 35835,
   "bank": 4,
   "instrs": 14,
@@ -3296,7 +3296,7 @@
    ]
   ]
  },
- "Sub_B4_8E06": {
+ "HideCursorSprites": {
   "addr": 36358,
   "bank": 4,
   "instrs": 6,
@@ -3426,7 +3426,7 @@
    ]
   ]
  },
- "Sub_B4_8FAB": {
+ "AllocObjectSlot": {
   "addr": 36779,
   "bank": 4,
   "instrs": 7,
@@ -3512,7 +3512,7 @@
    ]
   ]
  },
- "Sub_B4_909E": {
+ "CopyPpuListStubToRam": {
   "addr": 37022,
   "bank": 4,
   "instrs": 6,
@@ -3525,7 +3525,7 @@
    ]
   ]
  },
- "Sub_B4_90BE": {
+ "DisableSpriteBgRendering": {
   "addr": 37054,
   "bank": 4,
   "instrs": 3,
@@ -3538,7 +3538,7 @@
    ]
   ]
  },
- "Sub_B4_90D9": {
+ "HideSpritesWithTileFE": {
   "addr": 37081,
   "bank": 4,
   "instrs": 12,
@@ -3590,7 +3590,7 @@
    ]
   ]
  },
- "Sub_B4_956B": {
+ "InitPaletteBuffer": {
   "addr": 38251,
   "bank": 4,
   "instrs": 14,
@@ -3758,7 +3758,7 @@
    ]
   ]
  },
- "Sub_B4_9943": {
+ "ExtractBitPair": {
   "addr": 39235,
   "bank": 4,
   "instrs": 13,
@@ -3784,7 +3784,7 @@
    ]
   ]
  },
- "Sub_B4_9975": {
+ "DrawRleScreen": {
   "addr": 39285,
   "bank": 4,
   "instrs": 29,

@@ -21,11 +21,11 @@ Bank4Nmi:
   lda z:PpuMaskShadow          ; $802B
   sta PPU_MASK                 ; $802D
   jsr ApplyScroll              ; $8030
-  jsr Sub_B4_80B3              ; $8033
-  jsr Sub_B4_8BFB              ; $8036
+  jsr DispatchSceneStateBank4  ; $8033
+  jsr CheckLowLifeSound        ; $8036
   inc z:FrameCounter           ; $8039
   jsr DrawHud                  ; $803B
-  jsr Sub_B4_90D9              ; $803E
+  jsr HideSpritesWithTileFE    ; $803E
   lda z:MmcPrgShadow           ; $8041
   pha                          ; $8043
   lda #$04                     ; $8044
@@ -76,7 +76,7 @@ Loc_B4_8098:
   jsr SetPpuCtrl               ; $809F
   rti                          ; $80A2
   .incbin "prg_bank_4.bin", $00A3, $10  ; $80A3
-Sub_B4_80B3:
+DispatchSceneStateBank4:
   lda SceneState               ; $80B3
   asl a                        ; $80B6
   tax                          ; $80B7
@@ -95,28 +95,28 @@ Bank4State_00:
 Bank4State_03:
   lda #$04                     ; $8112
   sta SceneState               ; $8114
-  jsr Sub_B4_84F5              ; $8117
+  jsr ClearSceneStateTail      ; $8117
   jmp Loc_B4_8496              ; $811A
 Bank4State_01:
   lda #$1C                     ; $811D
   sta SceneState               ; $811F
-  jsr Sub_B4_84FF              ; $8122
+  jsr ClearWorkVars60          ; $8122
   jmp Loc_B4_8496              ; $8125
 Bank4State_02:
   lda #$1E                     ; $8128
   sta SceneState               ; $812A
-  jsr Sub_B4_84FF              ; $812D
+  jsr ClearWorkVars60          ; $812D
   jmp Loc_B4_8496              ; $8130
 Bank4State_04:
   inc SceneState               ; $8133
-  jmp Sub_B4_90BE              ; $8136
+  jmp DisableSpriteBgRendering ; $8136
 Bank4State_05:
   inc SceneState               ; $8139
   jsr FillPaletteBlack         ; $813C
-  jsr Sub_B4_846E              ; $813F
+  jsr HideSpritesFromStart     ; $813F
   lda #$03                     ; $8142
   sta $051F                    ; $8144
-  jsr Sub_B4_909E              ; $8147
+  jsr CopyPpuListStubToRam     ; $8147
   jsr Sub_B4_915B              ; $814A
   jsr Sub_B4_8546              ; $814D
   jsr Sub_B4_9868              ; $8150
@@ -173,7 +173,7 @@ Bank4State_09:
   jmp Loc_B4_8509              ; $81C9
 Bank4State_0A:
   inc SceneState               ; $81CC
-  jsr Sub_B4_90BE              ; $81CF
+  jsr DisableSpriteBgRendering ; $81CF
   lda $0501                    ; $81D2
   cmp #$0C                     ; $81D5
   bne Loc_B4_81E7              ; $81D7
@@ -195,7 +195,7 @@ Bank4State_0B:
   lda #$06                     ; $81F5
   sta SceneState               ; $81F7
   jsr FillPaletteBlack         ; $81FA
-  jsr Sub_B4_846E              ; $81FD
+  jsr HideSpritesFromStart     ; $81FD
   jsr Sub_B4_9589              ; $8200
   lda z:PpuCtrlShadow          ; $8203
   and #$FC                     ; $8205
@@ -206,7 +206,7 @@ Bank4State_0B:
   sta z:HwScrollY              ; $820F
   sta z:$88                    ; $8211
   sta z:$89                    ; $8213
-  jsr Sub_B4_8B2D              ; $8215
+  jsr InitAllObjectAnims       ; $8215
   jsr Sub_B4_8546              ; $8218
   jsr Sub_B4_9868              ; $821B
   jsr Sub_B4_9963              ; $821E
@@ -218,11 +218,11 @@ Bank4State_0B:
   jmp Loc_B4_8AD3              ; $8230
 Bank4State_0C:
   inc SceneState               ; $8233
-  jmp Sub_B4_90BE              ; $8236
+  jmp DisableSpriteBgRendering ; $8236
 Bank4State_0D:
   inc SceneState               ; $8239
   jsr FillPaletteBlack         ; $823C
-  jsr Sub_B4_846E              ; $823F
+  jsr HideSpritesFromStart     ; $823F
   jsr Sub_B4_8546              ; $8242
   jsr Sub_B4_9F7C              ; $8245
   lda #$00                     ; $8248
@@ -232,7 +232,7 @@ Bank4State_0D:
   lda z:PpuCtrlShadow          ; $8251
   ora #$02                     ; $8253
   sta z:PpuCtrlShadow          ; $8255
-  jsr Sub_B4_86D1              ; $8257
+  jsr ClearObjectTable         ; $8257
   jsr Sub_B4_9589              ; $825A
   jmp DrawObjects              ; $825D
 Bank4State_0E:
@@ -258,7 +258,7 @@ Loc_B4_8283:
   rts                          ; $8283
 Bank4State_11:
   inc SceneState               ; $8284
-  jmp Sub_B4_90BE              ; $8287
+  jmp DisableSpriteBgRendering ; $8287
 Bank4State_12:
   lda z:PpuCtrlShadow          ; $828A
   and #$FD                     ; $828C
@@ -283,14 +283,14 @@ Loc_B4_82FE:
   .incbin "prg_bank_4.bin", $0305, $9  ; $8305
 Bank4State_13:
   inc SceneState               ; $830E
-  jmp Sub_B4_90BE              ; $8311
+  jmp DisableSpriteBgRendering ; $8311
 Bank4State_14:
   inc SceneState               ; $8314
   jsr FillPaletteBlack         ; $8317
-  jsr Sub_B4_846E              ; $831A
+  jsr HideSpritesFromStart     ; $831A
   jsr Sub_B4_A15F              ; $831D
   jsr ApplyScroll              ; $8320
-  jmp Sub_B4_86D1              ; $8323
+  jmp ClearObjectTable         ; $8323
 Bank4State_15:
   inc SceneState               ; $8326
   lda $052E                    ; $8329
@@ -326,12 +326,12 @@ Data_B4_835F:
   .incbin "prg_bank_4.bin", $035F, $2  ; $835F
 Bank4State_17:
   inc SceneState               ; $8361
-  jmp Sub_B4_90BE              ; $8364
+  jmp DisableSpriteBgRendering ; $8364
 Bank4State_18:
   lda #$06                     ; $8367
   sta SceneState               ; $8369
   jsr FillPaletteBlack         ; $836C
-  jsr Sub_B4_846E              ; $836F
+  jsr HideSpritesFromStart     ; $836F
   jsr Sub_B4_8C18              ; $8372
   jsr Sub_B4_8546              ; $8375
   jsr Sub_B4_9868              ; $8378
@@ -343,17 +343,17 @@ Bank4State_18:
   jmp ApplyScroll              ; $838A
 Bank4State_19:
   inc SceneState               ; $838D
-  jmp Sub_B4_90BE              ; $8390
+  jmp DisableSpriteBgRendering ; $8390
 Bank4State_1A:
   jsr Sub_B4_8C18              ; $8393
   jmp Loc_B4_82FE              ; $8396
 Bank4State_1B:
   lda #$06                     ; $8399
   sta SceneState               ; $839B
-  jsr Sub_B4_90BE              ; $839E
+  jsr DisableSpriteBgRendering ; $839E
   lda #$0F                     ; $83A1
   sta $052A                    ; $83A3
-  jsr Sub_B4_846E              ; $83A6
+  jsr HideSpritesFromStart     ; $83A6
   jsr Sub_B4_8546              ; $83A9
   jsr Sub_B4_A0D9              ; $83AC
   lda z:PpuCtrlShadow          ; $83AF
@@ -362,12 +362,12 @@ Bank4State_1B:
   rts                          ; $83B5
 Bank4State_1C:
   inc SceneState               ; $83B6
-  jmp Sub_B4_90BE              ; $83B9
+  jmp DisableSpriteBgRendering ; $83B9
 Bank4State_1D:
   lda #$06                     ; $83BC
   sta SceneState               ; $83BE
   jsr FillPaletteBlack         ; $83C1
-  jsr Sub_B4_846E              ; $83C4
+  jsr HideSpritesFromStart     ; $83C4
   jsr Sub_B4_8546              ; $83C7
   jsr Sub_B4_9868              ; $83CA
   jsr Sub_B4_9963              ; $83CD
@@ -380,7 +380,7 @@ Bank4State_1E:
   lda #$06                     ; $83DF
   sta SceneState               ; $83E1
   jsr FillPaletteBlack         ; $83E4
-  jsr Sub_B4_846E              ; $83E7
+  jsr HideSpritesFromStart     ; $83E7
   jsr Sub_B4_8546              ; $83EA
   lda $0510                    ; $83ED
   sta $0501                    ; $83F0
@@ -424,15 +424,15 @@ Bank4State_20:
   ldy $0501                    ; $844F
   lda Data_B4_845C,y           ; $8452
   sta $013F                    ; $8455
-  jmp Sub_B4_90BE              ; $8458
+  jmp DisableSpriteBgRendering ; $8458
 Loc_B4_845B:
   rts                          ; $845B
 Data_B4_845C:
   .incbin "prg_bank_4.bin", $045C, $12  ; $845C
-Sub_B4_846E:
+HideSpritesFromStart:
   ldx Data_C34D                ; $846E
   bne Loc_B4_8475              ; $8471
-Sub_B4_8473:
+HideAllSprites:
   ldx #$00                     ; $8473
 Loc_B4_8475:
   lda #$F0                     ; $8475
@@ -477,8 +477,8 @@ Loc_B4_8496:
   jsr QueueSound               ; $84C3
   lda #$08                     ; $84C6
   jsr QueueSound               ; $84C8
-  jsr Sub_B4_86D1              ; $84CB
-  jsr Sub_B4_8473              ; $84CE
+  jsr ClearObjectTable         ; $84CB
+  jsr HideAllSprites           ; $84CE
   jsr Sub_B4_8481              ; $84D1
   ldx #$1F                     ; $84D4
   stx z:MmcControlShadow       ; $84D6
@@ -494,14 +494,14 @@ Loc_B4_8496:
   lda #$30                     ; $84EE
   sta z:PpuCtrlShadow          ; $84F0
   jmp ApplyScroll              ; $84F2
-Sub_B4_84F5:
+ClearSceneStateTail:
   lda #$00                     ; $84F5
   ldx #$10                     ; $84F7
 Loc_B4_84F9:
   sta SceneState,x             ; $84F9
   inx                          ; $84FC
   bne Loc_B4_84F9              ; $84FD
-Sub_B4_84FF:
+ClearWorkVars60:
   lda #$00                     ; $84FF
   ldx #$7F                     ; $8501
 Loc_B4_8503:
@@ -737,7 +737,7 @@ Bank4StateB_0D:
   ldx #$0E                     ; $86CA
   ldy #$07                     ; $86CC
   jmp Sub_B4_8BC9              ; $86CE
-Sub_B4_86D1:
+ClearObjectTable:
   lda #$00                     ; $86D1
   sta ObjectCount              ; $86D3
   ldx #$10                     ; $86D6
@@ -800,12 +800,12 @@ Loc_B4_8B16:
   iny                          ; $8B1F
   jmp Loc_B4_8B09              ; $8B20
 Loc_B4_8B23:
-  jsr Sub_B4_8FAB              ; $8B23
+  jsr AllocObjectSlot          ; $8B23
   lda ($64),y                  ; $8B26
   ldy #$00                     ; $8B28
   sta (Tmp00),y                ; $8B2A
   rts                          ; $8B2C
-Sub_B4_8B2D:
+InitAllObjectAnims:
   lda ObjectCount              ; $8B2D
   beq Loc_B4_8B42              ; $8B30
   jsr AslA4                    ; $8B32
@@ -860,7 +860,7 @@ Loc_B4_8BD0:
   rts                          ; $8BDF
 Data_B4_8BE0:
   .incbin "prg_bank_4.bin", $0BE0, $1B  ; $8BE0
-Sub_B4_8BFB:
+CheckLowLifeSound:
   lda z:PlayerLifeLo           ; $8BFB
   cmp #$32                     ; $8BFD
   ldx z:$8B                    ; $8BFF
@@ -995,11 +995,11 @@ Loc_B4_8DB5:
   bcs Loc_B4_8DC1              ; $8DB9
   lsr a                        ; $8DBB
   bcc Loc_B4_8DDF              ; $8DBC
-  jmp Sub_B4_8E06              ; $8DBE
+  jmp HideCursorSprites        ; $8DBE
 Loc_B4_8DC1:
   lda #$0E                     ; $8DC1
   jsr QueueSound               ; $8DC3
-  jsr Sub_B4_8E06              ; $8DC6
+  jsr HideCursorSprites        ; $8DC6
   ldy ObjectCount              ; $8DC9
   beq Loc_B4_8DD6              ; $8DCC
 Loc_B4_8DCE:
@@ -1037,7 +1037,7 @@ Loc_B4_8DFA:
   bcc Loc_B4_8DE6              ; $8DFF
   sbc #$38                     ; $8E01
   jmp Loc_B4_8DF0              ; $8E03
-Sub_B4_8E06:
+HideCursorSprites:
   lda #$00                     ; $8E06
   sta z:$6F                    ; $8E08
   lda #$F0                     ; $8E0A
@@ -1121,7 +1121,7 @@ Data_B4_8EF2:
   .incbin "prg_bank_4.bin", $0EF2, $61  ; $8EF2
 Data_B4_8F53:
   .incbin "prg_bank_4.bin", $0F53, $58  ; $8F53
-Sub_B4_8FAB:
+AllocObjectSlot:
   inc ObjectCount              ; $8FAB
   lda ObjectCount              ; $8FAE
   jsr AslA4                    ; $8FB1
@@ -1214,7 +1214,7 @@ Sub_B4_9074:
   .incbin "prg_bank_4.bin", $1077, $2  ; $9077
   rts                          ; $9079
   .incbin "prg_bank_4.bin", $107A, $24  ; $907A
-Sub_B4_909E:
+CopyPpuListStubToRam:
   ldx #$05                     ; $909E
 Loc_B4_90A0:
   lda Sub_B4_9074,x            ; $90A0
@@ -1227,12 +1227,12 @@ Loc_B4_90B7:
   lda z:PpuMaskShadow          ; $90B7
   ora #$18                     ; $90B9
   jmp SetPpuMask               ; $90BB
-Sub_B4_90BE:
+DisableSpriteBgRendering:
   lda z:PpuMaskShadow          ; $90BE
   and #$E7                     ; $90C0
   jmp SetPpuMask               ; $90C2
   .incbin "prg_bank_4.bin", $10C5, $14  ; $90C5
-Sub_B4_90D9:
+HideSpritesWithTileFE:
   ldx #$1C                     ; $90D9
 Loc_B4_90DB:
   lda $02E1,x                  ; $90DB
@@ -1300,7 +1300,7 @@ Data_B4_91B9:
   .incbin "prg_bank_4.bin", $11B9, $12  ; $91B9
 Data_B4_91CB:
   .incbin "prg_bank_4.bin", $11CB, $3A0  ; $91CB
-Sub_B4_956B:
+InitPaletteBuffer:
   lda #$3F                     ; $956B
   sta SceneTimer               ; $956D
   ldx #$00                     ; $9570
@@ -1317,7 +1317,7 @@ Loc_B4_9582:
   bne Loc_B4_9582              ; $9586
   rts                          ; $9588
 Sub_B4_9589:
-  jsr Sub_B4_956B              ; $9589
+  jsr InitPaletteBuffer        ; $9589
   ldx #$02                     ; $958C
 Loc_B4_958E:
   lda Data_B4_95FD,x           ; $958E
@@ -1681,20 +1681,20 @@ Sub_B4_9922:
 Loc_B4_9924:
   lda z:$8F,x                  ; $9924
   ldy z:$8D                    ; $9926
-  jsr Sub_B4_9943              ; $9928
+  jsr ExtractBitPair           ; $9928
   sta z:$9B,x                  ; $992B
   lda z:$8F,x                  ; $992D
   ldy z:$8C                    ; $992F
-  jsr Sub_B4_9943              ; $9931
+  jsr ExtractBitPair           ; $9931
   sta z:$9F,x                  ; $9934
   lda z:$8F,x                  ; $9936
   ldy z:$8E                    ; $9938
-  jsr Sub_B4_9943              ; $993A
+  jsr ExtractBitPair           ; $993A
   sta z:$A3,x                  ; $993D
   dex                          ; $993F
   bpl Loc_B4_9924              ; $9940
   rts                          ; $9942
-Sub_B4_9943:
+ExtractBitPair:
   beq Loc_B4_9951              ; $9943
   dey                          ; $9945
   beq Loc_B4_994F              ; $9946
@@ -1716,19 +1716,19 @@ Loc_B4_9954:
 Loc_B4_9956:
   lda z:$93,x                  ; $9956
   ldy z:$8D                    ; $9958
-  jsr Sub_B4_9943              ; $995A
+  jsr ExtractBitPair           ; $995A
   sta z:$A7,x                  ; $995D
   dex                          ; $995F
   bpl Loc_B4_9956              ; $9960
   rts                          ; $9962
 Sub_B4_9963:
-  jsr Sub_B4_9975              ; $9963
+  jsr DrawRleScreen            ; $9963
   jsr Sub_B4_9A2C              ; $9966
   jsr Sub_B4_9A73              ; $9969
   jsr Sub_B4_9F2F              ; $996C
   jsr RunSoundDriver           ; $996F
   jmp RunSoundDriver           ; $9972
-Sub_B4_9975:
+DrawRleScreen:
   lda PPU_STATUS               ; $9975
   lda #$20                     ; $9978
   sta PPU_ADDR                 ; $997A
@@ -2059,7 +2059,7 @@ Data_B4_A0FE:
 Sub_B4_A114:
   jsr ProcessPpuUpdateList     ; $A114
   .addr Data_B4_A123  ; $A117 inline pointer (data after a JSR)
-  jsr Sub_B4_8FAB              ; $A119
+  jsr AllocObjectSlot          ; $A119
   lda #$D4                     ; $A11C
   ldy #$00                     ; $A11E
   sta (Tmp00),y                ; $A120
@@ -2069,7 +2069,7 @@ Data_B4_A123:
 Loc_B4_A144:
   jsr ProcessPpuUpdateList     ; $A144
   .addr Data_B4_A153  ; $A147 inline pointer (data after a JSR)
-  jsr Sub_B4_8FAB              ; $A149
+  jsr AllocObjectSlot          ; $A149
   lda #$D5                     ; $A14C
   ldy #$00                     ; $A14E
   sta (Tmp00),y                ; $A150

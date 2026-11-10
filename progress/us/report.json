@@ -1944,7 +1944,7 @@
      }
     },
     {
-     "name": "Sub_B4_80B3",
+     "name": "DispatchSceneStateBank4",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2224,7 +2224,7 @@
      }
     },
     {
-     "name": "Sub_B4_846E",
+     "name": "HideSpritesFromStart",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2232,7 +2232,7 @@
      }
     },
     {
-     "name": "Sub_B4_8473",
+     "name": "HideAllSprites",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2248,7 +2248,7 @@
      }
     },
     {
-     "name": "Sub_B4_84F5",
+     "name": "ClearSceneStateTail",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2256,7 +2256,7 @@
      }
     },
     {
-     "name": "Sub_B4_84FF",
+     "name": "ClearWorkVars60",
      "size": "67",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2400,7 +2400,7 @@
      }
     },
     {
-     "name": "Sub_B4_86D1",
+     "name": "ClearObjectTable",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2416,7 +2416,7 @@
      }
     },
     {
-     "name": "Sub_B4_8B2D",
+     "name": "InitAllObjectAnims",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2440,7 +2440,7 @@
      }
     },
     {
-     "name": "Sub_B4_8BFB",
+     "name": "CheckLowLifeSound",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2488,7 +2488,7 @@
      }
     },
     {
-     "name": "Sub_B4_8E06",
+     "name": "HideCursorSprites",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2560,7 +2560,7 @@
      }
     },
     {
-     "name": "Sub_B4_8FAB",
+     "name": "AllocObjectSlot",
      "size": "26",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2624,7 +2624,7 @@
      }
     },
     {
-     "name": "Sub_B4_909E",
+     "name": "CopyPpuListStubToRam",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2640,7 +2640,7 @@
      }
     },
     {
-     "name": "Sub_B4_90BE",
+     "name": "DisableSpriteBgRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2648,7 +2648,7 @@
      }
     },
     {
-     "name": "Sub_B4_90D9",
+     "name": "HideSpritesWithTileFE",
      "size": "42",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2672,7 +2672,7 @@
      }
     },
     {
-     "name": "Sub_B4_956B",
+     "name": "InitPaletteBuffer",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2768,7 +2768,7 @@
      }
     },
     {
-     "name": "Sub_B4_9943",
+     "name": "ExtractBitPair",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2784,7 +2784,7 @@
      }
     },
     {
-     "name": "Sub_B4_9975",
+     "name": "DrawRleScreen",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {

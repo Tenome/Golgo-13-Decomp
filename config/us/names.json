@@ -284,5 +284,21 @@
  "3:8AF4": "LoadFourBytesFromPtr70",
  "3:8B08": "StoreSpriteYTileX",
  "3:9060": "WriteSixPaletteEntries",
- "3:8CA1": "HideMenuSpritesAndRestoreScroll"
+ "3:8CA1": "HideMenuSpritesAndRestoreScroll",
+ "4:80B3": "DispatchSceneStateBank4",
+ "4:846E": "HideSpritesFromStart",
+ "4:8473": "HideAllSprites",
+ "4:84F5": "ClearSceneStateTail",
+ "4:84FF": "ClearWorkVars60",
+ "4:86D1": "ClearObjectTable",
+ "4:8B2D": "InitAllObjectAnims",
+ "4:8BFB": "CheckLowLifeSound",
+ "4:8E06": "HideCursorSprites",
+ "4:8FAB": "AllocObjectSlot",
+ "4:909E": "CopyPpuListStubToRam",
+ "4:90BE": "DisableSpriteBgRendering",
+ "4:90D9": "HideSpritesWithTileFE",
+ "4:956B": "InitPaletteBuffer",
+ "4:9943": "ExtractBitPair",
+ "4:9975": "DrawRleScreen"
 }
