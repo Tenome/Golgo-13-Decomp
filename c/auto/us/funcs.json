@@ -1405,7 +1405,7 @@
    ]
   ]
  },
- "Sub_B2_8167": {
+ "PlayStageIntroSound": {
   "addr": 33127,
   "bank": 2,
   "instrs": 7,
@@ -1526,7 +1526,7 @@
    ]
   ]
  },
- "Sub_B2_886A": {
+ "CalcViewEdgeColumnB2": {
   "addr": 34922,
   "bank": 2,
   "instrs": 9,
@@ -1539,7 +1539,7 @@
    ]
   ]
  },
- "Sub_B2_8882": {
+ "CheckLowLifeSoundB2": {
   "addr": 34946,
   "bank": 2,
   "instrs": 17,
@@ -1578,7 +1578,7 @@
    ]
   ]
  },
- "Sub_B2_89E2": {
+ "ClearObjectTableAndLoadList": {
   "addr": 35298,
   "bank": 2,
   "instrs": 22,
@@ -9147,7 +9147,7 @@
    ]
   ]
  },
- "Sub_E939": {
+ "UpdatePlayerActions": {
   "addr": 59705,
   "bank": 7,
   "instrs": 16,
@@ -9199,7 +9199,7 @@
    ]
   ]
  },
- "Sub_EA61": {
+ "HandleFireButton": {
   "addr": 60001,
   "bank": 7,
   "instrs": 35,
@@ -9316,7 +9316,7 @@
    ]
   ]
  },
- "Sub_EF19": {
+ "UpdatePlayerSideView": {
   "addr": 61209,
   "bank": 7,
   "instrs": 8,
@@ -9342,7 +9342,7 @@
    ]
   ]
  },
- "Sub_EF7B": {
+ "SelectPlayerSpriteFrame": {
   "addr": 61307,
   "bank": 7,
   "instrs": 22,
@@ -9381,7 +9381,7 @@
    ]
   ]
  },
- "Sub_F23D": {
+ "FireBulletSideView": {
   "addr": 62013,
   "bank": 7,
   "instrs": 48,
@@ -9433,7 +9433,7 @@
    ]
   ]
  },
- "Sub_F394": {
+ "UpdatePlayerTopDown": {
   "addr": 62356,
   "bank": 7,
   "instrs": 4,
@@ -9446,7 +9446,7 @@
    ]
   ]
  },
- "Sub_F39E": {
+ "MovePlayerVertical": {
   "addr": 62366,
   "bank": 7,
   "instrs": 62,
@@ -9472,7 +9472,7 @@
    ]
   ]
  },
- "Sub_F470": {
+ "FireBulletTopDown": {
   "addr": 62576,
   "bank": 7,
   "instrs": 33,
@@ -9506,7 +9506,7 @@
    ]
   ]
  },
- "Sub_F606": {
+ "SetPlayerScreenSide": {
   "addr": 62982,
   "bank": 7,
   "instrs": 11,
@@ -9519,7 +9519,7 @@
    ]
   ]
  },
- "Sub_F61E": {
+ "UploadPaletteIgnoringPad": {
   "addr": 63006,
   "bank": 7,
   "instrs": 12,
@@ -9597,7 +9597,7 @@
    ]
   ]
  },
- "Sub_F984": {
+ "CheckPlayerHitByObjects": {
   "addr": 63876,
   "bank": 7,
   "instrs": 78,
@@ -9610,7 +9610,7 @@
    ]
   ]
  },
- "Sub_FA47": {
+ "CheckBulletHitObjects": {
   "addr": 64071,
   "bank": 7,
   "instrs": 36,

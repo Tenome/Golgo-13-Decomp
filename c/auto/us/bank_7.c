@@ -1565,7 +1565,7 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
       push16(0xCA82); Sub_F6BC(); UNW(); ret_check(0xCA82);                              /* $CA80 jsr */
       push16(0xCA85); UploadPaletteIfDirty(); UNW(); ret_check(0xCA85);                  /* $CA83 jsr */
       push16(0xCA88); ApplyScroll(); UNW(); ret_check(0xCA88);                           /* $CA86 jsr */
-      push16(0xCA8B); Sub_E939(); UNW(); ret_check(0xCA8B);                              /* $CA89 jsr */
+      push16(0xCA8B); UpdatePlayerActions(); UNW(); ret_check(0xCA8B);                   /* $CA89 jsr */
       push16(0xCA8E); Sub_F634(); UNW(); ret_check(0xCA8E);                              /* $CA8C jsr */
       push16(0xCA91); Sub_FB00(); UNW(); ret_check(0xCA91);                              /* $CA8F jsr */
       LDA(0x00);                                                                         /* $CA92 lda */
@@ -1573,9 +1573,9 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
       cmp8(R.a, 0x04);                                                                   /* $CA97 cmp */
       if (R.a == 0x04) {                                                                 /* $CA99 bne */
         push16(0xCA9D); DoOamDma(); UNW(); ret_check(0xCA9D);                            /* $CA9B jsr */
-        push16(0xCAA0); Sub_F61E(); UNW(); ret_check(0xCAA0);                            /* $CA9E jsr */
+        push16(0xCAA0); UploadPaletteIgnoringPad(); UNW(); ret_check(0xCAA0);            /* $CA9E jsr */
         push16(0xCAA3); ApplyScroll(); UNW(); ret_check(0xCAA3);                         /* $CAA1 jsr */
-        push16(0xCAA6); Sub_F394(); UNW(); ret_check(0xCAA6);                            /* $CAA4 jsr */
+        push16(0xCAA6); UpdatePlayerTopDown(); UNW(); ret_check(0xCAA6);                 /* $CAA4 jsr */
         push16(0xCAA9); Sub_F698(); UNW(); ret_check(0xCAA9);                            /* $CAA7 jsr */
         push16(0xCAAC); Sub_FC1A(); UNW(); ret_check(0xCAAC);                            /* $CAAA jsr */
         LDA(0x01);                                                                       /* $CAAD lda */
@@ -1587,7 +1587,7 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
         push16(0xCABB); Sub_F6BC(); UNW(); ret_check(0xCABB);                            /* $CAB9 jsr */
         push16(0xCABE); UploadPaletteIfDirty(); UNW(); ret_check(0xCABE);                /* $CABC jsr */
         push16(0xCAC1); ApplyScroll(); UNW(); ret_check(0xCAC1);                         /* $CABF jsr */
-        push16(0xCAC4); Sub_EF19(); UNW(); ret_check(0xCAC4);                            /* $CAC2 jsr */
+        push16(0xCAC4); UpdatePlayerSideView(); UNW(); ret_check(0xCAC4);                /* $CAC2 jsr */
         push16(0xCAC7); Sub_F664(); UNW(); ret_check(0xCAC7);                            /* $CAC5 jsr */
         push16(0xCACA); Sub_FD18(); UNW(); ret_check(0xCACA);                            /* $CAC8 jsr */
         LDA(0x04);                                                                       /* $CACB lda */
@@ -4454,7 +4454,7 @@ LE938: BUDGET();
   RTS_RET(sp0);                                                                          /* $E938 rts */
 }
 
-void Sub_E939(void) {  /* $E939 bank 7 */
+void UpdatePlayerActions(void) {  /* $E939 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteDirty));                                                                 /* $E939 lda */
   if (R.a == 0) {                                                                        /* $E93B bne */
@@ -4468,7 +4468,7 @@ void Sub_E939(void) {  /* $E939 bank 7 */
     if (R.a != 0) {                                                                      /* $E94C beq */
       push16(0xE950); Sub_EA2D(); UNW(); ret_check(0xE950);                              /* $E94E jsr */
     } else {
-      push16(0xE956); Sub_EA61(); UNW(); ret_check(0xE956);                              /* $E954 jsr */
+      push16(0xE956); HandleFireButton(); UNW(); ret_check(0xE956);                      /* $E954 jsr */
     }
     push16(0xE959); Sub_EAD9(); UNW(); ret_check(0xE959);                                /* $E957 jsr */
     push16(0xE95C); Sub_EB2F(); UNW(); ret_check(0xE95C);                                /* $E95A jsr */
@@ -4590,7 +4590,7 @@ LEA60: BUDGET();
   RTS_RET(sp0);                                                                          /* $EA60 rts */
 }
 
-void Sub_EA61(void) {  /* $EA61 bank 7 */
+void HandleFireButton(void) {  /* $EA61 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyNew1));                                                                      /* $EA61 lda */
   AND(0x01);                                                                             /* $EA64 and */
@@ -4934,15 +4934,15 @@ LEEE4: BUDGET();
   RTS_RET(sp0);                                                                          /* $EF18 rts */
 }
 
-void Sub_EF19(void) {  /* $EF19 bank 7 */
+void UpdatePlayerSideView(void) {  /* $EF19 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteDirty));                                                                 /* $EF19 lda */
   if (R.a == 0) {                                                                        /* $EF1B bne */
     push16(0xEF1F); Sub_EF2D(); UNW(); ret_check(0xEF1F);                                /* $EF1D jsr */
-    push16(0xEF22); Sub_EF7B(); UNW(); ret_check(0xEF22);                                /* $EF20 jsr */
+    push16(0xEF22); SelectPlayerSpriteFrame(); UNW(); ret_check(0xEF22);                 /* $EF20 jsr */
     push16(0xEF25); Sub_EFA9(); UNW(); ret_check(0xEF25);                                /* $EF23 jsr */
     push16(0xEF28); Sub_EFAA(); UNW(); ret_check(0xEF28);                                /* $EF26 jsr */
-    push16(0xEF2B); Sub_F23D(); UNW(); ret_check(0xEF2B);                                /* $EF29 jsr */
+    push16(0xEF2B); FireBulletSideView(); UNW(); ret_check(0xEF2B);                      /* $EF29 jsr */
   }
   RTS_RET(sp0);                                                                          /* $EF2C rts */
 }
@@ -4994,7 +4994,7 @@ LEF7A: BUDGET();
   RTS_RET(sp0);                                                                          /* $EF7A rts */
 }
 
-void Sub_EF7B(void) {  /* $EF7B bank 7 */
+void SelectPlayerSpriteFrame(void) {  /* $EF7B bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerPose));                                                                   /* $EF7B lda */
   AND(0x10);                                                                             /* $EF7D and */
@@ -5079,7 +5079,7 @@ void Sub_EFAA(void) {  /* $EFAA bank 7 */
   RTS_RET(sp0);                                                                          /* $EFFC rts */
 }
 
-void Sub_F23D(void) {  /* $F23D bank 7 */
+void FireBulletSideView(void) {  /* $F23D bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerPose));                                                                   /* $F23D lda */
   AND(0x0F);                                                                             /* $F23F and */
@@ -5285,15 +5285,15 @@ LF393: BUDGET();
   RTS_RET(sp0);                                                                          /* $F393 rts */
 }
 
-void Sub_F394(void) {  /* $F394 bank 7 */
+void UpdatePlayerTopDown(void) {  /* $F394 bank 7 */
   uint8_t sp0 = R.sp;
-  push16(0xF396); Sub_F39E(); UNW(); ret_check(0xF396);                                  /* $F394 jsr */
+  push16(0xF396); MovePlayerVertical(); UNW(); ret_check(0xF396);                        /* $F394 jsr */
   push16(0xF399); Sub_F430(); UNW(); ret_check(0xF399);                                  /* $F397 jsr */
-  push16(0xF39C); Sub_F470(); UNW(); ret_check(0xF39C);                                  /* $F39A jsr */
+  push16(0xF39C); FireBulletTopDown(); UNW(); ret_check(0xF39C);                         /* $F39A jsr */
   RTS_RET(sp0);                                                                          /* $F39D rts */
 }
 
-void Sub_F39E(void) {  /* $F39E bank 7 */
+void MovePlayerVertical(void) {  /* $F39E bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyHeld1));                                                                     /* $F39E lda */
   AND(0x10);                                                                             /* $F3A1 and */
@@ -5400,7 +5400,7 @@ LF44A: BUDGET();
   RTS_RET(sp0);                                                                          /* $F460 rts */
 }
 
-void Sub_F470(void) {  /* $F470 bank 7 */
+void FireBulletTopDown(void) {  /* $F470 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(AmmoLo));                                                                       /* $F470 lda */
   ORA(rd(AmmoHi));                                                                       /* $F472 ora */
@@ -5504,7 +5504,7 @@ void Sub_F4B8(void) {  /* $F4B8 bank 7 */
     INX();                                                                               /* $F535 inx */
     cmp8(R.x, 0x1C);                                                                     /* $F536 cpx */
   } while (R.x >= 0x1C);                                                                 /* $F538 bcs */
-  push16(0xF53C); Sub_F606(); UNW(); ret_check(0xF53C);                                  /* $F53A jsr */
+  push16(0xF53C); SetPlayerScreenSide(); UNW(); ret_check(0xF53C);                       /* $F53A jsr */
   RTS_RET(sp0);                                                                          /* $F53D rts */
 LF55A: BUDGET();
   LDA(rd(0x2B));                                                                         /* $F55A lda */
@@ -5561,7 +5561,7 @@ LF579: BUDGET();
     INX();                                                                               /* $F5C2 inx */
     cmp8(R.x, 0x10);                                                                     /* $F5C3 cpx */
   } while (R.x >= 0x10);                                                                 /* $F5C5 bcs */
-  push16(0xF5C9); Sub_F606(); UNW(); ret_check(0xF5C9);                                  /* $F5C7 jsr */
+  push16(0xF5C9); SetPlayerScreenSide(); UNW(); ret_check(0xF5C9);                       /* $F5C7 jsr */
   RTS_RET(sp0);                                                                          /* $F5CA rts */
 LF5DB: BUDGET();
   LDA(rd(0x2B));                                                                         /* $F5DB lda */
@@ -5590,7 +5590,7 @@ LF5FA: BUDGET();
   RTS_RET(sp0);                                                                          /* $F605 rts */
 }
 
-void Sub_F606(void) {  /* $F606 bank 7 */
+void SetPlayerScreenSide(void) {  /* $F606 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerSpriteX0));                                                               /* $F606 lda */
   cmp8(R.a, 0x78);                                                                       /* $F609 cmp */
@@ -5608,7 +5608,7 @@ LF61B: BUDGET();
   RTS_RET(sp0);                                                                          /* $F61D rts */
 }
 
-void Sub_F61E(void) {  /* $F61E bank 7 */
+void UploadPaletteIgnoringPad(void) {  /* $F61E bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyHeld1));                                                                     /* $F61E lda */
   PHA();                                                                                 /* $F621 pha */
@@ -5964,7 +5964,7 @@ LF983: BUDGET();
   RTS_RET(sp0);                                                                          /* $F983 rts */
 }
 
-void Sub_F984(void) {  /* $F984 bank 7 */
+void CheckPlayerHitByObjects(void) {  /* $F984 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(HurtTimer));                                                                    /* $F984 lda */
   if (R.a != 0) {                                                                        /* $F987 beq */
@@ -6057,7 +6057,7 @@ LFA05: BUDGET();
   RTS_RET(sp0);                                                                          /* $FA1C rts */
 }
 
-void Sub_FA47(void) {  /* $FA47 bank 7 */
+void CheckBulletHitObjects(void) {  /* $FA47 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0115));                                                                       /* $FA47 lda */
   if (R.a != 0) {                                                                        /* $FA4A beq */
@@ -6235,8 +6235,8 @@ LFB7C: BUDGET();
   }
   push16(0xFB81); ClearObjectStatusBits(); UNW(); ret_check(0xFB81);                     /* $FB7F jsr */
   push16(0xFB84); Sub_F804(); UNW(); ret_check(0xFB84);                                  /* $FB82 jsr */
-  push16(0xFB87); Sub_F984(); UNW(); ret_check(0xFB87);                                  /* $FB85 jsr */
-  push16(0xFB8A); Sub_FA47(); UNW(); ret_check(0xFB8A);                                  /* $FB88 jsr */
+  push16(0xFB87); CheckPlayerHitByObjects(); UNW(); ret_check(0xFB87);                   /* $FB85 jsr */
+  push16(0xFB8A); CheckBulletHitObjects(); UNW(); ret_check(0xFB8A);                     /* $FB88 jsr */
   LDA(rd(0x0258));                                                                       /* $FB8B lda */
   cmp8(R.a, 0xE8);                                                                       /* $FB8E cmp */
   if (R.a >= 0xE8) {                                                                     /* $FB90 bcc */
@@ -6345,7 +6345,7 @@ void Sub_FC1A(void) {  /* $FC1A bank 7 */
   }
   push16(0xFC54); ClearObjectStatusBits(); UNW(); ret_check(0xFC54);                     /* $FC52 jsr */
   push16(0xFC57); Sub_F804(); UNW(); ret_check(0xFC57);                                  /* $FC55 jsr */
-  push16(0xFC5A); Sub_F984(); UNW(); ret_check(0xFC5A);                                  /* $FC58 jsr */
+  push16(0xFC5A); CheckPlayerHitByObjects(); UNW(); ret_check(0xFC5A);                   /* $FC58 jsr */
   push16(0xFC5D); TickObjectStates(); UNW(); ret_check(0xFC5D);                          /* $FC5B jsr */
   push16(0xFC60); UpdateLifeBlink(); UNW(); ret_check(0xFC60);                           /* $FC5E jsr */
   RTS_RET(sp0);                                                                          /* $FC61 rts */
@@ -6475,7 +6475,7 @@ void Sub_FD18(void) {  /* $FD18 bank 7 */
   push16(0xFD50); Sub_FCBD(); UNW(); ret_check(0xFD50);                                  /* $FD4E jsr */
   push16(0xFD53); ClearObjectStatusBits(); UNW(); ret_check(0xFD53);                     /* $FD51 jsr */
   push16(0xFD56); Sub_F804(); UNW(); ret_check(0xFD56);                                  /* $FD54 jsr */
-  push16(0xFD59); Sub_F984(); UNW(); ret_check(0xFD59);                                  /* $FD57 jsr */
+  push16(0xFD59); CheckPlayerHitByObjects(); UNW(); ret_check(0xFD59);                   /* $FD57 jsr */
   push16(0xFD5C); TickObjectStates(); UNW(); ret_check(0xFD5C);                          /* $FD5A jsr */
   push16(0xFD5F); UpdateLifeBlink(); UNW(); ret_check(0xFD5F);                           /* $FD5D jsr */
   RTS_RET(sp0);                                                                          /* $FD60 rts */

@@ -45,7 +45,7 @@ Bank2Nmi:
   lda #$01                     ; $8065
   sta $04AA                    ; $8067
   jsr Sub_B2_8211              ; $806A
-  jsr Sub_B2_89E2              ; $806D
+  jsr ClearObjectTableAndLoadList ; $806D
   jsr Sub_B2_8609              ; $8070
   lda #$00                     ; $8073
   jsr QueueSound               ; $8075
@@ -61,7 +61,7 @@ Loc_B2_8087:
   lda #$18                     ; $8087
   jsr SetPpuMask               ; $8089
   inc z:GameState              ; $808C
-  jsr Sub_B2_8167              ; $808E
+  jsr PlayStageIntroSound      ; $808E
   jmp Loc_B2_811B              ; $8091
 Loc_B2_8094:
   jsr DoOamDma                 ; $8094
@@ -78,7 +78,7 @@ Loc_B2_8094:
   jsr Sub_B2_8938              ; $80B2
 Loc_B2_80B5:
   jsr Sub_B2_87AC              ; $80B5
-  jsr Sub_B2_8882              ; $80B8
+  jsr CheckLowLifeSoundB2      ; $80B8
   jsr Sub_B2_88AA              ; $80BB
   lda $0497                    ; $80BE
   bmi Loc_B2_810C              ; $80C1
@@ -158,7 +158,7 @@ Loc_B2_815F:
   ora #$80                     ; $8161
   jsr SetPpuCtrl               ; $8163
   rti                          ; $8166
-Sub_B2_8167:
+PlayStageIntroSound:
   lda z:PaletteSetIndex        ; $8167
   sec                          ; $8169
   sbc #$50                     ; $816A
@@ -640,7 +640,7 @@ Loc_B2_87D1:
 Loc_B2_87D9:
   lda #$F8                     ; $87D9
   sta z:$04                    ; $87DB
-  jsr Sub_B2_886A              ; $87DD
+  jsr CalcViewEdgeColumnB2     ; $87DD
   lda $0319                    ; $87E0
   cmp z:ScrollPage             ; $87E3
   beq Loc_B2_87F5              ; $87E5
@@ -709,7 +709,7 @@ Loc_B2_884B:
   sta $02DF                    ; $8866
 Loc_B2_8869:
   rts                          ; $8869
-Sub_B2_886A:
+CalcViewEdgeColumnB2:
   lda z:$04                    ; $886A
   clc                          ; $886C
   adc z:ScrollX                ; $886D
@@ -727,7 +727,7 @@ Data_B2_887C:
   .incbin "prg_bank_2.bin", $087C, $1  ; $887C
 Data_B2_887D:
   .incbin "prg_bank_2.bin", $087D, $5  ; $887D
-Sub_B2_8882:
+CheckLowLifeSoundB2:
   lda z:PlayerLifeHi           ; $8882
   bne Loc_B2_889C              ; $8884
   lda z:PlayerLifeLo           ; $8886
@@ -890,7 +890,7 @@ Loc_B2_89C3:
   rts                          ; $89D1
 Data_B2_89D2:
   .incbin "prg_bank_2.bin", $09D2, $10  ; $89D2
-Sub_B2_89E2:
+ClearObjectTableAndLoadList:
   lda #$00                     ; $89E2
   ldy #$00                     ; $89E4
 Loc_B2_89E6:

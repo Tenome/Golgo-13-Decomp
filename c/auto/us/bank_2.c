@@ -50,7 +50,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
       LDA(0x01);                                                                         /* $8065 lda */
       STA(0x04AA);                                                                       /* $8067 sta */
       push16(0x806C); Sub_B2_8211(); UNW(); ret_check(0x806C);                           /* $806A jsr */
-      push16(0x806F); Sub_B2_89E2(); UNW(); ret_check(0x806F);                           /* $806D jsr */
+      push16(0x806F); ClearObjectTableAndLoadList(); UNW(); ret_check(0x806F);           /* $806D jsr */
       push16(0x8072); Sub_B2_8609(); UNW(); ret_check(0x8072);                           /* $8070 jsr */
       LDA(0x00);                                                                         /* $8073 lda */
       push16(0x8077); QueueSound(); UNW(); ret_check(0x8077);                            /* $8075 jsr */
@@ -64,7 +64,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
     LDA(0x18);                                                                           /* $8087 lda */
     push16(0x808B); SetPpuMask(); UNW(); ret_check(0x808B);                              /* $8089 jsr */
     INC_M(GameState);                                                                    /* $808C inc */
-    push16(0x8090); Sub_B2_8167(); UNW(); ret_check(0x8090);                             /* $808E jsr */
+    push16(0x8090); PlayStageIntroSound(); UNW(); ret_check(0x8090);                     /* $808E jsr */
   } else {
     push16(0x8096); DoOamDma(); UNW(); ret_check(0x8096);                                /* $8094 jsr */
     push16(0x8099); MmcWriteChr1(); UNW(); ret_check(0x8099);                            /* $8097 jsr */
@@ -80,7 +80,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
       push16(0x80B4); Sub_B2_8938(); UNW(); ret_check(0x80B4);                           /* $80B2 jsr */
     }
     push16(0x80B7); Sub_B2_87AC(); UNW(); ret_check(0x80B7);                             /* $80B5 jsr */
-    push16(0x80BA); Sub_B2_8882(); UNW(); ret_check(0x80BA);                             /* $80B8 jsr */
+    push16(0x80BA); CheckLowLifeSoundB2(); UNW(); ret_check(0x80BA);                     /* $80B8 jsr */
     push16(0x80BD); Sub_B2_88AA(); UNW(); ret_check(0x80BD);                             /* $80BB jsr */
     LDA(rd(0x0497));                                                                     /* $80BE lda */
     if (!(R.a & 0x80)) {                                                                 /* $80C1 bmi */
@@ -175,7 +175,7 @@ L815C: BUDGET();
   return;                                                                                /* $8166 rti */
 }
 
-void Sub_B2_8167(void) {  /* $8167 bank 2 */
+void PlayStageIntroSound(void) {  /* $8167 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteSetIndex));                                                              /* $8167 lda */
   SEC();                                                                                 /* $8169 sec */
@@ -654,7 +654,7 @@ void Sub_B2_87AC(void) {  /* $87AC bank 2 */
     }
     LDA(0xF8);                                                                           /* $87D9 lda */
     STA(0x04);                                                                           /* $87DB sta */
-    push16(0x87DF); Sub_B2_886A(); UNW(); ret_check(0x87DF);                             /* $87DD jsr */
+    push16(0x87DF); CalcViewEdgeColumnB2(); UNW(); ret_check(0x87DF);                    /* $87DD jsr */
     LDA(rd(0x0319));                                                                     /* $87E0 lda */
     cmp8(R.a, rd(ScrollPage));                                                           /* $87E3 cmp */
     if (R.a != rd(ScrollPage)) {                                                         /* $87E5 beq */
@@ -726,7 +726,7 @@ L8869: BUDGET();
   RTS_RET(sp0);                                                                          /* $8869 rts */
 }
 
-void Sub_B2_886A(void) {  /* $886A bank 2 */
+void CalcViewEdgeColumnB2(void) {  /* $886A bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x04));                                                                         /* $886A lda */
   CLC();                                                                                 /* $886C clc */
@@ -739,7 +739,7 @@ void Sub_B2_886A(void) {  /* $886A bank 2 */
   RTS_RET(sp0);                                                                          /* $8879 rts */
 }
 
-void Sub_B2_8882(void) {  /* $8882 bank 2 */
+void CheckLowLifeSoundB2(void) {  /* $8882 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerLifeHi));                                                                 /* $8882 lda */
   if (R.a == 0) {                                                                        /* $8884 bne */
@@ -914,7 +914,7 @@ L89C3: BUDGET();
   RTS_RET(sp0);                                                                          /* $89D1 rts */
 }
 
-void Sub_B2_89E2(void) {  /* $89E2 bank 2 */
+void ClearObjectTableAndLoadList(void) {  /* $89E2 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $89E2 lda */
   LDY(0x00);                                                                             /* $89E4 ldy */

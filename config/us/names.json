@@ -336,5 +336,21 @@
  "5:8FCA": "CopyRamStub051E",
  "5:8FDE": "SetMmcControlChr0Chr1",
  "5:9082": "RunSoundDriverBank5Timed",
- "5:90A0": "InitDmcAndJoypad2"
+ "5:90A0": "InitDmcAndJoypad2",
+ "2:8167": "PlayStageIntroSound",
+ "2:886A": "CalcViewEdgeColumnB2",
+ "2:8882": "CheckLowLifeSoundB2",
+ "2:89E2": "ClearObjectTableAndLoadList",
+ "E939": "UpdatePlayerActions",
+ "EA61": "HandleFireButton",
+ "EF19": "UpdatePlayerSideView",
+ "EF7B": "SelectPlayerSpriteFrame",
+ "F23D": "FireBulletSideView",
+ "F394": "UpdatePlayerTopDown",
+ "F39E": "MovePlayerVertical",
+ "F470": "FireBulletTopDown",
+ "F606": "SetPlayerScreenSide",
+ "F61E": "UploadPaletteIgnoringPad",
+ "F984": "CheckPlayerHitByObjects",
+ "FA47": "CheckBulletHitObjects"
 }

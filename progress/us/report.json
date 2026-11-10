@@ -1290,7 +1290,7 @@
      }
     },
     {
-     "name": "Sub_B2_8167",
+     "name": "PlayStageIntroSound",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1370,7 +1370,7 @@
      }
     },
     {
-     "name": "Sub_B2_886A",
+     "name": "CalcViewEdgeColumnB2",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1378,7 +1378,7 @@
      }
     },
     {
-     "name": "Sub_B2_8882",
+     "name": "CheckLowLifeSoundB2",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1402,7 +1402,7 @@
      }
     },
     {
-     "name": "Sub_B2_89E2",
+     "name": "ClearObjectTableAndLoadList",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6117,7 +6117,7 @@
      }
     },
     {
-     "name": "Sub_E939",
+     "name": "UpdatePlayerActions",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6149,7 +6149,7 @@
      }
     },
     {
-     "name": "Sub_EA61",
+     "name": "HandleFireButton",
      "size": "73",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6221,7 +6221,7 @@
      }
     },
     {
-     "name": "Sub_EF19",
+     "name": "UpdatePlayerSideView",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6237,7 +6237,7 @@
      }
     },
     {
-     "name": "Sub_EF7B",
+     "name": "SelectPlayerSpriteFrame",
      "size": "42",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6261,7 +6261,7 @@
      }
     },
     {
-     "name": "Sub_F23D",
+     "name": "FireBulletSideView",
      "size": "96",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6293,7 +6293,7 @@
      }
     },
     {
-     "name": "Sub_F394",
+     "name": "UpdatePlayerTopDown",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6301,7 +6301,7 @@
      }
     },
     {
-     "name": "Sub_F39E",
+     "name": "MovePlayerVertical",
      "size": "138",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6317,7 +6317,7 @@
      }
     },
     {
-     "name": "Sub_F470",
+     "name": "FireBulletTopDown",
      "size": "72",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6349,7 +6349,7 @@
      }
     },
     {
-     "name": "Sub_F606",
+     "name": "SetPlayerScreenSide",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6357,7 +6357,7 @@
      }
     },
     {
-     "name": "Sub_F61E",
+     "name": "UploadPaletteIgnoringPad",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6405,7 +6405,7 @@
      }
     },
     {
-     "name": "Sub_F984",
+     "name": "CheckPlayerHitByObjects",
      "size": "153",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6413,7 +6413,7 @@
      }
     },
     {
-     "name": "Sub_FA47",
+     "name": "CheckBulletHitObjects",
      "size": "71",
      "fuzzy_match_percent": 100.0,
      "metadata": {

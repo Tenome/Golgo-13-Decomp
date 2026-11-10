@@ -286,5 +286,21 @@
  "6:89A7": "GetObjectBehaviorIndex",
  "1:8D00": "ClearObjectsAndInitList",
  "1:8F1E": "FindObjectType01",
- "1:9694": "CalcViewEdgeColumn"
+ "1:9694": "CalcViewEdgeColumn",
+ "2:8167": "PlayStageIntroSound",
+ "2:886A": "CalcViewEdgeColumnB2",
+ "2:8882": "CheckLowLifeSoundB2",
+ "2:89E2": "ClearObjectTableAndLoadList",
+ "E939": "UpdatePlayerActions",
+ "EA61": "HandleFireButton",
+ "EF19": "UpdatePlayerSideView",
+ "EF7B": "SelectPlayerSpriteFrame",
+ "F23D": "FireBulletSideView",
+ "F394": "UpdatePlayerTopDown",
+ "F39E": "MovePlayerVertical",
+ "F470": "FireBulletTopDown",
+ "F606": "SetPlayerScreenSide",
+ "F61E": "UploadPaletteIgnoringPad",
+ "F984": "CheckPlayerHitByObjects",
+ "FA47": "CheckBulletHitObjects"
 }

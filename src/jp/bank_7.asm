@@ -1410,7 +1410,7 @@ Loc_CA79:
   jsr Sub_F6BC                 ; $CA80
   jsr UploadPaletteIfDirty     ; $CA83
   jsr ApplyScroll              ; $CA86
-  jsr Sub_E939                 ; $CA89
+  jsr UpdatePlayerActions      ; $CA89
   jsr Sub_F634                 ; $CA8C
   jsr Sub_FB00                 ; $CA8F
   lda #$00                     ; $CA92
@@ -1419,9 +1419,9 @@ Loc_CA97:
   cmp #$04                     ; $CA97
   bne Loc_CAB2                 ; $CA99
   jsr DoOamDma                 ; $CA9B
-  jsr Sub_F61E                 ; $CA9E
+  jsr UploadPaletteIgnoringPad ; $CA9E
   jsr ApplyScroll              ; $CAA1
-  jsr Sub_F394                 ; $CAA4
+  jsr UpdatePlayerTopDown      ; $CAA4
   jsr Sub_F698                 ; $CAA7
   jsr Sub_FC1A                 ; $CAAA
   lda #$01                     ; $CAAD
@@ -1433,7 +1433,7 @@ Loc_CAB2:
   jsr Sub_F6BC                 ; $CAB9
   jsr UploadPaletteIfDirty     ; $CABC
   jsr ApplyScroll              ; $CABF
-  jsr Sub_EF19                 ; $CAC2
+  jsr UpdatePlayerSideView     ; $CAC2
   jsr Sub_F664                 ; $CAC5
   jsr Sub_FD18                 ; $CAC8
   lda #$04                     ; $CACB
@@ -4177,7 +4177,7 @@ Loc_E932:
   jsr QueueSound               ; $E935
 Loc_E938:
   rts                          ; $E938
-Sub_E939:
+UpdatePlayerActions:
   lda z:PaletteDirty           ; $E939
   bne Loc_E960                 ; $E93B
   lda z:PlayerActionState      ; $E93D
@@ -4192,7 +4192,7 @@ Loc_E94A:
   jsr Sub_EA2D                 ; $E94E
   jmp Loc_E957                 ; $E951
 Loc_E954:
-  jsr Sub_EA61                 ; $E954
+  jsr HandleFireButton         ; $E954
 Loc_E957:
   jsr Sub_EAD9                 ; $E957
   jsr Sub_EB2F                 ; $E95A
@@ -4307,7 +4307,7 @@ Loc_EA59:
   sta z:$33                    ; $EA5E
 Loc_EA60:
   rts                          ; $EA60
-Sub_EA61:
+HandleFireButton:
   lda JoyNew1                  ; $EA61
   and #$01                     ; $EA64
   beq Loc_EAA9                 ; $EA66
@@ -4627,14 +4627,14 @@ Loc_EF03:
   lda #$0E                     ; $EF13
   jsr QueueSound               ; $EF15
   rts                          ; $EF18
-Sub_EF19:
+UpdatePlayerSideView:
   lda z:PaletteDirty           ; $EF19
   bne Loc_EF2C                 ; $EF1B
   jsr Sub_EF2D                 ; $EF1D
-  jsr Sub_EF7B                 ; $EF20
+  jsr SelectPlayerSpriteFrame  ; $EF20
   jsr Sub_EFA9                 ; $EF23
   jsr Sub_EFAA                 ; $EF26
-  jsr Sub_F23D                 ; $EF29
+  jsr FireBulletSideView       ; $EF29
 Loc_EF2C:
   rts                          ; $EF2C
 Sub_EF2D:
@@ -4680,7 +4680,7 @@ Loc_EF77:
   inc PlayerSpriteY0           ; $EF77
 Loc_EF7A:
   rts                          ; $EF7A
-Sub_EF7B:
+SelectPlayerSpriteFrame:
   lda z:PlayerPose             ; $EF7B
   and #$10                     ; $EF7D
   beq Loc_EF83                 ; $EF7F
@@ -4759,7 +4759,7 @@ Loc_EFDE:
   bcc Loc_EFD4                 ; $EFFA
   rts                          ; $EFFC
   .incbin "prg_bank_7.bin", $2FFD, $240  ; $EFFD
-Sub_F23D:
+FireBulletSideView:
   lda z:PlayerPose             ; $F23D
   and #$0F                     ; $F23F
   cmp #$02                     ; $F241
@@ -4953,12 +4953,12 @@ Loc_F38F:
   sta z:$3E                    ; $F391
 Loc_F393:
   rts                          ; $F393
-Sub_F394:
-  jsr Sub_F39E                 ; $F394
+UpdatePlayerTopDown:
+  jsr MovePlayerVertical       ; $F394
   jsr Sub_F430                 ; $F397
-  jsr Sub_F470                 ; $F39A
+  jsr FireBulletTopDown        ; $F39A
   rts                          ; $F39D
-Sub_F39E:
+MovePlayerVertical:
   lda JoyHeld1                 ; $F39E
   and #$10                     ; $F3A1
   beq Loc_F3AF                 ; $F3A3
@@ -5060,7 +5060,7 @@ Loc_F44C:
   rts                          ; $F460
 Data_F461:
   .incbin "prg_bank_7.bin", $3461, $F  ; $F461
-Sub_F470:
+FireBulletTopDown:
   lda z:AmmoLo                 ; $F470
   ora z:AmmoHi                 ; $F472
   beq Loc_F4B7                 ; $F474
@@ -5162,7 +5162,7 @@ Loc_F532:
   inx                          ; $F535
   cpx #$1C                     ; $F536
   bcs Loc_F508                 ; $F538
-  jsr Sub_F606                 ; $F53A
+  jsr SetPlayerScreenSide      ; $F53A
   rts                          ; $F53D
 Data_F53E:
   .incbin "prg_bank_7.bin", $353E, $1  ; $F53E
@@ -5228,7 +5228,7 @@ Loc_F5BF:
   inx                          ; $F5C2
   cpx #$10                     ; $F5C3
   bcs Loc_F595                 ; $F5C5
-  jsr Sub_F606                 ; $F5C7
+  jsr SetPlayerScreenSide      ; $F5C7
   rts                          ; $F5CA
 Data_F5CB:
   .incbin "prg_bank_7.bin", $35CB, $1  ; $F5CB
@@ -5263,7 +5263,7 @@ Loc_F5FA:
   sta z:PlayerSpriteFrame      ; $F600
   jsr CopyPlayerSprites        ; $F602
   rts                          ; $F605
-Sub_F606:
+SetPlayerScreenSide:
   lda PlayerSpriteX0           ; $F606
   cmp #$78                     ; $F609
   bne Loc_F612                 ; $F60B
@@ -5278,7 +5278,7 @@ Loc_F619:
 Loc_F61B:
   sta z:$32                    ; $F61B
   rts                          ; $F61D
-Sub_F61E:
+UploadPaletteIgnoringPad:
   lda JoyHeld1                 ; $F61E
   pha                          ; $F621
   lda z:FrameCounter           ; $F622
@@ -5629,7 +5629,7 @@ Loc_F976:
   jmp Loc_F86F                 ; $F980
 Loc_F983:
   rts                          ; $F983
-Sub_F984:
+CheckPlayerHitByObjects:
   lda HurtTimer                ; $F984
   beq Loc_F98A                 ; $F987
   rts                          ; $F989
@@ -5718,7 +5718,7 @@ Loc_FA05:
   rts                          ; $FA1C
 Data_FA1D:
   .incbin "prg_bank_7.bin", $3A1D, $2A  ; $FA1D
-Sub_FA47:
+CheckBulletHitObjects:
   lda $0115                    ; $FA47
   beq Loc_FA50                 ; $FA4A
   dec $0115                    ; $FA4C
@@ -5889,8 +5889,8 @@ Loc_FB7C:
 Loc_FB7F:
   jsr ClearObjectStatusBits    ; $FB7F
   jsr Sub_F804                 ; $FB82
-  jsr Sub_F984                 ; $FB85
-  jsr Sub_FA47                 ; $FB88
+  jsr CheckPlayerHitByObjects  ; $FB85
+  jsr CheckBulletHitObjects    ; $FB88
   lda $0258                    ; $FB8B
   cmp #$E8                     ; $FB8E
   bcc Loc_FB97                 ; $FB90
@@ -5994,7 +5994,7 @@ Loc_FC4F:
 Loc_FC52:
   jsr ClearObjectStatusBits    ; $FC52
   jsr Sub_F804                 ; $FC55
-  jsr Sub_F984                 ; $FC58
+  jsr CheckPlayerHitByObjects  ; $FC58
   jsr TickObjectStates         ; $FC5B
   jsr UpdateLifeBlink          ; $FC5E
   rts                          ; $FC61
@@ -6117,7 +6117,7 @@ Loc_FD4B:
   jsr Sub_FCBD                 ; $FD4E
   jsr ClearObjectStatusBits    ; $FD51
   jsr Sub_F804                 ; $FD54
-  jsr Sub_F984                 ; $FD57
+  jsr CheckPlayerHitByObjects  ; $FD57
   jsr TickObjectStates         ; $FD5A
   jsr UpdateLifeBlink          ; $FD5D
   rts                          ; $FD60
