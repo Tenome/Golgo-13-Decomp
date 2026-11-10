@@ -13,6 +13,17 @@
 - Every switchable bank starts with the same reset stub (`sei / lda #$80 / sta $BFFD / jmp $C000`) at `$8000`. The fixed-bank NMI handler calls `MmcWritePrg` and then jumps to **`$8010`** of the bank in `MmcPrgShadow`: `$8010` is each bank's per-frame NMI routine.
 - Scene logic is a state machine: `SceneState` (`$0500`) indexes a pointer table through `jmp ($0000)`; `SceneTimer` (`$0526`) counts frames until the next state.
 
+## Bank roles (from screenshots of save states grouped by `MmcPrgShadow`)
+| Bank | Seen running | Notes |
+|---|---|---|
+| 0 | street gameplay | data bank: `MmcPrgShadow = 0` makes the NMI run the fixed-bank main code (`Loc_C0E3`) instead of `$8010` |
+| 1 | game-over screen ('The man with the custom M-16') | also object/enemy routines for the street scene |
+| 2 | sniper-scope scenes | palette tables read by `LoadPaletteSet` |
+| 3 | dialogue and briefing scenes | portrait text boxes |
+| 4, 6 | not identified | classified code comes mostly from static descent |
+| 5 | Vic Tokai logo, intro, title, act cards, 'To be continued' | |
+| 7 | always | reset, NMI, helpers, street-scene gameplay loop |
+
 ## Fixed-bank helpers (bank 7)
 `ApplyScroll`, `SetPpuCtrl`/`SetPpuMask` (shadows `$FF`/`$FE`), `DoOamDma`, `UploadPalette` (buffer `$0140`), `EnqueueByte` (queue at `$06E0`), `GetRandomByte` (index `$0108` into a 32-byte table), `ReadJoypads` (`JoyHeld1` `$010B`, `JoyNew1` `$010D`), `BinToDecimal`, `TickClock` (`$10-$12`), `DrawObjects` (objects at `$0310`, 16 bytes each, count `$0301`).
 

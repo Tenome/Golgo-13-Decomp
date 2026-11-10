@@ -1,0 +1,10 @@
+{
+ "0": "Street-scene level data (maps, tile and object tables). No code of its own: the fixed bank selects it as data (MmcPrgShadow = 0 runs the fixed-bank main code instead of $8010).",
+ "1": "Street-scene object and enemy routines (object table at $0310, 16 bytes each) and the game-over screen ('The man with the custom M-16').",
+ "2": "Sniper-scope scenes and palette tables (LoadPaletteSet reads them here).",
+ "3": "Dialogue and briefing scenes (portrait text boxes).",
+ "4": "Per-frame scene code at $8010 (scene not identified yet).",
+ "5": "Intro, Vic Tokai logo, title screen, act title cards and the 'To be continued' screen.",
+ "6": "Per-frame scene code at $8010 (scene not identified yet).",
+ "7": "Fixed bank: reset, NMI, PPU / MMC1 / joypad helpers and the street-scene gameplay loop."
+}

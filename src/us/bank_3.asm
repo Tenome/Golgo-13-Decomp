@@ -1,4 +1,5 @@
 ; Bank 3  ($8000-$BFFF switchable)
+; Dialogue and briefing scenes (portrait text boxes).
 .segment "PRG_BANK_3"
 
   sei                          ; $8000  [heuristic code]

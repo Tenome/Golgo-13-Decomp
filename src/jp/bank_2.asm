@@ -1,4 +1,5 @@
 ; Bank 2  ($8000-$BFFF switchable)
+; Sniper-scope scenes and palette tables (LoadPaletteSet reads them here).
 .segment "PRG_BANK_2"
 
   sei                          ; $8000  [heuristic code]

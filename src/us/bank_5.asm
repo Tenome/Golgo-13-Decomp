@@ -1,4 +1,5 @@
 ; Bank 5  ($8000-$BFFF switchable)
+; Intro, Vic Tokai logo, title screen, act title cards and the 'To be continued' screen.
 .segment "PRG_BANK_5"
 
   sei                          ; $8000  [heuristic code]

@@ -1,4 +1,5 @@
 ; Bank 0  ($8000-$BFFF switchable)
+; Street-scene level data (maps, tile and object tables). No code of its own: the fixed bank selects it as data (MmcPrgShadow = 0 runs the fixed-bank main code instead of $8010).
 .segment "PRG_BANK_0"
 
   sei                          ; $8000  [heuristic code]

@@ -1,4 +1,5 @@
 ; Bank 7  ($C000-$FFFF fixed)
+; Fixed bank: reset, NMI, PPU / MMC1 / joypad helpers and the street-scene gameplay loop.
 .segment "PRG_BANK_7"
 
 Reset:

@@ -1,4 +1,5 @@
 ; Bank 4  ($8000-$BFFF switchable)
+; Per-frame scene code at $8010 (scene not identified yet).
 .segment "PRG_BANK_4"
 
   sei                          ; $8000  [heuristic code]

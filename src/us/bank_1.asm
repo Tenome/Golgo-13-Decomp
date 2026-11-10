@@ -1,4 +1,5 @@
 ; Bank 1  ($8000-$BFFF switchable)
+; Street-scene object and enemy routines (object table at $0310, 16 bytes each) and the game-over screen ('The man with the custom M-16').
 .segment "PRG_BANK_1"
 
   sei                          ; $8000  [heuristic code]

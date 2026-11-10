@@ -202,6 +202,7 @@ def classify_full(roots):
         for x in t['tg']: labels.add(x); mark(x, 'sub')
     return code, labels, conf
 # ---------- emission ----------
+BANKNOTES = json.load(open(os.path.join(CONF, 'banks.json'))) if os.path.exists(os.path.join(CONF, 'banks.json')) else {}
 def load_names():
     f = os.path.join(CONF, 'names.json')
     return json.load(open(f)) if os.path.exists(f) else {}
@@ -247,7 +248,8 @@ def emit(code, labels, outdir):
     equ = []                       # labels that fall inside an instruction -> equates
     stats = {}
     for b in range(NB):
-        lines = [f'; Bank {b}  ({"$C000-$FFFF fixed" if b == 7 else "$8000-$BFFF switchable"})', f'.segment "PRG_BANK_{b}"', '']
+        note = BANKNOTES.get(str(b), '')
+        lines = [f'; Bank {b}  ({"$C000-$FFFF fixed" if b == 7 else "$8000-$BFFF switchable"})'] + (['; ' + note] if note else []) + [f'.segment "PRG_BANK_{b}"', '']
         p = b * 0x4000; end = p + 0x4000
         if b == 7: end -= 6        # vectors emitted separately
         ncode = 0; done = set()
