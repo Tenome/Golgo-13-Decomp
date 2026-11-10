@@ -20,7 +20,7 @@ Loc_B0_8010:
   .incbin "prg_bank_0.bin", $001B, $3  ; $801B
   ora (FrameCounter,x)         ; $801E
   .incbin "prg_bank_0.bin", $0020, $4  ; $8020
-  rol z:$16,x                  ; $8024
+  rol z:AreaGroup,x            ; $8024
   .incbin "prg_bank_0.bin", $0026, $400  ; $8026
   .incbin "prg_bank_0.bin", $0426, $CB  ; $8426
   ora $1C1C,x                  ; $84F1

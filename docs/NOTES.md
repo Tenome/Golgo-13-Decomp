@@ -21,11 +21,11 @@
 | 2 | sniper-scope scenes | palette tables read by `LoadPaletteSet` |
 | 3 | dialogue and briefing scenes | portrait text boxes |
 | 4, 6 | not identified | classified code comes mostly from static descent |
-| 5 | Vic Tokai logo, intro, title, act cards, 'To be continued' | |
+| 5 | Vic Tokai logo, intro, title, act cards, 'To be continued' | also holds the sound driver `SoundDriver` at `$A000` (run every frame through `RunSoundDriver`; commands queued with `QueueSound` in `SoundQueue` at `$06E0`) |
 | 7 | always | reset, NMI, helpers, street-scene gameplay loop |
 
 ## Fixed-bank helpers (bank 7)
-`ApplyScroll`, `SetPpuCtrl`/`SetPpuMask` (shadows `$FF`/`$FE`), `DoOamDma`, `UploadPalette` (buffer `$0140`), `EnqueueByte` (queue at `$06E0`), `GetRandomByte` (index `$0108` into a 32-byte table), `ReadJoypads` (`JoyHeld1` `$010B`, `JoyNew1` `$010D`), `BinToDecimal`, `TickClock` (`$10-$12`), `DrawObjects` (objects at `$0310`, 16 bytes each, count `$0301`).
+`ApplyScroll`, `SetPpuCtrl`/`SetPpuMask` (shadows `$FF`/`$FE`), `DoOamDma`, `UploadPalette` (buffer `$0140`), `QueueSound` (queue at `$06E0`), `GetRandomByte` (index `$0108` into a 32-byte table), `ReadJoypads` (`JoyHeld1` `$010B`, `JoyNew1` `$010D`), `BinToDecimal`, `TickClock` (`$10-$12`), `DrawObjects` (objects at `$0310`, 16 bytes each, count `$0301`).
 
 ## Versions
 The Japanese ROM is the original release. Bank 7 differs by 201 bytes, banks 3-5 carry most of the text and scene differences, CHR differs by about 10 KB. `tools/g13dis.py --version jp` inherits the US coverage wherever the instruction bytes are identical, and `config/jp/names.json` only keeps names whose code is identical in both.
@@ -63,3 +63,9 @@ Runs the lifted C and the 6502 simulator from power-on, frame by frame: Reset fi
 Result: **US 12,000 frames and JP 4,000 frames from power-on identical on every compared value.**
 Hole finder: whenever the C reaches an address with no lifted routine, the simulator has executed it, so `frameloop.sh` merges that code into `config/<ver>/coverage.json` (ROM code), `config/<ver>/entries.json` (routine entries reached through computed jumps) or `config/<ver>/ramcode.json` (instructions executed from RAM: the game builds small stubs at `$0005`, `$0513`, `$051E`, `$0520`, `$0568`, `$05B8`), regenerates the sources and the C and runs again. RAM stubs are lifted per observed variant and selected at call time by comparing the RAM bytes.
 Stack idioms the lifted code reproduces: inline arguments after a JSR, `pha / pha / rts` jumps, `pla / pla` returns past the caller, tables of code addresses after a JSR, and a JMP whose fake return address was pushed first.
+
+## Gameplay notes (street scenes, fixed bank)
+- `GameState` (`$14`) is the main state: 0 init (`InitLevel`), 1 auto-walk (`StateAutoWalk`), 2 scene change, 3-5 variants that hand over to bank 6, 6 end screen, 7 and up the street gameplay handled by `UpdatePlayerAction`.
+- Player: `PlayerActionState` (`$30`) with `PlayerActionTimer` (`$31`) is a small state machine (`UpdatePlayerAction`, states `PlayerActionIdle`, `PlayerActionState1-7`); `PlayerPose` (`$36`) is an index into the pose tables (low nibble pose, bit 4 = facing left, set by `UpdatePlayerFacing`); `PlayerSpriteFrame` (`$37`) picks the 19-sprite OAM block `CopyPlayerSprites` copies to `PlayerSpriteY0` (`$0238`); life is `PlayerLifeLo/Hi` (`$38/$39`, 200 at start), ammo `AmmoLo/Hi` (`$3A/$3B`), `HurtTimer` (`$0114`) makes the life digits blink. `StageIndex` (`$0100`) counts the stages.
+- Controller bits (JoyHeld1 `$010B`, JoyNew1 `$010D`): A=$01 B=$02 Select=$04 Start=$08 Up=$10 Down=$20 Left=$40 Right=$80; `hardware.inc` defines `JOY_*`.
+- Objects (enemies, items) live at `$0310`, 16 bytes each (count `ObjectCount` `$0301`); `DrawObject` / `RemoveObject` / `TickObjectStates` work on that table.

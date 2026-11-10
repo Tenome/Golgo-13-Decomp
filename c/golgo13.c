@@ -40,7 +40,7 @@ Regs BinToDecimal(Regs r) {
     r.a = a; r.c = c; return r;
 }
 
-Regs EnqueueByte(Regs r) {
+Regs QueueSound(Regs r) {
     RAM(0x0118) = r.x; RAM(0x06E0)++;
     uint8_t x = RAM(0x06E0); RAM(0x06E0 + x) = r.a;
     return r;                                   /* X reloaded from $0118 = the caller's X */
@@ -74,7 +74,7 @@ Regs MmcWritePrg(Regs r)     { r.a = MmcPrgShadow;     return mmc_write(r, 0xFFF
 #define PaletteBuffer(i) RAM(0x0140 + (i))
 #define OamBuffer(i) RAM(0x0200 + (i))
 #define JoyHeld1 RAM(0x010B)
-#define FireMode RAM(0x36)
+#define PlayerPose RAM(0x36)
 #define AmmoLo RAM(0x3A)
 #define AmmoHi RAM(0x3B)
 #define ObjectCount RAM(0x0301)
@@ -136,14 +136,14 @@ Regs DrawHudNumber(Regs r) {
     c = NEG(RAM(0x00)); a = (uint8_t)(RAM(0x00) << 1); a = adc8(a, 0xE4, &c); RAM(0x02E1 + x) = a;
     r.a = a; r.c = c; r.x = x; return r;
 }
-Regs UpdateFireMode(Regs r) {
+Regs UpdatePlayerFacing(Regs r) {
     uint8_t a = JoyHeld1 & 0xC0;
     if (a == 0) { r.a = 0; return r; }
     r.c = 1;
-    a = (a == 0x40) ? (uint8_t)(FireMode | 0x10) : (uint8_t)(FireMode & 0x0F);
-    FireMode = a; r.a = a; return r;
+    a = (a == 0x40) ? (uint8_t)(PlayerPose | 0x10) : (uint8_t)(PlayerPose & 0x0F);
+    PlayerPose = a; r.a = a; return r;
 }
-Regs SetFireModeLow(Regs r) { FireMode &= 0x10; r.a = (uint8_t)(r.x | FireMode); FireMode = r.a; return r; }
+Regs SetPlayerPose(Regs r) { PlayerPose &= 0x10; r.a = (uint8_t)(r.x | PlayerPose); PlayerPose = r.a; return r; }
 Regs AdjustAmmo(Regs r) {
     uint8_t c = 0, a = adc8(r.a, AmmoLo, &c); AmmoLo = a;
     if (!c) { AmmoHi--; if (NEG(AmmoHi)) { a = 0; AmmoLo = 0; AmmoHi = 0; } }

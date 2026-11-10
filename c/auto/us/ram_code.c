@@ -19,7 +19,7 @@ void Ram_05B8_2(void) {  /* $05B8 bank 10 */
   uint8_t sp0 = R.sp;
  L05B8: BUDGET(); push16(0x05BA); call_addr(0x8FCA); UNW(); ret_check(0x05BA);     /* $05B8 jsr */
         LDA(0x01);                                                       /* $05BB lda */
-        push16(0x05BF); Sub_C598(); UNW(); ret_check(0x05BF);            /* $05BD jsr */
+        push16(0x05BF); MmcWritePrgA(); UNW(); ret_check(0x05BF);        /* $05BD jsr */
         LDA(rd((uint16_t)(0x800C + R.y)));                               /* $05C0 lda */
         STA(0x0521);                                                     /* $05C3 sta */
         LDA(rd((uint16_t)(0x800D + R.y)));                               /* $05C6 lda */

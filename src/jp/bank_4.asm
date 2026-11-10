@@ -30,7 +30,7 @@ Bank4Nmi:
   pha                          ; $8043
   lda #$04                     ; $8044
   sta z:MmcPrgShadow           ; $8046
-  jsr CallBank5_A000           ; $8048
+  jsr RunSoundDriver           ; $8048
   lda PPU_STATUS               ; $804B
   pla                          ; $804E
   sta z:MmcPrgShadow           ; $804F
@@ -171,7 +171,7 @@ Data_B4_81BC:
   .incbin "prg_bank_4.bin", $01BC, $9  ; $81BC
 Sub_B4_81C5:
   lda #$45                     ; $81C5
-  jsr EnqueueByte              ; $81C7
+  jsr QueueSound               ; $81C7
   jsr Sub_B4_B011              ; $81CA
   jmp Loc_B4_8511              ; $81CD
 Sub_B4_81D0:
@@ -417,7 +417,7 @@ Loc_B4_8434:
   dex                          ; $843A
   bpl Loc_B4_8434              ; $843B
   lda #$45                     ; $843D
-  jmp EnqueueByte              ; $843F
+  jmp QueueSound               ; $843F
 Data_B4_8442:
   .incbin "prg_bank_4.bin", $0442, $7  ; $8442
 Sub_B4_8449:
@@ -480,9 +480,9 @@ Loc_B4_849E:
   lda #$C0                     ; $84C4
   sta JOYPAD2                  ; $84C6
   lda #$00                     ; $84C9
-  jsr EnqueueByte              ; $84CB
+  jsr QueueSound               ; $84CB
   lda #$08                     ; $84CE
-  jsr EnqueueByte              ; $84D0
+  jsr QueueSound               ; $84D0
   jsr Sub_B4_86DD              ; $84D3
   jsr Sub_B4_847B              ; $84D6
   jsr Sub_B4_8489              ; $84D9
@@ -840,7 +840,7 @@ Sub_B4_8B4F:
   lda Data_B4_8B75,x           ; $8B5E
   bne Loc_B4_8B66              ; $8B61
 Loc_B4_8B63:
-  jmp Sub_C43D                 ; $8B63
+  jmp RemoveObject             ; $8B63
 Loc_B4_8B66:
   sta (Tmp00),y                ; $8B66
   tya                          ; $8B68
@@ -877,13 +877,13 @@ Sub_B4_8C07:
   bne Loc_B4_8C23              ; $8C0F
   lda #$42                     ; $8C11
   sta z:$8B                    ; $8C13
-  jmp EnqueueByte              ; $8C15
+  jmp QueueSound               ; $8C15
 Loc_B4_8C18:
   beq Loc_B4_8C23              ; $8C18
   lda #$00                     ; $8C1A
   sta z:$8B                    ; $8C1C
   lda #$44                     ; $8C1E
-  jmp EnqueueByte              ; $8C20
+  jmp QueueSound               ; $8C20
 Loc_B4_8C23:
   rts                          ; $8C23
 Sub_B4_8C24:
@@ -1010,7 +1010,7 @@ Loc_B4_8DC5:
   jmp Sub_B4_8E16              ; $8DCE
 Loc_B4_8DD1:
   lda #$0E                     ; $8DD1
-  jsr EnqueueByte              ; $8DD3
+  jsr QueueSound               ; $8DD3
   jsr Sub_B4_8E16              ; $8DD6
   ldy ObjectCount              ; $8DD9
   beq Loc_B4_8DE6              ; $8DDC
@@ -1738,8 +1738,8 @@ Sub_B4_997B:
   jsr Sub_B4_9A44              ; $997E
   jsr Sub_B4_9A8B              ; $9981
   jsr Sub_B4_9F47              ; $9984
-  jsr CallBank5_A000           ; $9987
-  jmp CallBank5_A000           ; $998A
+  jsr RunSoundDriver           ; $9987
+  jmp RunSoundDriver           ; $998A
 Sub_B4_998D:
   lda PPU_STATUS               ; $998D
   lda #$20                     ; $9990

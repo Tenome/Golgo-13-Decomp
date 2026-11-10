@@ -381,6 +381,7 @@ def emit(code, labels, outdir):
         stats[b] = ncode
         open(os.path.join(outdir, f'bank_{b}.asm'), 'w').write('\n'.join(lines) + '\n')
     hw = ['; Hardware register equates'] + [f'{n} = ${a:04X}' for a, n in sorted(HW.items())]
+    hw += ['', '; Controller bits as stored in JoyHeld1 / JoyNew1 (first bit read = A ends up in bit 0)'] + [f'JOY_{n} = ${v:02X}' for n, v in (('A', 1), ('B', 2), ('SELECT', 4), ('START', 8), ('UP', 0x10), ('DOWN', 0x20), ('LEFT', 0x40), ('RIGHT', 0x80))]
     hw += ['', '; RAM variables'] + [f'{n} = ${a:04X}' for a, n in sorted(RAMN.items())]
     open(os.path.join(outdir, 'hardware.inc'), 'w').write('\n'.join(hw) + '\n')
     open(os.path.join(outdir, 'inside_instr.inc'), 'w').write('; labels that point inside an instruction\n' + '\n'.join(equ) + '\n')

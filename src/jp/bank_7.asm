@@ -52,7 +52,7 @@ Loc_C025:
   jsr SetPpuCtrl               ; $C05A
   lda #$00                     ; $C05D
   jsr SetPpuMask               ; $C05F
-  sta $0100                    ; $C062
+  sta StageIndex               ; $C062
   sta $0104                    ; $C065
   lda #$C8                     ; $C068
   sta z:PlayerLifeLo           ; $C06A
@@ -89,21 +89,21 @@ Sub_C0C0:
 Loc_C0E0:
   jmp Loc_CB2C                 ; $C0E0
 Loc_C0E3:
-  jmp Loc_C9F9                 ; $C0E3
-CallBank5_A000:
+  jmp NmiGameStateDispatch     ; $C0E3
+RunSoundDriver:
   lda z:MmcPrgShadow           ; $C0E6
   sta $0105                    ; $C0E8
   lda #$05                     ; $C0EB
   sta z:MmcPrgShadow           ; $C0ED
   jsr MmcWritePrg              ; $C0EF
-  jsr $A000                    ; $C0F2  -> Sub_B5_A000
+  jsr $A000                    ; $C0F2  -> SoundDriver
   lda $0105                    ; $C0F5
   sta z:MmcPrgShadow           ; $C0F8
   jsr MmcWritePrg              ; $C0FA
   rts                          ; $C0FD
   .incbin "prg_bank_7.bin", $00FE, $2  ; $C0FE
 ProcessPpuUpdateList:
-  jsr Sub_C170                 ; $C100
+  jsr FetchInlineWord          ; $C100
   ldx PPU_STATUS               ; $C103
   ldy #$00                     ; $C106
   lda (Tmp00),y                ; $C108
@@ -171,7 +171,7 @@ Loc_C157:
   jmp Loc_C10F                 ; $C16C
 Loc_C16F:
   rts                          ; $C16F
-Sub_C170:
+FetchInlineWord:
   tsx                          ; $C170
   lda $0103,x                  ; $C171
   sta z:$05                    ; $C174
@@ -287,11 +287,11 @@ SetPpuAddrFromBuf:
   lda PpuAddrBufLo             ; $C225
   sta PPU_ADDR                 ; $C228
   rts                          ; $C22B
-EnqueueByte:
+QueueSound:
   stx SaveX                    ; $C22C
-  inc ByteQueue                ; $C22F
-  ldx ByteQueue                ; $C232
-  sta ByteQueue,x              ; $C235
+  inc SoundQueue               ; $C22F
+  ldx SoundQueue               ; $C232
+  sta SoundQueue,x             ; $C235
   ldx SaveX                    ; $C238
   rts                          ; $C23B
 TickClock:
@@ -419,7 +419,7 @@ Loc_C330:
   ldy #$03                     ; $C330
   lda (Tmp00),y                ; $C332
   beq Loc_C339                 ; $C334
-  jsr Sub_C355                 ; $C336
+  jsr DrawObject               ; $C336
 Loc_C339:
   lda z:Tmp00                  ; $C339
   clc                          ; $C33B
@@ -436,7 +436,7 @@ Data_C348:
   .incbin "prg_bank_7.bin", $0348, $5  ; $C348
 Data_C34D:
   .incbin "prg_bank_7.bin", $034D, $8  ; $C34D
-Sub_C355:
+DrawObject:
   ldy #$00                     ; $C355
   lda (Tmp00),y                ; $C357
   and #$80                     ; $C359
@@ -448,7 +448,7 @@ Loc_C360:
   bne Loc_C369                 ; $C364
   jmp Loc_C3FB                 ; $C366
 Loc_C369:
-  jsr Sub_C3FC                 ; $C369
+  jsr SelectSpriteTable        ; $C369
   ldy #$01                     ; $C36C
   lda (Tmp02),y                ; $C36E
   ldy #$0F                     ; $C370
@@ -538,7 +538,7 @@ Loc_C3F7:
   bne Loc_C3A2                 ; $C3F9
 Loc_C3FB:
   rts                          ; $C3FB
-Sub_C3FC:
+SelectSpriteTable:
   ldy #$00                     ; $C3FC
   lda (Tmp00),y                ; $C3FE
   and #$3F                     ; $C400
@@ -574,7 +574,7 @@ Loc_C426:
   sta z:Tmp03                  ; $C438
   stx z:Tmp02                  ; $C43A
   rts                          ; $C43C
-Sub_C43D:
+RemoveObject:
   lda z:Tmp00                  ; $C43D
   sta z:Tmp02                  ; $C43F
   clc                          ; $C441
@@ -662,7 +662,7 @@ Loc_C4B2:
   and #$27                     ; $C4C3
   sta z:Tmp01                  ; $C4C5
   rts                          ; $C4C7
-Sub_C4C8:
+PixelToNametableAddr:
   lda z:Tmp03                  ; $C4C8
   clc                          ; $C4CA
   adc z:ScrollX                ; $C4CB
@@ -782,6 +782,7 @@ MmcWriteChr1A:
   rts                          ; $C595
 MmcWritePrg:
   lda z:MmcPrgShadow           ; $C596
+MmcWritePrgA:
   sta MMC1_PRG                 ; $C598
   lsr a                        ; $C59B
   sta MMC1_PRG                 ; $C59C
@@ -793,11 +794,11 @@ MmcWritePrg:
   sta MMC1_PRG                 ; $C5A8
   rts                          ; $C5AB
 Sub_C5AC:
-  lda z:$15                    ; $C5AC
+  lda z:ScrollColumnPending    ; $C5AC
   beq Loc_C5BA                 ; $C5AE
-  jsr Sub_CD74                 ; $C5B0
+  jsr UploadNametableColumn    ; $C5B0
   lda #$00                     ; $C5B3
-  sta z:$15                    ; $C5B5
+  sta z:ScrollColumnPending    ; $C5B5
   jmp Loc_C5CA                 ; $C5B7
 Loc_C5BA:
   lda #$00                     ; $C5BA
@@ -818,11 +819,11 @@ Loc_C5CA:
   lda JoyHeld1                 ; $C5DB
   and #$F0                     ; $C5DE
   beq Loc_C5FB                 ; $C5E0
-  jsr Sub_C5FF                 ; $C5E2
-  lda z:$15                    ; $C5E5
+  jsr ScrollByInput            ; $C5E2
+  lda z:ScrollColumnPending    ; $C5E5
   beq Loc_C5FB                 ; $C5E7
   jsr Sub_CE7E                 ; $C5E9
-  jsr Sub_CEDA                 ; $C5EC
+  jsr ReadColumnFromPpu        ; $C5EC
   jsr ApplyScroll              ; $C5EF
   jsr Sub_C711                 ; $C5F2
   jsr Sub_C77C                 ; $C5F5
@@ -830,9 +831,9 @@ Loc_C5CA:
 Loc_C5FB:
   jsr Sub_C85F                 ; $C5FB
   rts                          ; $C5FE
-Sub_C5FF:
+ScrollByInput:
   lda #$00                     ; $C5FF
-  sta z:$15                    ; $C601
+  sta z:ScrollColumnPending    ; $C601
   lda JoyHeld1                 ; $C603
   and #$C0                     ; $C606
   beq Loc_C671                 ; $C608
@@ -843,7 +844,7 @@ Sub_C5FF:
   and #$0F                     ; $C612
   cmp #$08                     ; $C614
   bne Loc_C625                 ; $C616
-  inc z:$15                    ; $C618
+  inc z:ScrollColumnPending    ; $C618
   jmp Loc_C625                 ; $C61A
 Loc_C61D:
   dec z:ScrollPage             ; $C61D
@@ -882,8 +883,8 @@ Loc_C653:
   sta z:ScrollPage             ; $C659
   jmp Loc_C662                 ; $C65B
 Loc_C65E:
-  inc z:$15                    ; $C65E
-  inc z:$15                    ; $C660
+  inc z:ScrollColumnPending    ; $C65E
+  inc z:ScrollColumnPending    ; $C660
 Loc_C662:
   lda $0101                    ; $C662
   bne Loc_C66C                 ; $C665
@@ -900,19 +901,19 @@ Loc_C671:
 Loc_C67B:
   cmp #$10                     ; $C67B
   bne Loc_C6C8                 ; $C67D
-  lda $0238                    ; $C67F
+  lda PlayerSpriteY0           ; $C67F
   cmp #$18                     ; $C682
   bcc Loc_C6B2                 ; $C684
   lda $0101                    ; $C686
   bne Loc_C69D                 ; $C689
-  dec $0238                    ; $C68B
+  dec PlayerSpriteY0           ; $C68B
   dec $023C                    ; $C68E
   dec $0240                    ; $C691
   dec $0244                    ; $C694
   dec $0248                    ; $C697
   dec $024C                    ; $C69A
 Loc_C69D:
-  dec $0238                    ; $C69D
+  dec PlayerSpriteY0           ; $C69D
   dec $023C                    ; $C6A0
   dec $0240                    ; $C6A3
   dec $0244                    ; $C6A6
@@ -931,19 +932,19 @@ Loc_C6C0:
   inc $0493                    ; $C6C2
   jmp Loc_C710                 ; $C6C5
 Loc_C6C8:
-  lda $0238                    ; $C6C8
+  lda PlayerSpriteY0           ; $C6C8
   cmp #$88                     ; $C6CB
   bcs Loc_C6FB                 ; $C6CD
   lda $0101                    ; $C6CF
   bne Loc_C6E6                 ; $C6D2
-  inc $0238                    ; $C6D4
+  inc PlayerSpriteY0           ; $C6D4
   inc $023C                    ; $C6D7
   inc $0240                    ; $C6DA
   inc $0244                    ; $C6DD
   inc $0248                    ; $C6E0
   inc $024C                    ; $C6E3
 Loc_C6E6:
-  inc $0238                    ; $C6E6
+  inc PlayerSpriteY0           ; $C6E6
   inc $023C                    ; $C6E9
   inc $0240                    ; $C6EC
   inc $0244                    ; $C6EF
@@ -964,7 +965,7 @@ Loc_C70B:
 Loc_C710:
   rts                          ; $C710
 Sub_C711:
-  lda z:$15                    ; $C711
+  lda z:ScrollColumnPending    ; $C711
   cmp #$01                     ; $C713
   bne Loc_C71C                 ; $C715
   lda z:ScrollPage             ; $C717
@@ -1268,13 +1269,13 @@ DrawHud:
   lda z:FrameCounter           ; $C931
   and #$01                     ; $C933
   bne Loc_C93D                 ; $C935
-  jsr Sub_C941                 ; $C937
+  jsr DrawLifeHud              ; $C937
   jmp Loc_C940                 ; $C93A
 Loc_C93D:
-  jsr Sub_C962                 ; $C93D
+  jsr DrawAmmoHud              ; $C93D
 Loc_C940:
   rts                          ; $C940
-Sub_C941:
+DrawLifeHud:
   ldx #$00                     ; $C941
   lda z:GameState              ; $C943
   cmp #$10                     ; $C945
@@ -1292,7 +1293,7 @@ Loc_C94F:
   ldx #$00                     ; $C95C
   jsr DrawHudNumber            ; $C95E
   rts                          ; $C961
-Sub_C962:
+DrawAmmoHud:
   ldx #$20                     ; $C962
   lda z:GameState              ; $C964
   cmp #$10                     ; $C966
@@ -1345,7 +1346,7 @@ Loc_C9B0:
   rts                          ; $C9B8
 Data_C9B9:
   .incbin "prg_bank_7.bin", $09B9, $40  ; $C9B9
-Loc_C9F9:
+NmiGameStateDispatch:
   lda z:PpuCtrlShadow          ; $C9F9
   and #$7F                     ; $C9FB
   jsr SetPpuCtrl               ; $C9FD
@@ -1384,15 +1385,15 @@ Loc_CA1F:
   lda PPU_STATUS               ; $CA49
   jmp Loc_CB8E                 ; $CA4C
 Loc_CA4F:
-  jsr Sub_CBA3                 ; $CA4F
+  jsr InitLevel                ; $CA4F
   inc z:GameState              ; $CA52
   lda #$00                     ; $CA54
-  jsr EnqueueByte              ; $CA56
+  jsr QueueSound               ; $CA56
   jmp Loc_CB8E                 ; $CA59
 Loc_CA5C:
   cmp #$01                     ; $CA5C
   bne Loc_CA66                 ; $CA5E
-  jsr Sub_D0FB                 ; $CA60
+  jsr StateAutoWalk            ; $CA60
   jmp Loc_CB8E                 ; $CA63
 Loc_CA66:
   cmp #$02                     ; $CA66
@@ -1451,7 +1452,7 @@ Loc_CAE6:
   lda $0421                    ; $CAE9
   cmp #$04                     ; $CAEC
   bcs Loc_CB00                 ; $CAEE
-  lda z:$30                    ; $CAF0
+  lda z:PlayerActionState      ; $CAF0
   cmp #$04                     ; $CAF2
   beq Loc_CB11                 ; $CAF4
   cmp #$08                     ; $CAF6
@@ -1468,7 +1469,7 @@ Loc_CB00:
   jsr MmcWritePrg              ; $CB0E
 Loc_CB11:
   jsr ApplyScroll              ; $CB11
-  jsr Sub_D32D                 ; $CB14
+  jsr UpdatePlayerAction       ; $CB14
   lda #$06                     ; $CB17
   sta $0300                    ; $CB19
   jmp Loc_CB39                 ; $CB1C
@@ -1482,11 +1483,11 @@ Loc_CB2C:
   lda #$00                     ; $CB2C
   sta z:MmcPrgShadow           ; $CB2E
   jsr MmcWritePrg              ; $CB30
-  jsr Sub_E883                 ; $CB33
+  jsr UpdateGameOverSequence   ; $CB33
   jsr DrawHud                  ; $CB36
 Loc_CB39:
-  jsr Sub_D255                 ; $CB39
-  lda z:$15                    ; $CB3C
+  jsr CheckObjectContact       ; $CB39
+  lda z:ScrollColumnPending    ; $CB3C
   bne Loc_CB62                 ; $CB3E
   jsr Sub_DB07                 ; $CB40
   lda $0404                    ; $CB43
@@ -1530,27 +1531,27 @@ Loc_CB8E:
   cmp #$60                     ; $CB91
   beq Loc_CB74                 ; $CB93
 Loc_CB95:
-  jsr CallBank5_A000           ; $CB95
-  jsr Sub_E5FD                 ; $CB98
+  jsr RunSoundDriver           ; $CB95
+  jsr CheckStartPause          ; $CB98
 Loc_CB9B:
   lda z:PpuCtrlShadow          ; $CB9B
   ora #$80                     ; $CB9D
   jsr SetPpuCtrl               ; $CB9F
   rti                          ; $CBA2
-Sub_CBA3:
+InitLevel:
   lda #$00                     ; $CBA3
-  sta z:$30                    ; $CBA5
+  sta z:PlayerActionState      ; $CBA5
   sta $013D                    ; $CBA7
-  sta $0114                    ; $CBAA
+  sta HurtTimer                ; $CBAA
   sta $0117                    ; $CBAD
   sta $0421                    ; $CBB0
   lda #$10                     ; $CBB3
   sta z:$0F                    ; $CBB5
   lda z:$29                    ; $CBB7
   sta z:PaletteSetIndex        ; $CBB9
-  jsr Sub_CCD3                 ; $CBBB
+  jsr ComputeAreaGroup         ; $CBBB
   lda #$01                     ; $CBBE
-  sta z:FireMode               ; $CBC0
+  sta z:PlayerPose             ; $CBC0
   lda #$00                     ; $CBC2
   sta $0138                    ; $CBC4
   ldx #$06                     ; $CBC7
@@ -1591,7 +1592,7 @@ Loc_CBE6:
 Loc_CC04:
   lda #$00                     ; $CC04
   sta z:ScrollY                ; $CC06
-  sta z:$15                    ; $CC08
+  sta z:ScrollColumnPending    ; $CC08
   sta z:PaletteDirty           ; $CC0A
   sta $010E                    ; $CC0C
   sta $010F                    ; $CC0F
@@ -1670,7 +1671,7 @@ Loc_CC92:
   rts                          ; $CC9A
 Data_CC9B:
   .incbin "prg_bank_7.bin", $0C9B, $38  ; $CC9B
-Sub_CCD3:
+ComputeAreaGroup:
   ldx #$00                     ; $CCD3
   lda z:PaletteSetIndex        ; $CCD5
   cmp #$12                     ; $CCD7
@@ -1683,7 +1684,7 @@ Sub_CCD3:
   bcc Loc_CCE6                 ; $CCE3
   inx                          ; $CCE5
 Loc_CCE6:
-  stx z:$16                    ; $CCE6
+  stx z:AreaGroup              ; $CCE6
   rts                          ; $CCE8
 UploadPaletteIfDirty:
   lda z:PaletteDirty           ; $CCE9
@@ -1691,11 +1692,11 @@ UploadPaletteIfDirty:
   jsr UploadPalette            ; $CCED
   rts                          ; $CCF0
 Loc_CCF1:
-  lda z:$15                    ; $CCF1
+  lda z:ScrollColumnPending    ; $CCF1
   beq Loc_CCFF                 ; $CCF3
-  jsr Sub_CD74                 ; $CCF5
+  jsr UploadNametableColumn    ; $CCF5
   lda #$00                     ; $CCF8
-  sta z:$15                    ; $CCFA
+  sta z:ScrollColumnPending    ; $CCFA
   jmp Loc_CD2A                 ; $CCFC
 Loc_CCFF:
   lda $0421                    ; $CCFF
@@ -1727,7 +1728,7 @@ Loc_CD2A:
   beq Loc_CD73                 ; $CD3A
   lda z:$13                    ; $CD3C
   bne Loc_CD50                 ; $CD3E
-  lda z:FireMode               ; $CD40
+  lda z:PlayerPose             ; $CD40
   and #$0F                     ; $CD42
   cmp #$01                     ; $CD44
   beq Loc_CD50                 ; $CD46
@@ -1737,13 +1738,13 @@ Loc_CD2A:
   bne Loc_CD73                 ; $CD4E
 Loc_CD50:
   lda #$00                     ; $CD50
-  sta z:$15                    ; $CD52
+  sta z:ScrollColumnPending    ; $CD52
   jsr Sub_CDE0                 ; $CD54
   jsr Sub_D0AB                 ; $CD57
-  lda z:$15                    ; $CD5A
+  lda z:ScrollColumnPending    ; $CD5A
   beq Loc_CD73                 ; $CD5C
   jsr Sub_CE7E                 ; $CD5E
-  jsr Sub_CEDA                 ; $CD61
+  jsr ReadColumnFromPpu        ; $CD61
   jsr ApplyScroll              ; $CD64
   jsr Sub_CF13                 ; $CD67
   jsr Sub_CFC2                 ; $CD6A
@@ -1751,7 +1752,7 @@ Loc_CD50:
   jsr ApplyScroll              ; $CD70
 Loc_CD73:
   rts                          ; $CD73
-Sub_CD74:
+UploadNametableColumn:
   lda #$00                     ; $CD74
   sta PPU_MASK                 ; $CD76
   lda z:PpuCtrlShadow          ; $CD79
@@ -1807,7 +1808,7 @@ Loc_CDBC:
 Sub_CDE0:
   lda z:$32                    ; $CDE0
   beq Loc_CDF9                 ; $CDE2
-  lda $023B                    ; $CDE4
+  lda PlayerSpriteX0           ; $CDE4
   cmp #$78                     ; $CDE7
   beq Loc_CDF9                 ; $CDE9
   bcs Loc_CDF2                 ; $CDEB
@@ -1828,7 +1829,7 @@ Loc_CDF9:
   and #$0F                     ; $CE06
   cmp #$08                     ; $CE08
   bne Loc_CE0E                 ; $CE0A
-  inc z:$15                    ; $CE0C
+  inc z:ScrollColumnPending    ; $CE0C
 Loc_CE0E:
   dec z:ScrollX                ; $CE0E
   jmp Loc_CE79                 ; $CE10
@@ -1847,8 +1848,8 @@ Loc_CE23:
   and #$0F                     ; $CE27
   cmp #$08                     ; $CE29
   bne Loc_CE31                 ; $CE2B
-  inc z:$15                    ; $CE2D
-  inc z:$15                    ; $CE2F
+  inc z:ScrollColumnPending    ; $CE2D
+  inc z:ScrollColumnPending    ; $CE2F
 Loc_CE31:
   lda z:$13                    ; $CE31
   cmp #$03                     ; $CE33
@@ -1919,7 +1920,7 @@ Data_CE9C:
   .incbin "prg_bank_7.bin", $0E9C, $1  ; $CE9C
 Data_CE9D:
   .incbin "prg_bank_7.bin", $0E9D, $3D  ; $CE9D
-Sub_CEDA:
+ReadColumnFromPpu:
   lda z:PpuCtrlShadow          ; $CEDA
   and #$FB                     ; $CEDC
   jsr SetPpuCtrl               ; $CEDE
@@ -1948,7 +1949,7 @@ Sub_CF13:
   lda z:ScrollPage             ; $CF13
   asl a                        ; $CF15
   tax                          ; $CF16
-  lda z:$15                    ; $CF17
+  lda z:ScrollColumnPending    ; $CF17
   cmp #$01                     ; $CF19
   beq Loc_CF1F                 ; $CF1B
   inx                          ; $CF1D
@@ -2178,16 +2179,16 @@ Sub_D0AB:
   beq Loc_D0FA                 ; $D0B8
   cmp #$40                     ; $D0BA
   bne Loc_D0CB                 ; $D0BC
-  lda $023B                    ; $D0BE
+  lda PlayerSpriteX0           ; $D0BE
   cmp #$11                     ; $D0C1
   bcc Loc_D0FA                 ; $D0C3
-  dec $023B                    ; $D0C5
+  dec PlayerSpriteX0           ; $D0C5
   jmp Loc_D0FA                 ; $D0C8
 Loc_D0CB:
-  lda $023B                    ; $D0CB
+  lda PlayerSpriteX0           ; $D0CB
   cmp #$78                     ; $D0CE
   bcs Loc_D0FA                 ; $D0D0
-  inc $023B                    ; $D0D2
+  inc PlayerSpriteX0           ; $D0D2
   jmp Loc_D0FA                 ; $D0D5
 Loc_D0D8:
   lda JoyHeld1                 ; $D0D8
@@ -2195,19 +2196,19 @@ Loc_D0D8:
   beq Loc_D0FA                 ; $D0DD
   cmp #$40                     ; $D0DF
   bne Loc_D0F0                 ; $D0E1
-  lda $023B                    ; $D0E3
+  lda PlayerSpriteX0           ; $D0E3
   cmp #$79                     ; $D0E6
   bcc Loc_D0F0                 ; $D0E8
-  dec $023B                    ; $D0EA
+  dec PlayerSpriteX0           ; $D0EA
   jmp Loc_D0FA                 ; $D0ED
 Loc_D0F0:
-  lda $023B                    ; $D0F0
+  lda PlayerSpriteX0           ; $D0F0
   cmp #$E0                     ; $D0F3
   bcs Loc_D0FA                 ; $D0F5
-  inc $023B                    ; $D0F7
+  inc PlayerSpriteX0           ; $D0F7
 Loc_D0FA:
   rts                          ; $D0FA
-Sub_D0FB:
+StateAutoWalk:
   lda #$00                     ; $D0FB
   jsr SetPpuMask               ; $D0FD
   lda z:ScrollX                ; $D100
@@ -2240,7 +2241,7 @@ Loc_D12E:
   sta z:ScrollX                ; $D135
   inc z:GameState              ; $D137
   rts                          ; $D139
-Sub_D13A:
+StartLevelScene:
   jsr LoadPaletteSet           ; $D13A
   jsr UploadPalette            ; $D13D
   lda $0153                    ; $D140
@@ -2254,7 +2255,7 @@ Sub_D13A:
   sta z:$29                    ; $D154
   sta z:$2A                    ; $D156
   sta z:$2B                    ; $D158
-  sta z:$15                    ; $D15A
+  sta z:ScrollColumnPending    ; $D15A
   jsr MmcWriteChr0             ; $D15C
   jsr MmcWriteChr1             ; $D15F
   ldy #$02                     ; $D162
@@ -2274,7 +2275,7 @@ Sub_D177:
   lda Data_D1B7,x              ; $D17B
   and #$80                     ; $D17E
   beq Loc_D1A2                 ; $D180
-  lda $0100                    ; $D182
+  lda StageIndex               ; $D182
   asl a                        ; $D185
   tay                          ; $D186
   lda Data_F6EC,y              ; $D187
@@ -2296,25 +2297,25 @@ Loc_D1A2:
   pha                          ; $D1A3
   lda Data_D1B7,x              ; $D1A4
   and #$3F                     ; $D1A7
-  jsr EnqueueByte              ; $D1A9
+  jsr QueueSound               ; $D1A9
   pla                          ; $D1AC
   tax                          ; $D1AD
   lda Data_D1B8,x              ; $D1AE
   beq Loc_D1B6                 ; $D1B1
-  jsr EnqueueByte              ; $D1B3
+  jsr QueueSound               ; $D1B3
 Loc_D1B6:
   rts                          ; $D1B6
 Data_D1B7:
   .incbin "prg_bank_7.bin", $11B7, $1  ; $D1B7
 Data_D1B8:
   .incbin "prg_bank_7.bin", $11B8, $9D  ; $D1B8
-Sub_D255:
+CheckObjectContact:
   lda z:GameState              ; $D255
   cmp #$03                     ; $D257
   bne Loc_D28D                 ; $D259
-  lda z:$15                    ; $D25B
+  lda z:ScrollColumnPending    ; $D25B
   bne Loc_D28D                 ; $D25D
-  lda $0113                    ; $D25F
+  lda ContactLock              ; $D25F
   bne Loc_D28D                 ; $D262
   ldy ObjectCount              ; $D264
   beq Loc_D28D                 ; $D267
@@ -2336,7 +2337,7 @@ Loc_D27B:
   sta $0400                    ; $D27E
   jsr Sub_D28E                 ; $D281
   beq Loc_D28D                 ; $D284
-  sta $0113                    ; $D286
+  sta ContactLock              ; $D286
   lda #$03                     ; $D289
   sta z:MmcPrgShadow           ; $D28B
 Loc_D28D:
@@ -2346,7 +2347,7 @@ Sub_D28E:
   sta z:Tmp00                  ; $D291
   lda $0312,x                  ; $D293
   sta z:Tmp01                  ; $D296
-  lda $0238                    ; $D298
+  lda PlayerSpriteY0           ; $D298
   sec                          ; $D29B
   sbc z:Tmp00                  ; $D29C
   cmp #$F0                     ; $D29E
@@ -2354,7 +2355,7 @@ Sub_D28E:
   cmp #$10                     ; $D2A2
   bcs Loc_D305                 ; $D2A4
 Loc_D2A6:
-  lda $023B                    ; $D2A6
+  lda PlayerSpriteX0           ; $D2A6
   sec                          ; $D2A9
   sbc z:Tmp01                  ; $D2AA
   cmp #$EA                     ; $D2AC
@@ -2427,14 +2428,14 @@ Loc_D31A:
   bcc Loc_D31A                 ; $D324
   rts                          ; $D326
   .incbin "prg_bank_7.bin", $1327, $6  ; $D327
-Sub_D32D:
-  lda z:$30                    ; $D32D
+UpdatePlayerAction:
+  lda z:PlayerActionState      ; $D32D
   bne Loc_D341                 ; $D32F
-  jsr Sub_D3A4                 ; $D331
+  jsr PlayerActionIdle         ; $D331
   lda z:PlayerSpriteFrame      ; $D334
   cmp #$03                     ; $D336
   bcc Loc_D33D                 ; $D338
-  inc z:$30                    ; $D33A
+  inc z:PlayerActionState      ; $D33A
   rts                          ; $D33C
 Loc_D33D:
   jsr CopyPlayerSprites        ; $D33D
@@ -2442,71 +2443,71 @@ Loc_D33D:
 Loc_D341:
   cmp #$01                     ; $D341
   bne Loc_D349                 ; $D343
-  jsr Sub_D4D3                 ; $D345
+  jsr PlayerActionState1       ; $D345
   rts                          ; $D348
 Loc_D349:
   cmp #$02                     ; $D349
   bne Loc_D351                 ; $D34B
-  jsr Sub_D573                 ; $D34D
+  jsr PlayerActionState2       ; $D34D
   rts                          ; $D350
 Loc_D351:
   cmp #$03                     ; $D351
   bne Loc_D359                 ; $D353
-  jsr Sub_D5BD                 ; $D355
+  jsr PlayerActionState3       ; $D355
   rts                          ; $D358
 Loc_D359:
   cmp #$04                     ; $D359
   bne Loc_D361                 ; $D35B
-  jsr Sub_D5E2                 ; $D35D
+  jsr PlayerActionState4       ; $D35D
   rts                          ; $D360
 Loc_D361:
   cmp #$05                     ; $D361
   bne Loc_D369                 ; $D363
-  jsr Sub_D607                 ; $D365
+  jsr PlayerActionState5       ; $D365
   rts                          ; $D368
 Loc_D369:
   cmp #$06                     ; $D369
   bne Loc_D371                 ; $D36B
-  jsr Sub_D6A4                 ; $D36D
+  jsr PlayerActionState6       ; $D36D
   rts                          ; $D370
 Loc_D371:
   cmp #$07                     ; $D371
   bne Loc_D379                 ; $D373
-  jsr Sub_D710                 ; $D375
+  jsr PlayerActionState7       ; $D375
   rts                          ; $D378
 Loc_D379:
-  ldx z:FireMode               ; $D379
+  ldx z:PlayerPose             ; $D379
   lda Data_F77A,x              ; $D37B
   and #$40                     ; $D37E
   beq Loc_D389                 ; $D380
   txa                          ; $D382
   pha                          ; $D383
-  jsr Sub_D740                 ; $D384
+  jsr SetTransitionFromCode    ; $D384
   pla                          ; $D387
   tax                          ; $D388
 Loc_D389:
   lda Data_F77A,x              ; $D389
   and #$80                     ; $D38C
   beq Loc_D393                 ; $D38E
-  inc $0100                    ; $D390
+  inc StageIndex               ; $D390
 Loc_D393:
   lda #$A1                     ; $D393
-  sta $0238                    ; $D395
+  sta PlayerSpriteY0           ; $D395
   lda #$10                     ; $D398
-  sta $023B                    ; $D39A
+  sta PlayerSpriteX0           ; $D39A
   lda #$00                     ; $D39D
   sta z:$33                    ; $D39F
   sta z:$34                    ; $D3A1
   rts                          ; $D3A3
-Sub_D3A4:
-  lda z:$31                    ; $D3A4
+PlayerActionIdle:
+  lda z:PlayerActionTimer      ; $D3A4
   bne Loc_D3AF                 ; $D3A6
   lda JoyHeld1                 ; $D3A8
   and #$01                     ; $D3AB
   beq Loc_D3D2                 ; $D3AD
 Loc_D3AF:
-  inc z:$31                    ; $D3AF
-  lda z:$31                    ; $D3B1
+  inc z:PlayerActionTimer      ; $D3AF
+  lda z:PlayerActionTimer      ; $D3B1
   cmp #$0E                     ; $D3B3
   bcs Loc_D3BC                 ; $D3B5
   lda #$00                     ; $D3B7
@@ -2541,7 +2542,7 @@ Loc_D3E0:
   ldy #$00                     ; $D3E0
 Loc_D3E2:
   lda Data_D3EF,x              ; $D3E2
-  sta $0238,y                  ; $D3E5
+  sta PlayerSpriteY0,y         ; $D3E5
   inx                          ; $D3E8
   iny                          ; $D3E9
   cpy #$4C                     ; $D3EA
@@ -2549,8 +2550,8 @@ Loc_D3E2:
   rts                          ; $D3EE
 Data_D3EF:
   .incbin "prg_bank_7.bin", $13EF, $E4  ; $D3EF
-Sub_D4D3:
-  lda $0100                    ; $D4D3
+PlayerActionState1:
+  lda StageIndex               ; $D4D3
   asl a                        ; $D4D6
   tax                          ; $D4D7
   lda Data_F6EC,x              ; $D4D8
@@ -2578,7 +2579,7 @@ Loc_D4F8:
   clc                          ; $D4FE
   adc z:Tmp02                  ; $D4FF
   tax                          ; $D501
-  stx z:FireMode               ; $D502
+  stx z:PlayerPose             ; $D502
   lda Data_F77A,x              ; $D504
   and #$03                     ; $D507
   beq Loc_D519                 ; $D509
@@ -2604,15 +2605,15 @@ Loc_D522:
   bcc Loc_D522                 ; $D52C
   lda #$02                     ; $D52E
 Loc_D530:
-  sta z:$30                    ; $D530
+  sta z:PlayerActionState      ; $D530
   rts                          ; $D532
 Data_D533:
   .incbin "prg_bank_7.bin", $1533, $40  ; $D533
-Sub_D573:
+PlayerActionState2:
   lda $02C3                    ; $D573
   cmp #$88                     ; $D576
   bcs Loc_D57F                 ; $D578
-  inc z:$30                    ; $D57A
+  inc z:PlayerActionState      ; $D57A
   jmp Loc_D5BC                 ; $D57C
 Loc_D57F:
   lda z:FrameCounter           ; $D57F
@@ -2655,8 +2656,8 @@ Loc_D5AE:
   bcc Loc_D5AE                 ; $D5BA
 Loc_D5BC:
   rts                          ; $D5BC
-Sub_D5BD:
-  ldx z:FireMode               ; $D5BD
+PlayerActionState3:
+  ldx z:PlayerPose             ; $D5BD
   lda Data_F77B,x              ; $D5BF
   sta $0400                    ; $D5C2
 Loc_D5C5:
@@ -2671,10 +2672,10 @@ Loc_D5C5:
   lda #$03                     ; $D5D8
   sta z:MmcPrgShadow           ; $D5DA
   jsr MmcWritePrg              ; $D5DC
-  inc z:$30                    ; $D5DF
+  inc z:PlayerActionState      ; $D5DF
   rts                          ; $D5E1
-Sub_D5E2:
-  ldx z:FireMode               ; $D5E2
+PlayerActionState4:
+  ldx z:PlayerPose             ; $D5E2
   lda Data_F77A,x              ; $D5E4
   and #$0C                     ; $D5E7
   bne Loc_D5F0                 ; $D5E9
@@ -2687,16 +2688,16 @@ Loc_D5F0:
   jmp Loc_D600                 ; $D5F6
 Loc_D5F9:
   lda #$0F                     ; $D5F9
-  jsr EnqueueByte              ; $D5FB
+  jsr QueueSound               ; $D5FB
   lda #$05                     ; $D5FE
 Loc_D600:
-  sta z:$30                    ; $D600
+  sta z:PlayerActionState      ; $D600
   lda #$00                     ; $D602
-  sta z:$31                    ; $D604
+  sta z:PlayerActionTimer      ; $D604
   rts                          ; $D606
-Sub_D607:
-  inc z:$31                    ; $D607
-  lda z:$31                    ; $D609
+PlayerActionState5:
+  inc z:PlayerActionTimer      ; $D607
+  lda z:PlayerActionTimer      ; $D609
   cmp #$01                     ; $D60B
   bne Loc_D61C                 ; $D60D
   ldx #$00                     ; $D60F
@@ -2718,7 +2719,7 @@ Loc_D625:
   lda #$14                     ; $D629
 Loc_D62B:
   sta z:Tmp00                  ; $D62B
-  ldx z:FireMode               ; $D62D
+  ldx z:PlayerPose             ; $D62D
   lda Data_F77A,x              ; $D62F
   and #$08                     ; $D632
   beq Loc_D638                 ; $D634
@@ -2739,24 +2740,24 @@ Loc_D63E:
 Loc_D64B:
   cmp #$70                     ; $D64B
   bcc Loc_D653                 ; $D64D
-  inc z:$30                    ; $D64F
-  inc z:$30                    ; $D651
+  inc z:PlayerActionState      ; $D64F
+  inc z:PlayerActionState      ; $D651
 Loc_D653:
   rts                          ; $D653
 Data_D654:
   .incbin "prg_bank_7.bin", $1654, $50  ; $D654
-Sub_D6A4:
-  inc z:$31                    ; $D6A4
-  lda z:$31                    ; $D6A6
+PlayerActionState6:
+  inc z:PlayerActionTimer      ; $D6A4
+  lda z:PlayerActionTimer      ; $D6A6
   cmp #$E8                     ; $D6A8
   bcc Loc_D6AF                 ; $D6AA
-  inc z:$30                    ; $D6AC
+  inc z:PlayerActionState      ; $D6AC
   rts                          ; $D6AE
 Loc_D6AF:
   ldx #$00                     ; $D6AF
 Loc_D6B1:
   lda Data_D6D4,x              ; $D6B1
-  cmp z:$31                    ; $D6B4
+  cmp z:PlayerActionTimer      ; $D6B4
   beq Loc_D6BF                 ; $D6B6
   inx                          ; $D6B8
   inx                          ; $D6B9
@@ -2783,8 +2784,8 @@ Data_D6D5:
   .incbin "prg_bank_7.bin", $16D5, $B  ; $D6D5
 Data_D6E0:
   .incbin "prg_bank_7.bin", $16E0, $30  ; $D6E0
-Sub_D710:
-  ldx z:FireMode               ; $D710
+PlayerActionState7:
+  ldx z:PlayerPose             ; $D710
   lda Data_F77C,x              ; $D712
   sta $0400                    ; $D715
   cmp #$0A                     ; $D718
@@ -2804,12 +2805,12 @@ Loc_D72E:
   lda #$22                     ; $D732
   ldy #$15                     ; $D734
 Loc_D736:
-  jsr EnqueueByte              ; $D736
+  jsr QueueSound               ; $D736
   tya                          ; $D739
-  jsr EnqueueByte              ; $D73A
+  jsr QueueSound               ; $D73A
 Loc_D73D:
   jmp Loc_D5C5                 ; $D73D
-Sub_D740:
+SetTransitionFromCode:
   nop                          ; $D740
   cpx #$09                     ; $D741
   bne Loc_D756                 ; $D743
@@ -2883,7 +2884,7 @@ Loc_D7BA:
   beq Loc_D7C1                 ; $D7BC
   jmp Loc_D823                 ; $D7BE
 Loc_D7C1:
-  lda z:$16                    ; $D7C1
+  lda z:AreaGroup              ; $D7C1
   asl a                        ; $D7C3
   tay                          ; $D7C4
   lda Data_D883,y              ; $D7C5
@@ -2914,7 +2915,7 @@ Loc_D7EF:
   lda #$00                     ; $D7EF
   sta $0405                    ; $D7F1
   sta $0438                    ; $D7F4
-  jsr Sub_D13A                 ; $D7F7
+  jsr StartLevelScene          ; $D7F7
   jmp Loc_D823                 ; $D7FA
 Loc_D7FD:
   lda z:Tmp02                  ; $D7FD
@@ -2936,7 +2937,7 @@ Loc_D7FD:
 Loc_D823:
   rts                          ; $D823
 Loc_D824:
-  lda z:$16                    ; $D824
+  lda z:AreaGroup              ; $D824
   asl a                        ; $D826
   tay                          ; $D827
   lda Data_D88B,y              ; $D828
@@ -3091,7 +3092,7 @@ Loc_D989:
   bcc Loc_D989                 ; $D992
   lda #$00                     ; $D994
   sta $0438                    ; $D996
-  jsr Sub_D13A                 ; $D999
+  jsr StartLevelScene          ; $D999
 Loc_D99C:
   rts                          ; $D99C
 Loc_D99D:
@@ -3239,7 +3240,7 @@ Sub_DB07:
   beq Loc_DB0F                 ; $DB0A
   jmp Loc_DB57                 ; $DB0C
 Loc_DB0F:
-  lda z:$16                    ; $DB0F
+  lda z:AreaGroup              ; $DB0F
   asl a                        ; $DB11
   clc                          ; $DB12
   adc #$81                     ; $DB13
@@ -3296,7 +3297,7 @@ Loc_DB5F:
   lda z:GameState              ; $DB68
   cmp #$07                     ; $DB6A
   beq Loc_DB75                 ; $DB6C
-  lda $023B                    ; $DB6E
+  lda PlayerSpriteX0           ; $DB6E
   cmp #$78                     ; $DB71
   bne Loc_DB57                 ; $DB73
 Loc_DB75:
@@ -3380,7 +3381,7 @@ Loc_DC57:
   cmp #$02                     ; $DC64
   bne Loc_DC6D                 ; $DC66
   lda #$11                     ; $DC68
-  jsr EnqueueByte              ; $DC6A
+  jsr QueueSound               ; $DC6A
 Loc_DC6D:
   lda z:PaletteDirty           ; $DC6D
   cmp #$10                     ; $DC6F
@@ -3414,7 +3415,7 @@ Sub_DC87:
   tax                          ; $DC9B
   ldy #$01                     ; $DC9C
 Loc_DC9E:
-  lda $0238                    ; $DC9E
+  lda PlayerSpriteY0           ; $DC9E
   adc z:$04                    ; $DCA1
   adc (Tmp02),y                ; $DCA3
   sta $025B,y                  ; $DCA5
@@ -3425,7 +3426,7 @@ Loc_DC9E:
   lda (Tmp02),y                ; $DCAF
   sta $025B,y                  ; $DCB1
   iny                          ; $DCB4
-  lda $023B                    ; $DCB5
+  lda PlayerSpriteX0           ; $DCB5
   adc z:$05                    ; $DCB8
   adc (Tmp02),y                ; $DCBA
   sta $025B,y                  ; $DCBC
@@ -3498,7 +3499,7 @@ Loc_DE26:
   cmp #$30                     ; $DE32
   bne Loc_DE3B                 ; $DE34
   lda #$0E                     ; $DE36
-  jsr EnqueueByte              ; $DE38
+  jsr QueueSound               ; $DE38
 Loc_DE3B:
   ldy #$12                     ; $DE3B
 Loc_DE3D:
@@ -3550,7 +3551,7 @@ Sub_DED0:
   lda z:PaletteDirty           ; $DED5
   cmp #$80                     ; $DED7
   bcc Loc_DEDF                 ; $DED9
-  jsr Sub_DF02                 ; $DEDB
+  jsr EndGameOverSequence      ; $DEDB
   rts                          ; $DEDE
 Loc_DEDF:
   lda #$00                     ; $DEDF
@@ -3563,7 +3564,7 @@ Loc_DEDF:
   cmp #$02                     ; $DEEF
   bne Loc_DEF8                 ; $DEF1
   lda #$11                     ; $DEF3
-  jsr EnqueueByte              ; $DEF5
+  jsr QueueSound               ; $DEF5
 Loc_DEF8:
   lda z:PaletteDirty           ; $DEF8
   cmp #$10                     ; $DEFA
@@ -3571,7 +3572,7 @@ Loc_DEF8:
   jsr AnimatePalette           ; $DEFE
 Loc_DF01:
   rts                          ; $DF01
-Sub_DF02:
+EndGameOverSequence:
   lda #$00                     ; $DF02
   sta z:GameState              ; $DF04
   sta z:$1B                    ; $DF06
@@ -3590,7 +3591,7 @@ Sub_DF12:
   sec                          ; $DF1F
   sbc #$20                     ; $DF20
   clc                          ; $DF22
-  adc $0238                    ; $DF23
+  adc PlayerSpriteY0           ; $DF23
   sta $028C                    ; $DF26
   cmp #$D0                     ; $DF29
   bcs Loc_DF3E                 ; $DF2B
@@ -3598,7 +3599,7 @@ Sub_DF12:
   sta $028D                    ; $DF2F
   lda #$00                     ; $DF32
   sta $028E                    ; $DF34
-  lda $023B                    ; $DF37
+  lda PlayerSpriteX0           ; $DF37
   sta $028F                    ; $DF3A
 Loc_DF3D:
   rts                          ; $DF3D
@@ -3655,9 +3656,9 @@ Loc_DF81:
   ldx #$00                     ; $DF95
 Loc_DF97:
   lda Data_E014,x              ; $DF97
-  sta $0238                    ; $DF9A
+  sta PlayerSpriteY0           ; $DF9A
   lda Data_E015,x              ; $DF9D
-  sta $023B                    ; $DFA0
+  sta PlayerSpriteX0           ; $DFA0
   rts                          ; $DFA3
 Data_DFA4:
   .incbin "prg_bank_7.bin", $1FA4, $18  ; $DFA4
@@ -3749,7 +3750,7 @@ Loc_E08E:
   sta z:Tmp02                  ; $E093
   lda z:ScrollX                ; $E095
   clc                          ; $E097
-  adc $023B                    ; $E098
+  adc PlayerSpriteX0           ; $E098
   ror a                        ; $E09B
   lsr a                        ; $E09C
   lsr a                        ; $E09D
@@ -3782,7 +3783,7 @@ Loc_E0BD:
   clc                          ; $E0CA
   adc z:$04                    ; $E0CB
   sta z:$05                    ; $E0CD
-  lda $0238                    ; $E0CF
+  lda PlayerSpriteY0           ; $E0CF
   cmp z:$04                    ; $E0D2
   bcs Loc_E0D9                 ; $E0D4
   jmp Loc_E16E                 ; $E0D6
@@ -3862,7 +3863,7 @@ Loc_E155:
   jsr Sub_E17D                 ; $E155
   lda #$00                     ; $E158
   sta z:$1B                    ; $E15A
-  sta $0113                    ; $E15C
+  sta ContactLock              ; $E15C
   sta z:PaletteDirty           ; $E15F
   sta $0430                    ; $E161
   sta $0431                    ; $E164
@@ -3900,7 +3901,7 @@ Data_E192:
 Data_E193:
   .incbin "prg_bank_7.bin", $2193, $400  ; $E193
   .incbin "prg_bank_7.bin", $2593, $6A  ; $E593
-Sub_E5FD:
+CheckStartPause:
   lda z:GameState              ; $E5FD
   cmp #$03                     ; $E5FF
   bcc Loc_E613                 ; $E601
@@ -3914,9 +3915,9 @@ Sub_E5FD:
 Loc_E613:
   rts                          ; $E613
 Loc_E614:
-  lda $0238                    ; $E614
+  lda PlayerSpriteY0           ; $E614
   sta $013B                    ; $E617
-  lda $023B                    ; $E61A
+  lda PlayerSpriteX0           ; $E61A
   sta $013C                    ; $E61D
   lda #$01                     ; $E620
   sta z:MmcPrgShadow           ; $E622
@@ -3940,9 +3941,9 @@ Loc_E640:
   cpx #$04                     ; $E647
   bcc Loc_E640                 ; $E649
   lda $013B                    ; $E64B
-  sta $0238                    ; $E64E
+  sta PlayerSpriteY0           ; $E64E
   lda $013C                    ; $E651
-  sta $023B                    ; $E654
+  sta PlayerSpriteX0           ; $E654
   jsr DoOamDma                 ; $E657
   rts                          ; $E65A
 Loc_E65B:
@@ -3965,7 +3966,7 @@ Loc_E66C:
 Loc_E67B:
   cmp #$50                     ; $E67B
   bcs Loc_E6D1                 ; $E67D
-  lda $0100                    ; $E67F
+  lda StageIndex               ; $E67F
   asl a                        ; $E682
   tax                          ; $E683
   lda Data_E712,x              ; $E684
@@ -3996,7 +3997,7 @@ Loc_E6A5:
   sta z:$2A                    ; $E6AF
   lda ($04),y                  ; $E6B1
   and #$0F                     ; $E6B3
-  sta $0100                    ; $E6B5
+  sta StageIndex               ; $E6B5
   iny                          ; $E6B8
   lda ($04),y                  ; $E6B9
   sta z:$2B                    ; $E6BB
@@ -4043,14 +4044,14 @@ Loc_E705:
   stx z:GameState              ; $E705
   lda #$03                     ; $E707
   sta $0106                    ; $E709
-  jsr Sub_E85E                 ; $E70C
+  jsr ResetPlayerForRetry      ; $E70C
   lda #$01                     ; $E70F
   rts                          ; $E711
 Data_E712:
   .incbin "prg_bank_7.bin", $2712, $1  ; $E712
 Data_E713:
   .incbin "prg_bank_7.bin", $2713, $14B  ; $E713
-Sub_E85E:
+ResetPlayerForRetry:
   lda #$C8                     ; $E85E
   sta z:PlayerLifeLo           ; $E860
   lda #$00                     ; $E862
@@ -4072,8 +4073,8 @@ Sub_E85E:
   sta z:AmmoLo                 ; $E880
 Loc_E882:
   rts                          ; $E882
-Sub_E883:
-  jsr Sub_E916                 ; $E883
+UpdateGameOverSequence:
+  jsr UpdateLowLifeAlarm       ; $E883
   lda $013D                    ; $E886
   beq Loc_E899                 ; $E889
   jsr Sub_E8D3                 ; $E88B
@@ -4099,7 +4100,7 @@ Loc_E8A5:
   lda z:PaletteSetIndex        ; $E8B3
   sta $013F                    ; $E8B5
   lda #$0B                     ; $E8B8
-  jsr EnqueueByte              ; $E8BA
+  jsr QueueSound               ; $E8BA
   rts                          ; $E8BD
 Loc_E8BE:
   lda z:SecondCounter          ; $E8BE
@@ -4156,7 +4157,7 @@ Loc_E90D:
   bcc Loc_E90D                 ; $E913
 Loc_E915:
   rts                          ; $E915
-Sub_E916:
+UpdateLowLifeAlarm:
   lda $0117                    ; $E916
   bne Loc_E928                 ; $E919
   lda z:PlayerLifeLo           ; $E91B
@@ -4173,13 +4174,13 @@ Loc_E928:
   lda #$44                     ; $E930
 Loc_E932:
   stx $0117                    ; $E932
-  jsr EnqueueByte              ; $E935
+  jsr QueueSound               ; $E935
 Loc_E938:
   rts                          ; $E938
 Sub_E939:
   lda z:PaletteDirty           ; $E939
   bne Loc_E960                 ; $E93B
-  lda z:$30                    ; $E93D
+  lda z:PlayerActionState      ; $E93D
   beq Loc_E947                 ; $E93F
   jsr Sub_E971                 ; $E941
   jmp Loc_E94A                 ; $E944
@@ -4201,31 +4202,31 @@ Loc_E960:
 Data_E961:
   .incbin "prg_bank_7.bin", $2961, $10  ; $E961
 Sub_E971:
-  ldx z:$31                    ; $E971
+  ldx z:PlayerActionTimer      ; $E971
   lda Data_E9D2,x              ; $E973
   cpx #$30                     ; $E976
   bcc Loc_E97C                 ; $E978
   lda #$06                     ; $E97A
 Loc_E97C:
   clc                          ; $E97C
-  adc $0238                    ; $E97D
-  sta $0238                    ; $E980
-  inc z:$31                    ; $E983
-  lda z:$31                    ; $E985
+  adc PlayerSpriteY0           ; $E97D
+  sta PlayerSpriteY0           ; $E980
+  inc z:PlayerActionTimer      ; $E983
+  lda z:PlayerActionTimer      ; $E985
   cmp #$18                     ; $E987
   bcs Loc_E999                 ; $E989
   lda JoyHeld1                 ; $E98B
   and #$02                     ; $E98E
   bne Loc_E9C6                 ; $E990
   lda #$18                     ; $E992
-  sta z:$31                    ; $E994
+  sta z:PlayerActionTimer      ; $E994
   jmp Loc_E9C6                 ; $E996
 Loc_E999:
   ldx z:MmcChr1Shadow          ; $E999
   lda z:$3F                    ; $E99B
   cmp Data_E961,x              ; $E99D
   bcc Loc_E9C6                 ; $E9A0
-  lda $0238                    ; $E9A2
+  lda PlayerSpriteY0           ; $E9A2
   cmp #$90                     ; $E9A5
   bcs Loc_E9B0                 ; $E9A7
   lda JoyHeld1                 ; $E9A9
@@ -4233,27 +4234,27 @@ Loc_E999:
   bne Loc_E9C6                 ; $E9AE
 Loc_E9B0:
   lda #$00                     ; $E9B0
-  sta z:$30                    ; $E9B2
+  sta z:PlayerActionState      ; $E9B2
   sta z:$33                    ; $E9B4
-  lda z:FireMode               ; $E9B6
+  lda z:PlayerPose             ; $E9B6
   and #$10                     ; $E9B8
-  sta z:FireMode               ; $E9BA
-  lda $0238                    ; $E9BC
+  sta z:PlayerPose             ; $E9BA
+  lda PlayerSpriteY0           ; $E9BC
   and #$F0                     ; $E9BF
   ora #$02                     ; $E9C1
-  sta $0238                    ; $E9C3
+  sta PlayerSpriteY0           ; $E9C3
 Loc_E9C6:
-  lda z:FireMode               ; $E9C6
+  lda z:PlayerPose             ; $E9C6
   and #$0F                     ; $E9C8
   cmp #$04                     ; $E9CA
   bcs Loc_E9D1                 ; $E9CC
-  jsr UpdateFireMode           ; $E9CE
+  jsr UpdatePlayerFacing       ; $E9CE
 Loc_E9D1:
   rts                          ; $E9D1
 Data_E9D2:
   .incbin "prg_bank_7.bin", $29D2, $30  ; $E9D2
 Sub_EA02:
-  lda z:FireMode               ; $EA02
+  lda z:PlayerPose             ; $EA02
   and #$0F                     ; $EA04
   cmp #$03                     ; $EA06
   bcs Loc_EA2C                 ; $EA08
@@ -4269,16 +4270,16 @@ Loc_EA16:
   bcs Loc_EA2C                 ; $EA1D
   lda #$20                     ; $EA1F
 Loc_EA21:
-  sta z:$31                    ; $EA21
+  sta z:PlayerActionTimer      ; $EA21
   lda #$01                     ; $EA23
-  sta z:$30                    ; $EA25
+  sta z:PlayerActionState      ; $EA25
   ldx #$03                     ; $EA27
-  jsr SetFireModeLow           ; $EA29
+  jsr SetPlayerPose            ; $EA29
 Loc_EA2C:
   rts                          ; $EA2C
 Sub_EA2D:
   inc z:$34                    ; $EA2D
-  lda z:FireMode               ; $EA2F
+  lda z:PlayerPose             ; $EA2F
   and #$0F                     ; $EA31
   cmp #$04                     ; $EA33
   bne Loc_EA42                 ; $EA35
@@ -4301,7 +4302,7 @@ Loc_EA51:
   bcc Loc_EA60                 ; $EA55
   ldx #$00                     ; $EA57
 Loc_EA59:
-  jsr SetFireModeLow           ; $EA59
+  jsr SetPlayerPose            ; $EA59
   lda #$00                     ; $EA5C
   sta z:$33                    ; $EA5E
 Loc_EA60:
@@ -4315,7 +4316,7 @@ Sub_EA61:
   lda z:AmmoLo                 ; $EA6C
   ora z:AmmoHi                 ; $EA6E
   beq Loc_EA81                 ; $EA70
-  lda z:FireMode               ; $EA72
+  lda z:PlayerPose             ; $EA72
   and #$0F                     ; $EA74
   cmp #$03                     ; $EA76
   beq Loc_EA9C                 ; $EA78
@@ -4323,51 +4324,51 @@ Sub_EA61:
   ldx #$06                     ; $EA7C
   jmp Loc_EA9E                 ; $EA7E
 Loc_EA81:
-  lda z:FireMode               ; $EA81
+  lda z:PlayerPose             ; $EA81
   and #$0F                     ; $EA83
   cmp #$03                     ; $EA85
   beq Loc_EA9C                 ; $EA87
   bcs Loc_EAA9                 ; $EA89
   lda #$01                     ; $EA8B
-  sta z:$30                    ; $EA8D
+  sta z:PlayerActionState      ; $EA8D
   lda #$20                     ; $EA8F
-  sta z:$31                    ; $EA91
-  lda $0238                    ; $EA93
+  sta z:PlayerActionTimer      ; $EA91
+  lda PlayerSpriteY0           ; $EA93
   sec                          ; $EA96
   sbc #$18                     ; $EA97
-  sta $0238                    ; $EA99
+  sta PlayerSpriteY0           ; $EA99
 Loc_EA9C:
   ldx #$04                     ; $EA9C
 Loc_EA9E:
-  jsr SetFireModeLow           ; $EA9E
+  jsr SetPlayerPose            ; $EA9E
   lda #$01                     ; $EAA1
   sta z:$33                    ; $EAA3
   lda #$00                     ; $EAA5
   sta z:$34                    ; $EAA7
 Loc_EAA9:
   rts                          ; $EAA9
-SetFireModeLow:
-  lda z:FireMode               ; $EAAA
+SetPlayerPose:
+  lda z:PlayerPose             ; $EAAA
   and #$10                     ; $EAAC
-  sta z:FireMode               ; $EAAE
+  sta z:PlayerPose             ; $EAAE
   txa                          ; $EAB0
-  ora z:FireMode               ; $EAB1
-  sta z:FireMode               ; $EAB3
+  ora z:PlayerPose             ; $EAB1
+  sta z:PlayerPose             ; $EAB3
   rts                          ; $EAB5
-UpdateFireMode:
+UpdatePlayerFacing:
   lda JoyHeld1                 ; $EAB6
   and #$C0                     ; $EAB9
   beq Loc_EACE                 ; $EABB
   cmp #$40                     ; $EABD
   bne Loc_EAC8                 ; $EABF
-  lda z:FireMode               ; $EAC1
+  lda z:PlayerPose             ; $EAC1
   ora #$10                     ; $EAC3
   jmp Loc_EACC                 ; $EAC5
 Loc_EAC8:
-  lda z:FireMode               ; $EAC8
+  lda z:PlayerPose             ; $EAC8
   and #$0F                     ; $EACA
 Loc_EACC:
-  sta z:FireMode               ; $EACC
+  sta z:PlayerPose             ; $EACC
 Loc_EACE:
   rts                          ; $EACE
 UseAmmo:
@@ -4378,7 +4379,7 @@ UseAmmo:
 Loc_EAD8:
   rts                          ; $EAD8
 Sub_EAD9:
-  lda z:FireMode               ; $EAD9
+  lda z:PlayerPose             ; $EAD9
   and #$0F                     ; $EADB
   cmp #$01                     ; $EADD
   bcs Loc_EAED                 ; $EADF
@@ -4394,16 +4395,16 @@ Loc_EAED:
   bne Loc_EB09                 ; $EAF4
   ldx #$00                     ; $EAF6
 Loc_EAF8:
-  jsr SetFireModeLow           ; $EAF8
+  jsr SetPlayerPose            ; $EAF8
   jsr UseAmmo                  ; $EAFB
 Loc_EAFE:
-  lda z:FireMode               ; $EAFE
+  lda z:PlayerPose             ; $EAFE
   and #$0F                     ; $EB00
   cmp #$04                     ; $EB02
   bcs Loc_EB09                 ; $EB04
-  jsr UpdateFireMode           ; $EB06
+  jsr UpdatePlayerFacing       ; $EB06
 Loc_EB09:
-  lda z:FireMode               ; $EB09
+  lda z:PlayerPose             ; $EB09
   and #$0F                     ; $EB0B
   cmp #$02                     ; $EB0D
   beq Loc_EB1F                 ; $EB0F
@@ -4419,12 +4420,12 @@ Loc_EB1F:
   bne Loc_EB2E                 ; $EB24
   ldx #$00                     ; $EB26
 Loc_EB28:
-  jsr SetFireModeLow           ; $EB28
+  jsr SetPlayerPose            ; $EB28
   jsr UseAmmo                  ; $EB2B
 Loc_EB2E:
   rts                          ; $EB2E
 Sub_EB2F:
-  lda z:FireMode               ; $EB2F
+  lda z:PlayerPose             ; $EB2F
   and #$0F                     ; $EB31
   bne Loc_EB38                 ; $EB33
   jmp Loc_EBD7                 ; $EB35
@@ -4452,7 +4453,7 @@ Loc_EB55:
 Loc_EB5E:
   cmp #$03                     ; $EB5E
   bne Loc_EB72                 ; $EB60
-  lda z:$31                    ; $EB62
+  lda z:PlayerActionTimer      ; $EB62
   cmp #$08                     ; $EB64
   bcs Loc_EB6D                 ; $EB66
   lda #$04                     ; $EB68
@@ -4515,12 +4516,12 @@ Loc_EBCD:
   jmp Loc_EBD9                 ; $EBCF
 Loc_EBD2:
   ldx #$00                     ; $EBD2
-  jsr SetFireModeLow           ; $EBD4
+  jsr SetPlayerPose            ; $EBD4
 Loc_EBD7:
   lda #$07                     ; $EBD7
 Loc_EBD9:
   sta z:Tmp02                  ; $EBD9
-  lda z:FireMode               ; $EBDB
+  lda z:PlayerPose             ; $EBDB
   and #$10                     ; $EBDD
   ora z:Tmp02                  ; $EBDF
   sta z:PlayerSpriteFrame      ; $EBE1
@@ -4547,19 +4548,19 @@ Sub_EBE4:
 Loc_EC0B:
   lda (Tmp00),y                ; $EC0B
   clc                          ; $EC0D
-  adc $0238                    ; $EC0E
-  sta $0238,y                  ; $EC11
+  adc PlayerSpriteY0           ; $EC0E
+  sta PlayerSpriteY0,y         ; $EC11
   iny                          ; $EC14
   lda (Tmp00),y                ; $EC15
-  sta $0238,y                  ; $EC17
+  sta PlayerSpriteY0,y         ; $EC17
   iny                          ; $EC1A
   lda (Tmp00),y                ; $EC1B
-  sta $0238,y                  ; $EC1D
+  sta PlayerSpriteY0,y         ; $EC1D
   iny                          ; $EC20
   lda (Tmp00),y                ; $EC21
   clc                          ; $EC23
-  adc $023B                    ; $EC24
-  sta $0238,y                  ; $EC27
+  adc PlayerSpriteX0           ; $EC24
+  sta PlayerSpriteY0,y         ; $EC27
   iny                          ; $EC2A
   dex                          ; $EC2B
   bne Loc_EC0B                 ; $EC2C
@@ -4600,13 +4601,13 @@ Loc_EED4:
   bcc Loc_EED4                 ; $EEE1
   rts                          ; $EEE3
 Loc_EEE4:
-  lda $0238                    ; $EEE4
+  lda PlayerSpriteY0           ; $EEE4
   clc                          ; $EEE7
   adc #$03                     ; $EEE8
   sta OamBuffer,x              ; $EEEA
   lda #$BE                     ; $EEED
   sta $0201,x                  ; $EEEF
-  lda z:FireMode               ; $EEF2
+  lda z:PlayerPose             ; $EEF2
   and #$10                     ; $EEF4
   bne Loc_EEFF                 ; $EEF6
   ldy #$00                     ; $EEF8
@@ -4617,14 +4618,14 @@ Loc_EEFF:
   lda #$F0                     ; $EF01
 Loc_EF03:
   clc                          ; $EF03
-  adc $023B                    ; $EF04
+  adc PlayerSpriteX0           ; $EF04
   sta $0203,x                  ; $EF07
   tya                          ; $EF0A
   sta $0202,x                  ; $EF0B
   lda #$FF                     ; $EF0E
   jsr AdjustAmmo               ; $EF10
   lda #$0E                     ; $EF13
-  jsr EnqueueByte              ; $EF15
+  jsr QueueSound               ; $EF15
   rts                          ; $EF18
 Sub_EF19:
   lda z:PaletteDirty           ; $EF19
@@ -4637,15 +4638,15 @@ Sub_EF19:
 Loc_EF2C:
   rts                          ; $EF2C
 Sub_EF2D:
-  lda z:FireMode               ; $EF2D
+  lda z:PlayerPose             ; $EF2D
   and #$0F                     ; $EF2F
   bne Loc_EF36                 ; $EF31
-  jsr UpdateFireMode           ; $EF33
+  jsr UpdatePlayerFacing       ; $EF33
 Loc_EF36:
   ldx #$00                     ; $EF36
-  jsr SetFireModeLow           ; $EF38
+  jsr SetPlayerPose            ; $EF38
   ldx #$01                     ; $EF3B
-  lda z:FireMode               ; $EF3D
+  lda z:PlayerPose             ; $EF3D
   and #$10                     ; $EF3F
   bne Loc_EF4D                 ; $EF41
   lda JoyHeld1                 ; $EF43
@@ -4666,27 +4667,27 @@ Loc_EF54:
   cmp #$20                     ; $EF5F
   bne Loc_EF66                 ; $EF61
 Loc_EF63:
-  jsr SetFireModeLow           ; $EF63
+  jsr SetPlayerPose            ; $EF63
 Loc_EF66:
   lda JoyHeld1                 ; $EF66
   and #$30                     ; $EF69
   beq Loc_EF7A                 ; $EF6B
   cmp #$10                     ; $EF6D
   bne Loc_EF77                 ; $EF6F
-  dec $0238                    ; $EF71
+  dec PlayerSpriteY0           ; $EF71
   jmp Loc_EF7A                 ; $EF74
 Loc_EF77:
-  inc $0238                    ; $EF77
+  inc PlayerSpriteY0           ; $EF77
 Loc_EF7A:
   rts                          ; $EF7A
 Sub_EF7B:
-  lda z:FireMode               ; $EF7B
+  lda z:PlayerPose             ; $EF7B
   and #$10                     ; $EF7D
   beq Loc_EF83                 ; $EF7F
   lda #$0C                     ; $EF81
 Loc_EF83:
   sta z:PlayerSpriteFrame      ; $EF83
-  lda z:FireMode               ; $EF85
+  lda z:PlayerPose             ; $EF85
   and #$03                     ; $EF87
   tax                          ; $EF89
   lda Data_EFA5,x              ; $EF8A
@@ -4739,27 +4740,27 @@ Loc_EFD4:
   cmp #$FF                     ; $EFD6
   beq Loc_EFDE                 ; $EFD8
   clc                          ; $EFDA
-  adc $0238                    ; $EFDB
+  adc PlayerSpriteY0           ; $EFDB
 Loc_EFDE:
-  sta $0238,y                  ; $EFDE
+  sta PlayerSpriteY0,y         ; $EFDE
   iny                          ; $EFE1
   lda (Tmp00),y                ; $EFE2
-  sta $0238,y                  ; $EFE4
+  sta PlayerSpriteY0,y         ; $EFE4
   iny                          ; $EFE7
   lda (Tmp00),y                ; $EFE8
-  sta $0238,y                  ; $EFEA
+  sta PlayerSpriteY0,y         ; $EFEA
   iny                          ; $EFED
   lda (Tmp00),y                ; $EFEE
   clc                          ; $EFF0
-  adc $023B                    ; $EFF1
-  sta $0238,y                  ; $EFF4
+  adc PlayerSpriteX0           ; $EFF1
+  sta PlayerSpriteY0,y         ; $EFF4
   iny                          ; $EFF7
   cpy #$18                     ; $EFF8
   bcc Loc_EFD4                 ; $EFFA
   rts                          ; $EFFC
   .incbin "prg_bank_7.bin", $2FFD, $240  ; $EFFD
 Sub_F23D:
-  lda z:FireMode               ; $F23D
+  lda z:PlayerPose             ; $F23D
   and #$0F                     ; $F23F
   cmp #$02                     ; $F241
   bcs Loc_F29C                 ; $F243
@@ -4789,11 +4790,11 @@ Loc_F265:
   lda #$10                     ; $F26B
 Loc_F26D:
   clc                          ; $F26D
-  adc $0238                    ; $F26E
+  adc PlayerSpriteY0           ; $F26E
   sta OamBuffer,x              ; $F271
   lda #$3C                     ; $F274
   sta $0201,x                  ; $F276
-  lda z:FireMode               ; $F279
+  lda z:PlayerPose             ; $F279
   and #$10                     ; $F27B
   asl a                        ; $F27D
   asl a                        ; $F27E
@@ -4805,10 +4806,10 @@ Loc_F289:
   lda #$F4                     ; $F289
 Loc_F28B:
   clc                          ; $F28B
-  adc $023B                    ; $F28C
+  adc PlayerSpriteX0           ; $F28C
   sta $0203,x                  ; $F28F
   lda #$0F                     ; $F292
-  jsr EnqueueByte              ; $F294
+  jsr QueueSound               ; $F294
   lda #$FF                     ; $F297
   jsr AdjustAmmo               ; $F299
 Loc_F29C:
@@ -4824,7 +4825,7 @@ Loc_F2AB:
   cmp #$02                     ; $F2AB
   bne Loc_F2D9                 ; $F2AD
   ldx #$00                     ; $F2AF
-  lda $023B                    ; $F2B1
+  lda PlayerSpriteX0           ; $F2B1
   cmp #$78                     ; $F2B4
   bne Loc_F2C1                 ; $F2B6
   lda z:ScrollX                ; $F2B8
@@ -4832,13 +4833,13 @@ Loc_F2AB:
   beq Loc_F2C8                 ; $F2BC
   jmp Loc_F2C9                 ; $F2BE
 Loc_F2C1:
-  lda $023B                    ; $F2C1
+  lda PlayerSpriteX0           ; $F2C1
   and #$07                     ; $F2C4
   bne Loc_F2C9                 ; $F2C6
 Loc_F2C8:
   inx                          ; $F2C8
 Loc_F2C9:
-  lda $0238                    ; $F2C9
+  lda PlayerSpriteY0           ; $F2C9
   and #$07                     ; $F2CC
   bne Loc_F2D2                 ; $F2CE
   inx                          ; $F2D0
@@ -4852,15 +4853,15 @@ Loc_F2D9:
 Sub_F2DA:
   lda #$01                     ; $F2DA
   sta z:$3E                    ; $F2DC
-  lda $0238                    ; $F2DE
+  lda PlayerSpriteY0           ; $F2DE
   clc                          ; $F2E1
   adc #$2F                     ; $F2E2
   sta z:Tmp02                  ; $F2E4
-  lda $023B                    ; $F2E6
+  lda PlayerSpriteX0           ; $F2E6
   clc                          ; $F2E9
   adc #$07                     ; $F2EA
   sta z:Tmp03                  ; $F2EC
-  jsr Sub_C4C8                 ; $F2EE
+  jsr PixelToNametableAddr     ; $F2EE
   lda z:Tmp00                  ; $F2F1
   sta z:$40                    ; $F2F3
   lda z:Tmp01                  ; $F2F5
@@ -4935,13 +4936,13 @@ Loc_F371:
   sta z:$3E                    ; $F371
   tya                          ; $F373
   clc                          ; $F374
-  adc $0238                    ; $F375
+  adc PlayerSpriteY0           ; $F375
   sta z:Tmp02                  ; $F378
   txa                          ; $F37A
   clc                          ; $F37B
-  adc $023B                    ; $F37C
+  adc PlayerSpriteX0           ; $F37C
   sta z:Tmp03                  ; $F37F
-  jsr Sub_C4C8                 ; $F381
+  jsr PixelToNametableAddr     ; $F381
   lda z:Tmp00                  ; $F384
   sta z:$40                    ; $F386
   lda z:Tmp01                  ; $F388
@@ -4961,19 +4962,19 @@ Sub_F39E:
   lda JoyHeld1                 ; $F39E
   and #$10                     ; $F3A1
   beq Loc_F3AF                 ; $F3A3
-  lda $0238                    ; $F3A5
+  lda PlayerSpriteY0           ; $F3A5
   cmp #$12                     ; $F3A8
   bcc Loc_F3AF                 ; $F3AA
-  dec $0238                    ; $F3AC
+  dec PlayerSpriteY0           ; $F3AC
 Loc_F3AF:
   lda JoyHeld1                 ; $F3AF
   and #$20                     ; $F3B2
   beq Loc_F3C3                 ; $F3B4
-  lda $0238                    ; $F3B6
+  lda PlayerSpriteY0           ; $F3B6
   cmp #$C8                     ; $F3B9
   bcs Loc_F3C3                 ; $F3BB
-  inc $0238                    ; $F3BD
-  inc $0238                    ; $F3C0
+  inc PlayerSpriteY0           ; $F3BD
+  inc PlayerSpriteY0           ; $F3C0
 Loc_F3C3:
   lda z:ScrollPage             ; $F3C3
   cmp #$0F                     ; $F3C5
@@ -4981,27 +4982,27 @@ Loc_F3C3:
   lda JoyHeld1                 ; $F3C9
   and #$40                     ; $F3CC
   beq Loc_F3E0                 ; $F3CE
-  lda $023B                    ; $F3D0
+  lda PlayerSpriteX0           ; $F3D0
   cmp #$18                     ; $F3D3
   bcc Loc_F3F1                 ; $F3D5
-  dec $023B                    ; $F3D7
-  dec $023B                    ; $F3DA
+  dec PlayerSpriteX0           ; $F3D7
+  dec PlayerSpriteX0           ; $F3DA
   jmp Loc_F3F1                 ; $F3DD
 Loc_F3E0:
   lda JoyHeld1                 ; $F3E0
   and #$80                     ; $F3E3
   beq Loc_F3F1                 ; $F3E5
-  lda $023B                    ; $F3E7
+  lda PlayerSpriteX0           ; $F3E7
   cmp #$E0                     ; $F3EA
   bcs Loc_F3F1                 ; $F3EC
-  inc $023B                    ; $F3EE
+  inc PlayerSpriteX0           ; $F3EE
 Loc_F3F1:
   ldx #$00                     ; $F3F1
   ldy #$3C                     ; $F3F3
 Loc_F3F5:
   lda Data_F428,x              ; $F3F5
   clc                          ; $F3F8
-  adc $0238                    ; $F3F9
+  adc PlayerSpriteY0           ; $F3F9
   sta OamBuffer,y              ; $F3FC
   iny                          ; $F3FF
   iny                          ; $F400
@@ -5009,7 +5010,7 @@ Loc_F3F5:
   inx                          ; $F402
   lda Data_F428,x              ; $F403
   clc                          ; $F406
-  adc $023B                    ; $F407
+  adc PlayerSpriteX0           ; $F407
   sta OamBuffer,y              ; $F40A
   iny                          ; $F40D
   inx                          ; $F40E
@@ -5080,26 +5081,26 @@ Loc_F482:
   bcc Loc_F482                 ; $F48F
   jmp Loc_F4B7                 ; $F491
 Loc_F494:
-  lda $0238                    ; $F494
+  lda PlayerSpriteY0           ; $F494
   sta OamBuffer,x              ; $F497
   lda #$16                     ; $F49A
   sta $0201,x                  ; $F49C
   lda #$00                     ; $F49F
   sta $0202,x                  ; $F4A1
-  lda $023B                    ; $F4A4
+  lda PlayerSpriteX0           ; $F4A4
   clc                          ; $F4A7
   adc #$08                     ; $F4A8
   sta $0203,x                  ; $F4AA
   lda #$FF                     ; $F4AD
   jsr AdjustAmmo               ; $F4AF
   lda #$0F                     ; $F4B2
-  jsr EnqueueByte              ; $F4B4
+  jsr QueueSound               ; $F4B4
 Loc_F4B7:
   rts                          ; $F4B7
 Sub_F4B8:
   lda #$00                     ; $F4B8
-  sta z:$30                    ; $F4BA
-  sta z:$31                    ; $F4BC
+  sta z:PlayerActionState      ; $F4BA
+  sta z:PlayerActionTimer      ; $F4BC
   ldy #$02                     ; $F4BE
   lda ($2C),y                  ; $F4C0
   jsr LsrA4                    ; $F4C2
@@ -5125,8 +5126,8 @@ Loc_F4E4:
   sta z:PlayerSpriteFrame      ; $F4E6
   lda z:$2B                    ; $F4E8
   and #$F0                     ; $F4EA
-  sta $0238                    ; $F4EC
-  inc $0238                    ; $F4EF
+  sta PlayerSpriteY0           ; $F4EC
+  inc PlayerSpriteY0           ; $F4EF
   lda #$02                     ; $F4F2
   sta $0239                    ; $F4F4
   lda #$00                     ; $F4F7
@@ -5134,7 +5135,7 @@ Loc_F4E4:
   lda z:$2B                    ; $F4FC
   jsr AslA4                    ; $F4FE
   ora #$08                     ; $F501
-  sta $023B                    ; $F503
+  sta PlayerSpriteX0           ; $F503
   ldx #$00                     ; $F506
 Loc_F508:
   lda Data_F53E,x              ; $F508
@@ -5144,7 +5145,7 @@ Loc_F508:
   jmp Loc_F532                 ; $F512
 Loc_F515:
   clc                          ; $F515
-  adc $0238                    ; $F516
+  adc PlayerSpriteY0           ; $F516
   sta $023C,x                  ; $F519
   lda Data_F53F,x              ; $F51C
   sta $023D,x                  ; $F51F
@@ -5152,7 +5153,7 @@ Loc_F515:
   sta $023E,x                  ; $F525
   lda Data_F541,x              ; $F528
   clc                          ; $F52B
-  adc $023B                    ; $F52C
+  adc PlayerSpriteX0           ; $F52C
   sta $023F,x                  ; $F52F
 Loc_F532:
   inx                          ; $F532
@@ -5174,10 +5175,10 @@ Data_F541:
 Loc_F55A:
   lda z:$2B                    ; $F55A
   and #$F0                     ; $F55C
-  sta $0238                    ; $F55E
+  sta PlayerSpriteY0           ; $F55E
   lda z:$2B                    ; $F561
   jsr AslA4                    ; $F563
-  sta $023B                    ; $F566
+  sta PlayerSpriteX0           ; $F566
   ldx #$3A                     ; $F569
   lda #$00                     ; $F56B
 Loc_F56D:
@@ -5192,7 +5193,7 @@ Loc_F56D:
 Loc_F579:
   lda z:$2B                    ; $F579
   and #$F0                     ; $F57B
-  sta $0238                    ; $F57D
+  sta PlayerSpriteY0           ; $F57D
   lda #$00                     ; $F580
   sta $0239                    ; $F582
   sta $023A                    ; $F585
@@ -5200,7 +5201,7 @@ Loc_F579:
   jsr AslA4                    ; $F58A
   clc                          ; $F58D
   adc #$08                     ; $F58E
-  sta $023B                    ; $F590
+  sta PlayerSpriteX0           ; $F590
   ldx #$00                     ; $F593
 Loc_F595:
   lda Data_F5CB,x              ; $F595
@@ -5210,7 +5211,7 @@ Loc_F595:
   jmp Loc_F5BF                 ; $F59F
 Loc_F5A2:
   clc                          ; $F5A2
-  adc $0238                    ; $F5A3
+  adc PlayerSpriteY0           ; $F5A3
   sta $023C,x                  ; $F5A6
   lda Data_F5CC,x              ; $F5A9
   sta $023D,x                  ; $F5AC
@@ -5218,7 +5219,7 @@ Loc_F5A2:
   sta $023E,x                  ; $F5B2
   lda Data_F5CE,x              ; $F5B5
   clc                          ; $F5B8
-  adc $023B                    ; $F5B9
+  adc PlayerSpriteX0           ; $F5B9
   sta $023F,x                  ; $F5BC
 Loc_F5BF:
   inx                          ; $F5BF
@@ -5240,10 +5241,10 @@ Data_F5CE:
 Loc_F5DB:
   lda z:$2B                    ; $F5DB
   and #$F0                     ; $F5DD
-  sta $0238                    ; $F5DF
+  sta PlayerSpriteY0           ; $F5DF
   lda z:$2B                    ; $F5E2
   jsr AslA4                    ; $F5E4
-  sta $023B                    ; $F5E7
+  sta PlayerSpriteX0           ; $F5E7
   ldx #$3A                     ; $F5EA
   lda #$00                     ; $F5EC
 Loc_F5EE:
@@ -5257,13 +5258,13 @@ Loc_F5EE:
   rts                          ; $F5F9
 Loc_F5FA:
   lda #$00                     ; $F5FA
-  sta z:$30                    ; $F5FC
-  sta z:$31                    ; $F5FE
+  sta z:PlayerActionState      ; $F5FC
+  sta z:PlayerActionTimer      ; $F5FE
   sta z:PlayerSpriteFrame      ; $F600
   jsr CopyPlayerSprites        ; $F602
   rts                          ; $F605
 Sub_F606:
-  lda $023B                    ; $F606
+  lda PlayerSpriteX0           ; $F606
   cmp #$78                     ; $F609
   bne Loc_F612                 ; $F60B
   lda #$00                     ; $F60D
@@ -5629,7 +5630,7 @@ Loc_F976:
 Loc_F983:
   rts                          ; $F983
 Sub_F984:
-  lda $0114                    ; $F984
+  lda HurtTimer                ; $F984
   beq Loc_F98A                 ; $F987
   rts                          ; $F989
 Loc_F98A:
@@ -5651,15 +5652,15 @@ Loc_F998:
   beq Loc_F9F1                 ; $F9A6
   cmp #$27                     ; $F9A8
   bne Loc_F9B4                 ; $F9AA
-  lda z:FireMode               ; $F9AC
+  lda z:PlayerPose             ; $F9AC
   and #$0F                     ; $F9AE
   cmp #$03                     ; $F9B0
   bcc Loc_FA05                 ; $F9B2
 Loc_F9B4:
   lda #$43                     ; $F9B4
-  jsr EnqueueByte              ; $F9B6
+  jsr QueueSound               ; $F9B6
   lda #$10                     ; $F9B9
-  sta $0114                    ; $F9BB
+  sta HurtTimer                ; $F9BB
   ldy #$00                     ; $F9BE
   lda (Tmp00),y                ; $F9C0
   and #$3F                     ; $F9C2
@@ -5704,7 +5705,7 @@ Loc_F9F2:
   rts                          ; $FA04
 Loc_FA05:
   lda #$07                     ; $FA05
-  sta z:FireMode               ; $FA07
+  sta z:PlayerPose             ; $FA07
   lda #$00                     ; $FA09
   sta z:$34                    ; $FA0B
   lda #$C8                     ; $FA0D
@@ -5738,7 +5739,7 @@ Loc_FA5E:
   lda #$40                     ; $FA66
   sta $0115                    ; $FA68
   lda #$0D                     ; $FA6B
-  jsr EnqueueByte              ; $FA6D
+  jsr QueueSound               ; $FA6D
   ldy #$06                     ; $FA70
   lda (Tmp00),y                ; $FA72
   beq Loc_FA7B                 ; $FA74
@@ -5821,17 +5822,17 @@ Loc_FAED:
 Loc_FAFF:
   rts                          ; $FAFF
 Sub_FB00:
-  lda $0114                    ; $FB00
+  lda HurtTimer                ; $FB00
   beq Loc_FB13                 ; $FB03
   lda z:FrameCounter           ; $FB05
   and #$01                     ; $FB07
   bne Loc_FB0E                 ; $FB09
-  dec $0114                    ; $FB0B
+  dec HurtTimer                ; $FB0B
 Loc_FB0E:
   lda #$00                     ; $FB0E
   jmp Loc_FB3A                 ; $FB10
 Loc_FB13:
-  lda z:FireMode               ; $FB13
+  lda z:PlayerPose             ; $FB13
   and #$0F                     ; $FB15
   cmp #$02                     ; $FB17
   beq Loc_FB22                 ; $FB19
@@ -5842,9 +5843,9 @@ Loc_FB22:
   lda #$12                     ; $FB22
   ldx #$61                     ; $FB24
 Loc_FB26:
-  adc $0238                    ; $FB26
+  adc PlayerSpriteY0           ; $FB26
   sta $011A                    ; $FB29
-  lda $023B                    ; $FB2C
+  lda PlayerSpriteX0           ; $FB2C
   clc                          ; $FB2F
   adc #$06                     ; $FB30
   sta $011B                    ; $FB32
@@ -5857,25 +5858,25 @@ Loc_FB3A:
   dec $0115                    ; $FB42
   jmp Loc_FB7F                 ; $FB45
 Loc_FB48:
-  lda z:FireMode               ; $FB48
+  lda z:PlayerPose             ; $FB48
   and #$0F                     ; $FB4A
   cmp #$04                     ; $FB4C
   bne Loc_FB7A                 ; $FB4E
   lda z:$34                    ; $FB50
   cmp #$02                     ; $FB52
   bne Loc_FB7A                 ; $FB54
-  lda $0238                    ; $FB56
+  lda PlayerSpriteY0           ; $FB56
   adc #$10                     ; $FB59
   sta $011F                    ; $FB5B
   ldx #$0E                     ; $FB5E
-  lda z:FireMode               ; $FB60
+  lda z:PlayerPose             ; $FB60
   and #$10                     ; $FB62
   beq Loc_FB68                 ; $FB64
   ldx #$EE                     ; $FB66
 Loc_FB68:
   txa                          ; $FB68
   clc                          ; $FB69
-  adc $023B                    ; $FB6A
+  adc PlayerSpriteX0           ; $FB6A
   sta $0120                    ; $FB6D
   lda #$35                     ; $FB70
   sta $0121                    ; $FB72
@@ -5948,7 +5949,7 @@ Loc_FBEF:
 Loc_FBFD:
   rts                          ; $FBFD
 UpdateLifeBlink:
-  lda $0114                    ; $FBFE
+  lda HurtTimer                ; $FBFE
   bne Loc_FC09                 ; $FC01
   lda $0116                    ; $FC03
   jmp Loc_FC16                 ; $FC06
@@ -5964,19 +5965,19 @@ Loc_FC16:
   sta $0153                    ; $FC16
   rts                          ; $FC19
 Sub_FC1A:
-  lda $0114                    ; $FC1A
+  lda HurtTimer                ; $FC1A
   beq Loc_FC2D                 ; $FC1D
   lda z:FrameCounter           ; $FC1F
   and #$01                     ; $FC21
   bne Loc_FC28                 ; $FC23
-  dec $0114                    ; $FC25
+  dec HurtTimer                ; $FC25
 Loc_FC28:
   lda #$00                     ; $FC28
   jmp Loc_FC40                 ; $FC2A
 Loc_FC2D:
-  lda $0238                    ; $FC2D
+  lda PlayerSpriteY0           ; $FC2D
   sta $011A                    ; $FC30
-  lda $023B                    ; $FC33
+  lda PlayerSpriteX0           ; $FC33
   sta $011B                    ; $FC36
   lda #$44                     ; $FC39
   sta $011C                    ; $FC3B
@@ -6086,21 +6087,21 @@ Loc_FD14:
   sta $0123                    ; $FD14
   rts                          ; $FD17
 Sub_FD18:
-  lda $0114                    ; $FD18
+  lda HurtTimer                ; $FD18
   beq Loc_FD2B                 ; $FD1B
   lda z:FrameCounter           ; $FD1D
   and #$01                     ; $FD1F
   bne Loc_FD26                 ; $FD21
-  dec $0114                    ; $FD23
+  dec HurtTimer                ; $FD23
 Loc_FD26:
   lda #$00                     ; $FD26
   jmp Loc_FD4B                 ; $FD28
 Loc_FD2B:
-  lda $0238                    ; $FD2B
+  lda PlayerSpriteY0           ; $FD2B
   sta $011A                    ; $FD2E
-  lda $023B                    ; $FD31
+  lda PlayerSpriteX0           ; $FD31
   sta $011B                    ; $FD34
-  lda z:FireMode               ; $FD37
+  lda z:PlayerPose             ; $FD37
   and #$0F                     ; $FD39
   cmp #$01                     ; $FD3B
   bne Loc_FD44                 ; $FD3D
@@ -6238,7 +6239,7 @@ Loc_FE4A:
   jmp Loc_FE4A                 ; $FE58
 Loc_FE5B:
   lda Data_FE8D,x              ; $FE5B
-  sta $0100                    ; $FE5E
+  sta StageIndex               ; $FE5E
 Loc_FE61:
   lda #$77                     ; $FE61
   sta z:$2B                    ; $FE63

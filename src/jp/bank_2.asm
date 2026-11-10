@@ -48,7 +48,7 @@ Bank2Nmi:
   jsr Sub_B2_89E2              ; $806D
   jsr Sub_B2_8609              ; $8070
   lda #$00                     ; $8073
-  jsr EnqueueByte              ; $8075
+  jsr QueueSound               ; $8075
   inc z:GameState              ; $8078
   jmp Loc_B2_815C              ; $807A
 Loc_B2_807D:
@@ -91,7 +91,7 @@ Loc_B2_80B5:
   bne Loc_B2_80E0              ; $80D3
   lda #$00                     ; $80D5
   sta $0496                    ; $80D7
-  jsr EnqueueByte              ; $80DA
+  jsr QueueSound               ; $80DA
   inc $0495                    ; $80DD
 Loc_B2_80E0:
   inc $0496                    ; $80E0
@@ -110,8 +110,8 @@ Loc_B2_80F7:
   bcc Loc_B2_811B              ; $80F9
   lda #$00                     ; $80FB
   sta $0495                    ; $80FD
-  jsr EnqueueByte              ; $8100
-  jsr CallBank5_A000           ; $8103
+  jsr QueueSound               ; $8100
+  jsr RunSoundDriver           ; $8103
   jsr Sub_B2_818E              ; $8106
   jmp Loc_B2_815F              ; $8109
 Loc_B2_810C:
@@ -152,7 +152,7 @@ Loc_B2_8141:
   sta MMC1_CHR1                ; $8156
   jsr TickClock                ; $8159
 Loc_B2_815C:
-  jsr CallBank5_A000           ; $815C
+  jsr RunSoundDriver           ; $815C
 Loc_B2_815F:
   lda z:PpuCtrlShadow          ; $815F
   ora #$80                     ; $8161
@@ -164,7 +164,7 @@ Sub_B2_8167:
   sbc #$50                     ; $816A
   tay                          ; $816C
   lda Data_B2_8174,y           ; $816D
-  jsr EnqueueByte              ; $8170
+  jsr QueueSound               ; $8170
   rts                          ; $8173
 Data_B2_8174:
   .incbin "prg_bank_2.bin", $0174, $1A  ; $8174
@@ -216,7 +216,7 @@ Sub_B2_8211:
   lda #$F8                     ; $8222
   sta z:ScrollX                ; $8224
   ldx #$00                     ; $8226
-  stx z:$15                    ; $8228
+  stx z:ScrollColumnPending    ; $8228
   stx $0101                    ; $822A
   jsr Sub_B2_827E              ; $822D
   lda #$01                     ; $8230
@@ -480,9 +480,9 @@ Loc_B2_851C:
   ora $04AA                    ; $852A
   sta $04AA                    ; $852D
   lda #$00                     ; $8530
-  jsr EnqueueByte              ; $8532
+  jsr QueueSound               ; $8532
   lda #$1D                     ; $8535
-  jsr EnqueueByte              ; $8537
+  jsr QueueSound               ; $8537
 Loc_B2_853A:
   lda z:FrameCounter           ; $853A
   and #$03                     ; $853C
@@ -736,14 +736,14 @@ Sub_B2_8882:
   lda $04A9                    ; $888C
   bne Loc_B2_88A9              ; $888F
   lda #$42                     ; $8891
-  jsr EnqueueByte              ; $8893
+  jsr QueueSound               ; $8893
   inc $04A9                    ; $8896
   jmp Loc_B2_88A9              ; $8899
 Loc_B2_889C:
   lda $04A9                    ; $889C
   beq Loc_B2_88A9              ; $889F
   lda #$44                     ; $88A1
-  jsr EnqueueByte              ; $88A3
+  jsr QueueSound               ; $88A3
   dec $04A9                    ; $88A6
 Loc_B2_88A9:
   rts                          ; $88A9
@@ -786,7 +786,7 @@ Loc_B2_88EB:
   cmp #$50                     ; $88F1
   bne Loc_B2_88FD              ; $88F3
   lda #$00                     ; $88F5
-  jsr EnqueueByte              ; $88F7
+  jsr QueueSound               ; $88F7
   jmp Loc_B2_8901              ; $88FA
 Loc_B2_88FD:
   cmp #$78                     ; $88FD

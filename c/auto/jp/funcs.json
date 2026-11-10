@@ -3002,7 +3002,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_A000": {
+ "SoundDriver": {
   "addr": 40960,
   "bank": 5,
   "instrs": 33,
@@ -3649,7 +3649,7 @@
  "Nmi": {
   "addr": 49281,
   "bank": 7,
-  "instrs": 168,
+  "instrs": 6,
   "ok": true,
   "reason": null
  },
@@ -3660,7 +3660,7 @@
   "ok": true,
   "reason": null
  },
- "CallBank5_A000": {
+ "RunSoundDriver": {
   "addr": 49382,
   "bank": 7,
   "instrs": 10,
@@ -3674,7 +3674,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_C170": {
+ "FetchInlineWord": {
   "addr": 49520,
   "bank": 7,
   "instrs": 19,
@@ -3786,7 +3786,7 @@
   "ok": true,
   "reason": null
  },
- "EnqueueByte": {
+ "QueueSound": {
   "addr": 49708,
   "bank": 7,
   "instrs": 6,
@@ -3863,21 +3863,21 @@
   "ok": true,
   "reason": null
  },
- "Sub_C355": {
+ "DrawObject": {
   "addr": 50005,
   "bank": 7,
   "instrs": 88,
   "ok": true,
   "reason": null
  },
- "Sub_C3FC": {
+ "SelectSpriteTable": {
   "addr": 50172,
   "bank": 7,
   "instrs": 32,
   "ok": true,
   "reason": null
  },
- "Sub_C43D": {
+ "RemoveObject": {
   "addr": 50237,
   "bank": 7,
   "instrs": 37,
@@ -3891,7 +3891,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_C4C8": {
+ "PixelToNametableAddr": {
   "addr": 50376,
   "bank": 7,
   "instrs": 24,
@@ -3936,7 +3936,14 @@
  "MmcWritePrg": {
   "addr": 50582,
   "bank": 7,
-  "instrs": 11,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "MmcWritePrgA": {
+  "addr": 50584,
+  "bank": 7,
+  "instrs": 10,
   "ok": true,
   "reason": null
  },
@@ -3947,7 +3954,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_C5FF": {
+ "ScrollByInput": {
   "addr": 50687,
   "bank": 7,
   "instrs": 112,
@@ -3996,14 +4003,14 @@
   "ok": true,
   "reason": null
  },
- "Sub_C941": {
+ "DrawLifeHud": {
   "addr": 51521,
   "bank": 7,
   "instrs": 16,
   "ok": true,
   "reason": null
  },
- "Sub_C962": {
+ "DrawAmmoHud": {
   "addr": 51554,
   "bank": 7,
   "instrs": 16,
@@ -4024,14 +4031,21 @@
   "ok": true,
   "reason": null
  },
- "Sub_CBA3": {
+ "NmiGameStateDispatch": {
+  "addr": 51705,
+  "bank": 7,
+  "instrs": 162,
+  "ok": true,
+  "reason": null
+ },
+ "InitLevel": {
   "addr": 52131,
   "bank": 7,
   "instrs": 121,
   "ok": true,
   "reason": null
  },
- "Sub_CCD3": {
+ "ComputeAreaGroup": {
   "addr": 52435,
   "bank": 7,
   "instrs": 13,
@@ -4045,7 +4059,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_CD74": {
+ "UploadNametableColumn": {
   "addr": 52596,
   "bank": 7,
   "instrs": 49,
@@ -4066,7 +4080,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_CEDA": {
+ "ReadColumnFromPpu": {
   "addr": 52954,
   "bank": 7,
   "instrs": 23,
@@ -4115,14 +4129,14 @@
   "ok": true,
   "reason": null
  },
- "Sub_D0FB": {
+ "StateAutoWalk": {
   "addr": 53499,
   "bank": 7,
   "instrs": 30,
   "ok": true,
   "reason": null
  },
- "Sub_D13A": {
+ "StartLevelScene": {
   "addr": 53562,
   "bank": 7,
   "instrs": 26,
@@ -4136,7 +4150,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_D255": {
+ "CheckObjectContact": {
   "addr": 53845,
   "bank": 7,
   "instrs": 29,
@@ -4164,14 +4178,14 @@
   "ok": true,
   "reason": null
  },
- "Sub_D32D": {
+ "UpdatePlayerAction": {
   "addr": 54061,
   "bank": 7,
   "instrs": 59,
   "ok": true,
   "reason": null
  },
- "Sub_D3A4": {
+ "PlayerActionIdle": {
   "addr": 54180,
   "bank": 7,
   "instrs": 22,
@@ -4185,56 +4199,56 @@
   "ok": true,
   "reason": null
  },
- "Sub_D4D3": {
+ "PlayerActionState1": {
   "addr": 54483,
   "bank": 7,
   "instrs": 56,
   "ok": true,
   "reason": null
  },
- "Sub_D573": {
+ "PlayerActionState2": {
   "addr": 54643,
   "bank": 7,
   "instrs": 39,
   "ok": true,
   "reason": null
  },
- "Sub_D5BD": {
+ "PlayerActionState3": {
   "addr": 54717,
   "bank": 7,
   "instrs": 16,
   "ok": true,
   "reason": null
  },
- "Sub_D5E2": {
+ "PlayerActionState4": {
   "addr": 54754,
   "bank": 7,
   "instrs": 17,
   "ok": true,
   "reason": null
  },
- "Sub_D607": {
+ "PlayerActionState5": {
   "addr": 54791,
   "bank": 7,
   "instrs": 40,
   "ok": true,
   "reason": null
  },
- "Sub_D6A4": {
+ "PlayerActionState6": {
   "addr": 54948,
   "bank": 7,
   "instrs": 27,
   "ok": true,
   "reason": null
  },
- "Sub_D710": {
+ "PlayerActionState7": {
   "addr": 55056,
   "bank": 7,
   "instrs": 34,
   "ok": true,
   "reason": null
  },
- "Sub_D740": {
+ "SetTransitionFromCode": {
   "addr": 55104,
   "bank": 7,
   "instrs": 55,
@@ -4346,7 +4360,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_DF02": {
+ "EndGameOverSequence": {
   "addr": 57090,
   "bank": 7,
   "instrs": 8,
@@ -4409,7 +4423,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_E5FD": {
+ "CheckStartPause": {
   "addr": 58877,
   "bank": 7,
   "instrs": 44,
@@ -4423,14 +4437,14 @@
   "ok": true,
   "reason": null
  },
- "Sub_E85E": {
+ "ResetPlayerForRetry": {
   "addr": 59486,
   "bank": 7,
   "instrs": 20,
   "ok": true,
   "reason": null
  },
- "Sub_E883": {
+ "UpdateGameOverSequence": {
   "addr": 59523,
   "bank": 7,
   "instrs": 37,
@@ -4444,7 +4458,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_E916": {
+ "UpdateLowLifeAlarm": {
   "addr": 59670,
   "bank": 7,
   "instrs": 16,
@@ -4486,14 +4500,14 @@
   "ok": true,
   "reason": null
  },
- "SetFireModeLow": {
+ "SetPlayerPose": {
   "addr": 60074,
   "bank": 7,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "UpdateFireMode": {
+ "UpdatePlayerFacing": {
   "addr": 60086,
   "bank": 7,
   "instrs": 12,

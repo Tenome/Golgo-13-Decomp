@@ -10,7 +10,7 @@ Regs SetPpuMask(Regs r);       /* $C203  A -> PpuMaskShadow + $2001 */
 Regs DoOamDma(Regs r);         /* $C1E4 */
 void ApplyScroll(void);        /* $C196 */
 Regs BinToDecimal(Regs r);     /* $C1A9  16-bit Tmp03/$04 -> digits Tmp02 (hundreds), Tmp01, Tmp00 */
-Regs EnqueueByte(Regs r);      /* $C22C */
+Regs QueueSound(Regs r);      /* $C22C */
 void TickClock(void);          /* $C23C */
 Regs GetRandomByte(Regs r);    /* $C2A3 */
 Regs MmcWriteControl(Regs r);  /* $C554 */
@@ -29,8 +29,8 @@ Regs HideEnemySprites(Regs r); /* $DC77 */
 Regs CopyPlayerSprites(Regs r);/* $D3D3 */
 Regs InitHudSprites(Regs r);   /* $C983 */
 Regs DrawHudNumber(Regs r);    /* $C994 */
-Regs UpdateFireMode(Regs r);   /* $EAB6 */
-Regs SetFireModeLow(Regs r);   /* $EAAA */
+Regs UpdatePlayerFacing(Regs r);   /* $EAB6 */
+Regs SetPlayerPose(Regs r);   /* $EAAA */
 Regs AdjustAmmo(Regs r);       /* $EEB7 */
 Regs UseAmmo(Regs r);          /* $EACF */
 Regs ClearObjectStatusBits(Regs r); /* $FBE0 */

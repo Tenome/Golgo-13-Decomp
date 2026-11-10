@@ -17,7 +17,7 @@ Sub_B6_801F:
   lda z:ScrollX                ; $801F
   and #$0F                     ; $8021
   bne Loc_B6_8049              ; $8023
-  lda $023B                    ; $8025
+  lda PlayerSpriteX0           ; $8025
   cmp #$78                     ; $8028
   beq Loc_B6_8036              ; $802A
   lda z:GameState              ; $802C
@@ -499,7 +499,7 @@ Sub_B6_85FD:
   lda #$06                     ; $8632
   sta ($0A),y                  ; $8634
   lda #$16                     ; $8636
-  jsr EnqueueByte              ; $8638
+  jsr QueueSound               ; $8638
   rts                          ; $863B
 Sub_B6_863C:
   jsr GetRandomByte            ; $863C
@@ -507,7 +507,7 @@ Sub_B6_863C:
   clc                          ; $8641
   adc #$E8                     ; $8642
   clc                          ; $8644
-  adc $0238                    ; $8645
+  adc PlayerSpriteY0           ; $8645
   cmp #$18                     ; $8648
   bcs Loc_B6_8651              ; $864A
   lda #$18                     ; $864C
@@ -541,7 +541,7 @@ Sub_B6_865C:
   lda #$02                     ; $8682
   sta ($0A),y                  ; $8684
   lda #$33                     ; $8686
-  jsr EnqueueByte              ; $8688
+  jsr QueueSound               ; $8688
 Loc_B6_868B:
   rts                          ; $868B
 Sub_B6_868C:
@@ -553,7 +553,7 @@ Sub_B6_868C:
   sta ($0A),y                  ; $8697
   rts                          ; $8699
 Sub_B6_869A:
-  lda $0238                    ; $869A
+  lda PlayerSpriteY0           ; $869A
   cmp #$70                     ; $869D
   bcs Loc_B6_86A8              ; $869F
   lda #$10                     ; $86A1
@@ -609,7 +609,7 @@ Loc_B6_86CD:
   and #$7F                     ; $86F9
   sta (Tmp00),y                ; $86FB
   lda #$10                     ; $86FD
-  jsr EnqueueByte              ; $86FF
+  jsr QueueSound               ; $86FF
   rts                          ; $8702
 Sub_B6_8703:
   lda #$10                     ; $8703
@@ -641,7 +641,7 @@ Loc_B6_8719:
   rts                          ; $873D
 Sub_B6_873E:
   ldy #$0B                     ; $873E
-  lda $0238                    ; $8740
+  lda PlayerSpriteY0           ; $8740
   sta ($0A),y                  ; $8743
   rts                          ; $8745
 Sub_B6_8746:
@@ -715,7 +715,7 @@ Loc_B6_87A9:
   jsr Sub_B6_8803              ; $87C7
   jsr Sub_B6_8822              ; $87CA
   lda #$3D                     ; $87CD
-  jsr EnqueueByte              ; $87CF
+  jsr QueueSound               ; $87CF
   rts                          ; $87D2
 Sub_B6_87D3:
   ldy #$0B                     ; $87D3
@@ -841,7 +841,7 @@ Sub_B6_886B:
   lda #$08                     ; $88B1
   sta ($0A),y                  ; $88B3
   lda #$32                     ; $88B5
-  jsr EnqueueByte              ; $88B7
+  jsr QueueSound               ; $88B7
   rts                          ; $88BA
   .incbin "prg_bank_6.bin", $08BB, $54  ; $88BB
   jsr Sub_B6_89B2              ; $890F
@@ -1092,7 +1092,7 @@ Loc_B6_8AAC:
   and #$7F                     ; $8AB0
 Loc_B6_8AB2:
   sta (Tmp00),y                ; $8AB2
-  jsr Sub_C3FC                 ; $8AB4
+  jsr SelectSpriteTable        ; $8AB4
   ldy #$00                     ; $8AB7
   lda (Tmp02),y                ; $8AB9
   and #$1F                     ; $8ABB
@@ -1149,7 +1149,7 @@ Sub_B6_8B08:
   lda (Tmp00),y                ; $8B0A
   and #$80                     ; $8B0C
   bne Loc_B6_8B13              ; $8B0E
-  jsr Sub_C43D                 ; $8B10
+  jsr RemoveObject             ; $8B10
 Loc_B6_8B13:
   rts                          ; $8B13
 Data_B6_8B14:
@@ -1182,7 +1182,7 @@ Loc_B6_8BBA:
   bcc Loc_B6_8BDB              ; $8BC6
   cmp #$A8                     ; $8BC8
   bcs Loc_B6_8BD4              ; $8BCA
-  lda $0238                    ; $8BCC
+  lda PlayerSpriteY0           ; $8BCC
   sec                          ; $8BCF
   sbc z:$04                    ; $8BD0
   bcs Loc_B6_8BDB              ; $8BD2
@@ -1280,7 +1280,7 @@ Loc_B6_95FA:
   ldy #$02                     ; $9603
   lda (Tmp00),y                ; $9605
   sec                          ; $9607
-  sbc $023B                    ; $9608
+  sbc PlayerSpriteX0           ; $9608
   bcs Loc_B6_9612              ; $960B
   lda #$00                     ; $960D
   jmp Loc_B6_9614              ; $960F
@@ -1376,7 +1376,7 @@ Loc_B6_9699:
   lda #$01                     ; $96AE
   sta ($0A),y                  ; $96B0
   lda #$0F                     ; $96B2
-  jsr EnqueueByte              ; $96B4
+  jsr QueueSound               ; $96B4
   rts                          ; $96B7
   jsr Sub_B6_96D4              ; $96B8  [heuristic code]
   ldy #$08                     ; $96BB
@@ -1410,7 +1410,7 @@ Sub_B6_975A:
   cmp #$D0                     ; $9765
   bcs Loc_B6_9787              ; $9767
   sec                          ; $9769
-  sbc $023B                    ; $976A
+  sbc PlayerSpriteX0           ; $976A
   tax                          ; $976D
   lda z:Tmp00                  ; $976E
   and #$10                     ; $9770
@@ -1504,7 +1504,7 @@ Sub_B6_9A14:
   jsr Sub_B6_8A66              ; $9A1D
   cmp z:$04                    ; $9A20
   bcc Loc_B6_9A28              ; $9A22
-  jsr Sub_C43D                 ; $9A24
+  jsr RemoveObject             ; $9A24
   rts                          ; $9A27
 Loc_B6_9A28:
   jsr Sub_B6_89C0              ; $9A28

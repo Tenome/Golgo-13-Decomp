@@ -56,7 +56,7 @@ void Bank3Nmi(void) {  /* $8010 bank 3 */
  L8071: BUDGET(); push16(0x8073); ApplyScroll(); UNW(); ret_check(0x8073);         /* $8071 jsr */
  L8074: BUDGET(); LDA(rd(MmcPrgShadow));                                           /* $8074 lda */
         if (R.a == 0) goto L807B;                                        /* $8076 beq */
-        push16(0x807A); CallBank5_A000(); UNW(); ret_check(0x807A);      /* $8078 jsr */
+        push16(0x807A); RunSoundDriver(); UNW(); ret_check(0x807A);      /* $8078 jsr */
  L807B: BUDGET(); PLA();                                                           /* $807B pla */
         TAY();                                                           /* $807C tay */
         PLA();                                                           /* $807D pla */
@@ -1100,7 +1100,7 @@ void Loc_B3_8C7E(void) {  /* $8C7E bank 3 */
         if (R.a != 0) goto L8C92;                                        /* $8C8D bne */
         goto L8A3A;                                                      /* $8C8F jmp */
  L8C92: BUDGET(); LDA(0x08);                                                       /* $8C92 lda */
-        STA(0x30);                                                       /* $8C94 sta */
+        STA(PlayerActionState);                                          /* $8C94 sta */
  L8C96: BUDGET(); LDA(0x00);                                                       /* $8C96 lda */
         STA(0x041D);                                                     /* $8C98 sta */
         push16(0x8C9D); Sub_B3_8CA1(); UNW(); ret_check(0x8C9D);         /* $8C9B jsr */

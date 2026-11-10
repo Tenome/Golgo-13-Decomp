@@ -53,7 +53,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
         push16(0x806F); Sub_B2_89E2(); UNW(); ret_check(0x806F);         /* $806D jsr */
         push16(0x8072); Sub_B2_8609(); UNW(); ret_check(0x8072);         /* $8070 jsr */
         LDA(0x00);                                                       /* $8073 lda */
-        push16(0x8077); EnqueueByte(); UNW(); ret_check(0x8077);         /* $8075 jsr */
+        push16(0x8077); QueueSound(); UNW(); ret_check(0x8077);          /* $8075 jsr */
         INC_M(GameState);                                                /* $8078 inc */
         goto L815C;                                                      /* $807A jmp */
  L807D: BUDGET(); cmp8(R.a, 0x11);                                                 /* $807D cmp */
@@ -89,7 +89,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
         if (R.a != 0) goto L80E0;                                        /* $80D3 bne */
         LDA(0x00);                                                       /* $80D5 lda */
         STA(0x0496);                                                     /* $80D7 sta */
-        push16(0x80DC); EnqueueByte(); UNW(); ret_check(0x80DC);         /* $80DA jsr */
+        push16(0x80DC); QueueSound(); UNW(); ret_check(0x80DC);          /* $80DA jsr */
         INC_M(0x0495);                                                   /* $80DD inc */
  L80E0: BUDGET(); INC_M(0x0496);                                                   /* $80E0 inc */
         LDA(rd(0x0496));                                                 /* $80E3 lda */
@@ -105,8 +105,8 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
         if (R.a < 0x50) goto L811B;                                      /* $80F9 bcc */
         LDA(0x00);                                                       /* $80FB lda */
         STA(0x0495);                                                     /* $80FD sta */
-        push16(0x8102); EnqueueByte(); UNW(); ret_check(0x8102);         /* $8100 jsr */
-        push16(0x8105); CallBank5_A000(); UNW(); ret_check(0x8105);      /* $8103 jsr */
+        push16(0x8102); QueueSound(); UNW(); ret_check(0x8102);          /* $8100 jsr */
+        push16(0x8105); RunSoundDriver(); UNW(); ret_check(0x8105);      /* $8103 jsr */
         push16(0x8108); Sub_B2_818E(); UNW(); ret_check(0x8108);         /* $8106 jsr */
         goto L815F;                                                      /* $8109 jmp */
  L810C: BUDGET(); LDA(0x00);                                                       /* $810C lda */
@@ -143,7 +143,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
         LSR_A();                                                         /* $8155 lsr */
         STA(MMC1_CHR1);                                                  /* $8156 sta */
         push16(0x815B); TickClock(); UNW(); ret_check(0x815B);           /* $8159 jsr */
- L815C: BUDGET(); push16(0x815E); CallBank5_A000(); UNW(); ret_check(0x815E);      /* $815C jsr */
+ L815C: BUDGET(); push16(0x815E); RunSoundDriver(); UNW(); ret_check(0x815E);      /* $815C jsr */
  L815F: BUDGET(); LDA(rd(PpuCtrlShadow));                                          /* $815F lda */
         ORA(0x80);                                                       /* $8161 ora */
         push16(0x8165); SetPpuCtrl(); UNW(); ret_check(0x8165);          /* $8163 jsr */
@@ -154,7 +154,7 @@ void Sub_B2_8081(void) {  /* $8081 bank 2 */
   uint8_t sp0 = R.sp;
  L8081: BUDGET(); push16(0x8083); Sub_B2_837A(); UNW(); ret_check(0x8083);         /* $8081 jsr */
         goto L815C;                                                      /* $8084 jmp */
- L815C: BUDGET(); push16(0x815E); CallBank5_A000(); UNW(); ret_check(0x815E);      /* $815C jsr */
+ L815C: BUDGET(); push16(0x815E); RunSoundDriver(); UNW(); ret_check(0x815E);      /* $815C jsr */
         LDA(rd(PpuCtrlShadow));                                          /* $815F lda */
         ORA(0x80);                                                       /* $8161 ora */
         push16(0x8165); SetPpuCtrl(); UNW(); ret_check(0x8165);          /* $8163 jsr */
@@ -168,7 +168,7 @@ void Sub_B2_8167(void) {  /* $8167 bank 2 */
         sbc(0x50);                                                       /* $816A sbc */
         TAY();                                                           /* $816C tay */
         LDA(rd((uint16_t)(0x8174 + R.y)));                               /* $816D lda */
-        push16(0x8172); EnqueueByte(); UNW(); ret_check(0x8172);         /* $8170 jsr */
+        push16(0x8172); QueueSound(); UNW(); ret_check(0x8172);          /* $8170 jsr */
         RTS_RET(sp0);                                                    /* $8173 rts */
 }
 
@@ -216,7 +216,7 @@ void Sub_B2_8211(void) {  /* $8211 bank 2 */
         LDA(0xF8);                                                       /* $8222 lda */
         STA(ScrollX);                                                    /* $8224 sta */
         LDX(0x00);                                                       /* $8226 ldx */
-        STX(0x15);                                                       /* $8228 stx */
+        STX(ScrollColumnPending);                                        /* $8228 stx */
         STX(0x0101);                                                     /* $822A stx */
         push16(0x822F); Sub_B2_827E(); UNW(); ret_check(0x822F);         /* $822D jsr */
         LDA(0x01);                                                       /* $8230 lda */
@@ -465,9 +465,9 @@ void Sub_B2_8488(void) {  /* $8488 bank 2 */
         ORA(rd(0x04AA));                                                 /* $852A ora */
         STA(0x04AA);                                                     /* $852D sta */
         LDA(0x00);                                                       /* $8530 lda */
-        push16(0x8534); EnqueueByte(); UNW(); ret_check(0x8534);         /* $8532 jsr */
+        push16(0x8534); QueueSound(); UNW(); ret_check(0x8534);          /* $8532 jsr */
         LDA(0x1D);                                                       /* $8535 lda */
-        push16(0x8539); EnqueueByte(); UNW(); ret_check(0x8539);         /* $8537 jsr */
+        push16(0x8539); QueueSound(); UNW(); ret_check(0x8539);          /* $8537 jsr */
  L853A: BUDGET(); LDA(rd(FrameCounter));                                           /* $853A lda */
         AND(0x03);                                                       /* $853C and */
         if (R.a != 0) goto L8570;                                        /* $853E bne */
@@ -689,13 +689,13 @@ void Sub_B2_8882(void) {  /* $8882 bank 2 */
         LDA(rd(0x04A9));                                                 /* $888C lda */
         if (R.a != 0) goto L88A9;                                        /* $888F bne */
         LDA(0x42);                                                       /* $8891 lda */
-        push16(0x8895); EnqueueByte(); UNW(); ret_check(0x8895);         /* $8893 jsr */
+        push16(0x8895); QueueSound(); UNW(); ret_check(0x8895);          /* $8893 jsr */
         INC_M(0x04A9);                                                   /* $8896 inc */
         goto L88A9;                                                      /* $8899 jmp */
  L889C: BUDGET(); LDA(rd(0x04A9));                                                 /* $889C lda */
         if (R.a == 0) goto L88A9;                                        /* $889F beq */
         LDA(0x44);                                                       /* $88A1 lda */
-        push16(0x88A5); EnqueueByte(); UNW(); ret_check(0x88A5);         /* $88A3 jsr */
+        push16(0x88A5); QueueSound(); UNW(); ret_check(0x88A5);          /* $88A3 jsr */
         DEC_M(0x04A9);                                                   /* $88A6 dec */
  L88A9: BUDGET(); RTS_RET(sp0);                                                    /* $88A9 rts */
 }
@@ -735,7 +735,7 @@ void Sub_B2_88AA(void) {  /* $88AA bank 2 */
         cmp8(R.a, 0x50);                                                 /* $88F1 cmp */
         if (R.a != 0x50) goto L88FD;                                     /* $88F3 bne */
         LDA(0x00);                                                       /* $88F5 lda */
-        push16(0x88F9); EnqueueByte(); UNW(); ret_check(0x88F9);         /* $88F7 jsr */
+        push16(0x88F9); QueueSound(); UNW(); ret_check(0x88F9);          /* $88F7 jsr */
         goto L8901;                                                      /* $88FA jmp */
  L88FD: BUDGET(); cmp8(R.a, 0x78);                                                 /* $88FD cmp */
         if (R.a >= 0x78) goto L8911;                                     /* $88FF bcs */

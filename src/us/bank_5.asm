@@ -54,7 +54,7 @@ Loc_B5_813B:
   jsr Sub_B5_90B3              ; $8141
   jsr Sub_B5_90A0              ; $8144
   lda #$00                     ; $8147
-  jsr EnqueueByte              ; $8149
+  jsr QueueSound               ; $8149
 Sub_B5_814C:
   lda z:PpuMaskShadow          ; $814C
   and #$E7                     ; $814E
@@ -83,7 +83,7 @@ Sub_B5_8176:
   bne Loc_B5_8189              ; $8179
   inc SceneState               ; $817B
   lda #$0E                     ; $817E
-  jsr EnqueueByte              ; $8180
+  jsr QueueSound               ; $8180
 Sub_B5_8183:
   lda z:PpuMaskShadow          ; $8183
   ora #$18                     ; $8185
@@ -153,7 +153,7 @@ Sub_B5_81F6:
   beq Loc_B5_8205              ; $81FB
   inc SceneState               ; $81FD
   lda #$29                     ; $8200
-  jsr EnqueueByte              ; $8202
+  jsr QueueSound               ; $8202
 Loc_B5_8205:
   jsr Sub_B5_8E22              ; $8205
   jmp Loc_B5_8F5D              ; $8208
@@ -193,7 +193,7 @@ Loc_B5_8241:
   sta $0529                    ; $8248
   lda #$01                     ; $824B
   sta $052A                    ; $824D
-  jmp EnqueueByte              ; $8250
+  jmp QueueSound               ; $8250
 Sub_B5_8253:
   dec SceneTimer               ; $8253
   bne Loc_B5_825B              ; $8256
@@ -381,7 +381,7 @@ Sub_B5_83B3:
   jsr Sub_B5_90C8              ; $83B6
   lda $052A                    ; $83B9
   bne Loc_B5_83C1              ; $83BC
-  jmp EnqueueByte              ; $83BE
+  jmp QueueSound               ; $83BE
 Loc_B5_83C1:
   rts                          ; $83C1
 Sub_B5_83C2:
@@ -448,7 +448,7 @@ Sub_B5_843C:
   lda #$3C                     ; $8447
   sta SceneTimer               ; $8449
   lda #$00                     ; $844C
-  jmp EnqueueByte              ; $844E
+  jmp QueueSound               ; $844E
 Loc_B5_8451:
   jsr Sub_B5_8462              ; $8451
   jmp Loc_B5_8467              ; $8454
@@ -502,7 +502,7 @@ Sub_B5_84A5:
   inc SceneState               ; $84A5
   jsr Sub_B5_8183              ; $84A8
   lda #$15                     ; $84AB
-  jmp EnqueueByte              ; $84AD
+  jmp QueueSound               ; $84AD
 Sub_B5_84B0:
   jsr Sub_B5_9974              ; $84B0
   jsr Sub_B5_9438              ; $84B3
@@ -522,7 +522,7 @@ Sub_B5_84CA:
   beq Loc_B5_84D9              ; $84CF
   inc SceneState               ; $84D1
   lda #$0F                     ; $84D4
-  jmp EnqueueByte              ; $84D6
+  jmp QueueSound               ; $84D6
 Loc_B5_84D9:
   rts                          ; $84D9
 Sub_B5_84DA:
@@ -534,7 +534,7 @@ Sub_B5_84DA:
   sta SceneTimer               ; $84E7
   jsr Sub_B5_895B              ; $84EA
   lda #$00                     ; $84ED
-  jmp EnqueueByte              ; $84EF
+  jmp QueueSound               ; $84EF
 Loc_B5_84F2:
   rts                          ; $84F2
 Sub_B5_84F3:
@@ -570,7 +570,7 @@ Loc_B5_8526:
   lda #$04                     ; $852B
   sta $0529                    ; $852D
   lda #$1E                     ; $8530
-  jmp EnqueueByte              ; $8532
+  jmp QueueSound               ; $8532
 Sub_B5_8535:
   lda JoyNew1                  ; $8535
   and #$02                     ; $8538
@@ -580,7 +580,7 @@ Sub_B5_8535:
   ldx #$00                     ; $8541
   jsr Sub_B5_9895              ; $8543
   lda #$1D                     ; $8546
-  jmp EnqueueByte              ; $8548
+  jmp QueueSound               ; $8548
 Loc_B5_854B:
   lda $0528                    ; $854B
   ora $0529                    ; $854E
@@ -593,7 +593,7 @@ Sub_B5_8554:
   beq Loc_B5_854B              ; $855C
   inc SceneState               ; $855E
   lda #$0F                     ; $8561
-  jmp EnqueueByte              ; $8563
+  jmp QueueSound               ; $8563
 Sub_B5_8566:
   jsr Sub_B5_9848              ; $8566
   lda $052E                    ; $8569
@@ -642,7 +642,7 @@ Sub_B5_85C2:
   bne Loc_B5_85CF              ; $85C5
   inc SceneState               ; $85C7
   lda #$15                     ; $85CA
-  jmp EnqueueByte              ; $85CC
+  jmp QueueSound               ; $85CC
 Loc_B5_85CF:
   rts                          ; $85CF
 Sub_B5_85D0:
@@ -1142,7 +1142,7 @@ Loc_B5_8B1C:
   rts                          ; $8B23
 Data_B5_8B24:
   ora (FrameInSecond,x)        ; $8B24  [heuristic code]
-  and ($31,x)                  ; $8B26
+  and (PlayerActionTimer,x)    ; $8B26
   .incbin "prg_bank_5.bin", $0B28, $1  ; $8B28
 Sub_B5_8B29:
   jsr Bank5NextAnimFrame       ; $8B29
@@ -1334,7 +1334,7 @@ Sub_B5_8CC4:
   lda $052E                    ; $8CC9
   bne Loc_B5_8CD3              ; $8CCC
   lda #$11                     ; $8CCE
-  jsr EnqueueByte              ; $8CD0
+  jsr QueueSound               ; $8CD0
 Loc_B5_8CD3:
   lda $052E                    ; $8CD3
   cmp #$0F                     ; $8CD6
@@ -1401,7 +1401,7 @@ Sub_B5_8E22:
   lda #$F0                     ; $8E22
   ldx #$13                     ; $8E24
 Loc_B5_8E26:
-  sta $0238,x                  ; $8E26
+  sta PlayerSpriteY0,x         ; $8E26
   dex                          ; $8E29
   bpl Loc_B5_8E26              ; $8E2A
   ldx #$3C                     ; $8E2C
@@ -1596,7 +1596,7 @@ Loc_B5_9031:
   dex                          ; $9037
   bpl Loc_B5_9031              ; $9038
   lda #$15                     ; $903A
-  jmp EnqueueByte              ; $903C
+  jmp QueueSound               ; $903C
 Loc_B5_903F:
   jsr Sub_B5_814C              ; $903F
   lda #$1F                     ; $9042
@@ -1642,7 +1642,7 @@ Loc_B5_9092:
   pha                          ; $9094
   lda #$05                     ; $9095
   sta z:MmcPrgShadow           ; $9097
-  jsr CallBank5_A000           ; $9099
+  jsr RunSoundDriver           ; $9099
   pla                          ; $909C
   sta z:MmcPrgShadow           ; $909D
   rts                          ; $909F
@@ -2030,7 +2030,7 @@ Loc_B5_97B2:
   sta $0510                    ; $97CC
   jsr Sub_B5_9681              ; $97CF
   lda #$00                     ; $97D2
-  jmp EnqueueByte              ; $97D4
+  jmp QueueSound               ; $97D4
 Data_B5_97D7:
   .incbin "prg_bank_5.bin", $17D7, $8  ; $97D7
 Data_B5_97DF:
@@ -2300,7 +2300,7 @@ Loc_B5_9D4A:
   sta SceneTimer               ; $9D6F
   jsr Sub_B5_90B9              ; $9D72
   lda #$0A                     ; $9D75
-  jmp EnqueueByte              ; $9D77
+  jmp QueueSound               ; $9D77
 Data_B5_9D7A:
   .incbin "prg_bank_5.bin", $1D7A, $E  ; $9D7A
 Loc_B5_9D88:
@@ -2347,20 +2347,20 @@ Loc_B5_9DBB:
   sta $0529                    ; $9DF1
   jsr Sub_B5_90B9              ; $9DF4
   lda #$0B                     ; $9DF7
-  jsr EnqueueByte              ; $9DF9
+  jsr QueueSound               ; $9DF9
   lda #$29                     ; $9DFC
-  jmp EnqueueByte              ; $9DFE
+  jmp QueueSound               ; $9DFE
 Data_B5_9E01:
   .incbin "prg_bank_5.bin", $1E01, $1FF  ; $9E01
-Sub_B5_A000:
-  lda ByteQueue                ; $A000
+SoundDriver:
+  lda SoundQueue               ; $A000
   beq Loc_B5_A013              ; $A003
   lda #$00                     ; $A005
   sta z:Tmp00                  ; $A007
 Loc_B5_A009:
   jsr Sub_B5_A044              ; $A009
   inc z:Tmp00                  ; $A00C
-  dec ByteQueue                ; $A00E
+  dec SoundQueue               ; $A00E
   bne Loc_B5_A009              ; $A011
 Loc_B5_A013:
   lda #$00                     ; $A013
@@ -2371,17 +2371,17 @@ Loc_B5_A019:
   asl a                        ; $A01B
   tax                          ; $A01C
   lda Data_B5_A444,x           ; $A01D
-  sta z:ScriptPtrLo            ; $A020
+  sta z:SndPtrLo               ; $A020
   lda Data_B5_A445,x           ; $A022
-  sta z:ScriptPtrHi            ; $A025
+  sta z:SndPtrHi               ; $A025
   ldy #$00                     ; $A027
-  lda (ScriptPtrLo),y          ; $A029
+  lda (SndPtrLo),y             ; $A029
   lsr a                        ; $A02B
   bcc Loc_B5_A031              ; $A02C
   jsr Sub_B5_A0C9              ; $A02E
 Loc_B5_A031:
   ldy #$00                     ; $A031
-  lda (ScriptPtrLo),y          ; $A033
+  lda (SndPtrLo),y             ; $A033
   lsr a                        ; $A035
   ror z:$F5                    ; $A036
   inc z:$F4                    ; $A038
@@ -2400,12 +2400,12 @@ Loc_B5_A04D:
   asl a                        ; $A04E
   tay                          ; $A04F
   lda Data_B5_A444,y           ; $A050
-  sta z:ScriptPtrLo            ; $A053
+  sta z:SndPtrLo               ; $A053
   lda Data_B5_A445,y           ; $A055
-  sta z:ScriptPtrHi            ; $A058
+  sta z:SndPtrHi               ; $A058
   ldy #$00                     ; $A05A
   tya                          ; $A05C
-  sta (ScriptPtrLo),y          ; $A05D
+  sta (SndPtrLo),y             ; $A05D
   inx                          ; $A05F
   cpx #$08                     ; $A060
   bne Loc_B5_A04D              ; $A062
@@ -2430,24 +2430,24 @@ Loc_B5_A07C:
   asl a                        ; $A084
   tax                          ; $A085
   lda Data_B5_A444,x           ; $A086
-  sta z:ScriptPtrLo            ; $A089
+  sta z:SndPtrLo               ; $A089
   lda Data_B5_A445,x           ; $A08B
-  sta z:ScriptPtrHi            ; $A08E
+  sta z:SndPtrHi               ; $A08E
   ldy #$17                     ; $A090
   lda #$00                     ; $A092
 Loc_B5_A094:
-  sta (ScriptPtrLo),y          ; $A094
+  sta (SndPtrLo),y             ; $A094
   dey                          ; $A096
   bpl Loc_B5_A094              ; $A097
   lda #$01                     ; $A099
   iny                          ; $A09B
-  sta (ScriptPtrLo),y          ; $A09C
+  sta (SndPtrLo),y             ; $A09C
   lda Data_B5_A454,x           ; $A09E
   ldy #$0B                     ; $A0A1
-  sta (ScriptPtrLo),y          ; $A0A3
+  sta (SndPtrLo),y             ; $A0A3
   iny                          ; $A0A5
   lda Data_B5_A455,x           ; $A0A6
-  sta (ScriptPtrLo),y          ; $A0A9
+  sta (SndPtrLo),y             ; $A0A9
   inc z:Tmp01                  ; $A0AB
   ldy z:Tmp01                  ; $A0AD
   lda ($F2),y                  ; $A0AF
@@ -2456,13 +2456,13 @@ Loc_B5_A094:
   lda ($F2),y                  ; $A0B3
   sty z:Tmp01                  ; $A0B5
   ldy #$04                     ; $A0B7
-  sta (ScriptPtrLo),y          ; $A0B9
+  sta (SndPtrLo),y             ; $A0B9
   pla                          ; $A0BB
   dey                          ; $A0BC
-  sta (ScriptPtrLo),y          ; $A0BD
+  sta (SndPtrLo),y             ; $A0BD
   ldy #$01                     ; $A0BF
   tya                          ; $A0C1
-  sta (ScriptPtrLo),y          ; $A0C2
+  sta (SndPtrLo),y             ; $A0C2
   inc z:Tmp01                  ; $A0C4
   bne Loc_B5_A07C              ; $A0C6
 Loc_B5_A0C8:
@@ -2475,29 +2475,29 @@ Sub_B5_A0C9:
   sta $06CF                    ; $A0CF
   jsr Sub_B5_A357              ; $A0D2
   ldy #$01                     ; $A0D5
-  lda (ScriptPtrLo),y          ; $A0D7
+  lda (SndPtrLo),y             ; $A0D7
   sec                          ; $A0D9
   sbc #$01                     ; $A0DA
   beq Loc_B5_A0E1              ; $A0DC
-  sta (ScriptPtrLo),y          ; $A0DE
+  sta (SndPtrLo),y             ; $A0DE
   rts                          ; $A0E0
 Loc_B5_A0E1:
   iny                          ; $A0E1
-  lda (ScriptPtrLo),y          ; $A0E2
+  lda (SndPtrLo),y             ; $A0E2
   dey                          ; $A0E4
-  sta (ScriptPtrLo),y          ; $A0E5
+  sta (SndPtrLo),y             ; $A0E5
   ldy #$07                     ; $A0E7
   lda #$00                     ; $A0E9
-  sta (ScriptPtrLo),y          ; $A0EB
+  sta (SndPtrLo),y             ; $A0EB
   jsr Sub_B5_A363              ; $A0ED
   ldy #$10                     ; $A0F0
   lda #$08                     ; $A0F2
-  sta (ScriptPtrLo),y          ; $A0F4
+  sta (SndPtrLo),y             ; $A0F4
   ldy #$03                     ; $A0F6
-  lda (ScriptPtrLo),y          ; $A0F8
+  lda (SndPtrLo),y             ; $A0F8
   sta z:Tmp02                  ; $A0FA
   iny                          ; $A0FC
-  lda (ScriptPtrLo),y          ; $A0FD
+  lda (SndPtrLo),y             ; $A0FD
   sta z:Tmp03                  ; $A0FF
   ldy #$00                     ; $A101
   sty z:Tmp01                  ; $A103
@@ -2511,14 +2511,14 @@ Loc_B5_A105:
 Loc_B5_A113:
   tax                          ; $A113
   ldy #$14                     ; $A114
-  lda (ScriptPtrLo),y          ; $A116
+  lda (SndPtrLo),y             ; $A116
   beq Loc_B5_A140              ; $A118
   sta z:$F6                    ; $A11A
   iny                          ; $A11C
   clc                          ; $A11D
-  lda (ScriptPtrLo),y          ; $A11E
+  lda (SndPtrLo),y             ; $A11E
   adc #$01                     ; $A120
-  sta (ScriptPtrLo),y          ; $A122
+  sta (SndPtrLo),y             ; $A122
   sta z:$F7                    ; $A124
   txa                          ; $A126
 Loc_B5_A127:
@@ -2561,22 +2561,22 @@ Loc_B5_A157:
 Loc_B5_A15E:
   ldy #$11                     ; $A15E
   lda z:$04                    ; $A160
-  sta (ScriptPtrLo),y          ; $A162
+  sta (SndPtrLo),y             ; $A162
   iny                          ; $A164
   lda z:$05                    ; $A165
   ora #$08                     ; $A167
-  sta (ScriptPtrLo),y          ; $A169
+  sta (SndPtrLo),y             ; $A169
   jsr Sub_B5_A17F              ; $A16B
 Loc_B5_A16E:
   ldy #$03                     ; $A16E
   lda z:Tmp01                  ; $A170
   clc                          ; $A172
   adc z:Tmp02                  ; $A173
-  sta (ScriptPtrLo),y          ; $A175
+  sta (SndPtrLo),y             ; $A175
   iny                          ; $A177
   lda z:Tmp03                  ; $A178
   adc #$00                     ; $A17A
-  sta (ScriptPtrLo),y          ; $A17C
+  sta (SndPtrLo),y             ; $A17C
   rts                          ; $A17E
 Sub_B5_A17F:
   jsr Sub_B5_A402              ; $A17F
@@ -2587,13 +2587,13 @@ Sub_B5_A184:
   ora #$20                     ; $A18A
   sta $06D0,x                  ; $A18C
   ldy #$10                     ; $A18F
-  lda (ScriptPtrLo),y          ; $A191
+  lda (SndPtrLo),y             ; $A191
   sta $06D1,x                  ; $A193
   iny                          ; $A196
-  lda (ScriptPtrLo),y          ; $A197
+  lda (SndPtrLo),y             ; $A197
   sta $06D2,x                  ; $A199
   iny                          ; $A19C
-  lda (ScriptPtrLo),y          ; $A19D
+  lda (SndPtrLo),y             ; $A19D
   sta $06D3,x                  ; $A19F
 Loc_B5_A1A2:
   rts                          ; $A1A2
@@ -2612,9 +2612,9 @@ Sub_B5_A1BE:
   tax                          ; $A1C2
   lda Data_B5_A496,x           ; $A1C3
   ldy #$01                     ; $A1C6
-  sta (ScriptPtrLo),y          ; $A1C8
+  sta (SndPtrLo),y             ; $A1C8
   iny                          ; $A1CA
-  sta (ScriptPtrLo),y          ; $A1CB
+  sta (SndPtrLo),y             ; $A1CB
   rts                          ; $A1CD
 Sub_B5_A1CE:
   lda z:$06                    ; $A1CE
@@ -2623,23 +2623,23 @@ Sub_B5_A1CE:
   tax                          ; $A1D3
   ldy #$05                     ; $A1D4
   lda Data_B5_A4B6,x           ; $A1D6
-  sta (ScriptPtrLo),y          ; $A1D9
+  sta (SndPtrLo),y             ; $A1D9
   iny                          ; $A1DB
   lda Data_B5_A4B7,x           ; $A1DC
-  sta (ScriptPtrLo),y          ; $A1DF
+  sta (SndPtrLo),y             ; $A1DF
   iny                          ; $A1E1
   lda #$00                     ; $A1E2
-  sta (ScriptPtrLo),y          ; $A1E4
+  sta (SndPtrLo),y             ; $A1E4
   jsr Sub_B5_A363              ; $A1E6
   rts                          ; $A1E9
 Sub_B5_A1EA:
   lda z:$06                    ; $A1EA
   and #$0F                     ; $A1EC
   ldy #$11                     ; $A1EE
-  sta (ScriptPtrLo),y          ; $A1F0
+  sta (SndPtrLo),y             ; $A1F0
   lda #$08                     ; $A1F2
   iny                          ; $A1F4
-  sta (ScriptPtrLo),y          ; $A1F5
+  sta (SndPtrLo),y             ; $A1F5
   jsr Sub_B5_A17F              ; $A1F7
   pla                          ; $A1FA
   pla                          ; $A1FB
@@ -2655,31 +2655,31 @@ Sub_B5_A1FF:
   ror a                        ; $A20A
   pha                          ; $A20B
   ldy #$0F                     ; $A20C
-  lda (ScriptPtrLo),y          ; $A20E
+  lda (SndPtrLo),y             ; $A20E
   and #$3F                     ; $A210
-  sta (ScriptPtrLo),y          ; $A212
+  sta (SndPtrLo),y             ; $A212
   pla                          ; $A214
-  ora (ScriptPtrLo),y          ; $A215
-  sta (ScriptPtrLo),y          ; $A217
+  ora (SndPtrLo),y             ; $A215
+  sta (SndPtrLo),y             ; $A217
   rts                          ; $A219
 Loc_B5_A21A:
   and #$03                     ; $A21A
   tax                          ; $A21C
   lda Data_B5_A420,x           ; $A21D
   ldy #$14                     ; $A220
-  cmp (ScriptPtrLo),y          ; $A222
-  sta (ScriptPtrLo),y          ; $A224
+  cmp (SndPtrLo),y             ; $A222
+  sta (SndPtrLo),y             ; $A224
   beq Loc_B5_A22D              ; $A226
   lda #$00                     ; $A228
   iny                          ; $A22A
-  sta (ScriptPtrLo),y          ; $A22B
+  sta (SndPtrLo),y             ; $A22B
 Loc_B5_A22D:
   rts                          ; $A22D
 Sub_B5_A22E:
   lda z:$06                    ; $A22E
   and #$0F                     ; $A230
   ldy #$0D                     ; $A232
-  sta (ScriptPtrLo),y          ; $A234
+  sta (SndPtrLo),y             ; $A234
   rts                          ; $A236
 Sub_B5_A237:
   lda z:$06                    ; $A237
@@ -2697,47 +2697,47 @@ Sub_B5_A24E:
   sty z:Tmp01                  ; $A259
   ldy #$04                     ; $A25B
   pla                          ; $A25D
-  sta (ScriptPtrLo),y          ; $A25E
+  sta (SndPtrLo),y             ; $A25E
   sta z:Tmp03                  ; $A260
   dey                          ; $A262
   pla                          ; $A263
-  sta (ScriptPtrLo),y          ; $A264
+  sta (SndPtrLo),y             ; $A264
   sta z:Tmp02                  ; $A266
   rts                          ; $A268
 Sub_B5_A269:
   ldy z:Tmp01                  ; $A269
   lda (Tmp02),y                ; $A26B
   ldy #$13                     ; $A26D
-  sta (ScriptPtrLo),y          ; $A26F
+  sta (SndPtrLo),y             ; $A26F
   inc z:Tmp01                  ; $A271
   lda z:Tmp01                  ; $A273
   clc                          ; $A275
   adc z:Tmp02                  ; $A276
   ldy #$09                     ; $A278
-  sta (ScriptPtrLo),y          ; $A27A
+  sta (SndPtrLo),y             ; $A27A
   iny                          ; $A27C
   lda z:Tmp03                  ; $A27D
   adc #$00                     ; $A27F
-  sta (ScriptPtrLo),y          ; $A281
+  sta (SndPtrLo),y             ; $A281
   rts                          ; $A283
 Sub_B5_A284:
   ldy #$13                     ; $A284
-  lda (ScriptPtrLo),y          ; $A286
+  lda (SndPtrLo),y             ; $A286
   sec                          ; $A288
   sbc #$01                     ; $A289
   beq Loc_B5_A2A7              ; $A28B
-  sta (ScriptPtrLo),y          ; $A28D
+  sta (SndPtrLo),y             ; $A28D
   ldy #$09                     ; $A28F
-  lda (ScriptPtrLo),y          ; $A291
+  lda (SndPtrLo),y             ; $A291
   pha                          ; $A293
   iny                          ; $A294
-  lda (ScriptPtrLo),y          ; $A295
+  lda (SndPtrLo),y             ; $A295
   ldy #$04                     ; $A297
-  sta (ScriptPtrLo),y          ; $A299
+  sta (SndPtrLo),y             ; $A299
   sta z:Tmp03                  ; $A29B
   dey                          ; $A29D
   pla                          ; $A29E
-  sta (ScriptPtrLo),y          ; $A29F
+  sta (SndPtrLo),y             ; $A29F
   sta z:Tmp02                  ; $A2A1
   lda #$00                     ; $A2A3
   sta z:Tmp01                  ; $A2A5
@@ -2747,12 +2747,12 @@ Sub_B5_A2A8:
   ldy z:Tmp01                  ; $A2A8
   lda (Tmp02),y                ; $A2AA
   ldy #$03                     ; $A2AC
-  sta (ScriptPtrLo),y          ; $A2AE
+  sta (SndPtrLo),y             ; $A2AE
   inc z:Tmp01                  ; $A2B0
   ldy z:Tmp01                  ; $A2B2
   lda (Tmp02),y                ; $A2B4
   ldy #$04                     ; $A2B6
-  sta (ScriptPtrLo),y          ; $A2B8
+  sta (SndPtrLo),y             ; $A2B8
   inc z:Tmp01                  ; $A2BA
   lda z:Tmp01                  ; $A2BC
   clc                          ; $A2BE
@@ -2762,16 +2762,16 @@ Sub_B5_A2A8:
   adc #$00                     ; $A2C4
   pha                          ; $A2C6
   ldy #$0B                     ; $A2C7
-  lda (ScriptPtrLo),y          ; $A2C9
+  lda (SndPtrLo),y             ; $A2C9
   sta z:$08                    ; $A2CB
   clc                          ; $A2CD
   adc #$02                     ; $A2CE
-  sta (ScriptPtrLo),y          ; $A2D0
+  sta (SndPtrLo),y             ; $A2D0
   iny                          ; $A2D2
-  lda (ScriptPtrLo),y          ; $A2D3
+  lda (SndPtrLo),y             ; $A2D3
   sta z:$09                    ; $A2D5
   adc #$00                     ; $A2D7
-  sta (ScriptPtrLo),y          ; $A2D9
+  sta (SndPtrLo),y             ; $A2D9
   ldy #$01                     ; $A2DB
   pla                          ; $A2DD
   sta ($08),y                  ; $A2DE
@@ -2781,23 +2781,23 @@ Sub_B5_A2A8:
   lda #$00                     ; $A2E4
   sta z:Tmp01                  ; $A2E6
   ldy #$03                     ; $A2E8
-  lda (ScriptPtrLo),y          ; $A2EA
+  lda (SndPtrLo),y             ; $A2EA
   sta z:Tmp02                  ; $A2EC
   iny                          ; $A2EE
-  lda (ScriptPtrLo),y          ; $A2EF
+  lda (SndPtrLo),y             ; $A2EF
   sta z:Tmp03                  ; $A2F1
   rts                          ; $A2F3
 Sub_B5_A2F4:
   ldy #$0B                     ; $A2F4
   sec                          ; $A2F6
-  lda (ScriptPtrLo),y          ; $A2F7
+  lda (SndPtrLo),y             ; $A2F7
   sbc #$02                     ; $A2F9
-  sta (ScriptPtrLo),y          ; $A2FB
+  sta (SndPtrLo),y             ; $A2FB
   sta z:$08                    ; $A2FD
   iny                          ; $A2FF
-  lda (ScriptPtrLo),y          ; $A300
+  lda (SndPtrLo),y             ; $A300
   sbc #$00                     ; $A302
-  sta (ScriptPtrLo),y          ; $A304
+  sta (SndPtrLo),y             ; $A304
   sta z:$09                    ; $A306
   ldy #$00                     ; $A308
   lda ($08),y                  ; $A30A
@@ -2805,11 +2805,11 @@ Sub_B5_A2F4:
   iny                          ; $A30D
   lda ($08),y                  ; $A30E
   ldy #$04                     ; $A310
-  sta (ScriptPtrLo),y          ; $A312
+  sta (SndPtrLo),y             ; $A312
   sta z:Tmp03                  ; $A314
   dey                          ; $A316
   pla                          ; $A317
-  sta (ScriptPtrLo),y          ; $A318
+  sta (SndPtrLo),y             ; $A318
   sta z:Tmp02                  ; $A31A
   lda #$00                     ; $A31C
   sta z:Tmp01                  ; $A31E
@@ -2819,12 +2819,12 @@ Sub_B5_A321:
   lda (Tmp02),y                ; $A323
   inc z:Tmp01                  ; $A325
   ldy #$10                     ; $A327
-  sta (ScriptPtrLo),y          ; $A329
+  sta (SndPtrLo),y             ; $A329
   rts                          ; $A32B
 Sub_B5_A32C:
   lda #$00                     ; $A32C
   ldy #$00                     ; $A32E
-  sta (ScriptPtrLo),y          ; $A330
+  sta (SndPtrLo),y             ; $A330
   lda #$04                     ; $A332
   bit z:$F4                    ; $A334
   beq Loc_B5_A354              ; $A336
@@ -2833,12 +2833,12 @@ Sub_B5_A32C:
   asl a                        ; $A33C
   tax                          ; $A33D
   lda Data_B5_A444,x           ; $A33E
-  sta z:ScriptPtrLo            ; $A341
+  sta z:SndPtrLo               ; $A341
   lda Data_B5_A445,x           ; $A343
-  sta z:ScriptPtrHi            ; $A346
+  sta z:SndPtrHi               ; $A346
   jsr Sub_B5_A184              ; $A348
   ldy #$0F                     ; $A34B
-  lda (ScriptPtrLo),y          ; $A34D
+  lda (SndPtrLo),y             ; $A34D
   ora #$20                     ; $A34F
   sta $06D0,x                  ; $A351
 Loc_B5_A354:
@@ -2847,21 +2847,21 @@ Loc_B5_A354:
   rts                          ; $A356
 Sub_B5_A357:
   ldy #$0E                     ; $A357
-  lda (ScriptPtrLo),y          ; $A359
+  lda (SndPtrLo),y             ; $A359
   beq Sub_B5_A363              ; $A35B
   sec                          ; $A35D
   sbc #$01                     ; $A35E
-  sta (ScriptPtrLo),y          ; $A360
+  sta (SndPtrLo),y             ; $A360
   rts                          ; $A362
 Sub_B5_A363:
   ldy #$05                     ; $A363
-  lda (ScriptPtrLo),y          ; $A365
+  lda (SndPtrLo),y             ; $A365
   sta z:$04                    ; $A367
   iny                          ; $A369
-  lda (ScriptPtrLo),y          ; $A36A
+  lda (SndPtrLo),y             ; $A36A
   sta z:$05                    ; $A36C
   iny                          ; $A36E
-  lda (ScriptPtrLo),y          ; $A36F
+  lda (SndPtrLo),y             ; $A36F
   tay                          ; $A371
   lda ($04),y                  ; $A372
   pha                          ; $A374
@@ -2869,15 +2869,15 @@ Sub_B5_A363:
   lda ($04),y                  ; $A376
   pha                          ; $A378
   ldy #$07                     ; $A379
-  lda (ScriptPtrLo),y          ; $A37B
+  lda (SndPtrLo),y             ; $A37B
   clc                          ; $A37D
   adc #$02                     ; $A37E
-  sta (ScriptPtrLo),y          ; $A380
+  sta (SndPtrLo),y             ; $A380
   ldy #$0E                     ; $A382
   pla                          ; $A384
-  sta (ScriptPtrLo),y          ; $A385
+  sta (SndPtrLo),y             ; $A385
   iny                          ; $A387
-  lda (ScriptPtrLo),y          ; $A388
+  lda (SndPtrLo),y             ; $A388
   and #$C0                     ; $A38A
   sta z:$04                    ; $A38C
   pla                          ; $A38E
@@ -2889,7 +2889,7 @@ Sub_B5_A363:
   and #$0F                     ; $A399
   ldy #$0D                     ; $A39B
   sec                          ; $A39D
-  sbc (ScriptPtrLo),y          ; $A39E
+  sbc (SndPtrLo),y             ; $A39E
   bcs Loc_B5_A3A4              ; $A3A0
   lda #$00                     ; $A3A2
 Loc_B5_A3A4:
@@ -2902,11 +2902,11 @@ Loc_B5_A3A4:
   ora z:$04                    ; $A3AE
   bit $04A5                    ; $A3B0
   ldy #$0F                     ; $A3B3
-  sta (ScriptPtrLo),y          ; $A3B5
+  sta (SndPtrLo),y             ; $A3B5
   jsr Sub_B5_A402              ; $A3B7
   bne Loc_B5_A3C6              ; $A3BA
   ldy #$0F                     ; $A3BC
-  lda (ScriptPtrLo),y          ; $A3BE
+  lda (SndPtrLo),y             ; $A3BE
   ldx $06CF                    ; $A3C0
   sta $06D0,x                  ; $A3C3
 Loc_B5_A3C6:

@@ -59,7 +59,7 @@ Loc_B3_8071:
 Loc_B3_8074:
   lda z:MmcPrgShadow           ; $8074
   beq Loc_B3_807B              ; $8076
-  jsr CallBank5_A000           ; $8078
+  jsr RunSoundDriver           ; $8078
 Loc_B3_807B:
   pla                          ; $807B
   tay                          ; $807C
@@ -1003,7 +1003,7 @@ Loc_B3_8C7D:
   jmp Loc_B3_8A3A              ; $8C8F
 Loc_B3_8C92:
   lda #$08                     ; $8C92
-  sta z:$30                    ; $8C94
+  sta z:PlayerActionState      ; $8C94
 Loc_B3_8C96:
   lda #$00                     ; $8C96
   sta $041D                    ; $8C98

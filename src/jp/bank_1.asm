@@ -97,7 +97,7 @@ Sub_B1_80A9:
   sta JoyHeld2                 ; $80CA
   sta JoyNew1                  ; $80CD
   lda #$00                     ; $80D0
-  jmp EnqueueByte              ; $80D2
+  jmp QueueSound               ; $80D2
 Sub_B1_80D5:
   lda JoyNew1                  ; $80D5
   and #$08                     ; $80D8
@@ -119,7 +119,7 @@ Loc_B1_80F3:
   pha                          ; $80F5
   lda #$01                     ; $80F6
   sta z:MmcPrgShadow           ; $80F8
-  jsr CallBank5_A000           ; $80FA
+  jsr RunSoundDriver           ; $80FA
   pla                          ; $80FD
   sta z:MmcPrgShadow           ; $80FE
   rts                          ; $8100
@@ -292,9 +292,9 @@ Loc_B1_841E:
   lda #$C0                     ; $843C
   sta JOYPAD2                  ; $843E
   lda #$00                     ; $8441
-  jsr EnqueueByte              ; $8443
+  jsr QueueSound               ; $8443
   lda #$01                     ; $8446
-  jmp EnqueueByte              ; $8448
+  jmp QueueSound               ; $8448
 Data_B1_844B:
   .incbin "prg_bank_1.bin", $044B, $18  ; $844B
 Data_B1_8463:
@@ -659,7 +659,7 @@ Loc_B1_8E5C:
   sta z:Tmp00                  ; $8E75
   lda #$00                     ; $8E77
   sta z:PaletteDirty           ; $8E79
-  jsr Sub_C43D                 ; $8E7B
+  jsr RemoveObject             ; $8E7B
 Loc_B1_8E7E:
   rts                          ; $8E7E
 Data_B1_8E7F:
@@ -724,7 +724,7 @@ Loc_B1_8ECF:
   lda #$FF                     ; $8EF5
   sta $030D,y                  ; $8EF7
   lda #$41                     ; $8EFA
-  jsr EnqueueByte              ; $8EFC
+  jsr QueueSound               ; $8EFC
   lda $0302,y                  ; $8EFF
   cmp #$60                     ; $8F02
   bcc Loc_B1_8F0F              ; $8F04
@@ -739,7 +739,7 @@ Loc_B1_8F11:
   sta $030E,y                  ; $8F14
   jmp Loc_B1_8F1D              ; $8F17
 Loc_B1_8F1A:
-  jsr Sub_C43D                 ; $8F1A
+  jsr RemoveObject             ; $8F1A
 Loc_B1_8F1D:
   rts                          ; $8F1D
 Sub_B1_8F1E:
@@ -771,7 +771,7 @@ Loc_B1_8F41:
   sbc #$10                     ; $8F4A
   sta z:$06                    ; $8F4C
 Loc_B1_8F4E:
-  jsr Sub_C43D                 ; $8F4E
+  jsr RemoveObject             ; $8F4E
 Loc_B1_8F51:
   jsr LoadPaletteSet           ; $8F51
   lda #$00                     ; $8F54
@@ -1267,7 +1267,7 @@ Loc_B1_95A7:
   cmp #$02                     ; $95B4
   bne Loc_B1_95BD              ; $95B6
   lda #$16                     ; $95B8
-  jsr EnqueueByte              ; $95BA
+  jsr QueueSound               ; $95BA
 Loc_B1_95BD:
   jsr Sub_B1_96A4              ; $95BD
 Loc_B1_95C0:
@@ -1830,7 +1830,7 @@ Loc_B1_9B02:
   ldy #$07                     ; $9B16
   sta ($04),y                  ; $9B18
   lda #$18                     ; $9B1A
-  jsr EnqueueByte              ; $9B1C
+  jsr QueueSound               ; $9B1C
 Loc_B1_9B1F:
   rts                          ; $9B1F
 Sub_B1_9B20:
@@ -2084,7 +2084,7 @@ Data_B1_9E75:
   bne Loc_B1_A02B              ; $A00E
   jsr Sub_B1_AAC3              ; $A010
   bcc Loc_B1_A01B              ; $A013
-  jsr Sub_C43D                 ; $A015
+  jsr RemoveObject             ; $A015
   jmp Loc_B1_A031              ; $A018
 Loc_B1_A01B:
   jsr Sub_B1_AA64              ; $A01B
@@ -2093,7 +2093,7 @@ Loc_B1_A01B:
   cmp #$04                     ; $A022
   bne Loc_B1_A02B              ; $A024
   lda #$11                     ; $A026
-  jsr EnqueueByte              ; $A028
+  jsr QueueSound               ; $A028
 Loc_B1_A02B:
   jsr Sub_B1_9ABA              ; $A02B
   jsr Sub_B1_AA03              ; $A02E
@@ -2260,7 +2260,7 @@ Loc_B1_AA41:
   and #$7F                     ; $AA45
 Loc_B1_AA47:
   sta (Tmp00),y                ; $AA47
-  jsr Sub_C3FC                 ; $AA49
+  jsr SelectSpriteTable        ; $AA49
   ldy #$00                     ; $AA4C
   lda (Tmp02),y                ; $AA4E
   ldy #$04                     ; $AA50
@@ -2543,7 +2543,7 @@ Loc_B1_AC27:
   ldy #$0E                     ; $AC3F
   lda #$00                     ; $AC41
   sta (Tmp03),y                ; $AC43
-  jsr Sub_C43D                 ; $AC45
+  jsr RemoveObject             ; $AC45
   rts                          ; $AC48
 Data_B1_AC49:
   .incbin "prg_bank_1.bin", $2C49, $9  ; $AC49
@@ -2832,11 +2832,11 @@ Loc_B1_AF0F:
   inc $0490                    ; $AF22
   lda ObjectCount              ; $AF25
   beq Loc_B1_AF4E              ; $AF28
-  lda $0238                    ; $AF2A
+  lda PlayerSpriteY0           ; $AF2A
   clc                          ; $AF2D
   adc #$02                     ; $AF2E
   sta $011A                    ; $AF30
-  lda $023B                    ; $AF33
+  lda PlayerSpriteX0           ; $AF33
   clc                          ; $AF36
   adc #$02                     ; $AF37
   sta $011B                    ; $AF39
@@ -2972,7 +2972,7 @@ Loc_B1_B030:
   sbc #$50                     ; $B03F
   tay                          ; $B041
   lda Data_B1_B11F,y           ; $B042
-  jsr EnqueueByte              ; $B045
+  jsr QueueSound               ; $B045
   lda z:AmmoLo                 ; $B048
   bne Loc_B1_B052              ; $B04A
   lda z:AmmoHi                 ; $B04C
@@ -2983,9 +2983,9 @@ Loc_B1_B052:
 Loc_B1_B054:
   lda #$01                     ; $B054
   sta $0490                    ; $B056
-  lda $0238                    ; $B059
+  lda PlayerSpriteY0           ; $B059
   sta $0493                    ; $B05C
-  lda $023B                    ; $B05F
+  lda PlayerSpriteX0           ; $B05F
   sta $0494                    ; $B062
   lda #$00                     ; $B065
   sta $0491                    ; $B067

@@ -4367,7 +4367,7 @@
      }
     },
     {
-     "name": "Sub_B5_A000",
+     "name": "SoundDriver",
      "size": "68",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5165,7 +5165,7 @@
      }
     },
     {
-     "name": "CallBank5_A000",
+     "name": "RunSoundDriver",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5181,7 +5181,7 @@
      }
     },
     {
-     "name": "Sub_C170",
+     "name": "FetchInlineWord",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5301,7 +5301,7 @@
      }
     },
     {
-     "name": "EnqueueByte",
+     "name": "QueueSound",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5389,7 +5389,7 @@
      }
     },
     {
-     "name": "Sub_C355",
+     "name": "DrawObject",
      "size": "167",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5397,7 +5397,7 @@
      }
     },
     {
-     "name": "Sub_C3FC",
+     "name": "SelectSpriteTable",
      "size": "65",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5405,7 +5405,7 @@
      }
     },
     {
-     "name": "Sub_C43D",
+     "name": "RemoveObject",
      "size": "139",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5413,7 +5413,7 @@
      }
     },
     {
-     "name": "Sub_C4C8",
+     "name": "PixelToNametableAddr",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5469,7 +5469,7 @@
      }
     },
     {
-     "name": "Sub_C5FF",
+     "name": "ScrollByInput",
      "size": "274",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5525,7 +5525,7 @@
      }
     },
     {
-     "name": "Sub_C941",
+     "name": "DrawLifeHud",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5533,7 +5533,7 @@
      }
     },
     {
-     "name": "Sub_C962",
+     "name": "DrawAmmoHud",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5557,7 +5557,7 @@
      }
     },
     {
-     "name": "Loc_C9F9",
+     "name": "NmiGameStateDispatch",
      "size": "426",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5565,7 +5565,7 @@
      }
     },
     {
-     "name": "Sub_CBA3",
+     "name": "InitLevel",
      "size": "248",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5573,7 +5573,7 @@
      }
     },
     {
-     "name": "Sub_CCD3",
+     "name": "ComputeAreaGroup",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5589,7 +5589,7 @@
      }
     },
     {
-     "name": "Sub_CD74",
+     "name": "UploadNametableColumn",
      "size": "108",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5613,7 +5613,7 @@
      }
     },
     {
-     "name": "Sub_CEDA",
+     "name": "ReadColumnFromPpu",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5669,7 +5669,7 @@
      }
     },
     {
-     "name": "Sub_D0FB",
+     "name": "StateAutoWalk",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5677,7 +5677,7 @@
      }
     },
     {
-     "name": "Sub_D13A",
+     "name": "StartLevelScene",
      "size": "61",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5693,7 +5693,7 @@
      }
     },
     {
-     "name": "Sub_D255",
+     "name": "CheckObjectContact",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5725,7 +5725,7 @@
      }
     },
     {
-     "name": "Sub_D32D",
+     "name": "UpdatePlayerAction",
      "size": "119",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5733,7 +5733,7 @@
      }
     },
     {
-     "name": "Sub_D3A4",
+     "name": "PlayerActionIdle",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5749,7 +5749,7 @@
      }
     },
     {
-     "name": "Sub_D4D3",
+     "name": "PlayerActionState1",
      "size": "96",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5757,7 +5757,7 @@
      }
     },
     {
-     "name": "Sub_D573",
+     "name": "PlayerActionState2",
      "size": "74",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5765,7 +5765,7 @@
      }
     },
     {
-     "name": "Sub_D5BD",
+     "name": "PlayerActionState3",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5773,7 +5773,7 @@
      }
     },
     {
-     "name": "Sub_D5E2",
+     "name": "PlayerActionState4",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5781,7 +5781,7 @@
      }
     },
     {
-     "name": "Sub_D607",
+     "name": "PlayerActionState5",
      "size": "77",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5789,7 +5789,7 @@
      }
     },
     {
-     "name": "Sub_D6A4",
+     "name": "PlayerActionState6",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5797,7 +5797,7 @@
      }
     },
     {
-     "name": "Sub_D710",
+     "name": "PlayerActionState7",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5805,7 +5805,7 @@
      }
     },
     {
-     "name": "Sub_D740",
+     "name": "SetTransitionFromCode",
      "size": "114",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5941,7 +5941,7 @@
      }
     },
     {
-     "name": "Sub_DF02",
+     "name": "EndGameOverSequence",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6013,7 +6013,7 @@
      }
     },
     {
-     "name": "Sub_E5FD",
+     "name": "CheckStartPause",
      "size": "103",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6029,7 +6029,7 @@
      }
     },
     {
-     "name": "Sub_E85E",
+     "name": "ResetPlayerForRetry",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6037,7 +6037,7 @@
      }
     },
     {
-     "name": "Sub_E883",
+     "name": "UpdateGameOverSequence",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6053,7 +6053,7 @@
      }
     },
     {
-     "name": "Sub_E916",
+     "name": "UpdateLowLifeAlarm",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6101,7 +6101,7 @@
      }
     },
     {
-     "name": "SetFireModeLow",
+     "name": "SetPlayerPose",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6109,7 +6109,7 @@
      }
     },
     {
-     "name": "UpdateFireMode",
+     "name": "UpdatePlayerFacing",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
