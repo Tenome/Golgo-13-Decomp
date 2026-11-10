@@ -250,6 +250,7 @@ static int bank1(uint16_t a) {
     case 0x9DEE: Sub_B1_9DEE(); return 1;
     case 0x9DFC: Sub_B1_9DFC(); return 1;
     case 0x9E20: Sub_B1_9E20(); return 1;
+    case 0xA007: Sub_B1_A007(); return 1;
     case 0xA032: Sub_B1_A032(); return 1;
     case 0xA957: Sub_B1_A957(); return 1;
     case 0xA9BD: Sub_B1_A9BD(); return 1;
@@ -681,6 +682,7 @@ static int bank6(uint16_t a) {
     case 0x81E3: Sub_B6_81E3(); return 1;
     case 0x82F5: Sub_B6_82F5(); return 1;
     case 0x831C: Sub_B6_831C(); return 1;
+    case 0x83A8: Sub_B6_83A8(); return 1;
     case 0x83BE: Sub_B6_83BE(); return 1;
     case 0x83D3: Sub_B6_83D3(); return 1;
     case 0x83F4: Sub_B6_83F4(); return 1;
@@ -712,6 +714,7 @@ static int bank6(uint16_t a) {
     case 0x886B: Sub_B6_886B(); return 1;
     case 0x8880: Loc_B6_8880(); return 1;
     case 0x889B: Loc_B6_889B(); return 1;
+    case 0x890F: Sub_B6_890F(); return 1;
     case 0x8932: Sub_B6_8932(); return 1;
     case 0x89A7: Sub_B6_89A7(); return 1;
     case 0x89B2: Sub_B6_89B2(); return 1;

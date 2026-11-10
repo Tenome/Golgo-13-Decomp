@@ -2066,6 +2066,7 @@ Data_B1_9E74:
   .incbin "prg_bank_1.bin", $1E74, $1  ; $9E74
 Data_B1_9E75:
   .incbin "prg_bank_1.bin", $1E75, $192  ; $9E75
+Sub_B1_A007:
   jsr Sub_B1_A032              ; $A007
   ldy #$08                     ; $A00A
   lda (Tmp00),y                ; $A00C

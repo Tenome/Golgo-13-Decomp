@@ -1919,6 +1919,28 @@ void Sub_B1_9E20(void) {  /* $9E20 bank 1 */
  L9E73: BUDGET(); RTS_RET(sp0);                                                    /* $9E73 rts */
 }
 
+void Sub_B1_A007(void) {  /* $A007 bank 1 */
+  uint8_t sp0 = R.sp;
+ LA007: BUDGET(); push16(0xA009); Sub_B1_A032(); UNW(); ret_check(0xA009);         /* $A007 jsr */
+        LDY(0x08);                                                       /* $A00A ldy */
+        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $A00C lda */
+        if (R.a != 0) goto LA02B;                                        /* $A00E bne */
+        push16(0xA012); Sub_B1_AAC3(); UNW(); ret_check(0xA012);         /* $A010 jsr */
+        if (!R.c) goto LA01B;                                            /* $A013 bcc */
+        push16(0xA017); RemoveObject(); UNW(); ret_check(0xA017);        /* $A015 jsr */
+        goto LA031;                                                      /* $A018 jmp */
+ LA01B: BUDGET(); push16(0xA01D); Sub_B1_AA64(); UNW(); ret_check(0xA01D);         /* $A01B jsr */
+        LDY(0x0E);                                                       /* $A01E ldy */
+        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $A020 lda */
+        cmp8(R.a, 0x04);                                                 /* $A022 cmp */
+        if (R.a != 0x04) goto LA02B;                                     /* $A024 bne */
+        LDA(0x11);                                                       /* $A026 lda */
+        push16(0xA02A); QueueSound(); UNW(); ret_check(0xA02A);          /* $A028 jsr */
+ LA02B: BUDGET(); push16(0xA02D); Sub_B1_9ABA(); UNW(); ret_check(0xA02D);         /* $A02B jsr */
+        push16(0xA030); Sub_B1_AA03(); UNW(); ret_check(0xA030);         /* $A02E jsr */
+ LA031: BUDGET(); RTS_RET(sp0);                                                    /* $A031 rts */
+}
+
 void Sub_B1_A032(void) {  /* $A032 bank 1 */
   uint8_t sp0 = R.sp;
  LA032: BUDGET(); LDA(0x3B);                                                       /* $A032 lda */

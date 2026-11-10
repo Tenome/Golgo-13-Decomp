@@ -8,6 +8,9 @@ so both sides see the same inputs. usage: python tools/frametest.py [--version u
 import argparse, ctypes, os, subprocess, sys
 ap = argparse.ArgumentParser(); ap.add_argument('--version', default='us'); ap.add_argument('--frames', type=int, default=300)
 ap.add_argument('--clang'); ap.add_argument('--keep', action='store_true')
+ap.add_argument('--seed', type=int, default=7); ap.add_argument('--assist', action='store_true', help='hold life and ammo up in both models (QA assist) so random play survives longer')
+ap.add_argument('--out-exec', help='write the ROM code the simulator executed (PRG offsets) to this JSON file instead of only learning on failures')
+ap.add_argument('--dll', help='use a separate DLL path (parallel runs)')
 a = ap.parse_args()
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..'))
 sys.argv = [sys.argv[0], '--version', a.version]; sys.path.insert(0, HERE)
@@ -15,7 +18,7 @@ import g13dis, sim6502
 sys.argv = [sys.argv[0], '--version', a.version, '--frames', str(a.frames)]
 
 CDIR = os.path.join(ROOT, 'c'); ADIR = os.path.join(CDIR, 'auto', a.version)
-DLL = os.path.join(ROOT, 'build', f'golgo13_frame_{a.version}' + ('.dll' if os.name == 'nt' else '.so'))
+DLL = a.dll or os.path.join(ROOT, 'build', f'golgo13_frame_{a.version}' + ('.dll' if os.name == 'nt' else '.so'))
 import shutil
 cc = next((p for p in (a.clang, os.environ.get('CLANG'), shutil.which('clang'), shutil.which('gcc'), shutil.which('cc')) if p), None)
 if not cc: sys.exit('no C compiler (pass --clang PATH)')
@@ -71,13 +74,21 @@ def learn():
     if new != old: json.dump({'insns': sorted(new)}, open(RC, 'w')); return len(new) - len(old)
     return 0
 if not compare('after reset'): sys.exit(1)
+seen = set()
 import random
-rnd = random.Random(7); pad_c = ctypes.c_uint8.in_dll(lib, 'g_pad'); pad = 0
+rnd = random.Random(a.seed); style = rnd.choice([(0.2, 0.5), (0.4, 0.3), (0.6, 0.2)]);  pad_c = ctypes.c_uint8.in_dll(lib, 'g_pad'); pad = 0
 nmi_c = fn('Nmi')
 for frame in range(a.frames):
     if frame % 4 == 0:      # change the buttons every few frames; Start taps now and then
-        pad = (rnd.choice([0, 0, 0x80, 0x10, 0x01, 0x02, 0x04, 0x08, 0x40, 0x90]) | (0x08 if rnd.random() < 0.15 else 0)) & 0xFF
+        pad = 0
+        for bit, p_ in ((0x80, style[1]), (0x40, 0.1), (0x10, 0.15), (0x20, 0.1), (0x01, style[0]), (0x02, 0.2), (0x04, 0.02)):
+            if rnd.random() < p_: pad |= bit
+        if rnd.random() < 0.12: pad |= 0x08
     cpu.pad = pad; pad_c.value = pad
+    if a.assist:                                         # same data-only help on both sides: life >= 200, ammo >= 32
+        for addr_, mn_ in ((0x38, 0xC8), (0x3A, 0x20)):
+            if cpu.ram[addr_] < mn_: cpu.ram[addr_] = mn_
+            if ram_c[addr_] < mn_: ram_c[addr_] = mn_
     cpu.io_writes.clear(); lib.iolog_reset_log() if hasattr(lib, 'iolog_reset_log') else None
     # interrupt entry in the simulator: push PC and P, jump to the NMI vector, run until the RTI returns to the idle loop
     cpu.push(IDLE >> 8); cpu.push(IDLE & 0xFF); cpu.push(cpu.getp(0x20)); cpu.i = 1; cpu.pc = NMI; steps = 0
@@ -97,5 +108,8 @@ for frame in range(a.frames):
     if rc == 6: print(f'frame {frame}: an RTS left the stack at {ctypes.c_uint16.in_dll(lib, "g_ret_got").value & 255:#x} instead of {ctypes.c_uint16.in_dll(lib, "g_ret_exp").value & 255:#x} in {ctypes.c_char_p.in_dll(lib, "g_rts_fn").value.decode()}'); sys.exit(1)
     if rc: print(f'frame {frame}: C aborted with code {rc}' + (f' (unknown call target ${ctypes.c_uint16.in_dll(lib, "g_unknown_addr").value:04X} in bank {bank_c.value})' if rc == 4 else '') + (f' (JSR at ${ctypes.c_uint16.in_dll(lib, "g_ret_exp").value - 2:04X} returned to ${ctypes.c_uint16.in_dll(lib, "g_ret_got").value + 1:04X}, bank {bank_c.value})' if rc == 5 else '')); sys.exit(1)
     if not compare(f'frame {frame}'): sys.exit(1)
+    seen.add((cpu.ram[0x14], cpu.ram[0x0100], cpu.ram[0xFB]))
     cpu.io_writes[:] = cpu.io_writes
+if a.out_exec: json.dump(sorted(cpu.exec_log), open(a.out_exec, 'w'))
+print('states seen (GameState, StageIndex, PRG bank):', sorted(seen)[:40], '...' if len(seen) > 40 else '')
 print(f'[{a.version}] {a.frames} frames from power-on: RAM, I/O writes and PRG bank identical after every NMI')
