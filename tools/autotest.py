@@ -113,4 +113,6 @@ if __name__ == '__main__':
     for n, f in failed[:40]: print(f'FAIL {n}: {f}')
     print(f'[{a.version}] {len(names)} lifted routines: {len(verified)} verified (>= {a.min_ok} comparisons, all equal), {len(weak)} untestable on random input, {len(failed)} FAILED')
     json.dump({n: dict(ok=r[0], skipped=r[1], fail=r[2]) for n, r in sorted(res.items())}, open(os.path.join(ROOT, 'build', f'autotest_{a.version}.json'), 'w'), indent=1)
+    if not a.only and not failed:      # committed so the C-progress report (tools/report.py --c) can be rebuilt without the ROM
+        json.dump({'verified': sorted(verified), 'lifted': sorted(names)}, open(os.path.join(ROOT, 'config', a.version, 'verified.json'), 'w'), indent=0)
     sys.exit(1 if failed else 0)

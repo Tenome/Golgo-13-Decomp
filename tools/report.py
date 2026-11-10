@@ -9,6 +9,7 @@ It holds names, addresses, sizes and percentages only - no game bytes.
 usage: python tools/report.py [--version us|jp] [--cc65 DIR] [--no-verify]"""
 import argparse, json, os, subprocess, sys
 ap = argparse.ArgumentParser(); ap.add_argument('--version', default='us', choices=['us', 'jp']); ap.add_argument('--cc65'); ap.add_argument('--no-verify', action='store_true')
+ap.add_argument('--c', action='store_true', help='progress of the C lifting instead of the assembly: verified routines 100 %, lifted but untestable 50 %, others 0 %')
 a = ap.parse_args()
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..'))
 sys.argv = [sys.argv[0], '--version', a.version]; sys.path.insert(0, HERE)
@@ -32,6 +33,11 @@ def item(i):
 
 def main():
     pct = 100.0
+    ver_c = None
+    if a.c:
+        vf = os.path.join(ROOT, 'config', a.version, 'verified.json')
+        ver_c = json.load(open(vf)) if os.path.exists(vf) else {'verified': [], 'lifted': []}
+        a.no_verify = True
     if not a.no_verify:
         cmd = [sys.executable, os.path.join(HERE, 'build.py'), '--version', a.version] + (['--cc65', a.cc65] if a.cc65 else [])
         r = subprocess.run(cmd, capture_output=True, text=True); print(r.stdout.strip() or r.stderr.strip())
@@ -40,6 +46,13 @@ def main():
     code, labels, conf = g.classify_full(roots)
     names = g.load_names()
     units = []; all_code = []; all_data = []
+    vset = set(ver_c['verified']) if ver_c else set(); lset = set(ver_c['lifted']) if ver_c else set()
+    cover = []
+    if a.c:
+        fj = json.load(open(os.path.join(ROOT, 'c', 'auto', a.version, 'funcs.json')))
+        for n_f, v_f in fj.items():
+            if v_f['ok']: cover += [(lo_, hi_, n_f) for lo_, hi_ in v_f['ranges']]
+    covering = lambda s_: [n_f for lo_, hi_, n_f in cover if lo_ <= s_ < hi_] if s_ is not None else []
     for b in range(g.NB):
         lo, hi = b * 0x4000, (b + 1) * 0x4000
         funcs, data = [], []
@@ -56,10 +69,12 @@ def main():
                 start = p
                 while p < hi and code[p] is None and (p == start or not (p in labels and g.KIND.get(p) == 'data')): p += 1
                 data.append((start, p))
-        fi = [{'name': g.lname(s, names), 'size': e - s, 'pct': pct, 'addr': s + 16} for s, e in funcs]
+        cpct = lambda n_, s_=None: max([100.0 if n_f in vset else 50.0 for n_f in covering(s_)] + [0.0])
+        fi = [{'name': g.lname(s, names), 'size': e - s, 'pct': (cpct(g.lname(s, names), s) if a.c else pct), 'addr': s + 16} for s, e in funcs]
         di = [{'name': ('Data_%d_%04X' % (b, s & 0x3FFF)) if g.lname(s, names).startswith(('Loc', 'Sub')) else g.lname(s, names), 'size': e - s, 'pct': pct, 'addr': s + 16} for s, e in data]
-        units.append((f'main/bank_{b}', fi, di, f'src/{a.version}/bank_{b}.asm'))
-    units.append(('main/chr', [], [{'name': 'ChrRom', 'size': 0x20000, 'pct': pct, 'addr': 16 + 0x20000}], f'src/{a.version}/golgo13.asm'))
+        if a.c: units.append((f'main/bank_{b}', fi, [], f'c/auto/{a.version}/bank_{b}.c'))
+        else: units.append((f'main/bank_{b}', fi, di, f'src/{a.version}/bank_{b}.asm'))
+    if not a.c: units.append(('main/chr', [], [{'name': 'ChrRom', 'size': 0x20000, 'pct': pct, 'addr': 16 + 0x20000}], f'src/{a.version}/golgo13.asm'))
     out_units = []
     for name, fi, di, srcp in units:
         m = measures(fi, di, 1, 1)
@@ -67,10 +82,10 @@ def main():
         if fi: secs.append({'name': '.text', 'size': str(sum(i['size'] for i in fi)), 'fuzzy_match_percent': m['fuzzy_match_percent']})
         if di: secs.append({'name': '.data', 'size': str(sum(i['size'] for i in di)), 'fuzzy_match_percent': m['matched_data_percent']})
         out_units.append({'name': name, 'measures': m, 'sections': secs, 'functions': [item(i) for i in fi],
-                          'metadata': {'complete': True, 'source_path': srcp}})
+                          'metadata': {'complete': all(i['pct'] >= 100 for i in fi), 'source_path': srcp}})
         all_code += fi; all_data += di
     report = {'measures': measures(all_code, all_data, len(out_units), len(out_units)), 'units': out_units, 'version': 2, 'categories': []}
-    outp = os.path.join(ROOT, 'progress', a.version, 'report.json'); os.makedirs(os.path.dirname(outp), exist_ok=True)
+    outp = os.path.join(ROOT, 'progress', a.version + ('_c' if a.c else ''), 'report.json'); os.makedirs(os.path.dirname(outp), exist_ok=True)
     with open(outp, 'w', encoding='utf-8', newline='\n') as fh: json.dump(report, fh, indent=1)
     m = report['measures']
     print('report %s: %d/%d routines, %s of %s code bytes, %s data bytes, %d units' % (outp, m['matched_functions'], m['total_functions'], m['matched_code'], m['total_code'], m['total_data'], len(out_units)))

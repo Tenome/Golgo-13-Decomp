@@ -4,5011 +4,9839 @@
   "bank": 0,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    0,
+    9
+   ]
+  ]
  },
  "Loc_B1_8000": {
   "addr": 32768,
   "bank": 1,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16384,
+    16393
+   ]
+  ]
  },
  "Bank1Nmi": {
   "addr": 32784,
   "bank": 1,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16400,
+    16431
+   ]
+  ]
  },
  "Bank1Dispatch_SceneState": {
   "addr": 32815,
   "bank": 1,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16431,
+    16449
+   ]
+  ]
  },
  "Bank1Title_00": {
   "addr": 32841,
   "bank": 1,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16457,
+    16463
+   ]
+  ]
  },
  "Sub_B1_804F": {
   "addr": 32847,
   "bank": 1,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16463,
+    16468
+   ]
+  ]
  },
  "Bank1Title_01": {
   "addr": 32852,
   "bank": 1,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16468,
+    16477
+   ]
+  ]
  },
  "Bank1Title_02": {
   "addr": 32861,
   "bank": 1,
   "instrs": 31,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16477,
+    16549
+   ]
+  ]
  },
  "Bank1Title_03": {
   "addr": 32933,
   "bank": 1,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16549,
+    16593
+   ]
+  ]
  },
  "Sub_B1_80D1": {
   "addr": 32977,
   "bank": 1,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16593,
+    16604
+   ]
+  ]
  },
  "Sub_B1_80DC": {
   "addr": 32988,
   "bank": 1,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16604,
+    16637
+   ]
+  ]
  },
  "Sub_B1_80FD": {
   "addr": 33021,
   "bank": 1,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16637,
+    16683
+   ]
+  ]
  },
  "Sub_B1_812B": {
   "addr": 33067,
   "bank": 1,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16683,
+    16710
+   ]
+  ]
  },
  "Sub_B1_8146": {
   "addr": 33094,
   "bank": 1,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16710,
+    16711
+   ]
+  ]
  },
  "Loc_B1_8147": {
   "addr": 33095,
   "bank": 1,
   "instrs": 68,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    16711,
+    16855
+   ]
+  ]
  },
  "Sub_B1_83D5": {
   "addr": 33749,
   "bank": 1,
   "instrs": 44,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    17365,
+    17368
+   ],
+   [
+    17370,
+    17413
+   ],
+   [
+    17415,
+    17418
+   ],
+   [
+    17420,
+    17480
+   ]
+  ]
  },
  "Sub_B1_85A0": {
   "addr": 34208,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    17824,
+    17836
+   ]
+  ]
  },
  "Sub_B1_85AC": {
   "addr": 34220,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    17836,
+    17848
+   ]
+  ]
  },
  "Sub_B1_85B8": {
   "addr": 34232,
   "bank": 1,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    17848,
+    17849
+   ]
+  ]
  },
  "Loc_B1_85B9": {
   "addr": 34233,
   "bank": 1,
   "instrs": 24,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    17849,
+    17906
+   ]
+  ]
  },
  "Sub_B1_8600": {
   "addr": 34304,
   "bank": 1,
   "instrs": 89,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    17920,
+    18103
+   ]
+  ]
  },
  "Sub_B1_8D00": {
   "addr": 36096,
   "bank": 1,
   "instrs": 104,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    19712,
+    19880
+   ],
+   [
+    19881,
+    19919
+   ]
+  ]
  },
  "Bank1State_01": {
   "addr": 36351,
   "bank": 1,
   "instrs": 68,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    19967,
+    20095
+   ]
+  ]
  },
  "Sub_B1_8EA2": {
   "addr": 36514,
   "bank": 1,
   "instrs": 60,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20130,
+    20254
+   ]
+  ]
  },
  "Sub_B1_8F1E": {
   "addr": 36638,
   "bank": 1,
   "instrs": 29,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20254,
+    20313
+   ]
+  ]
  },
  "Bank1State_02": {
   "addr": 36697,
   "bank": 1,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20313,
+    20345
+   ]
+  ]
  },
  "Sub_B1_8F79": {
   "addr": 36729,
   "bank": 1,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20345,
+    20364
+   ]
+  ]
  },
  "Sub_B1_8F8C": {
   "addr": 36748,
   "bank": 1,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20364,
+    20383
+   ]
+  ]
  },
  "Sub_B1_8F9F": {
   "addr": 36767,
   "bank": 1,
   "instrs": 30,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20383,
+    20446
+   ]
+  ]
  },
  "Sub_B1_8FDE": {
   "addr": 36830,
   "bank": 1,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20446,
+    20490
+   ]
+  ]
  },
  "Bank1State_03": {
   "addr": 37030,
   "bank": 1,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20646,
+    20678
+   ]
+  ]
  },
  "Sub_B1_90C6": {
   "addr": 37062,
   "bank": 1,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    20678,
+    20697
+   ]
+  ]
  },
  "Bank1State_00": {
   "addr": 37425,
   "bank": 1,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21041,
+    21088
+   ]
+  ]
  },
  "Sub_B1_9260": {
   "addr": 37472,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21088,
+    21102
+   ]
+  ]
  },
  "Sub_B1_926E": {
   "addr": 37486,
   "bank": 1,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21102,
+    21151
+   ]
+  ]
  },
  "Sub_B1_929F": {
   "addr": 37535,
   "bank": 1,
   "instrs": 46,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21151,
+    21247
+   ]
+  ]
  },
  "Bank1State_04": {
   "addr": 37728,
   "bank": 1,
   "instrs": 40,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21344,
+    21432
+   ]
+  ]
  },
  "Sub_B1_93B8": {
   "addr": 37816,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21432,
+    21446
+   ]
+  ]
  },
  "Sub_B1_93C6": {
   "addr": 37830,
   "bank": 1,
   "instrs": 25,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21446,
+    21498
+   ]
+  ]
  },
  "Sub_B1_93FA": {
   "addr": 37882,
   "bank": 1,
   "instrs": 25,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21498,
+    21550
+   ]
+  ]
  },
  "Sub_B1_942E": {
   "addr": 37934,
   "bank": 1,
   "instrs": 29,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21550,
+    21612
+   ],
+   [
+    21692,
+    21693
+   ]
+  ]
  },
  "Sub_B1_946C": {
   "addr": 37996,
   "bank": 1,
   "instrs": 35,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21612,
+    21693
+   ]
+  ]
  },
  "Sub_B1_94BD": {
   "addr": 38077,
   "bank": 1,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21693,
+    21736
+   ]
+  ]
  },
  "Bank1State_05": {
   "addr": 38275,
   "bank": 1,
   "instrs": 45,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21891,
+    21990
+   ]
+  ]
  },
  "Sub_B1_95E6": {
   "addr": 38374,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    21990,
+    22004
+   ]
+  ]
  },
  "Sub_B1_95F4": {
   "addr": 38388,
   "bank": 1,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22004,
+    22026
+   ]
+  ]
  },
  "Sub_B1_960A": {
   "addr": 38410,
   "bank": 1,
   "instrs": 71,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22026,
+    22164
+   ]
+  ]
  },
  "Sub_B1_9694": {
   "addr": 38548,
   "bank": 1,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22164,
+    22180
+   ]
+  ]
  },
  "Sub_B1_96A4": {
   "addr": 38564,
   "bank": 1,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22180,
+    22206
+   ]
+  ]
  },
  "Sub_B1_96BE": {
   "addr": 38590,
   "bank": 1,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22206,
+    22248
+   ]
+  ]
  },
  "Sub_B1_96E8": {
   "addr": 38632,
   "bank": 1,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22248,
+    22256
+   ]
+  ]
  },
  "Sub_B1_96F0": {
   "addr": 38640,
   "bank": 1,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22256,
+    22284
+   ]
+  ]
  },
  "Bank1State_06": {
   "addr": 38839,
   "bank": 1,
   "instrs": 40,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22455,
+    22550
+   ]
+  ]
  },
  "Sub_B1_9816": {
   "addr": 38934,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22550,
+    22564
+   ]
+  ]
  },
  "Sub_B1_9824": {
   "addr": 38948,
   "bank": 1,
   "instrs": 65,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22564,
+    22691
+   ]
+  ]
  },
  "Sub_B1_98A3": {
   "addr": 39075,
   "bank": 1,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22691,
+    22759
+   ]
+  ]
  },
  "Sub_B1_98E7": {
   "addr": 39143,
   "bank": 1,
   "instrs": 18,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    22759,
+    22794
+   ]
+  ]
  },
  "Bank1State_07": {
   "addr": 39392,
   "bank": 1,
   "instrs": 34,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23008,
+    23085
+   ]
+  ]
  },
  "Sub_B1_9A2D": {
   "addr": 39469,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23085,
+    23099
+   ]
+  ]
  },
  "Sub_B1_9A3B": {
   "addr": 39483,
   "bank": 1,
   "instrs": 63,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23099,
+    23226
+   ]
+  ]
  },
  "Sub_B1_9ABA": {
   "addr": 39610,
   "bank": 1,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23226,
+    23243
+   ]
+  ]
  },
  "Sub_B1_9ACB": {
   "addr": 39627,
   "bank": 1,
   "instrs": 41,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23243,
+    23328
+   ]
+  ]
  },
  "Sub_B1_9B20": {
   "addr": 39712,
   "bank": 1,
   "instrs": 48,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23328,
+    23425
+   ]
+  ]
  },
  "Bank1State_08": {
   "addr": 40007,
   "bank": 1,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23623,
+    23656
+   ]
+  ]
  },
  "Sub_B1_9C68": {
   "addr": 40040,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23656,
+    23670
+   ]
+  ]
  },
  "Sub_B1_9C76": {
   "addr": 40054,
   "bank": 1,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23670,
+    23698
+   ]
+  ]
  },
  "Sub_B1_9C92": {
   "addr": 40082,
   "bank": 1,
   "instrs": 31,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23698,
+    23764
+   ]
+  ]
  },
  "Bank1State_09": {
   "addr": 40377,
   "bank": 1,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    23993,
+    24046
+   ]
+  ]
  },
  "Sub_B1_9DEE": {
   "addr": 40430,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    24046,
+    24060
+   ]
+  ]
  },
  "Sub_B1_9DFC": {
   "addr": 40444,
   "bank": 1,
   "instrs": 18,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    24060,
+    24096
+   ]
+  ]
  },
  "Sub_B1_9E20": {
   "addr": 40480,
   "bank": 1,
   "instrs": 41,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    24096,
+    24180
+   ]
+  ]
  },
  "Sub_B1_A007": {
   "addr": 40967,
   "bank": 1,
   "instrs": 18,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    24583,
+    24626
+   ]
+  ]
  },
  "Sub_B1_A032": {
   "addr": 41010,
   "bank": 1,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    24626,
+    24635
+   ]
+  ]
  },
  "Sub_B1_A957": {
   "addr": 43351,
   "bank": 1,
   "instrs": 60,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    26967,
+    27069
+   ]
+  ]
  },
  "Sub_B1_A9BD": {
   "addr": 43453,
   "bank": 1,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27069,
+    27106
+   ]
+  ]
  },
  "Sub_B1_A9E2": {
   "addr": 43490,
   "bank": 1,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27106,
+    27139
+   ]
+  ]
  },
  "Sub_B1_AA03": {
   "addr": 43523,
   "bank": 1,
   "instrs": 53,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27139,
+    27236
+   ]
+  ]
  },
  "Sub_B1_AA64": {
   "addr": 43620,
   "bank": 1,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27236,
+    27258
+   ]
+  ]
  },
  "Sub_B1_AA7A": {
   "addr": 43642,
   "bank": 1,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27258,
+    27268
+   ]
+  ]
  },
  "Sub_B1_AA84": {
   "addr": 43652,
   "bank": 1,
   "instrs": 31,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27268,
+    27331
+   ]
+  ]
  },
  "Sub_B1_AAC3": {
   "addr": 43715,
   "bank": 1,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27331,
+    27349
+   ]
+  ]
  },
  "Sub_B1_AAD5": {
   "addr": 43733,
   "bank": 1,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27349,
+    27422
+   ]
+  ]
  },
  "Sub_B1_AB1E": {
   "addr": 43806,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27422,
+    27431
+   ]
+  ]
  },
  "Sub_B1_AB27": {
   "addr": 43815,
   "bank": 1,
   "instrs": 59,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27431,
+    27549
+   ]
+  ]
  },
  "Bank1ObjAnim_00": {
   "addr": 43947,
   "bank": 1,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27563,
+    27577
+   ]
+  ]
  },
  "Bank1ObjAnim_01": {
   "addr": 43961,
   "bank": 1,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27577,
+    27581
+   ]
+  ]
  },
  "Bank1ObjAnim_02": {
   "addr": 43965,
   "bank": 1,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27581,
+    27585
+   ]
+  ]
  },
  "Bank1ObjAnim_03": {
   "addr": 43969,
   "bank": 1,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27585,
+    27597
+   ]
+  ]
  },
  "Bank1ObjAnim_04": {
   "addr": 43981,
   "bank": 1,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27597,
+    27601
+   ]
+  ]
  },
  "Loc_B1_ABD1": {
   "addr": 43985,
   "bank": 1,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27601,
+    27616
+   ]
+  ]
  },
  "Sub_B1_ABE0": {
   "addr": 44000,
   "bank": 1,
   "instrs": 55,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27616,
+    27721
+   ]
+  ]
  },
  "Sub_B1_AC5B": {
   "addr": 44123,
   "bank": 1,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27739,
+    27777
+   ]
+  ]
  },
  "Sub_B1_AC8A": {
   "addr": 44170,
   "bank": 1,
   "instrs": 68,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27786,
+    27928
+   ]
+  ]
  },
  "Sub_B1_AD18": {
   "addr": 44312,
   "bank": 1,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    27928,
+    27939
+   ]
+  ]
  },
  "Sub_B1_AD82": {
   "addr": 44418,
   "bank": 1,
   "instrs": 99,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28034,
+    28227
+   ]
+  ]
  },
  "Sub_B1_AE43": {
   "addr": 44611,
   "bank": 1,
   "instrs": 27,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28227,
+    28278
+   ]
+  ]
  },
  "Sub_B1_AF00": {
   "addr": 44800,
   "bank": 1,
   "instrs": 47,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28416,
+    28526
+   ]
+  ]
  },
  "Sub_B1_AF6E": {
   "addr": 44910,
   "bank": 1,
   "instrs": 42,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28526,
+    28614
+   ]
+  ]
  },
  "Sub_B1_AFC6": {
   "addr": 44998,
   "bank": 1,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28614,
+    28643
+   ]
+  ]
  },
  "Sub_B1_AFE3": {
   "addr": 45027,
   "bank": 1,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28643,
+    28691
+   ]
+  ]
  },
  "Sub_B1_B013": {
   "addr": 45075,
   "bank": 1,
   "instrs": 57,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28691,
+    28828
+   ]
+  ]
  },
  "Sub_B1_B09C": {
   "addr": 45212,
   "bank": 1,
   "instrs": 43,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28828,
+    28911
+   ]
+  ]
  },
  "Sub_B1_B0EF": {
   "addr": 45295,
   "bank": 1,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    28911,
+    28959
+   ]
+  ]
  },
  "Loc_B2_8000": {
   "addr": 32768,
   "bank": 2,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    32768,
+    32777
+   ]
+  ]
  },
  "Bank2Nmi": {
   "addr": 32784,
   "bank": 2,
   "instrs": 135,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    32784,
+    32897
+   ],
+   [
+    32903,
+    33127
+   ]
+  ]
  },
  "Sub_B2_8081": {
   "addr": 32897,
   "bank": 2,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    32897,
+    32903
+   ],
+   [
+    33116,
+    33127
+   ]
+  ]
  },
  "Sub_B2_8167": {
   "addr": 33127,
   "bank": 2,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    33127,
+    33140
+   ]
+  ]
  },
  "Sub_B2_818E": {
   "addr": 33166,
   "bank": 2,
   "instrs": 27,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    33166,
+    33219
+   ]
+  ]
  },
  "Sub_B2_8211": {
   "addr": 33297,
   "bank": 2,
   "instrs": 47,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    33297,
+    33403
+   ],
+   [
+    33405,
+    33406
+   ]
+  ]
  },
  "Sub_B2_827E": {
   "addr": 33406,
   "bank": 2,
   "instrs": 27,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    33406,
+    33467
+   ]
+  ]
  },
  "Sub_B2_837A": {
   "addr": 33658,
   "bank": 2,
   "instrs": 39,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    33658,
+    33735
+   ]
+  ]
  },
  "Sub_B2_83C7": {
   "addr": 33735,
   "bank": 2,
   "instrs": 59,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    33735,
+    33850
+   ]
+  ]
  },
  "Sub_B2_8488": {
   "addr": 33928,
   "bank": 2,
   "instrs": 100,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    33928,
+    34161
+   ]
+  ]
  },
  "Sub_B2_8609": {
   "addr": 34313,
   "bank": 2,
   "instrs": 80,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    34313,
+    34476
+   ]
+  ]
  },
  "Sub_B2_87AC": {
   "addr": 34732,
   "bank": 2,
   "instrs": 83,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    34732,
+    34922
+   ]
+  ]
  },
  "Sub_B2_886A": {
   "addr": 34922,
   "bank": 2,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    34922,
+    34938
+   ]
+  ]
  },
  "Sub_B2_8882": {
   "addr": 34946,
   "bank": 2,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    34946,
+    34986
+   ]
+  ]
  },
  "Sub_B2_88AA": {
   "addr": 34986,
   "bank": 2,
   "instrs": 60,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    34986,
+    35128
+   ]
+  ]
  },
  "Sub_B2_8938": {
   "addr": 35128,
   "bank": 2,
   "instrs": 63,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    35128,
+    35282
+   ]
+  ]
  },
  "Sub_B2_89E2": {
   "addr": 35298,
   "bank": 2,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    35298,
+    35343
+   ]
+  ]
  },
  "Sub_B2_8A0F": {
   "addr": 35343,
   "bank": 2,
   "instrs": 102,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    35343,
+    35504
+   ],
+   [
+    35531,
+    35590
+   ]
+  ]
  },
  "Sub_B2_8AB0": {
   "addr": 35504,
   "bank": 2,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    35504,
+    35512
+   ]
+  ]
  },
  "Sub_B2_8AB8": {
   "addr": 35512,
   "bank": 2,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    35512,
+    35531
+   ]
+  ]
  },
  "Sub_B2_8B06": {
   "addr": 35590,
   "bank": 2,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    35590,
+    35598
+   ]
+  ]
  },
  "Sub_B2_90B0": {
   "addr": 37040,
   "bank": 2,
   "instrs": 50,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    37040,
+    37163
+   ]
+  ]
  },
  "Loc_B3_8000": {
   "addr": 32768,
   "bank": 3,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49152,
+    49161
+   ]
+  ]
  },
  "Bank3Nmi": {
   "addr": 32784,
   "bank": 3,
   "instrs": 50,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49168,
+    49281
+   ]
+  ]
  },
  "Bank3Dispatch_0421": {
   "addr": 32897,
   "bank": 3,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49281,
+    49300
+   ]
+  ]
  },
  "Sub_B3_8094": {
   "addr": 32916,
   "bank": 3,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49300,
+    49311
+   ]
+  ]
  },
  "Sub_B3_809F": {
   "addr": 32927,
   "bank": 3,
   "instrs": 59,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49311,
+    49451
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_812B": {
   "addr": 33067,
   "bank": 3,
   "instrs": 51,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49451,
+    49564
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_819C": {
   "addr": 33180,
   "bank": 3,
   "instrs": 27,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49564,
+    49633
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_81E1": {
   "addr": 33249,
   "bank": 3,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49633,
+    49660
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_81FC": {
   "addr": 33276,
   "bank": 3,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49660,
+    49665
+   ],
+   [
+    49677,
+    49692
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_8201": {
   "addr": 33281,
   "bank": 3,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49665,
+    49670
+   ],
+   [
+    49677,
+    49692
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_8206": {
   "addr": 33286,
   "bank": 3,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49670,
+    49675
+   ],
+   [
+    49677,
+    49692
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_820B": {
   "addr": 33291,
   "bank": 3,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49675,
+    49692
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_821C": {
   "addr": 33308,
   "bank": 3,
   "instrs": 29,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49692,
+    49757
+   ],
+   [
+    49760,
+    49761
+   ]
+  ]
  },
  "Sub_B3_825D": {
   "addr": 33373,
   "bank": 3,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49757,
+    49761
+   ]
+  ]
  },
  "Sub_B3_8261": {
   "addr": 33377,
   "bank": 3,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49761,
+    49788
+   ]
+  ]
  },
  "Sub_B3_827C": {
   "addr": 33404,
   "bank": 3,
   "instrs": 35,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    49788,
+    49864
+   ]
+  ]
  },
  "Sub_B3_87BA": {
   "addr": 34746,
   "bank": 3,
   "instrs": 30,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51130,
+    51199
+   ]
+  ]
  },
  "Bank3Dispatch_041C": {
   "addr": 34815,
   "bank": 3,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51199,
+    51229
+   ]
+  ]
  },
  "Sub_B3_881D": {
   "addr": 34845,
   "bank": 3,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51229,
+    51232
+   ],
+   [
+    51234,
+    51237
+   ],
+   [
+    51250,
+    51275
+   ]
+  ]
  },
  "Sub_B3_8825": {
   "addr": 34853,
   "bank": 3,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51237,
+    51240
+   ],
+   [
+    51242,
+    51245
+   ],
+   [
+    51250,
+    51275
+   ]
+  ]
  },
  "Sub_B3_882D": {
   "addr": 34861,
   "bank": 3,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51245,
+    51248
+   ],
+   [
+    51250,
+    51275
+   ]
+  ]
  },
  "Sub_B3_8866": {
   "addr": 34918,
   "bank": 3,
   "instrs": 193,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51302,
+    51561
+   ],
+   [
+    51589,
+    51678
+   ],
+   [
+    51737,
+    51745
+   ],
+   [
+    51770,
+    51771
+   ],
+   [
+    52492,
+    52572
+   ]
+  ]
  },
  "Sub_B3_8969": {
   "addr": 35177,
   "bank": 3,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51561,
+    51589
+   ],
+   [
+    51770,
+    51771
+   ]
+  ]
  },
  "Sub_B3_89DE": {
   "addr": 35294,
   "bank": 3,
   "instrs": 25,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51678,
+    51737
+   ],
+   [
+    51770,
+    51771
+   ]
+  ]
  },
  "Sub_B3_8A21": {
   "addr": 35361,
   "bank": 3,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51745,
+    51771
+   ]
+  ]
  },
  "Sub_B3_8A3B": {
   "addr": 35387,
   "bank": 3,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51771,
+    51796
+   ]
+  ]
  },
  "Sub_B3_8A54": {
   "addr": 35412,
   "bank": 3,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51796,
+    51817
+   ]
+  ]
  },
  "Sub_B3_8A69": {
   "addr": 35433,
   "bank": 3,
   "instrs": 70,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51817,
+    51956
+   ]
+  ]
  },
  "Sub_B3_8AF4": {
   "addr": 35572,
   "bank": 3,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51956,
+    51976
+   ]
+  ]
  },
  "Sub_B3_8B08": {
   "addr": 35592,
   "bank": 3,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51976,
+    51994
+   ]
+  ]
  },
  "Sub_B3_8B1A": {
   "addr": 35610,
   "bank": 3,
   "instrs": 51,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51994,
+    52087
+   ]
+  ]
  },
  "Sub_B3_8B77": {
   "addr": 35703,
   "bank": 3,
   "instrs": 32,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    52087,
+    52153
+   ]
+  ]
  },
  "Sub_B3_8BB9": {
   "addr": 35769,
   "bank": 3,
   "instrs": 94,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    52153,
+    52350
+   ]
+  ]
  },
  "Loc_B3_8C7E": {
   "addr": 35966,
   "bank": 3,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51770,
+    51771
+   ],
+   [
+    52350,
+    52385
+   ]
+  ]
  },
  "Sub_B3_8CA1": {
   "addr": 36001,
   "bank": 3,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    52385,
+    52429
+   ]
+  ]
  },
  "Loc_B3_8D5C": {
   "addr": 36188,
   "bank": 3,
   "instrs": 66,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51770,
+    51771
+   ],
+   [
+    52572,
+    52723
+   ]
+  ]
  },
  "Loc_B3_8DF3": {
   "addr": 36339,
   "bank": 3,
   "instrs": 69,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    51770,
+    51771
+   ],
+   [
+    52723,
+    52880
+   ]
+  ]
  },
  "Sub_B3_8E90": {
   "addr": 36496,
   "bank": 3,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    52880,
+    52907
+   ]
+  ]
  },
  "Sub_B3_8EAB": {
   "addr": 36523,
   "bank": 3,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    52907,
+    52925
+   ]
+  ]
  },
  "Sub_B3_8EE9": {
   "addr": 36585,
   "bank": 3,
   "instrs": 164,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    52969,
+    53021
+   ],
+   [
+    53023,
+    53053
+   ],
+   [
+    53055,
+    53344
+   ]
+  ]
  },
  "Sub_B3_9060": {
   "addr": 36960,
   "bank": 3,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    53344,
+    53382
+   ]
+  ]
  },
  "Sub_B3_9094": {
   "addr": 37012,
   "bank": 3,
   "instrs": 66,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    53396,
+    53424
+   ],
+   [
+    53570,
+    53681
+   ]
+  ]
  },
  "Sub_B3_90B0": {
   "addr": 37040,
   "bank": 3,
   "instrs": 83,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    53424,
+    53570
+   ],
+   [
+    53680,
+    53681
+   ]
+  ]
  },
  "Sub_B3_91B1": {
   "addr": 37297,
   "bank": 3,
   "instrs": 37,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    53681,
+    53759
+   ]
+  ]
  },
  "Sub_B3_91FF": {
   "addr": 37375,
   "bank": 3,
   "instrs": 86,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    53759,
+    53943
+   ]
+  ]
  },
  "Sub_B3_92B7": {
   "addr": 37559,
   "bank": 3,
   "instrs": 74,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    53943,
+    54114
+   ]
+  ]
  },
  "Sub_B3_9362": {
   "addr": 37730,
   "bank": 3,
   "instrs": 74,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    54114,
+    54289
+   ]
+  ]
  },
  "Loc_B4_8000": {
   "addr": 32768,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65536,
+    65545
+   ]
+  ]
  },
  "Bank4Nmi": {
   "addr": 32784,
   "bank": 4,
   "instrs": 62,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65552,
+    65699
+   ]
+  ]
  },
  "Sub_B4_80B3": {
   "addr": 32947,
   "bank": 4,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65715,
+    65733
+   ]
+  ]
  },
  "Bank4State_00": {
   "addr": 33031,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65799,
+    65810
+   ]
+  ]
  },
  "Bank4State_03": {
   "addr": 33042,
   "bank": 4,
   "instrs": 43,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65810,
+    65821
+   ],
+   [
+    66710,
+    66805
+   ]
+  ]
  },
  "Bank4State_01": {
   "addr": 33053,
   "bank": 4,
   "instrs": 43,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65821,
+    65832
+   ],
+   [
+    66710,
+    66805
+   ]
+  ]
  },
  "Bank4State_02": {
   "addr": 33064,
   "bank": 4,
   "instrs": 43,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65832,
+    65843
+   ],
+   [
+    66710,
+    66805
+   ]
+  ]
  },
  "Bank4State_04": {
   "addr": 33075,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65843,
+    65849
+   ]
+  ]
  },
  "Bank4State_05": {
   "addr": 33081,
   "bank": 4,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65849,
+    65893
+   ]
+  ]
  },
  "Bank4State_06": {
   "addr": 33125,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65893,
+    65911
+   ]
+  ]
  },
  "Bank4State_07": {
   "addr": 33143,
   "bank": 4,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65911,
+    65928
+   ],
+   [
+    69815,
+    69822
+   ]
+  ]
  },
  "Bank4State_08": {
   "addr": 33160,
   "bank": 4,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65928,
+    65976
+   ]
+  ]
  },
  "Bank4State_09": {
   "addr": 33217,
   "bank": 4,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65985,
+    65996
+   ],
+   [
+    66825,
+    66882
+   ]
+  ]
  },
  "Bank4State_0A": {
   "addr": 33228,
   "bank": 4,
   "instrs": 27,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    65996,
+    66037
+   ],
+   [
+    66302,
+    66309
+   ],
+   [
+    68891,
+    68901
+   ]
+  ]
  },
  "Bank4State_0B": {
   "addr": 33269,
   "bank": 4,
   "instrs": 65,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66037,
+    66099
+   ],
+   [
+    68307,
+    68397
+   ]
+  ]
  },
  "Bank4State_0C": {
   "addr": 33331,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66099,
+    66105
+   ]
+  ]
  },
  "Bank4State_0D": {
   "addr": 33337,
   "bank": 4,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66105,
+    66144
+   ]
+  ]
  },
  "Bank4State_0E": {
   "addr": 33376,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66144,
+    66148
+   ]
+  ]
  },
  "Bank4State_0F": {
   "addr": 33380,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66148,
+    66157
+   ],
+   [
+    69815,
+    69822
+   ]
+  ]
  },
  "Bank4State_10": {
   "addr": 33389,
   "bank": 4,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66157,
+    66180
+   ]
+  ]
  },
  "Bank4State_11": {
   "addr": 33412,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66180,
+    66186
+   ]
+  ]
  },
  "Bank4State_12": {
   "addr": 33418,
   "bank": 4,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66186,
+    66209
+   ]
+  ]
  },
  "Bank4State_13": {
   "addr": 33550,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66318,
+    66324
+   ]
+  ]
  },
  "Bank4State_14": {
   "addr": 33556,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66324,
+    66342
+   ]
+  ]
  },
  "Bank4State_15": {
   "addr": 33574,
   "bank": 4,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66342,
+    66365
+   ],
+   [
+    69815,
+    69822
+   ]
+  ]
  },
  "Bank4State_16": {
   "addr": 33597,
   "bank": 4,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66365,
+    66399
+   ]
+  ]
  },
  "Bank4State_17": {
   "addr": 33633,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66401,
+    66407
+   ]
+  ]
  },
  "Bank4State_18": {
   "addr": 33639,
   "bank": 4,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66407,
+    66445
+   ]
+  ]
  },
  "Bank4State_19": {
   "addr": 33677,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66445,
+    66451
+   ]
+  ]
  },
  "Bank4State_1A": {
   "addr": 33683,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66302,
+    66309
+   ],
+   [
+    66451,
+    66457
+   ]
+  ]
  },
  "Bank4State_1B": {
   "addr": 33689,
   "bank": 4,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66457,
+    66486
+   ]
+  ]
  },
  "Bank4State_1C": {
   "addr": 33718,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66486,
+    66492
+   ]
+  ]
  },
  "Bank4State_1D": {
   "addr": 33724,
   "bank": 4,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66492,
+    66527
+   ]
+  ]
  },
  "Bank4State_1E": {
   "addr": 33759,
   "bank": 4,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66527,
+    66589
+   ]
+  ]
  },
  "Bank4State_1F": {
   "addr": 33821,
   "bank": 4,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66589,
+    66618
+   ]
+  ]
  },
  "Bank4State_20": {
   "addr": 33857,
   "bank": 4,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66625,
+    66652
+   ]
+  ]
  },
  "Sub_B4_846E": {
   "addr": 33902,
   "bank": 4,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66670,
+    66675
+   ],
+   [
+    66677,
+    66689
+   ]
+  ]
  },
  "Sub_B4_8473": {
   "addr": 33907,
   "bank": 4,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66675,
+    66689
+   ]
+  ]
  },
  "Sub_B4_8481": {
   "addr": 33921,
   "bank": 4,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66689,
+    66710
+   ]
+  ]
  },
  "Sub_B4_84F5": {
   "addr": 34037,
   "bank": 4,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66805,
+    66815
+   ]
+  ]
  },
  "Sub_B4_84FF": {
   "addr": 34047,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66815,
+    66825
+   ]
+  ]
  },
  "Sub_B4_8546": {
   "addr": 34118,
   "bank": 4,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66886,
+    66947
+   ]
+  ]
  },
  "Sub_B4_8583": {
   "addr": 34179,
   "bank": 4,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66947,
+    66977
+   ]
+  ]
  },
  "Bank4StateB_00": {
   "addr": 34259,
   "bank": 4,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67027,
+    67032
+   ]
+  ]
  },
  "Bank4StateB_01": {
   "addr": 34264,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67032,
+    67039
+   ]
+  ]
  },
  "Bank4StateB_02": {
   "addr": 34271,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67039,
+    67046
+   ]
+  ]
  },
  "Bank4StateB_03": {
   "addr": 34278,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67046,
+    67053
+   ]
+  ]
  },
  "Bank4StateB_04": {
   "addr": 34285,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67053,
+    67060
+   ]
+  ]
  },
  "Bank4StateB_05": {
   "addr": 34292,
   "bank": 4,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67060,
+    67085
+   ]
+  ]
  },
  "Bank4StateB_06": {
   "addr": 34317,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67085,
+    67101
+   ]
+  ]
  },
  "Bank4StateB_07": {
   "addr": 34333,
   "bank": 4,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67101,
+    67113
+   ]
+  ]
  },
  "Bank4StateB_08": {
   "addr": 34345,
   "bank": 4,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67113,
+    67159
+   ]
+  ]
  },
  "Bank4StateB_09": {
   "addr": 34391,
   "bank": 4,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67159,
+    67178
+   ]
+  ]
  },
  "Bank4StateB_0A": {
   "addr": 34410,
   "bank": 4,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67178,
+    67200
+   ]
+  ]
  },
  "Bank4StateB_0B": {
   "addr": 34432,
   "bank": 4,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67149,
+    67159
+   ],
+   [
+    67200,
+    67243
+   ]
+  ]
  },
  "Bank4StateB_0C": {
   "addr": 34475,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67243,
+    67252
+   ]
+  ]
  },
  "Bank4StateB_0D": {
   "addr": 34484,
   "bank": 4,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67252,
+    67281
+   ]
+  ]
  },
  "Sub_B4_86D1": {
   "addr": 34513,
   "bank": 4,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    67281,
+    67295
+   ]
+  ]
  },
  "Sub_B4_8B2D": {
   "addr": 35629,
   "bank": 4,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    68397,
+    68419
+   ]
+  ]
  },
  "Sub_B4_8B43": {
   "addr": 35651,
   "bank": 4,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    68419,
+    68457
+   ]
+  ]
  },
  "Sub_B4_8BC9": {
   "addr": 35785,
   "bank": 4,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    68553,
+    68576
+   ]
+  ]
  },
  "Sub_B4_8BFB": {
   "addr": 35835,
   "bank": 4,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    68603,
+    68632
+   ]
+  ]
  },
  "Sub_B4_8C18": {
   "addr": 35864,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    68632,
+    68638
+   ]
+  ]
  },
  "Sub_B4_8C1E": {
   "addr": 35870,
   "bank": 4,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    68638,
+    68655
+   ]
+  ]
  },
  "Sub_B4_8D25": {
   "addr": 36133,
   "bank": 4,
   "instrs": 124,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    68901,
+    68998
+   ],
+   [
+    69006,
+    69126
+   ],
+   [
+    73719,
+    73755
+   ]
+  ]
  },
  "Sub_B4_8E06": {
   "addr": 36358,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69126,
+    69139
+   ]
+  ]
  },
  "Sub_B4_8E13": {
   "addr": 36371,
   "bank": 4,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69139,
+    69174
+   ]
+  ]
  },
  "Bank4StateC_00": {
   "addr": 36496,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69264,
+    69266
+   ]
+  ]
  },
  "Bank4StateC_01": {
   "addr": 36498,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69266,
+    69276
+   ]
+  ]
  },
  "Bank4StateC_02": {
   "addr": 36508,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69276,
+    69288
+   ]
+  ]
  },
  "Bank4StateC_06": {
   "addr": 36520,
   "bank": 4,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69288,
+    69300
+   ]
+  ]
  },
  "Bank4StateC_0A": {
   "addr": 36532,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69300,
+    69310
+   ]
+  ]
  },
  "Bank4StateC_11": {
   "addr": 36542,
   "bank": 4,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69310,
+    69323
+   ]
+  ]
  },
  "Loc_B4_8ECB": {
   "addr": 36555,
   "bank": 4,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69323,
+    69341
+   ]
+  ]
  },
  "Sub_B4_8EDD": {
   "addr": 36573,
   "bank": 4,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69341,
+    69360
+   ]
+  ]
  },
  "Sub_B4_8FAB": {
   "addr": 36779,
   "bank": 4,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69547,
+    69563
+   ]
+  ]
  },
  "Loc_B4_8FBB": {
   "addr": 36795,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69563,
+    69573
+   ]
+  ]
  },
  "Sub_B4_8FCD": {
   "addr": 36813,
   "bank": 4,
   "instrs": 25,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69581,
+    69638
+   ]
+  ]
  },
  "Sub_B4_9006": {
   "addr": 36870,
   "bank": 4,
   "instrs": 23,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69638,
+    69671
+   ],
+   [
+    69673,
+    69696
+   ]
+  ]
  },
  "Sub_B4_9049": {
   "addr": 36937,
   "bank": 4,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69705,
+    69728
+   ]
+  ]
  },
  "Sub_B4_9074": {
   "addr": 36980,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69748,
+    69751
+   ],
+   [
+    69753,
+    69754
+   ]
+  ]
  },
  "Sub_B4_909E": {
   "addr": 37022,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69790,
+    69802
+   ]
+  ]
  },
  "Sub_B4_90BE": {
   "addr": 37054,
   "bank": 4,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69822,
+    69829
+   ]
+  ]
  },
  "Sub_B4_90D9": {
   "addr": 37081,
   "bank": 4,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69849,
+    69870
+   ]
+  ]
  },
  "Loc_B4_90EE": {
   "addr": 37102,
   "bank": 4,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69870,
+    69891
+   ]
+  ]
  },
  "Sub_B4_915B": {
   "addr": 37211,
   "bank": 4,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    69979,
+    70014
+   ]
+  ]
  },
  "Sub_B4_917E": {
   "addr": 37246,
   "bank": 4,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    70014,
+    70037
+   ]
+  ]
  },
  "Sub_B4_956B": {
   "addr": 38251,
   "bank": 4,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71019,
+    71049
+   ]
+  ]
  },
  "Sub_B4_9589": {
   "addr": 38281,
   "bank": 4,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71049,
+    71106
+   ]
+  ]
  },
  "Sub_B4_95C2": {
   "addr": 38338,
   "bank": 4,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71106,
+    71112
+   ]
+  ]
  },
  "Sub_B4_95C8": {
   "addr": 38344,
   "bank": 4,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71112,
+    71136
+   ]
+  ]
  },
  "Sub_B4_9603": {
   "addr": 38403,
   "bank": 4,
   "instrs": 120,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71171,
+    71402
+   ],
+   [
+    71504,
+    71512
+   ]
+  ]
  },
  "Sub_B4_96EA": {
   "addr": 38634,
   "bank": 4,
   "instrs": 54,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    66984,
+    66999
+   ],
+   [
+    71402,
+    71504
+   ]
+  ]
  },
  "Sub_B4_9868": {
   "addr": 39016,
   "bank": 4,
   "instrs": 24,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71784,
+    71822
+   ],
+   [
+    72020,
+    72035
+   ]
+  ]
  },
  "Sub_B4_988E": {
   "addr": 39054,
   "bank": 4,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71822,
+    71843
+   ]
+  ]
  },
  "Sub_B4_98A3": {
   "addr": 39075,
   "bank": 4,
   "instrs": 40,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71843,
+    71920
+   ]
+  ]
  },
  "Sub_B4_98F6": {
   "addr": 39158,
   "bank": 4,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71926,
+    71948
+   ]
+  ]
  },
  "Sub_B4_990C": {
   "addr": 39180,
   "bank": 4,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71948,
+    71970
+   ]
+  ]
  },
  "Sub_B4_9922": {
   "addr": 39202,
   "bank": 4,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    71970,
+    72003
+   ]
+  ]
  },
  "Sub_B4_9943": {
   "addr": 39235,
   "bank": 4,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    72003,
+    72020
+   ]
+  ]
  },
  "Sub_B4_9963": {
   "addr": 39267,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    72035,
+    72053
+   ]
+  ]
  },
  "Sub_B4_9975": {
   "addr": 39285,
   "bank": 4,
   "instrs": 29,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    72053,
+    72110
+   ]
+  ]
  },
  "Sub_B4_9A2C": {
   "addr": 39468,
   "bank": 4,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    72236,
+    72239
+   ],
+   [
+    72241,
+    72242
+   ]
+  ]
  },
  "Sub_B4_9A73": {
   "addr": 39539,
   "bank": 4,
   "instrs": 54,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    72307,
+    72422
+   ],
+   [
+    72424,
+    72428
+   ],
+   [
+    72430,
+    72431
+   ]
+  ]
  },
  "Sub_B4_9F2F": {
   "addr": 40751,
   "bank": 4,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73519,
+    73538
+   ],
+   [
+    73540,
+    73555
+   ],
+   [
+    73557,
+    73576
+   ],
+   [
+    73578,
+    73593
+   ],
+   [
+    73595,
+    73596
+   ]
+  ]
  },
  "Sub_B4_9F7C": {
   "addr": 40828,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73596,
+    73609
+   ]
+  ]
  },
  "Sub_B4_9F94": {
   "addr": 40852,
   "bank": 4,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73620,
+    73662
+   ]
+  ]
  },
  "Loc_B4_9FBE": {
   "addr": 40894,
   "bank": 4,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73662,
+    73683
+   ]
+  ]
  },
  "Sub_B4_9FD3": {
   "addr": 40915,
   "bank": 4,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73683,
+    73705
+   ]
+  ]
  },
  "Sub_B4_A01B": {
   "addr": 40987,
   "bank": 4,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73755,
+    73800
+   ]
+  ]
  },
  "Sub_B4_A04D": {
   "addr": 41037,
   "bank": 4,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73805,
+    73816
+   ]
+  ]
  },
  "Sub_B4_A068": {
   "addr": 41064,
   "bank": 4,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73832,
+    73843
+   ]
+  ]
  },
  "Sub_B4_A083": {
   "addr": 41091,
   "bank": 4,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73859,
+    73870
+   ]
+  ]
  },
  "Sub_B4_A09E": {
   "addr": 41118,
   "bank": 4,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73886,
+    73897
+   ]
+  ]
  },
  "Sub_B4_A0D9": {
   "addr": 41177,
   "bank": 4,
   "instrs": 24,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    73945,
+    73982
+   ],
+   [
+    74052,
+    74055
+   ],
+   [
+    74057,
+    74067
+   ]
+  ]
  },
  "Sub_B4_A114": {
   "addr": 41236,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    74004,
+    74007
+   ],
+   [
+    74009,
+    74019
+   ]
+  ]
  },
  "Sub_B4_A15F": {
   "addr": 41311,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    74079,
+    74092
+   ]
+  ]
  },
  "Sub_B4_AFE8": {
   "addr": 45032,
   "bank": 4,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    77800,
+    77815
+   ]
+  ]
  },
  "Sub_B4_B402": {
   "addr": 46082,
   "bank": 4,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    78850,
+    78869
+   ]
+  ]
  },
  "Loc_B4_B415": {
   "addr": 46101,
   "bank": 4,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    78869,
+    78890
+   ]
+  ]
  },
  "Loc_B4_B42A": {
   "addr": 46122,
   "bank": 4,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    78890,
+    78909
+   ]
+  ]
  },
  "Loc_B4_B43D": {
   "addr": 46141,
   "bank": 4,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    78909,
+    78923
+   ]
+  ]
  },
  "Loc_B4_B44B": {
   "addr": 46155,
   "bank": 4,
   "instrs": 23,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    78923,
+    78964
+   ]
+  ]
  },
  "Sub_B4_B474": {
   "addr": 46196,
   "bank": 4,
   "instrs": 28,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    78964,
+    79026
+   ]
+  ]
  },
  "Sub_B4_B4B2": {
   "addr": 46258,
   "bank": 4,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    79026,
+    79035
+   ]
+  ]
  },
  "Sub_B4_B4BB": {
   "addr": 46267,
   "bank": 4,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    79035,
+    79068
+   ]
+  ]
  },
  "Loc_B5_8000": {
   "addr": 32768,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    81920,
+    81929
+   ]
+  ]
  },
  "Bank5Nmi": {
   "addr": 32784,
   "bank": 5,
   "instrs": 24,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    81936,
+    81999
+   ]
+  ]
  },
  "Bank5SceneDispatch": {
   "addr": 32847,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    81999,
+    82017
+   ]
+  ]
  },
  "Bank5Scene_00": {
   "addr": 33081,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82233,
+    82252
+   ]
+  ]
  },
  "Sub_B5_814C": {
   "addr": 33100,
   "bank": 5,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82252,
+    82259
+   ]
+  ]
  },
  "Bank5Scene_01": {
   "addr": 33107,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82235,
+    82252
+   ],
+   [
+    82259,
+    82264
+   ]
+  ]
  },
  "Bank5Scene_02": {
   "addr": 33112,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82235,
+    82252
+   ],
+   [
+    82264,
+    82269
+   ]
+  ]
  },
  "Bank5Scene_03": {
   "addr": 33117,
   "bank": 5,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82235,
+    82252
+   ],
+   [
+    82269,
+    82283
+   ]
+  ]
  },
  "Bank5Scene_04": {
   "addr": 33131,
   "bank": 5,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82283,
+    82294
+   ],
+   [
+    84651,
+    84673
+   ],
+   [
+    84675,
+    84692
+   ]
+  ]
  },
  "Bank5Scene_05": {
   "addr": 33142,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82294,
+    82307
+   ],
+   [
+    82313,
+    82314
+   ]
+  ]
  },
  "Sub_B5_8183": {
   "addr": 33155,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82307,
+    82314
+   ]
+  ]
  },
  "Bank5Scene_06": {
   "addr": 33162,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82314,
+    82334
+   ]
+  ]
  },
  "Bank5Scene_07": {
   "addr": 33182,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82334,
+    82348
+   ]
+  ]
  },
  "Bank5Scene_08": {
   "addr": 33196,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82348,
+    82365
+   ]
+  ]
  },
  "Bank5Scene_09": {
   "addr": 33213,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82365,
+    82379
+   ]
+  ]
  },
  "Bank5Scene_0A": {
   "addr": 33227,
   "bank": 5,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82379,
+    82402
+   ]
+  ]
  },
  "Bank5Scene_0B": {
   "addr": 33250,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82402,
+    82411
+   ]
+  ]
  },
  "Bank5Scene_0C": {
   "addr": 33259,
   "bank": 5,
   "instrs": 40,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82411,
+    82422
+   ],
+   [
+    85997,
+    86079
+   ]
+  ]
  },
  "Bank5Scene_0D": {
   "addr": 33270,
   "bank": 5,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82422,
+    82443
+   ],
+   [
+    85853,
+    85896
+   ]
+  ]
  },
  "Bank5Scene_0E": {
   "addr": 33291,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82443,
+    82460
+   ]
+  ]
  },
  "Bank5Scene_0F": {
   "addr": 33308,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82460,
+    82474
+   ]
+  ]
  },
  "Bank5Scene_10": {
   "addr": 33322,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82474,
+    82486
+   ]
+  ]
  },
  "Bank5Scene_11": {
   "addr": 33334,
   "bank": 5,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82486,
+    82515
+   ]
+  ]
  },
  "Bank5Scene_12": {
   "addr": 33363,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82515,
+    82526
+   ]
+  ]
  },
  "Bank5Scene_13": {
   "addr": 33374,
   "bank": 5,
   "instrs": 82,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82526,
+    82566
+   ],
+   [
+    83790,
+    83936
+   ]
+  ]
  },
  "Bank5Scene_14": {
   "addr": 33418,
   "bank": 5,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82570,
+    82589
+   ],
+   [
+    82665,
+    82683
+   ]
+  ]
  },
  "Bank5Scene_15": {
   "addr": 33437,
   "bank": 5,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82589,
+    82615
+   ],
+   [
+    82665,
+    82683
+   ]
+  ]
  },
  "Bank5Scene_16": {
   "addr": 33463,
   "bank": 5,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82615,
+    82629
+   ],
+   [
+    82665,
+    82683
+   ]
+  ]
  },
  "Bank5Scene_17": {
   "addr": 33477,
   "bank": 5,
   "instrs": 76,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82629,
+    82656
+   ],
+   [
+    83790,
+    83936
+   ]
+  ]
  },
  "Bank5Scene_18": {
   "addr": 33504,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82656,
+    82665
+   ]
+  ]
  },
  "Bank5Scene_19": {
   "addr": 33531,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82683,
+    82694
+   ]
+  ]
  },
  "Bank5Scene_1A": {
   "addr": 33542,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82694,
+    82705
+   ]
+  ]
  },
  "Bank5Scene_1B": {
   "addr": 33553,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82705,
+    82722
+   ]
+  ]
  },
  "Bank5Scene_1C": {
   "addr": 33570,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82722,
+    82739
+   ]
+  ]
  },
  "Bank5Scene_1D": {
   "addr": 33587,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82739,
+    82756
+   ]
+  ]
  },
  "Bank5Scene_1E": {
   "addr": 33604,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82756,
+    82776
+   ]
+  ]
  },
  "Bank5Scene_1F": {
   "addr": 33624,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82776,
+    82785
+   ]
+  ]
  },
  "Bank5Scene_20": {
   "addr": 33633,
   "bank": 5,
   "instrs": 24,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82785,
+    82796
+   ],
+   [
+    86079,
+    86127
+   ]
+  ]
  },
  "Bank5Scene_21": {
   "addr": 33644,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82796,
+    82810
+   ]
+  ]
  },
  "Bank5Scene_22": {
   "addr": 33658,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82810,
+    82822
+   ]
+  ]
  },
  "Bank5Scene_23": {
   "addr": 33670,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82822,
+    82826
+   ]
+  ]
  },
  "Bank5Scene_24": {
   "addr": 33674,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82826,
+    82830
+   ]
+  ]
  },
  "Sub_B5_838E": {
   "addr": 33678,
   "bank": 5,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82830,
+    82867
+   ]
+  ]
  },
  "Bank5Scene_25": {
   "addr": 33715,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82867,
+    82882
+   ]
+  ]
  },
  "Bank5Scene_26": {
   "addr": 33730,
   "bank": 5,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82497,
+    82515
+   ],
+   [
+    82882,
+    82907
+   ]
+  ]
  },
  "Bank5Scene_27": {
   "addr": 33755,
   "bank": 5,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82907,
+    82924
+   ],
+   [
+    83047,
+    83080
+   ]
+  ]
  },
  "Bank5Scene_28": {
   "addr": 33772,
   "bank": 5,
   "instrs": 48,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    82924,
+    83004
+   ],
+   [
+    83047,
+    83080
+   ]
+  ]
  },
  "Bank5Scene_29": {
   "addr": 33852,
   "bank": 5,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83004,
+    83031
+   ],
+   [
+    83047,
+    83080
+   ]
+  ]
  },
  "Bank5Scene_2A": {
   "addr": 33879,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83031,
+    83042
+   ]
+  ]
  },
  "Sub_B5_8462": {
   "addr": 33890,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83042,
+    83047
+   ]
+  ]
  },
  "Bank5Scene_2B": {
   "addr": 33928,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83080,
+    83094
+   ]
+  ]
  },
  "Bank5Scene_2C": {
   "addr": 33942,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83094,
+    83103
+   ]
+  ]
  },
  "Bank5Scene_37": {
   "addr": 33951,
   "bank": 5,
   "instrs": 27,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83103,
+    83109
+   ],
+   [
+    87180,
+    87215
+   ],
+   [
+    87217,
+    87239
+   ]
+  ]
  },
  "Bank5Scene_38": {
   "addr": 33957,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83109,
+    83120
+   ]
+  ]
  },
  "Bank5Scene_39": {
   "addr": 33968,
   "bank": 5,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83120,
+    83146
+   ]
+  ]
  },
  "Bank5Scene_3A": {
   "addr": 33994,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83146,
+    83162
+   ]
+  ]
  },
  "Bank5Scene_3B": {
   "addr": 34010,
   "bank": 5,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83162,
+    83187
+   ]
+  ]
  },
  "Bank5Scene_3C": {
   "addr": 34035,
   "bank": 5,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83187,
+    83219
+   ]
+  ]
  },
  "Bank5Scene_46": {
   "addr": 34067,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83219,
+    83232
+   ]
+  ]
  },
  "Bank5Scene_47": {
   "addr": 34080,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83232,
+    83253
+   ]
+  ]
  },
  "Bank5Scene_48": {
   "addr": 34101,
   "bank": 5,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83238,
+    83284
+   ]
+  ]
  },
  "Bank5Scene_49": {
   "addr": 34132,
   "bank": 5,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83238,
+    83253
+   ],
+   [
+    83275,
+    83302
+   ]
+  ]
  },
  "Bank5Scene_4A": {
   "addr": 34150,
   "bank": 5,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83238,
+    83253
+   ],
+   [
+    83275,
+    83284
+   ],
+   [
+    83302,
+    83326
+   ]
+  ]
  },
  "Bank5Scene_4B": {
   "addr": 34174,
   "bank": 5,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83238,
+    83253
+   ],
+   [
+    83275,
+    83284
+   ],
+   [
+    83326,
+    83345
+   ]
+  ]
  },
  "Bank5Scene_4C": {
   "addr": 34193,
   "bank": 5,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83238,
+    83253
+   ],
+   [
+    83275,
+    83284
+   ],
+   [
+    83345,
+    83368
+   ]
+  ]
  },
  "Bank5Scene_4D": {
   "addr": 34216,
   "bank": 5,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83238,
+    83253
+   ],
+   [
+    83368,
+    83388
+   ]
+  ]
  },
  "Bank5Scene_2D": {
   "addr": 34236,
   "bank": 5,
   "instrs": 35,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83388,
+    83394
+   ],
+   [
+    87941,
+    87977
+   ],
+   [
+    87979,
+    88023
+   ]
+  ]
  },
  "Bank5Scene_2E": {
   "addr": 34242,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83394,
+    83408
+   ]
+  ]
  },
  "Bank5Scene_2F": {
   "addr": 34256,
   "bank": 5,
   "instrs": 25,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83408,
+    83464
+   ]
+  ]
  },
  "Bank5Scene_4E": {
   "addr": 34312,
   "bank": 5,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83464,
+    83470
+   ],
+   [
+    89418,
+    89446
+   ],
+   [
+    89448,
+    89466
+   ]
+  ]
  },
  "Bank5Scene_4F": {
   "addr": 34318,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83470,
+    83487
+   ]
+  ]
  },
  "Bank5Scene_50": {
   "addr": 34335,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83487,
+    83501
+   ]
+  ]
  },
  "Bank5Scene_51": {
   "addr": 34349,
   "bank": 5,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83501,
+    83526
+   ]
+  ]
  },
  "Bank5Scene_52": {
   "addr": 34374,
   "bank": 5,
   "instrs": 82,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83526,
+    83532
+   ],
+   [
+    88622,
+    88674
+   ],
+   [
+    88676,
+    88805
+   ]
+  ]
  },
  "Bank5Scene_53": {
   "addr": 34380,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83532,
+    83549
+   ]
+  ]
  },
  "Bank5Scene_54": {
   "addr": 34397,
   "bank": 5,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83549,
+    83570
+   ]
+  ]
  },
  "Bank5Scene_55": {
   "addr": 34418,
   "bank": 5,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83570,
+    83576
+   ],
+   [
+    89480,
+    89508
+   ],
+   [
+    89510,
+    89518
+   ]
+  ]
  },
  "Bank5Scene_56": {
   "addr": 34424,
   "bank": 5,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83576,
+    83598
+   ]
+  ]
  },
  "Bank5Scene_57": {
   "addr": 34446,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83598,
+    83612
+   ]
+  ]
  },
  "Bank5Scene_58": {
   "addr": 34460,
   "bank": 5,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83612,
+    83618
+   ],
+   [
+    86079,
+    86127
+   ]
+  ]
  },
  "Bank5Scene_59": {
   "addr": 34466,
   "bank": 5,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83618,
+    83643
+   ]
+  ]
  },
  "Bank5Scene_5A": {
   "addr": 34491,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83643,
+    83660
+   ]
+  ]
  },
  "Bank5Scene_5B": {
   "addr": 34508,
   "bank": 5,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83660,
+    83666
+   ],
+   [
+    89356,
+    89384
+   ],
+   [
+    89386,
+    89389
+   ]
+  ]
  },
  "Bank5Scene_5C": {
   "addr": 34514,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83666,
+    83677
+   ]
+  ]
  },
  "Bank5Scene_5D": {
   "addr": 34525,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83677,
+    83689
+   ]
+  ]
  },
  "Sub_B5_86EA": {
   "addr": 34538,
   "bank": 5,
   "instrs": 31,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83690,
+    83701
+   ],
+   [
+    89531,
+    89564
+   ],
+   [
+    89566,
+    89601
+   ]
+  ]
  },
  "Sub_B5_86F5": {
   "addr": 34549,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83701,
+    83713
+   ]
+  ]
  },
  "Sub_B5_8701": {
   "addr": 34561,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83713,
+    83725
+   ]
+  ]
  },
  "Sub_B5_870D": {
   "addr": 34573,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83725,
+    83731
+   ]
+  ]
  },
  "Sub_B5_8713": {
   "addr": 34579,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83731,
+    83735
+   ]
+  ]
  },
  "Sub_B5_8717": {
   "addr": 34583,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83735,
+    83739
+   ]
+  ]
  },
  "Sub_B5_871B": {
   "addr": 34587,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83739,
+    83745
+   ]
+  ]
  },
  "Sub_B5_8721": {
   "addr": 34593,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83745,
+    83749
+   ]
+  ]
  },
  "Sub_B5_8725": {
   "addr": 34597,
   "bank": 5,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83749,
+    83755
+   ]
+  ]
  },
  "Sub_B5_87E0": {
   "addr": 34784,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83936,
+    83944
+   ]
+  ]
  },
  "Sub_B5_87E8": {
   "addr": 34792,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83944,
+    83955
+   ]
+  ]
  },
  "Sub_B5_87F3": {
   "addr": 34803,
   "bank": 5,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83955,
+    83974
+   ]
+  ]
  },
  "Sub_B5_8806": {
   "addr": 34822,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    83974,
+    83980
+   ]
+  ]
  },
  "Sub_B5_887E": {
   "addr": 34942,
   "bank": 5,
   "instrs": 54,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84094,
+    84195
+   ]
+  ]
  },
  "Sub_B5_8944": {
   "addr": 35140,
   "bank": 5,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84292,
+    84315
+   ]
+  ]
  },
  "Sub_B5_895B": {
   "addr": 35163,
   "bank": 5,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84315,
+    84317
+   ]
+  ]
  },
  "Sub_B5_895D": {
   "addr": 35165,
   "bank": 5,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84317,
+    84319
+   ]
+  ]
  },
  "Sub_B5_895F": {
   "addr": 35167,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84319,
+    84326
+   ]
+  ]
  },
  "Sub_B5_8966": {
   "addr": 35174,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84326,
+    84337
+   ]
+  ]
  },
  "Sub_B5_8971": {
   "addr": 35185,
   "bank": 5,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84337,
+    84339
+   ]
+  ]
  },
  "Sub_B5_8973": {
   "addr": 35187,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84339,
+    84348
+   ]
+  ]
  },
  "Sub_B5_897C": {
   "addr": 35196,
   "bank": 5,
   "instrs": 34,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84348,
+    84378
+   ],
+   [
+    84380,
+    84435
+   ]
+  ]
  },
  "Bank5SubStateDispatch": {
   "addr": 35553,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84705,
+    84723
+   ]
+  ]
  },
  "Bank5SubScene_00": {
   "addr": 35593,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84745,
+    84754
+   ]
+  ]
  },
  "Bank5SubScene_01": {
   "addr": 35602,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84754,
+    84772
+   ]
+  ]
  },
  "Data_B5_8B24": {
   "addr": 35620,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84772,
+    84787
+   ]
+  ]
  },
  "Bank5SubScene_02": {
   "addr": 35625,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84777,
+    84787
+   ]
+  ]
  },
  "Sub_B5_8B33": {
   "addr": 35635,
   "bank": 5,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84787,
+    84795
+   ]
+  ]
  },
  "Bank5SubScene_03": {
   "addr": 35647,
   "bank": 5,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84799,
+    84831
+   ]
+  ]
  },
  "Bank5SubScene_04": {
   "addr": 35687,
   "bank": 5,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84839,
+    84873
+   ]
+  ]
  },
  "Bank5SubScene_05": {
   "addr": 35730,
   "bank": 5,
   "instrs": 18,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84882,
+    84919
+   ]
+  ]
  },
  "Bank5SubScene_06": {
   "addr": 35791,
   "bank": 5,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84943,
+    84973
+   ]
+  ]
  },
  "Bank5SubScene_07": {
   "addr": 35824,
   "bank": 5,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84976,
+    85004
+   ]
+  ]
  },
  "Sub_B5_8C0C": {
   "addr": 35852,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85004,
+    85016
+   ]
+  ]
  },
  "Bank5SubScene_08": {
   "addr": 35912,
   "bank": 5,
   "instrs": 18,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    84986,
+    85004
+   ],
+   [
+    85064,
+    85086
+   ]
+  ]
  },
  "Bank5SubScene_09": {
   "addr": 35937,
   "bank": 5,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85089,
+    85119
+   ]
+  ]
  },
  "Bank5SubScene_0A": {
   "addr": 35982,
   "bank": 5,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85134,
+    85164
+   ]
+  ]
  },
  "Bank5NextAnimFrame": {
   "addr": 36027,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85179,
+    85188
+   ]
+  ]
  },
  "Sub_B5_8CC4": {
   "addr": 36036,
   "bank": 5,
   "instrs": 38,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85188,
+    85248
+   ],
+   [
+    85282,
+    85306
+   ]
+  ]
  },
  "Sub_B5_8D00": {
   "addr": 36096,
   "bank": 5,
   "instrs": 38,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85230,
+    85306
+   ]
+  ]
  },
  "Sub_B5_8E22": {
   "addr": 36386,
   "bank": 5,
   "instrs": 67,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85538,
+    85679
+   ]
+  ]
  },
  "Sub_B5_8F3A": {
   "addr": 36666,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85818,
+    85830
+   ]
+  ]
  },
  "Sub_B5_8F51": {
   "addr": 36689,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85841,
+    85853
+   ]
+  ]
  },
  "Sub_B5_8F88": {
   "addr": 36744,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85896,
+    85905
+   ]
+  ]
  },
  "Sub_B5_8F91": {
   "addr": 36753,
   "bank": 5,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85905,
+    85921
+   ]
+  ]
  },
  "Sub_B5_8FCA": {
   "addr": 36810,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85962,
+    85974
+   ]
+  ]
  },
  "Sub_B5_8FDE": {
   "addr": 36830,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    85982,
+    85997
+   ]
+  ]
  },
  "Loc_B5_906F": {
   "addr": 36975,
   "bank": 5,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86127,
+    86146
+   ]
+  ]
  },
  "Sub_B5_9082": {
   "addr": 36994,
   "bank": 5,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86146,
+    86176
+   ]
+  ]
  },
  "Sub_B5_90A0": {
   "addr": 37024,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86176,
+    86195
+   ]
+  ]
  },
  "Sub_B5_90B3": {
   "addr": 37043,
   "bank": 5,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86195,
+    86201
+   ]
+  ]
  },
  "Sub_B5_90B9": {
   "addr": 37049,
   "bank": 5,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86201,
+    86216
+   ]
+  ]
  },
  "Sub_B5_90C8": {
   "addr": 37064,
   "bank": 5,
   "instrs": 35,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86216,
+    86230
+   ],
+   [
+    86232,
+    86298
+   ]
+  ]
  },
  "Sub_B5_9206": {
   "addr": 37382,
   "bank": 5,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86534,
+    86583
+   ]
+  ]
  },
  "Sub_B5_9237": {
   "addr": 37431,
   "bank": 5,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86583,
+    86617
+   ]
+  ]
  },
  "Sub_B5_92DB": {
   "addr": 37595,
   "bank": 5,
   "instrs": 45,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    86747,
+    86831
+   ]
+  ]
  },
  "Sub_B5_9438": {
   "addr": 37944,
   "bank": 5,
   "instrs": 40,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    87096,
+    87180
+   ]
+  ]
  },
  "Sub_B5_9681": {
   "addr": 38529,
   "bank": 5,
   "instrs": 85,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    87681,
+    87844
+   ]
+  ]
  },
  "Sub_B5_976B": {
   "addr": 38763,
   "bank": 5,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    87915,
+    87933
+   ]
+  ]
  },
  "Sub_B5_9848": {
   "addr": 38984,
   "bank": 5,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    88136,
+    88173
+   ]
+  ]
  },
  "Sub_B5_986D": {
   "addr": 39021,
   "bank": 5,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    88173,
+    88213
+   ]
+  ]
  },
  "Sub_B5_9895": {
   "addr": 39061,
   "bank": 5,
   "instrs": 36,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    88213,
+    88277
+   ]
+  ]
  },
  "Sub_B5_9974": {
   "addr": 39284,
   "bank": 5,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    88436,
+    88443
+   ]
+  ]
  },
  "Sub_B5_997B": {
   "addr": 39291,
   "bank": 5,
   "instrs": 23,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    88443,
+    88490
+   ]
+  ]
  },
  "Sub_B5_9AE5": {
   "addr": 39653,
   "bank": 5,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    88805,
+    88821
+   ]
+  ]
  },
  "SoundDriver": {
   "addr": 40960,
   "bank": 5,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90112,
+    90180
+   ]
+  ]
  },
  "Sub_B5_A044": {
   "addr": 41028,
   "bank": 5,
   "instrs": 71,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90180,
+    90313
+   ]
+  ]
  },
  "Sub_B5_A0C9": {
   "addr": 41161,
   "bank": 5,
   "instrs": 102,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90313,
+    90427
+   ],
+   [
+    90425,
+    90495
+   ]
+  ]
  },
  "Sub_B5_A17F": {
   "addr": 41343,
   "bank": 5,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90495,
+    90500
+   ],
+   [
+    90530,
+    90531
+   ]
+  ]
  },
  "Sub_B5_A184": {
   "addr": 41348,
   "bank": 5,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90500,
+    90531
+   ]
+  ]
  },
  "Sub_B5_A1A3": {
   "addr": 41379,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90531,
+    90542
+   ]
+  ]
  },
  "SoundCmdA_00": {
   "addr": 41406,
   "bank": 5,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90558,
+    90574
+   ]
+  ]
  },
  "SoundCmdA_02": {
   "addr": 41422,
   "bank": 5,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90574,
+    90602
+   ]
+  ]
  },
  "SoundCmdA_04": {
   "addr": 41450,
   "bank": 5,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90478,
+    90495
+   ],
+   [
+    90602,
+    90623
+   ]
+  ]
  },
  "SoundCmdA_05": {
   "addr": 41471,
   "bank": 5,
   "instrs": 28,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90623,
+    90670
+   ]
+  ]
  },
  "SoundCmdA_06": {
   "addr": 41518,
   "bank": 5,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90670,
+    90679
+   ]
+  ]
  },
  "SoundCmdA_07": {
   "addr": 41527,
   "bank": 5,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90679,
+    90686
+   ]
+  ]
  },
  "SoundCmdB_00": {
   "addr": 41550,
   "bank": 5,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90702,
+    90729
+   ]
+  ]
  },
  "SoundCmdB_01": {
   "addr": 41577,
   "bank": 5,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90729,
+    90756
+   ]
+  ]
  },
  "SoundCmdB_02": {
   "addr": 41604,
   "bank": 5,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90756,
+    90792
+   ]
+  ]
  },
  "SoundCmdB_03": {
   "addr": 41640,
   "bank": 5,
   "instrs": 43,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90792,
+    90868
+   ]
+  ]
  },
  "SoundCmdB_04": {
   "addr": 41716,
   "bank": 5,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90868,
+    90913
+   ]
+  ]
  },
  "SoundCmdB_05": {
   "addr": 41761,
   "bank": 5,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90913,
+    90924
+   ]
+  ]
  },
  "SoundCmdB_06": {
   "addr": 41772,
   "bank": 5,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90924,
+    90967
+   ]
+  ]
  },
  "Sub_B5_A357": {
   "addr": 41815,
   "bank": 5,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90967,
+    90979
+   ]
+  ]
  },
  "Sub_B5_A363": {
   "addr": 41827,
   "bank": 5,
   "instrs": 56,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    90979,
+    91059
+   ],
+   [
+    91057,
+    91079
+   ]
+  ]
  },
  "Sub_B5_A3C7": {
   "addr": 41927,
   "bank": 5,
   "instrs": 30,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    91079,
+    91138
+   ]
+  ]
  },
  "Sub_B5_A402": {
   "addr": 41986,
   "bank": 5,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    91138,
+    91168
+   ]
+  ]
  },
  "Sub_B5_A464": {
   "addr": 42084,
   "bank": 5,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    91236,
+    91257
+   ]
+  ]
  },
  "Loc_B6_8000": {
   "addr": 32768,
   "bank": 6,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98304,
+    98313
+   ]
+  ]
  },
  "Bank6Nmi": {
   "addr": 32784,
   "bank": 6,
   "instrs": 55,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98320,
+    98335
+   ],
+   [
+    114912,
+    114915
+   ],
+   [
+    117548,
+    117667
+   ]
+  ]
  },
  "Sub_B6_801F": {
   "addr": 32799,
   "bank": 6,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98335,
+    98389
+   ]
+  ]
  },
  "Sub_B6_8055": {
   "addr": 32853,
   "bank": 6,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98389,
+    98432
+   ]
+  ]
  },
  "Sub_B6_8080": {
   "addr": 32896,
   "bank": 6,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98400,
+    98446
+   ]
+  ]
  },
  "Sub_B6_808E": {
   "addr": 32910,
   "bank": 6,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98446,
+    98461
+   ]
+  ]
  },
  "Sub_B6_809D": {
   "addr": 32925,
   "bank": 6,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98461,
+    98478
+   ]
+  ]
  },
  "Sub_B6_80AE": {
   "addr": 32942,
   "bank": 6,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98463,
+    98485
+   ]
+  ]
  },
  "Sub_B6_80B5": {
   "addr": 32949,
   "bank": 6,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98485,
+    98520
+   ]
+  ]
  },
  "Sub_B6_80D8": {
   "addr": 32984,
   "bank": 6,
   "instrs": 34,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98520,
+    98583
+   ]
+  ]
  },
  "Sub_B6_8117": {
   "addr": 33047,
   "bank": 6,
   "instrs": 28,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98583,
+    98643
+   ],
+   [
+    98644,
+    98648
+   ]
+  ]
  },
  "Sub_B6_81AA": {
   "addr": 33194,
   "bank": 6,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98730,
+    98745
+   ]
+  ]
  },
  "Sub_B6_81E3": {
   "addr": 33251,
   "bank": 6,
   "instrs": 97,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    98787,
+    98959
+   ],
+   [
+    98960,
+    98979
+   ]
+  ]
  },
  "Sub_B6_82F5": {
   "addr": 33525,
   "bank": 6,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99061,
+    99100
+   ]
+  ]
  },
  "Sub_B6_831C": {
   "addr": 33564,
   "bank": 6,
   "instrs": 29,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99100,
+    99156
+   ]
+  ]
  },
  "Sub_B6_83A8": {
   "addr": 33704,
   "bank": 6,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99240,
+    99262
+   ]
+  ]
  },
  "Sub_B6_83BE": {
   "addr": 33726,
   "bank": 6,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99262,
+    99283
+   ]
+  ]
  },
  "Sub_B6_83D3": {
   "addr": 33747,
   "bank": 6,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99283,
+    99316
+   ]
+  ]
  },
  "Sub_B6_83F4": {
   "addr": 33780,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99316,
+    99329
+   ]
+  ]
  },
  "Sub_B6_8401": {
   "addr": 33793,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99329,
+    99341
+   ]
+  ]
  },
  "Sub_B6_840D": {
   "addr": 33805,
   "bank": 6,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99341,
+    99351
+   ]
+  ]
  },
  "Loc_B6_8417": {
   "addr": 33815,
   "bank": 6,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99351,
+    99370
+   ]
+  ]
  },
  "Loc_B6_842A": {
   "addr": 33834,
   "bank": 6,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99370,
+    99389
+   ]
+  ]
  },
  "Sub_B6_85FD": {
   "addr": 34301,
   "bank": 6,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99837,
+    99873
+   ]
+  ]
  },
  "Loc_B6_8621": {
   "addr": 34337,
   "bank": 6,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99873,
+    99900
+   ]
+  ]
  },
  "Sub_B6_863C": {
   "addr": 34364,
   "bank": 6,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99900,
+    99932
+   ]
+  ]
  },
  "Sub_B6_865C": {
   "addr": 34396,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99932,
+    99944
+   ]
+  ]
  },
  "Loc_B6_8668": {
   "addr": 34408,
   "bank": 6,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99944,
+    99980
+   ]
+  ]
  },
  "Sub_B6_868C": {
   "addr": 34444,
   "bank": 6,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99980,
+    99994
+   ]
+  ]
  },
  "Sub_B6_869A": {
   "addr": 34458,
   "bank": 6,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    99994,
+    100026
+   ]
+  ]
  },
  "Sub_B6_86BA": {
   "addr": 34490,
   "bank": 6,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100026,
+    100043
+   ]
+  ]
  },
  "Sub_B6_8703": {
   "addr": 34563,
   "bank": 6,
   "instrs": 30,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100045,
+    100104
+   ]
+  ]
  },
  "Loc_B6_8708": {
   "addr": 34568,
   "bank": 6,
   "instrs": 23,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100104,
+    100158
+   ]
+  ]
  },
  "Sub_B6_873E": {
   "addr": 34622,
   "bank": 6,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100158,
+    100166
+   ]
+  ]
  },
  "Sub_B6_8746": {
   "addr": 34630,
   "bank": 6,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100166,
+    100182
+   ]
+  ]
  },
  "Sub_B6_8756": {
   "addr": 34646,
   "bank": 6,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100182,
+    100219
+   ]
+  ]
  },
  "Loc_B6_877B": {
   "addr": 34683,
   "bank": 6,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100219,
+    100247
+   ]
+  ]
  },
  "Loc_B6_8797": {
   "addr": 34711,
   "bank": 6,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100247,
+    100307
+   ]
+  ]
  },
  "Sub_B6_87D3": {
   "addr": 34771,
   "bank": 6,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100307,
+    100314
+   ]
+  ]
  },
  "Sub_B6_87DA": {
   "addr": 34778,
   "bank": 6,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100314,
+    100355
+   ]
+  ]
  },
  "Sub_B6_8803": {
   "addr": 34819,
   "bank": 6,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100355,
+    100386
+   ]
+  ]
  },
  "Sub_B6_8822": {
   "addr": 34850,
   "bank": 6,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100386,
+    100407
+   ]
+  ]
  },
  "Loc_B6_8837": {
   "addr": 34871,
   "bank": 6,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100407,
+    100440
+   ]
+  ]
  },
  "Loc_B6_8858": {
   "addr": 34904,
   "bank": 6,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100440,
+    100459
+   ]
+  ]
  },
  "Sub_B6_886B": {
   "addr": 34923,
   "bank": 6,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100459,
+    100480
+   ]
+  ]
  },
  "Loc_B6_8880": {
   "addr": 34944,
   "bank": 6,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100480,
+    100507
+   ]
+  ]
  },
  "Loc_B6_889B": {
   "addr": 34971,
   "bank": 6,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100507,
+    100539
+   ]
+  ]
  },
  "Sub_B6_890F": {
   "addr": 35087,
   "bank": 6,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100623,
+    100658
+   ]
+  ]
  },
  "Sub_B6_8932": {
   "addr": 35122,
   "bank": 6,
   "instrs": 65,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100658,
+    100775
+   ]
+  ]
  },
  "Sub_B6_89A7": {
   "addr": 35239,
   "bank": 6,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100775,
+    100786
+   ]
+  ]
  },
  "Sub_B6_89B2": {
   "addr": 35250,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100786,
+    100800
+   ]
+  ]
  },
  "Sub_B6_89C0": {
   "addr": 35264,
   "bank": 6,
   "instrs": 18,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100800,
+    100830
+   ]
+  ]
  },
  "Sub_B6_89DE": {
   "addr": 35294,
   "bank": 6,
   "instrs": 65,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100830,
+    100966
+   ]
+  ]
  },
  "Sub_B6_8A66": {
   "addr": 35430,
   "bank": 6,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100966,
+    100982
+   ]
+  ]
  },
  "Sub_B6_8A76": {
   "addr": 35446,
   "bank": 6,
   "instrs": 53,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100982,
+    101081
+   ]
+  ]
  },
  "Sub_B6_8AD9": {
   "addr": 35545,
   "bank": 6,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    101081,
+    101108
+   ]
+  ]
  },
  "Sub_B6_8AF4": {
   "addr": 35572,
   "bank": 6,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    101108,
+    101128
+   ]
+  ]
  },
  "Sub_B6_8B08": {
   "addr": 35592,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    101128,
+    101140
+   ]
+  ]
  },
  "Sub_B6_8B9C": {
   "addr": 35740,
   "bank": 6,
   "instrs": 58,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    100874,
+    100903
+   ],
+   [
+    100947,
+    100966
+   ],
+   [
+    101276,
+    101350
+   ]
+  ]
  },
  "Sub_B6_8BE6": {
   "addr": 35814,
   "bank": 6,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    101350,
+    101363
+   ]
+  ]
  },
  "Sub_B6_945A": {
   "addr": 37978,
   "bank": 6,
   "instrs": 18,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    103514,
+    103561
+   ]
+  ]
  },
  "Sub_B6_9489": {
   "addr": 38025,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    103561,
+    103575
+   ]
+  ]
  },
  "Sub_B6_9497": {
   "addr": 38039,
   "bank": 6,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    103575,
+    103614
+   ]
+  ]
  },
  "Sub_B6_95EE": {
   "addr": 38382,
   "bank": 6,
   "instrs": 25,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    103918,
+    103969
+   ]
+  ]
  },
  "Sub_B6_9621": {
   "addr": 38433,
   "bank": 6,
   "instrs": 77,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    103969,
+    104120
+   ]
+  ]
  },
  "Loc_B6_96B8": {
   "addr": 38584,
   "bank": 6,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    104120,
+    104148
+   ]
+  ]
  },
  "Sub_B6_96D4": {
   "addr": 38612,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    104148,
+    104162
+   ]
+  ]
  },
  "Sub_B6_975A": {
   "addr": 38746,
   "bank": 6,
   "instrs": 87,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    104282,
+    104478
+   ]
+  ]
  },
  "Sub_B6_9A14": {
   "addr": 39444,
   "bank": 6,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    104980,
+    105016
+   ]
+  ]
  },
  "Sub_B6_9A38": {
   "addr": 39480,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    105016,
+    105030
+   ]
+  ]
  },
  "Sub_B6_A099": {
   "addr": 41113,
   "bank": 6,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    106649,
+    106662
+   ]
+  ]
  },
  "Sub_B6_A0A6": {
   "addr": 41126,
   "bank": 6,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    106662,
+    106676
+   ]
+  ]
  },
  "Reset": {
   "addr": 49152,
   "bank": 7,
   "instrs": 56,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    114688,
+    114808
+   ]
+  ]
  },
  "MainIdleLoop": {
   "addr": 49272,
   "bank": 7,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    114808,
+    114817
+   ]
+  ]
  },
  "Nmi": {
   "addr": 49281,
   "bank": 7,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    114817,
+    114830
+   ]
+  ]
  },
  "Sub_C0C0": {
   "addr": 49344,
   "bank": 7,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    114880,
+    114900
+   ]
+  ]
  },
  "Sub_C0E3": {
   "addr": 49379,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    114915,
+    114918
+   ]
+  ]
  },
  "RunSoundDriver": {
   "addr": 49382,
   "bank": 7,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    114918,
+    114942
+   ]
+  ]
  },
  "ProcessPpuUpdateList": {
   "addr": 49408,
   "bank": 7,
   "instrs": 60,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    114944,
+    115056
+   ]
+  ]
  },
  "FetchInlineWord": {
   "addr": 49520,
   "bank": 7,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115056,
+    115094
+   ]
+  ]
  },
  "ApplyScroll": {
   "addr": 49558,
   "bank": 7,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115094,
+    115113
+   ]
+  ]
  },
  "BinToDecimal": {
   "addr": 49577,
   "bank": 7,
   "instrs": 32,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115113,
+    115172
+   ]
+  ]
  },
  "DoOamDma": {
   "addr": 49636,
   "bank": 7,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115172,
+    115183
+   ]
+  ]
  },
  "AslA6": {
   "addr": 49647,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115183,
+    115184
+   ]
+  ]
  },
  "AslA5": {
   "addr": 49648,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115184,
+    115185
+   ]
+  ]
  },
  "AslA4": {
   "addr": 49649,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115185,
+    115186
+   ]
+  ]
  },
  "AslA3": {
   "addr": 49650,
   "bank": 7,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115186,
+    115190
+   ]
+  ]
  },
  "LsrA6": {
   "addr": 49654,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115190,
+    115191
+   ]
+  ]
  },
  "LsrA5": {
   "addr": 49655,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115191,
+    115192
+   ]
+  ]
  },
  "LsrA4": {
   "addr": 49656,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115192,
+    115193
+   ]
+  ]
  },
  "LsrA3": {
   "addr": 49657,
   "bank": 7,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115193,
+    115197
+   ]
+  ]
  },
  "SetPpuCtrl": {
   "addr": 49661,
   "bank": 7,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115197,
+    115203
+   ]
+  ]
  },
  "SetPpuMask": {
   "addr": 49667,
   "bank": 7,
   "instrs": 3,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115203,
+    115209
+   ]
+  ]
  },
  "ResetPpuScroll": {
   "addr": 49673,
   "bank": 7,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115209,
+    115228
+   ]
+  ]
  },
  "SetPpuAddrFromBuf": {
   "addr": 49692,
   "bank": 7,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115228,
+    115244
+   ]
+  ]
  },
  "QueueSound": {
   "addr": 49708,
   "bank": 7,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115244,
+    115260
+   ]
+  ]
  },
  "TickClock": {
   "addr": 49724,
   "bank": 7,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115260,
+    115278
+   ]
+  ]
  },
  "FillPaletteBlack": {
   "addr": 49742,
   "bank": 7,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115278,
+    115294
+   ],
+   [
+    115308,
+    115312
+   ]
+  ]
  },
  "UploadPalette": {
   "addr": 49758,
   "bank": 7,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115294,
+    115312
+   ]
+  ]
  },
  "SetPaletteAddr": {
   "addr": 49776,
   "bank": 7,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115312,
+    115333
+   ]
+  ]
  },
  "ResetPpuAddr": {
   "addr": 49797,
   "bank": 7,
   "instrs": 6,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115333,
+    115348
+   ]
+  ]
  },
  "WaitSprite0": {
   "addr": 49812,
   "bank": 7,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115348,
+    115363
+   ]
+  ]
  },
  "GetRandomByte": {
   "addr": 49827,
   "bank": 7,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115363,
+    115385
+   ]
+  ]
  },
  "ReadJoypads": {
   "addr": 49881,
   "bank": 7,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115417,
+    115447
+   ]
+  ]
  },
  "ReadJoypadPort": {
   "addr": 49911,
   "bank": 7,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115447,
+    115465
+   ]
+  ]
  },
  "DrawObjects": {
   "addr": 49929,
   "bank": 7,
   "instrs": 32,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115465,
+    115527
+   ]
+  ]
  },
  "DrawObject": {
   "addr": 50005,
   "bank": 7,
   "instrs": 88,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115541,
+    115708
+   ]
+  ]
  },
  "SelectSpriteTable": {
   "addr": 50172,
   "bank": 7,
   "instrs": 32,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115708,
+    115773
+   ]
+  ]
  },
  "RemoveObject": {
   "addr": 50237,
   "bank": 7,
   "instrs": 37,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115773,
+    115841
+   ]
+  ]
  },
  "Loc_C481": {
   "addr": 50305,
   "bank": 7,
   "instrs": 43,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115841,
+    115912
+   ]
+  ]
  },
  "PixelToNametableAddr": {
   "addr": 50376,
   "bank": 7,
   "instrs": 24,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115912,
+    115947
+   ]
+  ]
  },
  "LoadPaletteSet": {
   "addr": 50411,
   "bank": 7,
   "instrs": 53,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    115947,
+    116052
+   ]
+  ]
  },
  "MmcWriteControl": {
   "addr": 50516,
   "bank": 7,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116052,
+    116074
+   ]
+  ]
  },
  "MmcWriteChr0": {
   "addr": 50538,
   "bank": 7,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116074,
+    116096
+   ]
+  ]
  },
  "MmcWriteChr1": {
   "addr": 50560,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116096,
+    116098
+   ]
+  ]
  },
  "MmcWriteChr1A": {
   "addr": 50562,
   "bank": 7,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116098,
+    116118
+   ]
+  ]
  },
  "MmcWritePrg": {
   "addr": 50582,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116118,
+    116120
+   ]
+  ]
  },
  "MmcWritePrgA": {
   "addr": 50584,
   "bank": 7,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116120,
+    116140
+   ]
+  ]
  },
  "Sub_C5AC": {
   "addr": 50604,
   "bank": 7,
   "instrs": 34,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116140,
+    116223
+   ]
+  ]
  },
  "ScrollByInput": {
   "addr": 50687,
   "bank": 7,
   "instrs": 112,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116223,
+    116497
+   ]
+  ]
  },
  "Sub_C711": {
   "addr": 50961,
   "bank": 7,
   "instrs": 37,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116497,
+    116571
+   ]
+  ]
  },
  "Sub_C761": {
   "addr": 51041,
   "bank": 7,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116577,
+    116604
+   ]
+  ]
  },
  "Sub_C77C": {
   "addr": 51068,
   "bank": 7,
   "instrs": 54,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116604,
+    116700
+   ]
+  ]
  },
  "Sub_C7F6": {
   "addr": 51190,
   "bank": 7,
   "instrs": 62,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116726,
+    116831
+   ]
+  ]
  },
  "Sub_C85F": {
   "addr": 51295,
   "bank": 7,
   "instrs": 83,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    116831,
+    117003
+   ]
+  ]
  },
  "DrawHud": {
   "addr": 51497,
   "bank": 7,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117033,
+    117057
+   ]
+  ]
  },
  "DrawLifeHud": {
   "addr": 51521,
   "bank": 7,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117057,
+    117090
+   ]
+  ]
  },
  "DrawAmmoHud": {
   "addr": 51554,
   "bank": 7,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117090,
+    117123
+   ]
+  ]
  },
  "InitHudSprites": {
   "addr": 51587,
   "bank": 7,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117123,
+    117140
+   ]
+  ]
  },
  "DrawHudNumber": {
   "addr": 51604,
   "bank": 7,
   "instrs": 18,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117140,
+    117177
+   ]
+  ]
  },
  "NmiGameStateDispatch": {
   "addr": 51705,
   "bank": 7,
   "instrs": 162,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117241,
+    117548
+   ],
+   [
+    117561,
+    117667
+   ]
+  ]
  },
  "InitLevel": {
   "addr": 52131,
   "bank": 7,
   "instrs": 121,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117667,
+    117915
+   ]
+  ]
  },
  "ComputeAreaGroup": {
   "addr": 52435,
   "bank": 7,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117971,
+    117993
+   ]
+  ]
  },
  "UploadPaletteIfDirty": {
   "addr": 52457,
   "bank": 7,
   "instrs": 59,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    117993,
+    118132
+   ]
+  ]
  },
  "UploadNametableColumn": {
   "addr": 52596,
   "bank": 7,
   "instrs": 49,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118132,
+    118240
+   ]
+  ]
  },
  "Sub_CDE0": {
   "addr": 52704,
   "bank": 7,
   "instrs": 74,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118240,
+    118398
+   ]
+  ]
  },
  "Sub_CE7E": {
   "addr": 52862,
   "bank": 7,
   "instrs": 14,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118398,
+    118426
+   ]
+  ]
  },
  "ReadColumnFromPpu": {
   "addr": 52954,
   "bank": 7,
   "instrs": 23,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118490,
+    118547
+   ]
+  ]
  },
  "Sub_CF13": {
   "addr": 53011,
   "bank": 7,
   "instrs": 49,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118547,
+    118644
+   ]
+  ]
  },
  "Sub_CF84": {
   "addr": 53124,
   "bank": 7,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118660,
+    118691
+   ]
+  ]
  },
  "Sub_CFA3": {
   "addr": 53155,
   "bank": 7,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118691,
+    118722
+   ]
+  ]
  },
  "Sub_CFC2": {
   "addr": 53186,
   "bank": 7,
   "instrs": 58,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118722,
+    118824
+   ]
+  ]
  },
  "Sub_D042": {
   "addr": 53314,
   "bank": 7,
   "instrs": 62,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118850,
+    118955
+   ]
+  ]
  },
  "Sub_D0AB": {
   "addr": 53419,
   "bank": 7,
   "instrs": 34,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    118955,
+    119035
+   ]
+  ]
  },
  "StateAutoWalk": {
   "addr": 53499,
   "bank": 7,
   "instrs": 30,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119035,
+    119098
+   ]
+  ]
  },
  "StartLevelScene": {
   "addr": 53562,
   "bank": 7,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119098,
+    119159
+   ]
+  ]
  },
  "Sub_D177": {
   "addr": 53623,
   "bank": 7,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119159,
+    119223
+   ]
+  ]
  },
  "CheckObjectContact": {
   "addr": 53845,
   "bank": 7,
   "instrs": 29,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119381,
+    119438
+   ]
+  ]
  },
  "Sub_D28E": {
   "addr": 53902,
   "bank": 7,
   "instrs": 57,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119438,
+    119560
+   ]
+  ]
  },
  "Sub_D308": {
   "addr": 54024,
   "bank": 7,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119560,
+    119576
+   ]
+  ]
  },
  "Sub_D318": {
   "addr": 54040,
   "bank": 7,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119576,
+    119591
+   ]
+  ]
  },
  "UpdatePlayerAction": {
   "addr": 54061,
   "bank": 7,
   "instrs": 59,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119597,
+    119716
+   ]
+  ]
  },
  "PlayerActionIdle": {
   "addr": 54180,
   "bank": 7,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119716,
+    119763
+   ]
+  ]
  },
  "CopyPlayerSprites": {
   "addr": 54227,
   "bank": 7,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    119763,
+    119791
+   ]
+  ]
  },
  "PlayerActionState1": {
   "addr": 54483,
   "bank": 7,
   "instrs": 56,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120019,
+    120115
+   ],
+   [
+    120313,
+    120327
+   ]
+  ]
  },
  "PlayerActionState2": {
   "addr": 54643,
   "bank": 7,
   "instrs": 39,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120179,
+    120253
+   ]
+  ]
  },
  "PlayerActionState3": {
   "addr": 54717,
   "bank": 7,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120253,
+    120290
+   ]
+  ]
  },
  "PlayerActionState4": {
   "addr": 54754,
   "bank": 7,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120290,
+    120327
+   ]
+  ]
  },
  "PlayerActionState5": {
   "addr": 54791,
   "bank": 7,
   "instrs": 40,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120327,
+    120404
+   ]
+  ]
  },
  "PlayerActionState6": {
   "addr": 54948,
   "bank": 7,
   "instrs": 27,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120484,
+    120532
+   ]
+  ]
  },
  "PlayerActionState7": {
   "addr": 55056,
   "bank": 7,
   "instrs": 34,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120261,
+    120290
+   ],
+   [
+    120592,
+    120640
+   ]
+  ]
  },
  "SetTransitionFromCode": {
   "addr": 55104,
   "bank": 7,
   "instrs": 55,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120640,
+    120754
+   ]
+  ]
  },
  "Sub_D7B2": {
   "addr": 55218,
   "bank": 7,
   "instrs": 86,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120754,
+    120941
+   ]
+  ]
  },
  "Sub_D86D": {
   "addr": 55405,
   "bank": 7,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    120941,
+    120963
+   ]
+  ]
  },
  "Sub_D8CB": {
   "addr": 55499,
   "bank": 7,
   "instrs": 132,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121035,
+    121086
+   ],
+   [
+    121088,
+    121354
+   ]
+  ]
  },
  "Sub_DA0A": {
   "addr": 55818,
   "bank": 7,
   "instrs": 27,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121354,
+    121413
+   ]
+  ]
  },
  "Sub_DA4B": {
   "addr": 55883,
   "bank": 7,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121419,
+    121463
+   ]
+  ]
  },
  "Sub_DA77": {
   "addr": 55927,
   "bank": 7,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121463,
+    121519
+   ]
+  ]
  },
  "Sub_DB07": {
   "addr": 56071,
   "bank": 7,
   "instrs": 62,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121607,
+    121729
+   ]
+  ]
  },
  "Sub_DBD5": {
   "addr": 56277,
   "bank": 7,
   "instrs": 45,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121813,
+    121902
+   ]
+  ]
  },
  "Sub_DC48": {
   "addr": 56392,
   "bank": 7,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121928,
+    121975
+   ]
+  ]
  },
  "HideEnemySprites": {
   "addr": 56439,
   "bank": 7,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121975,
+    121991
+   ]
+  ]
  },
  "Sub_DC87": {
   "addr": 56455,
   "bank": 7,
   "instrs": 31,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    121991,
+    122052
+   ]
+  ]
  },
  "Sub_DDD0": {
   "addr": 56784,
   "bank": 7,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122320,
+    122337
+   ]
+  ]
  },
  "AnimatePalette": {
   "addr": 56801,
   "bank": 7,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122337,
+    122381
+   ]
+  ]
  },
  "Sub_DE15": {
   "addr": 56853,
   "bank": 7,
   "instrs": 55,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122389,
+    122504
+   ]
+  ]
  },
  "Sub_DED0": {
   "addr": 57040,
   "bank": 7,
   "instrs": 23,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122576,
+    122626
+   ]
+  ]
  },
  "EndGameOverSequence": {
   "addr": 57090,
   "bank": 7,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122626,
+    122642
+   ]
+  ]
  },
  "Sub_DF12": {
   "addr": 57106,
   "bank": 7,
   "instrs": 23,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122642,
+    122692
+   ]
+  ]
  },
  "Sub_DF44": {
   "addr": 57156,
   "bank": 7,
   "instrs": 45,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122692,
+    122788
+   ]
+  ]
  },
  "Sub_E018": {
   "addr": 57368,
   "bank": 7,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122904,
+    122940
+   ]
+  ]
  },
  "Sub_E042": {
   "addr": 57410,
   "bank": 7,
   "instrs": 15,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122946,
+    122974
+   ]
+  ]
  },
  "Sub_E05E": {
   "addr": 57438,
   "bank": 7,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    122974,
+    123001
+   ]
+  ]
  },
  "Sub_E079": {
   "addr": 57465,
   "bank": 7,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    123001,
+    123017
+   ]
+  ]
  },
  "Sub_E089": {
   "addr": 57481,
   "bank": 7,
   "instrs": 129,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    123017,
+    123261
+   ]
+  ]
  },
  "Sub_E17D": {
   "addr": 57725,
   "bank": 7,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    123261,
+    123282
+   ]
+  ]
  },
  "CheckStartPause": {
   "addr": 58877,
   "bank": 7,
   "instrs": 44,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    124413,
+    124516
+   ]
+  ]
  },
  "Sub_E664": {
   "addr": 58980,
   "bank": 7,
   "instrs": 84,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    124516,
+    124690
+   ]
+  ]
  },
  "ResetPlayerForRetry": {
   "addr": 59486,
   "bank": 7,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125022,
+    125059
+   ]
+  ]
  },
  "UpdateGameOverSequence": {
   "addr": 59523,
   "bank": 7,
   "instrs": 37,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125059,
+    125139
+   ]
+  ]
  },
  "Sub_E8D3": {
   "addr": 59603,
   "bank": 7,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125139,
+    125206
+   ]
+  ]
  },
  "UpdateLowLifeAlarm": {
   "addr": 59670,
   "bank": 7,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125206,
+    125241
+   ]
+  ]
  },
  "Sub_E939": {
   "addr": 59705,
   "bank": 7,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125241,
+    125281
+   ]
+  ]
  },
  "Sub_E971": {
   "addr": 59761,
   "bank": 7,
   "instrs": 44,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125297,
+    125394
+   ]
+  ]
  },
  "Sub_EA02": {
   "addr": 59906,
   "bank": 7,
   "instrs": 20,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125442,
+    125485
+   ]
+  ]
  },
  "Sub_EA2D": {
   "addr": 59949,
   "bank": 7,
   "instrs": 25,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125485,
+    125537
+   ]
+  ]
  },
  "Sub_EA61": {
   "addr": 60001,
   "bank": 7,
   "instrs": 35,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125537,
+    125610
+   ]
+  ]
  },
  "SetPlayerPose": {
   "addr": 60074,
   "bank": 7,
   "instrs": 7,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125610,
+    125622
+   ]
+  ]
  },
  "UpdatePlayerFacing": {
   "addr": 60086,
   "bank": 7,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125622,
+    125647
+   ]
+  ]
  },
  "UseAmmo": {
   "addr": 60111,
   "bank": 7,
   "instrs": 5,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125647,
+    125657
+   ]
+  ]
  },
  "Sub_EAD9": {
   "addr": 60121,
   "bank": 7,
   "instrs": 38,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125657,
+    125743
+   ]
+  ]
  },
  "Sub_EB2F": {
   "addr": 60207,
   "bank": 7,
   "instrs": 82,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125743,
+    125924
+   ]
+  ]
  },
  "Sub_EBE4": {
   "addr": 60388,
   "bank": 7,
   "instrs": 37,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    125924,
+    125999
+   ]
+  ]
  },
  "AdjustAmmo": {
   "addr": 61111,
   "bank": 7,
   "instrs": 10,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    126647,
+    126665
+   ]
+  ]
  },
  "Sub_EEC9": {
   "addr": 61129,
   "bank": 7,
   "instrs": 40,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    126665,
+    126745
+   ]
+  ]
  },
  "Sub_EF19": {
   "addr": 61209,
   "bank": 7,
   "instrs": 8,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    126745,
+    126765
+   ]
+  ]
  },
  "Sub_EF2D": {
   "addr": 61229,
   "bank": 7,
   "instrs": 35,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    126765,
+    126843
+   ]
+  ]
  },
  "Sub_EF7B": {
   "addr": 61307,
   "bank": 7,
   "instrs": 22,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    126843,
+    126885
+   ]
+  ]
  },
  "Sub_EFA9": {
   "addr": 61353,
   "bank": 7,
   "instrs": 1,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    126889,
+    126890
+   ]
+  ]
  },
  "Sub_EFAA": {
   "addr": 61354,
   "bank": 7,
   "instrs": 46,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    126890,
+    126973
+   ]
+  ]
  },
  "Sub_F23D": {
   "addr": 62013,
   "bank": 7,
   "instrs": 48,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    127549,
+    127645
+   ]
+  ]
  },
  "Sub_F29D": {
   "addr": 62109,
   "bank": 7,
   "instrs": 29,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    127645,
+    127706
+   ]
+  ]
  },
  "Sub_F2DA": {
   "addr": 62170,
   "bank": 7,
   "instrs": 16,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    127706,
+    127738
+   ]
+  ]
  },
  "Sub_F2FA": {
   "addr": 62202,
   "bank": 7,
   "instrs": 72,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    127738,
+    127892
+   ]
+  ]
  },
  "Sub_F394": {
   "addr": 62356,
   "bank": 7,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    127892,
+    127902
+   ]
+  ]
  },
  "Sub_F39E": {
   "addr": 62366,
   "bank": 7,
   "instrs": 62,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    127902,
+    128040
+   ]
+  ]
  },
  "Sub_F430": {
   "addr": 62512,
   "bank": 7,
   "instrs": 24,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128048,
+    128097
+   ]
+  ]
  },
  "Sub_F470": {
   "addr": 62576,
   "bank": 7,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128112,
+    128184
+   ]
+  ]
  },
  "Sub_F4B8": {
   "addr": 62648,
   "bank": 7,
   "instrs": 132,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128184,
+    128318
+   ],
+   [
+    128346,
+    128459
+   ],
+   [
+    128475,
+    128518
+   ]
+  ]
  },
  "Sub_F606": {
   "addr": 62982,
   "bank": 7,
   "instrs": 11,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128518,
+    128542
+   ]
+  ]
  },
  "Sub_F61E": {
   "addr": 63006,
   "bank": 7,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128542,
+    128564
+   ]
+  ]
  },
  "Sub_F634": {
   "addr": 63028,
   "bank": 7,
   "instrs": 24,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128564,
+    128612
+   ]
+  ]
  },
  "Sub_F664": {
   "addr": 63076,
   "bank": 7,
   "instrs": 26,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128612,
+    128664
+   ]
+  ]
  },
  "Sub_F698": {
   "addr": 63128,
   "bank": 7,
   "instrs": 19,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128664,
+    128700
+   ]
+  ]
  },
  "Sub_F6BC": {
   "addr": 63164,
   "bank": 7,
   "instrs": 21,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    128700,
+    128748
+   ]
+  ]
  },
  "Sub_F804": {
   "addr": 63492,
   "bank": 7,
   "instrs": 196,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    129028,
+    129412
+   ]
+  ]
  },
  "Sub_F984": {
   "addr": 63876,
   "bank": 7,
   "instrs": 78,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    129412,
+    129565
+   ]
+  ]
  },
  "Sub_FA47": {
   "addr": 64071,
   "bank": 7,
   "instrs": 36,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    129607,
+    129678
+   ]
+  ]
  },
  "TickObjectStates": {
   "addr": 64142,
   "bank": 7,
   "instrs": 56,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    129678,
+    129792
+   ]
+  ]
  },
  "Sub_FB00": {
   "addr": 64256,
   "bank": 7,
   "instrs": 92,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    129792,
+    130016
+   ]
+  ]
  },
  "ClearObjectStatusBits": {
   "addr": 64480,
   "bank": 7,
   "instrs": 17,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130016,
+    130046
+   ]
+  ]
  },
  "UpdateLifeBlink": {
   "addr": 64510,
   "bank": 7,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130046,
+    130074
+   ]
+  ]
  },
  "Sub_FC1A": {
   "addr": 64538,
   "bank": 7,
   "instrs": 28,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130074,
+    130146
+   ]
+  ]
  },
  "Sub_FC62": {
   "addr": 64610,
   "bank": 7,
   "instrs": 37,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130146,
+    130237
+   ]
+  ]
  },
  "Sub_FCBD": {
   "addr": 64701,
   "bank": 7,
   "instrs": 37,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130237,
+    130328
+   ]
+  ]
  },
  "Sub_FD18": {
   "addr": 64792,
   "bank": 7,
   "instrs": 29,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130328,
+    130401
+   ]
+  ]
  },
  "Sub_FD61": {
   "addr": 64865,
   "bank": 7,
   "instrs": 110,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130401,
+    130668
+   ]
+  ]
  },
  "Sub_FEA7": {
   "addr": 65191,
   "bank": 7,
   "instrs": 12,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130727,
+    130753
+   ]
+  ]
  },
  "Sub_FEC1": {
   "addr": 65217,
   "bank": 7,
   "instrs": 13,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    130749,
+    130778
+   ]
+  ]
  },
  "Ram_0005_0": {
   "addr": 5,
   "bank": 8,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    131072,
+    131075
+   ],
+   [
+    131077,
+    131078
+   ]
+  ]
  },
  "Ram_0513_1": {
   "addr": 1299,
   "bank": 9,
   "instrs": 4,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    147456,
+    147467
+   ]
+  ]
  },
  "Ram_051E_1": {
   "addr": 1310,
   "bank": 9,
   "instrs": 2,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    147467,
+    147470
+   ],
+   [
+    147472,
+    147475
+   ]
+  ]
  },
  "Ram_0568_2": {
   "addr": 1384,
   "bank": 10,
   "instrs": 33,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    163840,
+    163915
+   ]
+  ]
  },
  "Ram_05B8_3": {
   "addr": 1464,
   "bank": 11,
   "instrs": 9,
   "ok": true,
-  "reason": null
+  "reason": null,
+  "ranges": [
+   [
+    180224,
+    180250
+   ]
+  ]
  }
 }

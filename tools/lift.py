@@ -97,6 +97,7 @@ def is_dispatch_call(p, d):
         tp = g.resolve(p, ob[0] | ob[1] << 8)
         return tp is not None and tp in g.INLINE_DISP
     return False
+RANGES = {}
 RAMBODY = {}   # RAM-image routine entry -> [(address, instruction bytes)] it can execute (checked against RAM at call time)
 def inline_skip(p, d):
     op, n, m, l, ob = d
@@ -143,6 +144,11 @@ def lift_function(entry):
             work.append(s)
     if not body: return [], reason or 'empty body', 0
     order = sorted(body)
+    rg = []
+    for q in order:                                   # PRG-offset ranges of the instructions this routine contains (used by the C progress report)
+        if rg and rg[-1][1] == q: rg[-1][1] = q + body[q][3]
+        else: rg.append([q, q + body[q][3]])
+    RANGES[entry] = rg
     if entry >= 0x20000: RAMBODY[entry] = [(g.addr_of(q), bytes(g.PRG[q:q + body[q][3]])) for q in order]
     need_label = set([entry])
     out = []
@@ -300,7 +306,7 @@ for e in sorted(entries):
     lines, reason, n = lift_function(e)
     if reason:
         lines = [f'void {fname(e)}(void) {{ cpu_unsupported("{fname(e)}: {reason}"); }}']
-    funcs[fname(e)] = dict(addr=g.addr_of(e), bank=g.bank_of(e), instrs=n, ok=reason is None, reason=reason)
+    funcs[fname(e)] = dict(addr=g.addr_of(e), bank=g.bank_of(e), instrs=n, ok=reason is None, reason=reason, ranges=RANGES.get(e, []))
     per_bank[g.bank_of(e)].append(lines)
 for b in range(8):
     with open(os.path.join(OUT, f'bank_{b}.c'), 'w', newline='\n') as f:
