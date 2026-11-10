@@ -321,5 +321,20 @@
  "1:85AC": "RestoreMmcShadowRegs",
  "1:8D00": "ClearObjectsAndInitList",
  "1:8F1E": "FindObjectType01",
- "1:9694": "CalcViewEdgeColumn"
+ "1:9694": "CalcViewEdgeColumn",
+ "5:814C": "DisableRendering",
+ "5:8183": "EnableRendering",
+ "5:838E": "SkipSceneOnStart",
+ "5:8944": "FillNametableWithA",
+ "5:895B": "FillPaletteBufferBlack",
+ "5:895D": "FillPaletteBufferWithA",
+ "5:8966": "ClearSceneStateTail",
+ "5:8971": "HideAllSpritesB5",
+ "5:8973": "HideSpritesFromX",
+ "5:8F3A": "CopyRamStub0513",
+ "5:8F51": "CopyRamStub05B8",
+ "5:8FCA": "CopyRamStub051E",
+ "5:8FDE": "SetMmcControlChr0Chr1",
+ "5:9082": "RunSoundDriverBank5Timed",
+ "5:90A0": "InitDmcAndJoypad2"
 }

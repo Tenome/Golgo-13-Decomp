@@ -27,8 +27,8 @@ Loc_B5_8035:
   jsr Bank5SceneDispatch       ; $8035
   jsr ApplyScroll              ; $8038
   jsr ReadJoypads              ; $803B
-  jsr Sub_B5_838E              ; $803E
-  jsr Sub_B5_9082              ; $8041
+  jsr SkipSceneOnStart         ; $803E
+  jsr RunSoundDriverBank5Timed ; $8041
   lda PPU_STATUS               ; $8044
   lda z:PpuCtrlShadow          ; $8047
   ora #$80                     ; $8049
@@ -50,12 +50,12 @@ Bank5Scene_00:
   lda #$04                     ; $8139
 Loc_B5_813B:
   sta SceneState               ; $813B
-  jsr Sub_B5_8966              ; $813E
+  jsr ClearSceneStateTail      ; $813E
   jsr Sub_B5_90B3              ; $8141
-  jsr Sub_B5_90A0              ; $8144
+  jsr InitDmcAndJoypad2        ; $8144
   lda #$00                     ; $8147
   jsr QueueSound               ; $8149
-Sub_B5_814C:
+DisableRendering:
   lda z:PpuMaskShadow          ; $814C
   and #$E7                     ; $814E
   jmp SetPpuMask               ; $8150
@@ -84,7 +84,7 @@ Bank5Scene_05:
   inc SceneState               ; $817B
   lda #$0E                     ; $817E
   jsr QueueSound               ; $8180
-Sub_B5_8183:
+EnableRendering:
   lda z:PpuMaskShadow          ; $8183
   ora #$18                     ; $8185
   sta z:PpuMaskShadow          ; $8187
@@ -132,8 +132,8 @@ Bank5Scene_0A:
   inc SceneState               ; $81D3
   lda #$1E                     ; $81D6
   sta SceneTimer               ; $81D8
-  jsr Sub_B5_895B              ; $81DB
-  jmp Sub_B5_8971              ; $81DE
+  jsr FillPaletteBufferBlack   ; $81DB
+  jmp HideAllSpritesB5         ; $81DE
 Loc_B5_81E1:
   rts                          ; $81E1
 Bank5Scene_0B:
@@ -199,7 +199,7 @@ Bank5Scene_12:
   bne Loc_B5_825B              ; $8256
   inc SceneState               ; $8258
 Loc_B5_825B:
-  jmp Sub_B5_8183              ; $825B
+  jmp EnableRendering          ; $825B
 Bank5Scene_13:
   inc z:HwScrollX              ; $825E
   inc z:HwScrollX              ; $8260
@@ -259,7 +259,7 @@ Bank5Scene_17:
   sta z:PpuCtrlShadow          ; $82D0
   lda #$3C                     ; $82D2
   sta SceneTimer               ; $82D4
-  jmp Sub_B5_814C              ; $82D7
+  jmp DisableRendering         ; $82D7
 Loc_B5_82DA:
   jsr ApplyScroll              ; $82DA
   jmp Loc_B5_874E              ; $82DD
@@ -288,7 +288,7 @@ Bank5Scene_1A:
   inc SceneState               ; $8306
   lda #$05                     ; $8309
   sta SceneSubState            ; $830B
-  jmp Sub_B5_8183              ; $830E
+  jmp EnableRendering          ; $830E
 Bank5Scene_1B:
   jsr Bank5SubStateDispatch    ; $8311
   lda AnimCounter              ; $8314
@@ -321,7 +321,7 @@ Bank5Scene_1E:
   lda AnimCounter              ; $8347
   bne Loc_B5_8357              ; $834A
   inc SceneState               ; $834C
-  jsr Sub_B5_814C              ; $834F
+  jsr DisableRendering         ; $834F
   lda #$28                     ; $8352
   sta SceneTimer               ; $8354
 Loc_B5_8357:
@@ -341,8 +341,8 @@ Bank5Scene_21:
   inc SceneState               ; $836C
   lda #$3C                     ; $836F
   sta $0547                    ; $8371
-  jsr Sub_B5_8F3A              ; $8374
-  jmp Sub_B5_8183              ; $8377
+  jsr CopyRamStub0513          ; $8374
+  jmp EnableRendering          ; $8377
 Bank5Scene_22:
   jsr $0513                    ; $837A
   lda $0547                    ; $837D
@@ -356,7 +356,7 @@ Bank5Scene_23:
 Bank5Scene_24:
   inc SceneState               ; $838A
   rts                          ; $838D
-Sub_B5_838E:
+SkipSceneOnStart:
   lda SceneState               ; $838E
   cmp #$61                     ; $8391
   beq Loc_B5_83A1              ; $8393
@@ -390,7 +390,7 @@ Bank5Scene_26:
   sta AnimCounter              ; $83C7
   lda #$07                     ; $83CA
   sta SceneSubState            ; $83CC
-  jsr Sub_B5_8183              ; $83CF
+  jsr EnableRendering          ; $83CF
   lda $052A                    ; $83D2
   bne Loc_B5_83DA              ; $83D5
   jmp Loc_B5_8241              ; $83D7
@@ -409,13 +409,13 @@ Bank5Scene_28:
   lda JoyNew1                  ; $83EF
   and #$08                     ; $83F2
   beq Loc_B5_8418              ; $83F4
-  jsr Sub_B5_814C              ; $83F6
+  jsr DisableRendering         ; $83F6
   lda #$00                     ; $83F9
   sta z:MmcPrgShadow           ; $83FB
   sta z:GameState              ; $83FD
   lda #$C8                     ; $83FF
   sta z:PlayerLifeLo           ; $8401
-  jsr Sub_B5_8971              ; $8403
+  jsr HideAllSpritesB5         ; $8403
   lda $050F                    ; $8406
   beq Loc_B5_8418              ; $8409
   lda #$01                     ; $840B
@@ -487,8 +487,8 @@ Bank5Scene_2B:
   inc SceneState               ; $8488
   lda #$3C                     ; $848B
   sta SceneTimer               ; $848D
-  jsr Sub_B5_895B              ; $8490
-  jmp Sub_B5_814C              ; $8493
+  jsr FillPaletteBufferBlack   ; $8490
+  jmp DisableRendering         ; $8493
 Bank5Scene_2C:
   dec SceneTimer               ; $8496
   bne Loc_B5_849E              ; $8499
@@ -500,7 +500,7 @@ Bank5Scene_37:
   jmp Loc_B5_948C              ; $84A2
 Bank5Scene_38:
   inc SceneState               ; $84A5
-  jsr Sub_B5_8183              ; $84A8
+  jsr EnableRendering          ; $84A8
   lda #$15                     ; $84AB
   jmp QueueSound               ; $84AD
 Bank5Scene_39:
@@ -532,7 +532,7 @@ Bank5Scene_3B:
   inc SceneState               ; $84E2
   lda #$5A                     ; $84E5
   sta SceneTimer               ; $84E7
-  jsr Sub_B5_895B              ; $84EA
+  jsr FillPaletteBufferBlack   ; $84EA
   lda #$00                     ; $84ED
   jmp QueueSound               ; $84EF
 Loc_B5_84F2:
@@ -557,13 +557,13 @@ Loc_B5_8512:
   rts                          ; $8512
 Bank5Scene_46:
   jsr Bank5Scene_37            ; $8513
-  jsr Sub_B5_8971              ; $8516
+  jsr HideAllSpritesB5         ; $8516
   lda #$05                     ; $8519
   ldx #$00                     ; $851B
   jmp Sub_B5_9895              ; $851D
 Bank5Scene_47:
   inc SceneState               ; $8520
-  jsr Sub_B5_8183              ; $8523
+  jsr EnableRendering          ; $8523
 Loc_B5_8526:
   lda #$72                     ; $8526
   sta $0528                    ; $8528
@@ -601,7 +601,7 @@ Bank5Scene_4A:
   inc SceneState               ; $856E
   lda #$3C                     ; $8571
   sta SceneTimer               ; $8573
-  jsr Sub_B5_8971              ; $8576
+  jsr HideAllSpritesB5         ; $8576
   lda #$07                     ; $8579
   jmp Sub_B5_9895              ; $857B
 Bank5Scene_4B:
@@ -610,8 +610,8 @@ Bank5Scene_4B:
   inc SceneState               ; $8583
   lda #$F0                     ; $8586
   sta SceneTimer               ; $8588
-  jsr Sub_B5_895B              ; $858B
-  jmp Sub_B5_8971              ; $858E
+  jsr FillPaletteBufferBlack   ; $858B
+  jmp HideAllSpritesB5         ; $858E
 Bank5Scene_4C:
   dec SceneTimer               ; $8591
   bne Loc_B5_854B              ; $8594
@@ -672,7 +672,7 @@ Loc_B5_85ED:
   and #$08                     ; $85FD
   beq Loc_B5_8607              ; $85FF
   inc SceneState               ; $8601
-  jmp Sub_B5_814C              ; $8604
+  jmp DisableRendering         ; $8604
 Loc_B5_8607:
   rts                          ; $8607
 Bank5Scene_4E:
@@ -682,7 +682,7 @@ Bank5Scene_4F:
   dec SceneTimer               ; $860E
   bne Loc_B5_861E              ; $8611
   inc SceneState               ; $8613
-  jsr Sub_B5_8183              ; $8616
+  jsr EnableRendering          ; $8616
   lda #$78                     ; $8619
   sta SceneTimer               ; $861B
 Loc_B5_861E:
@@ -702,11 +702,11 @@ Bank5Scene_51:
   lda #$1C                     ; $8635
   ldx #$10                     ; $8637
   ldy #$0D                     ; $8639
-  jsr Sub_B5_8FDE              ; $863B
+  jsr SetMmcControlChr0Chr1    ; $863B
   lda #$00                     ; $863E
   sta $0512                    ; $8640
 Loc_B5_8643:
-  jmp Sub_B5_814C              ; $8643
+  jmp DisableRendering         ; $8643
 Bank5Scene_52:
   inc SceneState               ; $8646
   jmp Loc_B5_9A2E              ; $8649
@@ -715,7 +715,7 @@ Bank5Scene_53:
   beq Loc_B5_8659              ; $864F
   dec SceneTimer               ; $8651
   bne Loc_B5_865C              ; $8654
-  jsr Sub_B5_8183              ; $8656
+  jsr EnableRendering          ; $8656
 Loc_B5_8659:
   inc SceneState               ; $8659
 Loc_B5_865C:
@@ -740,7 +740,7 @@ Bank5Scene_56:
   bne Loc_B5_868D              ; $867B
   lda $0507                    ; $867D
   beq Loc_B5_868A              ; $8680
-  jsr Sub_B5_8183              ; $8682
+  jsr EnableRendering          ; $8682
   lda #$78                     ; $8685
   sta SceneTimer               ; $8687
 Loc_B5_868A:
@@ -766,8 +766,8 @@ Bank5Scene_59:
   sta $0545                    ; $86A9
   lda #$3C                     ; $86AC
   sta $0547                    ; $86AE
-  jsr Sub_B5_8F3A              ; $86B1
-  jsr Sub_B5_8183              ; $86B4
+  jsr CopyRamStub0513          ; $86B1
+  jsr EnableRendering          ; $86B4
 Loc_B5_86B7:
   inc SceneState               ; $86B7
   rts                          ; $86BA
@@ -788,7 +788,7 @@ Bank5Scene_5C:
   inc SceneState               ; $86D2
   lda #$01                     ; $86D5
   sta SceneSubState            ; $86D7
-  jmp Sub_B5_8183              ; $86DA
+  jmp EnableRendering          ; $86DA
 Bank5Scene_5D:
   jsr Bank5SubStateDispatch    ; $86DD
   lda AnimCounter              ; $86E0
@@ -806,7 +806,7 @@ Sub_B5_86F5:
   dec SceneTimer               ; $86F5
   bne Loc_B5_8700              ; $86F8
   inc SceneState               ; $86FA
-  jmp Sub_B5_8183              ; $86FD
+  jmp EnableRendering          ; $86FD
 Loc_B5_8700:
   rts                          ; $8700
 Sub_B5_8701:
@@ -818,7 +818,7 @@ Loc_B5_870C:
   rts                          ; $870C
 Sub_B5_870D:
   inc SceneState               ; $870D
-  jmp Sub_B5_814C              ; $8710
+  jmp DisableRendering         ; $8710
 Sub_B5_8713:
   inc SceneState               ; $8713
   rts                          ; $8716
@@ -827,7 +827,7 @@ Sub_B5_8717:
   rts                          ; $871A
 Sub_B5_871B:
   inc SceneState               ; $871B
-  jmp Sub_B5_814C              ; $871E
+  jmp DisableRendering         ; $871E
 Sub_B5_8721:
   inc SceneState               ; $8721
   rts                          ; $8724
@@ -840,7 +840,7 @@ Data_B5_8734:
   .incbin "prg_bank_5.bin", $0734, $1A  ; $8734
 Loc_B5_874E:
   ldx #$04                     ; $874E
-  jsr Sub_B5_8973              ; $8750
+  jsr HideSpritesFromX         ; $8750
   lda $053A                    ; $8753
   sec                          ; $8756
   sbc $053B                    ; $8757
@@ -951,7 +951,7 @@ Data_B5_880D:
 Data_B5_880E:
   .incbin "prg_bank_5.bin", $080E, $70  ; $880E
 Sub_B5_887E:
-  jsr Sub_B5_8971              ; $887E
+  jsr HideAllSpritesB5         ; $887E
   ldx $052B                    ; $8881
   inx                          ; $8884
   cpx #$59                     ; $8885
@@ -1018,7 +1018,7 @@ Data_B5_8919:
   .incbin "prg_bank_5.bin", $0919, $25  ; $8919
 Data_B5_893E:
   .incbin "prg_bank_5.bin", $093E, $6  ; $893E
-Sub_B5_8944:
+FillNametableWithA:
   ldy PPU_STATUS               ; $8944
   stx PPU_ADDR                 ; $8947
   ldx #$00                     ; $894A
@@ -1031,16 +1031,16 @@ Loc_B5_8951:
   dey                          ; $8957
   bne Loc_B5_8951              ; $8958
   rts                          ; $895A
-Sub_B5_895B:
+FillPaletteBufferBlack:
   lda #$0F                     ; $895B
-Sub_B5_895D:
+FillPaletteBufferWithA:
   ldx #$1F                     ; $895D
 Sub_B5_895F:
   sta PaletteBuffer,x          ; $895F
   dex                          ; $8962
   bpl Sub_B5_895F              ; $8963
   rts                          ; $8965
-Sub_B5_8966:
+ClearSceneStateTail:
   lda #$00                     ; $8966
   ldx #$10                     ; $8968
 Loc_B5_896A:
@@ -1048,9 +1048,9 @@ Loc_B5_896A:
   inx                          ; $896D
   bne Loc_B5_896A              ; $896E
   rts                          ; $8970
-Sub_B5_8971:
+HideAllSpritesB5:
   ldx #$00                     ; $8971
-Sub_B5_8973:
+HideSpritesFromX:
   lda #$F0                     ; $8973
 Loc_B5_8975:
   sta OamBuffer,x              ; $8975
@@ -1058,17 +1058,17 @@ Loc_B5_8975:
   bne Loc_B5_8975              ; $8979
   rts                          ; $897B
 Sub_B5_897C:
-  jsr Sub_B5_814C              ; $897C
+  jsr DisableRendering         ; $897C
   lda #$1E                     ; $897F
   ldx #$0F                     ; $8981
   ldy #$0E                     ; $8983
-  jsr Sub_B5_8FDE              ; $8985
+  jsr SetMmcControlChr0Chr1    ; $8985
   lda #$FF                     ; $8988
   ldx #$20                     ; $898A
-  jsr Sub_B5_8944              ; $898C
+  jsr FillNametableWithA       ; $898C
   ldx #$2C                     ; $898F
-  jsr Sub_B5_8944              ; $8991
-  jsr Sub_B5_8971              ; $8994
+  jsr FillNametableWithA       ; $8991
+  jsr HideAllSpritesB5         ; $8994
   jsr ProcessPpuUpdateList     ; $8997
   .addr Data_B5_89D9  ; $899A inline pointer (data after a JSR)
   ldx #$03                     ; $899C
@@ -1103,11 +1103,11 @@ Loc_B5_8AAB:
   lda #$1C                     ; $8AAB
   ldx #$0C                     ; $8AAD
   ldy #$08                     ; $8AAF
-  jsr Sub_B5_8FDE              ; $8AB1
-  jsr Sub_B5_8FCA              ; $8AB4
+  jsr SetMmcControlChr0Chr1    ; $8AB1
+  jsr CopyRamStub051E          ; $8AB4
   lda #$00                     ; $8AB7
   ldx #$20                     ; $8AB9
-  jsr Sub_B5_8944              ; $8ABB
+  jsr FillNametableWithA       ; $8ABB
   jsr ProcessPpuUpdateList     ; $8ABE
   .addr Data_B5_8ADC  ; $8AC1 inline pointer (data after a JSR)
   ldx #$07                     ; $8AC3
@@ -1169,7 +1169,7 @@ Bank5SubScene_03:
   jsr Bank5NextAnimFrame       ; $8B3F
   cmp #$04                     ; $8B42
   bcc Loc_B5_8B4C              ; $8B44
-  jsr Sub_B5_895B              ; $8B46
+  jsr FillPaletteBufferBlack   ; $8B46
   jmp Bank5SubScene_00         ; $8B49
 Loc_B5_8B4C:
   jsr Sub_B5_8B33              ; $8B4C
@@ -1188,7 +1188,7 @@ Bank5SubScene_04:
   cmp #$03                     ; $8B6A
   bcc Loc_B5_8B74              ; $8B6C
   jsr Bank5SubScene_00         ; $8B6E
-  jmp Sub_B5_895B              ; $8B71
+  jmp FillPaletteBufferBlack   ; $8B71
 Loc_B5_8B74:
   sta z:Tmp00                  ; $8B74
   asl a                        ; $8B76
@@ -1284,7 +1284,7 @@ Bank5SubScene_08:
   beq Loc_B5_8C54              ; $8C4F
   jmp Bank5SubScene_00         ; $8C51
 Loc_B5_8C54:
-  jmp Sub_B5_895B              ; $8C54
+  jmp FillPaletteBufferBlack   ; $8C54
 Loc_B5_8C57:
   tax                          ; $8C57
   lda Data_B5_8C5E,x           ; $8C58
@@ -1339,7 +1339,7 @@ Bank5NextAnimFrame:
   rts                          ; $8CC3
 Sub_B5_8CC4:
   ldx #$38                     ; $8CC4
-  jsr Sub_B5_8973              ; $8CC6
+  jsr HideSpritesFromX         ; $8CC6
   lda $052E                    ; $8CC9
   bne Loc_B5_8CD3              ; $8CCC
   lda #$11                     ; $8CCE
@@ -1492,7 +1492,7 @@ Data_B5_8EB2:
   .incbin "prg_bank_5.bin", $0EB2, $3D  ; $8EB2
 Data_B5_8EEF:
   .incbin "prg_bank_5.bin", $0EEF, $4B  ; $8EEF
-Sub_B5_8F3A:
+CopyRamStub0513:
   ldx #$0A                     ; $8F3A
 Loc_B5_8F3C:
   lda Data_B5_8F46,x           ; $8F3C
@@ -1502,7 +1502,7 @@ Loc_B5_8F3C:
   rts                          ; $8F45
 Data_B5_8F46:
   .incbin "prg_bank_5.bin", $0F46, $B  ; $8F46
-Sub_B5_8F51:
+CopyRamStub05B8:
   ldx #$19                     ; $8F51
 Loc_B5_8F53:
   lda Data_B5_8734,x           ; $8F53
@@ -1551,7 +1551,7 @@ Data_B5_8FA1:
   .incbin "prg_bank_5.bin", $0FA1, $10  ; $8FA1
 Data_B5_8FB1:
   .incbin "prg_bank_5.bin", $0FB1, $19  ; $8FB1
-Sub_B5_8FCA:
+CopyRamStub051E:
   ldx #$07                     ; $8FCA
 Loc_B5_8FCC:
   lda Data_B5_8FD6,x           ; $8FCC
@@ -1561,7 +1561,7 @@ Loc_B5_8FCC:
   rts                          ; $8FD5
 Data_B5_8FD6:
   .incbin "prg_bank_5.bin", $0FD6, $8  ; $8FD6
-Sub_B5_8FDE:
+SetMmcControlChr0Chr1:
   sta z:MmcControlShadow       ; $8FDE
   stx z:MmcChr0Shadow          ; $8FE0
   sty z:MmcChr1Shadow          ; $8FE2
@@ -1569,11 +1569,11 @@ Sub_B5_8FDE:
   jsr MmcWriteChr0             ; $8FE7
   jmp MmcWriteChr1             ; $8FEA
 Loc_B5_8FED:
-  jsr Sub_B5_814C              ; $8FED
+  jsr DisableRendering         ; $8FED
   lda #$1F                     ; $8FF0
   ldx #$1A                     ; $8FF2
   ldy #$08                     ; $8FF4
-  jsr Sub_B5_8FDE              ; $8FF6
+  jsr SetMmcControlChr0Chr1    ; $8FF6
   lda #$60                     ; $8FF9
   sta $0600                    ; $8FFB
   lda #$00                     ; $8FFE
@@ -1607,17 +1607,17 @@ Loc_B5_9031:
   lda #$15                     ; $903A
   jmp QueueSound               ; $903C
 Loc_B5_903F:
-  jsr Sub_B5_814C              ; $903F
+  jsr DisableRendering         ; $903F
   lda #$1F                     ; $9042
   ldx #$0F                     ; $9044
   ldy #$0D                     ; $9046
-  jsr Sub_B5_8FDE              ; $9048
-  jsr Sub_B5_895B              ; $904B
+  jsr SetMmcControlChr0Chr1    ; $9048
+  jsr FillPaletteBufferBlack   ; $904B
   lda #$FF                     ; $904E
   ldx #$20                     ; $9050
-  jsr Sub_B5_8944              ; $9052
+  jsr FillNametableWithA       ; $9052
   ldx #$2C                     ; $9055
-  jsr Sub_B5_8944              ; $9057
+  jsr FillNametableWithA       ; $9057
   lda #$20                     ; $905A
   sta $014F                    ; $905C
   lda #$00                     ; $905F
@@ -1639,7 +1639,7 @@ Loc_B5_9078:
   dex                          ; $907E
   bpl Loc_B5_9078              ; $907F
   rts                          ; $9081
-Sub_B5_9082:
+RunSoundDriverBank5Timed:
   lda $0528                    ; $9082
   ora $0529                    ; $9085
   beq Loc_B5_9092              ; $9088
@@ -1655,7 +1655,7 @@ Loc_B5_9092:
   pla                          ; $909C
   sta z:MmcPrgShadow           ; $909D
   rts                          ; $909F
-Sub_B5_90A0:
+InitDmcAndJoypad2:
   lda #$00                     ; $90A0
   sta APU_DMC_FREQ             ; $90A2
   sta APU_DMC_RAW              ; $90A5
@@ -1665,8 +1665,8 @@ Sub_B5_90A0:
   sta JOYPAD2                  ; $90AF
   rts                          ; $90B2
 Sub_B5_90B3:
-  jsr Sub_B5_895B              ; $90B3
-  jsr Sub_B5_8971              ; $90B6
+  jsr FillPaletteBufferBlack   ; $90B3
+  jsr HideAllSpritesB5         ; $90B6
 Sub_B5_90B9:
   lda #$30                     ; $90B9
   sta z:PpuCtrlShadow          ; $90BB
@@ -1714,26 +1714,26 @@ Loc_B5_910E:
   sta OamBuffer,x              ; $9111
   dex                          ; $9114
   bpl Loc_B5_910E              ; $9115
-  jmp Sub_B5_895B              ; $9117
+  jmp FillPaletteBufferBlack   ; $9117
 Data_B5_911A:
   .incbin "prg_bank_5.bin", $111A, $4  ; $911A
 Data_B5_911E:
   .incbin "prg_bank_5.bin", $111E, $E8  ; $911E
 Sub_B5_9206:
-  jsr Sub_B5_814C              ; $9206
+  jsr DisableRendering         ; $9206
   lda #$1C                     ; $9209
   ldx #$0F                     ; $920B
   ldy #$0E                     ; $920D
-  jsr Sub_B5_8FDE              ; $920F
-  jsr Sub_B5_895B              ; $9212
-  jsr Sub_B5_8971              ; $9215
+  jsr SetMmcControlChr0Chr1    ; $920F
+  jsr FillPaletteBufferBlack   ; $9212
+  jsr HideAllSpritesB5         ; $9215
   lda #$FF                     ; $9218
   ldx #$20                     ; $921A
-  jsr Sub_B5_8944              ; $921C
-  jsr Sub_B5_8F51              ; $921F
+  jsr FillNametableWithA       ; $921C
+  jsr CopyRamStub05B8          ; $921F
   ldy #$02                     ; $9222
   jsr $05B8                    ; $9224
-  jsr Sub_B5_895B              ; $9227
+  jsr FillPaletteBufferBlack   ; $9227
   lda #$27                     ; $922A
   sta $0151                    ; $922C
   lda #$20                     ; $922F
@@ -1761,7 +1761,7 @@ Data_B5_9259:
 Data_B5_925A:
   .incbin "prg_bank_5.bin", $125A, $81  ; $925A
 Sub_B5_92DB:
-  jsr Sub_B5_8971              ; $92DB
+  jsr HideAllSpritesB5         ; $92DB
   ldx $053F                    ; $92DE
   txa                          ; $92E1
   inx                          ; $92E2
@@ -1857,7 +1857,7 @@ Loc_B5_9472:
   cpy #$78                     ; $9481
   bcs Loc_B5_948B              ; $9483
   sta SceneTimer               ; $9485
-  jmp Sub_B5_8971              ; $9488
+  jmp HideAllSpritesB5         ; $9488
 Loc_B5_948B:
   rts                          ; $948B
 Loc_B5_948C:
@@ -1868,13 +1868,13 @@ Loc_B5_948C:
   lda #$1E                     ; $9495
   ldx #$0F                     ; $9497
   ldy #$0D                     ; $9499
-  jsr Sub_B5_8FDE              ; $949B
+  jsr SetMmcControlChr0Chr1    ; $949B
   lda #$FE                     ; $949E
   ldx #$20                     ; $94A0
-  jsr Sub_B5_8944              ; $94A2
+  jsr FillNametableWithA       ; $94A2
   lda #$FF                     ; $94A5
   ldx #$2C                     ; $94A7
-  jsr Sub_B5_8944              ; $94A9
+  jsr FillNametableWithA       ; $94A9
   jsr ProcessPpuUpdateList     ; $94AC
   .addr Data_B5_94E7  ; $94AF inline pointer (data after a JSR)
   ldy #$1F                     ; $94B1
@@ -2012,13 +2012,13 @@ Loc_B5_9785:
   lda #$1D                     ; $978E
   ldx #$1A                     ; $9790
   ldy #$0D                     ; $9792
-  jsr Sub_B5_8FDE              ; $9794
+  jsr SetMmcControlChr0Chr1    ; $9794
   lda #$FF                     ; $9797
   ldx #$20                     ; $9799
-  jsr Sub_B5_8944              ; $979B
+  jsr FillNametableWithA       ; $979B
   lda #$22                     ; $979E
-  jsr Sub_B5_895D              ; $97A0
-  jsr Sub_B5_8971              ; $97A3
+  jsr FillPaletteBufferWithA   ; $97A0
+  jsr HideAllSpritesB5         ; $97A3
   jsr ProcessPpuUpdateList     ; $97A6
   .addr Data_B5_97DF  ; $97A9 inline pointer (data after a JSR)
   lda #$0F                     ; $97AB
@@ -2049,10 +2049,10 @@ Sub_B5_9848:
   sta $0531                    ; $984A
   lda #$58                     ; $984D
   sta $0532                    ; $984F
-  jsr Sub_B5_8971              ; $9852
+  jsr HideAllSpritesB5         ; $9852
   jsr Sub_B5_8CC4              ; $9855
   ldx #$C0                     ; $9858
-  jsr Sub_B5_8973              ; $985A
+  jsr HideSpritesFromX         ; $985A
   ldy #$06                     ; $985D
   lda $052E                    ; $985F
   cmp #$06                     ; $9862
@@ -2063,7 +2063,7 @@ Loc_B5_9867:
   ldx #$C0                     ; $9868
   jmp Sub_B5_9895              ; $986A
 Sub_B5_986D:
-  jsr Sub_B5_8971              ; $986D
+  jsr HideAllSpritesB5         ; $986D
   lda #$00                     ; $9870
   tax                          ; $9872
   jsr Sub_B5_9895              ; $9873
@@ -2134,7 +2134,7 @@ Sub_B5_9974:
   sty $0511                    ; $9976
   ldy #$00                     ; $9979
 Sub_B5_997B:
-  jsr Sub_B5_8971              ; $997B
+  jsr HideAllSpritesB5         ; $997B
 Loc_B5_997E:
   lda Data_B5_99AA,y           ; $997E
   clc                          ; $9981
@@ -2161,13 +2161,13 @@ Loc_B5_997E:
 Data_B5_99AA:
   .incbin "prg_bank_5.bin", $19AA, $84  ; $99AA
 Loc_B5_9A2E:
-  jsr Sub_B5_814C              ; $9A2E
-  jsr Sub_B5_895B              ; $9A31
-  jsr Sub_B5_8971              ; $9A34
-  jsr Sub_B5_8FCA              ; $9A37
+  jsr DisableRendering         ; $9A2E
+  jsr FillPaletteBufferBlack   ; $9A31
+  jsr HideAllSpritesB5         ; $9A34
+  jsr CopyRamStub051E          ; $9A37
   lda #$FF                     ; $9A3A
   ldx #$20                     ; $9A3C
-  jsr Sub_B5_8944              ; $9A3E
+  jsr FillNametableWithA       ; $9A3E
   ldx $0512                    ; $9A41
   lda Data_B5_9CB8,x           ; $9A44
   bpl Loc_B5_9A4F              ; $9A47
@@ -2275,32 +2275,32 @@ Data_B5_9CF2:
 Data_B5_9CF3:
   .incbin "prg_bank_5.bin", $1CF3, $19  ; $9CF3
 Loc_B5_9D0C:
-  jsr Sub_B5_814C              ; $9D0C
+  jsr DisableRendering         ; $9D0C
   lda #$1C                     ; $9D0F
   ldx #$14                     ; $9D11
   ldy #$14                     ; $9D13
-  jsr Sub_B5_8FDE              ; $9D15
-  jsr Sub_B5_895B              ; $9D18
-  jsr Sub_B5_8971              ; $9D1B
+  jsr SetMmcControlChr0Chr1    ; $9D15
+  jsr FillPaletteBufferBlack   ; $9D18
+  jsr HideAllSpritesB5         ; $9D1B
   lda #$FF                     ; $9D1E
   ldx #$20                     ; $9D20
-  jsr Sub_B5_8944              ; $9D22
+  jsr FillNametableWithA       ; $9D22
   jsr ProcessPpuUpdateList     ; $9D25
   .addr Data_B5_9D2D  ; $9D28 inline pointer (data after a JSR)
   jmp Sub_B5_90B9              ; $9D2A
 Data_B5_9D2D:
   .incbin "prg_bank_5.bin", $1D2D, $1D  ; $9D2D
 Loc_B5_9D4A:
-  jsr Sub_B5_814C              ; $9D4A
+  jsr DisableRendering         ; $9D4A
   lda #$1C                     ; $9D4D
   ldx #$1F                     ; $9D4F
   ldy #$0D                     ; $9D51
-  jsr Sub_B5_8FDE              ; $9D53
-  jsr Sub_B5_895B              ; $9D56
-  jsr Sub_B5_8971              ; $9D59
+  jsr SetMmcControlChr0Chr1    ; $9D53
+  jsr FillPaletteBufferBlack   ; $9D56
+  jsr HideAllSpritesB5         ; $9D59
   lda #$FF                     ; $9D5C
   ldx #$20                     ; $9D5E
-  jsr Sub_B5_8944              ; $9D60
+  jsr FillNametableWithA       ; $9D60
   jsr ProcessPpuUpdateList     ; $9D63
   .addr Data_B5_9D7A  ; $9D66 inline pointer (data after a JSR)
   lda #$20                     ; $9D68
@@ -2313,16 +2313,16 @@ Loc_B5_9D4A:
 Data_B5_9D7A:
   .incbin "prg_bank_5.bin", $1D7A, $E  ; $9D7A
 Loc_B5_9D88:
-  jsr Sub_B5_814C              ; $9D88
+  jsr DisableRendering         ; $9D88
   lda #$1C                     ; $9D8B
   ldx #$1F                     ; $9D8D
   ldy #$0D                     ; $9D8F
-  jsr Sub_B5_8FDE              ; $9D91
-  jsr Sub_B5_895B              ; $9D94
-  jsr Sub_B5_8971              ; $9D97
+  jsr SetMmcControlChr0Chr1    ; $9D91
+  jsr FillPaletteBufferBlack   ; $9D94
+  jsr HideAllSpritesB5         ; $9D97
   lda #$FF                     ; $9D9A
   ldx #$20                     ; $9D9C
-  jsr Sub_B5_8944              ; $9D9E
+  jsr FillNametableWithA       ; $9D9E
   jsr ProcessPpuUpdateList     ; $9DA1
   .addr Data_B5_9DAE  ; $9DA4 inline pointer (data after a JSR)
   lda #$20                     ; $9DA6
@@ -2331,16 +2331,16 @@ Loc_B5_9D88:
 Data_B5_9DAE:
   .incbin "prg_bank_5.bin", $1DAE, $D  ; $9DAE
 Loc_B5_9DBB:
-  jsr Sub_B5_814C              ; $9DBB
+  jsr DisableRendering         ; $9DBB
   lda #$1C                     ; $9DBE
   ldx #$0B                     ; $9DC0
   ldy #$0D                     ; $9DC2
-  jsr Sub_B5_8FDE              ; $9DC4
-  jsr Sub_B5_895B              ; $9DC7
-  jsr Sub_B5_8971              ; $9DCA
+  jsr SetMmcControlChr0Chr1    ; $9DC4
+  jsr FillPaletteBufferBlack   ; $9DC7
+  jsr HideAllSpritesB5         ; $9DCA
   lda #$FF                     ; $9DCD
   ldx #$20                     ; $9DCF
-  jsr Sub_B5_8944              ; $9DD1
+  jsr FillNametableWithA       ; $9DD1
   lda #$20                     ; $9DD4
   sta $014F                    ; $9DD6
   jsr ProcessPpuUpdateList     ; $9DD9
