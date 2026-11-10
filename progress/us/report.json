@@ -1019,7 +1019,7 @@
      }
     },
     {
-     "name": "Sub_B1_AA03",
+     "name": "UpdateObjectScreenXB1",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1027,7 +1027,7 @@
      }
     },
     {
-     "name": "Sub_B1_AA64",
+     "name": "LoadObjectAnimFrameB1",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1043,7 +1043,7 @@
      }
     },
     {
-     "name": "Sub_B1_AA84",
+     "name": "AllocObjectB1",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1067,7 +1067,7 @@
      }
     },
     {
-     "name": "Sub_B1_AB1E",
+     "name": "GetObjectStateIndex",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1147,7 +1147,7 @@
      }
     },
     {
-     "name": "Sub_B1_AD18",
+     "name": "MultiplyBy12",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4966,7 +4966,7 @@
      }
     },
     {
-     "name": "Sub_B6_89B2",
+     "name": "LoadBehaviorTableA",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4974,7 +4974,7 @@
      }
     },
     {
-     "name": "Sub_B6_89C0",
+     "name": "LoadObjectAnimFrame",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4990,7 +4990,7 @@
      }
     },
     {
-     "name": "Sub_B6_8A66",
+     "name": "AdvanceObjectAnimStep",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4998,7 +4998,7 @@
      }
     },
     {
-     "name": "Sub_B6_8A76",
+     "name": "UpdateObjectScreenX",
      "size": "99",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5014,7 +5014,7 @@
      }
     },
     {
-     "name": "Sub_B6_8AF4",
+     "name": "CalcObjectTileColumn",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5022,7 +5022,7 @@
      }
     },
     {
-     "name": "Sub_B6_8B08",
+     "name": "RemoveObjectIfOffscreen",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5054,7 +5054,7 @@
      }
     },
     {
-     "name": "Sub_B6_9489",
+     "name": "LoadBehaviorTableB",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5086,7 +5086,7 @@
      }
     },
     {
-     "name": "Sub_B6_96D4",
+     "name": "LoadBehaviorTableC",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5110,7 +5110,7 @@
      }
     },
     {
-     "name": "Sub_B6_9A38",
+     "name": "LoadBehaviorTableD",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5126,7 +5126,7 @@
      }
     },
     {
-     "name": "Sub_B6_A0A6",
+     "name": "LoadBehaviorTableE",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {

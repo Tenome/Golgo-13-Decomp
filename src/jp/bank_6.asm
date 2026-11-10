@@ -846,21 +846,21 @@ Sub_B6_886B:
   rts                          ; $88BA
   .incbin "prg_bank_6.bin", $08BB, $54  ; $88BB
 Sub_B6_890F:
-  jsr Sub_B6_89B2              ; $890F
+  jsr LoadBehaviorTableA       ; $890F
   ldy #$08                     ; $8912
   lda (Tmp00),y                ; $8914
   bne Loc_B6_8928              ; $8916
-  jsr Sub_B6_8A66              ; $8918
+  jsr AdvanceObjectAnimStep    ; $8918
   cmp z:$04                    ; $891B
   bcc Loc_B6_8925              ; $891D
   jsr Sub_B6_89DE              ; $891F
-  jsr Sub_B6_89B2              ; $8922
+  jsr LoadBehaviorTableA       ; $8922
 Loc_B6_8925:
-  jsr Sub_B6_89C0              ; $8925
+  jsr LoadObjectAnimFrame      ; $8925
 Loc_B6_8928:
   jsr Sub_B6_8932              ; $8928
-  jsr Sub_B6_8A76              ; $892B
-  jsr Sub_B6_8B08              ; $892E
+  jsr UpdateObjectScreenX      ; $892B
+  jsr RemoveObjectIfOffscreen  ; $892E
   rts                          ; $8931
 Sub_B6_8932:
   ldy #$0E                     ; $8932
@@ -944,14 +944,14 @@ GetObjectBehaviorIndex:
   lsr a                        ; $89AF
   tay                          ; $89B0
   rts                          ; $89B1
-Sub_B6_89B2:
+LoadBehaviorTableA:
   jsr GetObjectBehaviorIndex   ; $89B2
   lda Data_B6_8B14,y           ; $89B5
   sta z:Tmp02                  ; $89B8
   lda Data_B6_8B15,y           ; $89BA
   sta z:Tmp03                  ; $89BD
   rts                          ; $89BF
-Sub_B6_89C0:
+LoadObjectAnimFrame:
   ldy #$0E                     ; $89C0
   lda (Tmp00),y                ; $89C2
   asl a                        ; $89C4
@@ -971,7 +971,7 @@ Sub_B6_89C0:
   sta (Tmp00),y                ; $89DB
   rts                          ; $89DD
 Sub_B6_89DE:
-  jsr Sub_B6_8AF4              ; $89DE
+  jsr CalcObjectTileColumn     ; $89DE
   ldy #$0C                     ; $89E1
   lda (Tmp00),y                ; $89E3
   beq Loc_B6_89EB              ; $89E5
@@ -1048,7 +1048,7 @@ Loc_B6_8A53:
   lda #$00                     ; $8A61
   sta (Tmp00),y                ; $8A63
   rts                          ; $8A65
-Sub_B6_8A66:
+AdvanceObjectAnimStep:
   ldy #$00                     ; $8A66
   lda (Tmp02),y                ; $8A68
   sta z:$04                    ; $8A6A
@@ -1058,7 +1058,7 @@ Sub_B6_8A66:
   adc #$01                     ; $8A71
   sta (Tmp00),y                ; $8A73
   rts                          ; $8A75
-Sub_B6_8A76:
+UpdateObjectScreenX:
   ldy #$09                     ; $8A76
   lda (Tmp00),y                ; $8A78
   and #$0F                     ; $8A7A
@@ -1135,7 +1135,7 @@ Loc_B6_8AEA:
   ldy #$05                     ; $8AEF
   sta (Tmp00),y                ; $8AF1
   rts                          ; $8AF3
-Sub_B6_8AF4:
+CalcObjectTileColumn:
   ldy #$09                     ; $8AF4
   lda (Tmp00),y                ; $8AF6
   jsr AslA4                    ; $8AF8
@@ -1146,7 +1146,7 @@ Sub_B6_8AF4:
   ora z:$04                    ; $8B03
   sta z:$04                    ; $8B05
   rts                          ; $8B07
-Sub_B6_8B08:
+RemoveObjectIfOffscreen:
   ldy #$00                     ; $8B08
   lda (Tmp00),y                ; $8B0A
   and #$80                     ; $8B0C
@@ -1212,27 +1212,27 @@ Loc_B6_8BF2:
   .incbin "prg_bank_6.bin", $0FF3, $400  ; $8FF3
   .incbin "prg_bank_6.bin", $13F3, $67  ; $93F3
 Sub_B6_945A:
-  jsr Sub_B6_9489              ; $945A
+  jsr LoadBehaviorTableB       ; $945A
   ldy #$08                     ; $945D
   lda (Tmp00),y                ; $945F
   bne Loc_B6_9479              ; $9461
-  jsr Sub_B6_8A66              ; $9463
+  jsr AdvanceObjectAnimStep    ; $9463
   cmp z:$04                    ; $9466
   bcc Loc_B6_9473              ; $9468
   jsr Sub_B6_8B9C              ; $946A
   jsr Sub_B6_9497              ; $946D
-  jsr Sub_B6_9489              ; $9470
+  jsr LoadBehaviorTableB       ; $9470
 Loc_B6_9473:
-  jsr Sub_B6_89C0              ; $9473
+  jsr LoadObjectAnimFrame      ; $9473
   jsr Sub_B6_95EE              ; $9476
 Loc_B6_9479:
   jsr Sub_B6_8932              ; $9479
   jsr Sub_B6_8BE6              ; $947C
-  jsr Sub_B6_8A76              ; $947F
-  jsr Sub_B6_8B08              ; $9482
+  jsr UpdateObjectScreenX      ; $947F
+  jsr RemoveObjectIfOffscreen  ; $9482
   jsr Sub_B6_9621              ; $9485
   rts                          ; $9488
-Sub_B6_9489:
+LoadBehaviorTableB:
   jsr GetObjectBehaviorIndex   ; $9489
   lda Data_B6_94BE,y           ; $948C
   sta z:Tmp02                  ; $948F
@@ -1380,19 +1380,19 @@ Loc_B6_9699:
   lda #$0F                     ; $96B2
   jsr QueueSound               ; $96B4
   rts                          ; $96B7
-  jsr Sub_B6_96D4              ; $96B8  [heuristic code]
+  jsr LoadBehaviorTableC       ; $96B8  [heuristic code]
   ldy #$08                     ; $96BB
   lda (Tmp00),y                ; $96BD
   bne Loc_B6_96C7              ; $96BF
-  jsr Sub_B6_8A66              ; $96C1
-  jsr Sub_B6_89C0              ; $96C4
+  jsr AdvanceObjectAnimStep    ; $96C1
+  jsr LoadObjectAnimFrame      ; $96C4
 Loc_B6_96C7:
   jsr Sub_B6_8932              ; $96C7
-  jsr Sub_B6_8A76              ; $96CA
-  jsr Sub_B6_8B08              ; $96CD
+  jsr UpdateObjectScreenX      ; $96CA
+  jsr RemoveObjectIfOffscreen  ; $96CD
   jsr Sub_B6_975A              ; $96D0
   rts                          ; $96D3
-Sub_B6_96D4:
+LoadBehaviorTableC:
   jsr GetObjectBehaviorIndex   ; $96D4
   lda Data_B6_96E2,y           ; $96D7
   sta z:Tmp02                  ; $96DA
@@ -1498,24 +1498,24 @@ Loc_B6_97A0:
   sta $0336,x                  ; $981A
   rts                          ; $981D
   .incbin "prg_bank_6.bin", $181E, $1F6  ; $981E
-  jsr Sub_B6_9A38              ; $9A14
+  jsr LoadBehaviorTableD       ; $9A14
   ldy #$08                     ; $9A17
   lda (Tmp00),y                ; $9A19
   bne Loc_B6_9A2E              ; $9A1B
-  jsr Sub_B6_8A66              ; $9A1D
+  jsr AdvanceObjectAnimStep    ; $9A1D
   cmp z:$04                    ; $9A20
   bcc Loc_B6_9A28              ; $9A22
   jsr RemoveObject             ; $9A24
   rts                          ; $9A27
 Loc_B6_9A28:
-  jsr Sub_B6_89C0              ; $9A28
-  jsr Sub_B6_9A38              ; $9A2B
+  jsr LoadObjectAnimFrame      ; $9A28
+  jsr LoadBehaviorTableD       ; $9A2B
 Loc_B6_9A2E:
   jsr Sub_B6_8932              ; $9A2E
-  jsr Sub_B6_8A76              ; $9A31
-  jsr Sub_B6_8B08              ; $9A34
+  jsr UpdateObjectScreenX      ; $9A31
+  jsr RemoveObjectIfOffscreen  ; $9A34
   rts                          ; $9A37
-Sub_B6_9A38:
+LoadBehaviorTableD:
   jsr GetObjectBehaviorIndex   ; $9A38
   lda Data_B6_9A46,y           ; $9A3B
   sta z:Tmp02                  ; $9A3E
@@ -1528,12 +1528,12 @@ Data_B6_9A47:
   .incbin "prg_bank_6.bin", $1A47, $400  ; $9A47
   .incbin "prg_bank_6.bin", $1E47, $252  ; $9E47
 Sub_B6_A099:
-  jsr Sub_B6_A0A6              ; $A099
+  jsr LoadBehaviorTableE       ; $A099
   jsr Sub_B6_8932              ; $A09C
-  jsr Sub_B6_8A76              ; $A09F
-  jsr Sub_B6_8B08              ; $A0A2
+  jsr UpdateObjectScreenX      ; $A09F
+  jsr RemoveObjectIfOffscreen  ; $A0A2
   rts                          ; $A0A5
-Sub_B6_A0A6:
+LoadBehaviorTableE:
   jsr GetObjectBehaviorIndex   ; $A0A6
   lda Data_B6_A0B4,y           ; $A0A9
   sta z:Tmp02                  ; $A0AC

@@ -302,5 +302,20 @@
  "F606": "SetPlayerScreenSide",
  "F61E": "UploadPaletteIgnoringPad",
  "F984": "CheckPlayerHitByObjects",
- "FA47": "CheckBulletHitObjects"
+ "FA47": "CheckBulletHitObjects",
+ "6:8A66": "AdvanceObjectAnimStep",
+ "6:8A76": "UpdateObjectScreenX",
+ "6:8AF4": "CalcObjectTileColumn",
+ "6:8B08": "RemoveObjectIfOffscreen",
+ "6:89C0": "LoadObjectAnimFrame",
+ "6:89B2": "LoadBehaviorTableA",
+ "6:9489": "LoadBehaviorTableB",
+ "6:96D4": "LoadBehaviorTableC",
+ "6:9A38": "LoadBehaviorTableD",
+ "6:A0A6": "LoadBehaviorTableE",
+ "1:AB1E": "GetObjectStateIndex",
+ "1:AA84": "AllocObjectB1",
+ "1:AA64": "LoadObjectAnimFrameB1",
+ "1:AA03": "UpdateObjectScreenXB1",
+ "1:AD18": "MultiplyBy12"
 }

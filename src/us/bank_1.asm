@@ -777,10 +777,10 @@ Bank1State_02:
   jsr Sub_B1_8F9F              ; $8F69
   jsr Sub_B1_8F8C              ; $8F6C
 Loc_B1_8F6F:
-  jsr Sub_B1_AA64              ; $8F6F
+  jsr LoadObjectAnimFrameB1    ; $8F6F
 Loc_B1_8F72:
   jsr Sub_B1_8F79              ; $8F72
-  jsr Sub_B1_AA03              ; $8F75
+  jsr UpdateObjectScreenXB1    ; $8F75
   rts                          ; $8F78
 Sub_B1_8F79:
   jsr Sub_B1_A957              ; $8F79
@@ -844,7 +844,7 @@ Sub_B1_8FDE:
   lda #$00                     ; $8FDE
   sta z:$06                    ; $8FE0
   sta z:$07                    ; $8FE2
-  jsr Sub_B1_AA84              ; $8FE4
+  jsr AllocObjectB1            ; $8FE4
   lda z:$05                    ; $8FE7
   beq Loc_B1_9009              ; $8FE9
   ldy #$07                     ; $8FEB
@@ -881,10 +881,10 @@ Bank1State_03:
   jsr Sub_B1_8EA2              ; $90B6
   jmp Loc_B1_90C5              ; $90B9
 Loc_B1_90BC:
-  jsr Sub_B1_AA64              ; $90BC
+  jsr LoadObjectAnimFrameB1    ; $90BC
 Loc_B1_90BF:
   jsr Sub_B1_8F79              ; $90BF
-  jsr Sub_B1_AA03              ; $90C2
+  jsr UpdateObjectScreenXB1    ; $90C2
 Loc_B1_90C5:
   rts                          ; $90C5
 Sub_B1_90C6:
@@ -920,14 +920,14 @@ Bank1State_00:
   jsr Sub_B1_926E              ; $924D
   jsr Sub_B1_9260              ; $9250
 Loc_B1_9253:
-  jsr Sub_B1_AA64              ; $9253
+  jsr LoadObjectAnimFrameB1    ; $9253
   jsr Sub_B1_929F              ; $9256
 Loc_B1_9259:
   jsr Sub_B1_9ABA              ; $9259
-  jsr Sub_B1_AA03              ; $925C
+  jsr UpdateObjectScreenXB1    ; $925C
   rts                          ; $925F
 Sub_B1_9260:
-  jsr Sub_B1_AB1E              ; $9260
+  jsr GetObjectStateIndex      ; $9260
   lda Data_B1_9307,y           ; $9263
   sta z:Tmp02                  ; $9266
   lda Data_B1_9308,y           ; $9268
@@ -1039,7 +1039,7 @@ Loc_B1_9373:
 Loc_B1_9381:
   jsr Sub_B1_93B8              ; $9381
 Loc_B1_9384:
-  jsr Sub_B1_AA64              ; $9384
+  jsr LoadObjectAnimFrameB1    ; $9384
   jsr Sub_B1_942E              ; $9387
 Loc_B1_938A:
   jsr Sub_B1_94BD              ; $938A
@@ -1064,10 +1064,10 @@ Loc_B1_938A:
   lda #$00                     ; $93B0
   sta (Tmp00),y                ; $93B2
 Loc_B1_93B4:
-  jsr Sub_B1_AA03              ; $93B4
+  jsr UpdateObjectScreenXB1    ; $93B4
   rts                          ; $93B7
 Sub_B1_93B8:
-  jsr Sub_B1_AB1E              ; $93B8
+  jsr GetObjectStateIndex      ; $93B8
   lda Data_B1_94E8,y           ; $93BB
   sta z:Tmp02                  ; $93BE
   lda Data_B1_94E9,y           ; $93C0
@@ -1247,7 +1247,7 @@ Loc_B1_9596:
 Loc_B1_95A4:
   jsr Sub_B1_95E6              ; $95A4
 Loc_B1_95A7:
-  jsr Sub_B1_AA64              ; $95A7
+  jsr LoadObjectAnimFrameB1    ; $95A7
   ldy #$07                     ; $95AA
   lda (Tmp00),y                ; $95AC
   bne Loc_B1_95BD              ; $95AE
@@ -1278,10 +1278,10 @@ Loc_B1_95C0:
   lda #$09                     ; $95DE
   sta (Tmp00),y                ; $95E0
 Loc_B1_95E2:
-  jsr Sub_B1_AA03              ; $95E2
+  jsr UpdateObjectScreenXB1    ; $95E2
   rts                          ; $95E5
 Sub_B1_95E6:
-  jsr Sub_B1_AB1E              ; $95E6
+  jsr GetObjectStateIndex      ; $95E6
   lda Data_B1_970C,y           ; $95E9
   sta z:Tmp02                  ; $95EC
   lda Data_B1_970D,y           ; $95EE
@@ -1434,7 +1434,7 @@ Sub_B1_96E8:
   lda #$04                     ; $96EC
   sta z:$07                    ; $96EE
 Sub_B1_96F0:
-  jsr Sub_B1_AA84              ; $96F0
+  jsr AllocObjectB1            ; $96F0
   lda z:$05                    ; $96F3
   beq Loc_B1_970B              ; $96F5
   lda z:$06                    ; $96F7
@@ -1474,7 +1474,7 @@ Loc_B1_97CC:
 Loc_B1_97DA:
   jsr Sub_B1_9816              ; $97DA
 Loc_B1_97DD:
-  jsr Sub_B1_AA64              ; $97DD
+  jsr LoadObjectAnimFrameB1    ; $97DD
   jsr Sub_B1_98E7              ; $97E0
 Loc_B1_97E3:
   jsr Sub_B1_9ABA              ; $97E3
@@ -1498,10 +1498,10 @@ Loc_B1_97E3:
   and #$F0                     ; $980D
   sta $030A,y                  ; $980F
 Loc_B1_9812:
-  jsr Sub_B1_AA03              ; $9812
+  jsr UpdateObjectScreenXB1    ; $9812
   rts                          ; $9815
 Sub_B1_9816:
-  jsr Sub_B1_AB1E              ; $9816
+  jsr GetObjectStateIndex      ; $9816
   lda Data_B1_990A,y           ; $9819
   sta z:Tmp02                  ; $981C
   lda Data_B1_990B,y           ; $981E
@@ -1677,15 +1677,15 @@ Loc_B1_9A1A:
 Loc_B1_9A1D:
   jsr Sub_B1_9A2D              ; $9A1D
 Loc_B1_9A20:
-  jsr Sub_B1_AA64              ; $9A20
+  jsr LoadObjectAnimFrameB1    ; $9A20
   jsr Sub_B1_9ACB              ; $9A23
 Loc_B1_9A26:
   jsr Sub_B1_9ABA              ; $9A26
 Loc_B1_9A29:
-  jsr Sub_B1_AA03              ; $9A29
+  jsr UpdateObjectScreenXB1    ; $9A29
   rts                          ; $9A2C
 Sub_B1_9A2D:
-  jsr Sub_B1_AB1E              ; $9A2D
+  jsr GetObjectStateIndex      ; $9A2D
   lda Data_B1_9B81,y           ; $9A30
   sta z:Tmp02                  ; $9A33
   lda Data_B1_9B82,y           ; $9A35
@@ -1889,14 +1889,14 @@ Bank1State_08:
   jsr Sub_B1_9C76              ; $9C55
   jsr Sub_B1_9C68              ; $9C58
 Loc_B1_9C5B:
-  jsr Sub_B1_AA64              ; $9C5B
+  jsr LoadObjectAnimFrameB1    ; $9C5B
   jsr Sub_B1_9C92              ; $9C5E
 Loc_B1_9C61:
   jsr Sub_B1_9ABA              ; $9C61
-  jsr Sub_B1_AA03              ; $9C64
+  jsr UpdateObjectScreenXB1    ; $9C64
   rts                          ; $9C67
 Sub_B1_9C68:
-  jsr Sub_B1_AB1E              ; $9C68
+  jsr GetObjectStateIndex      ; $9C68
   lda Data_B1_9CD4,y           ; $9C6B
   sta z:Tmp02                  ; $9C6E
   lda Data_B1_9CD5,y           ; $9C70
@@ -1975,20 +1975,20 @@ Bank1State_09:
   jsr Sub_B1_9DFC              ; $9DD1
   jsr Sub_B1_9DEE              ; $9DD4
 Loc_B1_9DD7:
-  jsr Sub_B1_AA64              ; $9DD7
+  jsr LoadObjectAnimFrameB1    ; $9DD7
 Loc_B1_9DDA:
   jsr Sub_B1_9ABA              ; $9DDA
   lda z:$04                    ; $9DDD
   beq Loc_B1_9DE4              ; $9DDF
   jsr Sub_B1_9E20              ; $9DE1
 Loc_B1_9DE4:
-  jsr Sub_B1_AA03              ; $9DE4
+  jsr UpdateObjectScreenXB1    ; $9DE4
   rts                          ; $9DE7
 Loc_B1_9DE8:
   jsr Sub_B1_A957              ; $9DE8
   jmp Loc_B1_9DE4              ; $9DEB
 Sub_B1_9DEE:
-  jsr Sub_B1_AB1E              ; $9DEE
+  jsr GetObjectStateIndex      ; $9DEE
   lda Data_B1_9E74,y           ; $9DF1
   sta z:Tmp02                  ; $9DF4
   lda Data_B1_9E75,y           ; $9DF6
@@ -2077,7 +2077,7 @@ Sub_B1_A007:
   jsr RemoveObject             ; $A015
   jmp Loc_B1_A031              ; $A018
 Loc_B1_A01B:
-  jsr Sub_B1_AA64              ; $A01B
+  jsr LoadObjectAnimFrameB1    ; $A01B
   ldy #$0E                     ; $A01E
   lda (Tmp00),y                ; $A020
   cmp #$04                     ; $A022
@@ -2086,7 +2086,7 @@ Loc_B1_A01B:
   jsr QueueSound               ; $A028
 Loc_B1_A02B:
   jsr Sub_B1_9ABA              ; $A02B
-  jsr Sub_B1_AA03              ; $A02E
+  jsr UpdateObjectScreenXB1    ; $A02E
 Loc_B1_A031:
   rts                          ; $A031
 Sub_B1_A032:
@@ -2209,7 +2209,7 @@ Loc_B1_A9F6:
   adc z:FrameCounter           ; $A9FE
   and z:$04                    ; $AA00
   rts                          ; $AA02
-Sub_B1_AA03:
+UpdateObjectScreenXB1:
   ldy #$09                     ; $AA03
   lda (Tmp00),y                ; $AA05
   and #$03                     ; $AA07
@@ -2267,7 +2267,7 @@ Loc_B1_AA47:
   sta (Tmp00),y                ; $AA61
 Loc_B1_AA63:
   rts                          ; $AA63
-Sub_B1_AA64:
+LoadObjectAnimFrameB1:
   ldy #$0E                     ; $AA64
   lda (Tmp00),y                ; $AA66
   asl a                        ; $AA68
@@ -2290,7 +2290,7 @@ Sub_B1_AA7A:
   ldy #$05                     ; $AA7F
   sta (Tmp00),y                ; $AA81
   rts                          ; $AA83
-Sub_B1_AA84:
+AllocObjectB1:
   lda ObjectCount              ; $AA84  [heuristic code]
   cmp #$0F                     ; $AA87
   bcc Loc_B1_AA92              ; $AA89
@@ -2370,7 +2370,7 @@ Sub_B1_AAD5:
   sta z:Tmp00                  ; $AB1B
 Loc_B1_AB1D:
   rts                          ; $AB1D
-Sub_B1_AB1E:
+GetObjectStateIndex:
   ldy #$07                     ; $AB1E
   lda (Tmp00),y                ; $AB20
   and #$1F                     ; $AB22
@@ -2608,12 +2608,12 @@ Loc_B1_ACD2:
   lda Data_B1_AD2A,y           ; $ACD8
   sta z:Tmp03                  ; $ACDB
 Loc_B1_ACDD:
-  jsr Sub_B1_AD18              ; $ACDD
+  jsr MultiplyBy12             ; $ACDD
   adc #$30                     ; $ACE0
   tax                          ; $ACE2
   jmp Loc_B1_ACFB              ; $ACE3
 Loc_B1_ACE6:
-  jsr Sub_B1_AD18              ; $ACE6
+  jsr MultiplyBy12             ; $ACE6
   sta z:Tmp03                  ; $ACE9
   tax                          ; $ACEB
   lda $04AA                    ; $ACEC
@@ -2640,7 +2640,7 @@ Loc_B1_AD0C:
   cpy #$0C                     ; $AD13
   bne Loc_B1_AD0C              ; $AD15
   rts                          ; $AD17
-Sub_B1_AD18:
+MultiplyBy12:
   lda z:Tmp03                  ; $AD18
   asl a                        ; $AD1A
   asl a                        ; $AD1B

@@ -1072,21 +1072,21 @@ void Loc_B6_889B(void) {  /* $889B bank 6 */
 
 void Sub_B6_890F(void) {  /* $890F bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x8911); Sub_B6_89B2(); UNW(); ret_check(0x8911);                               /* $890F jsr */
+  push16(0x8911); LoadBehaviorTableA(); UNW(); ret_check(0x8911);                        /* $890F jsr */
   LDY(0x08);                                                                             /* $8912 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8914 lda */
   if (R.a == 0) {                                                                        /* $8916 bne */
-    push16(0x891A); Sub_B6_8A66(); UNW(); ret_check(0x891A);                             /* $8918 jsr */
+    push16(0x891A); AdvanceObjectAnimStep(); UNW(); ret_check(0x891A);                   /* $8918 jsr */
     cmp8(R.a, rd(0x04));                                                                 /* $891B cmp */
     if (R.a >= rd(0x04)) {                                                               /* $891D bcc */
       push16(0x8921); Sub_B6_89DE(); UNW(); ret_check(0x8921);                           /* $891F jsr */
-      push16(0x8924); Sub_B6_89B2(); UNW(); ret_check(0x8924);                           /* $8922 jsr */
+      push16(0x8924); LoadBehaviorTableA(); UNW(); ret_check(0x8924);                    /* $8922 jsr */
     }
-    push16(0x8927); Sub_B6_89C0(); UNW(); ret_check(0x8927);                             /* $8925 jsr */
+    push16(0x8927); LoadObjectAnimFrame(); UNW(); ret_check(0x8927);                     /* $8925 jsr */
   }
   push16(0x892A); Sub_B6_8932(); UNW(); ret_check(0x892A);                               /* $8928 jsr */
-  push16(0x892D); Sub_B6_8A76(); UNW(); ret_check(0x892D);                               /* $892B jsr */
-  push16(0x8930); Sub_B6_8B08(); UNW(); ret_check(0x8930);                               /* $892E jsr */
+  push16(0x892D); UpdateObjectScreenX(); UNW(); ret_check(0x892D);                       /* $892B jsr */
+  push16(0x8930); RemoveObjectIfOffscreen(); UNW(); ret_check(0x8930);                   /* $892E jsr */
   RTS_RET(sp0);                                                                          /* $8931 rts */
 }
 
@@ -1178,7 +1178,7 @@ void GetObjectBehaviorIndex(void) {  /* $89A7 bank 6 */
   RTS_RET(sp0);                                                                          /* $89B1 rts */
 }
 
-void Sub_B6_89B2(void) {  /* $89B2 bank 6 */
+void LoadBehaviorTableA(void) {  /* $89B2 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x89B4); GetObjectBehaviorIndex(); UNW(); ret_check(0x89B4);                    /* $89B2 jsr */
   LDA(rd((uint16_t)(0x8B14 + R.y)));                                                     /* $89B5 lda */
@@ -1188,7 +1188,7 @@ void Sub_B6_89B2(void) {  /* $89B2 bank 6 */
   RTS_RET(sp0);                                                                          /* $89BF rts */
 }
 
-void Sub_B6_89C0(void) {  /* $89C0 bank 6 */
+void LoadObjectAnimFrame(void) {  /* $89C0 bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x0E);                                                                             /* $89C0 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $89C2 lda */
@@ -1212,7 +1212,7 @@ void Sub_B6_89C0(void) {  /* $89C0 bank 6 */
 
 void Sub_B6_89DE(void) {  /* $89DE bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x89E0); Sub_B6_8AF4(); UNW(); ret_check(0x89E0);                               /* $89DE jsr */
+  push16(0x89E0); CalcObjectTileColumn(); UNW(); ret_check(0x89E0);                      /* $89DE jsr */
   LDY(0x0C);                                                                             /* $89E1 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $89E3 lda */
   if (R.a != 0) {                                                                        /* $89E5 beq */
@@ -1292,7 +1292,7 @@ L8A53: BUDGET();
   RTS_RET(sp0);                                                                          /* $8A65 rts */
 }
 
-void Sub_B6_8A66(void) {  /* $8A66 bank 6 */
+void AdvanceObjectAnimStep(void) {  /* $8A66 bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $8A66 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $8A68 lda */
@@ -1305,7 +1305,7 @@ void Sub_B6_8A66(void) {  /* $8A66 bank 6 */
   RTS_RET(sp0);                                                                          /* $8A75 rts */
 }
 
-void Sub_B6_8A76(void) {  /* $8A76 bank 6 */
+void UpdateObjectScreenX(void) {  /* $8A76 bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x09);                                                                             /* $8A76 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A78 lda */
@@ -1389,7 +1389,7 @@ void Sub_B6_8AD9(void) {  /* $8AD9 bank 6 */
   RTS_RET(sp0);                                                                          /* $8AF3 rts */
 }
 
-void Sub_B6_8AF4(void) {  /* $8AF4 bank 6 */
+void CalcObjectTileColumn(void) {  /* $8AF4 bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x09);                                                                             /* $8AF4 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8AF6 lda */
@@ -1403,7 +1403,7 @@ void Sub_B6_8AF4(void) {  /* $8AF4 bank 6 */
   RTS_RET(sp0);                                                                          /* $8B07 rts */
 }
 
-void Sub_B6_8B08(void) {  /* $8B08 bank 6 */
+void RemoveObjectIfOffscreen(void) {  /* $8B08 bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $8B08 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8B0A lda */
@@ -1503,29 +1503,29 @@ void Sub_B6_8BE6(void) {  /* $8BE6 bank 6 */
 
 void Sub_B6_945A(void) {  /* $945A bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x945C); Sub_B6_9489(); UNW(); ret_check(0x945C);                               /* $945A jsr */
+  push16(0x945C); LoadBehaviorTableB(); UNW(); ret_check(0x945C);                        /* $945A jsr */
   LDY(0x08);                                                                             /* $945D ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $945F lda */
   if (R.a == 0) {                                                                        /* $9461 bne */
-    push16(0x9465); Sub_B6_8A66(); UNW(); ret_check(0x9465);                             /* $9463 jsr */
+    push16(0x9465); AdvanceObjectAnimStep(); UNW(); ret_check(0x9465);                   /* $9463 jsr */
     cmp8(R.a, rd(0x04));                                                                 /* $9466 cmp */
     if (R.a >= rd(0x04)) {                                                               /* $9468 bcc */
       push16(0x946C); Sub_B6_8B9C(); UNW(); ret_check(0x946C);                           /* $946A jsr */
       push16(0x946F); Sub_B6_9497(); UNW(); ret_check(0x946F);                           /* $946D jsr */
-      push16(0x9472); Sub_B6_9489(); UNW(); ret_check(0x9472);                           /* $9470 jsr */
+      push16(0x9472); LoadBehaviorTableB(); UNW(); ret_check(0x9472);                    /* $9470 jsr */
     }
-    push16(0x9475); Sub_B6_89C0(); UNW(); ret_check(0x9475);                             /* $9473 jsr */
+    push16(0x9475); LoadObjectAnimFrame(); UNW(); ret_check(0x9475);                     /* $9473 jsr */
     push16(0x9478); Sub_B6_95EE(); UNW(); ret_check(0x9478);                             /* $9476 jsr */
   }
   push16(0x947B); Sub_B6_8932(); UNW(); ret_check(0x947B);                               /* $9479 jsr */
   push16(0x947E); Sub_B6_8BE6(); UNW(); ret_check(0x947E);                               /* $947C jsr */
-  push16(0x9481); Sub_B6_8A76(); UNW(); ret_check(0x9481);                               /* $947F jsr */
-  push16(0x9484); Sub_B6_8B08(); UNW(); ret_check(0x9484);                               /* $9482 jsr */
+  push16(0x9481); UpdateObjectScreenX(); UNW(); ret_check(0x9481);                       /* $947F jsr */
+  push16(0x9484); RemoveObjectIfOffscreen(); UNW(); ret_check(0x9484);                   /* $9482 jsr */
   push16(0x9487); Sub_B6_9621(); UNW(); ret_check(0x9487);                               /* $9485 jsr */
   RTS_RET(sp0);                                                                          /* $9488 rts */
 }
 
-void Sub_B6_9489(void) {  /* $9489 bank 6 */
+void LoadBehaviorTableB(void) {  /* $9489 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x948B); GetObjectBehaviorIndex(); UNW(); ret_check(0x948B);                    /* $9489 jsr */
   LDA(rd((uint16_t)(0x94BE + R.y)));                                                     /* $948C lda */
@@ -1683,21 +1683,21 @@ L9656: BUDGET();
 
 void Loc_B6_96B8(void) {  /* $96B8 bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x96BA); Sub_B6_96D4(); UNW(); ret_check(0x96BA);                               /* $96B8 jsr */
+  push16(0x96BA); LoadBehaviorTableC(); UNW(); ret_check(0x96BA);                        /* $96B8 jsr */
   LDY(0x08);                                                                             /* $96BB ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $96BD lda */
   if (R.a == 0) {                                                                        /* $96BF bne */
-    push16(0x96C3); Sub_B6_8A66(); UNW(); ret_check(0x96C3);                             /* $96C1 jsr */
-    push16(0x96C6); Sub_B6_89C0(); UNW(); ret_check(0x96C6);                             /* $96C4 jsr */
+    push16(0x96C3); AdvanceObjectAnimStep(); UNW(); ret_check(0x96C3);                   /* $96C1 jsr */
+    push16(0x96C6); LoadObjectAnimFrame(); UNW(); ret_check(0x96C6);                     /* $96C4 jsr */
   }
   push16(0x96C9); Sub_B6_8932(); UNW(); ret_check(0x96C9);                               /* $96C7 jsr */
-  push16(0x96CC); Sub_B6_8A76(); UNW(); ret_check(0x96CC);                               /* $96CA jsr */
-  push16(0x96CF); Sub_B6_8B08(); UNW(); ret_check(0x96CF);                               /* $96CD jsr */
+  push16(0x96CC); UpdateObjectScreenX(); UNW(); ret_check(0x96CC);                       /* $96CA jsr */
+  push16(0x96CF); RemoveObjectIfOffscreen(); UNW(); ret_check(0x96CF);                   /* $96CD jsr */
   push16(0x96D2); Sub_B6_975A(); UNW(); ret_check(0x96D2);                               /* $96D0 jsr */
   RTS_RET(sp0);                                                                          /* $96D3 rts */
 }
 
-void Sub_B6_96D4(void) {  /* $96D4 bank 6 */
+void LoadBehaviorTableC(void) {  /* $96D4 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x96D6); GetObjectBehaviorIndex(); UNW(); ret_check(0x96D6);                    /* $96D4 jsr */
   LDA(rd((uint16_t)(0x96E2 + R.y)));                                                     /* $96D7 lda */
@@ -1805,7 +1805,7 @@ L97A0: BUDGET();
   RTS_RET(sp0);                                                                          /* $981D rts */
 }
 
-void Sub_B6_9A38(void) {  /* $9A38 bank 6 */
+void LoadBehaviorTableD(void) {  /* $9A38 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x9A3A); GetObjectBehaviorIndex(); UNW(); ret_check(0x9A3A);                    /* $9A38 jsr */
   LDA(rd((uint16_t)(0x9A46 + R.y)));                                                     /* $9A3B lda */
@@ -1817,14 +1817,14 @@ void Sub_B6_9A38(void) {  /* $9A38 bank 6 */
 
 void Sub_B6_A099(void) {  /* $A099 bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0xA09B); Sub_B6_A0A6(); UNW(); ret_check(0xA09B);                               /* $A099 jsr */
+  push16(0xA09B); LoadBehaviorTableE(); UNW(); ret_check(0xA09B);                        /* $A099 jsr */
   push16(0xA09E); Sub_B6_8932(); UNW(); ret_check(0xA09E);                               /* $A09C jsr */
-  push16(0xA0A1); Sub_B6_8A76(); UNW(); ret_check(0xA0A1);                               /* $A09F jsr */
-  push16(0xA0A4); Sub_B6_8B08(); UNW(); ret_check(0xA0A4);                               /* $A0A2 jsr */
+  push16(0xA0A1); UpdateObjectScreenX(); UNW(); ret_check(0xA0A1);                       /* $A09F jsr */
+  push16(0xA0A4); RemoveObjectIfOffscreen(); UNW(); ret_check(0xA0A4);                   /* $A0A2 jsr */
   RTS_RET(sp0);                                                                          /* $A0A5 rts */
 }
 
-void Sub_B6_A0A6(void) {  /* $A0A6 bank 6 */
+void LoadBehaviorTableE(void) {  /* $A0A6 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0xA0A8); GetObjectBehaviorIndex(); UNW(); ret_check(0xA0A8);                    /* $A0A6 jsr */
   LDA(rd((uint16_t)(0xA0B4 + R.y)));                                                     /* $A0A9 lda */
