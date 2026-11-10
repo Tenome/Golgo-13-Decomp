@@ -80,7 +80,7 @@ DrawObjectsBanked:
   dec z:MmcPrgShadow           ; $C0C0
   jsr MmcWritePrg              ; $C0C2
   jsr $AF00                    ; $C0C5  -> Sub_B1_AF00
-  jsr $8D00                    ; $C0C8  -> Sub_B1_8D00, Sub_B5_8D00
+  jsr $8D00                    ; $C0C8  -> ClearObjectsAndInitList, Sub_B5_8D00
   jsr DrawObjects              ; $C0CB
   inc z:MmcPrgShadow           ; $C0CE
   jsr MmcWritePrg              ; $C0D0

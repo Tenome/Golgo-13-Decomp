@@ -258,7 +258,7 @@
    ]
   ]
  },
- "Sub_B1_8D00": {
+ "ClearObjectsAndInitList": {
   "addr": 36096,
   "bank": 1,
   "instrs": 104,
@@ -301,7 +301,7 @@
    ]
   ]
  },
- "Sub_B1_8F1E": {
+ "FindObjectType01": {
   "addr": 36638,
   "bank": 1,
   "instrs": 29,
@@ -604,7 +604,7 @@
    ]
   ]
  },
- "Sub_B1_9694": {
+ "CalcViewEdgeColumn": {
   "addr": 38548,
   "bank": 1,
   "instrs": 9,

@@ -116,7 +116,7 @@
    ]
   ]
  },
- "Sub_B1_80D1": {
+ "AdvanceSceneOnStart": {
   "addr": 32977,
   "bank": 1,
   "instrs": 5,
@@ -142,7 +142,7 @@
    ]
   ]
  },
- "Sub_B1_80FD": {
+ "CountSelectPresses": {
   "addr": 33021,
   "bank": 1,
   "instrs": 20,
@@ -155,7 +155,7 @@
    ]
   ]
  },
- "Sub_B1_812B": {
+ "FillNametable0WithFF": {
   "addr": 33067,
   "bank": 1,
   "instrs": 13,
@@ -219,7 +219,7 @@
    ]
   ]
  },
- "Sub_B1_85A0": {
+ "SaveMmcShadowRegs": {
   "addr": 34208,
   "bank": 1,
   "instrs": 6,
@@ -232,7 +232,7 @@
    ]
   ]
  },
- "Sub_B1_85AC": {
+ "RestoreMmcShadowRegs": {
   "addr": 34220,
   "bank": 1,
   "instrs": 6,
@@ -284,7 +284,7 @@
    ]
   ]
  },
- "Sub_B1_8D00": {
+ "ClearObjectsAndInitList": {
   "addr": 36096,
   "bank": 1,
   "instrs": 104,
@@ -327,7 +327,7 @@
    ]
   ]
  },
- "Sub_B1_8F1E": {
+ "FindObjectType01": {
   "addr": 36638,
   "bank": 1,
   "instrs": 29,
@@ -630,7 +630,7 @@
    ]
   ]
  },
- "Sub_B1_9694": {
+ "CalcViewEdgeColumn": {
   "addr": 38548,
   "bank": 1,
   "instrs": 9,

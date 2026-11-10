@@ -468,7 +468,7 @@ Data_B1_8907:
   .incbin "prg_bank_1.bin", $0907, $1  ; $8907
 Data_B1_8908:
   .incbin "prg_bank_1.bin", $0908, $3F8  ; $8908
-Sub_B1_8D00:
+ClearObjectsAndInitList:
   ldx #$0F                     ; $8D00
   ldy #$03                     ; $8D02
 Loc_B1_8D04:
@@ -692,7 +692,7 @@ Sub_B1_8EA2:
   pha                          ; $8EB5
   lda z:$05                    ; $8EB6
   pha                          ; $8EB8
-  jsr Sub_B1_8F1E              ; $8EB9
+  jsr FindObjectType01         ; $8EB9
   pla                          ; $8EBC
   sta z:$05                    ; $8EBD
   pla                          ; $8EBF
@@ -743,7 +743,7 @@ Loc_B1_8F1A:
   jsr RemoveObject             ; $8F1A
 Loc_B1_8F1D:
   rts                          ; $8F1D
-Sub_B1_8F1E:
+FindObjectType01:
   ldy #$00                     ; $8F1E
   lda #$10                     ; $8F20
   sta z:Tmp00                  ; $8F22
@@ -1088,14 +1088,14 @@ Sub_B1_93B8:
 Sub_B1_93C6:
   lda #$C0                     ; $93C6
   sta z:$04                    ; $93C8
-  jsr Sub_B1_9694              ; $93CA
+  jsr CalcViewEdgeColumn       ; $93CA
   lda z:$05                    ; $93CD
   sta z:$07                    ; $93CF
   lda z:$06                    ; $93D1
   sta z:$08                    ; $93D3
   lda #$80                     ; $93D5
   sta z:$04                    ; $93D7
-  jsr Sub_B1_9694              ; $93D9
+  jsr CalcViewEdgeColumn       ; $93D9
   jsr Sub_B1_960A              ; $93DC
   bne Loc_B1_93F9              ; $93DF
   jsr GetRandomByte            ; $93E1
@@ -1302,14 +1302,14 @@ Sub_B1_95E6:
 Sub_B1_95F4:
   lda #$C0                     ; $95F4
   sta z:$04                    ; $95F6
-  jsr Sub_B1_9694              ; $95F8
+  jsr CalcViewEdgeColumn       ; $95F8
   lda z:$05                    ; $95FB
   sta z:$07                    ; $95FD
   lda z:$06                    ; $95FF
   sta z:$08                    ; $9601
   lda #$30                     ; $9603
   sta z:$04                    ; $9605
-  jsr Sub_B1_9694              ; $9607
+  jsr CalcViewEdgeColumn       ; $9607
 Sub_B1_960A:
   lda z:$05                    ; $960A
   cmp z:$07                    ; $960C
@@ -1390,7 +1390,7 @@ Loc_B1_9691:
   lda #$FF                     ; $9691
 Loc_B1_9693:
   rts                          ; $9693
-Sub_B1_9694:
+CalcViewEdgeColumn:
   lda z:$04                    ; $9694
   clc                          ; $9696
   adc z:ScrollX                ; $9697

@@ -313,5 +313,13 @@
  "6:863C": "SetRandomSpawnYNearPlayer",
  "6:873E": "SetSpawnYToPlayerY",
  "6:8803": "DuplicateObjectEntry",
- "6:89A7": "GetObjectBehaviorIndex"
+ "6:89A7": "GetObjectBehaviorIndex",
+ "1:80D1": "AdvanceSceneOnStart",
+ "1:80FD": "CountSelectPresses",
+ "1:812B": "FillNametable0WithFF",
+ "1:85A0": "SaveMmcShadowRegs",
+ "1:85AC": "RestoreMmcShadowRegs",
+ "1:8D00": "ClearObjectsAndInitList",
+ "1:8F1E": "FindObjectType01",
+ "1:9694": "CalcViewEdgeColumn"
 }

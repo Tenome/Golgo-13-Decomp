@@ -571,7 +571,7 @@
      }
     },
     {
-     "name": "Sub_B1_8D00",
+     "name": "ClearObjectsAndInitList",
      "size": "168",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -603,7 +603,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F1E",
+     "name": "FindObjectType01",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -787,7 +787,7 @@
      }
     },
     {
-     "name": "Sub_B1_9694",
+     "name": "CalcViewEdgeColumn",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {

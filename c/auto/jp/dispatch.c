@@ -200,10 +200,10 @@ static int bank1(uint16_t a) {
     case 0x85AF: Sub_B1_85AF(); return 1;
     case 0x85BB: Sub_B1_85BB(); return 1;
     case 0x8600: Sub_B1_8600(); return 1;
-    case 0x8D00: Sub_B1_8D00(); return 1;
+    case 0x8D00: ClearObjectsAndInitList(); return 1;
     case 0x8DFF: Bank1State_01(); return 1;
     case 0x8EA2: Sub_B1_8EA2(); return 1;
-    case 0x8F1E: Sub_B1_8F1E(); return 1;
+    case 0x8F1E: FindObjectType01(); return 1;
     case 0x8F59: Bank1State_02(); return 1;
     case 0x8F79: Sub_B1_8F79(); return 1;
     case 0x8F8C: Sub_B1_8F8C(); return 1;
@@ -226,7 +226,7 @@ static int bank1(uint16_t a) {
     case 0x95E6: Sub_B1_95E6(); return 1;
     case 0x95F4: Sub_B1_95F4(); return 1;
     case 0x960A: Sub_B1_960A(); return 1;
-    case 0x9694: Sub_B1_9694(); return 1;
+    case 0x9694: CalcViewEdgeColumn(); return 1;
     case 0x96A4: Sub_B1_96A4(); return 1;
     case 0x96BE: Sub_B1_96BE(); return 1;
     case 0x96E8: Sub_B1_96E8(); return 1;

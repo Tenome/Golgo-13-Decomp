@@ -467,7 +467,7 @@
      }
     },
     {
-     "name": "Sub_B1_80D1",
+     "name": "AdvanceSceneOnStart",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -483,7 +483,7 @@
      }
     },
     {
-     "name": "Sub_B1_80FD",
+     "name": "CountSelectPresses",
      "size": "46",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -491,7 +491,7 @@
      }
     },
     {
-     "name": "Sub_B1_812B",
+     "name": "FillNametable0WithFF",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -539,7 +539,7 @@
      }
     },
     {
-     "name": "Sub_B1_85A0",
+     "name": "SaveMmcShadowRegs",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -547,7 +547,7 @@
      }
     },
     {
-     "name": "Sub_B1_85AC",
+     "name": "RestoreMmcShadowRegs",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -571,7 +571,7 @@
      }
     },
     {
-     "name": "Sub_B1_8D00",
+     "name": "ClearObjectsAndInitList",
      "size": "168",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -603,7 +603,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F1E",
+     "name": "FindObjectType01",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -787,7 +787,7 @@
      }
     },
     {
-     "name": "Sub_B1_9694",
+     "name": "CalcViewEdgeColumn",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {

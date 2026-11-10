@@ -35,7 +35,7 @@ Data_B1_8041:
   .addr Bank1Title_00, Bank1Title_01, Bank1Title_02, Bank1Title_03  ; $8041 pointer table
 Bank1Title_00:
   inc SceneState               ; $8049
-  jsr Sub_B1_85A0              ; $804C
+  jsr SaveMmcShadowRegs        ; $804C
 Sub_B1_804F:
   lda #$00                     ; $804F
   jmp SetPpuMask               ; $8051
@@ -50,9 +50,9 @@ Bank1Title_02:
   ldy #$03                     ; $8065
   sty z:MmcChr1Shadow          ; $8067
   jsr MmcWriteChr1             ; $8069
-  jsr Sub_B1_80D1              ; $806C
+  jsr AdvanceSceneOnStart      ; $806C
   jsr ReadJoypads              ; $806F
-  jsr Sub_B1_80FD              ; $8072
+  jsr CountSelectPresses       ; $8072
   lda $0551                    ; $8075
   bne Loc_B1_8083              ; $8078
   ldx $0550                    ; $807A
@@ -81,8 +81,8 @@ Loc_B1_8098:
 Bank1Title_03:
   jsr Sub_B1_804F              ; $80A5
   jsr FillPaletteBlack         ; $80A8
-  jsr Sub_B1_812B              ; $80AB
-  jsr Sub_B1_85AC              ; $80AE
+  jsr FillNametable0WithFF     ; $80AB
+  jsr RestoreMmcShadowRegs     ; $80AE
   jsr ApplyScroll              ; $80B1
   jsr MmcWriteControl          ; $80B4
   jsr MmcWriteChr0             ; $80B7
@@ -95,7 +95,7 @@ Bank1Title_03:
   sta JoyNew1                  ; $80C9
   lda #$00                     ; $80CC
   jmp QueueSound               ; $80CE
-Sub_B1_80D1:
+AdvanceSceneOnStart:
   lda JoyNew1                  ; $80D1
   and #$08                     ; $80D4
   beq Loc_B1_80DB              ; $80D6
@@ -120,7 +120,7 @@ Loc_B1_80EF:
   pla                          ; $80F9
   sta z:MmcPrgShadow           ; $80FA
   rts                          ; $80FC
-Sub_B1_80FD:
+CountSelectPresses:
   lda $0552                    ; $80FD
   cmp #$C8                     ; $8100
   bcs Loc_B1_812A              ; $8102
@@ -142,7 +142,7 @@ Sub_B1_80FD:
   inc $0552                    ; $8127
 Loc_B1_812A:
   rts                          ; $812A
-Sub_B1_812B:
+FillNametable0WithFF:
   ldy PPU_STATUS               ; $812B
   ldy #$20                     ; $812E
   sty PPU_ADDR                 ; $8130
@@ -261,7 +261,7 @@ Sub_B1_83D5:
   sty z:MmcChr0Shadow          ; $83F7
   jsr MmcWriteControl          ; $83F9
   jsr MmcWriteChr0             ; $83FC
-  jsr Sub_B1_812B              ; $83FF
+  jsr FillNametable0WithFF     ; $83FF
   jsr ProcessPpuUpdateList     ; $8402
   .addr Data_B1_8460  ; $8405 inline pointer (data after a JSR)
   jsr ProcessPpuUpdateList     ; $8407
@@ -301,7 +301,7 @@ Data_B1_84D2:
   .incbin "prg_bank_1.bin", $04D2, $CA  ; $84D2
 Data_B1_859C:
   .incbin "prg_bank_1.bin", $059C, $4  ; $859C
-Sub_B1_85A0:
+SaveMmcShadowRegs:
   ldy #$07                     ; $85A0
 Loc_B1_85A2:
   lda a:MmcControlShadow,y     ; $85A2
@@ -309,7 +309,7 @@ Loc_B1_85A2:
   dey                          ; $85A8
   bpl Loc_B1_85A2              ; $85A9
   rts                          ; $85AB
-Sub_B1_85AC:
+RestoreMmcShadowRegs:
   ldy #$07                     ; $85AC
 Loc_B1_85AE:
   lda $0510,y                  ; $85AE
@@ -456,7 +456,7 @@ Data_B1_88EB:
 Data_B1_88EC:
   .incbin "prg_bank_1.bin", $08EC, $400  ; $88EC
   .incbin "prg_bank_1.bin", $0CEC, $14  ; $8CEC
-Sub_B1_8D00:
+ClearObjectsAndInitList:
   ldx #$0F                     ; $8D00
   ldy #$03                     ; $8D02
 Loc_B1_8D04:
@@ -680,7 +680,7 @@ Sub_B1_8EA2:
   pha                          ; $8EB5
   lda z:$05                    ; $8EB6
   pha                          ; $8EB8
-  jsr Sub_B1_8F1E              ; $8EB9
+  jsr FindObjectType01         ; $8EB9
   pla                          ; $8EBC
   sta z:$05                    ; $8EBD
   pla                          ; $8EBF
@@ -731,7 +731,7 @@ Loc_B1_8F1A:
   jsr RemoveObject             ; $8F1A
 Loc_B1_8F1D:
   rts                          ; $8F1D
-Sub_B1_8F1E:
+FindObjectType01:
   ldy #$00                     ; $8F1E
   lda #$10                     ; $8F20
   sta z:Tmp00                  ; $8F22
@@ -1076,14 +1076,14 @@ Sub_B1_93B8:
 Sub_B1_93C6:
   lda #$C0                     ; $93C6
   sta z:$04                    ; $93C8
-  jsr Sub_B1_9694              ; $93CA
+  jsr CalcViewEdgeColumn       ; $93CA
   lda z:$05                    ; $93CD
   sta z:$07                    ; $93CF
   lda z:$06                    ; $93D1
   sta z:$08                    ; $93D3
   lda #$80                     ; $93D5
   sta z:$04                    ; $93D7
-  jsr Sub_B1_9694              ; $93D9
+  jsr CalcViewEdgeColumn       ; $93D9
   jsr Sub_B1_960A              ; $93DC
   bne Loc_B1_93F9              ; $93DF
   jsr GetRandomByte            ; $93E1
@@ -1290,14 +1290,14 @@ Sub_B1_95E6:
 Sub_B1_95F4:
   lda #$C0                     ; $95F4
   sta z:$04                    ; $95F6
-  jsr Sub_B1_9694              ; $95F8
+  jsr CalcViewEdgeColumn       ; $95F8
   lda z:$05                    ; $95FB
   sta z:$07                    ; $95FD
   lda z:$06                    ; $95FF
   sta z:$08                    ; $9601
   lda #$30                     ; $9603
   sta z:$04                    ; $9605
-  jsr Sub_B1_9694              ; $9607
+  jsr CalcViewEdgeColumn       ; $9607
 Sub_B1_960A:
   lda z:$05                    ; $960A
   cmp z:$07                    ; $960C
@@ -1378,7 +1378,7 @@ Loc_B1_9691:
   lda #$FF                     ; $9691
 Loc_B1_9693:
   rts                          ; $9693
-Sub_B1_9694:
+CalcViewEdgeColumn:
   lda z:$04                    ; $9694
   clc                          ; $9696
   adc z:ScrollX                ; $9697
