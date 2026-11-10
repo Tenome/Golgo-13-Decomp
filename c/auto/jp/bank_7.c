@@ -1517,7 +1517,7 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
     LDA(rd(GameState));                                                                  /* $CA13 lda */
     cmp8(R.a, 0x0C);                                                                     /* $CA15 cmp */
     if (R.a == 0x0C) {                                                                   /* $CA17 bne */
-      push16(0xCA1B); Sub_DBD5(); UNW(); ret_check(0xCA1B);                              /* $CA19 jsr */
+      push16(0xCA1B); ProcessTransition(); UNW(); ret_check(0xCA1B);                     /* $CA19 jsr */
       goto LCB9B;                                                                        /* $CA1C jmp */
     }
     LDA(rd(GameState));                                                                  /* $CA1F lda */
@@ -1660,7 +1660,7 @@ LCB62: BUDGET();
     if (R.a != 0x60) goto LCB75;                                                         /* $CB6A bne */
     LDA(0x00);                                                                           /* $CB6C lda */
     STA(JoyHeld1);                                                                       /* $CB6E sta */
-    push16(0xCB73); Sub_DBD5(); UNW(); ret_check(0xCB73);                                /* $CB71 jsr */
+    push16(0xCB73); ProcessTransition(); UNW(); ret_check(0xCB73);                       /* $CB71 jsr */
 LCB74: BUDGET();
     RTS_RET(sp0);                                                                        /* $CB74 rts */
 LCB75: BUDGET();
@@ -1674,8 +1674,8 @@ LCB75: BUDGET();
     STA(JoyHeld1);                                                                       /* $CB82 sta */
     STA(JoyNew1);                                                                        /* $CB85 sta */
 LCB88: BUDGET();
-    push16(0xCB8A); Sub_F29D(); UNW(); ret_check(0xCB8A);                                /* $CB88 jsr */
-    push16(0xCB8D); Sub_DBD5(); UNW(); ret_check(0xCB8D);                                /* $CB8B jsr */
+    push16(0xCB8A); ProbeFloorTile(); UNW(); ret_check(0xCB8A);                          /* $CB88 jsr */
+    push16(0xCB8D); ProcessTransition(); UNW(); ret_check(0xCB8D);                       /* $CB8B jsr */
 LCB8E: BUDGET();
     LDA(rd(0x0600));                                                                     /* $CB8E lda */
     cmp8(R.a, 0x60);                                                                     /* $CB91 cmp */
@@ -3549,7 +3549,7 @@ LDB80: BUDGET();
   RTS_RET(sp0);                                                                          /* $DB80 rts */
 }
 
-void Sub_DBD5(void) {  /* $DBD5 bank 7 */
+void ProcessTransition(void) {  /* $DBD5 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(TransitionPending));                                                            /* $DBD5 lda */
   cmp8(R.a, 0x01);                                                                       /* $DBD7 cmp */
@@ -3578,7 +3578,7 @@ LDBE8: BUDGET();
     push16(0xDC00); Sub_DE15(); UNW(); ret_check(0xDC00);                                /* $DBFE jsr */
     RTS_RET(sp0);                                                                        /* $DC01 rts */
   }
-  push16(0xDC04); Sub_DDD0(); UNW(); ret_check(0xDC04);                                  /* $DC02 jsr */
+  push16(0xDC04); FinishTransition(); UNW(); ret_check(0xDC04);                          /* $DC02 jsr */
   RTS_RET(sp0);                                                                          /* $DC05 rts */
 LDC06: BUDGET();
   push16(0xDC08); Sub_DED0(); UNW(); ret_check(0xDC08);                                  /* $DC06 jsr */
@@ -3612,14 +3612,14 @@ void Sub_DC48(void) {  /* $DC48 bank 7 */
   LDA(rd(PaletteDirty));                                                                 /* $DC4D lda */
   cmp8(R.a, 0x40);                                                                       /* $DC4F cmp */
   if (R.a >= 0x40) {                                                                     /* $DC51 bcc */
-    push16(0xDC55); Sub_DDD0(); UNW(); ret_check(0xDC55);                                /* $DC53 jsr */
+    push16(0xDC55); FinishTransition(); UNW(); ret_check(0xDC55);                        /* $DC53 jsr */
     RTS_RET(sp0);                                                                        /* $DC56 rts */
   }
   LDA(0xF8);                                                                             /* $DC57 lda */
   STA(0x04);                                                                             /* $DC59 sta */
   LDA(0x20);                                                                             /* $DC5B lda */
   STA(0x05);                                                                             /* $DC5D sta */
-  push16(0xDC61); Sub_DC87(); UNW(); ret_check(0xDC61);                                  /* $DC5F jsr */
+  push16(0xDC61); DrawPlayerPoseOverlay(); UNW(); ret_check(0xDC61);                     /* $DC5F jsr */
   LDA(rd(PaletteDirty));                                                                 /* $DC62 lda */
   cmp8(R.a, 0x02);                                                                       /* $DC64 cmp */
   if (R.a == 0x02) {                                                                     /* $DC66 bne */
@@ -3649,7 +3649,7 @@ void HideEnemySprites(void) {  /* $DC77 bank 7 */
   RTS_RET(sp0);                                                                          /* $DC86 rts */
 }
 
-void Sub_DC87(void) {  /* $DC87 bank 7 */
+void DrawPlayerPoseOverlay(void) {  /* $DC87 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteDirty));                                                                 /* $DC87 lda */
   AND(0x1C);                                                                             /* $DC89 and */
@@ -3685,7 +3685,7 @@ void Sub_DC87(void) {  /* $DC87 bank 7 */
   RTS_RET(sp0);                                                                          /* $DCC3 rts */
 }
 
-void Sub_DDD0(void) {  /* $DDD0 bank 7 */
+void FinishTransition(void) {  /* $DDD0 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(TransitionTarget));                                                             /* $DDD0 lda */
   STA(PaletteSetIndex);                                                                  /* $DDD2 sta */
@@ -3733,7 +3733,7 @@ void Sub_DE15(void) {  /* $DE15 bank 7 */
   LDA(rd(PaletteDirty));                                                                 /* $DE1C lda */
   cmp8(R.a, 0x50);                                                                       /* $DE1E cmp */
   if (R.a >= 0x50) {                                                                     /* $DE20 bcc */
-    push16(0xDE24); Sub_DDD0(); UNW(); ret_check(0xDE24);                                /* $DE22 jsr */
+    push16(0xDE24); FinishTransition(); UNW(); ret_check(0xDE24);                        /* $DE22 jsr */
     RTS_RET(sp0);                                                                        /* $DE25 rts */
   }
   cmp8(R.a, 0x20);                                                                       /* $DE26 cmp */
@@ -3805,7 +3805,7 @@ void Sub_DED0(void) {  /* $DED0 bank 7 */
   STA(0x04);                                                                             /* $DEE1 sta */
   LDA(0x00);                                                                             /* $DEE3 lda */
   STA(0x05);                                                                             /* $DEE5 sta */
-  push16(0xDEE9); Sub_DC87(); UNW(); ret_check(0xDEE9);                                  /* $DEE7 jsr */
+  push16(0xDEE9); DrawPlayerPoseOverlay(); UNW(); ret_check(0xDEE9);                     /* $DEE7 jsr */
   push16(0xDEEC); Sub_DF12(); UNW(); ret_check(0xDEEC);                                  /* $DEEA jsr */
   LDA(rd(PaletteDirty));                                                                 /* $DEED lda */
   cmp8(R.a, 0x02);                                                                       /* $DEEF cmp */
@@ -4099,7 +4099,7 @@ LE123: BUDGET();
           if (R.a >= 0x78) goto LE155;                                                   /* $E12B bcs */
           LDA(rd(0x1B));                                                                 /* $E12D lda */
           if (R.a == 0) {                                                                /* $E12F bne */
-            push16(0xE133); Sub_E17D(); UNW(); ret_check(0xE133);                        /* $E131 jsr */
+            push16(0xE133); LoadTransitionFromList(); UNW(); ret_check(0xE133);          /* $E131 jsr */
             LDA(rd(TransitionTarget));                                                   /* $E134 lda */
             cmp8(R.a, 0x69);                                                             /* $E136 cmp */
             if (R.a == 0x69) goto LE154;                                                 /* $E138 beq */
@@ -4121,7 +4121,7 @@ LE154: BUDGET();
           RTS_RET(sp0);                                                                  /* $E154 rts */
         }
 LE155: BUDGET();
-        push16(0xE157); Sub_E17D(); UNW(); ret_check(0xE157);                            /* $E155 jsr */
+        push16(0xE157); LoadTransitionFromList(); UNW(); ret_check(0xE157);              /* $E155 jsr */
         LDA(0x00);                                                                       /* $E158 lda */
         STA(0x1B);                                                                       /* $E15A sta */
         STA(ContactLock);                                                                /* $E15C sta */
@@ -4147,7 +4147,7 @@ LE178: BUDGET();
   RTS_RET(sp0);                                                                          /* $E17C rts */
 }
 
-void Sub_E17D(void) {  /* $E17D bank 7 */
+void LoadTransitionFromList(void) {  /* $E17D bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x01);                                                                             /* $E17D lda */
   STA(TransitionPending);                                                                /* $E17F sta */
@@ -5137,13 +5137,13 @@ LF29C: BUDGET();
   RTS_RET(sp0);                                                                          /* $F29C rts */
 }
 
-void Sub_F29D(void) {  /* $F29D bank 7 */
+void ProbeFloorTile(void) {  /* $F29D bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $F29D lda */
   STA(FloorProbeValid);                                                                  /* $F29F sta */
   LDA(rd(StageViewMode));                                                                /* $F2A1 lda */
   if (R.a == 0) {                                                                        /* $F2A3 bne */
-    push16(0xF2A7); Sub_F2DA(); UNW(); ret_check(0xF2A7);                                /* $F2A5 jsr */
+    push16(0xF2A7); SetupFloorProbeSideView(); UNW(); ret_check(0xF2A7);                 /* $F2A5 jsr */
   } else {
     cmp8(R.a, 0x02);                                                                     /* $F2AB cmp */
     if (R.a != 0x02) goto LF2D9;                                                         /* $F2AD bne */
@@ -5176,7 +5176,7 @@ LF2D9: BUDGET();
   RTS_RET(sp0);                                                                          /* $F2D9 rts */
 }
 
-void Sub_F2DA(void) {  /* $F2DA bank 7 */
+void SetupFloorProbeSideView(void) {  /* $F2DA bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x01);                                                                             /* $F2DA lda */
   STA(FloorProbeValid);                                                                  /* $F2DC sta */
@@ -5288,7 +5288,7 @@ LF393: BUDGET();
 void UpdatePlayerTopDown(void) {  /* $F394 bank 7 */
   uint8_t sp0 = R.sp;
   push16(0xF396); MovePlayerVertical(); UNW(); ret_check(0xF396);                        /* $F394 jsr */
-  push16(0xF399); Sub_F430(); UNW(); ret_check(0xF399);                                  /* $F397 jsr */
+  push16(0xF399); SetTopDownPlayerOam(); UNW(); ret_check(0xF399);                       /* $F397 jsr */
   push16(0xF39C); FireBulletTopDown(); UNW(); ret_check(0xF39C);                         /* $F39A jsr */
   RTS_RET(sp0);                                                                          /* $F39D rts */
 }
@@ -5368,7 +5368,7 @@ LF3F1: BUDGET();
   RTS_RET(sp0);                                                                          /* $F427 rts */
 }
 
-void Sub_F430(void) {  /* $F430 bank 7 */
+void SetTopDownPlayerOam(void) {  /* $F430 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyHeld1));                                                                     /* $F430 lda */
   AND(0x10);                                                                             /* $F433 and */

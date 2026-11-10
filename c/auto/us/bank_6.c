@@ -51,7 +51,7 @@ LCB62: BUDGET();
   if (R.a != 0x60) goto LCB75;                                                           /* $CB6A bne */
   LDA(0x00);                                                                             /* $CB6C lda */
   STA(JoyHeld1);                                                                         /* $CB6E sta */
-  push16(0xCB73); Sub_DBD5(); UNW(); ret_check(0xCB73);                                  /* $CB71 jsr */
+  push16(0xCB73); ProcessTransition(); UNW(); ret_check(0xCB73);                         /* $CB71 jsr */
 LCB74: BUDGET();
   RTS_RET(sp0);                                                                          /* $CB74 rts */
 LCB75: BUDGET();
@@ -65,8 +65,8 @@ LCB75: BUDGET();
   STA(JoyHeld1);                                                                         /* $CB82 sta */
   STA(JoyNew1);                                                                          /* $CB85 sta */
 LCB88: BUDGET();
-  push16(0xCB8A); Sub_F29D(); UNW(); ret_check(0xCB8A);                                  /* $CB88 jsr */
-  push16(0xCB8D); Sub_DBD5(); UNW(); ret_check(0xCB8D);                                  /* $CB8B jsr */
+  push16(0xCB8A); ProbeFloorTile(); UNW(); ret_check(0xCB8A);                            /* $CB88 jsr */
+  push16(0xCB8D); ProcessTransition(); UNW(); ret_check(0xCB8D);                         /* $CB8B jsr */
   LDA(rd(0x0600));                                                                       /* $CB8E lda */
   cmp8(R.a, 0x60);                                                                       /* $CB91 cmp */
   if (R.a == 0x60) goto LCB74;                                                           /* $CB93 beq */

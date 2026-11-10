@@ -5957,7 +5957,7 @@
      }
     },
     {
-     "name": "Sub_DBD5",
+     "name": "ProcessTransition",
      "size": "89",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5981,7 +5981,7 @@
      }
     },
     {
-     "name": "Sub_DC87",
+     "name": "DrawPlayerPoseOverlay",
      "size": "61",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5989,7 +5989,7 @@
      }
     },
     {
-     "name": "Sub_DDD0",
+     "name": "FinishTransition",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6085,7 +6085,7 @@
      }
     },
     {
-     "name": "Sub_E17D",
+     "name": "LoadTransitionFromList",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6293,7 +6293,7 @@
      }
     },
     {
-     "name": "Sub_F29D",
+     "name": "ProbeFloorTile",
      "size": "61",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6301,7 +6301,7 @@
      }
     },
     {
-     "name": "Sub_F2DA",
+     "name": "SetupFloorProbeSideView",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6333,7 +6333,7 @@
      }
     },
     {
-     "name": "Sub_F430",
+     "name": "SetTopDownPlayerOam",
      "size": "49",
      "fuzzy_match_percent": 100.0,
      "metadata": {

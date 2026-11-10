@@ -3929,7 +3929,7 @@
    ]
   ]
  },
- "Sub_B4_A04D": {
+ "SelectPpuListA": {
   "addr": 41037,
   "bank": 4,
   "instrs": 5,
@@ -3942,7 +3942,7 @@
    ]
   ]
  },
- "Sub_B4_A068": {
+ "SelectPpuListB": {
   "addr": 41064,
   "bank": 4,
   "instrs": 5,
@@ -3955,7 +3955,7 @@
    ]
   ]
  },
- "Sub_B4_A083": {
+ "SelectPpuListC": {
   "addr": 41091,
   "bank": 4,
   "instrs": 5,
@@ -3968,7 +3968,7 @@
    ]
   ]
  },
- "Sub_B4_A09E": {
+ "SelectPpuListD": {
   "addr": 41118,
   "bank": 4,
   "instrs": 5,
@@ -4045,7 +4045,7 @@
    ]
   ]
  },
- "Sub_B4_B402": {
+ "AddObjectOfType": {
   "addr": 46082,
   "bank": 4,
   "instrs": 9,
@@ -4110,7 +4110,7 @@
    ]
   ]
  },
- "Sub_B4_B474": {
+ "UpdateAllObjectHandlers": {
   "addr": 46196,
   "bank": 4,
   "instrs": 28,
@@ -4136,7 +4136,7 @@
    ]
   ]
  },
- "Sub_B4_B4BB": {
+ "DispatchObjectHandler": {
   "addr": 46267,
   "bank": 4,
   "instrs": 15,
@@ -8848,7 +8848,7 @@
    ]
   ]
  },
- "Sub_DBD5": {
+ "ProcessTransition": {
   "addr": 56277,
   "bank": 7,
   "instrs": 45,
@@ -8887,7 +8887,7 @@
    ]
   ]
  },
- "Sub_DC87": {
+ "DrawPlayerPoseOverlay": {
   "addr": 56455,
   "bank": 7,
   "instrs": 31,
@@ -8900,7 +8900,7 @@
    ]
   ]
  },
- "Sub_DDD0": {
+ "FinishTransition": {
   "addr": 56784,
   "bank": 7,
   "instrs": 9,
@@ -9056,7 +9056,7 @@
    ]
   ]
  },
- "Sub_E17D": {
+ "LoadTransitionFromList": {
   "addr": 57725,
   "bank": 7,
   "instrs": 13,
@@ -9394,7 +9394,7 @@
    ]
   ]
  },
- "Sub_F29D": {
+ "ProbeFloorTile": {
   "addr": 62109,
   "bank": 7,
   "instrs": 29,
@@ -9407,7 +9407,7 @@
    ]
   ]
  },
- "Sub_F2DA": {
+ "SetupFloorProbeSideView": {
   "addr": 62170,
   "bank": 7,
   "instrs": 16,
@@ -9459,7 +9459,7 @@
    ]
   ]
  },
- "Sub_F430": {
+ "SetTopDownPlayerOam": {
   "addr": 62512,
   "bank": 7,
   "instrs": 24,

@@ -8726,7 +8726,7 @@
    ]
   ]
  },
- "Sub_DBD5": {
+ "ProcessTransition": {
   "addr": 56277,
   "bank": 7,
   "instrs": 45,
@@ -8765,7 +8765,7 @@
    ]
   ]
  },
- "Sub_DC87": {
+ "DrawPlayerPoseOverlay": {
   "addr": 56455,
   "bank": 7,
   "instrs": 31,
@@ -8778,7 +8778,7 @@
    ]
   ]
  },
- "Sub_DDD0": {
+ "FinishTransition": {
   "addr": 56784,
   "bank": 7,
   "instrs": 9,
@@ -8934,7 +8934,7 @@
    ]
   ]
  },
- "Sub_E17D": {
+ "LoadTransitionFromList": {
   "addr": 57725,
   "bank": 7,
   "instrs": 13,
@@ -9272,7 +9272,7 @@
    ]
   ]
  },
- "Sub_F29D": {
+ "ProbeFloorTile": {
   "addr": 62109,
   "bank": 7,
   "instrs": 29,
@@ -9285,7 +9285,7 @@
    ]
   ]
  },
- "Sub_F2DA": {
+ "SetupFloorProbeSideView": {
   "addr": 62170,
   "bank": 7,
   "instrs": 16,
@@ -9337,7 +9337,7 @@
    ]
   ]
  },
- "Sub_F430": {
+ "SetTopDownPlayerOam": {
   "addr": 62512,
   "bank": 7,
   "instrs": 24,

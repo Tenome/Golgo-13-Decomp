@@ -128,8 +128,8 @@ Bank4State_05:
   jmp ApplyScroll              ; $8162
 Bank4State_06:
   inc SceneState               ; $8165
-  jsr Sub_B4_B474              ; $8168
-  jsr Sub_B4_B474              ; $816B
+  jsr UpdateAllObjectHandlers  ; $8168
+  jsr UpdateAllObjectHandlers  ; $816B
   jsr DrawObjects              ; $816E
   jsr Sub_B4_9049              ; $8171
   jmp ApplyScroll              ; $8174
@@ -145,7 +145,7 @@ Bank4State_08:
   lda PPU_STATUS               ; $8188
   jsr ReadJoypads              ; $818B
   jsr Sub_B4_8D25              ; $818E
-  jsr Sub_B4_B474              ; $8191
+  jsr UpdateAllObjectHandlers  ; $8191
   jsr DrawObjects              ; $8194
   jsr Sub_B4_9603              ; $8197
   ldx z:$7C                    ; $819A
@@ -638,7 +638,7 @@ Bank4StateB_05:
   ora $050B                    ; $85F7
   bne Loc_B4_8604              ; $85FA
   ldy #$EA                     ; $85FC
-  jsr Sub_B4_B402              ; $85FE
+  jsr AddObjectOfType          ; $85FE
   jmp Bank4StateB_00           ; $8601
 Loc_B4_8604:
   lda #$00                     ; $8604
@@ -650,7 +650,7 @@ Bank4StateB_06:
   ora $050C                    ; $8610
   bne Bank4StateB_04           ; $8613
   ldy #$E9                     ; $8615
-  jsr Sub_B4_B402              ; $8617
+  jsr AddObjectOfType          ; $8617
   jmp Bank4StateB_00           ; $861A
 Bank4StateB_07:
   lda #$01                     ; $861D
@@ -663,7 +663,7 @@ Bank4StateB_08:
   ora $050C                    ; $862C
   bne Loc_B4_8639              ; $862F
   ldy #$E9                     ; $8631
-  jsr Sub_B4_B402              ; $8633
+  jsr AddObjectOfType          ; $8633
   jmp Bank4StateB_00           ; $8636
 Loc_B4_8639:
   lda #$06                     ; $8639
@@ -687,13 +687,13 @@ Bank4StateB_09:
   jmp Bank4StateB_04           ; $865F
 Loc_B4_8662:
   ldy #$E9                     ; $8662
-  jsr Sub_B4_B402              ; $8664
+  jsr AddObjectOfType          ; $8664
   jmp Bank4StateB_00           ; $8667
 Bank4StateB_0A:
   lda $0508                    ; $866A
   bne Loc_B4_8677              ; $866D
   ldy #$EB                     ; $866F
-  jsr Sub_B4_B402              ; $8671
+  jsr AddObjectOfType          ; $8671
   jmp Bank4StateB_00           ; $8674
 Loc_B4_8677:
   lda #$00                     ; $8677
@@ -705,7 +705,7 @@ Bank4StateB_0B:
   ora $050C                    ; $8683
   bne Loc_B4_8690              ; $8686
   ldy #$E9                     ; $8688
-  jsr Sub_B4_B402              ; $868A
+  jsr AddObjectOfType          ; $868A
   jmp Bank4StateB_00           ; $868D
 Loc_B4_8690:
   lda #$04                     ; $8690
@@ -1984,48 +1984,48 @@ Loc_B4_A01A:
 Sub_B4_A01B:
   lda $050C                    ; $A01B
   beq Loc_B4_A026              ; $A01E
-  jsr Sub_B4_A04D              ; $A020
+  jsr SelectPpuListA           ; $A020
   jsr $0520                    ; $A023
 Loc_B4_A026:
   lda $050B                    ; $A026
   beq Loc_B4_A031              ; $A029
-  jsr Sub_B4_A068              ; $A02B
+  jsr SelectPpuListB           ; $A02B
   jsr $0520                    ; $A02E
 Loc_B4_A031:
   lda $050A                    ; $A031
   beq Loc_B4_A03C              ; $A034
-  jsr Sub_B4_A083              ; $A036
+  jsr SelectPpuListC           ; $A036
   jsr $0520                    ; $A039
 Loc_B4_A03C:
   lda $0508                    ; $A03C
   beq Loc_B4_A047              ; $A03F
-  jsr Sub_B4_A09E              ; $A041
+  jsr SelectPpuListD           ; $A041
   jsr $0520                    ; $A044
 Loc_B4_A047:
   rts                          ; $A047
   .incbin "prg_bank_4.bin", $2048, $5  ; $A048
-Sub_B4_A04D:
+SelectPpuListA:
   lda #$58                     ; $A04D
   sta $0523                    ; $A04F
   lda #$A0                     ; $A052
   sta $0524                    ; $A054
   rts                          ; $A057
   .incbin "prg_bank_4.bin", $2058, $10  ; $A058
-Sub_B4_A068:
+SelectPpuListB:
   lda #$73                     ; $A068
   sta $0523                    ; $A06A
   lda #$A0                     ; $A06D
   sta $0524                    ; $A06F
   rts                          ; $A072
   .incbin "prg_bank_4.bin", $2073, $10  ; $A073
-Sub_B4_A083:
+SelectPpuListC:
   lda #$8E                     ; $A083
   sta $0523                    ; $A085
   lda #$A0                     ; $A088
   sta $0524                    ; $A08A
   rts                          ; $A08D
   .incbin "prg_bank_4.bin", $208E, $10  ; $A08E
-Sub_B4_A09E:
+SelectPpuListD:
   lda #$A9                     ; $A09E
   sta $0523                    ; $A0A0
   lda #$A0                     ; $A0A3
@@ -2098,7 +2098,7 @@ Sub_B4_AFE8:
   jmp Sub_B4_95C8              ; $AFF4
   .incbin "prg_bank_4.bin", $2FF7, $400  ; $AFF7
   .incbin "prg_bank_4.bin", $33F7, $B  ; $B3F7
-Sub_B4_B402:
+AddObjectOfType:
   lda ObjectCount              ; $B402
   cmp #$0F                     ; $B405
   bcs Loc_B4_B414              ; $B407
@@ -2171,11 +2171,11 @@ Loc_B4_B46F:
   stx z:AmmoHi                 ; $B46F
   sta z:AmmoLo                 ; $B471
   rts                          ; $B473
-Sub_B4_B474:
+UpdateAllObjectHandlers:
   jsr Sub_B4_B4B2              ; $B474
   beq Loc_B4_B4B1              ; $B477
 Loc_B4_B479:
-  jsr Sub_B4_B4BB              ; $B479
+  jsr DispatchObjectHandler    ; $B479
   dec $0302                    ; $B47C
   bne Loc_B4_B479              ; $B47F
   ldy #$06                     ; $B481
@@ -2209,7 +2209,7 @@ Sub_B4_B4B2:
   and #$0F                     ; $B4B5
   sta $0302                    ; $B4B7
   rts                          ; $B4BA
-Sub_B4_B4BB:
+DispatchObjectHandler:
   lda $0302                    ; $B4BB
   jsr AslA4                    ; $B4BE
   tay                          ; $B4C1

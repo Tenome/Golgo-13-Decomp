@@ -276,8 +276,8 @@ void Bank4State_05(void) {  /* $8139 bank 4 */
 void Bank4State_06(void) {  /* $8165 bank 4 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8165 inc */
-  push16(0x816A); Sub_B4_B474(); UNW(); ret_check(0x816A);                               /* $8168 jsr */
-  push16(0x816D); Sub_B4_B474(); UNW(); ret_check(0x816D);                               /* $816B jsr */
+  push16(0x816A); UpdateAllObjectHandlers(); UNW(); ret_check(0x816A);                   /* $8168 jsr */
+  push16(0x816D); UpdateAllObjectHandlers(); UNW(); ret_check(0x816D);                   /* $816B jsr */
   push16(0x8170); DrawObjects(); UNW(); ret_check(0x8170);                               /* $816E jsr */
   push16(0x8173); Sub_B4_9049(); UNW(); ret_check(0x8173);                               /* $8171 jsr */
   { ApplyScroll(); return; }                                                             /* $8174 jmp */
@@ -303,7 +303,7 @@ void Bank4State_08(void) {  /* $8188 bank 4 */
   LDA(rd(PPU_STATUS));                                                                   /* $8188 lda */
   push16(0x818D); ReadJoypads(); UNW(); ret_check(0x818D);                               /* $818B jsr */
   push16(0x8190); Sub_B4_8D25(); UNW(); ret_check(0x8190);                               /* $818E jsr */
-  push16(0x8193); Sub_B4_B474(); UNW(); ret_check(0x8193);                               /* $8191 jsr */
+  push16(0x8193); UpdateAllObjectHandlers(); UNW(); ret_check(0x8193);                   /* $8191 jsr */
   push16(0x8196); DrawObjects(); UNW(); ret_check(0x8196);                               /* $8194 jsr */
   push16(0x8199); Sub_B4_9603(); UNW(); ret_check(0x8199);                               /* $8197 jsr */
   LDX(rd(0x7C));                                                                         /* $819A ldx */
@@ -920,7 +920,7 @@ void Bank4StateB_05(void) {  /* $85F4 bank 4 */
   ORA(rd(0x050B));                                                                       /* $85F7 ora */
   if (R.a == 0) {                                                                        /* $85FA bne */
     LDY(0xEA);                                                                           /* $85FC ldy */
-    push16(0x8600); Sub_B4_B402(); UNW(); ret_check(0x8600);                             /* $85FE jsr */
+    push16(0x8600); AddObjectOfType(); UNW(); ret_check(0x8600);                         /* $85FE jsr */
     { Bank4StateB_00(); return; }                                                        /* $8601 jmp */
   }
   LDA(0x00);                                                                             /* $8604 lda */
@@ -935,7 +935,7 @@ void Bank4StateB_06(void) {  /* $860D bank 4 */
   ORA(rd(0x050C));                                                                       /* $8610 ora */
   if (R.a != 0) { Bank4StateB_04(); return; }                                            /* $8613 bne */
   LDY(0xE9);                                                                             /* $8615 ldy */
-  push16(0x8619); Sub_B4_B402(); UNW(); ret_check(0x8619);                               /* $8617 jsr */
+  push16(0x8619); AddObjectOfType(); UNW(); ret_check(0x8619);                           /* $8617 jsr */
   { Bank4StateB_00(); return; }                                                          /* $861A jmp */
 }
 
@@ -954,7 +954,7 @@ void Bank4StateB_08(void) {  /* $8629 bank 4 */
   ORA(rd(0x050C));                                                                       /* $862C ora */
   if (R.a == 0) {                                                                        /* $862F bne */
     LDY(0xE9);                                                                           /* $8631 ldy */
-    push16(0x8635); Sub_B4_B402(); UNW(); ret_check(0x8635);                             /* $8633 jsr */
+    push16(0x8635); AddObjectOfType(); UNW(); ret_check(0x8635);                         /* $8633 jsr */
     { Bank4StateB_00(); return; }                                                        /* $8636 jmp */
   }
   LDA(0x06);                                                                             /* $8639 lda */
@@ -980,7 +980,7 @@ void Bank4StateB_09(void) {  /* $8657 bank 4 */
     { Bank4StateB_04(); return; }                                                        /* $865F jmp */
   }
   LDY(0xE9);                                                                             /* $8662 ldy */
-  push16(0x8666); Sub_B4_B402(); UNW(); ret_check(0x8666);                               /* $8664 jsr */
+  push16(0x8666); AddObjectOfType(); UNW(); ret_check(0x8666);                           /* $8664 jsr */
   { Bank4StateB_00(); return; }                                                          /* $8667 jmp */
 }
 
@@ -989,7 +989,7 @@ void Bank4StateB_0A(void) {  /* $866A bank 4 */
   LDA(rd(0x0508));                                                                       /* $866A lda */
   if (R.a == 0) {                                                                        /* $866D bne */
     LDY(0xEB);                                                                           /* $866F ldy */
-    push16(0x8673); Sub_B4_B402(); UNW(); ret_check(0x8673);                             /* $8671 jsr */
+    push16(0x8673); AddObjectOfType(); UNW(); ret_check(0x8673);                         /* $8671 jsr */
     { Bank4StateB_00(); return; }                                                        /* $8674 jmp */
   }
   LDA(0x00);                                                                             /* $8677 lda */
@@ -1012,7 +1012,7 @@ L8680: BUDGET();
   ORA(rd(0x050C));                                                                       /* $8683 ora */
   if (R.a == 0) {                                                                        /* $8686 bne */
     LDY(0xE9);                                                                           /* $8688 ldy */
-    push16(0x868C); Sub_B4_B402(); UNW(); ret_check(0x868C);                             /* $868A jsr */
+    push16(0x868C); AddObjectOfType(); UNW(); ret_check(0x868C);                         /* $868A jsr */
     { Bank4StateB_00(); return; }                                                        /* $868D jmp */
   }
   LDA(0x04);                                                                             /* $8690 lda */
@@ -2300,28 +2300,28 @@ void Sub_B4_A01B(void) {  /* $A01B bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x050C));                                                                       /* $A01B lda */
   if (R.a != 0) {                                                                        /* $A01E beq */
-    push16(0xA022); Sub_B4_A04D(); UNW(); ret_check(0xA022);                             /* $A020 jsr */
+    push16(0xA022); SelectPpuListA(); UNW(); ret_check(0xA022);                          /* $A020 jsr */
     push16(0xA025); call_addr(0x0520); UNW(); ret_check(0xA025);                         /* $A023 jsr */
   }
   LDA(rd(0x050B));                                                                       /* $A026 lda */
   if (R.a != 0) {                                                                        /* $A029 beq */
-    push16(0xA02D); Sub_B4_A068(); UNW(); ret_check(0xA02D);                             /* $A02B jsr */
+    push16(0xA02D); SelectPpuListB(); UNW(); ret_check(0xA02D);                          /* $A02B jsr */
     push16(0xA030); call_addr(0x0520); UNW(); ret_check(0xA030);                         /* $A02E jsr */
   }
   LDA(rd(0x050A));                                                                       /* $A031 lda */
   if (R.a != 0) {                                                                        /* $A034 beq */
-    push16(0xA038); Sub_B4_A083(); UNW(); ret_check(0xA038);                             /* $A036 jsr */
+    push16(0xA038); SelectPpuListC(); UNW(); ret_check(0xA038);                          /* $A036 jsr */
     push16(0xA03B); call_addr(0x0520); UNW(); ret_check(0xA03B);                         /* $A039 jsr */
   }
   LDA(rd(0x0508));                                                                       /* $A03C lda */
   if (R.a != 0) {                                                                        /* $A03F beq */
-    push16(0xA043); Sub_B4_A09E(); UNW(); ret_check(0xA043);                             /* $A041 jsr */
+    push16(0xA043); SelectPpuListD(); UNW(); ret_check(0xA043);                          /* $A041 jsr */
     push16(0xA046); call_addr(0x0520); UNW(); ret_check(0xA046);                         /* $A044 jsr */
   }
   RTS_RET(sp0);                                                                          /* $A047 rts */
 }
 
-void Sub_B4_A04D(void) {  /* $A04D bank 4 */
+void SelectPpuListA(void) {  /* $A04D bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x58);                                                                             /* $A04D lda */
   STA(0x0523);                                                                           /* $A04F sta */
@@ -2330,7 +2330,7 @@ void Sub_B4_A04D(void) {  /* $A04D bank 4 */
   RTS_RET(sp0);                                                                          /* $A057 rts */
 }
 
-void Sub_B4_A068(void) {  /* $A068 bank 4 */
+void SelectPpuListB(void) {  /* $A068 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x73);                                                                             /* $A068 lda */
   STA(0x0523);                                                                           /* $A06A sta */
@@ -2339,7 +2339,7 @@ void Sub_B4_A068(void) {  /* $A068 bank 4 */
   RTS_RET(sp0);                                                                          /* $A072 rts */
 }
 
-void Sub_B4_A083(void) {  /* $A083 bank 4 */
+void SelectPpuListC(void) {  /* $A083 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x8E);                                                                             /* $A083 lda */
   STA(0x0523);                                                                           /* $A085 sta */
@@ -2348,7 +2348,7 @@ void Sub_B4_A083(void) {  /* $A083 bank 4 */
   RTS_RET(sp0);                                                                          /* $A08D rts */
 }
 
-void Sub_B4_A09E(void) {  /* $A09E bank 4 */
+void SelectPpuListD(void) {  /* $A09E bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0xA9);                                                                             /* $A09E lda */
   STA(0x0523);                                                                           /* $A0A0 sta */
@@ -2418,7 +2418,7 @@ void Sub_B4_AFE8(void) {  /* $AFE8 bank 4 */
   { Sub_B4_95C8(); return; }                                                             /* $AFF4 jmp */
 }
 
-void Sub_B4_B402(void) {  /* $B402 bank 4 */
+void AddObjectOfType(void) {  /* $B402 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $B402 lda */
   cmp8(R.a, 0x0F);                                                                       /* $B405 cmp */
@@ -2511,12 +2511,12 @@ LB46F: BUDGET();
   RTS_RET(sp0);                                                                          /* $B473 rts */
 }
 
-void Sub_B4_B474(void) {  /* $B474 bank 4 */
+void UpdateAllObjectHandlers(void) {  /* $B474 bank 4 */
   uint8_t sp0 = R.sp;
   push16(0xB476); Sub_B4_B4B2(); UNW(); ret_check(0xB476);                               /* $B474 jsr */
   if (!R.z) {                                                                            /* $B477 beq */
     do { BUDGET();
-      push16(0xB47B); Sub_B4_B4BB(); UNW(); ret_check(0xB47B);                           /* $B479 jsr */
+      push16(0xB47B); DispatchObjectHandler(); UNW(); ret_check(0xB47B);                 /* $B479 jsr */
       DEC_M(0x0302);                                                                     /* $B47C dec */
     } while (!R.z);                                                                      /* $B47F bne */
     LDY(0x06);                                                                           /* $B481 ldy */
@@ -2557,7 +2557,7 @@ void Sub_B4_B4B2(void) {  /* $B4B2 bank 4 */
   RTS_RET(sp0);                                                                          /* $B4BA rts */
 }
 
-void Sub_B4_B4BB(void) {  /* $B4BB bank 4 */
+void DispatchObjectHandler(void) {  /* $B4BB bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0302));                                                                       /* $B4BB lda */
   push16(0xB4C0); AslA4(); UNW(); ret_check(0xB4C0);                                     /* $B4BE jsr */

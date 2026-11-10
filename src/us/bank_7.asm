@@ -1361,7 +1361,7 @@ Loc_CA13:
   lda z:GameState              ; $CA13
   cmp #$0C                     ; $CA15
   bne Loc_CA1F                 ; $CA17
-  jsr Sub_DBD5                 ; $CA19
+  jsr ProcessTransition        ; $CA19
   jmp Loc_CB9B                 ; $CA1C
 Loc_CA1F:
   lda z:GameState              ; $CA1F
@@ -1509,7 +1509,7 @@ Loc_CB62:
   bne Loc_CB75                 ; $CB6A
   lda #$00                     ; $CB6C
   sta JoyHeld1                 ; $CB6E
-  jsr Sub_DBD5                 ; $CB71
+  jsr ProcessTransition        ; $CB71
 Loc_CB74:
   rts                          ; $CB74
 Loc_CB75:
@@ -1523,8 +1523,8 @@ Loc_CB80:
   sta JoyHeld1                 ; $CB82
   sta JoyNew1                  ; $CB85
 Loc_CB88:
-  jsr Sub_F29D                 ; $CB88
-  jsr Sub_DBD5                 ; $CB8B
+  jsr ProbeFloorTile           ; $CB88
+  jsr ProcessTransition        ; $CB8B
 Loc_CB8E:
   lda $0600                    ; $CB8E
   cmp #$60                     ; $CB91
@@ -3308,7 +3308,7 @@ Loc_DB75:
 Loc_DB80:
   rts                          ; $DB80
   .incbin "prg_bank_7.bin", $1B81, $54  ; $DB81
-Sub_DBD5:
+ProcessTransition:
   lda z:TransitionPending      ; $DBD5
   cmp #$01                     ; $DBD7
   bne Loc_DBE7                 ; $DBD9
@@ -3336,7 +3336,7 @@ Loc_DBFE:
   jsr Sub_DE15                 ; $DBFE
   rts                          ; $DC01
 Loc_DC02:
-  jsr Sub_DDD0                 ; $DC02
+  jsr FinishTransition         ; $DC02
   rts                          ; $DC05
 Loc_DC06:
   jsr Sub_DED0                 ; $DC06
@@ -3368,14 +3368,14 @@ Sub_DC48:
   lda z:PaletteDirty           ; $DC4D
   cmp #$40                     ; $DC4F
   bcc Loc_DC57                 ; $DC51
-  jsr Sub_DDD0                 ; $DC53
+  jsr FinishTransition         ; $DC53
   rts                          ; $DC56
 Loc_DC57:
   lda #$F8                     ; $DC57
   sta z:$04                    ; $DC59
   lda #$20                     ; $DC5B
   sta z:$05                    ; $DC5D
-  jsr Sub_DC87                 ; $DC5F
+  jsr DrawPlayerPoseOverlay    ; $DC5F
   lda z:PaletteDirty           ; $DC62
   cmp #$02                     ; $DC64
   bne Loc_DC6D                 ; $DC66
@@ -3400,7 +3400,7 @@ Loc_DC7B:
   cpx #$E0                     ; $DC82
   bcc Loc_DC7B                 ; $DC84
   rts                          ; $DC86
-Sub_DC87:
+DrawPlayerPoseOverlay:
   lda z:PaletteDirty           ; $DC87
   and #$1C                     ; $DC89
   lsr a                        ; $DC8B
@@ -3437,7 +3437,7 @@ Data_DCC4:
   .incbin "prg_bank_7.bin", $1CC4, $1  ; $DCC4
 Data_DCC5:
   .incbin "prg_bank_7.bin", $1CC5, $10B  ; $DCC5
-Sub_DDD0:
+FinishTransition:
   lda z:TransitionTarget       ; $DDD0
   sta z:PaletteSetIndex        ; $DDD2
   lda #$00                     ; $DDD4
@@ -3486,7 +3486,7 @@ Sub_DE15:
   lda z:PaletteDirty           ; $DE1C
   cmp #$50                     ; $DE1E
   bcc Loc_DE26                 ; $DE20
-  jsr Sub_DDD0                 ; $DE22
+  jsr FinishTransition         ; $DE22
   rts                          ; $DE25
 Loc_DE26:
   cmp #$20                     ; $DE26
@@ -3557,7 +3557,7 @@ Loc_DEDF:
   sta z:$04                    ; $DEE1
   lda #$00                     ; $DEE3
   sta z:$05                    ; $DEE5
-  jsr Sub_DC87                 ; $DEE7
+  jsr DrawPlayerPoseOverlay    ; $DEE7
   jsr Sub_DF12                 ; $DEEA
   lda z:PaletteDirty           ; $DEED
   cmp #$02                     ; $DEEF
@@ -3839,7 +3839,7 @@ Loc_E123:
   bcs Loc_E155                 ; $E12B
   lda z:$1B                    ; $E12D
   bne Loc_E154                 ; $E12F
-  jsr Sub_E17D                 ; $E131
+  jsr LoadTransitionFromList   ; $E131
   lda z:TransitionTarget       ; $E134
   cmp #$69                     ; $E136
   beq Loc_E154                 ; $E138
@@ -3859,7 +3859,7 @@ Loc_E123:
 Loc_E154:
   rts                          ; $E154
 Loc_E155:
-  jsr Sub_E17D                 ; $E155
+  jsr LoadTransitionFromList   ; $E155
   lda #$00                     ; $E158
   sta z:$1B                    ; $E15A
   sta ContactLock              ; $E15C
@@ -3881,7 +3881,7 @@ Loc_E178:
   lda #$00                     ; $E178
   sta z:TransitionPending      ; $E17A
   rts                          ; $E17C
-Sub_E17D:
+LoadTransitionFromList:
   lda #$01                     ; $E17D
   sta z:TransitionPending      ; $E17F
   iny                          ; $E181
@@ -4813,12 +4813,12 @@ Loc_F28B:
   jsr AdjustAmmo               ; $F299
 Loc_F29C:
   rts                          ; $F29C
-Sub_F29D:
+ProbeFloorTile:
   lda #$00                     ; $F29D
   sta z:FloorProbeValid        ; $F29F
   lda z:StageViewMode          ; $F2A1
   bne Loc_F2AB                 ; $F2A3
-  jsr Sub_F2DA                 ; $F2A5
+  jsr SetupFloorProbeSideView  ; $F2A5
   jmp Loc_F2D9                 ; $F2A8
 Loc_F2AB:
   cmp #$02                     ; $F2AB
@@ -4849,7 +4849,7 @@ Loc_F2D2:
   jsr Sub_F2FA                 ; $F2D6
 Loc_F2D9:
   rts                          ; $F2D9
-Sub_F2DA:
+SetupFloorProbeSideView:
   lda #$01                     ; $F2DA
   sta z:FloorProbeValid        ; $F2DC
   lda PlayerSpriteY0           ; $F2DE
@@ -4954,7 +4954,7 @@ Loc_F393:
   rts                          ; $F393
 UpdatePlayerTopDown:
   jsr MovePlayerVertical       ; $F394
-  jsr Sub_F430                 ; $F397
+  jsr SetTopDownPlayerOam      ; $F397
   jsr FireBulletTopDown        ; $F39A
   rts                          ; $F39D
 MovePlayerVertical:
@@ -5028,7 +5028,7 @@ Loc_F427:
   rts                          ; $F427
 Data_F428:
   .incbin "prg_bank_7.bin", $3428, $8  ; $F428
-Sub_F430:
+SetTopDownPlayerOam:
   lda JoyHeld1                 ; $F430
   and #$10                     ; $F433
   beq Loc_F43C                 ; $F435

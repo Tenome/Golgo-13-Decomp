@@ -317,5 +317,12 @@
  "1:AA84": "AllocObjectB1",
  "1:AA64": "LoadObjectAnimFrameB1",
  "1:AA03": "UpdateObjectScreenXB1",
- "1:AD18": "MultiplyBy12"
+ "1:AD18": "MultiplyBy12",
+ "DBD5": "ProcessTransition",
+ "DC87": "DrawPlayerPoseOverlay",
+ "DDD0": "FinishTransition",
+ "E17D": "LoadTransitionFromList",
+ "F29D": "ProbeFloorTile",
+ "F2DA": "SetupFloorProbeSideView",
+ "F430": "SetTopDownPlayerOam"
 }
