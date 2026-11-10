@@ -797,32 +797,41 @@ Sub_B5_86DD:
 Loc_B5_86E8:
   rts                          ; $86E8
   .incbin "prg_bank_5.bin", $06E9, $1  ; $86E9
+Sub_B5_86EA:
   inc SceneState               ; $86EA
   lda #$06                     ; $86ED
   sta $012A                    ; $86EF
   jmp Loc_B5_9DBB              ; $86F2
+Sub_B5_86F5:
   dec SceneTimer               ; $86F5
   bne Loc_B5_8700              ; $86F8
   inc SceneState               ; $86FA
   jmp Sub_B5_8183              ; $86FD
 Loc_B5_8700:
   rts                          ; $8700
+Sub_B5_8701:
   lda $0528                    ; $8701
   ora $0529                    ; $8704
   bne Loc_B5_870C              ; $8707
   inc SceneState               ; $8709
 Loc_B5_870C:
   rts                          ; $870C
+Sub_B5_870D:
   inc SceneState               ; $870D
   jmp Sub_B5_814C              ; $8710
+Sub_B5_8713:
   inc SceneState               ; $8713
   rts                          ; $8716
+Sub_B5_8717:
   inc SceneState               ; $8717
   rts                          ; $871A
+Sub_B5_871B:
   inc SceneState               ; $871B
   jmp Sub_B5_814C              ; $871E
+Sub_B5_8721:
   inc SceneState               ; $8721
   rts                          ; $8724
+Sub_B5_8725:
   lda #$25                     ; $8725
   sta SceneState               ; $8727
   rts                          ; $872A

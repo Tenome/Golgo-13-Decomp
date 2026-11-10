@@ -72,7 +72,7 @@ Nmi:
   jsr MmcWritePrg              ; $C081
   lda z:MmcPrgShadow           ; $C084
   bne Loc_C08B                 ; $C086
-  jmp Loc_C0E3                 ; $C088
+  jmp Sub_C0E3                 ; $C088
 Loc_C08B:
   jmp $8010                    ; $C08B  -> Loc_B0_8010, Bank1Nmi, Bank2Nmi, Bank3Nmi, Bank4Nmi, Bank5Nmi, Bank6Nmi
   .incbin "prg_bank_7.bin", $008E, $32  ; $C08E
@@ -88,7 +88,7 @@ Sub_C0C0:
   .incbin "prg_bank_7.bin", $00D4, $C  ; $C0D4
 Loc_C0E0:
   jmp Loc_CB2C                 ; $C0E0
-Loc_C0E3:
+Sub_C0E3:
   jmp NmiGameStateDispatch     ; $C0E3
 RunSoundDriver:
   lda z:MmcPrgShadow           ; $C0E6

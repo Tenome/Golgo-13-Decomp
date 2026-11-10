@@ -7,8 +7,8 @@
   "total_data": "227406",
   "matched_data": "227406",
   "matched_data_percent": 100.0,
-  "total_functions": 766,
-  "matched_functions": 766,
+  "total_functions": 776,
+  "matched_functions": 776,
   "matched_functions_percent": 100.0,
   "complete_code": "34738",
   "complete_code_percent": 100.0,
@@ -563,7 +563,7 @@
      }
     },
     {
-     "name": "Loc_B1_8600",
+     "name": "Sub_B1_8600",
      "size": "202",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3031,8 +3031,8 @@
     "total_data": "10837",
     "matched_data": "10837",
     "matched_data_percent": 100.0,
-    "total_functions": 188,
-    "matched_functions": 188,
+    "total_functions": 196,
+    "matched_functions": 196,
     "matched_functions_percent": 100.0,
     "complete_code": "5547",
     "complete_code_percent": 100.0,
@@ -3727,11 +3727,75 @@
      }
     },
     {
-     "name": "Loc_B5_8694",
-     "size": "110",
+     "name": "Sub_B5_8694",
+     "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "83620"
+     }
+    },
+    {
+     "name": "Sub_B5_869F",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83631"
+     }
+    },
+    {
+     "name": "Sub_B5_86AB",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83643"
+     }
+    },
+    {
+     "name": "Sub_B5_86B7",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83655"
+     }
+    },
+    {
+     "name": "Sub_B5_86C2",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83666"
+     }
+    },
+    {
+     "name": "Sub_B5_86CE",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83678"
+     }
+    },
+    {
+     "name": "Sub_B5_86DA",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83690"
+     }
+    },
+    {
+     "name": "Sub_B5_86E8",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83704"
+     }
+    },
+    {
+     "name": "Sub_B5_86F4",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83716"
      }
     },
     {
@@ -4734,7 +4798,7 @@
      }
     },
     {
-     "name": "Loc_B6_83A8",
+     "name": "Sub_B6_83A8",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4782,7 +4846,7 @@
      }
     },
     {
-     "name": "Loc_B6_85FD",
+     "name": "Sub_B6_85FD",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4910,7 +4974,7 @@
      }
     },
     {
-     "name": "Loc_B6_890F",
+     "name": "Sub_B6_890F",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5014,7 +5078,7 @@
      }
     },
     {
-     "name": "Loc_B6_945A",
+     "name": "Sub_B6_945A",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5086,7 +5150,7 @@
      }
     },
     {
-     "name": "Loc_B6_A099",
+     "name": "Sub_B6_A099",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5117,8 +5181,8 @@
     "total_data": "5239",
     "matched_data": "5239",
     "matched_data_percent": 100.0,
-    "total_functions": 164,
-    "matched_functions": 164,
+    "total_functions": 166,
+    "matched_functions": 166,
     "matched_functions_percent": 100.0,
     "complete_code": "11145",
     "complete_code_percent": 100.0,
@@ -5158,10 +5222,18 @@
     },
     {
      "name": "Loc_C0E0",
-     "size": "6",
+     "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "114928"
+     }
+    },
+    {
+     "name": "Sub_C0E3",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "114931"
      }
     },
     {
@@ -5454,10 +5526,18 @@
     },
     {
      "name": "MmcWritePrg",
-     "size": "22",
+     "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "116134"
+     }
+    },
+    {
+     "name": "MmcWritePrgA",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116136"
      }
     },
     {

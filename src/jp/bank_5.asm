@@ -756,49 +756,58 @@ Sub_B5_8687:
 Loc_B5_8692:
   rts                          ; $8692
   .incbin "prg_bank_5.bin", $0693, $1  ; $8693
+Sub_B5_8694:
   inc SceneState               ; $8694
   lda #$06                     ; $8697
   sta $012A                    ; $8699
   jmp Loc_B5_9DB4              ; $869C
+Sub_B5_869F:
   dec SceneTimer               ; $869F
   bne Loc_B5_86AA              ; $86A2
   inc SceneState               ; $86A4
   jmp Sub_B5_8187              ; $86A7
 Loc_B5_86AA:
   rts                          ; $86AA
+Sub_B5_86AB:
   lda $0528                    ; $86AB
   ora $0529                    ; $86AE
   bne Loc_B5_86B6              ; $86B1
   inc SceneState               ; $86B3
 Loc_B5_86B6:
   rts                          ; $86B6
+Sub_B5_86B7:
   inc SceneState               ; $86B7
   lda #$07                     ; $86BA
   sta $012A                    ; $86BC
   jmp Loc_B5_9E0C              ; $86BF
+Sub_B5_86C2:
   dec SceneTimer               ; $86C2
   bne Loc_B5_86CD              ; $86C5
   inc SceneState               ; $86C7
   jmp Sub_B5_8187              ; $86CA
 Loc_B5_86CD:
   rts                          ; $86CD
+Sub_B5_86CE:
   lda $0528                    ; $86CE
   ora $0529                    ; $86D1
   bne Loc_B5_86D9              ; $86D4
   inc SceneState               ; $86D6
 Loc_B5_86D9:
   rts                          ; $86D9
+Sub_B5_86DA:
   inc SceneState               ; $86DA
   jsr GetRandomByte            ; $86DD
   and #$07                     ; $86E0
   sta $012A                    ; $86E2
   jmp Loc_B5_9D40              ; $86E5
+Sub_B5_86E8:
   dec SceneTimer               ; $86E8
   bne Loc_B5_86F3              ; $86EB
   inc SceneState               ; $86ED
   jmp Sub_B5_8187              ; $86F0
 Loc_B5_86F3:
   rts                          ; $86F3
+Sub_B5_86F4:
   lda $0528                    ; $86F4
   ora $0529                    ; $86F7
   bne Loc_B5_8701              ; $86FA

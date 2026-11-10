@@ -9,13 +9,58 @@ void Ram_0005_0(void) {  /* $0005 bank 8 */
         RTS_RET(sp0);                                                    /* $000A rts */
 }
 
+void Ram_0513_1(void) {  /* $0513 bank 9 */
+  uint8_t sp0 = R.sp;
+ L0513: BUDGET(); LDA(0x01);                                                       /* $0513 lda */
+        push16(0x0517); MmcWritePrgA(); UNW(); ret_check(0x0517);        /* $0515 jsr */
+        push16(0x051A); call_addr(0x8600); UNW(); ret_check(0x051A);     /* $0518 jsr */
+        { MmcWritePrg(); return; }                                       /* $051B jmp */
+}
+
 void Ram_051E_1(void) {  /* $051E bank 9 */
   uint8_t sp0 = R.sp;
  L051E: BUDGET(); push16(0x0520); ProcessPpuUpdateList(); UNW(); ret_check(0x0522); /* $051E jsr */
         { ApplyScroll(); return; }                                       /* $0523 jmp */
 }
 
-void Ram_05B8_2(void) {  /* $05B8 bank 10 */
+void Ram_0568_2(void) {  /* $0568 bank 10 */
+  uint8_t sp0 = R.sp;
+ L0568: BUDGET(); LDA(rd(JoyHeld1));                                               /* $0568 lda */
+        PHA();                                                           /* $056B pha */
+        LDA(rd(JoyHeld2));                                               /* $056C lda */
+        PHA();                                                           /* $056F pha */
+        LDA(rd(JoyNew1));                                                /* $0570 lda */
+        PHA();                                                           /* $0573 pha */
+        LDA(0x00);                                                       /* $0574 lda */
+        STA(JoyHeld1);                                                   /* $0576 sta */
+        STA(JoyHeld2);                                                   /* $0579 sta */
+        STA(JoyNew1);                                                    /* $057C sta */
+        STA(MmcPrgShadow);                                               /* $057F sta */
+        push16(0x0583); MmcWritePrg(); UNW(); ret_check(0x0583);         /* $0581 jsr */
+        push16(0x0586); Sub_C0E3(); UNW(); ret_check(0x0586);            /* $0584 jsr */
+        LDA(0x05);                                                       /* $0587 lda */
+        STA(MmcPrgShadow);                                               /* $0589 sta */
+        push16(0x058D); MmcWritePrg(); UNW(); ret_check(0x058D);         /* $058B jsr */
+        DEC_M(0x0541);                                                   /* $058E dec */
+        if (!R.z) goto L05A1;                                            /* $0591 bne */
+        DEC_M(0x0542);                                                   /* $0593 dec */
+        if (!R.z) goto L05A1;                                            /* $0596 bne */
+        LDA(0x00);                                                       /* $0598 lda */
+        STA(0x0600);                                                     /* $059A sta */
+        LDA(0x40);                                                       /* $059D lda */
+        STA(GameState);                                                  /* $059F sta */
+ L05A1: BUDGET(); LDX(0xE0);                                                       /* $05A1 ldx */
+        push16(0x05A5); call_addr(0x8973); UNW(); ret_check(0x05A5);     /* $05A3 jsr */
+        PLA();                                                           /* $05A6 pla */
+        STA(JoyNew1);                                                    /* $05A7 sta */
+        PLA();                                                           /* $05AA pla */
+        STA(JoyHeld2);                                                   /* $05AB sta */
+        PLA();                                                           /* $05AE pla */
+        STA(JoyHeld1);                                                   /* $05AF sta */
+        RTS_RET(sp0);                                                    /* $05B2 rts */
+}
+
+void Ram_05B8_3(void) {  /* $05B8 bank 11 */
   uint8_t sp0 = R.sp;
  L05B8: BUDGET(); push16(0x05BA); call_addr(0x8FCA); UNW(); ret_check(0x05BA);     /* $05B8 jsr */
         LDA(0x01);                                                       /* $05BB lda */

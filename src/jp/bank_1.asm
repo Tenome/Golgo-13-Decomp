@@ -348,6 +348,7 @@ Loc_B1_85F3:
   rts                          ; $85F3
 Data_B1_85F4:
   .incbin "prg_bank_1.bin", $05F4, $C  ; $85F4
+Sub_B1_8600:
   lda $0546                    ; $8600
   beq Loc_B1_861B              ; $8603
   jsr SetPpuAddrFromBuf        ; $8605

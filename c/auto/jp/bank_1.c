@@ -353,6 +353,109 @@ void Sub_B1_85BB(void) {  /* $85BB bank 1 */
  L85F3: BUDGET(); RTS_RET(sp0);                                                    /* $85F3 rts */
 }
 
+void Sub_B1_8600(void) {  /* $8600 bank 1 */
+  uint8_t sp0 = R.sp;
+ L8600: BUDGET(); LDA(rd(0x0546));                                                 /* $8600 lda */
+        if (R.a == 0) goto L861B;                                        /* $8603 beq */
+        push16(0x8607); SetPpuAddrFromBuf(); UNW(); ret_check(0x8607);   /* $8605 jsr */
+        LDX(0x00);                                                       /* $8608 ldx */
+        STX(0x0546);                                                     /* $860A stx */
+ L860D: BUDGET(); LDA(rd((uint16_t)(0x0548 + R.x)));                               /* $860D lda */
+        STA(PPU_DATA);                                                   /* $8610 sta */
+        INX();                                                           /* $8613 inx */
+        cmp8(R.x, 0x20);                                                 /* $8614 cpx */
+        if (R.x < 0x20) goto L860D;                                      /* $8616 bcc */
+        push16(0x861A); ApplyScroll(); UNW(); ret_check(0x861A);         /* $8618 jsr */
+ L861B: BUDGET(); DEC_M(0x0547);                                                   /* $861B dec */
+        if (R.z) goto L8621;                                             /* $861E beq */
+        RTS_RET(sp0);                                                    /* $8620 rts */
+ L8621: BUDGET(); LDA(0x03);                                                       /* $8621 lda */
+        STA(0x0547);                                                     /* $8623 sta */
+        LDX(rd(HwScrollY));                                              /* $8626 ldx */
+        INX();                                                           /* $8628 inx */
+        cmp8(R.x, 0xF0);                                                 /* $8629 cpx */
+        if (R.x < 0xF0) goto L8635;                                      /* $862B bcc */
+        LDA(rd(PpuCtrlShadow));                                          /* $862D lda */
+        EOR(0x02);                                                       /* $862F eor */
+        STA(PpuCtrlShadow);                                              /* $8631 sta */
+        LDX(0x00);                                                       /* $8633 ldx */
+ L8635: BUDGET(); STX(HwScrollY);                                                  /* $8635 stx */
+        TXA();                                                           /* $8637 txa */
+        AND(0x07);                                                       /* $8638 and */
+        if (R.a == 0) goto L863D;                                        /* $863A beq */
+        RTS_RET(sp0);                                                    /* $863C rts */
+ L863D: BUDGET(); STA(PpuAddrBufHi);                                               /* $863D sta */
+        TXA();                                                           /* $8640 txa */
+        ASL_A();                                                         /* $8641 asl */
+        ROL_M(PpuAddrBufHi);                                             /* $8642 rol */
+        ASL_A();                                                         /* $8645 asl */
+        ROL_M(PpuAddrBufHi);                                             /* $8646 rol */
+        STA(PpuAddrBufLo);                                               /* $8649 sta */
+        LDA(rd(PpuCtrlShadow));                                          /* $864C lda */
+        AND(0x02);                                                       /* $864E and */
+        EOR(0x02);                                                       /* $8650 eor */
+        STA(Tmp00);                                                      /* $8652 sta */
+        ASL_A();                                                         /* $8654 asl */
+        ORA(rd(Tmp00));                                                  /* $8655 ora */
+        ASL_A();                                                         /* $8657 asl */
+        ORA(0x20);                                                       /* $8658 ora */
+        ORA(rd(PpuAddrBufHi));                                           /* $865A ora */
+        STA(PpuAddrBufHi);                                               /* $865D sta */
+        LDA(0xFF);                                                       /* $8660 lda */
+        LDX(0x1F);                                                       /* $8662 ldx */
+ L8664: BUDGET(); STA((uint16_t)(0x0548 + R.x));                                   /* $8664 sta */
+        DEX();                                                           /* $8667 dex */
+        if (!(R.x & 0x80)) goto L8664;                                   /* $8668 bpl */
+        LDA(rd(0x0545));                                                 /* $866A lda */
+        ASL_A();                                                         /* $866D asl */
+        TAY();                                                           /* $866E tay */
+        LDA(rd((uint16_t)(0x86CA + R.y)));                               /* $866F lda */
+        STA(Tmp00);                                                      /* $8672 sta */
+        LDA(rd((uint16_t)(0x86CB + R.y)));                               /* $8674 lda */
+        CLC();                                                           /* $8677 clc */
+        adc(rd(0x0544));                                                 /* $8678 adc */
+        STA(Tmp01);                                                      /* $867B sta */
+        LDY(rd(0x0543));                                                 /* $867D ldy */
+        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8680 lda */
+        if (R.a == 0) goto L86C4;                                        /* $8682 beq */
+        ASL_A();                                                         /* $8684 asl */
+        TAY();                                                           /* $8685 tay */
+        LDA(rd((uint16_t)(0x8907 + R.y)));                               /* $8686 lda */
+        STA(Tmp00);                                                      /* $8689 sta */
+        LDA(rd((uint16_t)(0x8908 + R.y)));                               /* $868B lda */
+        STA(Tmp01);                                                      /* $868E sta */
+        LDY(0x00);                                                       /* $8690 ldy */
+        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8692 lda */
+        if (!(R.a & 0x80)) goto L86A7;                                   /* $8694 bpl */
+        INY();                                                           /* $8696 iny */
+ L8697: BUDGET(); LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8697 lda */
+        cmp8(R.a, 0xFE);                                                 /* $8699 cmp */
+        if (R.a == 0xFE) goto L86B8;                                     /* $869B beq */
+        TAX();                                                           /* $869D tax */
+        LDA(0xAE);                                                       /* $869E lda */
+        STA((uint16_t)(0x0548 + R.x));                                   /* $86A0 sta */
+        INY();                                                           /* $86A3 iny */
+        goto L8697;                                                      /* $86A4 jmp */
+ L86A7: BUDGET(); INY();                                                           /* $86A7 iny */
+        TAX();                                                           /* $86A8 tax */
+ L86A9: BUDGET(); LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $86A9 lda */
+        cmp8(R.a, 0xFE);                                                 /* $86AB cmp */
+        if (R.a == 0xFE) goto L86B8;                                     /* $86AD beq */
+        STA((uint16_t)(0x0548 + R.x));                                   /* $86AF sta */
+        INY();                                                           /* $86B2 iny */
+        INX();                                                           /* $86B3 inx */
+        cmp8(R.x, 0x20);                                                 /* $86B4 cpx */
+        if (R.x < 0x20) goto L86A9;                                      /* $86B6 bcc */
+ L86B8: BUDGET(); INC_M(0x0543);                                                   /* $86B8 inc */
+        if (!R.z) goto L86C0;                                            /* $86BB bne */
+        INC_M(0x0544);                                                   /* $86BD inc */
+ L86C0: BUDGET(); INC_M(0x0546);                                                   /* $86C0 inc */
+        RTS_RET(sp0);                                                    /* $86C3 rts */
+ L86C4: BUDGET(); LDA(0x00);                                                       /* $86C4 lda */
+        STA(0x0547);                                                     /* $86C6 sta */
+        RTS_RET(sp0);                                                    /* $86C9 rts */
+}
+
 void Sub_B1_8D00(void) {  /* $8D00 bank 1 */
   uint8_t sp0 = R.sp;
  L8D00: BUDGET(); LDX(0x0F);                                                       /* $8D00 ldx */

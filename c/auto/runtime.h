@@ -9,10 +9,21 @@ extern Cpu R;
 
 /* loop budget: tests bound runaway loops; production leaves g_budget huge */
 extern int g_budget; extern jmp_buf g_jmp; extern int g_abort;   /* g_abort: 1 budget, 2 brk, 3 unsupported, 4 unknown target */
+#ifdef PORT_CYCLES
+void port_poll(void);                                  /* native port: loop heads are interrupt points */
+#define BUDGET() port_poll()
+#else
 #define BUDGET() do { if (--g_budget < 0) { g_abort = 1; longjmp(g_jmp, 1); } } while (0)
+#endif
 
 extern int g_trace_on; void g13_trace(uint16_t pc);
 #define TR(pc) do { if (g_trace_on) g13_trace(pc); } while (0)
+#ifdef PORT_CYCLES
+extern uint64_t g_cycles;       /* native port: CPU cycles since the start of the frame; the PPU catches up lazily */
+#define CYC(n) (g_cycles += (n))
+#else
+#define CYC(n) ((void)0)
+#endif
 #define NZ(v) do { R.z = ((uint8_t)(v) == 0); R.n = ((uint8_t)(v) >> 7) & 1; } while (0)
 uint8_t rd(uint16_t a);
 void wr(uint16_t a, uint8_t v);

@@ -8,6 +8,7 @@ static int fixed_bank(uint16_t a) {
     case 0xC078: MainIdleLoop(); return 1;
     case 0xC081: Nmi(); return 1;
     case 0xC0C0: Sub_C0C0(); return 1;
+    case 0xC0E3: Sub_C0E3(); return 1;
     case 0xC0E6: RunSoundDriver(); return 1;
     case 0xC100: ProcessPpuUpdateList(); return 1;
     case 0xC170: FetchInlineWord(); return 1;
@@ -200,6 +201,7 @@ static int bank1(uint16_t a) {
     case 0x85AC: Sub_B1_85AC(); return 1;
     case 0x85B8: Sub_B1_85B8(); return 1;
     case 0x85B9: Loc_B1_85B9(); return 1;
+    case 0x8600: Sub_B1_8600(); return 1;
     case 0x8D00: Sub_B1_8D00(); return 1;
     case 0x8DFF: Sub_B1_8DFF(); return 1;
     case 0x8EA2: Sub_B1_8EA2(); return 1;
@@ -582,6 +584,15 @@ static int bank5(uint16_t a) {
     case 0x86CC: Sub_B5_86CC(); return 1;
     case 0x86D2: Sub_B5_86D2(); return 1;
     case 0x86DD: Sub_B5_86DD(); return 1;
+    case 0x86EA: Sub_B5_86EA(); return 1;
+    case 0x86F5: Sub_B5_86F5(); return 1;
+    case 0x8701: Sub_B5_8701(); return 1;
+    case 0x870D: Sub_B5_870D(); return 1;
+    case 0x8713: Sub_B5_8713(); return 1;
+    case 0x8717: Sub_B5_8717(); return 1;
+    case 0x871B: Sub_B5_871B(); return 1;
+    case 0x8721: Sub_B5_8721(); return 1;
+    case 0x8725: Sub_B5_8725(); return 1;
     case 0x87E0: Sub_B5_87E0(); return 1;
     case 0x87E8: Sub_B5_87E8(); return 1;
     case 0x87F3: Sub_B5_87F3(); return 1;
@@ -742,14 +753,28 @@ static int bank6(uint16_t a) {
     }
     return 0;
 }
-static int ram_match_0(void) {
+static int ram_match_20000(void) {
     if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
     if (g_ram[(0x0006) & 0x7FF] != 0x00) return 0;
     if (g_ram[(0x0007) & 0x7FF] != 0xC1) return 0;
     if (g_ram[(0x000A) & 0x7FF] != 0x60) return 0;
     return 1;
 }
-static int ram_match_1(void) {
+static int ram_match_24000(void) {
+    if (g_ram[(0x0513) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x0514) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x0515) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0516) & 0x7FF] != 0x98) return 0;
+    if (g_ram[(0x0517) & 0x7FF] != 0xC5) return 0;
+    if (g_ram[(0x0518) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0519) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x051A) & 0x7FF] != 0x86) return 0;
+    if (g_ram[(0x051B) & 0x7FF] != 0x4C) return 0;
+    if (g_ram[(0x051C) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x051D) & 0x7FF] != 0xC5) return 0;
+    return 1;
+}
+static int ram_match_2400B(void) {
     if (g_ram[(0x051E) & 0x7FF] != 0x20) return 0;
     if (g_ram[(0x051F) & 0x7FF] != 0x00) return 0;
     if (g_ram[(0x0520) & 0x7FF] != 0xC1) return 0;
@@ -758,7 +783,85 @@ static int ram_match_1(void) {
     if (g_ram[(0x0525) & 0x7FF] != 0xC1) return 0;
     return 1;
 }
-static int ram_match_2(void) {
+static int ram_match_28000(void) {
+    if (g_ram[(0x0568) & 0x7FF] != 0xAD) return 0;
+    if (g_ram[(0x0569) & 0x7FF] != 0x0B) return 0;
+    if (g_ram[(0x056A) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x056B) & 0x7FF] != 0x48) return 0;
+    if (g_ram[(0x056C) & 0x7FF] != 0xAD) return 0;
+    if (g_ram[(0x056D) & 0x7FF] != 0x0C) return 0;
+    if (g_ram[(0x056E) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x056F) & 0x7FF] != 0x48) return 0;
+    if (g_ram[(0x0570) & 0x7FF] != 0xAD) return 0;
+    if (g_ram[(0x0571) & 0x7FF] != 0x0D) return 0;
+    if (g_ram[(0x0572) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x0573) & 0x7FF] != 0x48) return 0;
+    if (g_ram[(0x0574) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x0575) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0576) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x0577) & 0x7FF] != 0x0B) return 0;
+    if (g_ram[(0x0578) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x0579) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x057A) & 0x7FF] != 0x0C) return 0;
+    if (g_ram[(0x057B) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x057C) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x057D) & 0x7FF] != 0x0D) return 0;
+    if (g_ram[(0x057E) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x057F) & 0x7FF] != 0x85) return 0;
+    if (g_ram[(0x0580) & 0x7FF] != 0xFB) return 0;
+    if (g_ram[(0x0581) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0582) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x0583) & 0x7FF] != 0xC5) return 0;
+    if (g_ram[(0x0584) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0585) & 0x7FF] != 0xE3) return 0;
+    if (g_ram[(0x0586) & 0x7FF] != 0xC0) return 0;
+    if (g_ram[(0x0587) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x0588) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x0589) & 0x7FF] != 0x85) return 0;
+    if (g_ram[(0x058A) & 0x7FF] != 0xFB) return 0;
+    if (g_ram[(0x058B) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x058C) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x058D) & 0x7FF] != 0xC5) return 0;
+    if (g_ram[(0x058E) & 0x7FF] != 0xCE) return 0;
+    if (g_ram[(0x058F) & 0x7FF] != 0x41) return 0;
+    if (g_ram[(0x0590) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x0591) & 0x7FF] != 0xD0) return 0;
+    if (g_ram[(0x0592) & 0x7FF] != 0x0E) return 0;
+    if (g_ram[(0x0593) & 0x7FF] != 0xCE) return 0;
+    if (g_ram[(0x0594) & 0x7FF] != 0x42) return 0;
+    if (g_ram[(0x0595) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x0596) & 0x7FF] != 0xD0) return 0;
+    if (g_ram[(0x0597) & 0x7FF] != 0x09) return 0;
+    if (g_ram[(0x0598) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x0599) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x059A) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x059B) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x059C) & 0x7FF] != 0x06) return 0;
+    if (g_ram[(0x059D) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x059E) & 0x7FF] != 0x40) return 0;
+    if (g_ram[(0x059F) & 0x7FF] != 0x85) return 0;
+    if (g_ram[(0x05A0) & 0x7FF] != 0x14) return 0;
+    if (g_ram[(0x05A1) & 0x7FF] != 0xA2) return 0;
+    if (g_ram[(0x05A2) & 0x7FF] != 0xE0) return 0;
+    if (g_ram[(0x05A3) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x05A4) & 0x7FF] != 0x73) return 0;
+    if (g_ram[(0x05A5) & 0x7FF] != 0x89) return 0;
+    if (g_ram[(0x05A6) & 0x7FF] != 0x68) return 0;
+    if (g_ram[(0x05A7) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x05A8) & 0x7FF] != 0x0D) return 0;
+    if (g_ram[(0x05A9) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x05AA) & 0x7FF] != 0x68) return 0;
+    if (g_ram[(0x05AB) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x05AC) & 0x7FF] != 0x0C) return 0;
+    if (g_ram[(0x05AD) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x05AE) & 0x7FF] != 0x68) return 0;
+    if (g_ram[(0x05AF) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x05B0) & 0x7FF] != 0x0B) return 0;
+    if (g_ram[(0x05B1) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x05B2) & 0x7FF] != 0x60) return 0;
+    return 1;
+}
+static int ram_match_2C000(void) {
     if (g_ram[(0x05B8) & 0x7FF] != 0x20) return 0;
     if (g_ram[(0x05B9) & 0x7FF] != 0xCA) return 0;
     if (g_ram[(0x05BA) & 0x7FF] != 0x8F) return 0;
@@ -790,13 +893,19 @@ static int ram_match_2(void) {
 static int ram_images(uint16_t a) {
     switch (a) {
     case 0x0005:
-        if (ram_match_0()) { Ram_0005_0(); return 1; }
+        if (ram_match_20000()) { Ram_0005_0(); return 1; }
+        break;
+    case 0x0513:
+        if (ram_match_24000()) { Ram_0513_1(); return 1; }
         break;
     case 0x051E:
-        if (ram_match_1()) { Ram_051E_1(); return 1; }
+        if (ram_match_2400B()) { Ram_051E_1(); return 1; }
+        break;
+    case 0x0568:
+        if (ram_match_28000()) { Ram_0568_2(); return 1; }
         break;
     case 0x05B8:
-        if (ram_match_2()) { Ram_05B8_2(); return 1; }
+        if (ram_match_2C000()) { Ram_05B8_3(); return 1; }
         break;
     }
     return 0;

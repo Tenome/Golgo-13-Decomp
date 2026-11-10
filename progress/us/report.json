@@ -7,8 +7,8 @@
   "total_data": "227744",
   "matched_data": "227744",
   "matched_data_percent": 100.0,
-  "total_functions": 764,
-  "matched_functions": 764,
+  "total_functions": 773,
+  "matched_functions": 773,
   "matched_functions_percent": 100.0,
   "complete_code": "34400",
   "complete_code_percent": 100.0,
@@ -563,7 +563,7 @@
      }
     },
     {
-     "name": "Loc_B1_8600",
+     "name": "Sub_B1_8600",
      "size": "183",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -979,7 +979,7 @@
      }
     },
     {
-     "name": "Loc_B1_A007",
+     "name": "Sub_B1_A007",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3047,8 +3047,8 @@
     "total_data": "11111",
     "matched_data": "11111",
     "matched_data_percent": 100.0,
-    "total_functions": 182,
-    "matched_functions": 182,
+    "total_functions": 190,
+    "matched_functions": 190,
     "matched_functions_percent": 100.0,
     "complete_code": "5273",
     "complete_code_percent": 100.0,
@@ -3751,11 +3751,75 @@
      }
     },
     {
-     "name": "Loc_B5_86EA",
-     "size": "65",
+     "name": "Sub_B5_86EA",
+     "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "83706"
+     }
+    },
+    {
+     "name": "Sub_B5_86F5",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83717"
+     }
+    },
+    {
+     "name": "Sub_B5_8701",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83729"
+     }
+    },
+    {
+     "name": "Sub_B5_870D",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83741"
+     }
+    },
+    {
+     "name": "Sub_B5_8713",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83747"
+     }
+    },
+    {
+     "name": "Sub_B5_8717",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83751"
+     }
+    },
+    {
+     "name": "Sub_B5_871B",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83755"
+     }
+    },
+    {
+     "name": "Sub_B5_8721",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83761"
+     }
+    },
+    {
+     "name": "Sub_B5_8725",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83765"
      }
     },
     {
@@ -4702,7 +4766,7 @@
      }
     },
     {
-     "name": "Loc_B6_83A8",
+     "name": "Sub_B6_83A8",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4878,7 +4942,7 @@
      }
     },
     {
-     "name": "Loc_B6_890F",
+     "name": "Sub_B6_890F",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5085,8 +5149,8 @@
     "total_data": "5239",
     "matched_data": "5239",
     "matched_data_percent": 100.0,
-    "total_functions": 166,
-    "matched_functions": 166,
+    "total_functions": 167,
+    "matched_functions": 167,
     "matched_functions_percent": 100.0,
     "complete_code": "11145",
     "complete_code_percent": 100.0,
@@ -5126,10 +5190,18 @@
     },
     {
      "name": "Loc_C0E0",
-     "size": "6",
+     "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "114928"
+     }
+    },
+    {
+     "name": "Sub_C0E3",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "114931"
      }
     },
     {

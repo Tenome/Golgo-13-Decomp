@@ -14,6 +14,7 @@ sys.path.insert(0, HERE)
 import g13dis as g
 VER = g.VER
 TRACE = '--trace' in sys.argv
+CYCLES = '--cycles' in sys.argv      # emit CYC(n) per instruction (nominal 6502 cycle counts) for the native port's PPU timing
 OUT = os.path.join(ROOT, 'c', 'auto', VER)
 if '--out' in sys.argv: OUT = os.path.abspath(sys.argv[sys.argv.index('--out') + 1])
 os.makedirs(OUT, exist_ok=True)
@@ -50,6 +51,24 @@ for a_, n_ in g.RAMN.items(): SYM[a_] = n_
 def sym(v, wide):
     return SYM.get(v) if v in SYM and (wide or v < 0x100 or True) else None
 
+RMW = ('inc', 'dec', 'asl', 'lsr', 'rol', 'ror')
+def cycles_of(n, m):
+    if n == 'brk': return 7
+    if n in ('rts', 'rti', 'jsr'): return 6
+    if n in ('pha', 'php'): return 3
+    if n in ('pla', 'plp'): return 4
+    if m in ('imp', 'acc', 'imm', 'rel'): return 2
+    if n == 'jmp': return 5 if m == 'ind' else 3
+    store = n in ('sta', 'stx', 'sty')
+    if m == 'zp': return 5 if n in RMW else 3
+    if m in ('zpx', 'zpy'): return 6 if n in RMW else 4
+    if m == 'abs': return 6 if n in RMW else 4
+    if m == 'abx': return 7 if n in RMW else (5 if store else 4)
+    if m == 'aby': return 5 if store else 4
+    if m == 'izx': return 6
+    if m == 'izy': return 6 if store else 5
+    return 4
+
 # ---- instruction semantics ------------------------------------------------------------------------------------------
 def ea_expr(m, ob):
     v = ob[0] if len(ob) == 1 else ob[0] | ob[1] << 8
@@ -74,6 +93,7 @@ def is_dispatch_call(p, d):
         tp = g.resolve(p, ob[0] | ob[1] << 8)
         return tp is not None and tp in g.INLINE_DISP
     return False
+RAMBODY = {}   # RAM-image routine entry -> [(address, instruction bytes)] it can execute (checked against RAM at call time)
 def inline_skip(p, d):
     op, n, m, l, ob = d
     if n == 'jsr' and m == 'abs':
@@ -118,6 +138,7 @@ def lift_function(entry):
             work.append(s)
     if not body: return [], reason or 'empty body', 0
     order = sorted(body)
+    if entry >= 0x20000: RAMBODY[entry] = [(g.addr_of(q), bytes(g.PRG[q:q + body[q][3]])) for q in order]
     need_label = set([entry])
     out = []
 
@@ -238,7 +259,7 @@ def lift_function(entry):
         op, n, m, l, ob = body[p]
         lab = f'{label(p)}:' if p in need_label else ''
         backward = any(False for _ in ())
-        lines.append(f' {lab:<7}{("BUDGET(); " if lab else "")}{(f"TR(0x{g.addr_of(p):04X}); " if TRACE else "")}{stmts[p]:<64} /* ${g.addr_of(p):04X} {n} */')
+        lines.append(f' {lab:<7}{("BUDGET(); " if lab else "")}{(f"TR(0x{g.addr_of(p):04X}); " if TRACE else "")}{(f"CYC({cycles_of(n, m)}); " if CYCLES else "")}{stmts[p]:<64} /* ${g.addr_of(p):04X} {n} */')
     lines.append('}')
     return lines, reason, len(order)
 
@@ -276,9 +297,9 @@ with open(os.path.join(OUT, 'dispatch.c'), 'w', newline='\n') as f:
         for e in sorted(entries):
             if g.bank_of(e) == b: f.write(f'    case 0x{g.addr_of(e):04X}: {fname(e)}(); return 1;\n')
         f.write('    }\n    return 0;\n}\n')
-    for k, im in enumerate(g.IMAGES):
-        f.write(f'static int ram_match_{k}(void) {{\n')
-        for a_, b_ in im['inst']:
+    for e in sorted(RAMBODY):
+        f.write(f'static int ram_match_{e:X}(void) {{\n')
+        for a_, b_ in RAMBODY[e]:
             for i_, v_ in enumerate(b_): f.write(f'    if (g_ram[(0x{a_ + i_:04X}) & 0x7FF] != 0x{v_:02X}) return 0;\n')
         f.write('    return 1;\n}\n')
     f.write('static int ram_images(uint16_t a) {\n    switch (a) {\n')
@@ -287,7 +308,7 @@ with open(os.path.join(OUT, 'dispatch.c'), 'w', newline='\n') as f:
         if e >= 0x20000: by_addr[g.addr_of(e)].append(e)
     for a_, es in sorted(by_addr.items()):
         f.write(f'    case 0x{a_:04X}:\n')
-        for e in es: f.write(f'        if (ram_match_{(e - 0x20000) >> 14}()) {{ {fname(e)}(); return 1; }}\n')
+        for e in es: f.write(f'        if (ram_match_{e:X}()) {{ {fname(e)}(); return 1; }}\n')
         f.write('        break;\n')
     f.write('    }\n    return 0;\n}\n')
     f.write('void call_addr(uint16_t a) {\n    if (a < 0x2000) { if (ram_images(a)) return; }\n    else if (a >= 0xC000) { if (fixed_bank(a)) return; }\n    else if (a >= 0x8000) {\n        switch (g_bank) {\n')

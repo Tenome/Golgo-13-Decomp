@@ -77,9 +77,8 @@ void Nmi(void) {  /* $C081 bank 7 */
  LC081: BUDGET(); push16(0xC083); MmcWritePrg(); UNW(); ret_check(0xC083);         /* $C081 jsr */
         LDA(rd(MmcPrgShadow));                                           /* $C084 lda */
         if (R.a != 0) goto LC08B;                                        /* $C086 bne */
-        goto LC0E3;                                                      /* $C088 jmp */
+        { Sub_C0E3(); return; }                                          /* $C088 jmp */
  LC08B: BUDGET(); { call_addr(0x8010); return; }                                   /* $C08B jmp */
- LC0E3: BUDGET(); { NmiGameStateDispatch(); return; }                              /* $C0E3 jmp */
 }
 
 void Sub_C0C0(void) {  /* $C0C0 bank 7 */
@@ -92,6 +91,11 @@ void Sub_C0C0(void) {  /* $C0C0 bank 7 */
         INC_M(MmcPrgShadow);                                             /* $C0CE inc */
         push16(0xC0D2); MmcWritePrg(); UNW(); ret_check(0xC0D2);         /* $C0D0 jsr */
         RTS_RET(sp0);                                                    /* $C0D3 rts */
+}
+
+void Sub_C0E3(void) {  /* $C0E3 bank 7 */
+  uint8_t sp0 = R.sp;
+ LC0E3: BUDGET(); { NmiGameStateDispatch(); return; }                              /* $C0E3 jmp */
 }
 
 void RunSoundDriver(void) {  /* $C0E6 bank 7 */

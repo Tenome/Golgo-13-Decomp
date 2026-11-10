@@ -139,6 +139,13 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B1_8600": {
+  "addr": 34304,
+  "bank": 1,
+  "instrs": 89,
+  "ok": true,
+  "reason": null
+ },
  "Sub_B1_8D00": {
   "addr": 36096,
   "bank": 1,
@@ -2673,6 +2680,69 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B5_86EA": {
+  "addr": 34538,
+  "bank": 5,
+  "instrs": 31,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_86F5": {
+  "addr": 34549,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8701": {
+  "addr": 34561,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_870D": {
+  "addr": 34573,
+  "bank": 5,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8713": {
+  "addr": 34579,
+  "bank": 5,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8717": {
+  "addr": 34583,
+  "bank": 5,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_871B": {
+  "addr": 34587,
+  "bank": 5,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8721": {
+  "addr": 34593,
+  "bank": 5,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8725": {
+  "addr": 34597,
+  "bank": 5,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
  "Sub_B5_87E0": {
   "addr": 34784,
   "bank": 5,
@@ -3754,7 +3824,7 @@
  "Nmi": {
   "addr": 49281,
   "bank": 7,
-  "instrs": 6,
+  "instrs": 5,
   "ok": true,
   "reason": null
  },
@@ -3762,6 +3832,13 @@
   "addr": 49344,
   "bank": 7,
   "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C0E3": {
+  "addr": 49379,
+  "bank": 7,
+  "instrs": 1,
   "ok": true,
   "reason": null
  },
@@ -4906,6 +4983,13 @@
   "ok": true,
   "reason": null
  },
+ "Ram_0513_1": {
+  "addr": 1299,
+  "bank": 9,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
  "Ram_051E_1": {
   "addr": 1310,
   "bank": 9,
@@ -4913,9 +4997,16 @@
   "ok": true,
   "reason": null
  },
- "Ram_05B8_2": {
-  "addr": 1464,
+ "Ram_0568_2": {
+  "addr": 1384,
   "bank": 10,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Ram_05B8_3": {
+  "addr": 1464,
+  "bank": 11,
   "instrs": 9,
   "ok": true,
   "reason": null
