@@ -18,7 +18,7 @@ Sub_B6_801F:
   lda $023B                    ; $8025
   cmp #$78                     ; $8028
   beq Loc_B6_8036              ; $802A
-  lda z:$14                    ; $802C
+  lda z:AreaId                 ; $802C
   cmp #$04                     ; $802E
   beq Loc_B6_8045              ; $8030
   cmp #$06                     ; $8032
@@ -1112,7 +1112,7 @@ Loc_B6_8AB2:
 Loc_B6_8AD8:
   rts                          ; $8AD8
 Sub_B6_8AD9:
-  jsr Sub_C1F7                 ; $8AD9
+  jsr LsrA5                    ; $8AD9
   tax                          ; $8ADC
   lda #$00                     ; $8ADD
   sec                          ; $8ADF

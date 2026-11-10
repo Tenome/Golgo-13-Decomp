@@ -15,7 +15,7 @@
   lda $0402                    ; $8018
   cmp #$01                     ; $801B
   bne Loc_B3_8032              ; $801D
-  jsr Sub_B3_8081              ; $801F
+  jsr Bank3Dispatch_0421       ; $801F
   jsr ApplyScroll              ; $8022
   lda $0421                    ; $8025
   cmp #$03                     ; $8028
@@ -65,7 +65,7 @@ Loc_B3_807B:
   tax                          ; $807E
   pla                          ; $807F
   rti                          ; $8080
-Sub_B3_8081:
+Bank3Dispatch_0421:
   lda $0421                    ; $8081
   asl a                        ; $8084
   tay                          ; $8085
@@ -352,7 +352,7 @@ Sub_B3_87BA:
   bne Loc_B3_87CA              ; $87BD
   lda $041C                    ; $87BF
   beq Loc_B3_87C7              ; $87C2
-  jsr Sub_B3_87FF              ; $87C4
+  jsr Bank3Dispatch_041C       ; $87C4
 Loc_B3_87C7:
   jmp Loc_B3_87FE              ; $87C7
 Loc_B3_87CA:
@@ -381,7 +381,7 @@ Loc_B3_87CA:
   inc z:$72                    ; $87FC
 Loc_B3_87FE:
   rts                          ; $87FE
-Sub_B3_87FF:
+Bank3Dispatch_041C:
   dec $041C                    ; $87FF
   lda $041C                    ; $8802
   asl a                        ; $8805

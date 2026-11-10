@@ -269,7 +269,7 @@ Loc_B5_82E8:
   rts                          ; $82E8
 Loc_B5_82E9:
   lda #$0D                     ; $82E9
-  jsr Sub_C582                 ; $82EB
+  jsr MmcWriteChr1A            ; $82EB
 Loc_B5_82EE:
   bit PPU_STATUS               ; $82EE
   bvs Loc_B5_82EE              ; $82F1
@@ -410,7 +410,7 @@ Sub_B5_83EC:
   jsr Sub_B5_814C              ; $83F6
   lda #$00                     ; $83F9
   sta z:MmcPrgShadow           ; $83FB
-  sta z:$14                    ; $83FD
+  sta z:AreaId                 ; $83FD
   lda #$C8                     ; $83FF
   sta z:PlayerLifeLo           ; $8401
   jsr Sub_B5_8971              ; $8403
@@ -459,7 +459,7 @@ Loc_B5_8461:
   rts                          ; $8461
 Sub_B5_8462:
   lda z:MmcChr1Shadow          ; $8462
-  jmp Sub_C582                 ; $8464
+  jmp MmcWriteChr1A            ; $8464
 Loc_B5_8467:
   lda z:MmcPrgShadow           ; $8467
   beq Loc_B5_8487              ; $8469
@@ -478,7 +478,7 @@ Loc_B5_847F:
   dex                          ; $847F
   bne Loc_B5_847F              ; $8480
   lda #$0D                     ; $8482
-  jmp Sub_C582                 ; $8484
+  jmp MmcWriteChr1A            ; $8484
 Loc_B5_8487:
   rts                          ; $8487
 Sub_B5_8488:
@@ -540,8 +540,8 @@ Sub_B5_84F3:
   bne Loc_B5_8512              ; $84F6
   ldy #$00                     ; $84F8
   sty z:MmcPrgShadow           ; $84FA
-  sty z:$35                    ; $84FC
-  sty z:$14                    ; $84FE
+  sty z:PaletteDirty           ; $84FC
+  sty z:AreaId                 ; $84FE
   iny                          ; $8500
   sty z:$28                    ; $8501
   sty $0507                    ; $8503
@@ -1561,7 +1561,7 @@ Loc_B5_8FED:
   lda #$60                     ; $8FF9
   sta $0600                    ; $8FFB
   lda #$00                     ; $8FFE
-  sta z:$14                    ; $9000
+  sta z:AreaId                 ; $9000
   lda #$03                     ; $9002
   sta $0106                    ; $9004
   lda #$01                     ; $9007

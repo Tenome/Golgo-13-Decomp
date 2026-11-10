@@ -9,7 +9,7 @@
   lda z:PpuCtrlShadow          ; $8010
   and #$7F                     ; $8012
   jsr SetPpuCtrl               ; $8014
-  lda z:$14                    ; $8017
+  lda z:AreaId                 ; $8017
   cmp #$13                     ; $8019
   beq Loc_B2_8094              ; $801B
   cmp #$10                     ; $801D
@@ -47,7 +47,7 @@
   jsr Sub_B2_8609              ; $8070
   lda #$00                     ; $8073
   jsr EnqueueByte              ; $8075
-  inc z:$14                    ; $8078
+  inc z:AreaId                 ; $8078
   jmp Loc_B2_815C              ; $807A
 Loc_B2_807D:
   cmp #$11                     ; $807D
@@ -57,7 +57,7 @@ Loc_B2_807D:
 Loc_B2_8087:
   lda #$18                     ; $8087
   jsr SetPpuMask               ; $8089
-  inc z:$14                    ; $808C
+  inc z:AreaId                 ; $808C
   jsr Sub_B2_8167              ; $808E
   jmp Loc_B2_811B              ; $8091
 Loc_B2_8094:
@@ -65,7 +65,7 @@ Loc_B2_8094:
   jsr MmcWriteChr1             ; $8097
   jsr Sub_C5AC                 ; $809A
   jsr ApplyScroll              ; $809D
-  jsr Sub_C929                 ; $80A0
+  jsr DrawHud                  ; $80A0
   jsr Sub_B2_83C7              ; $80A3
   jsr Sub_C0C0                 ; $80A6
   lda z:PaletteSetIndex        ; $80A9
@@ -174,10 +174,10 @@ Sub_B2_818E:
 Loc_B2_8199:
   lda #$00                     ; $8199
 Loc_B2_819B:
-  sta z:$14                    ; $819B
+  sta z:AreaId                 ; $819B
   lda #$00                     ; $819D
   sta z:MmcPrgShadow           ; $819F
-  sta z:$35                    ; $81A1
+  sta z:PaletteDirty           ; $81A1
   lda z:PaletteSetIndex        ; $81A3
   sec                          ; $81A5
   sbc #$50                     ; $81A6
@@ -295,7 +295,7 @@ Sub_B2_837A:
   lda #$00                     ; $838A
   sta z:ScrollX                ; $838C
   sta JoyHeld1                 ; $838E
-  inc z:$14                    ; $8391
+  inc z:AreaId                 ; $8391
   lda z:PaletteSetIndex        ; $8393
   sec                          ; $8395
   sbc #$50                     ; $8396
@@ -770,7 +770,7 @@ Loc_B2_88D4:
   sta $0499                    ; $88D9
   inc $0497                    ; $88DC
 Loc_B2_88DF:
-  jsr Sub_C929                 ; $88DF
+  jsr DrawHud                  ; $88DF
   lda z:PaletteSetIndex        ; $88E2
   cmp #$69                     ; $88E4
   bne Loc_B2_88EB              ; $88E6

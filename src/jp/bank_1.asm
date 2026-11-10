@@ -650,7 +650,7 @@ Loc_B1_8E5C:
   pla                          ; $8E74
   sta z:Tmp00                  ; $8E75
   lda #$00                     ; $8E77
-  sta z:$35                    ; $8E79
+  sta z:PaletteDirty           ; $8E79
   jsr Sub_C43D                 ; $8E7B
 Loc_B1_8E7E:
   rts                          ; $8E7E
@@ -669,7 +669,7 @@ Data_B1_8E94:
 Data_B1_8E95:
   .incbin "prg_bank_1.bin", $0E95, $D  ; $8E95
 Sub_B1_8EA2:
-  lda z:$35                    ; $8EA2
+  lda z:PaletteDirty           ; $8EA2
   beq Loc_B1_8ECF              ; $8EA4
   lda z:Tmp00                  ; $8EA6
   sta z:$06                    ; $8EA8
@@ -704,7 +704,7 @@ Loc_B1_8ECF:
   lda #$40                     ; $8ED8
   sta $0307,y                  ; $8EDA
   lda #$01                     ; $8EDD
-  sta z:$35                    ; $8EDF
+  sta z:PaletteDirty           ; $8EDF
   lda #$C1                     ; $8EE1
   sta $0300,y                  ; $8EE3
   lda #$01                     ; $8EE6
@@ -767,7 +767,7 @@ Loc_B1_8F4E:
 Loc_B1_8F51:
   jsr LoadPaletteSet           ; $8F51
   lda #$00                     ; $8F54
-  sta z:$35                    ; $8F56
+  sta z:PaletteDirty           ; $8F56
   rts                          ; $8F58
 Sub_B1_8F59:
   jsr Sub_B1_8F8C              ; $8F59  [heuristic code]

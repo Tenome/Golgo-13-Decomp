@@ -39,7 +39,7 @@ Loc_C025:
   lda #$C0                     ; $C040
   sta JOYPAD2                  ; $C042
   lda #$30                     ; $C045
-  sta z:$14                    ; $C047
+  sta z:AreaId                 ; $C047
   lda #$1F                     ; $C049
   sta z:MmcControlShadow       ; $C04B
   jsr MmcWriteControl          ; $C04D
@@ -253,7 +253,7 @@ AslA2:
   rts                          ; $C1F5
 Sub_C1F6:
   lsr a                        ; $C1F6
-Sub_C1F7:
+LsrA5:
   lsr a                        ; $C1F7
 LsrA4:
   lsr a                        ; $C1F8
@@ -542,7 +542,7 @@ Sub_C3FC:
   and #$3F                     ; $C400
   asl a                        ; $C402
   tay                          ; $C403
-  lda z:$14                    ; $C404
+  lda z:AreaId                 ; $C404
   cmp #$10                     ; $C406
   bcs Loc_C413                 ; $C408
   ldx $A800,y                  ; $C40A
@@ -1006,7 +1006,7 @@ Data_C75C:
   .incbin "prg_bank_7.bin", $075C, $5  ; $C75C
 Sub_C761:
   lda a:Tmp00,y                ; $C761
-  jsr Sub_C1F7                 ; $C764
+  jsr LsrA5                    ; $C764
   clc                          ; $C767
   adc z:$21,x                  ; $C768
   sta z:$21,x                  ; $C76A
@@ -1257,8 +1257,8 @@ Data_C90F:
   .incbin "prg_bank_7.bin", $090F, $1  ; $C90F
 Data_C910:
   .incbin "prg_bank_7.bin", $0910, $19  ; $C910
-Sub_C929:
-  lda z:$14                    ; $C929
+DrawHud:
+  lda z:AreaId                 ; $C929
   cmp #$07                     ; $C92B
   beq Loc_C940                 ; $C92D
   ldy #$00                     ; $C92F
@@ -1273,7 +1273,7 @@ Loc_C940:
   rts                          ; $C940
 Sub_C941:
   ldx #$00                     ; $C941
-  lda z:$14                    ; $C943
+  lda z:AreaId                 ; $C943
   cmp #$10                     ; $C945
   bcc Loc_C94F                 ; $C947
   cmp #$30                     ; $C949
@@ -1281,17 +1281,17 @@ Sub_C941:
   ldx #$10                     ; $C94D
 Loc_C94F:
   ldy #$00                     ; $C94F
-  jsr Sub_C983                 ; $C951
+  jsr InitHudSprites           ; $C951
   lda z:PlayerLifeLo           ; $C954
   sta z:Tmp03                  ; $C956
   lda z:PlayerLifeHi           ; $C958
   sta z:$04                    ; $C95A
   ldx #$00                     ; $C95C
-  jsr Sub_C994                 ; $C95E
+  jsr DrawHudNumber            ; $C95E
   rts                          ; $C961
 Sub_C962:
   ldx #$20                     ; $C962
-  lda z:$14                    ; $C964
+  lda z:AreaId                 ; $C964
   cmp #$10                     ; $C966
   bcc Loc_C970                 ; $C968
   cmp #$30                     ; $C96A
@@ -1299,15 +1299,15 @@ Sub_C962:
   ldx #$30                     ; $C96E
 Loc_C970:
   ldy #$10                     ; $C970
-  jsr Sub_C983                 ; $C972
+  jsr InitHudSprites           ; $C972
   lda z:AmmoLo                 ; $C975
   sta z:Tmp03                  ; $C977
   lda z:AmmoHi                 ; $C979
   sta z:$04                    ; $C97B
   ldx #$10                     ; $C97D
-  jsr Sub_C994                 ; $C97F
+  jsr DrawHudNumber            ; $C97F
   rts                          ; $C982
-Sub_C983:
+InitHudSprites:
   lda #$10                     ; $C983
   sta z:$05                    ; $C985
 Loc_C987:
@@ -1318,7 +1318,7 @@ Loc_C987:
   dec z:$05                    ; $C98F
   bne Loc_C987                 ; $C991
   rts                          ; $C993
-Sub_C994:
+DrawHudNumber:
   jsr BinToDecimal             ; $C994
   lda z:Tmp02                  ; $C997
   bne Loc_C9A2                 ; $C999
@@ -1355,13 +1355,13 @@ Loc_CA0B:
   beq Loc_CA13                 ; $CA0E
   jmp Loc_CB9B                 ; $CA10
 Loc_CA13:
-  lda z:$14                    ; $CA13
+  lda z:AreaId                 ; $CA13
   cmp #$0C                     ; $CA15
   bne Loc_CA1F                 ; $CA17
   jsr Sub_DBD5                 ; $CA19
   jmp Loc_CB9B                 ; $CA1C
 Loc_CA1F:
-  lda z:$14                    ; $CA1F
+  lda z:AreaId                 ; $CA1F
   bne Loc_CA5C                 ; $CA21
   lda #$00                     ; $CA23
   sta $0300                    ; $CA25
@@ -1382,7 +1382,7 @@ Loc_CA1F:
   jmp Loc_CB8E                 ; $CA4C
 Loc_CA4F:
   jsr Sub_CBA3                 ; $CA4F
-  inc z:$14                    ; $CA52
+  inc z:AreaId                 ; $CA52
   lda #$00                     ; $CA54
   jsr EnqueueByte              ; $CA56
   jmp Loc_CB8E                 ; $CA59
@@ -1404,7 +1404,7 @@ Loc_CA79:
   bne Loc_CA97                 ; $CA7B
   jsr DoOamDma                 ; $CA7D
   jsr Sub_F6BC                 ; $CA80
-  jsr Sub_CCE9                 ; $CA83
+  jsr UploadPaletteIfDirty     ; $CA83
   jsr ApplyScroll              ; $CA86
   jsr Sub_E939                 ; $CA89
   jsr Sub_F634                 ; $CA8C
@@ -1427,7 +1427,7 @@ Loc_CAB2:
   bne Loc_CAD0                 ; $CAB4
   jsr DoOamDma                 ; $CAB6
   jsr Sub_F6BC                 ; $CAB9
-  jsr Sub_CCE9                 ; $CABC
+  jsr UploadPaletteIfDirty     ; $CABC
   jsr ApplyScroll              ; $CABF
   jsr Sub_EF19                 ; $CAC2
   jsr Sub_F664                 ; $CAC5
@@ -1441,7 +1441,7 @@ Loc_CAD0:
   jsr UploadPalette            ; $CAD7
   jsr ApplyScroll              ; $CADA
   jsr Sub_DF44                 ; $CADD
-  jsr Sub_C929                 ; $CAE0
+  jsr DrawHud                  ; $CAE0
   jmp Loc_CB39                 ; $CAE3
 Loc_CAE6:
   jsr DoOamDma                 ; $CAE6
@@ -1480,7 +1480,7 @@ Loc_CB2C:
   sta z:MmcPrgShadow           ; $CB2E
   jsr MmcWritePrg              ; $CB30
   jsr Sub_E883                 ; $CB33
-  jsr Sub_C929                 ; $CB36
+  jsr DrawHud                  ; $CB36
 Loc_CB39:
   jsr Sub_D255                 ; $CB39
   lda z:$15                    ; $CB3C
@@ -1513,7 +1513,7 @@ Loc_CB75:
   jsr ReadJoypads              ; $CB75
   lda z:PlayerLifeLo           ; $CB78
   beq Loc_CB80                 ; $CB7A
-  lda z:$35                    ; $CB7C
+  lda z:PaletteDirty           ; $CB7C
   beq Loc_CB88                 ; $CB7E
 Loc_CB80:
   lda #$00                     ; $CB80
@@ -1547,7 +1547,7 @@ Sub_CBA3:
   sta z:PaletteSetIndex        ; $CBB9
   jsr Sub_CCD3                 ; $CBBB
   lda #$01                     ; $CBBE
-  sta z:$36                    ; $CBC0
+  sta z:FireMode               ; $CBC0
   lda #$00                     ; $CBC2
   sta $0138                    ; $CBC4
   ldx #$06                     ; $CBC7
@@ -1589,7 +1589,7 @@ Loc_CC04:
   lda #$00                     ; $CC04
   sta z:ScrollY                ; $CC06
   sta z:$15                    ; $CC08
-  sta z:$35                    ; $CC0A
+  sta z:PaletteDirty           ; $CC0A
   sta $010E                    ; $CC0C
   sta $010F                    ; $CC0F
   sta z:$32                    ; $CC12
@@ -1682,8 +1682,8 @@ Sub_CCD3:
 Loc_CCE6:
   stx z:$16                    ; $CCE6
   rts                          ; $CCE8
-Sub_CCE9:
-  lda z:$35                    ; $CCE9
+UploadPaletteIfDirty:
+  lda z:PaletteDirty           ; $CCE9
   beq Loc_CCF1                 ; $CCEB
   jsr UploadPalette            ; $CCED
   rts                          ; $CCF0
@@ -1724,7 +1724,7 @@ Loc_CD2A:
   beq Loc_CD73                 ; $CD3A
   lda z:$13                    ; $CD3C
   bne Loc_CD50                 ; $CD3E
-  lda z:$36                    ; $CD40
+  lda z:FireMode               ; $CD40
   and #$0F                     ; $CD42
   cmp #$01                     ; $CD44
   beq Loc_CD50                 ; $CD46
@@ -2016,7 +2016,7 @@ Loc_CFA2:
 Sub_CFA3:
   lda a:$06,y                  ; $CFA3
   and #$E0                     ; $CFA6
-  jsr Sub_C1F7                 ; $CFA8
+  jsr LsrA5                    ; $CFA8
   clc                          ; $CFAB
   adc z:$21,x                  ; $CFAC
   sta z:$21,x                  ; $CFAE
@@ -2221,7 +2221,7 @@ Loc_D10B:
   ora #$08                     ; $D114
   sta z:ScrollX                ; $D116
   jsr DoOamDma                 ; $D118
-  jsr Sub_CCE9                 ; $D11B
+  jsr UploadPaletteIfDirty     ; $D11B
   jsr ApplyScroll              ; $D11E
   lda z:FrameCounter           ; $D121
   and #$FE                     ; $D123
@@ -2235,7 +2235,7 @@ Loc_D12E:
   lda z:ScrollX                ; $D131
   and #$F0                     ; $D133
   sta z:ScrollX                ; $D135
-  inc z:$14                    ; $D137
+  inc z:AreaId                 ; $D137
   rts                          ; $D139
 Sub_D13A:
   jsr LoadPaletteSet           ; $D13A
@@ -2259,7 +2259,7 @@ Sub_D13A:
   jsr LsrA4                    ; $D166
   clc                          ; $D169
   adc #$03                     ; $D16A
-  sta z:$14                    ; $D16C
+  sta z:AreaId                 ; $D16C
   lda #$18                     ; $D16E
   jsr SetPpuMask               ; $D170
   jsr Sub_D177                 ; $D173
@@ -2306,7 +2306,7 @@ Data_D1B7:
 Data_D1B8:
   .incbin "prg_bank_7.bin", $11B8, $9D  ; $D1B8
 Sub_D255:
-  lda z:$14                    ; $D255
+  lda z:AreaId                 ; $D255
   cmp #$03                     ; $D257
   bne Loc_D28D                 ; $D259
   lda z:$15                    ; $D25B
@@ -2367,7 +2367,7 @@ Loc_D2B4:
   sta z:Tmp03                  ; $D2C0
   sta z:$05                    ; $D2C2
   sta $0402                    ; $D2C4
-  lda z:$14                    ; $D2C7
+  lda z:AreaId                 ; $D2C7
   cmp #$03                     ; $D2C9
   bne Loc_D2D2                 ; $D2CB
   lda #$58                     ; $D2CD
@@ -2428,13 +2428,13 @@ Sub_D32D:
   lda z:$30                    ; $D32D
   bne Loc_D341                 ; $D32F
   jsr Sub_D3A4                 ; $D331
-  lda z:$37                    ; $D334
+  lda z:PlayerSpriteFrame      ; $D334
   cmp #$03                     ; $D336
   bcc Loc_D33D                 ; $D338
   inc z:$30                    ; $D33A
   rts                          ; $D33C
 Loc_D33D:
-  jsr Sub_D3D3                 ; $D33D
+  jsr CopyPlayerSprites        ; $D33D
   rts                          ; $D340
 Loc_D341:
   cmp #$01                     ; $D341
@@ -2472,7 +2472,7 @@ Loc_D371:
   jsr Sub_D710                 ; $D375
   rts                          ; $D378
 Loc_D379:
-  ldx z:$36                    ; $D379
+  ldx z:FireMode               ; $D379
   lda Data_F77A,x              ; $D37B
   and #$40                     ; $D37E
   beq Loc_D389                 ; $D380
@@ -2521,11 +2521,11 @@ Loc_D3C5:
 Loc_D3CE:
   lda #$03                     ; $D3CE
 Loc_D3D0:
-  sta z:$37                    ; $D3D0
+  sta z:PlayerSpriteFrame      ; $D3D0
 Loc_D3D2:
   rts                          ; $D3D2
-Sub_D3D3:
-  ldx z:$37                    ; $D3D3
+CopyPlayerSprites:
+  ldx z:PlayerSpriteFrame      ; $D3D3
   beq Loc_D3E0                 ; $D3D5
   lda #$00                     ; $D3D7
 Loc_D3D9:
@@ -2575,7 +2575,7 @@ Loc_D4F8:
   clc                          ; $D4FE
   adc z:Tmp02                  ; $D4FF
   tax                          ; $D501
-  stx z:$36                    ; $D502
+  stx z:FireMode               ; $D502
   lda Data_F77A,x              ; $D504
   and #$03                     ; $D507
   beq Loc_D519                 ; $D509
@@ -2653,7 +2653,7 @@ Loc_D5AE:
 Loc_D5BC:
   rts                          ; $D5BC
 Sub_D5BD:
-  ldx z:$36                    ; $D5BD
+  ldx z:FireMode               ; $D5BD
   lda Data_F77B,x              ; $D5BF
   sta $0400                    ; $D5C2
 Loc_D5C5:
@@ -2671,7 +2671,7 @@ Loc_D5C5:
   inc z:$30                    ; $D5DF
   rts                          ; $D5E1
 Sub_D5E2:
-  ldx z:$36                    ; $D5E2
+  ldx z:FireMode               ; $D5E2
   lda Data_F77A,x              ; $D5E4
   and #$0C                     ; $D5E7
   bne Loc_D5F0                 ; $D5E9
@@ -2715,7 +2715,7 @@ Loc_D625:
   lda #$14                     ; $D629
 Loc_D62B:
   sta z:Tmp00                  ; $D62B
-  ldx z:$36                    ; $D62D
+  ldx z:FireMode               ; $D62D
   lda Data_F77A,x              ; $D62F
   and #$08                     ; $D632
   beq Loc_D638                 ; $D634
@@ -2781,7 +2781,7 @@ Data_D6D5:
 Data_D6E0:
   .incbin "prg_bank_7.bin", $16E0, $30  ; $D6E0
 Sub_D710:
-  ldx z:$36                    ; $D710
+  ldx z:FireMode               ; $D710
   lda Data_F77C,x              ; $D712
   sta $0400                    ; $D715
   cmp #$0A                     ; $D718
@@ -3289,7 +3289,7 @@ Loc_DB5F:
   tax                          ; $DB62
   lda $0430,x                  ; $DB63
   bne Loc_DB57                 ; $DB66
-  lda z:$14                    ; $DB68
+  lda z:AreaId                 ; $DB68
   cmp #$07                     ; $DB6A
   beq Loc_DB75                 ; $DB6C
   lda $023B                    ; $DB6E
@@ -3313,7 +3313,7 @@ Sub_DBD5:
   bcs Loc_DBE8                 ; $DBDF
   sta z:PaletteSetIndex        ; $DBE1
   lda #$00                     ; $DBE3
-  sta z:$14                    ; $DBE5
+  sta z:AreaId                 ; $DBE5
 Loc_DBE7:
   rts                          ; $DBE7
 Loc_DBE8:
@@ -3359,9 +3359,9 @@ Loc_DC23:
   rts                          ; $DC2D
   .incbin "prg_bank_7.bin", $1C2E, $1A  ; $DC2E
 Sub_DC48:
-  jsr Sub_DC77                 ; $DC48
-  inc z:$35                    ; $DC4B
-  lda z:$35                    ; $DC4D
+  jsr HideEnemySprites         ; $DC48
+  inc z:PaletteDirty           ; $DC4B
+  lda z:PaletteDirty           ; $DC4D
   cmp #$40                     ; $DC4F
   bcc Loc_DC57                 ; $DC51
   jsr Sub_DDD0                 ; $DC53
@@ -3372,19 +3372,19 @@ Loc_DC57:
   lda #$20                     ; $DC5B
   sta z:$05                    ; $DC5D
   jsr Sub_DC87                 ; $DC5F
-  lda z:$35                    ; $DC62
+  lda z:PaletteDirty           ; $DC62
   cmp #$02                     ; $DC64
   bne Loc_DC6D                 ; $DC66
   lda #$11                     ; $DC68
   jsr EnqueueByte              ; $DC6A
 Loc_DC6D:
-  lda z:$35                    ; $DC6D
+  lda z:PaletteDirty           ; $DC6D
   cmp #$10                     ; $DC6F
   bcc Loc_DC76                 ; $DC71
-  jsr Sub_DDE1                 ; $DC73
+  jsr AnimatePalette           ; $DC73
 Loc_DC76:
   rts                          ; $DC76
-Sub_DC77:
+HideEnemySprites:
   lda #$F0                     ; $DC77
   ldx #$5C                     ; $DC79
 Loc_DC7B:
@@ -3397,7 +3397,7 @@ Loc_DC7B:
   bcc Loc_DC7B                 ; $DC84
   rts                          ; $DC86
 Sub_DC87:
-  lda z:$35                    ; $DC87
+  lda z:PaletteDirty           ; $DC87
   and #$1C                     ; $DC89
   lsr a                        ; $DC8B
   tax                          ; $DC8C
@@ -3437,13 +3437,13 @@ Sub_DDD0:
   lda z:$29                    ; $DDD0
   sta z:PaletteSetIndex        ; $DDD2
   lda #$00                     ; $DDD4
-  sta z:$35                    ; $DDD6
+  sta z:PaletteDirty           ; $DDD6
   lda #$10                     ; $DDD8
-  sta z:$14                    ; $DDDA
+  sta z:AreaId                 ; $DDDA
   lda #$02                     ; $DDDC
   sta z:MmcPrgShadow           ; $DDDE
   rts                          ; $DDE0
-Sub_DDE1:
+AnimatePalette:
   lda z:FrameCounter           ; $DDE1
   and #$02                     ; $DDE3
   beq Loc_DDE9                 ; $DDE5
@@ -3476,10 +3476,10 @@ Data_DE0F:
 Data_DE10:
   .incbin "prg_bank_7.bin", $1E10, $5  ; $DE10
 Sub_DE15:
-  jsr Sub_DC77                 ; $DE15
+  jsr HideEnemySprites         ; $DE15
   ldy #$0C                     ; $DE18
-  inc z:$35                    ; $DE1A
-  lda z:$35                    ; $DE1C
+  inc z:PaletteDirty           ; $DE1A
+  lda z:PaletteDirty           ; $DE1C
   cmp #$50                     ; $DE1E
   bcc Loc_DE26                 ; $DE20
   jsr Sub_DDD0                 ; $DE22
@@ -3532,18 +3532,18 @@ Loc_DE57:
   inx                          ; $DE7A
   dey                          ; $DE7B
   bne Loc_DE57                 ; $DE7C
-  lda z:$35                    ; $DE7E
+  lda z:PaletteDirty           ; $DE7E
   cmp #$30                     ; $DE80
   bcc Loc_DE87                 ; $DE82
-  jsr Sub_DDE1                 ; $DE84
+  jsr AnimatePalette           ; $DE84
 Loc_DE87:
   rts                          ; $DE87
 Data_DE88:
   .incbin "prg_bank_7.bin", $1E88, $48  ; $DE88
 Sub_DED0:
-  jsr Sub_DC77                 ; $DED0
-  inc z:$35                    ; $DED3
-  lda z:$35                    ; $DED5
+  jsr HideEnemySprites         ; $DED0
+  inc z:PaletteDirty           ; $DED3
+  lda z:PaletteDirty           ; $DED5
   cmp #$80                     ; $DED7
   bcc Loc_DEDF                 ; $DED9
   jsr Sub_DF02                 ; $DEDB
@@ -3555,23 +3555,23 @@ Loc_DEDF:
   sta z:$05                    ; $DEE5
   jsr Sub_DC87                 ; $DEE7
   jsr Sub_DF12                 ; $DEEA
-  lda z:$35                    ; $DEED
+  lda z:PaletteDirty           ; $DEED
   cmp #$02                     ; $DEEF
   bne Loc_DEF8                 ; $DEF1
   lda #$11                     ; $DEF3
   jsr EnqueueByte              ; $DEF5
 Loc_DEF8:
-  lda z:$35                    ; $DEF8
+  lda z:PaletteDirty           ; $DEF8
   cmp #$10                     ; $DEFA
   bcc Loc_DF01                 ; $DEFC
-  jsr Sub_DDE1                 ; $DEFE
+  jsr AnimatePalette           ; $DEFE
 Loc_DF01:
   rts                          ; $DF01
 Sub_DF02:
   lda #$00                     ; $DF02
-  sta z:$14                    ; $DF04
+  sta z:AreaId                 ; $DF04
   sta z:$1B                    ; $DF06
-  sta z:$35                    ; $DF08
+  sta z:PaletteDirty           ; $DF08
   sta $0139                    ; $DF0A
   lda #$1F                     ; $DF0D
   sta z:$29                    ; $DF0F
@@ -3579,10 +3579,10 @@ Sub_DF02:
 Sub_DF12:
   lda $0139                    ; $DF12
   bne Loc_DF3D                 ; $DF15
-  lda z:$35                    ; $DF17
+  lda z:PaletteDirty           ; $DF17
   cmp #$20                     ; $DF19
   bcc Loc_DF3D                 ; $DF1B
-  lda z:$35                    ; $DF1D
+  lda z:PaletteDirty           ; $DF1D
   sec                          ; $DF1F
   sbc #$20                     ; $DF20
   clc                          ; $DF22
@@ -3807,7 +3807,7 @@ Loc_E0E2:
   bcs Loc_E16E                 ; $E0FD
 Loc_E0FF:
   dey                          ; $E0FF
-  lda z:$14                    ; $E100
+  lda z:AreaId                 ; $E100
   cmp #$03                     ; $E102
   bne Loc_E10A                 ; $E104
   lda z:$13                    ; $E106
@@ -3840,7 +3840,7 @@ Loc_E123:
   cmp #$69                     ; $E136
   beq Loc_E154                 ; $E138
   lda #$01                     ; $E13A
-  sta z:$35                    ; $E13C
+  sta z:PaletteDirty           ; $E13C
   lda z:PaletteSetIndex        ; $E13E
   cmp #$1B                     ; $E140
   beq Loc_E154                 ; $E142
@@ -3859,7 +3859,7 @@ Loc_E155:
   lda #$00                     ; $E158
   sta z:$1B                    ; $E15A
   sta $0113                    ; $E15C
-  sta z:$35                    ; $E15F
+  sta z:PaletteDirty           ; $E15F
   sta $0430                    ; $E161
   sta $0431                    ; $E164
   sta $0432                    ; $E167
@@ -3897,7 +3897,7 @@ Data_E193:
   .incbin "prg_bank_7.bin", $2193, $400  ; $E193
   .incbin "prg_bank_7.bin", $2593, $6A  ; $E593
 Sub_E5FD:
-  lda z:$14                    ; $E5FD
+  lda z:AreaId                 ; $E5FD
   cmp #$03                     ; $E5FF
   bcc Loc_E613                 ; $E601
   cmp #$07                     ; $E603
@@ -4019,7 +4019,7 @@ Loc_E6D1:
   jmp Loc_E6A5                 ; $E6E1
 Loc_E6E4:
   lda #$00                     ; $E6E4
-  sta z:$35                    ; $E6E6
+  sta z:PaletteDirty           ; $E6E6
   lda #$02                     ; $E6E8
   ldx #$10                     ; $E6EA
   jmp Loc_E703                 ; $E6EC
@@ -4036,7 +4036,7 @@ Loc_E6EF:
 Loc_E703:
   sta z:MmcPrgShadow           ; $E703
 Loc_E705:
-  stx z:$14                    ; $E705
+  stx z:AreaId                 ; $E705
   lda #$03                     ; $E707
   sta $0106                    ; $E709
   jsr Sub_E85E                 ; $E70C
@@ -4173,7 +4173,7 @@ Loc_E932:
 Loc_E938:
   rts                          ; $E938
 Sub_E939:
-  lda z:$35                    ; $E939
+  lda z:PaletteDirty           ; $E939
   bne Loc_E960                 ; $E93B
   lda z:$30                    ; $E93D
   beq Loc_E947                 ; $E93F
@@ -4231,25 +4231,25 @@ Loc_E9B0:
   lda #$00                     ; $E9B0
   sta z:$30                    ; $E9B2
   sta z:$33                    ; $E9B4
-  lda z:$36                    ; $E9B6
+  lda z:FireMode               ; $E9B6
   and #$10                     ; $E9B8
-  sta z:$36                    ; $E9BA
+  sta z:FireMode               ; $E9BA
   lda $0238                    ; $E9BC
   and #$F0                     ; $E9BF
   ora #$02                     ; $E9C1
   sta $0238                    ; $E9C3
 Loc_E9C6:
-  lda z:$36                    ; $E9C6
+  lda z:FireMode               ; $E9C6
   and #$0F                     ; $E9C8
   cmp #$04                     ; $E9CA
   bcs Loc_E9D1                 ; $E9CC
-  jsr Sub_EAB6                 ; $E9CE
+  jsr UpdateFireMode           ; $E9CE
 Loc_E9D1:
   rts                          ; $E9D1
 Data_E9D2:
   .incbin "prg_bank_7.bin", $29D2, $30  ; $E9D2
 Sub_EA02:
-  lda z:$36                    ; $EA02
+  lda z:FireMode               ; $EA02
   and #$0F                     ; $EA04
   cmp #$03                     ; $EA06
   bcs Loc_EA2C                 ; $EA08
@@ -4274,7 +4274,7 @@ Loc_EA2C:
   rts                          ; $EA2C
 Sub_EA2D:
   inc z:$34                    ; $EA2D
-  lda z:$36                    ; $EA2F
+  lda z:FireMode               ; $EA2F
   and #$0F                     ; $EA31
   cmp #$04                     ; $EA33
   bne Loc_EA42                 ; $EA35
@@ -4311,7 +4311,7 @@ Sub_EA61:
   lda z:AmmoLo                 ; $EA6C
   ora z:AmmoHi                 ; $EA6E
   beq Loc_EA81                 ; $EA70
-  lda z:$36                    ; $EA72
+  lda z:FireMode               ; $EA72
   and #$0F                     ; $EA74
   cmp #$03                     ; $EA76
   beq Loc_EA9C                 ; $EA78
@@ -4319,7 +4319,7 @@ Sub_EA61:
   ldx #$06                     ; $EA7C
   jmp Loc_EA9E                 ; $EA7E
 Loc_EA81:
-  lda z:$36                    ; $EA81
+  lda z:FireMode               ; $EA81
   and #$0F                     ; $EA83
   cmp #$03                     ; $EA85
   beq Loc_EA9C                 ; $EA87
@@ -4343,38 +4343,38 @@ Loc_EA9E:
 Loc_EAA9:
   rts                          ; $EAA9
 Sub_EAAA:
-  lda z:$36                    ; $EAAA
+  lda z:FireMode               ; $EAAA
   and #$10                     ; $EAAC
-  sta z:$36                    ; $EAAE
+  sta z:FireMode               ; $EAAE
   txa                          ; $EAB0
-  ora z:$36                    ; $EAB1
-  sta z:$36                    ; $EAB3
+  ora z:FireMode               ; $EAB1
+  sta z:FireMode               ; $EAB3
   rts                          ; $EAB5
-Sub_EAB6:
+UpdateFireMode:
   lda JoyHeld1                 ; $EAB6
   and #$C0                     ; $EAB9
   beq Loc_EACE                 ; $EABB
   cmp #$40                     ; $EABD
   bne Loc_EAC8                 ; $EABF
-  lda z:$36                    ; $EAC1
+  lda z:FireMode               ; $EAC1
   ora #$10                     ; $EAC3
   jmp Loc_EACC                 ; $EAC5
 Loc_EAC8:
-  lda z:$36                    ; $EAC8
+  lda z:FireMode               ; $EAC8
   and #$0F                     ; $EACA
 Loc_EACC:
-  sta z:$36                    ; $EACC
+  sta z:FireMode               ; $EACC
 Loc_EACE:
   rts                          ; $EACE
-Sub_EACF:
+UseAmmo:
   cpx #$06                     ; $EACF
   bcc Loc_EAD8                 ; $EAD1
   lda #$FF                     ; $EAD3
-  jsr Sub_EEB7                 ; $EAD5
+  jsr AdjustAmmo               ; $EAD5
 Loc_EAD8:
   rts                          ; $EAD8
 Sub_EAD9:
-  lda z:$36                    ; $EAD9
+  lda z:FireMode               ; $EAD9
   and #$0F                     ; $EADB
   cmp #$01                     ; $EADD
   bcs Loc_EAED                 ; $EADF
@@ -4391,15 +4391,15 @@ Loc_EAED:
   ldx #$00                     ; $EAF6
 Loc_EAF8:
   jsr Sub_EAAA                 ; $EAF8
-  jsr Sub_EACF                 ; $EAFB
+  jsr UseAmmo                  ; $EAFB
 Loc_EAFE:
-  lda z:$36                    ; $EAFE
+  lda z:FireMode               ; $EAFE
   and #$0F                     ; $EB00
   cmp #$04                     ; $EB02
   bcs Loc_EB09                 ; $EB04
-  jsr Sub_EAB6                 ; $EB06
+  jsr UpdateFireMode           ; $EB06
 Loc_EB09:
-  lda z:$36                    ; $EB09
+  lda z:FireMode               ; $EB09
   and #$0F                     ; $EB0B
   cmp #$02                     ; $EB0D
   beq Loc_EB1F                 ; $EB0F
@@ -4416,11 +4416,11 @@ Loc_EB1F:
   ldx #$00                     ; $EB26
 Loc_EB28:
   jsr Sub_EAAA                 ; $EB28
-  jsr Sub_EACF                 ; $EB2B
+  jsr UseAmmo                  ; $EB2B
 Loc_EB2E:
   rts                          ; $EB2E
 Sub_EB2F:
-  lda z:$36                    ; $EB2F
+  lda z:FireMode               ; $EB2F
   and #$0F                     ; $EB31
   bne Loc_EB38                 ; $EB33
   jmp Loc_EBD7                 ; $EB35
@@ -4516,10 +4516,10 @@ Loc_EBD7:
   lda #$07                     ; $EBD7
 Loc_EBD9:
   sta z:Tmp02                  ; $EBD9
-  lda z:$36                    ; $EBDB
+  lda z:FireMode               ; $EBDB
   and #$10                     ; $EBDD
   ora z:Tmp02                  ; $EBDF
-  sta z:$37                    ; $EBE1
+  sta z:PlayerSpriteFrame      ; $EBE1
   rts                          ; $EBE3
 Sub_EBE4:
   lda #$F0                     ; $EBE4
@@ -4527,7 +4527,7 @@ Sub_EBE4:
   sta $024C                    ; $EBE9
   sta $0250                    ; $EBEC
   sta $0254                    ; $EBEF
-  lda z:$37                    ; $EBF2
+  lda z:PlayerSpriteFrame      ; $EBF2
   asl a                        ; $EBF4
   tax                          ; $EBF5
   lda Data_EC2F,x              ; $EBF6
@@ -4564,7 +4564,7 @@ Data_EC2F:
   .incbin "prg_bank_7.bin", $2C2F, $1  ; $EC2F
 Data_EC30:
   .incbin "prg_bank_7.bin", $2C30, $287  ; $EC30
-Sub_EEB7:
+AdjustAmmo:
   clc                          ; $EEB7
   adc z:AmmoLo                 ; $EEB8
   sta z:AmmoLo                 ; $EEBA
@@ -4602,7 +4602,7 @@ Loc_EEE4:
   sta OamBuffer,x              ; $EEEA
   lda #$BE                     ; $EEED
   sta $0201,x                  ; $EEEF
-  lda z:$36                    ; $EEF2
+  lda z:FireMode               ; $EEF2
   and #$10                     ; $EEF4
   bne Loc_EEFF                 ; $EEF6
   ldy #$00                     ; $EEF8
@@ -4618,12 +4618,12 @@ Loc_EF03:
   tya                          ; $EF0A
   sta $0202,x                  ; $EF0B
   lda #$FF                     ; $EF0E
-  jsr Sub_EEB7                 ; $EF10
+  jsr AdjustAmmo               ; $EF10
   lda #$0E                     ; $EF13
   jsr EnqueueByte              ; $EF15
   rts                          ; $EF18
 Sub_EF19:
-  lda z:$35                    ; $EF19
+  lda z:PaletteDirty           ; $EF19
   bne Loc_EF2C                 ; $EF1B
   jsr Sub_EF2D                 ; $EF1D
   jsr Sub_EF7B                 ; $EF20
@@ -4633,15 +4633,15 @@ Sub_EF19:
 Loc_EF2C:
   rts                          ; $EF2C
 Sub_EF2D:
-  lda z:$36                    ; $EF2D
+  lda z:FireMode               ; $EF2D
   and #$0F                     ; $EF2F
   bne Loc_EF36                 ; $EF31
-  jsr Sub_EAB6                 ; $EF33
+  jsr UpdateFireMode           ; $EF33
 Loc_EF36:
   ldx #$00                     ; $EF36
   jsr Sub_EAAA                 ; $EF38
   ldx #$01                     ; $EF3B
-  lda z:$36                    ; $EF3D
+  lda z:FireMode               ; $EF3D
   and #$10                     ; $EF3F
   bne Loc_EF4D                 ; $EF41
   lda JoyHeld1                 ; $EF43
@@ -4676,19 +4676,19 @@ Loc_EF77:
 Loc_EF7A:
   rts                          ; $EF7A
 Sub_EF7B:
-  lda z:$36                    ; $EF7B
+  lda z:FireMode               ; $EF7B
   and #$10                     ; $EF7D
   beq Loc_EF83                 ; $EF7F
   lda #$0C                     ; $EF81
 Loc_EF83:
-  sta z:$37                    ; $EF83
-  lda z:$36                    ; $EF85
+  sta z:PlayerSpriteFrame      ; $EF83
+  lda z:FireMode               ; $EF85
   and #$03                     ; $EF87
   tax                          ; $EF89
   lda Data_EFA5,x              ; $EF8A
   clc                          ; $EF8D
-  adc z:$37                    ; $EF8E
-  sta z:$37                    ; $EF90
+  adc z:PlayerSpriteFrame      ; $EF8E
+  sta z:PlayerSpriteFrame      ; $EF90
   lda z:FrameCounter           ; $EF92
   and #$30                     ; $EF94
   jsr LsrA4                    ; $EF96
@@ -4697,8 +4697,8 @@ Loc_EF83:
   lda #$01                     ; $EF9D
 Loc_EF9F:
   clc                          ; $EF9F
-  adc z:$37                    ; $EFA0
-  sta z:$37                    ; $EFA2
+  adc z:PlayerSpriteFrame      ; $EFA0
+  sta z:PlayerSpriteFrame      ; $EFA2
   rts                          ; $EFA4
 Data_EFA5:
   .incbin "prg_bank_7.bin", $2FA5, $4  ; $EFA5
@@ -4707,7 +4707,7 @@ Sub_EFA9:
 Sub_EFAA:
   lda #$00                     ; $EFAA
   sta z:Tmp01                  ; $EFAC
-  lda z:$37                    ; $EFAE
+  lda z:PlayerSpriteFrame      ; $EFAE
   asl a                        ; $EFB0
   asl a                        ; $EFB1
   asl a                        ; $EFB2
@@ -4755,7 +4755,7 @@ Loc_EFDE:
   rts                          ; $EFFC
   .incbin "prg_bank_7.bin", $2FFD, $240  ; $EFFD
 Sub_F23D:
-  lda z:$36                    ; $F23D
+  lda z:FireMode               ; $F23D
   and #$0F                     ; $F23F
   cmp #$02                     ; $F241
   bcs Loc_F29C                 ; $F243
@@ -4789,7 +4789,7 @@ Loc_F26D:
   sta OamBuffer,x              ; $F271
   lda #$3C                     ; $F274
   sta $0201,x                  ; $F276
-  lda z:$36                    ; $F279
+  lda z:FireMode               ; $F279
   and #$10                     ; $F27B
   asl a                        ; $F27D
   asl a                        ; $F27E
@@ -4806,7 +4806,7 @@ Loc_F28B:
   lda #$0F                     ; $F292
   jsr EnqueueByte              ; $F294
   lda #$FF                     ; $F297
-  jsr Sub_EEB7                 ; $F299
+  jsr AdjustAmmo               ; $F299
 Loc_F29C:
   rts                          ; $F29C
 Sub_F29D:
@@ -5087,7 +5087,7 @@ Loc_F494:
   adc #$08                     ; $F4A8
   sta $0203,x                  ; $F4AA
   lda #$FF                     ; $F4AD
-  jsr Sub_EEB7                 ; $F4AF
+  jsr AdjustAmmo               ; $F4AF
   lda #$0F                     ; $F4B2
   jsr EnqueueByte              ; $F4B4
 Loc_F4B7:
@@ -5118,7 +5118,7 @@ Loc_F4E1:
   jmp Loc_F5FA                 ; $F4E1
 Loc_F4E4:
   lda #$00                     ; $F4E4
-  sta z:$37                    ; $F4E6
+  sta z:PlayerSpriteFrame      ; $F4E6
   lda z:$2B                    ; $F4E8
   and #$F0                     ; $F4EA
   sta $0238                    ; $F4EC
@@ -5255,8 +5255,8 @@ Loc_F5FA:
   lda #$00                     ; $F5FA
   sta z:$30                    ; $F5FC
   sta z:$31                    ; $F5FE
-  sta z:$37                    ; $F600
-  jsr Sub_D3D3                 ; $F602
+  sta z:PlayerSpriteFrame      ; $F600
+  jsr CopyPlayerSprites        ; $F602
   rts                          ; $F605
 Sub_F606:
   lda $023B                    ; $F606
@@ -5282,7 +5282,7 @@ Sub_F61E:
   ror a                        ; $F627
   ror a                        ; $F628
   sta JoyHeld1                 ; $F629
-  jsr Sub_CCE9                 ; $F62C
+  jsr UploadPaletteIfDirty     ; $F62C
   pla                          ; $F62F
   sta JoyHeld1                 ; $F630
   rts                          ; $F633
@@ -5647,7 +5647,7 @@ Loc_F998:
   beq Loc_F9F1                 ; $F9A6
   cmp #$27                     ; $F9A8
   bne Loc_F9B4                 ; $F9AA
-  lda z:$36                    ; $F9AC
+  lda z:FireMode               ; $F9AC
   and #$0F                     ; $F9AE
   cmp #$03                     ; $F9B0
   bcc Loc_FA05                 ; $F9B2
@@ -5700,7 +5700,7 @@ Loc_F9F2:
   rts                          ; $FA04
 Loc_FA05:
   lda #$07                     ; $FA05
-  sta z:$36                    ; $FA07
+  sta z:FireMode               ; $FA07
   lda #$00                     ; $FA09
   sta z:$34                    ; $FA0B
   lda #$C8                     ; $FA0D
@@ -5753,7 +5753,7 @@ Loc_FA7B:
   dex                          ; $FA8A
   bne Loc_FA5E                 ; $FA8B
   rts                          ; $FA8D
-Sub_FA8E:
+TickObjectStates:
   lda #$10                     ; $FA8E
   sta z:Tmp00                  ; $FA90
   lda #$03                     ; $FA92
@@ -5827,7 +5827,7 @@ Loc_FB0E:
   lda #$00                     ; $FB0E
   jmp Loc_FB3A                 ; $FB10
 Loc_FB13:
-  lda z:$36                    ; $FB13
+  lda z:FireMode               ; $FB13
   and #$0F                     ; $FB15
   cmp #$02                     ; $FB17
   beq Loc_FB22                 ; $FB19
@@ -5853,7 +5853,7 @@ Loc_FB3A:
   dec $0115                    ; $FB42
   jmp Loc_FB7F                 ; $FB45
 Loc_FB48:
-  lda z:$36                    ; $FB48
+  lda z:FireMode               ; $FB48
   and #$0F                     ; $FB4A
   cmp #$04                     ; $FB4C
   bne Loc_FB7A                 ; $FB4E
@@ -5864,7 +5864,7 @@ Loc_FB48:
   adc #$10                     ; $FB59
   sta $011F                    ; $FB5B
   ldx #$0E                     ; $FB5E
-  lda z:$36                    ; $FB60
+  lda z:FireMode               ; $FB60
   and #$10                     ; $FB62
   beq Loc_FB68                 ; $FB64
   ldx #$EE                     ; $FB66
@@ -5882,7 +5882,7 @@ Loc_FB7A:
 Loc_FB7C:
   sta $011E                    ; $FB7C
 Loc_FB7F:
-  jsr Sub_FBE0                 ; $FB7F
+  jsr ClearObjectStatusBits    ; $FB7F
   jsr Sub_F804                 ; $FB82
   jsr Sub_F984                 ; $FB85
   jsr Sub_FA47                 ; $FB88
@@ -5918,12 +5918,12 @@ Loc_FBBB:
   lda #$20                     ; $FBCE
 Loc_FBD0:
   sta $0123                    ; $FBD0
-  jsr Sub_FBE0                 ; $FBD3
+  jsr ClearObjectStatusBits    ; $FBD3
   jsr Sub_F804                 ; $FBD6
-  jsr Sub_FA8E                 ; $FBD9
-  jsr Sub_FBFE                 ; $FBDC
+  jsr TickObjectStates         ; $FBD9
+  jsr UpdateLifeBlink          ; $FBDC
   rts                          ; $FBDF
-Sub_FBE0:
+ClearObjectStatusBits:
   ldx ObjectCount              ; $FBE0
   beq Loc_FBFD                 ; $FBE3
   lda #$10                     ; $FBE5
@@ -5943,7 +5943,7 @@ Loc_FBEF:
   bne Loc_FBEF                 ; $FBFB
 Loc_FBFD:
   rts                          ; $FBFD
-Sub_FBFE:
+UpdateLifeBlink:
   lda $0114                    ; $FBFE
   bne Loc_FC09                 ; $FC01
   lda $0116                    ; $FC03
@@ -5987,11 +5987,11 @@ Loc_FC40:
 Loc_FC4F:
   jsr Sub_FCBD                 ; $FC4F
 Loc_FC52:
-  jsr Sub_FBE0                 ; $FC52
+  jsr ClearObjectStatusBits    ; $FC52
   jsr Sub_F804                 ; $FC55
   jsr Sub_F984                 ; $FC58
-  jsr Sub_FA8E                 ; $FC5B
-  jsr Sub_FBFE                 ; $FC5E
+  jsr TickObjectStates         ; $FC5B
+  jsr UpdateLifeBlink          ; $FC5E
   rts                          ; $FC61
 Sub_FC62:
   lda $024C                    ; $FC62
@@ -6096,7 +6096,7 @@ Loc_FD2B:
   sta $011A                    ; $FD2E
   lda $023B                    ; $FD31
   sta $011B                    ; $FD34
-  lda z:$36                    ; $FD37
+  lda z:FireMode               ; $FD37
   and #$0F                     ; $FD39
   cmp #$01                     ; $FD3B
   bne Loc_FD44                 ; $FD3D
@@ -6110,11 +6110,11 @@ Loc_FD46:
 Loc_FD4B:
   sta $0119                    ; $FD4B
   jsr Sub_FCBD                 ; $FD4E
-  jsr Sub_FBE0                 ; $FD51
+  jsr ClearObjectStatusBits    ; $FD51
   jsr Sub_F804                 ; $FD54
   jsr Sub_F984                 ; $FD57
-  jsr Sub_FA8E                 ; $FD5A
-  jsr Sub_FBFE                 ; $FD5D
+  jsr TickObjectStates         ; $FD5A
+  jsr UpdateLifeBlink          ; $FD5D
   rts                          ; $FD60
 Sub_FD61:
   lda #$1F                     ; $FD61

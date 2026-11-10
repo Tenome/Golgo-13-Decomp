@@ -39,5 +39,9 @@
  "38": "PlayerLifeLo",
  "39": "PlayerLifeHi",
  "3A": "AmmoLo",
- "3B": "AmmoHi"
+ "3B": "AmmoHi",
+ "14": "AreaId",
+ "35": "PaletteDirty",
+ "36": "FireMode",
+ "37": "PlayerSpriteFrame"
 }

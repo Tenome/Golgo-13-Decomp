@@ -22,7 +22,7 @@
   jsr Sub_B4_80B3              ; $8033
   jsr Sub_B4_8BFB              ; $8036
   inc z:FrameCounter           ; $8039
-  jsr Sub_C929                 ; $803B
+  jsr DrawHud                  ; $803B
   jsr Sub_B4_90D9              ; $803E
   lda z:MmcPrgShadow           ; $8041
   pha                          ; $8043
@@ -276,7 +276,7 @@ Data_B4_82A2:
 Loc_B4_82FE:
   lda #$00                     ; $82FE
   sta z:MmcPrgShadow           ; $8300
-  sta z:$14                    ; $8302
+  sta z:AreaId                 ; $8302
   rts                          ; $8304
   .incbin "prg_bank_4.bin", $0305, $9  ; $8305
 Sub_B4_830E:
@@ -454,7 +454,7 @@ Sub_B4_8481:
   rts                          ; $8495
 Loc_B4_8496:
   lda #$20                     ; $8496
-  sta z:$14                    ; $8498
+  sta z:AreaId                 ; $8498
   lda #$03                     ; $849A
   sta $0300                    ; $849C
   lda #$23                     ; $849F
@@ -852,7 +852,7 @@ Loc_B4_8BD0:
   dex                          ; $8BD6
   dey                          ; $8BD7
   bne Loc_B4_8BD0              ; $8BD8
-  sty z:$35                    ; $8BDA
+  sty z:PaletteDirty           ; $8BDA
   iny                          ; $8BDC
   sty z:$28                    ; $8BDD
   rts                          ; $8BDF
@@ -1261,7 +1261,7 @@ Sub_B4_915B:
   bcc Loc_B4_916C              ; $9160
   lda #$00                     ; $9162
   sta z:MmcPrgShadow           ; $9164
-  sta z:$14                    ; $9166
+  sta z:AreaId                 ; $9166
   sta $0503                    ; $9168
   rts                          ; $916B
 Loc_B4_916C:
