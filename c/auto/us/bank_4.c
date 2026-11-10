@@ -1166,8 +1166,7 @@ void Sub_B4_8C1E(void) {  /* $8C1E bank 4 */
 void Sub_B4_8D25(void) {  /* $8D25 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x6F));                                                                         /* $8D25 lda */
-  if (R.a != 0) {                                                                        /* $8D27 beq */
-  } else {
+  if (R.a == 0) {                                                                        /* $8D27 beq */
     LDA(rd(JoyNew1));                                                                    /* $8D2C lda */
     AND(0x01);                                                                           /* $8D2F and */
     if (R.a != 0) {                                                                      /* $8D31 beq */
@@ -2377,8 +2376,7 @@ void Sub_B4_A0D9(void) {  /* $A0D9 bank 4 */
   }
   LDA(rd(0x83));                                                                         /* $A0F4 lda */
   AND(0x02);                                                                             /* $A0F6 and */
-  if (R.a != 0) {                                                                        /* $A0F8 beq */
-  } else {
+  if (R.a == 0) {                                                                        /* $A0F8 beq */
     RTS_RET(sp0);                                                                        /* $A0FD rts */
   }
   push16(0xA146); ProcessPpuUpdateList(); UNW(); ret_check(0xA148);                      /* $A144 jsr */

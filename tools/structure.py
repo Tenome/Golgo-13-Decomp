@@ -100,8 +100,11 @@ def try_if(items):
                 only_cb = sum(1 for x, y in enumerate(items) if it.target in targets(y)) == 1
                 if entry_ok and only_cb:
                     then = block[:-1]
-                    node = Item('if', text=it.text, cond=it.neg, labels=items[i].labels, comment=it.comment, body=then, els=els)
                     els[0].labels = [l for l in els[0].labels if l != it.target]
+                    if not then:                                    # nothing to do when the branch is not taken: if (cond) { else-part }
+                        node = Item('if', text=it.text, cond=it.cond, labels=items[i].labels, comment=it.comment, body=els, els=None)
+                    else:
+                        node = Item('if', text=it.text, cond=it.neg, labels=items[i].labels, comment=it.comment, body=then, els=els)
                     return items[:i] + [node] + items[m:]
         node = Item('if', text=it.text, cond=it.neg, labels=items[i].labels, comment=it.comment, body=block, els=None)
         if not block:

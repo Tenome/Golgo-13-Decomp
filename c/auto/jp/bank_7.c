@@ -542,8 +542,7 @@ void DrawObject(void) {  /* $C355 bank 7 */
   LDY(0x00);                                                                             /* $C355 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $C357 lda */
   AND(0x80);                                                                             /* $C359 and */
-  if (R.a == 0) {                                                                        /* $C35B bne */
-  } else {
+  if (R.a != 0) {                                                                        /* $C35B bne */
     LDY(0x03);                                                                           /* $C360 ldy */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $C362 lda */
     if (R.a == 0) {                                                                      /* $C364 bne */
@@ -1040,8 +1039,7 @@ LC662: BUDGET();
 LC671: BUDGET();
   LDA(rd(JoyHeld1));                                                                     /* $C671 lda */
   AND(0x30);                                                                             /* $C674 and */
-  if (R.a == 0) {                                                                        /* $C676 bne */
-  } else {
+  if (R.a != 0) {                                                                        /* $C676 bne */
     cmp8(R.a, 0x10);                                                                     /* $C67B cmp */
     if (R.a == 0x10) {                                                                   /* $C67D bne */
       LDA(rd(PlayerSpriteY0));                                                           /* $C67F lda */
@@ -1511,8 +1509,7 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
   push16(0xC9FF); SetPpuCtrl(); UNW(); ret_check(0xC9FF);                                /* $C9FD jsr */
   push16(0xCA02); TickClock(); UNW(); ret_check(0xCA02);                                 /* $CA00 jsr */
   LDA(rd(0x013A));                                                                       /* $CA03 lda */
-  if (R.a != 0) {                                                                        /* $CA06 beq */
-  } else {
+  if (R.a == 0) {                                                                        /* $CA06 beq */
     push16(0xCA0D); Sub_E664(); UNW(); ret_check(0xCA0D);                                /* $CA0B jsr */
     if (!R.z) {                                                                          /* $CA0E beq */
       goto LCB9B;                                                                        /* $CA10 jmp */
@@ -3123,8 +3120,7 @@ void Sub_D7B2(void) {  /* $D7B2 bank 7 */
     goto LD824;                                                                          /* $D7B7 jmp */
   }
   cmp8(R.a, 0x80);                                                                       /* $D7BA cmp */
-  if (R.a != 0x80) {                                                                     /* $D7BC beq */
-  } else {
+  if (R.a == 0x80) {                                                                     /* $D7BC beq */
     LDA(rd(AreaGroup));                                                                  /* $D7C1 lda */
     ASL_A();                                                                             /* $D7C3 asl */
     TAY();                                                                               /* $D7C4 tay */
@@ -3240,8 +3236,7 @@ void Sub_D86D(void) {  /* $D86D bank 7 */
 void Sub_D8CB(void) {  /* $D8CB bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0405));                                                                       /* $D8CB lda */
-  if (R.a == 0) {                                                                        /* $D8CE bne */
-  } else {
+  if (R.a != 0) {                                                                        /* $D8CE bne */
     LDA(rd(0x0438));                                                                     /* $D8D3 lda */
     if (!(R.a & 0x80)) {                                                                 /* $D8D6 bmi */
       goto LD99D;                                                                        /* $D8D8 jmp */
@@ -3482,8 +3477,7 @@ void Sub_DA77(void) {  /* $DA77 bank 7 */
 void Sub_DB07(void) {  /* $DB07 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0421));                                                                       /* $DB07 lda */
-  if (R.a != 0) {                                                                        /* $DB0A beq */
-  } else {
+  if (R.a == 0) {                                                                        /* $DB0A beq */
     LDA(rd(AreaGroup));                                                                  /* $DB0F lda */
     ASL_A();                                                                             /* $DB11 asl */
     CLC();                                                                               /* $DB12 clc */
@@ -4034,8 +4028,7 @@ void Sub_E089(void) {  /* $E089 bank 7 */
   STA(Tmp01);                                                                            /* $E0B0 sta */
   LDY(0x00);                                                                             /* $E0B2 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $E0B4 lda */
-  if (R.a == 0) {                                                                        /* $E0B6 bne */
-  } else {
+  if (R.a != 0) {                                                                        /* $E0B6 bne */
     TAX();                                                                               /* $E0BB tax */
     INY();                                                                               /* $E0BC iny */
     for (;;) { BUDGET();
@@ -4051,8 +4044,7 @@ void Sub_E089(void) {  /* $E089 bank 7 */
       STA(0x05);                                                                         /* $E0CD sta */
       LDA(rd(PlayerSpriteY0));                                                           /* $E0CF lda */
       cmp8(R.a, rd(0x04));                                                               /* $E0D2 cmp */
-      if (R.a < rd(0x04)) {                                                              /* $E0D4 bcs */
-      } else {
+      if (R.a >= rd(0x04)) {                                                             /* $E0D4 bcs */
         cmp8(R.a, rd(0x05));                                                             /* $E0D9 cmp */
         if (R.a != rd(0x05)) {                                                           /* $E0DB beq */
           if (R.a < rd(0x05)) goto LE0E2;                                                /* $E0DD bcc */
@@ -4237,8 +4229,7 @@ void Sub_E664(void) {  /* $E664 bank 7 */
   STA(0x013E);                                                                           /* $E66E sta */
   LDA(rd(0x013F));                                                                       /* $E671 lda */
   cmp8(R.a, 0x78);                                                                       /* $E674 cmp */
-  if (R.a >= 0x78) {                                                                     /* $E676 bcc */
-  } else {
+  if (R.a < 0x78) {                                                                      /* $E676 bcc */
     cmp8(R.a, 0x50);                                                                     /* $E67B cmp */
     if (R.a >= 0x50) goto LE6D1;                                                         /* $E67D bcs */
     LDA(rd(StageIndex));                                                                 /* $E67F lda */
@@ -4736,8 +4727,7 @@ void Sub_EB2F(void) {  /* $EB2F bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerPose));                                                                   /* $EB2F lda */
   AND(0x0F);                                                                             /* $EB31 and */
-  if (R.a == 0) {                                                                        /* $EB33 bne */
-  } else {
+  if (R.a != 0) {                                                                        /* $EB33 bne */
     cmp8(R.a, 0x01);                                                                     /* $EB38 cmp */
     if (R.a == 0x01) {                                                                   /* $EB3A bne */
       LDA(rd(FrameCounter));                                                             /* $EB3C lda */
@@ -5460,8 +5450,7 @@ void Sub_F4B8(void) {  /* $F4B8 bank 7 */
   LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $F4C0 lda */
   push16(0xF4C4); LsrA4(); UNW(); ret_check(0xF4C4);                                     /* $F4C2 jsr */
   STA(0x13);                                                                             /* $F4C5 sta */
-  if (R.z) {                                                                             /* $F4C7 bne */
-  } else {
+  if (!R.z) {                                                                            /* $F4C7 bne */
     cmp8(R.a, 0x01);                                                                     /* $F4CC cmp */
     if (R.a == 0x01) {                                                                   /* $F4CE bne */
       goto LF55A;                                                                        /* $F4D0 jmp */
@@ -5821,8 +5810,7 @@ void Sub_F804(void) {  /* $F804 bank 7 */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $F871 lda */
     AND(0xC0);                                                                           /* $F873 and */
     cmp8(R.a, 0xC0);                                                                     /* $F875 cmp */
-    if (R.a != 0xC0) {                                                                   /* $F877 beq */
-    } else {
+    if (R.a == 0xC0) {                                                                   /* $F877 beq */
       LDY(0x0F);                                                                         /* $F87C ldy */
       LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $F87E lda */
       if (R.a == 0) {                                                                    /* $F880 bne */

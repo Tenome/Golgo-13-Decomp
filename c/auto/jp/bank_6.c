@@ -369,8 +369,7 @@ void Sub_B6_81E3(void) {  /* $81E3 bank 6 */
     adc(0x04);                                                                           /* $821F adc */
     TAY();                                                                               /* $8221 tay */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $8222 lda */
-    if (R.a == 0) {                                                                      /* $8224 bne */
-    } else {
+    if (R.a != 0) {                                                                      /* $8224 bne */
       DEY();                                                                             /* $8229 dey */
       LDA(rd(Tmp02));                                                                    /* $822A lda */
       STA((uint16_t)(rd16zp(Tmp00) + R.y));                                              /* $822C sta */

@@ -427,8 +427,7 @@ void Sub_B2_8488(void) {  /* $8488 bank 2 */
   LDA(rd(0x04AA));                                                                       /* $8488 lda */
   AND(0x7F);                                                                             /* $848B and */
   cmp8(R.a, 0x06);                                                                       /* $848D cmp */
-  if (R.a == 0x06) {                                                                     /* $848F bne */
-  } else {
+  if (R.a != 0x06) {                                                                     /* $848F bne */
     LDA(rd(ObjectCount));                                                                /* $8494 lda */
     cmp8(R.a, 0x01);                                                                     /* $8497 cmp */
     if (R.a == 0x01) {                                                                   /* $8499 bne */
@@ -540,8 +539,7 @@ void Sub_B2_8609(void) {  /* $8609 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteSetIndex));                                                              /* $8609 lda */
   cmp8(R.a, 0x69);                                                                       /* $860B cmp */
-  if (R.a == 0x69) {                                                                     /* $860D bne */
-  } else {
+  if (R.a != 0x69) {                                                                     /* $860D bne */
     LDX(0x00);                                                                           /* $8612 ldx */
     do { BUDGET();
       LDA(rd((uint16_t)(0x877C + R.x)));                                                 /* $8614 lda */
@@ -632,8 +630,7 @@ void Sub_B2_87AC(void) {  /* $87AC bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteSetIndex));                                                              /* $87AC lda */
   cmp8(R.a, 0x69);                                                                       /* $87AE cmp */
-  if (R.a == 0x69) {                                                                     /* $87B0 bne */
-  } else {
+  if (R.a != 0x69) {                                                                     /* $87B0 bne */
     LDY(0x00);                                                                           /* $87B5 ldy */
     STY(Tmp00);                                                                          /* $87B7 sty */
     do { BUDGET();
@@ -702,8 +699,7 @@ L87FF: BUDGET();
     LDA(rd(Tmp00));                                                                      /* $8831 lda */
     AND(0x03);                                                                           /* $8833 and */
     cmp8(R.a, rd(0x0319));                                                               /* $8835 cmp */
-    if (R.a == rd(0x0319)) {                                                             /* $8838 bne */
-    } else {
+    if (R.a != rd(0x0319)) {                                                             /* $8838 bne */
       LDA(rd(0x031A));                                                                   /* $883D lda */
       cmp8(R.a, rd(Tmp01));                                                              /* $8840 cmp */
       if (R.a < rd(Tmp01)) goto L8849;                                                   /* $8842 bcc */
@@ -1095,8 +1091,7 @@ void Sub_B2_8B06(void) {  /* $8B06 bank 2 */
 void Sub_B2_90B0(void) {  /* $90B0 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x04A8));                                                                       /* $90B0 lda */
-  if (R.a == 0) {                                                                        /* $90B3 bne */
-  } else {
+  if (R.a != 0) {                                                                        /* $90B3 bne */
     LDA(rd(0x04A8));                                                                     /* $90B8 lda */
     AND(0x0F);                                                                           /* $90BB and */
     TAX();                                                                               /* $90BD tax */

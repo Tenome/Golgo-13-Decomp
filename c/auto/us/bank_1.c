@@ -531,8 +531,7 @@ void Sub_B1_8D00(void) {  /* $8D00 bank 1 */
     adc(0x04);                                                                           /* $8D3C adc */
     TAY();                                                                               /* $8D3E tay */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $8D3F lda */
-    if (R.a == 0) {                                                                      /* $8D41 bne */
-    } else {
+    if (R.a != 0) {                                                                      /* $8D41 bne */
       DEY();                                                                             /* $8D46 dey */
       LDA(rd(Tmp02));                                                                    /* $8D47 lda */
       STA((uint16_t)(rd16zp(Tmp00) + R.y));                                              /* $8D49 sta */
@@ -2768,8 +2767,7 @@ void Sub_B1_AC8A(void) {  /* $AC8A bank 1 */
   LDA(rd(0x04AA));                                                                       /* $AC8A lda */
   AND(0x7F);                                                                             /* $AC8D and */
   cmp8(R.a, 0x03);                                                                       /* $AC8F cmp */
-  if (R.a == 0x03) {                                                                     /* $AC91 bne */
-  } else {
+  if (R.a != 0x03) {                                                                     /* $AC91 bne */
     LDA(rd(0x04AB));                                                                     /* $AC96 lda */
     cmp8(R.a, 0x03);                                                                     /* $AC99 cmp */
     if (R.a != 0x03) {                                                                   /* $AC9B beq */
@@ -2881,8 +2879,7 @@ void Sub_B1_AD82(void) {  /* $AD82 bank 1 */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $ADA9 lda */
     AND(0xC0);                                                                           /* $ADAB and */
     cmp8(R.a, 0xC0);                                                                     /* $ADAD cmp */
-    if (R.a != 0xC0) {                                                                   /* $ADAF beq */
-    } else {
+    if (R.a == 0xC0) {                                                                   /* $ADAF beq */
       LDY(0x0F);                                                                         /* $ADB4 ldy */
       LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $ADB6 lda */
       if (R.a == 0) {                                                                    /* $ADB8 bne */
