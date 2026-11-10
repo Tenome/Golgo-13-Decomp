@@ -3148,7 +3148,7 @@ void SoundDriver(void) {  /* $A000 bank 5 */
     LDA(rd(0xF4));                                                                       /* $A03A lda */
     cmp8(R.a, 0x08);                                                                     /* $A03C cmp */
   } while (R.a != 0x08);                                                                 /* $A03E bne */
-  push16(0xA042); Sub_B5_A3C7(); UNW(); ret_check(0xA042);                               /* $A040 jsr */
+  push16(0xA042); WriteApuFromShadow(); UNW(); ret_check(0xA042);                        /* $A040 jsr */
   RTS_RET(sp0);                                                                          /* $A043 rts */
 }
 
@@ -3384,7 +3384,7 @@ void Sub_B5_A1A3(void) {  /* $A1A3 bank 5 */
   LSR_A();                                                                               /* $A1A8 lsr */
   LSR_A();                                                                               /* $A1A9 lsr */
   LSR_A();                                                                               /* $A1AA lsr */
-  push16(0xA1AD); Sub_B5_A464(); return;                                                 /* $A1AB jsr */
+  push16(0xA1AD); InlineJumpTable(); return;                                             /* $A1AB jsr */
 }
 
 void SoundCmdA_00(void) {  /* $A1BE bank 5 */
@@ -3494,7 +3494,7 @@ void SoundCmdA_07(void) {  /* $A237 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x06));                                                                         /* $A237 lda */
   AND(0x07);                                                                             /* $A239 and */
-  push16(0xA23D); Sub_B5_A464(); return;                                                 /* $A23B jsr */
+  push16(0xA23D); InlineJumpTable(); return;                                             /* $A23B jsr */
 }
 
 void SoundCmdB_00(void) {  /* $A24E bank 5 */
@@ -3752,7 +3752,7 @@ void Sub_B5_A363(void) {  /* $A363 bank 5 */
   RTS_RET(sp0);                                                                          /* $A3C6 rts */
 }
 
-void Sub_B5_A3C7(void) {  /* $A3C7 bank 5 */
+void WriteApuFromShadow(void) {  /* $A3C7 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0xF5));                                                                         /* $A3C7 lda */
   LSR_A();                                                                               /* $A3C9 lsr */
@@ -3809,7 +3809,7 @@ void Sub_B5_A402(void) {  /* $A402 bank 5 */
   RTS_RET(sp0);                                                                          /* $A41F rts */
 }
 
-void Sub_B5_A464(void) {  /* $A464 bank 5 */
+void InlineJumpTable(void) {  /* $A464 bank 5 */
   uint8_t sp0 = R.sp;
   ASL_A();                                                                               /* $A464 asl */
   TAY();                                                                                 /* $A465 tay */

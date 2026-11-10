@@ -661,9 +661,9 @@ static int bank5(uint16_t a) {
     case 0xA32C: SoundCmdB_06(); return 1;
     case 0xA357: Sub_B5_A357(); return 1;
     case 0xA363: Sub_B5_A363(); return 1;
-    case 0xA3C7: Sub_B5_A3C7(); return 1;
+    case 0xA3C7: WriteApuFromShadow(); return 1;
     case 0xA402: Sub_B5_A402(); return 1;
-    case 0xA464: Sub_B5_A464(); return 1;
+    case 0xA464: InlineJumpTable(); return 1;
     }
     return 0;
 }

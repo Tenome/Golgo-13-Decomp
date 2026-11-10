@@ -324,5 +324,7 @@
  "E17D": "LoadTransitionFromList",
  "F29D": "ProbeFloorTile",
  "F2DA": "SetupFloorProbeSideView",
- "F430": "SetTopDownPlayerOam"
+ "F430": "SetTopDownPlayerOam",
+ "5:A3C7": "WriteApuFromShadow",
+ "5:A464": "InlineJumpTable"
 }

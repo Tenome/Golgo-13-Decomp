@@ -4599,7 +4599,7 @@
      }
     },
     {
-     "name": "Sub_B5_A3C7",
+     "name": "WriteApuFromShadow",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4615,7 +4615,7 @@
      }
     },
     {
-     "name": "Sub_B5_A464",
+     "name": "InlineJumpTable",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {

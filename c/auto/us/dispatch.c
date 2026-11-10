@@ -635,7 +635,7 @@ static int bank5(uint16_t a) {
     case 0x9082: RunSoundDriverBank5Timed(); return 1;
     case 0x90A0: InitDmcAndJoypad2(); return 1;
     case 0x90B3: Sub_B5_90B3(); return 1;
-    case 0x90B9: Sub_B5_90B9(); return 1;
+    case 0x90B9: InitScenePpuState(); return 1;
     case 0x90C8: Sub_B5_90C8(); return 1;
     case 0x9206: Sub_B5_9206(); return 1;
     case 0x9237: Sub_B5_9237(); return 1;
@@ -645,10 +645,10 @@ static int bank5(uint16_t a) {
     case 0x976B: Sub_B5_976B(); return 1;
     case 0x9848: Sub_B5_9848(); return 1;
     case 0x986D: Sub_B5_986D(); return 1;
-    case 0x9895: Sub_B5_9895(); return 1;
+    case 0x9895: DrawSpriteListToOam(); return 1;
     case 0x9974: Sub_B5_9974(); return 1;
     case 0x997B: Sub_B5_997B(); return 1;
-    case 0x9AE5: Sub_B5_9AE5(); return 1;
+    case 0x9AE5: OrSpriteAttributes(); return 1;
     case 0xA000: SoundDriver(); return 1;
     case 0xA044: Sub_B5_A044(); return 1;
     case 0xA0C9: Sub_B5_A0C9(); return 1;
@@ -670,9 +670,9 @@ static int bank5(uint16_t a) {
     case 0xA32C: SoundCmdB_06(); return 1;
     case 0xA357: Sub_B5_A357(); return 1;
     case 0xA363: Sub_B5_A363(); return 1;
-    case 0xA3C7: Sub_B5_A3C7(); return 1;
+    case 0xA3C7: WriteApuFromShadow(); return 1;
     case 0xA402: Sub_B5_A402(); return 1;
-    case 0xA464: Sub_B5_A464(); return 1;
+    case 0xA464: InlineJumpTable(); return 1;
     }
     return 0;
 }

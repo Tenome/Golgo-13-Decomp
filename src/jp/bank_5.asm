@@ -2540,7 +2540,7 @@ Loc_B5_A031:
   lda z:$F4                    ; $A03A
   cmp #$08                     ; $A03C
   bne Loc_B5_A019              ; $A03E
-  jsr Sub_B5_A3C7              ; $A040
+  jsr WriteApuFromShadow       ; $A040
   rts                          ; $A043
 Sub_B5_A044:
   ldx z:Tmp00                  ; $A044
@@ -2756,7 +2756,7 @@ Sub_B5_A1A3:
   lsr a                        ; $A1A8
   lsr a                        ; $A1A9
   lsr a                        ; $A1AA
-  jsr Sub_B5_A464              ; $A1AB
+  jsr InlineJumpTable          ; $A1AB
   .addr SoundCmdA_00, SoundCmdA_00, SoundCmdA_02, SoundCmdA_02, SoundCmdA_04, SoundCmdA_05, SoundCmdA_06, SoundCmdA_07  ; $A1AE pointer table
 SoundCmdA_00:
   lda z:$06                    ; $A1BE
@@ -2836,7 +2836,7 @@ SoundCmdA_06:
 SoundCmdA_07:
   lda z:$06                    ; $A237
   and #$07                     ; $A239
-  jsr Sub_B5_A464              ; $A23B
+  jsr InlineJumpTable          ; $A23B
   .addr SoundCmdB_00, SoundCmdB_01, SoundCmdB_02, SoundCmdB_03, SoundCmdB_04, SoundCmdB_05, SoundCmdB_06, SoundCmdB_06  ; $A23E pointer table
 SoundCmdB_00:
   ldy z:Tmp01                  ; $A24E
@@ -3063,7 +3063,7 @@ Loc_B5_A3A4:
   sta $06D0,x                  ; $A3C3
 Loc_B5_A3C6:
   rts                          ; $A3C6
-Sub_B5_A3C7:
+WriteApuFromShadow:
   lda z:$F5                    ; $A3C7
   lsr a                        ; $A3C9
   lsr a                        ; $A3CA
@@ -3128,7 +3128,7 @@ Data_B5_A454:
   .incbin "prg_bank_5.bin", $2454, $1  ; $A454
 Data_B5_A455:
   .incbin "prg_bank_5.bin", $2455, $F  ; $A455
-Sub_B5_A464:
+InlineJumpTable:
   asl a                        ; $A464
   tay                          ; $A465
   pla                          ; $A466

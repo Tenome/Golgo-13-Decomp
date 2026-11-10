@@ -6459,7 +6459,7 @@
    ]
   ]
  },
- "Sub_B5_A3C7": {
+ "WriteApuFromShadow": {
   "addr": 41927,
   "bank": 5,
   "instrs": 30,
@@ -6485,7 +6485,7 @@
    ]
   ]
  },
- "Sub_B5_A464": {
+ "InlineJumpTable": {
   "addr": 42084,
   "bank": 5,
   "instrs": 13,

@@ -511,9 +511,9 @@ Bank5Scene_39:
   inc SceneState               ; $84BB
   lda #$00                     ; $84BE
   tax                          ; $84C0
-  jsr Sub_B5_9895              ; $84C1
+  jsr DrawSpriteListToOam      ; $84C1
   lda #$01                     ; $84C4
-  jsr Sub_B5_9895              ; $84C6
+  jsr DrawSpriteListToOam      ; $84C6
 Loc_B5_84C9:
   rts                          ; $84C9
 Bank5Scene_3A:
@@ -560,7 +560,7 @@ Bank5Scene_46:
   jsr HideAllSpritesB5         ; $8516
   lda #$05                     ; $8519
   ldx #$00                     ; $851B
-  jmp Sub_B5_9895              ; $851D
+  jmp DrawSpriteListToOam      ; $851D
 Bank5Scene_47:
   inc SceneState               ; $8520
   jsr EnableRendering          ; $8523
@@ -578,7 +578,7 @@ Bank5Scene_48:
   inc SceneState               ; $853C
   lda #$06                     ; $853F
   ldx #$00                     ; $8541
-  jsr Sub_B5_9895              ; $8543
+  jsr DrawSpriteListToOam      ; $8543
   lda #$1D                     ; $8546
   jmp QueueSound               ; $8548
 Loc_B5_854B:
@@ -603,7 +603,7 @@ Bank5Scene_4A:
   sta SceneTimer               ; $8573
   jsr HideAllSpritesB5         ; $8576
   lda #$07                     ; $8579
-  jmp Sub_B5_9895              ; $857B
+  jmp DrawSpriteListToOam      ; $857B
 Bank5Scene_4B:
   dec SceneTimer               ; $857E
   bne Loc_B5_854B              ; $8581
@@ -1093,7 +1093,7 @@ Loc_B5_899E:
   sta $053E                    ; $89C8
   lda #$1E                     ; $89CB
   sta SceneTimer               ; $89CD
-  jmp Sub_B5_90B9              ; $89D0
+  jmp InitScenePpuState        ; $89D0
   .incbin "prg_bank_5.bin", $09D3, $2  ; $89D3
 Data_B5_89D5:
   .incbin "prg_bank_5.bin", $09D5, $4  ; $89D5
@@ -1667,7 +1667,7 @@ InitDmcAndJoypad2:
 Sub_B5_90B3:
   jsr FillPaletteBufferBlack   ; $90B3
   jsr HideAllSpritesB5         ; $90B6
-Sub_B5_90B9:
+InitScenePpuState:
   lda #$30                     ; $90B9
   sta z:PpuCtrlShadow          ; $90BB
   lda #$06                     ; $90BD
@@ -1738,7 +1738,7 @@ Sub_B5_9206:
   sta $0151                    ; $922C
   lda #$20                     ; $922F
   sta $0153                    ; $9231
-  jmp Sub_B5_90B9              ; $9234
+  jmp InitScenePpuState        ; $9234
 Sub_B5_9237:
   lda $0540                    ; $9237
   asl a                        ; $923A
@@ -2061,12 +2061,12 @@ Sub_B5_9848:
 Loc_B5_9867:
   tya                          ; $9867
   ldx #$C0                     ; $9868
-  jmp Sub_B5_9895              ; $986A
+  jmp DrawSpriteListToOam      ; $986A
 Sub_B5_986D:
   jsr HideAllSpritesB5         ; $986D
   lda #$00                     ; $9870
   tax                          ; $9872
-  jsr Sub_B5_9895              ; $9873
+  jsr DrawSpriteListToOam      ; $9873
   lda $0505                    ; $9876
   lsr a                        ; $9879
   lsr a                        ; $987A
@@ -2078,7 +2078,7 @@ Loc_B5_9880:
   bcc Loc_B5_9886              ; $9882
   lda #$04                     ; $9884
 Loc_B5_9886:
-  jsr Sub_B5_9895              ; $9886
+  jsr DrawSpriteListToOam      ; $9886
   ldy $0505                    ; $9889
   iny                          ; $988C
   bpl Loc_B5_9891              ; $988D
@@ -2086,7 +2086,7 @@ Loc_B5_9886:
 Loc_B5_9891:
   sty $0505                    ; $9891
   rts                          ; $9894
-Sub_B5_9895:
+DrawSpriteListToOam:
   asl a                        ; $9895
   tay                          ; $9896
   lda Data_B5_98D5,y           ; $9897
@@ -2223,7 +2223,7 @@ Loc_B5_9A9D:
   sta $0207                    ; $9AAD
   ldx #$01                     ; $9AB0
   ldy #$03                     ; $9AB2
-  jsr Sub_B5_9AE5              ; $9AB4
+  jsr OrSpriteAttributes       ; $9AB4
 Loc_B5_9AB7:
   ldx #$2F                     ; $9AB7
   ldy #$1F                     ; $9AB9
@@ -2238,7 +2238,7 @@ Loc_B5_9ABB:
   sta z:Tmp00                  ; $9AC9
   ldx #$11                     ; $9ACB
   ldy #$08                     ; $9ACD
-  jsr Sub_B5_9AE5              ; $9ACF
+  jsr OrSpriteAttributes       ; $9ACF
   inc $0512                    ; $9AD2
   lda #$3C                     ; $9AD5
   sta SceneTimer               ; $9AD7
@@ -2247,7 +2247,7 @@ Loc_B5_9ABB:
   ora #$10                     ; $9ADE
   sta z:MmcChr0Shadow          ; $9AE0
   jmp MmcWriteChr0             ; $9AE2
-Sub_B5_9AE5:
+OrSpriteAttributes:
   lda z:Tmp00                  ; $9AE5
   ora OamBuffer,x              ; $9AE7
   sta OamBuffer,x              ; $9AEA
@@ -2256,7 +2256,7 @@ Sub_B5_9AE5:
   inx                          ; $9AEF
   inx                          ; $9AF0
   dey                          ; $9AF1
-  bne Sub_B5_9AE5              ; $9AF2
+  bne OrSpriteAttributes       ; $9AF2
   rts                          ; $9AF4
 Data_B5_9AF5:
   .incbin "prg_bank_5.bin", $1AF5, $6  ; $9AF5
@@ -2287,7 +2287,7 @@ Loc_B5_9D0C:
   jsr FillNametableWithA       ; $9D22
   jsr ProcessPpuUpdateList     ; $9D25
   .addr Data_B5_9D2D  ; $9D28 inline pointer (data after a JSR)
-  jmp Sub_B5_90B9              ; $9D2A
+  jmp InitScenePpuState        ; $9D2A
 Data_B5_9D2D:
   .incbin "prg_bank_5.bin", $1D2D, $1D  ; $9D2D
 Loc_B5_9D4A:
@@ -2307,7 +2307,7 @@ Loc_B5_9D4A:
   sta $014F                    ; $9D6A
   lda #$78                     ; $9D6D
   sta SceneTimer               ; $9D6F
-  jsr Sub_B5_90B9              ; $9D72
+  jsr InitScenePpuState        ; $9D72
   lda #$0A                     ; $9D75
   jmp QueueSound               ; $9D77
 Data_B5_9D7A:
@@ -2327,7 +2327,7 @@ Loc_B5_9D88:
   .addr Data_B5_9DAE  ; $9DA4 inline pointer (data after a JSR)
   lda #$20                     ; $9DA6
   sta $014F                    ; $9DA8
-  jmp Sub_B5_90B9              ; $9DAB
+  jmp InitScenePpuState        ; $9DAB
 Data_B5_9DAE:
   .incbin "prg_bank_5.bin", $1DAE, $D  ; $9DAE
 Loc_B5_9DBB:
@@ -2354,7 +2354,7 @@ Loc_B5_9DBB:
   sta $0528                    ; $9DEC
   lda #$02                     ; $9DEF
   sta $0529                    ; $9DF1
-  jsr Sub_B5_90B9              ; $9DF4
+  jsr InitScenePpuState        ; $9DF4
   lda #$0B                     ; $9DF7
   jsr QueueSound               ; $9DF9
   lda #$29                     ; $9DFC
@@ -2397,7 +2397,7 @@ Loc_B5_A031:
   lda z:$F4                    ; $A03A
   cmp #$08                     ; $A03C
   bne Loc_B5_A019              ; $A03E
-  jsr Sub_B5_A3C7              ; $A040
+  jsr WriteApuFromShadow       ; $A040
   rts                          ; $A043
 Sub_B5_A044:
   ldx z:Tmp00                  ; $A044
@@ -2613,7 +2613,7 @@ Sub_B5_A1A3:
   lsr a                        ; $A1A8
   lsr a                        ; $A1A9
   lsr a                        ; $A1AA
-  jsr Sub_B5_A464              ; $A1AB
+  jsr InlineJumpTable          ; $A1AB
   .addr SoundCmdA_00, SoundCmdA_00, SoundCmdA_02, SoundCmdA_02, SoundCmdA_04, SoundCmdA_05, SoundCmdA_06, SoundCmdA_07  ; $A1AE pointer table
 SoundCmdA_00:
   lda z:$06                    ; $A1BE
@@ -2693,7 +2693,7 @@ SoundCmdA_06:
 SoundCmdA_07:
   lda z:$06                    ; $A237
   and #$07                     ; $A239
-  jsr Sub_B5_A464              ; $A23B
+  jsr InlineJumpTable          ; $A23B
   .addr SoundCmdB_00, SoundCmdB_01, SoundCmdB_02, SoundCmdB_03, SoundCmdB_04, SoundCmdB_05, SoundCmdB_06, SoundCmdB_06  ; $A23E pointer table
 SoundCmdB_00:
   ldy z:Tmp01                  ; $A24E
@@ -2920,7 +2920,7 @@ Loc_B5_A3A4:
   sta $06D0,x                  ; $A3C3
 Loc_B5_A3C6:
   rts                          ; $A3C6
-Sub_B5_A3C7:
+WriteApuFromShadow:
   lda z:$F5                    ; $A3C7
   lsr a                        ; $A3C9
   lsr a                        ; $A3CA
@@ -2985,7 +2985,7 @@ Data_B5_A454:
   .incbin "prg_bank_5.bin", $2454, $1  ; $A454
 Data_B5_A455:
   .incbin "prg_bank_5.bin", $2455, $F  ; $A455
-Sub_B5_A464:
+InlineJumpTable:
   asl a                        ; $A464
   tay                          ; $A465
   pla                          ; $A466

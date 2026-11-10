@@ -4175,7 +4175,7 @@
      }
     },
     {
-     "name": "Sub_B5_90B9",
+     "name": "InitScenePpuState",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4287,7 +4287,7 @@
      }
     },
     {
-     "name": "Sub_B5_9895",
+     "name": "DrawSpriteListToOam",
      "size": "64",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4327,7 +4327,7 @@
      }
     },
     {
-     "name": "Sub_B5_9AE5",
+     "name": "OrSpriteAttributes",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4567,7 +4567,7 @@
      }
     },
     {
-     "name": "Sub_B5_A3C7",
+     "name": "WriteApuFromShadow",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4583,7 +4583,7 @@
      }
     },
     {
-     "name": "Sub_B5_A464",
+     "name": "InlineJumpTable",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {

@@ -546,7 +546,6 @@
 "Sub_B5_A1A3",
 "Sub_B5_A357",
 "Sub_B5_A363",
-"Sub_B5_A3C7",
 "Sub_B5_A402",
 "Sub_B6_801F",
 "Sub_B6_8055",
@@ -654,7 +653,8 @@
 "UploadPaletteIfDirty",
 "UploadPaletteIgnoringPad",
 "UseAmmo",
-"WaitSprite0"
+"WaitSprite0",
+"WriteApuFromShadow"
 ],
 "lifted": [
 "AdjustAmmo",
@@ -879,6 +879,7 @@
 "HideSpritesUntilE0",
 "InitHudSprites",
 "InitLevel",
+"InlineJumpTable",
 "JumpNmiGameStateDispatch",
 "LoadBehaviorTableA",
 "LoadBehaviorTableB",
@@ -1247,9 +1248,7 @@
 "Sub_B5_A1A3",
 "Sub_B5_A357",
 "Sub_B5_A363",
-"Sub_B5_A3C7",
 "Sub_B5_A402",
-"Sub_B5_A464",
 "Sub_B6_801F",
 "Sub_B6_8055",
 "Sub_B6_8080",
@@ -1357,6 +1356,7 @@
 "UploadPaletteIfDirty",
 "UploadPaletteIgnoringPad",
 "UseAmmo",
-"WaitSprite0"
+"WaitSprite0",
+"WriteApuFromShadow"
 ]
 }
