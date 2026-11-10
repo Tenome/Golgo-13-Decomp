@@ -44,7 +44,7 @@ void Sub_B1_802F(void) {  /* $802F bank 1 */
   call_addr(rd16bug(0x0000)); return;                                                    /* $8042 jmp */
 }
 
-void Sub_B1_804D(void) {  /* $804D bank 1 */
+void Bank1Tbl8045_00(void) {  /* $804D bank 1 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $804D inc */
   push16(0x8052); Sub_B1_85A3(); UNW(); ret_check(0x8052);                               /* $8050 jsr */
@@ -57,14 +57,14 @@ void Sub_B1_8053(void) {  /* $8053 bank 1 */
   { SetPpuMask(); return; }                                                              /* $8055 jmp */
 }
 
-void Sub_B1_8058(void) {  /* $8058 bank 1 */
+void Bank1Tbl8045_01(void) {  /* $8058 bank 1 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8058 inc */
   push16(0x805D); Sub_B1_83D8(); UNW(); ret_check(0x805D);                               /* $805B jsr */
   { ReadJoypads(); return; }                                                             /* $805E jmp */
 }
 
-void Sub_B1_8061(void) {  /* $8061 bank 1 */
+void Bank1Tbl8045_02(void) {  /* $8061 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x8063); Sub_B1_814A(); UNW(); ret_check(0x8063);                               /* $8061 jsr */
   LDA(0x1E);                                                                             /* $8064 lda */
@@ -104,7 +104,7 @@ L809C: BUDGET();
   { MmcWriteChr1(); return; }                                                            /* $80A6 jmp */
 }
 
-void Sub_B1_80A9(void) {  /* $80A9 bank 1 */
+void Bank1Tbl8045_03(void) {  /* $80A9 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x80AB); Sub_B1_8053(); UNW(); ret_check(0x80AB);                               /* $80A9 jsr */
   push16(0x80AE); FillPaletteBlack(); UNW(); ret_check(0x80AE);                          /* $80AC jsr */
@@ -619,7 +619,7 @@ L8DCE: BUDGET();
   RTS_RET(sp0);                                                                          /* $8DCE rts */
 }
 
-void Sub_B1_8DFF(void) {  /* $8DFF bank 1 */
+void Bank1State_01(void) {  /* $8DFF bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x0C);                                                                             /* $8DFF ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8E01 lda */
@@ -803,7 +803,7 @@ L8F51: BUDGET();
   RTS_RET(sp0);                                                                          /* $8F58 rts */
 }
 
-void Sub_B1_8F59(void) {  /* $8F59 bank 1 */
+void Bank1State_02(void) {  /* $8F59 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x8F5B); Sub_B1_8F8C(); UNW(); ret_check(0x8F5B);                               /* $8F59 jsr */
   LDY(0x08);                                                                             /* $8F5C ldy */
@@ -920,7 +920,7 @@ void Sub_B1_8FDE(void) {  /* $8FDE bank 1 */
   RTS_RET(sp0);                                                                          /* $9009 rts */
 }
 
-void Sub_B1_90A6(void) {  /* $90A6 bank 1 */
+void Bank1State_03(void) {  /* $90A6 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x90A8); Sub_B1_90C6(); UNW(); ret_check(0x90A8);                               /* $90A6 jsr */
   LDY(0x08);                                                                             /* $90A9 ldy */
@@ -954,7 +954,7 @@ void Sub_B1_90C6(void) {  /* $90C6 bank 1 */
   RTS_RET(sp0);                                                                          /* $90D8 rts */
 }
 
-void Sub_B1_9231(void) {  /* $9231 bank 1 */
+void Bank1State_00(void) {  /* $9231 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x9233); Sub_B1_9260(); UNW(); ret_check(0x9233);                               /* $9231 jsr */
   LDY(0x08);                                                                             /* $9234 ldy */
@@ -1078,7 +1078,7 @@ L92FE: BUDGET();
   RTS_RET(sp0);                                                                          /* $92FE rts */
 }
 
-void Sub_B1_9360(void) {  /* $9360 bank 1 */
+void Bank1State_04(void) {  /* $9360 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x9362); Sub_B1_93B8(); UNW(); ret_check(0x9362);                               /* $9360 jsr */
   LDY(0x07);                                                                             /* $9363 ldy */
@@ -1308,7 +1308,7 @@ L94DE: BUDGET();
   RTS_RET(sp0);                                                                          /* $94E7 rts */
 }
 
-void Sub_B1_9583(void) {  /* $9583 bank 1 */
+void Bank1State_05(void) {  /* $9583 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x9585); Sub_B1_95E6(); UNW(); ret_check(0x9585);                               /* $9583 jsr */
   LDY(0x07);                                                                             /* $9586 ldy */
@@ -1562,7 +1562,7 @@ void Sub_B1_96F0(void) {  /* $96F0 bank 1 */
   RTS_RET(sp0);                                                                          /* $970B rts */
 }
 
-void Sub_B1_97B7(void) {  /* $97B7 bank 1 */
+void Bank1State_06(void) {  /* $97B7 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x97B9); Sub_B1_9816(); UNW(); ret_check(0x97B9);                               /* $97B7 jsr */
   LDY(0x07);                                                                             /* $97BA ldy */
@@ -1762,7 +1762,7 @@ L9909: BUDGET();
   RTS_RET(sp0);                                                                          /* $9909 rts */
 }
 
-void Sub_B1_99E0(void) {  /* $99E0 bank 1 */
+void Bank1State_07(void) {  /* $99E0 bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x07);                                                                             /* $99E0 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $99E2 lda */
@@ -2013,7 +2013,7 @@ L9B80: BUDGET();
   RTS_RET(sp0);                                                                          /* $9B80 rts */
 }
 
-void Sub_B1_9C47(void) {  /* $9C47 bank 1 */
+void Bank1State_08(void) {  /* $9C47 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x9C49); Sub_B1_9C68(); UNW(); ret_check(0x9C49);                               /* $9C47 jsr */
   LDY(0x08);                                                                             /* $9C4A ldy */
@@ -2101,7 +2101,7 @@ L9CD3: BUDGET();
   RTS_RET(sp0);                                                                          /* $9CD3 rts */
 }
 
-void Sub_B1_9DB9(void) {  /* $9DB9 bank 1 */
+void Bank1State_09(void) {  /* $9DB9 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x9DBB); Sub_B1_9DEE(); UNW(); ret_check(0x9DBB);                               /* $9DB9 jsr */
   LDY(0x00);                                                                             /* $9DBC ldy */
@@ -2605,7 +2605,7 @@ LAB9C: BUDGET();
   RTS_RET(sp0);                                                                          /* $AB9C rts */
 }
 
-void Sub_B1_ABAB(void) {  /* $ABAB bank 1 */
+void Bank1ObjAnim_00(void) {  /* $ABAB bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x0D);                                                                             /* $ABAB ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $ABAD lda */
@@ -2615,19 +2615,19 @@ void Sub_B1_ABAB(void) {  /* $ABAB bank 1 */
   RTS_RET(sp0);                                                                          /* $ABB8 rts */
 }
 
-void Sub_B1_ABB9(void) {  /* $ABB9 bank 1 */
+void Bank1ObjAnim_01(void) {  /* $ABB9 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0xABBB); Sub_B1_ABE0(); UNW(); ret_check(0xABBB);                               /* $ABB9 jsr */
   RTS_RET(sp0);                                                                          /* $ABBC rts */
 }
 
-void Sub_B1_ABBD(void) {  /* $ABBD bank 1 */
+void Bank1ObjAnim_02(void) {  /* $ABBD bank 1 */
   uint8_t sp0 = R.sp;
   push16(0xABBF); Sub_B1_AC5B(); UNW(); ret_check(0xABBF);                               /* $ABBD jsr */
   RTS_RET(sp0);                                                                          /* $ABC0 rts */
 }
 
-void Sub_B1_ABC1(void) {  /* $ABC1 bank 1 */
+void Bank1ObjAnim_03(void) {  /* $ABC1 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0xABC3); Sub_B1_AFC6(); UNW(); ret_check(0xABC3);                               /* $ABC1 jsr */
   LDA(rd(0x04AB));                                                                       /* $ABC4 lda */
@@ -2637,7 +2637,7 @@ void Sub_B1_ABC1(void) {  /* $ABC1 bank 1 */
   RTS_RET(sp0);                                                                          /* $ABCC rts */
 }
 
-void Sub_B1_ABCD(void) {  /* $ABCD bank 1 */
+void Bank1ObjAnim_04(void) {  /* $ABCD bank 1 */
   uint8_t sp0 = R.sp;
   push16(0xABCF); Sub_B1_AFC6(); UNW(); ret_check(0xABCF);                               /* $ABCD jsr */
   RTS_RET(sp0);                                                                          /* $ABD0 rts */

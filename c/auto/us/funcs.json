@@ -27,7 +27,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_8049": {
+ "Bank1Title_00": {
   "addr": 32841,
   "bank": 1,
   "instrs": 2,
@@ -41,21 +41,21 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_8054": {
+ "Bank1Title_01": {
   "addr": 32852,
   "bank": 1,
   "instrs": 3,
   "ok": true,
   "reason": null
  },
- "Sub_B1_805D": {
+ "Bank1Title_02": {
   "addr": 32861,
   "bank": 1,
   "instrs": 31,
   "ok": true,
   "reason": null
  },
- "Sub_B1_80A5": {
+ "Bank1Title_03": {
   "addr": 32933,
   "bank": 1,
   "instrs": 16,
@@ -153,7 +153,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_8DFF": {
+ "Bank1State_01": {
   "addr": 36351,
   "bank": 1,
   "instrs": 68,
@@ -174,7 +174,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_8F59": {
+ "Bank1State_02": {
   "addr": 36697,
   "bank": 1,
   "instrs": 13,
@@ -209,7 +209,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_90A6": {
+ "Bank1State_03": {
   "addr": 37030,
   "bank": 1,
   "instrs": 13,
@@ -223,7 +223,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_9231": {
+ "Bank1State_00": {
   "addr": 37425,
   "bank": 1,
   "instrs": 21,
@@ -251,7 +251,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_9360": {
+ "Bank1State_04": {
   "addr": 37728,
   "bank": 1,
   "instrs": 40,
@@ -300,7 +300,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_9583": {
+ "Bank1State_05": {
   "addr": 38275,
   "bank": 1,
   "instrs": 45,
@@ -363,7 +363,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_97B7": {
+ "Bank1State_06": {
   "addr": 38839,
   "bank": 1,
   "instrs": 40,
@@ -398,7 +398,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_99E0": {
+ "Bank1State_07": {
   "addr": 39392,
   "bank": 1,
   "instrs": 34,
@@ -440,7 +440,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_9C47": {
+ "Bank1State_08": {
   "addr": 40007,
   "bank": 1,
   "instrs": 13,
@@ -468,7 +468,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_9DB9": {
+ "Bank1State_09": {
   "addr": 40377,
   "bank": 1,
   "instrs": 22,
@@ -587,35 +587,35 @@
   "ok": true,
   "reason": null
  },
- "Sub_B1_ABAB": {
+ "Bank1ObjAnim_00": {
   "addr": 43947,
   "bank": 1,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B1_ABB9": {
+ "Bank1ObjAnim_01": {
   "addr": 43961,
   "bank": 1,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B1_ABBD": {
+ "Bank1ObjAnim_02": {
   "addr": 43965,
   "bank": 1,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B1_ABC1": {
+ "Bank1ObjAnim_03": {
   "addr": 43969,
   "bank": 1,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B1_ABCD": {
+ "Bank1ObjAnim_04": {
   "addr": 43981,
   "bank": 1,
   "instrs": 2,
@@ -1224,231 +1224,231 @@
   "ok": true,
   "reason": null
  },
- "Sub_B4_8107": {
+ "Bank4State_00": {
   "addr": 33031,
   "bank": 4,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8112": {
+ "Bank4State_03": {
   "addr": 33042,
   "bank": 4,
   "instrs": 43,
   "ok": true,
   "reason": null
  },
- "Sub_B4_811D": {
+ "Bank4State_01": {
   "addr": 33053,
   "bank": 4,
   "instrs": 43,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8128": {
+ "Bank4State_02": {
   "addr": 33064,
   "bank": 4,
   "instrs": 43,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8133": {
+ "Bank4State_04": {
   "addr": 33075,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8139": {
+ "Bank4State_05": {
   "addr": 33081,
   "bank": 4,
   "instrs": 15,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8165": {
+ "Bank4State_06": {
   "addr": 33125,
   "bank": 4,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8177": {
+ "Bank4State_07": {
   "addr": 33143,
   "bank": 4,
   "instrs": 10,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8188": {
+ "Bank4State_08": {
   "addr": 33160,
   "bank": 4,
   "instrs": 20,
   "ok": true,
   "reason": null
  },
- "Sub_B4_81C1": {
+ "Bank4State_09": {
   "addr": 33217,
   "bank": 4,
   "instrs": 33,
   "ok": true,
   "reason": null
  },
- "Sub_B4_81CC": {
+ "Bank4State_0A": {
   "addr": 33228,
   "bank": 4,
   "instrs": 27,
   "ok": true,
   "reason": null
  },
- "Sub_B4_81F5": {
+ "Bank4State_0B": {
   "addr": 33269,
   "bank": 4,
   "instrs": 65,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8233": {
+ "Bank4State_0C": {
   "addr": 33331,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8239": {
+ "Bank4State_0D": {
   "addr": 33337,
   "bank": 4,
   "instrs": 15,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8260": {
+ "Bank4State_0E": {
   "addr": 33376,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8264": {
+ "Bank4State_0F": {
   "addr": 33380,
   "bank": 4,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B4_826D": {
+ "Bank4State_10": {
   "addr": 33389,
   "bank": 4,
   "instrs": 11,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8284": {
+ "Bank4State_11": {
   "addr": 33412,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_828A": {
+ "Bank4State_12": {
   "addr": 33418,
   "bank": 4,
   "instrs": 11,
   "ok": true,
   "reason": null
  },
- "Sub_B4_830E": {
+ "Bank4State_13": {
   "addr": 33550,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8314": {
+ "Bank4State_14": {
   "addr": 33556,
   "bank": 4,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8326": {
+ "Bank4State_15": {
   "addr": 33574,
   "bank": 4,
   "instrs": 12,
   "ok": true,
   "reason": null
  },
- "Sub_B4_833D": {
+ "Bank4State_16": {
   "addr": 33597,
   "bank": 4,
   "instrs": 17,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8361": {
+ "Bank4State_17": {
   "addr": 33633,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8367": {
+ "Bank4State_18": {
   "addr": 33639,
   "bank": 4,
   "instrs": 13,
   "ok": true,
   "reason": null
  },
- "Sub_B4_838D": {
+ "Bank4State_19": {
   "addr": 33677,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8393": {
+ "Bank4State_1A": {
   "addr": 33683,
   "bank": 4,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8399": {
+ "Bank4State_1B": {
   "addr": 33689,
   "bank": 4,
   "instrs": 12,
   "ok": true,
   "reason": null
  },
- "Sub_B4_83B6": {
+ "Bank4State_1C": {
   "addr": 33718,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_83BC": {
+ "Bank4State_1D": {
   "addr": 33724,
   "bank": 4,
   "instrs": 12,
   "ok": true,
   "reason": null
  },
- "Sub_B4_83DF": {
+ "Bank4State_1E": {
   "addr": 33759,
   "bank": 4,
   "instrs": 21,
   "ok": true,
   "reason": null
  },
- "Sub_B4_841D": {
+ "Bank4State_1F": {
   "addr": 33821,
   "bank": 4,
   "instrs": 12,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8441": {
+ "Bank4State_20": {
   "addr": 33857,
   "bank": 4,
   "instrs": 11,
@@ -1504,98 +1504,98 @@
   "ok": true,
   "reason": null
  },
- "Sub_B4_85D3": {
+ "Bank4StateB_00": {
   "addr": 34259,
   "bank": 4,
   "instrs": 3,
   "ok": true,
   "reason": null
  },
- "Sub_B4_85D8": {
+ "Bank4StateB_01": {
   "addr": 34264,
   "bank": 4,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B4_85DF": {
+ "Bank4StateB_02": {
   "addr": 34271,
   "bank": 4,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B4_85E6": {
+ "Bank4StateB_03": {
   "addr": 34278,
   "bank": 4,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B4_85ED": {
+ "Bank4StateB_04": {
   "addr": 34285,
   "bank": 4,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B4_85F4": {
+ "Bank4StateB_05": {
   "addr": 34292,
   "bank": 4,
   "instrs": 10,
   "ok": true,
   "reason": null
  },
- "Sub_B4_860D": {
+ "Bank4StateB_06": {
   "addr": 34317,
   "bank": 4,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B4_861D": {
+ "Bank4StateB_07": {
   "addr": 34333,
   "bank": 4,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8629": {
+ "Bank4StateB_08": {
   "addr": 34345,
   "bank": 4,
   "instrs": 19,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8657": {
+ "Bank4StateB_09": {
   "addr": 34391,
   "bank": 4,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B4_866A": {
+ "Bank4StateB_0A": {
   "addr": 34410,
   "bank": 4,
   "instrs": 9,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8680": {
+ "Bank4StateB_0B": {
   "addr": 34432,
   "bank": 4,
   "instrs": 22,
   "ok": true,
   "reason": null
  },
- "Sub_B4_86AB": {
+ "Bank4StateB_0C": {
   "addr": 34475,
   "bank": 4,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B4_86B4": {
+ "Bank4StateB_0D": {
   "addr": 34484,
   "bank": 4,
   "instrs": 12,
@@ -1672,42 +1672,42 @@
   "ok": true,
   "reason": null
  },
- "Sub_B4_8E90": {
+ "Bank4StateC_00": {
   "addr": 36496,
   "bank": 4,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8E92": {
+ "Bank4StateC_01": {
   "addr": 36498,
   "bank": 4,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8E9C": {
+ "Bank4StateC_02": {
   "addr": 36508,
   "bank": 4,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8EA8": {
+ "Bank4StateC_06": {
   "addr": 36520,
   "bank": 4,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8EB4": {
+ "Bank4StateC_0A": {
   "addr": 36532,
   "bank": 4,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B4_8EBE": {
+ "Bank4StateC_11": {
   "addr": 36542,
   "bank": 4,
   "instrs": 5,
@@ -2106,7 +2106,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_8139": {
+ "Bank5Scene_00": {
   "addr": 33081,
   "bank": 5,
   "instrs": 7,
@@ -2120,35 +2120,35 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_8153": {
+ "Bank5Scene_01": {
   "addr": 33107,
   "bank": 5,
   "instrs": 8,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8158": {
+ "Bank5Scene_02": {
   "addr": 33112,
   "bank": 5,
   "instrs": 8,
   "ok": true,
   "reason": null
  },
- "Sub_B5_815D": {
+ "Bank5Scene_03": {
   "addr": 33117,
   "bank": 5,
   "instrs": 12,
   "ok": true,
   "reason": null
  },
- "Sub_B5_816B": {
+ "Bank5Scene_04": {
   "addr": 33131,
   "bank": 5,
   "instrs": 21,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8176": {
+ "Bank5Scene_05": {
   "addr": 33142,
   "bank": 5,
   "instrs": 6,
@@ -2162,217 +2162,217 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_818A": {
+ "Bank5Scene_06": {
   "addr": 33162,
   "bank": 5,
   "instrs": 8,
   "ok": true,
   "reason": null
  },
- "Sub_B5_819E": {
+ "Bank5Scene_07": {
   "addr": 33182,
   "bank": 5,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B5_81AC": {
+ "Bank5Scene_08": {
   "addr": 33196,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_81BD": {
+ "Bank5Scene_09": {
   "addr": 33213,
   "bank": 5,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B5_81CB": {
+ "Bank5Scene_0A": {
   "addr": 33227,
   "bank": 5,
   "instrs": 9,
   "ok": true,
   "reason": null
  },
- "Sub_B5_81E2": {
+ "Bank5Scene_0B": {
   "addr": 33250,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_81EB": {
+ "Bank5Scene_0C": {
   "addr": 33259,
   "bank": 5,
   "instrs": 40,
   "ok": true,
   "reason": null
  },
- "Sub_B5_81F6": {
+ "Bank5Scene_0D": {
   "addr": 33270,
   "bank": 5,
   "instrs": 26,
   "ok": true,
   "reason": null
  },
- "Sub_B5_820B": {
+ "Bank5Scene_0E": {
   "addr": 33291,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_821C": {
+ "Bank5Scene_0F": {
   "addr": 33308,
   "bank": 5,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B5_822A": {
+ "Bank5Scene_10": {
   "addr": 33322,
   "bank": 5,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8236": {
+ "Bank5Scene_11": {
   "addr": 33334,
   "bank": 5,
   "instrs": 11,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8253": {
+ "Bank5Scene_12": {
   "addr": 33363,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_825E": {
+ "Bank5Scene_13": {
   "addr": 33374,
   "bank": 5,
   "instrs": 82,
   "ok": true,
   "reason": null
  },
- "Sub_B5_828A": {
+ "Bank5Scene_14": {
   "addr": 33418,
   "bank": 5,
   "instrs": 14,
   "ok": true,
   "reason": null
  },
- "Sub_B5_829D": {
+ "Bank5Scene_15": {
   "addr": 33437,
   "bank": 5,
   "instrs": 17,
   "ok": true,
   "reason": null
  },
- "Sub_B5_82B7": {
+ "Bank5Scene_16": {
   "addr": 33463,
   "bank": 5,
   "instrs": 12,
   "ok": true,
   "reason": null
  },
- "Sub_B5_82C5": {
+ "Bank5Scene_17": {
   "addr": 33477,
   "bank": 5,
   "instrs": 76,
   "ok": true,
   "reason": null
  },
- "Sub_B5_82E0": {
+ "Bank5Scene_18": {
   "addr": 33504,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_82FB": {
+ "Bank5Scene_19": {
   "addr": 33531,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8306": {
+ "Bank5Scene_1A": {
   "addr": 33542,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8311": {
+ "Bank5Scene_1B": {
   "addr": 33553,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8322": {
+ "Bank5Scene_1C": {
   "addr": 33570,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8333": {
+ "Bank5Scene_1D": {
   "addr": 33587,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8344": {
+ "Bank5Scene_1E": {
   "addr": 33604,
   "bank": 5,
   "instrs": 8,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8358": {
+ "Bank5Scene_1F": {
   "addr": 33624,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8361": {
+ "Bank5Scene_20": {
   "addr": 33633,
   "bank": 5,
   "instrs": 24,
   "ok": true,
   "reason": null
  },
- "Sub_B5_836C": {
+ "Bank5Scene_21": {
   "addr": 33644,
   "bank": 5,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B5_837A": {
+ "Bank5Scene_22": {
   "addr": 33658,
   "bank": 5,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8386": {
+ "Bank5Scene_23": {
   "addr": 33670,
   "bank": 5,
   "instrs": 2,
   "ok": true,
   "reason": null
  },
- "Sub_B5_838A": {
+ "Bank5Scene_24": {
   "addr": 33674,
   "bank": 5,
   "instrs": 2,
@@ -2386,42 +2386,42 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_83B3": {
+ "Bank5Scene_25": {
   "addr": 33715,
   "bank": 5,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B5_83C2": {
+ "Bank5Scene_26": {
   "addr": 33730,
   "bank": 5,
   "instrs": 17,
   "ok": true,
   "reason": null
  },
- "Sub_B5_83DB": {
+ "Bank5Scene_27": {
   "addr": 33755,
   "bank": 5,
   "instrs": 22,
   "ok": true,
   "reason": null
  },
- "Sub_B5_83EC": {
+ "Bank5Scene_28": {
   "addr": 33772,
   "bank": 5,
   "instrs": 48,
   "ok": true,
   "reason": null
  },
- "Sub_B5_843C": {
+ "Bank5Scene_29": {
   "addr": 33852,
   "bank": 5,
   "instrs": 26,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8457": {
+ "Bank5Scene_2A": {
   "addr": 33879,
   "bank": 5,
   "instrs": 5,
@@ -2435,245 +2435,245 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_8488": {
+ "Bank5Scene_2B": {
   "addr": 33928,
   "bank": 5,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8496": {
+ "Bank5Scene_2C": {
   "addr": 33942,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_849F": {
+ "Bank5Scene_37": {
   "addr": 33951,
   "bank": 5,
   "instrs": 27,
   "ok": true,
   "reason": null
  },
- "Sub_B5_84A5": {
+ "Bank5Scene_38": {
   "addr": 33957,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_84B0": {
+ "Bank5Scene_39": {
   "addr": 33968,
   "bank": 5,
   "instrs": 11,
   "ok": true,
   "reason": null
  },
- "Sub_B5_84CA": {
+ "Bank5Scene_3A": {
   "addr": 33994,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_84DA": {
+ "Bank5Scene_3B": {
   "addr": 34010,
   "bank": 5,
   "instrs": 10,
   "ok": true,
   "reason": null
  },
- "Sub_B5_84F3": {
+ "Bank5Scene_3C": {
   "addr": 34035,
   "bank": 5,
   "instrs": 16,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8513": {
+ "Bank5Scene_46": {
   "addr": 34067,
   "bank": 5,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8520": {
+ "Bank5Scene_47": {
   "addr": 34080,
   "bank": 5,
   "instrs": 8,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8535": {
+ "Bank5Scene_48": {
   "addr": 34101,
   "bank": 5,
   "instrs": 19,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8554": {
+ "Bank5Scene_49": {
   "addr": 34132,
   "bank": 5,
   "instrs": 17,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8566": {
+ "Bank5Scene_4A": {
   "addr": 34150,
   "bank": 5,
   "instrs": 19,
   "ok": true,
   "reason": null
  },
- "Sub_B5_857E": {
+ "Bank5Scene_4B": {
   "addr": 34174,
   "bank": 5,
   "instrs": 17,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8591": {
+ "Bank5Scene_4C": {
   "addr": 34193,
   "bank": 5,
   "instrs": 20,
   "ok": true,
   "reason": null
  },
- "Sub_B5_85A8": {
+ "Bank5Scene_4D": {
   "addr": 34216,
   "bank": 5,
   "instrs": 14,
   "ok": true,
   "reason": null
  },
- "Sub_B5_85BC": {
+ "Bank5Scene_2D": {
   "addr": 34236,
   "bank": 5,
   "instrs": 35,
   "ok": true,
   "reason": null
  },
- "Sub_B5_85C2": {
+ "Bank5Scene_2E": {
   "addr": 34242,
   "bank": 5,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B5_85D0": {
+ "Bank5Scene_2F": {
   "addr": 34256,
   "bank": 5,
   "instrs": 25,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8608": {
+ "Bank5Scene_4E": {
   "addr": 34312,
   "bank": 5,
   "instrs": 20,
   "ok": true,
   "reason": null
  },
- "Sub_B5_860E": {
+ "Bank5Scene_4F": {
   "addr": 34318,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_861F": {
+ "Bank5Scene_50": {
   "addr": 34335,
   "bank": 5,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B5_862D": {
+ "Bank5Scene_51": {
   "addr": 34349,
   "bank": 5,
   "instrs": 10,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8646": {
+ "Bank5Scene_52": {
   "addr": 34374,
   "bank": 5,
   "instrs": 82,
   "ok": true,
   "reason": null
  },
- "Sub_B5_864C": {
+ "Bank5Scene_53": {
   "addr": 34380,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_865D": {
+ "Bank5Scene_54": {
   "addr": 34397,
   "bank": 5,
   "instrs": 9,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8672": {
+ "Bank5Scene_55": {
   "addr": 34418,
   "bank": 5,
   "instrs": 16,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8678": {
+ "Bank5Scene_56": {
   "addr": 34424,
   "bank": 5,
   "instrs": 9,
   "ok": true,
   "reason": null
  },
- "Sub_B5_868E": {
+ "Bank5Scene_57": {
   "addr": 34446,
   "bank": 5,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B5_869C": {
+ "Bank5Scene_58": {
   "addr": 34460,
   "bank": 5,
   "instrs": 22,
   "ok": true,
   "reason": null
  },
- "Sub_B5_86A2": {
+ "Bank5Scene_59": {
   "addr": 34466,
   "bank": 5,
   "instrs": 10,
   "ok": true,
   "reason": null
  },
- "Sub_B5_86BB": {
+ "Bank5Scene_5A": {
   "addr": 34491,
   "bank": 5,
   "instrs": 7,
   "ok": true,
   "reason": null
  },
- "Sub_B5_86CC": {
+ "Bank5Scene_5B": {
   "addr": 34508,
   "bank": 5,
   "instrs": 14,
   "ok": true,
   "reason": null
  },
- "Sub_B5_86D2": {
+ "Bank5Scene_5C": {
   "addr": 34514,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_86DD": {
+ "Bank5Scene_5D": {
   "addr": 34525,
   "bank": 5,
   "instrs": 5,
@@ -2841,14 +2841,14 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_8B09": {
+ "Bank5SubScene_00": {
   "addr": 35593,
   "bank": 5,
   "instrs": 4,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8B12": {
+ "Bank5SubScene_01": {
   "addr": 35602,
   "bank": 5,
   "instrs": 8,
@@ -2862,7 +2862,7 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_8B29": {
+ "Bank5SubScene_02": {
   "addr": 35625,
   "bank": 5,
   "instrs": 4,
@@ -2876,35 +2876,35 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_8B3F": {
+ "Bank5SubScene_03": {
   "addr": 35647,
   "bank": 5,
   "instrs": 12,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8B67": {
+ "Bank5SubScene_04": {
   "addr": 35687,
   "bank": 5,
   "instrs": 17,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8B92": {
+ "Bank5SubScene_05": {
   "addr": 35730,
   "bank": 5,
   "instrs": 18,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8BCF": {
+ "Bank5SubScene_06": {
   "addr": 35791,
   "bank": 5,
   "instrs": 15,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8BF0": {
+ "Bank5SubScene_07": {
   "addr": 35824,
   "bank": 5,
   "instrs": 13,
@@ -2918,21 +2918,21 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_8C48": {
+ "Bank5SubScene_08": {
   "addr": 35912,
   "bank": 5,
   "instrs": 18,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8C61": {
+ "Bank5SubScene_09": {
   "addr": 35937,
   "bank": 5,
   "instrs": 12,
   "ok": true,
   "reason": null
  },
- "Sub_B5_8C8E": {
+ "Bank5SubScene_0A": {
   "addr": 35982,
   "bank": 5,
   "instrs": 12,
@@ -3177,91 +3177,91 @@
   "ok": true,
   "reason": null
  },
- "Sub_B5_A1BE": {
+ "SoundCmdA_00": {
   "addr": 41406,
   "bank": 5,
   "instrs": 9,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A1CE": {
+ "SoundCmdA_02": {
   "addr": 41422,
   "bank": 5,
   "instrs": 15,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A1EA": {
+ "SoundCmdA_04": {
   "addr": 41450,
   "bank": 5,
   "instrs": 21,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A1FF": {
+ "SoundCmdA_05": {
   "addr": 41471,
   "bank": 5,
   "instrs": 28,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A22E": {
+ "SoundCmdA_06": {
   "addr": 41518,
   "bank": 5,
   "instrs": 5,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A237": {
+ "SoundCmdA_07": {
   "addr": 41527,
   "bank": 5,
   "instrs": 3,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A24E": {
+ "SoundCmdB_00": {
   "addr": 41550,
   "bank": 5,
   "instrs": 17,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A269": {
+ "SoundCmdB_01": {
   "addr": 41577,
   "bank": 5,
   "instrs": 15,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A284": {
+ "SoundCmdB_02": {
   "addr": 41604,
   "bank": 5,
   "instrs": 21,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A2A8": {
+ "SoundCmdB_03": {
   "addr": 41640,
   "bank": 5,
   "instrs": 43,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A2F4": {
+ "SoundCmdB_04": {
   "addr": 41716,
   "bank": 5,
   "instrs": 26,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A321": {
+ "SoundCmdB_05": {
   "addr": 41761,
   "bank": 5,
   "instrs": 6,
   "ok": true,
   "reason": null
  },
- "Sub_B5_A32C": {
+ "SoundCmdB_06": {
   "addr": 41772,
   "bank": 5,
   "instrs": 22,

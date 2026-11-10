@@ -44,9 +44,9 @@ Bank5SceneDispatch:
   sta z:Tmp01                  ; $805C
   jmp ($0000)                  ; $805E
 Data_B5_8061:
-  .addr Sub_B5_8139, Sub_B5_8153, Sub_B5_8158, Sub_B5_815D, Sub_B5_816B, Sub_B5_8176, Sub_B5_818A, Sub_B5_819E, Sub_B5_81AC, Sub_B5_81BD, Sub_B5_81CB, Sub_B5_81E2, Sub_B5_81EB, Sub_B5_81F6, Sub_B5_820B, Sub_B5_821C, Sub_B5_822A, Sub_B5_8236, Sub_B5_8253, Sub_B5_825E, Sub_B5_828A, Sub_B5_829D, Sub_B5_82B7, Sub_B5_82C5, Sub_B5_82E0, Sub_B5_82FB, Sub_B5_8306, Sub_B5_8311, Sub_B5_8322, Sub_B5_8333, Sub_B5_8344, Sub_B5_8358, Sub_B5_8361, Sub_B5_836C, Sub_B5_837A, Sub_B5_8386, Sub_B5_838A, Sub_B5_83B3, Sub_B5_83C2, Sub_B5_83DB, Sub_B5_83EC, Sub_B5_843C, Sub_B5_8457, Sub_B5_8488, Sub_B5_8496, Sub_B5_85BC, Sub_B5_85C2, Sub_B5_85D0, Sub_B5_82FB, Sub_B5_8306, Sub_B5_8311, Sub_B5_8322, Sub_B5_8333, Sub_B5_8344, Sub_B5_8358, Sub_B5_849F, Sub_B5_84A5, Sub_B5_84B0, Sub_B5_84CA, Sub_B5_84DA, Sub_B5_84F3, Sub_B5_8488, Sub_B5_8496, Sub_B5_82FB, Sub_B5_8306, Sub_B5_8311, Sub_B5_8322, Sub_B5_8333, Sub_B5_8344, Sub_B5_8358, Sub_B5_8513, Sub_B5_8520, Sub_B5_8535, Sub_B5_8554, Sub_B5_8566, Sub_B5_857E, Sub_B5_8591, Sub_B5_85A8, Sub_B5_8608, Sub_B5_860E, Sub_B5_861F, Sub_B5_862D, Sub_B5_8646, Sub_B5_864C, Sub_B5_865D, Sub_B5_8672, Sub_B5_8678, Sub_B5_868E, Sub_B5_869C, Sub_B5_86A2, Sub_B5_86BB, Sub_B5_86CC, Sub_B5_86D2, Sub_B5_86DD  ; $8061 pointer table
+  .addr Bank5Scene_00, Bank5Scene_01, Bank5Scene_02, Bank5Scene_03, Bank5Scene_04, Bank5Scene_05, Bank5Scene_06, Bank5Scene_07, Bank5Scene_08, Bank5Scene_09, Bank5Scene_0A, Bank5Scene_0B, Bank5Scene_0C, Bank5Scene_0D, Bank5Scene_0E, Bank5Scene_0F, Bank5Scene_10, Bank5Scene_11, Bank5Scene_12, Bank5Scene_13, Bank5Scene_14, Bank5Scene_15, Bank5Scene_16, Bank5Scene_17, Bank5Scene_18, Bank5Scene_19, Bank5Scene_1A, Bank5Scene_1B, Bank5Scene_1C, Bank5Scene_1D, Bank5Scene_1E, Bank5Scene_1F, Bank5Scene_20, Bank5Scene_21, Bank5Scene_22, Bank5Scene_23, Bank5Scene_24, Bank5Scene_25, Bank5Scene_26, Bank5Scene_27, Bank5Scene_28, Bank5Scene_29, Bank5Scene_2A, Bank5Scene_2B, Bank5Scene_2C, Bank5Scene_2D, Bank5Scene_2E, Bank5Scene_2F, Bank5Scene_19, Bank5Scene_1A, Bank5Scene_1B, Bank5Scene_1C, Bank5Scene_1D, Bank5Scene_1E, Bank5Scene_1F, Bank5Scene_37, Bank5Scene_38, Bank5Scene_39, Bank5Scene_3A, Bank5Scene_3B, Bank5Scene_3C, Bank5Scene_2B, Bank5Scene_2C, Bank5Scene_19, Bank5Scene_1A, Bank5Scene_1B, Bank5Scene_1C, Bank5Scene_1D, Bank5Scene_1E, Bank5Scene_1F, Bank5Scene_46, Bank5Scene_47, Bank5Scene_48, Bank5Scene_49, Bank5Scene_4A, Bank5Scene_4B, Bank5Scene_4C, Bank5Scene_4D, Bank5Scene_4E, Bank5Scene_4F, Bank5Scene_50, Bank5Scene_51, Bank5Scene_52, Bank5Scene_53, Bank5Scene_54, Bank5Scene_55, Bank5Scene_56, Bank5Scene_57, Bank5Scene_58, Bank5Scene_59, Bank5Scene_5A, Bank5Scene_5B, Bank5Scene_5C, Bank5Scene_5D  ; $8061 pointer table
   .incbin "prg_bank_5.bin", $011D, $1C  ; $811D
-Sub_B5_8139:
+Bank5Scene_00:
   lda #$04                     ; $8139
 Loc_B5_813B:
   sta SceneState               ; $813B
@@ -59,13 +59,13 @@ Sub_B5_814C:
   lda z:PpuMaskShadow          ; $814C
   and #$E7                     ; $814E
   jmp SetPpuMask               ; $8150
-Sub_B5_8153:
+Bank5Scene_01:
   lda #$2B                     ; $8153
   jmp Loc_B5_813B              ; $8155
-Sub_B5_8158:
+Bank5Scene_02:
   lda #$3D                     ; $8158
   jmp Loc_B5_813B              ; $815A
-Sub_B5_815D:
+Bank5Scene_03:
   lda #$5F                     ; $815D
   ldx $050F                    ; $815F
   cpx #$33                     ; $8162
@@ -73,12 +73,12 @@ Sub_B5_815D:
   lda #$68                     ; $8166
 Loc_B5_8168:
   jmp Loc_B5_813B              ; $8168
-Sub_B5_816B:
+Bank5Scene_04:
   inc SceneState               ; $816B
   lda #$00                     ; $816E
   sta $012A                    ; $8170
   jmp Loc_B5_8AAB              ; $8173
-Sub_B5_8176:
+Bank5Scene_05:
   dec SceneTimer               ; $8176
   bne Loc_B5_8189              ; $8179
   inc SceneState               ; $817B
@@ -90,7 +90,7 @@ Sub_B5_8183:
   sta z:PpuMaskShadow          ; $8187
 Loc_B5_8189:
   rts                          ; $8189
-Sub_B5_818A:
+Bank5Scene_06:
   jsr Sub_B5_9237              ; $818A
   jsr Sub_B5_92DB              ; $818D
   lda $053F                    ; $8190
@@ -100,7 +100,7 @@ Sub_B5_818A:
   sta SceneTimer               ; $819A
 Loc_B5_819D:
   rts                          ; $819D
-Sub_B5_819E:
+Bank5Scene_07:
   dec SceneTimer               ; $819E
   bne Loc_B5_81AB              ; $81A1
   inc SceneState               ; $81A3
@@ -108,7 +108,7 @@ Sub_B5_819E:
   sta SceneSubState            ; $81A8
 Loc_B5_81AB:
   rts                          ; $81AB
-Sub_B5_81AC:
+Bank5Scene_08:
   jsr Bank5SubStateDispatch    ; $81AC
   lda AnimCounter              ; $81AF
   bne Loc_B5_81BC              ; $81B2
@@ -117,7 +117,7 @@ Sub_B5_81AC:
   sta SceneTimer               ; $81B9
 Loc_B5_81BC:
   rts                          ; $81BC
-Sub_B5_81BD:
+Bank5Scene_09:
   dec SceneTimer               ; $81BD
   bne Loc_B5_81CA              ; $81C0
   inc SceneState               ; $81C2
@@ -125,7 +125,7 @@ Sub_B5_81BD:
   sta SceneSubState            ; $81C7
 Loc_B5_81CA:
   rts                          ; $81CA
-Sub_B5_81CB:
+Bank5Scene_0A:
   jsr Bank5SubStateDispatch    ; $81CB
   lda AnimCounter              ; $81CE
   bne Loc_B5_81E1              ; $81D1
@@ -136,18 +136,18 @@ Sub_B5_81CB:
   jmp Sub_B5_8971              ; $81DE
 Loc_B5_81E1:
   rts                          ; $81E1
-Sub_B5_81E2:
+Bank5Scene_0B:
   dec SceneTimer               ; $81E2
   bne Loc_B5_81EA              ; $81E5
   inc SceneState               ; $81E7
 Loc_B5_81EA:
   rts                          ; $81EA
-Sub_B5_81EB:
+Bank5Scene_0C:
   inc SceneState               ; $81EB
   lda #$01                     ; $81EE
   sta $012A                    ; $81F0
   jmp Loc_B5_8FED              ; $81F3
-Sub_B5_81F6:
+Bank5Scene_0D:
   lda $0600                    ; $81F6
   cmp #$60                     ; $81F9
   beq Loc_B5_8205              ; $81FB
@@ -157,7 +157,7 @@ Sub_B5_81F6:
 Loc_B5_8205:
   jsr Sub_B5_8E22              ; $8205
   jmp Loc_B5_8F5D              ; $8208
-Sub_B5_820B:
+Bank5Scene_0E:
   jsr Sub_B5_8CC4              ; $820B
   lda $052E                    ; $820E
   bne Loc_B5_821B              ; $8211
@@ -166,7 +166,7 @@ Sub_B5_820B:
   sta SceneTimer               ; $8218
 Loc_B5_821B:
   rts                          ; $821B
-Sub_B5_821C:
+Bank5Scene_0F:
   dec SceneTimer               ; $821C
   bne Loc_B5_8229              ; $821F
   inc SceneState               ; $8221
@@ -174,14 +174,14 @@ Sub_B5_821C:
   sta SceneSubState            ; $8226
 Loc_B5_8229:
   rts                          ; $8229
-Sub_B5_822A:
+Bank5Scene_10:
   jsr Bank5SubStateDispatch    ; $822A
   lda AnimCounter              ; $822D
   bne Loc_B5_8235              ; $8230
   inc SceneState               ; $8232
 Loc_B5_8235:
   rts                          ; $8235
-Sub_B5_8236:
+Bank5Scene_11:
   inc SceneState               ; $8236
   lda #$02                     ; $8239
   sta $012A                    ; $823B
@@ -194,13 +194,13 @@ Loc_B5_8241:
   lda #$01                     ; $824B
   sta $052A                    ; $824D
   jmp QueueSound               ; $8250
-Sub_B5_8253:
+Bank5Scene_12:
   dec SceneTimer               ; $8253
   bne Loc_B5_825B              ; $8256
   inc SceneState               ; $8258
 Loc_B5_825B:
   jmp Sub_B5_8183              ; $825B
-Sub_B5_825E:
+Bank5Scene_13:
   inc z:HwScrollX              ; $825E
   inc z:HwScrollX              ; $8260
   bne Loc_B5_8280              ; $8262
@@ -222,7 +222,7 @@ Loc_B5_8280:
   jmp Loc_B5_874E              ; $8283
 Data_B5_8286:
   .incbin "prg_bank_5.bin", $0286, $4  ; $8286
-Sub_B5_828A:
+Bank5Scene_14:
   jsr Bank5SubStateDispatch    ; $828A
   lda AnimCounter              ; $828D
   bne Loc_B5_829A              ; $8290
@@ -231,7 +231,7 @@ Sub_B5_828A:
   sta SceneTimer               ; $8297
 Loc_B5_829A:
   jmp Loc_B5_82E9              ; $829A
-Sub_B5_829D:
+Bank5Scene_15:
   dec SceneTimer               ; $829D
   bne Loc_B5_82B4              ; $82A0
   inc SceneState               ; $82A2
@@ -243,14 +243,14 @@ Sub_B5_829D:
   sta SceneSubState            ; $82B1
 Loc_B5_82B4:
   jmp Loc_B5_82E9              ; $82B4
-Sub_B5_82B7:
+Bank5Scene_16:
   jsr Bank5SubStateDispatch    ; $82B7
   lda AnimCounter              ; $82BA
   bne Loc_B5_82C2              ; $82BD
   inc SceneState               ; $82BF
 Loc_B5_82C2:
   jmp Loc_B5_82E9              ; $82C2
-Sub_B5_82C5:
+Bank5Scene_17:
   inc z:HwScrollX              ; $82C5
   inc z:HwScrollX              ; $82C7
   bne Loc_B5_82DA              ; $82C9
@@ -263,7 +263,7 @@ Sub_B5_82C5:
 Loc_B5_82DA:
   jsr ApplyScroll              ; $82DA
   jmp Loc_B5_874E              ; $82DD
-Sub_B5_82E0:
+Bank5Scene_18:
   dec SceneTimer               ; $82E0
   bne Loc_B5_82E8              ; $82E3
   inc SceneState               ; $82E5
@@ -279,17 +279,17 @@ Loc_B5_82F3:
   bit PPU_STATUS               ; $82F3
   bvc Loc_B5_82F3              ; $82F6
   jmp MmcWriteChr1             ; $82F8
-Sub_B5_82FB:
+Bank5Scene_19:
   inc SceneState               ; $82FB
   lda #$03                     ; $82FE
   sta $012A                    ; $8300
   jmp Sub_B5_9206              ; $8303
-Sub_B5_8306:
+Bank5Scene_1A:
   inc SceneState               ; $8306
   lda #$05                     ; $8309
   sta SceneSubState            ; $830B
   jmp Sub_B5_8183              ; $830E
-Sub_B5_8311:
+Bank5Scene_1B:
   jsr Bank5SubStateDispatch    ; $8311
   lda AnimCounter              ; $8314
   bne Loc_B5_8321              ; $8317
@@ -298,7 +298,7 @@ Sub_B5_8311:
   sta SceneTimer               ; $831E
 Loc_B5_8321:
   rts                          ; $8321
-Sub_B5_8322:
+Bank5Scene_1C:
   dec SceneTimer               ; $8322
   bne Loc_B5_8332              ; $8325
   inc SceneState               ; $8327
@@ -307,7 +307,7 @@ Sub_B5_8322:
   sta $0142                    ; $832F
 Loc_B5_8332:
   rts                          ; $8332
-Sub_B5_8333:
+Bank5Scene_1D:
   jsr Sub_B5_887E              ; $8333
   lda $052B                    ; $8336
   bne Loc_B5_8343              ; $8339
@@ -316,7 +316,7 @@ Sub_B5_8333:
   sta SceneSubState            ; $8340
 Loc_B5_8343:
   rts                          ; $8343
-Sub_B5_8344:
+Bank5Scene_1E:
   jsr Bank5SubStateDispatch    ; $8344
   lda AnimCounter              ; $8347
   bne Loc_B5_8357              ; $834A
@@ -326,34 +326,34 @@ Sub_B5_8344:
   sta SceneTimer               ; $8354
 Loc_B5_8357:
   rts                          ; $8357
-Sub_B5_8358:
+Bank5Scene_1F:
   dec SceneTimer               ; $8358
   bne Loc_B5_8360              ; $835B
   inc SceneState               ; $835D
 Loc_B5_8360:
   rts                          ; $8360
-Sub_B5_8361:
+Bank5Scene_20:
   inc SceneState               ; $8361
   lda #$04                     ; $8364
   sta $012A                    ; $8366
   jmp Loc_B5_903F              ; $8369
-Sub_B5_836C:
+Bank5Scene_21:
   inc SceneState               ; $836C
   lda #$3C                     ; $836F
   sta $0547                    ; $8371
   jsr Sub_B5_8F3A              ; $8374
   jmp Sub_B5_8183              ; $8377
-Sub_B5_837A:
+Bank5Scene_22:
   jsr $0513                    ; $837A
   lda $0547                    ; $837D
   bne Loc_B5_8385              ; $8380
   inc SceneState               ; $8382
 Loc_B5_8385:
   rts                          ; $8385
-Sub_B5_8386:
+Bank5Scene_23:
   inc SceneState               ; $8386
   rts                          ; $8389
-Sub_B5_838A:
+Bank5Scene_24:
   inc SceneState               ; $838A
   rts                          ; $838D
 Sub_B5_838E:
@@ -376,7 +376,7 @@ Loc_B5_83A1:
   sta $0600                    ; $83AF
 Loc_B5_83B2:
   rts                          ; $83B2
-Sub_B5_83B3:
+Bank5Scene_25:
   inc SceneState               ; $83B3
   jsr Sub_B5_90C8              ; $83B6
   lda $052A                    ; $83B9
@@ -384,7 +384,7 @@ Sub_B5_83B3:
   jmp QueueSound               ; $83BE
 Loc_B5_83C1:
   rts                          ; $83C1
-Sub_B5_83C2:
+Bank5Scene_26:
   inc SceneState               ; $83C2
   lda #$00                     ; $83C5
   sta AnimCounter              ; $83C7
@@ -396,7 +396,7 @@ Sub_B5_83C2:
   jmp Loc_B5_8241              ; $83D7
 Loc_B5_83DA:
   rts                          ; $83DA
-Sub_B5_83DB:
+Bank5Scene_27:
   jsr Bank5SubStateDispatch    ; $83DB
   lda AnimCounter              ; $83DE
   bne Loc_B5_83E6              ; $83E1
@@ -404,7 +404,7 @@ Sub_B5_83DB:
 Loc_B5_83E6:
   jsr Sub_B5_8462              ; $83E6
   jmp Loc_B5_8467              ; $83E9
-Sub_B5_83EC:
+Bank5Scene_28:
   jsr Sub_B5_8462              ; $83EC
   lda JoyNew1                  ; $83EF
   and #$08                     ; $83F2
@@ -440,7 +440,7 @@ Loc_B5_8426:
   sta SceneSubState            ; $8436
 Loc_B5_8439:
   jmp Loc_B5_8467              ; $8439
-Sub_B5_843C:
+Bank5Scene_29:
   jsr Bank5SubStateDispatch    ; $843C
   lda AnimCounter              ; $843F
   bne Loc_B5_8451              ; $8442
@@ -452,7 +452,7 @@ Sub_B5_843C:
 Loc_B5_8451:
   jsr Sub_B5_8462              ; $8451
   jmp Loc_B5_8467              ; $8454
-Sub_B5_8457:
+Bank5Scene_2A:
   dec SceneTimer               ; $8457
   bne Loc_B5_8461              ; $845A
   lda #$00                     ; $845C
@@ -483,27 +483,27 @@ Loc_B5_847F:
   jmp MmcWriteChr1A            ; $8484
 Loc_B5_8487:
   rts                          ; $8487
-Sub_B5_8488:
+Bank5Scene_2B:
   inc SceneState               ; $8488
   lda #$3C                     ; $848B
   sta SceneTimer               ; $848D
   jsr Sub_B5_895B              ; $8490
   jmp Sub_B5_814C              ; $8493
-Sub_B5_8496:
+Bank5Scene_2C:
   dec SceneTimer               ; $8496
   bne Loc_B5_849E              ; $8499
   inc SceneState               ; $849B
 Loc_B5_849E:
   rts                          ; $849E
-Sub_B5_849F:
+Bank5Scene_37:
   inc SceneState               ; $849F
   jmp Loc_B5_948C              ; $84A2
-Sub_B5_84A5:
+Bank5Scene_38:
   inc SceneState               ; $84A5
   jsr Sub_B5_8183              ; $84A8
   lda #$15                     ; $84AB
   jmp QueueSound               ; $84AD
-Sub_B5_84B0:
+Bank5Scene_39:
   jsr Sub_B5_9974              ; $84B0
   jsr Sub_B5_9438              ; $84B3
   lda SceneTimer               ; $84B6
@@ -516,7 +516,7 @@ Sub_B5_84B0:
   jsr Sub_B5_9895              ; $84C6
 Loc_B5_84C9:
   rts                          ; $84C9
-Sub_B5_84CA:
+Bank5Scene_3A:
   lda JoyNew1                  ; $84CA
   and #$01                     ; $84CD
   beq Loc_B5_84D9              ; $84CF
@@ -525,7 +525,7 @@ Sub_B5_84CA:
   jmp QueueSound               ; $84D6
 Loc_B5_84D9:
   rts                          ; $84D9
-Sub_B5_84DA:
+Bank5Scene_3B:
   jsr Sub_B5_986D              ; $84DA
   lda $0505                    ; $84DD
   bne Loc_B5_84F2              ; $84E0
@@ -537,7 +537,7 @@ Sub_B5_84DA:
   jmp QueueSound               ; $84EF
 Loc_B5_84F2:
   rts                          ; $84F2
-Sub_B5_84F3:
+Bank5Scene_3C:
   dec SceneTimer               ; $84F3
   bne Loc_B5_8512              ; $84F6
   ldy #$00                     ; $84F8
@@ -555,13 +555,13 @@ Sub_B5_84F3:
   sty z:$2B                    ; $8510
 Loc_B5_8512:
   rts                          ; $8512
-Sub_B5_8513:
-  jsr Sub_B5_849F              ; $8513
+Bank5Scene_46:
+  jsr Bank5Scene_37            ; $8513
   jsr Sub_B5_8971              ; $8516
   lda #$05                     ; $8519
   ldx #$00                     ; $851B
   jmp Sub_B5_9895              ; $851D
-Sub_B5_8520:
+Bank5Scene_47:
   inc SceneState               ; $8520
   jsr Sub_B5_8183              ; $8523
 Loc_B5_8526:
@@ -571,7 +571,7 @@ Loc_B5_8526:
   sta $0529                    ; $852D
   lda #$1E                     ; $8530
   jmp QueueSound               ; $8532
-Sub_B5_8535:
+Bank5Scene_48:
   lda JoyNew1                  ; $8535
   and #$02                     ; $8538
   beq Loc_B5_854B              ; $853A
@@ -586,7 +586,7 @@ Loc_B5_854B:
   ora $0529                    ; $854E
   beq Loc_B5_8526              ; $8551
   rts                          ; $8553
-Sub_B5_8554:
+Bank5Scene_49:
   jsr Sub_B5_976B              ; $8554
   lda JoyNew1                  ; $8557
   and #$01                     ; $855A
@@ -594,7 +594,7 @@ Sub_B5_8554:
   inc SceneState               ; $855E
   lda #$0F                     ; $8561
   jmp QueueSound               ; $8563
-Sub_B5_8566:
+Bank5Scene_4A:
   jsr Sub_B5_9848              ; $8566
   lda $052E                    ; $8569
   bne Loc_B5_854B              ; $856C
@@ -604,7 +604,7 @@ Sub_B5_8566:
   jsr Sub_B5_8971              ; $8576
   lda #$07                     ; $8579
   jmp Sub_B5_9895              ; $857B
-Sub_B5_857E:
+Bank5Scene_4B:
   dec SceneTimer               ; $857E
   bne Loc_B5_854B              ; $8581
   inc SceneState               ; $8583
@@ -612,7 +612,7 @@ Sub_B5_857E:
   sta SceneTimer               ; $8588
   jsr Sub_B5_895B              ; $858B
   jmp Sub_B5_8971              ; $858E
-Sub_B5_8591:
+Bank5Scene_4C:
   dec SceneTimer               ; $8591
   bne Loc_B5_854B              ; $8594
   inc SceneState               ; $8596
@@ -623,7 +623,7 @@ Sub_B5_8591:
   lda #$20                     ; $85A2
   sta $014F                    ; $85A4
   rts                          ; $85A7
-Sub_B5_85A8:
+Bank5Scene_4D:
   lda $0528                    ; $85A8
   ora $0529                    ; $85AB
   bne Loc_B5_85BB              ; $85AE
@@ -634,10 +634,10 @@ Loc_B5_85B8:
   inc SceneState               ; $85B8
 Loc_B5_85BB:
   rts                          ; $85BB
-Sub_B5_85BC:
+Bank5Scene_2D:
   inc SceneState               ; $85BC
   jmp Loc_B5_9785              ; $85BF
-Sub_B5_85C2:
+Bank5Scene_2E:
   dec SceneTimer               ; $85C2
   bne Loc_B5_85CF              ; $85C5
   inc SceneState               ; $85C7
@@ -645,7 +645,7 @@ Sub_B5_85C2:
   jmp QueueSound               ; $85CC
 Loc_B5_85CF:
   rts                          ; $85CF
-Sub_B5_85D0:
+Bank5Scene_2F:
   lda #$1A                     ; $85D0
   sta z:MmcChr0Shadow          ; $85D2
   jsr MmcWriteChr0             ; $85D4
@@ -675,10 +675,10 @@ Loc_B5_85ED:
   jmp Sub_B5_814C              ; $8604
 Loc_B5_8607:
   rts                          ; $8607
-Sub_B5_8608:
+Bank5Scene_4E:
   inc SceneState               ; $8608
   jmp Loc_B5_9D4A              ; $860B
-Sub_B5_860E:
+Bank5Scene_4F:
   dec SceneTimer               ; $860E
   bne Loc_B5_861E              ; $8611
   inc SceneState               ; $8613
@@ -687,7 +687,7 @@ Sub_B5_860E:
   sta SceneTimer               ; $861B
 Loc_B5_861E:
   rts                          ; $861E
-Sub_B5_861F:
+Bank5Scene_50:
   dec SceneTimer               ; $861F
   bne Loc_B5_862C              ; $8622
   inc SceneState               ; $8624
@@ -695,7 +695,7 @@ Sub_B5_861F:
   sta SceneTimer               ; $8629
 Loc_B5_862C:
   rts                          ; $862C
-Sub_B5_862D:
+Bank5Scene_51:
   dec SceneTimer               ; $862D
   bne Loc_B5_8643              ; $8630
   inc SceneState               ; $8632
@@ -707,10 +707,10 @@ Sub_B5_862D:
   sta $0512                    ; $8640
 Loc_B5_8643:
   jmp Sub_B5_814C              ; $8643
-Sub_B5_8646:
+Bank5Scene_52:
   inc SceneState               ; $8646
   jmp Loc_B5_9A2E              ; $8649
-Sub_B5_864C:
+Bank5Scene_53:
   lda $0512                    ; $864C
   beq Loc_B5_8659              ; $864F
   dec SceneTimer               ; $8651
@@ -720,7 +720,7 @@ Loc_B5_8659:
   inc SceneState               ; $8659
 Loc_B5_865C:
   rts                          ; $865C
-Sub_B5_865D:
+Bank5Scene_54:
   lda $0512                    ; $865D
   beq Loc_B5_866E              ; $8660
   dec SceneTimer               ; $8662
@@ -732,10 +732,10 @@ Loc_B5_866D:
 Loc_B5_866E:
   inc SceneState               ; $866E
   rts                          ; $8671
-Sub_B5_8672:
+Bank5Scene_55:
   inc SceneState               ; $8672
   jmp Loc_B5_9D88              ; $8675
-Sub_B5_8678:
+Bank5Scene_56:
   dec SceneTimer               ; $8678
   bne Loc_B5_868D              ; $867B
   lda $0507                    ; $867D
@@ -747,7 +747,7 @@ Loc_B5_868A:
   inc SceneState               ; $868A
 Loc_B5_868D:
   rts                          ; $868D
-Sub_B5_868E:
+Bank5Scene_57:
   lda $0507                    ; $868E
   beq Loc_B5_8698              ; $8691
   dec SceneTimer               ; $8693
@@ -756,10 +756,10 @@ Loc_B5_8698:
   inc SceneState               ; $8698
 Loc_B5_869B:
   rts                          ; $869B
-Sub_B5_869C:
+Bank5Scene_58:
   inc SceneState               ; $869C
   jmp Loc_B5_903F              ; $869F
-Sub_B5_86A2:
+Bank5Scene_59:
   lda $0507                    ; $86A2
   beq Loc_B5_86B7              ; $86A5
   lda #$01                     ; $86A7
@@ -771,7 +771,7 @@ Sub_B5_86A2:
 Loc_B5_86B7:
   inc SceneState               ; $86B7
   rts                          ; $86BA
-Sub_B5_86BB:
+Bank5Scene_5A:
   lda $0507                    ; $86BB
   beq Loc_B5_86C8              ; $86BE
   jsr $0513                    ; $86C0
@@ -781,15 +781,15 @@ Loc_B5_86C8:
   inc SceneState               ; $86C8
 Loc_B5_86CB:
   rts                          ; $86CB
-Sub_B5_86CC:
+Bank5Scene_5B:
   inc SceneState               ; $86CC
   jmp Loc_B5_9D0C              ; $86CF
-Sub_B5_86D2:
+Bank5Scene_5C:
   inc SceneState               ; $86D2
   lda #$01                     ; $86D5
   sta SceneSubState            ; $86D7
   jmp Sub_B5_8183              ; $86DA
-Sub_B5_86DD:
+Bank5Scene_5D:
   jsr Bank5SubStateDispatch    ; $86DD
   lda AnimCounter              ; $86E0
   bne Loc_B5_86E8              ; $86E3
@@ -1133,17 +1133,17 @@ Bank5SubStateDispatch:
   sta z:Tmp01                  ; $8AEE
   jmp ($0000)                  ; $8AF0
 Data_B5_8AF3:
-  .addr Sub_B5_8B09, Sub_B5_8B12, Sub_B5_8B29, Sub_B5_8B3F, Sub_B5_8B67, Sub_B5_8B92, Sub_B5_8BCF, Sub_B5_8BF0, Sub_B5_8C48, Sub_B5_8C61, Sub_B5_8C8E  ; $8AF3 pointer table
-Sub_B5_8B09:
+  .addr Bank5SubScene_00, Bank5SubScene_01, Bank5SubScene_02, Bank5SubScene_03, Bank5SubScene_04, Bank5SubScene_05, Bank5SubScene_06, Bank5SubScene_07, Bank5SubScene_08, Bank5SubScene_09, Bank5SubScene_0A  ; $8AF3 pointer table
+Bank5SubScene_00:
   ldy #$00                     ; $8B09
   sty AnimCounter              ; $8B0B
   sty SceneSubState            ; $8B0E
   rts                          ; $8B11
-Sub_B5_8B12:
+Bank5SubScene_01:
   jsr Bank5NextAnimFrame       ; $8B12
   cmp #$05                     ; $8B15
   bcc Loc_B5_8B1C              ; $8B17
-  jmp Sub_B5_8B09              ; $8B19
+  jmp Bank5SubScene_00         ; $8B19
 Loc_B5_8B1C:
   tax                          ; $8B1C
   lda Data_B5_8B24,x           ; $8B1D
@@ -1153,11 +1153,11 @@ Data_B5_8B24:
   ora (FrameInSecond,x)        ; $8B24  [heuristic code]
   and (PlayerActionTimer,x)    ; $8B26
   .incbin "prg_bank_5.bin", $0B28, $1  ; $8B28
-Sub_B5_8B29:
+Bank5SubScene_02:
   jsr Bank5NextAnimFrame       ; $8B29
   cmp #$04                     ; $8B2C
   bcc Sub_B5_8B33              ; $8B2E
-  jmp Sub_B5_8B09              ; $8B30
+  jmp Bank5SubScene_00         ; $8B30
 Sub_B5_8B33:
   tax                          ; $8B33
   lda Data_B5_8B3B,x           ; $8B34
@@ -1165,12 +1165,12 @@ Sub_B5_8B33:
   rts                          ; $8B3A
 Data_B5_8B3B:
   .incbin "prg_bank_5.bin", $0B3B, $4  ; $8B3B
-Sub_B5_8B3F:
+Bank5SubScene_03:
   jsr Bank5NextAnimFrame       ; $8B3F
   cmp #$04                     ; $8B42
   bcc Loc_B5_8B4C              ; $8B44
   jsr Sub_B5_895B              ; $8B46
-  jmp Sub_B5_8B09              ; $8B49
+  jmp Bank5SubScene_00         ; $8B49
 Loc_B5_8B4C:
   jsr Sub_B5_8B33              ; $8B4C
   lda Data_B5_8B5F,x           ; $8B4F
@@ -1183,11 +1183,11 @@ Data_B5_8B5F:
   .incbin "prg_bank_5.bin", $0B5F, $4  ; $8B5F
 Data_B5_8B63:
   .incbin "prg_bank_5.bin", $0B63, $4  ; $8B63
-Sub_B5_8B67:
+Bank5SubScene_04:
   jsr Bank5NextAnimFrame       ; $8B67
   cmp #$03                     ; $8B6A
   bcc Loc_B5_8B74              ; $8B6C
-  jsr Sub_B5_8B09              ; $8B6E
+  jsr Bank5SubScene_00         ; $8B6E
   jmp Sub_B5_895B              ; $8B71
 Loc_B5_8B74:
   sta z:Tmp00                  ; $8B74
@@ -1205,11 +1205,11 @@ Loc_B5_8B7C:
   rts                          ; $8B88
 Data_B5_8B89:
   .incbin "prg_bank_5.bin", $0B89, $9  ; $8B89
-Sub_B5_8B92:
+Bank5SubScene_05:
   jsr Bank5NextAnimFrame       ; $8B92
   cmp #$04                     ; $8B95
   bcc Loc_B5_8B9C              ; $8B97
-  jmp Sub_B5_8B09              ; $8B99
+  jmp Bank5SubScene_00         ; $8B99
 Loc_B5_8B9C:
   sta z:Tmp00                  ; $8B9C
   asl a                        ; $8B9E
@@ -1230,11 +1230,11 @@ Data_B5_8BB7:
   .incbin "prg_bank_5.bin", $0BB7, $C  ; $8BB7
 Data_B5_8BC3:
   .incbin "prg_bank_5.bin", $0BC3, $C  ; $8BC3
-Sub_B5_8BCF:
+Bank5SubScene_06:
   jsr Bank5NextAnimFrame       ; $8BCF
   cmp #$03                     ; $8BD2
   bcc Loc_B5_8BD9              ; $8BD4
-  jmp Sub_B5_8B09              ; $8BD6
+  jmp Bank5SubScene_00         ; $8BD6
 Loc_B5_8BD9:
   tax                          ; $8BD9
   lda Data_B5_8BED,x           ; $8BDA
@@ -1250,11 +1250,11 @@ Loc_B5_8BE0:
   rts                          ; $8BEC
 Data_B5_8BED:
   .incbin "prg_bank_5.bin", $0BED, $3  ; $8BED
-Sub_B5_8BF0:
+Bank5SubScene_07:
   jsr Bank5NextAnimFrame       ; $8BF0
   cmp #$04                     ; $8BF3
   bcc Loc_B5_8BFA              ; $8BF5
-  jmp Sub_B5_8B09              ; $8BF7
+  jmp Bank5SubScene_00         ; $8BF7
 Loc_B5_8BFA:
   tax                          ; $8BFA
   ldy #$01                     ; $8BFB
@@ -1277,12 +1277,12 @@ Sub_B5_8C0C:
   rts                          ; $8C17
 Data_B5_8C18:
   .incbin "prg_bank_5.bin", $0C18, $30  ; $8C18
-Sub_B5_8C48:
+Bank5SubScene_08:
   jsr Bank5NextAnimFrame       ; $8C48
   cmp #$03                     ; $8C4B
   bcc Loc_B5_8C57              ; $8C4D
   beq Loc_B5_8C54              ; $8C4F
-  jmp Sub_B5_8B09              ; $8C51
+  jmp Bank5SubScene_00         ; $8C51
 Loc_B5_8C54:
   jmp Sub_B5_895B              ; $8C54
 Loc_B5_8C57:
@@ -1291,11 +1291,11 @@ Loc_B5_8C57:
   jmp Loc_B5_8BFA              ; $8C5B
 Data_B5_8C5E:
   .incbin "prg_bank_5.bin", $0C5E, $3  ; $8C5E
-Sub_B5_8C61:
+Bank5SubScene_09:
   jsr Bank5NextAnimFrame       ; $8C61
   cmp #$05                     ; $8C64
   bcc Loc_B5_8C6B              ; $8C66
-  jmp Sub_B5_8B09              ; $8C68
+  jmp Bank5SubScene_00         ; $8C68
 Loc_B5_8C6B:
   tax                          ; $8C6B
   lda Data_B5_8C7F,x           ; $8C6C
@@ -1311,11 +1311,11 @@ Data_B5_8C84:
   .incbin "prg_bank_5.bin", $0C84, $5  ; $8C84
 Data_B5_8C89:
   .incbin "prg_bank_5.bin", $0C89, $5  ; $8C89
-Sub_B5_8C8E:
+Bank5SubScene_0A:
   jsr Bank5NextAnimFrame       ; $8C8E
   cmp #$05                     ; $8C91
   bcc Loc_B5_8C98              ; $8C93
-  jmp Sub_B5_8B09              ; $8C95
+  jmp Bank5SubScene_00         ; $8C95
 Loc_B5_8C98:
   tax                          ; $8C98
   lda Data_B5_8CAC,x           ; $8C99
@@ -2614,8 +2614,8 @@ Sub_B5_A1A3:
   lsr a                        ; $A1A9
   lsr a                        ; $A1AA
   jsr Sub_B5_A464              ; $A1AB
-  .addr Sub_B5_A1BE, Sub_B5_A1BE, Sub_B5_A1CE, Sub_B5_A1CE, Sub_B5_A1EA, Sub_B5_A1FF, Sub_B5_A22E, Sub_B5_A237  ; $A1AE pointer table
-Sub_B5_A1BE:
+  .addr SoundCmdA_00, SoundCmdA_00, SoundCmdA_02, SoundCmdA_02, SoundCmdA_04, SoundCmdA_05, SoundCmdA_06, SoundCmdA_07  ; $A1AE pointer table
+SoundCmdA_00:
   lda z:$06                    ; $A1BE
   and #$1F                     ; $A1C0
   tax                          ; $A1C2
@@ -2625,7 +2625,7 @@ Sub_B5_A1BE:
   iny                          ; $A1CA
   sta (SndPtrLo),y             ; $A1CB
   rts                          ; $A1CD
-Sub_B5_A1CE:
+SoundCmdA_02:
   lda z:$06                    ; $A1CE
   and #$1F                     ; $A1D0
   asl a                        ; $A1D2
@@ -2641,7 +2641,7 @@ Sub_B5_A1CE:
   sta (SndPtrLo),y             ; $A1E4
   jsr Sub_B5_A363              ; $A1E6
   rts                          ; $A1E9
-Sub_B5_A1EA:
+SoundCmdA_04:
   lda z:$06                    ; $A1EA
   and #$0F                     ; $A1EC
   ldy #$11                     ; $A1EE
@@ -2653,7 +2653,7 @@ Sub_B5_A1EA:
   pla                          ; $A1FA
   pla                          ; $A1FB
   jmp Loc_B5_A16E              ; $A1FC
-Sub_B5_A1FF:
+SoundCmdA_05:
   lda z:$06                    ; $A1FF
   and #$0F                     ; $A201
   cmp #$08                     ; $A203
@@ -2684,18 +2684,18 @@ Loc_B5_A21A:
   sta (SndPtrLo),y             ; $A22B
 Loc_B5_A22D:
   rts                          ; $A22D
-Sub_B5_A22E:
+SoundCmdA_06:
   lda z:$06                    ; $A22E
   and #$0F                     ; $A230
   ldy #$0D                     ; $A232
   sta (SndPtrLo),y             ; $A234
   rts                          ; $A236
-Sub_B5_A237:
+SoundCmdA_07:
   lda z:$06                    ; $A237
   and #$07                     ; $A239
   jsr Sub_B5_A464              ; $A23B
-  .addr Sub_B5_A24E, Sub_B5_A269, Sub_B5_A284, Sub_B5_A2A8, Sub_B5_A2F4, Sub_B5_A321, Sub_B5_A32C, Sub_B5_A32C  ; $A23E pointer table
-Sub_B5_A24E:
+  .addr SoundCmdB_00, SoundCmdB_01, SoundCmdB_02, SoundCmdB_03, SoundCmdB_04, SoundCmdB_05, SoundCmdB_06, SoundCmdB_06  ; $A23E pointer table
+SoundCmdB_00:
   ldy z:Tmp01                  ; $A24E
   lda (Tmp02),y                ; $A250
   pha                          ; $A252
@@ -2713,7 +2713,7 @@ Sub_B5_A24E:
   sta (SndPtrLo),y             ; $A264
   sta z:Tmp02                  ; $A266
   rts                          ; $A268
-Sub_B5_A269:
+SoundCmdB_01:
   ldy z:Tmp01                  ; $A269
   lda (Tmp02),y                ; $A26B
   ldy #$13                     ; $A26D
@@ -2729,7 +2729,7 @@ Sub_B5_A269:
   adc #$00                     ; $A27F
   sta (SndPtrLo),y             ; $A281
   rts                          ; $A283
-Sub_B5_A284:
+SoundCmdB_02:
   ldy #$13                     ; $A284
   lda (SndPtrLo),y             ; $A286
   sec                          ; $A288
@@ -2752,7 +2752,7 @@ Sub_B5_A284:
   sta z:Tmp01                  ; $A2A5
 Loc_B5_A2A7:
   rts                          ; $A2A7
-Sub_B5_A2A8:
+SoundCmdB_03:
   ldy z:Tmp01                  ; $A2A8
   lda (Tmp02),y                ; $A2AA
   ldy #$03                     ; $A2AC
@@ -2796,7 +2796,7 @@ Sub_B5_A2A8:
   lda (SndPtrLo),y             ; $A2EF
   sta z:Tmp03                  ; $A2F1
   rts                          ; $A2F3
-Sub_B5_A2F4:
+SoundCmdB_04:
   ldy #$0B                     ; $A2F4
   sec                          ; $A2F6
   lda (SndPtrLo),y             ; $A2F7
@@ -2823,14 +2823,14 @@ Sub_B5_A2F4:
   lda #$00                     ; $A31C
   sta z:Tmp01                  ; $A31E
   rts                          ; $A320
-Sub_B5_A321:
+SoundCmdB_05:
   ldy z:Tmp01                  ; $A321
   lda (Tmp02),y                ; $A323
   inc z:Tmp01                  ; $A325
   ldy #$10                     ; $A327
   sta (SndPtrLo),y             ; $A329
   rts                          ; $A32B
-Sub_B5_A32C:
+SoundCmdB_06:
   lda #$00                     ; $A32C
   ldy #$00                     ; $A32E
   sta (SndPtrLo),y             ; $A330

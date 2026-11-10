@@ -55,7 +55,7 @@ void Sub_B5_804F(void) {  /* $804F bank 5 */
   call_addr(rd16bug(0x0000)); return;                                                    /* $8062 jmp */
 }
 
-void Sub_B5_813D(void) {  /* $813D bank 5 */
+void Bank5Tbl8065_00(void) {  /* $813D bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x04);                                                                             /* $813D lda */
   STA(SceneState);                                                                       /* $813F sta */
@@ -74,7 +74,7 @@ void Sub_B5_8150(void) {  /* $8150 bank 5 */
   { SetPpuMask(); return; }                                                              /* $8154 jmp */
 }
 
-void Sub_B5_8157(void) {  /* $8157 bank 5 */
+void Bank5Tbl8065_01(void) {  /* $8157 bank 5 */
   uint8_t sp0 = R.sp;
   goto L8157;
 L813F: BUDGET();
@@ -90,7 +90,7 @@ L8157: BUDGET();
   goto L813F;                                                                            /* $8159 jmp */
 }
 
-void Sub_B5_815C(void) {  /* $815C bank 5 */
+void Bank5Tbl8065_02(void) {  /* $815C bank 5 */
   uint8_t sp0 = R.sp;
   goto L815C;
 L813F: BUDGET();
@@ -106,7 +106,7 @@ L815C: BUDGET();
   goto L813F;                                                                            /* $815E jmp */
 }
 
-void Sub_B5_8161(void) {  /* $8161 bank 5 */
+void Bank5Tbl8065_03(void) {  /* $8161 bank 5 */
   uint8_t sp0 = R.sp;
   goto L8161;
 L813F: BUDGET();
@@ -127,7 +127,7 @@ L8161: BUDGET();
   goto L813F;                                                                            /* $816C jmp */
 }
 
-void Sub_B5_816F(void) {  /* $816F bank 5 */
+void Bank5Tbl8065_04(void) {  /* $816F bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $816F inc */
   LDA(0x00);                                                                             /* $8172 lda */
@@ -154,7 +154,7 @@ L8A1A: BUDGET();
   RTS_RET(sp0);                                                                          /* $8A42 rts */
 }
 
-void Sub_B5_817A(void) {  /* $817A bank 5 */
+void Bank5Tbl8065_05(void) {  /* $817A bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $817A dec */
   if (R.z) {                                                                             /* $817D bne */
@@ -174,7 +174,7 @@ void Sub_B5_8187(void) {  /* $8187 bank 5 */
   RTS_RET(sp0);                                                                          /* $818D rts */
 }
 
-void Sub_B5_818E(void) {  /* $818E bank 5 */
+void Bank5Tbl8065_06(void) {  /* $818E bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8190); Sub_B5_91DF(); UNW(); ret_check(0x8190);                               /* $818E jsr */
   push16(0x8193); Sub_B5_9283(); UNW(); ret_check(0x8193);                               /* $8191 jsr */
@@ -187,7 +187,7 @@ void Sub_B5_818E(void) {  /* $818E bank 5 */
   RTS_RET(sp0);                                                                          /* $81A1 rts */
 }
 
-void Sub_B5_81A2(void) {  /* $81A2 bank 5 */
+void Bank5Tbl8065_07(void) {  /* $81A2 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $81A2 dec */
   if (R.z) {                                                                             /* $81A5 bne */
@@ -198,7 +198,7 @@ void Sub_B5_81A2(void) {  /* $81A2 bank 5 */
   RTS_RET(sp0);                                                                          /* $81AF rts */
 }
 
-void Sub_B5_81B0(void) {  /* $81B0 bank 5 */
+void Bank5Tbl8065_08(void) {  /* $81B0 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x81B2); Sub_B5_8A50(); UNW(); ret_check(0x81B2);                               /* $81B0 jsr */
   LDA(rd(AnimCounter));                                                                  /* $81B3 lda */
@@ -210,7 +210,7 @@ void Sub_B5_81B0(void) {  /* $81B0 bank 5 */
   RTS_RET(sp0);                                                                          /* $81C0 rts */
 }
 
-void Sub_B5_81C1(void) {  /* $81C1 bank 5 */
+void Bank5Tbl8065_09(void) {  /* $81C1 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $81C1 dec */
   if (R.z) {                                                                             /* $81C4 bne */
@@ -221,7 +221,7 @@ void Sub_B5_81C1(void) {  /* $81C1 bank 5 */
   RTS_RET(sp0);                                                                          /* $81CE rts */
 }
 
-void Sub_B5_81CF(void) {  /* $81CF bank 5 */
+void Bank5Tbl8065_0A(void) {  /* $81CF bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x81D1); Sub_B5_8A50(); UNW(); ret_check(0x81D1);                               /* $81CF jsr */
   LDA(rd(AnimCounter));                                                                  /* $81D2 lda */
@@ -235,7 +235,7 @@ void Sub_B5_81CF(void) {  /* $81CF bank 5 */
   RTS_RET(sp0);                                                                          /* $81E5 rts */
 }
 
-void Sub_B5_81E6(void) {  /* $81E6 bank 5 */
+void Bank5Tbl8065_0B(void) {  /* $81E6 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $81E6 dec */
   if (R.z) {                                                                             /* $81E9 bne */
@@ -244,7 +244,7 @@ void Sub_B5_81E6(void) {  /* $81E6 bank 5 */
   RTS_RET(sp0);                                                                          /* $81EE rts */
 }
 
-void Sub_B5_81EF(void) {  /* $81EF bank 5 */
+void Bank5Tbl8065_0C(void) {  /* $81EF bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $81EF inc */
   LDA(0x01);                                                                             /* $81F2 lda */
@@ -290,7 +290,7 @@ L8FCC: BUDGET();
   { QueueSound(); return; }                                                              /* $901B jmp */
 }
 
-void Sub_B5_81FA(void) {  /* $81FA bank 5 */
+void Bank5Tbl8065_0D(void) {  /* $81FA bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0600));                                                                       /* $81FA lda */
   cmp8(R.a, 0x60);                                                                       /* $81FD cmp */
@@ -322,7 +322,7 @@ L8F3C: BUDGET();
   RTS_RET(sp0);                                                                          /* $8F66 rts */
 }
 
-void Sub_B5_820F(void) {  /* $820F bank 5 */
+void Bank5Tbl8065_0E(void) {  /* $820F bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8211); Sub_B5_8BC5(); UNW(); ret_check(0x8211);                               /* $820F jsr */
   LDA(rd(0x052E));                                                                       /* $8212 lda */
@@ -334,7 +334,7 @@ void Sub_B5_820F(void) {  /* $820F bank 5 */
   RTS_RET(sp0);                                                                          /* $821F rts */
 }
 
-void Sub_B5_8220(void) {  /* $8220 bank 5 */
+void Bank5Tbl8065_0F(void) {  /* $8220 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $8220 dec */
   if (R.z) {                                                                             /* $8223 bne */
@@ -345,7 +345,7 @@ void Sub_B5_8220(void) {  /* $8220 bank 5 */
   RTS_RET(sp0);                                                                          /* $822D rts */
 }
 
-void Sub_B5_822E(void) {  /* $822E bank 5 */
+void Bank5Tbl8065_10(void) {  /* $822E bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8230); Sub_B5_8A50(); UNW(); ret_check(0x8230);                               /* $822E jsr */
   LDA(rd(AnimCounter));                                                                  /* $8231 lda */
@@ -355,7 +355,7 @@ void Sub_B5_822E(void) {  /* $822E bank 5 */
   RTS_RET(sp0);                                                                          /* $8239 rts */
 }
 
-void Sub_B5_823A(void) {  /* $823A bank 5 */
+void Bank5Tbl8065_11(void) {  /* $823A bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $823A inc */
   LDA(0x02);                                                                             /* $823D lda */
@@ -370,7 +370,7 @@ void Sub_B5_823A(void) {  /* $823A bank 5 */
   { QueueSound(); return; }                                                              /* $8254 jmp */
 }
 
-void Sub_B5_8257(void) {  /* $8257 bank 5 */
+void Bank5Tbl8065_12(void) {  /* $8257 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $8257 dec */
   if (R.z) {                                                                             /* $825A bne */
@@ -379,7 +379,7 @@ void Sub_B5_8257(void) {  /* $8257 bank 5 */
   { Sub_B5_8187(); return; }                                                             /* $825F jmp */
 }
 
-void Sub_B5_8262(void) {  /* $8262 bank 5 */
+void Bank5Tbl8065_13(void) {  /* $8262 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(HwScrollX);                                                                      /* $8262 inc */
   INC_M(HwScrollX);                                                                      /* $8264 inc */
@@ -479,7 +479,7 @@ L87AF: BUDGET();
   RTS_RET(sp0);                                                                          /* $87B4 rts */
 }
 
-void Sub_B5_827A(void) {  /* $827A bank 5 */
+void Bank5Tbl8065_14(void) {  /* $827A bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $827A dec */
   if (R.z) {                                                                             /* $827D bne */
@@ -492,7 +492,7 @@ void Sub_B5_827A(void) {  /* $827A bank 5 */
   RTS_RET(sp0);                                                                          /* $828C rts */
 }
 
-void Sub_B5_828D(void) {  /* $828D bank 5 */
+void Bank5Tbl8065_15(void) {  /* $828D bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(HwScrollX);                                                                      /* $828D inc */
   INC_M(HwScrollX);                                                                      /* $828F inc */
@@ -593,7 +593,7 @@ L87AF: BUDGET();
   RTS_RET(sp0);                                                                          /* $87B4 rts */
 }
 
-void Sub_B5_82A8(void) {  /* $82A8 bank 5 */
+void Bank5Tbl8065_16(void) {  /* $82A8 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $82A8 dec */
   if (R.z) {                                                                             /* $82AB bne */
@@ -602,7 +602,7 @@ void Sub_B5_82A8(void) {  /* $82A8 bank 5 */
   RTS_RET(sp0);                                                                          /* $82B0 rts */
 }
 
-void Sub_B5_82B1(void) {  /* $82B1 bank 5 */
+void Bank5Tbl8065_17(void) {  /* $82B1 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $82B1 inc */
   LDA(0x03);                                                                             /* $82B4 lda */
@@ -630,7 +630,7 @@ L91AE: BUDGET();
   { Sub_B5_9098(); return; }                                                             /* $91DC jmp */
 }
 
-void Sub_B5_82BC(void) {  /* $82BC bank 5 */
+void Bank5Tbl8065_18(void) {  /* $82BC bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $82BC inc */
   LDA(0x05);                                                                             /* $82BF lda */
@@ -638,7 +638,7 @@ void Sub_B5_82BC(void) {  /* $82BC bank 5 */
   { Sub_B5_8187(); return; }                                                             /* $82C4 jmp */
 }
 
-void Sub_B5_82C7(void) {  /* $82C7 bank 5 */
+void Bank5Tbl8065_19(void) {  /* $82C7 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x82C9); Sub_B5_8A50(); UNW(); ret_check(0x82C9);                               /* $82C7 jsr */
   LDA(rd(AnimCounter));                                                                  /* $82CA lda */
@@ -650,7 +650,7 @@ void Sub_B5_82C7(void) {  /* $82C7 bank 5 */
   RTS_RET(sp0);                                                                          /* $82D7 rts */
 }
 
-void Sub_B5_82D8(void) {  /* $82D8 bank 5 */
+void Bank5Tbl8065_1A(void) {  /* $82D8 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $82D8 dec */
   if (R.z) {                                                                             /* $82DB bne */
@@ -662,7 +662,7 @@ void Sub_B5_82D8(void) {  /* $82D8 bank 5 */
   RTS_RET(sp0);                                                                          /* $82E8 rts */
 }
 
-void Sub_B5_82E9(void) {  /* $82E9 bank 5 */
+void Bank5Tbl8065_1B(void) {  /* $82E9 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x82EB); Sub_B5_8853(); UNW(); ret_check(0x82EB);                               /* $82E9 jsr */
   LDA(rd(0x052B));                                                                       /* $82EC lda */
@@ -674,7 +674,7 @@ void Sub_B5_82E9(void) {  /* $82E9 bank 5 */
   RTS_RET(sp0);                                                                          /* $82F9 rts */
 }
 
-void Sub_B5_82FA(void) {  /* $82FA bank 5 */
+void Bank5Tbl8065_1C(void) {  /* $82FA bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x82FC); Sub_B5_8A50(); UNW(); ret_check(0x82FC);                               /* $82FA jsr */
   LDA(rd(AnimCounter));                                                                  /* $82FD lda */
@@ -687,7 +687,7 @@ void Sub_B5_82FA(void) {  /* $82FA bank 5 */
   RTS_RET(sp0);                                                                          /* $830D rts */
 }
 
-void Sub_B5_830E(void) {  /* $830E bank 5 */
+void Bank5Tbl8065_1D(void) {  /* $830E bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $830E dec */
   if (R.z) {                                                                             /* $8311 bne */
@@ -696,7 +696,7 @@ void Sub_B5_830E(void) {  /* $830E bank 5 */
   RTS_RET(sp0);                                                                          /* $8316 rts */
 }
 
-void Sub_B5_8317(void) {  /* $8317 bank 5 */
+void Bank5Tbl8065_1E(void) {  /* $8317 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8317 inc */
   LDA(0x04);                                                                             /* $831A lda */
@@ -725,7 +725,7 @@ L901E: BUDGET();
   RTS_RET(sp0);                                                                          /* $904D rts */
 }
 
-void Sub_B5_8322(void) {  /* $8322 bank 5 */
+void Bank5Tbl8065_1F(void) {  /* $8322 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8322 inc */
   LDA(0x3C);                                                                             /* $8325 lda */
@@ -734,7 +734,7 @@ void Sub_B5_8322(void) {  /* $8322 bank 5 */
   { Sub_B5_8187(); return; }                                                             /* $832D jmp */
 }
 
-void Sub_B5_8330(void) {  /* $8330 bank 5 */
+void Bank5Tbl8065_20(void) {  /* $8330 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8332); call_addr(0x0513); UNW(); ret_check(0x8332);                           /* $8330 jsr */
   LDA(rd(0x0547));                                                                       /* $8333 lda */
@@ -744,7 +744,7 @@ void Sub_B5_8330(void) {  /* $8330 bank 5 */
   RTS_RET(sp0);                                                                          /* $833B rts */
 }
 
-void Sub_B5_833C(void) {  /* $833C bank 5 */
+void Bank5Tbl8065_21(void) {  /* $833C bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $833C inc */
   LDA(0x05);                                                                             /* $833F lda */
@@ -779,7 +779,7 @@ L8EEA: BUDGET();
   RTS_RET(sp0);                                                                          /* $8F25 rts */
 }
 
-void Sub_B5_8347(void) {  /* $8347 bank 5 */
+void Bank5Tbl8065_22(void) {  /* $8347 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $8347 dec */
   if (R.z) {                                                                             /* $834A bne */
@@ -789,7 +789,7 @@ void Sub_B5_8347(void) {  /* $8347 bank 5 */
   RTS_RET(sp0);                                                                          /* $8352 rts */
 }
 
-void Sub_B5_8353(void) {  /* $8353 bank 5 */
+void Bank5Tbl8065_23(void) {  /* $8353 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8355); Sub_B5_8E5E(); UNW(); ret_check(0x8355);                               /* $8353 jsr */
   LDA(rd(0x0538));                                                                       /* $8356 lda */
@@ -802,7 +802,7 @@ void Sub_B5_8353(void) {  /* $8353 bank 5 */
   RTS_RET(sp0);                                                                          /* $8366 rts */
 }
 
-void Sub_B5_8367(void) {  /* $8367 bank 5 */
+void Bank5Tbl8065_24(void) {  /* $8367 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $8367 dec */
   if (R.z) {                                                                             /* $836A bne */
@@ -836,7 +836,7 @@ L8394: BUDGET();
   RTS_RET(sp0);                                                                          /* $8394 rts */
 }
 
-void Sub_B5_8395(void) {  /* $8395 bank 5 */
+void Bank5Tbl8065_25(void) {  /* $8395 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8395 inc */
   push16(0x839A); Sub_B5_90A7(); UNW(); ret_check(0x839A);                               /* $8398 jsr */
@@ -847,7 +847,7 @@ void Sub_B5_8395(void) {  /* $8395 bank 5 */
   RTS_RET(sp0);                                                                          /* $83A3 rts */
 }
 
-void Sub_B5_83A4(void) {  /* $83A4 bank 5 */
+void Bank5Tbl8065_26(void) {  /* $83A4 bank 5 */
   uint8_t sp0 = R.sp;
   goto L83A4;
 L8245: BUDGET();
@@ -872,7 +872,7 @@ L83A4: BUDGET();
   RTS_RET(sp0);                                                                          /* $83BC rts */
 }
 
-void Sub_B5_83BD(void) {  /* $83BD bank 5 */
+void Bank5Tbl8065_27(void) {  /* $83BD bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x83BF); Sub_B5_8A50(); UNW(); ret_check(0x83BF);                               /* $83BD jsr */
   LDA(rd(AnimCounter));                                                                  /* $83C0 lda */
@@ -882,7 +882,7 @@ void Sub_B5_83BD(void) {  /* $83BD bank 5 */
   RTS_RET(sp0);                                                                          /* $83C8 rts */
 }
 
-void Sub_B5_83C9(void) {  /* $83C9 bank 5 */
+void Bank5Tbl8065_28(void) {  /* $83C9 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyNew1));                                                                      /* $83C9 lda */
   AND(0x08);                                                                             /* $83CC and */
@@ -920,7 +920,7 @@ L83FD: BUDGET();
   RTS_RET(sp0);                                                                          /* $8410 rts */
 }
 
-void Sub_B5_8411(void) {  /* $8411 bank 5 */
+void Bank5Tbl8065_29(void) {  /* $8411 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8413); Sub_B5_8A50(); UNW(); ret_check(0x8413);                               /* $8411 jsr */
   LDA(rd(AnimCounter));                                                                  /* $8414 lda */
@@ -934,7 +934,7 @@ void Sub_B5_8411(void) {  /* $8411 bank 5 */
   RTS_RET(sp0);                                                                          /* $8426 rts */
 }
 
-void Sub_B5_8427(void) {  /* $8427 bank 5 */
+void Bank5Tbl8065_2A(void) {  /* $8427 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $8427 dec */
   if (R.z) {                                                                             /* $842A bne */
@@ -944,7 +944,7 @@ void Sub_B5_8427(void) {  /* $8427 bank 5 */
   RTS_RET(sp0);                                                                          /* $8431 rts */
 }
 
-void Sub_B5_8432(void) {  /* $8432 bank 5 */
+void Bank5Tbl8065_2B(void) {  /* $8432 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8432 inc */
   LDA(0x3C);                                                                             /* $8435 lda */
@@ -953,7 +953,7 @@ void Sub_B5_8432(void) {  /* $8432 bank 5 */
   { Sub_B5_8150(); return; }                                                             /* $843D jmp */
 }
 
-void Sub_B5_8440(void) {  /* $8440 bank 5 */
+void Bank5Tbl8065_2C(void) {  /* $8440 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $8440 dec */
   if (R.z) {                                                                             /* $8443 bne */
@@ -962,7 +962,7 @@ void Sub_B5_8440(void) {  /* $8440 bank 5 */
   RTS_RET(sp0);                                                                          /* $8448 rts */
 }
 
-void Sub_B5_8449(void) {  /* $8449 bank 5 */
+void Bank5Tbl8065_37(void) {  /* $8449 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8449 inc */
   goto L9434;                                                                            /* $844C jmp */
@@ -995,7 +995,7 @@ L9434: BUDGET();
   RTS_RET(sp0);                                                                          /* $946E rts */
 }
 
-void Sub_B5_844F(void) {  /* $844F bank 5 */
+void Bank5Tbl8065_38(void) {  /* $844F bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $844F inc */
   push16(0x8454); Sub_B5_8187(); UNW(); ret_check(0x8454);                               /* $8452 jsr */
@@ -1003,7 +1003,7 @@ void Sub_B5_844F(void) {  /* $844F bank 5 */
   { QueueSound(); return; }                                                              /* $8457 jmp */
 }
 
-void Sub_B5_845A(void) {  /* $845A bank 5 */
+void Bank5Tbl8065_39(void) {  /* $845A bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x845C); Sub_B5_98FB(); UNW(); ret_check(0x845C);                               /* $845A jsr */
   push16(0x845F); Sub_B5_93E0(); UNW(); ret_check(0x845F);                               /* $845D jsr */
@@ -1019,7 +1019,7 @@ void Sub_B5_845A(void) {  /* $845A bank 5 */
   RTS_RET(sp0);                                                                          /* $8473 rts */
 }
 
-void Sub_B5_8474(void) {  /* $8474 bank 5 */
+void Bank5Tbl8065_3A(void) {  /* $8474 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyNew1));                                                                      /* $8474 lda */
   AND(0x01);                                                                             /* $8477 and */
@@ -1031,7 +1031,7 @@ void Sub_B5_8474(void) {  /* $8474 bank 5 */
   RTS_RET(sp0);                                                                          /* $8483 rts */
 }
 
-void Sub_B5_8484(void) {  /* $8484 bank 5 */
+void Bank5Tbl8065_3B(void) {  /* $8484 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8486); Sub_B5_97F4(); UNW(); ret_check(0x8486);                               /* $8484 jsr */
   LDA(rd(0x0505));                                                                       /* $8487 lda */
@@ -1046,7 +1046,7 @@ void Sub_B5_8484(void) {  /* $8484 bank 5 */
   RTS_RET(sp0);                                                                          /* $849C rts */
 }
 
-void Sub_B5_849D(void) {  /* $849D bank 5 */
+void Bank5Tbl8065_3C(void) {  /* $849D bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $849D dec */
   if (R.z) {                                                                             /* $84A0 bne */
@@ -1067,16 +1067,16 @@ void Sub_B5_849D(void) {  /* $849D bank 5 */
   RTS_RET(sp0);                                                                          /* $84BC rts */
 }
 
-void Sub_B5_84BD(void) {  /* $84BD bank 5 */
+void Bank5Tbl8065_46(void) {  /* $84BD bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x84BF); Sub_B5_8449(); UNW(); ret_check(0x84BF);                               /* $84BD jsr */
+  push16(0x84BF); Bank5Tbl8065_37(); UNW(); ret_check(0x84BF);                           /* $84BD jsr */
   push16(0x84C2); Sub_B5_8946(); UNW(); ret_check(0x84C2);                               /* $84C0 jsr */
   LDA(0x05);                                                                             /* $84C3 lda */
   LDX(0x00);                                                                             /* $84C5 ldx */
   { Sub_B5_981C(); return; }                                                             /* $84C7 jmp */
 }
 
-void Sub_B5_84CA(void) {  /* $84CA bank 5 */
+void Bank5Tbl8065_47(void) {  /* $84CA bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $84CA inc */
   push16(0x84CF); Sub_B5_8187(); UNW(); ret_check(0x84CF);                               /* $84CD jsr */
@@ -1088,7 +1088,7 @@ void Sub_B5_84CA(void) {  /* $84CA bank 5 */
   { QueueSound(); return; }                                                              /* $84DC jmp */
 }
 
-void Sub_B5_84DF(void) {  /* $84DF bank 5 */
+void Bank5Tbl8065_48(void) {  /* $84DF bank 5 */
   uint8_t sp0 = R.sp;
   goto L84DF;
 L84D0: BUDGET();
@@ -1115,7 +1115,7 @@ L84DF: BUDGET();
   RTS_RET(sp0);                                                                          /* $84FD rts */
 }
 
-void Sub_B5_84FE(void) {  /* $84FE bank 5 */
+void Bank5Tbl8065_49(void) {  /* $84FE bank 5 */
   uint8_t sp0 = R.sp;
   goto L84FE;
 L84D0: BUDGET();
@@ -1140,7 +1140,7 @@ L84FE: BUDGET();
   { QueueSound(); return; }                                                              /* $850D jmp */
 }
 
-void Sub_B5_8510(void) {  /* $8510 bank 5 */
+void Bank5Tbl8065_4A(void) {  /* $8510 bank 5 */
   uint8_t sp0 = R.sp;
   goto L8510;
 L84D0: BUDGET();
@@ -1167,7 +1167,7 @@ L8510: BUDGET();
   { Sub_B5_981C(); return; }                                                             /* $8525 jmp */
 }
 
-void Sub_B5_8528(void) {  /* $8528 bank 5 */
+void Bank5Tbl8065_4B(void) {  /* $8528 bank 5 */
   uint8_t sp0 = R.sp;
   goto L8528;
 L84D0: BUDGET();
@@ -1192,7 +1192,7 @@ L8528: BUDGET();
   { Sub_B5_8946(); return; }                                                             /* $8538 jmp */
 }
 
-void Sub_B5_853B(void) {  /* $853B bank 5 */
+void Bank5Tbl8065_4C(void) {  /* $853B bank 5 */
   uint8_t sp0 = R.sp;
   goto L853B;
 L84D0: BUDGET();
@@ -1220,7 +1220,7 @@ L853B: BUDGET();
   RTS_RET(sp0);                                                                          /* $8551 rts */
 }
 
-void Sub_B5_8552(void) {  /* $8552 bank 5 */
+void Bank5Tbl8065_4D(void) {  /* $8552 bank 5 */
   uint8_t sp0 = R.sp;
   goto L8552;
 L84D0: BUDGET();
@@ -1243,7 +1243,7 @@ L8552: BUDGET();
   RTS_RET(sp0);                                                                          /* $8565 rts */
 }
 
-void Sub_B5_8566(void) {  /* $8566 bank 5 */
+void Bank5Tbl8065_2D(void) {  /* $8566 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8566 inc */
   goto L970C;                                                                            /* $8569 jmp */
@@ -1284,7 +1284,7 @@ L970C: BUDGET();
   { QueueSound(); return; }                                                              /* $975B jmp */
 }
 
-void Sub_B5_856C(void) {  /* $856C bank 5 */
+void Bank5Tbl8065_2E(void) {  /* $856C bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $856C dec */
   if (R.z) {                                                                             /* $856F bne */
@@ -1295,7 +1295,7 @@ void Sub_B5_856C(void) {  /* $856C bank 5 */
   RTS_RET(sp0);                                                                          /* $8579 rts */
 }
 
-void Sub_B5_857A(void) {  /* $857A bank 5 */
+void Bank5Tbl8065_2F(void) {  /* $857A bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x1A);                                                                             /* $857A lda */
   STA(MmcChr0Shadow);                                                                    /* $857C sta */
@@ -1329,7 +1329,7 @@ L8597: BUDGET();
   RTS_RET(sp0);                                                                          /* $85B1 rts */
 }
 
-void Sub_B5_85B2(void) {  /* $85B2 bank 5 */
+void Bank5Tbl8065_4E(void) {  /* $85B2 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $85B2 inc */
   goto L9CCF;                                                                            /* $85B5 jmp */
@@ -1354,7 +1354,7 @@ L9CCF: BUDGET();
   { QueueSound(); return; }                                                              /* $9CFC jmp */
 }
 
-void Sub_B5_85B8(void) {  /* $85B8 bank 5 */
+void Bank5Tbl8065_4F(void) {  /* $85B8 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $85B8 dec */
   if (R.z) {                                                                             /* $85BB bne */
@@ -1366,7 +1366,7 @@ void Sub_B5_85B8(void) {  /* $85B8 bank 5 */
   RTS_RET(sp0);                                                                          /* $85C8 rts */
 }
 
-void Sub_B5_85C9(void) {  /* $85C9 bank 5 */
+void Bank5Tbl8065_50(void) {  /* $85C9 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $85C9 dec */
   if (R.z) {                                                                             /* $85CC bne */
@@ -1377,7 +1377,7 @@ void Sub_B5_85C9(void) {  /* $85C9 bank 5 */
   RTS_RET(sp0);                                                                          /* $85D6 rts */
 }
 
-void Sub_B5_85D7(void) {  /* $85D7 bank 5 */
+void Bank5Tbl8065_51(void) {  /* $85D7 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $85D7 dec */
   if (R.z) {                                                                             /* $85DA bne */
@@ -1392,7 +1392,7 @@ void Sub_B5_85D7(void) {  /* $85D7 bank 5 */
   { Sub_B5_8150(); return; }                                                             /* $85ED jmp */
 }
 
-void Sub_B5_85F0(void) {  /* $85F0 bank 5 */
+void Bank5Tbl8065_52(void) {  /* $85F0 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $85F0 inc */
   goto L99B5;                                                                            /* $85F3 jmp */
@@ -1484,7 +1484,7 @@ L99B5: BUDGET();
   { MmcWriteChr0(); return; }                                                            /* $9A69 jmp */
 }
 
-void Sub_B5_85F6(void) {  /* $85F6 bank 5 */
+void Bank5Tbl8065_53(void) {  /* $85F6 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0512));                                                                       /* $85F6 lda */
   if (R.a != 0) {                                                                        /* $85F9 beq */
@@ -1497,7 +1497,7 @@ L8606: BUDGET();
   RTS_RET(sp0);                                                                          /* $8606 rts */
 }
 
-void Sub_B5_8607(void) {  /* $8607 bank 5 */
+void Bank5Tbl8065_54(void) {  /* $8607 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0512));                                                                       /* $8607 lda */
   if (R.a != 0) {                                                                        /* $860A beq */
@@ -1512,7 +1512,7 @@ void Sub_B5_8607(void) {  /* $8607 bank 5 */
   RTS_RET(sp0);                                                                          /* $861B rts */
 }
 
-void Sub_B5_861C(void) {  /* $861C bank 5 */
+void Bank5Tbl8065_55(void) {  /* $861C bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $861C inc */
   goto L9D0D;                                                                            /* $861F jmp */
@@ -1533,7 +1533,7 @@ L9D0D: BUDGET();
   { Sub_B5_9098(); return; }                                                             /* $9D30 jmp */
 }
 
-void Sub_B5_8622(void) {  /* $8622 bank 5 */
+void Bank5Tbl8065_56(void) {  /* $8622 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $8622 dec */
   if (R.z) {                                                                             /* $8625 bne */
@@ -1548,7 +1548,7 @@ void Sub_B5_8622(void) {  /* $8622 bank 5 */
   RTS_RET(sp0);                                                                          /* $8637 rts */
 }
 
-void Sub_B5_8638(void) {  /* $8638 bank 5 */
+void Bank5Tbl8065_57(void) {  /* $8638 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0507));                                                                       /* $8638 lda */
   if (R.a != 0) {                                                                        /* $863B beq */
@@ -1560,7 +1560,7 @@ L8645: BUDGET();
   RTS_RET(sp0);                                                                          /* $8645 rts */
 }
 
-void Sub_B5_8646(void) {  /* $8646 bank 5 */
+void Bank5Tbl8065_58(void) {  /* $8646 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8646 inc */
   goto L901E;                                                                            /* $8649 jmp */
@@ -1587,7 +1587,7 @@ L901E: BUDGET();
   RTS_RET(sp0);                                                                          /* $904D rts */
 }
 
-void Sub_B5_864C(void) {  /* $864C bank 5 */
+void Bank5Tbl8065_59(void) {  /* $864C bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0507));                                                                       /* $864C lda */
   if (R.a != 0) {                                                                        /* $864F beq */
@@ -1602,7 +1602,7 @@ void Sub_B5_864C(void) {  /* $864C bank 5 */
   RTS_RET(sp0);                                                                          /* $8664 rts */
 }
 
-void Sub_B5_8665(void) {  /* $8665 bank 5 */
+void Bank5Tbl8065_5A(void) {  /* $8665 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0507));                                                                       /* $8665 lda */
   if (R.a != 0) {                                                                        /* $8668 beq */
@@ -1615,7 +1615,7 @@ L8675: BUDGET();
   RTS_RET(sp0);                                                                          /* $8675 rts */
 }
 
-void Sub_B5_8676(void) {  /* $8676 bank 5 */
+void Bank5Tbl8065_5B(void) {  /* $8676 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8676 inc */
   goto L9C91;                                                                            /* $8679 jmp */
@@ -1634,7 +1634,7 @@ L9C91: BUDGET();
   { Sub_B5_9098(); return; }                                                             /* $9CAF jmp */
 }
 
-void Sub_B5_867C(void) {  /* $867C bank 5 */
+void Bank5Tbl8065_5C(void) {  /* $867C bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $867C inc */
   LDA(0x01);                                                                             /* $867F lda */
@@ -1642,7 +1642,7 @@ void Sub_B5_867C(void) {  /* $867C bank 5 */
   { Sub_B5_8187(); return; }                                                             /* $8684 jmp */
 }
 
-void Sub_B5_8687(void) {  /* $8687 bank 5 */
+void Bank5Tbl8065_5D(void) {  /* $8687 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8689); Sub_B5_8A50(); UNW(); ret_check(0x8689);                               /* $8687 jsr */
   LDA(rd(AnimCounter));                                                                  /* $868A lda */
@@ -2069,7 +2069,7 @@ void Sub_B5_8A50(void) {  /* $8A50 bank 5 */
   call_addr(rd16bug(0x0000)); return;                                                    /* $8A63 jmp */
 }
 
-void Sub_B5_8A78(void) {  /* $8A78 bank 5 */
+void Bank5Tbl8A66_00(void) {  /* $8A78 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $8A78 ldy */
   STY(AnimCounter);                                                                      /* $8A7A sty */
@@ -2077,12 +2077,12 @@ void Sub_B5_8A78(void) {  /* $8A78 bank 5 */
   RTS_RET(sp0);                                                                          /* $8A80 rts */
 }
 
-void Sub_B5_8A81(void) {  /* $8A81 bank 5 */
+void Bank5Tbl8A66_01(void) {  /* $8A81 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8A83); Sub_B5_8BBC(); UNW(); ret_check(0x8A83);                               /* $8A81 jsr */
   cmp8(R.a, 0x05);                                                                       /* $8A84 cmp */
   if (R.a >= 0x05) {                                                                     /* $8A86 bcc */
-    { Sub_B5_8A78(); return; }                                                           /* $8A88 jmp */
+    { Bank5Tbl8A66_00(); return; }                                                       /* $8A88 jmp */
   }
   TAX();                                                                                 /* $8A8B tax */
   LDA(rd((uint16_t)(0x8A93 + R.x)));                                                     /* $8A8C lda */
@@ -2090,12 +2090,12 @@ void Sub_B5_8A81(void) {  /* $8A81 bank 5 */
   RTS_RET(sp0);                                                                          /* $8A92 rts */
 }
 
-void Sub_B5_8A98(void) {  /* $8A98 bank 5 */
+void Bank5Tbl8A66_02(void) {  /* $8A98 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8A9A); Sub_B5_8BBC(); UNW(); ret_check(0x8A9A);                               /* $8A98 jsr */
   cmp8(R.a, 0x04);                                                                       /* $8A9B cmp */
   if (R.a < 0x04) { Sub_B5_8AA2(); return; }                                             /* $8A9D bcc */
-  { Sub_B5_8A78(); return; }                                                             /* $8A9F jmp */
+  { Bank5Tbl8A66_00(); return; }                                                         /* $8A9F jmp */
 }
 
 void Sub_B5_8AA2(void) {  /* $8AA2 bank 5 */
@@ -2106,13 +2106,13 @@ void Sub_B5_8AA2(void) {  /* $8AA2 bank 5 */
   RTS_RET(sp0);                                                                          /* $8AA9 rts */
 }
 
-void Sub_B5_8AAE(void) {  /* $8AAE bank 5 */
+void Bank5Tbl8A66_03(void) {  /* $8AAE bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8AB0); Sub_B5_8BBC(); UNW(); ret_check(0x8AB0);                               /* $8AAE jsr */
   cmp8(R.a, 0x04);                                                                       /* $8AB1 cmp */
   if (R.a >= 0x04) {                                                                     /* $8AB3 bcc */
     push16(0x8AB7); Sub_B5_8930(); UNW(); ret_check(0x8AB7);                             /* $8AB5 jsr */
-    { Sub_B5_8A78(); return; }                                                           /* $8AB8 jmp */
+    { Bank5Tbl8A66_00(); return; }                                                       /* $8AB8 jmp */
   }
   push16(0x8ABD); Sub_B5_8AA2(); UNW(); ret_check(0x8ABD);                               /* $8ABB jsr */
   LDA(rd((uint16_t)(0x8ACE + R.x)));                                                     /* $8ABE lda */
@@ -2123,12 +2123,12 @@ void Sub_B5_8AAE(void) {  /* $8AAE bank 5 */
   RTS_RET(sp0);                                                                          /* $8ACD rts */
 }
 
-void Sub_B5_8AD6(void) {  /* $8AD6 bank 5 */
+void Bank5Tbl8A66_04(void) {  /* $8AD6 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8AD8); Sub_B5_8BBC(); UNW(); ret_check(0x8AD8);                               /* $8AD6 jsr */
   cmp8(R.a, 0x03);                                                                       /* $8AD9 cmp */
   if (R.a >= 0x03) {                                                                     /* $8ADB bcc */
-    push16(0x8ADF); Sub_B5_8A78(); UNW(); ret_check(0x8ADF);                             /* $8ADD jsr */
+    push16(0x8ADF); Bank5Tbl8A66_00(); UNW(); ret_check(0x8ADF);                         /* $8ADD jsr */
     { Sub_B5_8930(); return; }                                                           /* $8AE0 jmp */
   }
   STA(Tmp00);                                                                            /* $8AE3 sta */
@@ -2146,12 +2146,12 @@ void Sub_B5_8AD6(void) {  /* $8AD6 bank 5 */
   RTS_RET(sp0);                                                                          /* $8AF7 rts */
 }
 
-void Sub_B5_8B01(void) {  /* $8B01 bank 5 */
+void Bank5Tbl8A66_05(void) {  /* $8B01 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8B03); Sub_B5_8BBC(); UNW(); ret_check(0x8B03);                               /* $8B01 jsr */
   cmp8(R.a, 0x04);                                                                       /* $8B04 cmp */
   if (R.a >= 0x04) {                                                                     /* $8B06 bcc */
-    { Sub_B5_8A78(); return; }                                                           /* $8B08 jmp */
+    { Bank5Tbl8A66_00(); return; }                                                       /* $8B08 jmp */
   }
   STA(Tmp00);                                                                            /* $8B0B sta */
   ASL_A();                                                                               /* $8B0D asl */
@@ -2170,12 +2170,12 @@ void Sub_B5_8B01(void) {  /* $8B01 bank 5 */
   RTS_RET(sp0);                                                                          /* $8B25 rts */
 }
 
-void Sub_B5_8B3E(void) {  /* $8B3E bank 5 */
+void Bank5Tbl8A66_06(void) {  /* $8B3E bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8B40); Sub_B5_8BBC(); UNW(); ret_check(0x8B40);                               /* $8B3E jsr */
   cmp8(R.a, 0x03);                                                                       /* $8B41 cmp */
   if (R.a >= 0x03) {                                                                     /* $8B43 bcc */
-    { Sub_B5_8A78(); return; }                                                           /* $8B45 jmp */
+    { Bank5Tbl8A66_00(); return; }                                                       /* $8B45 jmp */
   }
   TAX();                                                                                 /* $8B48 tax */
   LDA(rd((uint16_t)(0x8B5C + R.x)));                                                     /* $8B49 lda */
@@ -2191,12 +2191,12 @@ void Sub_B5_8B3E(void) {  /* $8B3E bank 5 */
   RTS_RET(sp0);                                                                          /* $8B5B rts */
 }
 
-void Sub_B5_8B5F(void) {  /* $8B5F bank 5 */
+void Bank5Tbl8A66_07(void) {  /* $8B5F bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8B61); Sub_B5_8BBC(); UNW(); ret_check(0x8B61);                               /* $8B5F jsr */
   cmp8(R.a, 0x03);                                                                       /* $8B62 cmp */
   if (R.a >= 0x03) {                                                                     /* $8B64 bcc */
-    { Sub_B5_8A78(); return; }                                                           /* $8B66 jmp */
+    { Bank5Tbl8A66_00(); return; }                                                       /* $8B66 jmp */
   }
   STA(Tmp00);                                                                            /* $8B69 sta */
   ASL_A();                                                                               /* $8B6B asl */
@@ -2217,7 +2217,7 @@ void Sub_B5_8B5F(void) {  /* $8B5F bank 5 */
   RTS_RET(sp0);                                                                          /* $8B89 rts */
 }
 
-void Sub_B5_8BA5(void) {  /* $8BA5 bank 5 */
+void Bank5Tbl8A66_08(void) {  /* $8BA5 bank 5 */
   uint8_t sp0 = R.sp;
   goto L8BA5;
 L8B6F: BUDGET();
@@ -2238,7 +2238,7 @@ L8BA5: BUDGET();
   push16(0x8BA7); Sub_B5_8BBC(); UNW(); ret_check(0x8BA7);                               /* $8BA5 jsr */
   cmp8(R.a, 0x02);                                                                       /* $8BA8 cmp */
   if (R.a >= 0x02) {                                                                     /* $8BAA bcc */
-    push16(0x8BAE); Sub_B5_8A78(); UNW(); ret_check(0x8BAE);                             /* $8BAC jsr */
+    push16(0x8BAE); Bank5Tbl8A66_00(); UNW(); ret_check(0x8BAE);                         /* $8BAC jsr */
     { Sub_B5_8930(); return; }                                                           /* $8BAF jmp */
   }
   TAX();                                                                                 /* $8BB2 tax */
@@ -3387,7 +3387,7 @@ void Sub_B5_A1A3(void) {  /* $A1A3 bank 5 */
   push16(0xA1AD); Sub_B5_A464(); return;                                                 /* $A1AB jsr */
 }
 
-void Sub_B5_A1BE(void) {  /* $A1BE bank 5 */
+void SoundCmdA_00(void) {  /* $A1BE bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x06));                                                                         /* $A1BE lda */
   AND(0x1F);                                                                             /* $A1C0 and */
@@ -3400,7 +3400,7 @@ void Sub_B5_A1BE(void) {  /* $A1BE bank 5 */
   RTS_RET(sp0);                                                                          /* $A1CD rts */
 }
 
-void Sub_B5_A1CE(void) {  /* $A1CE bank 5 */
+void SoundCmdA_02(void) {  /* $A1CE bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x06));                                                                         /* $A1CE lda */
   AND(0x1F);                                                                             /* $A1D0 and */
@@ -3419,7 +3419,7 @@ void Sub_B5_A1CE(void) {  /* $A1CE bank 5 */
   RTS_RET(sp0);                                                                          /* $A1E9 rts */
 }
 
-void Sub_B5_A1EA(void) {  /* $A1EA bank 5 */
+void SoundCmdA_04(void) {  /* $A1EA bank 5 */
   uint8_t sp0 = R.sp;
   goto LA1EA;
 LA16E: BUDGET();
@@ -3447,7 +3447,7 @@ LA1EA: BUDGET();
   goto LA16E;                                                                            /* $A1FC jmp */
 }
 
-void Sub_B5_A1FF(void) {  /* $A1FF bank 5 */
+void SoundCmdA_05(void) {  /* $A1FF bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x06));                                                                         /* $A1FF lda */
   AND(0x0F);                                                                             /* $A201 and */
@@ -3481,7 +3481,7 @@ void Sub_B5_A1FF(void) {  /* $A1FF bank 5 */
   RTS_RET(sp0);                                                                          /* $A22D rts */
 }
 
-void Sub_B5_A22E(void) {  /* $A22E bank 5 */
+void SoundCmdA_06(void) {  /* $A22E bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x06));                                                                         /* $A22E lda */
   AND(0x0F);                                                                             /* $A230 and */
@@ -3490,14 +3490,14 @@ void Sub_B5_A22E(void) {  /* $A22E bank 5 */
   RTS_RET(sp0);                                                                          /* $A236 rts */
 }
 
-void Sub_B5_A237(void) {  /* $A237 bank 5 */
+void SoundCmdA_07(void) {  /* $A237 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x06));                                                                         /* $A237 lda */
   AND(0x07);                                                                             /* $A239 and */
   push16(0xA23D); Sub_B5_A464(); return;                                                 /* $A23B jsr */
 }
 
-void Sub_B5_A24E(void) {  /* $A24E bank 5 */
+void SoundCmdB_00(void) {  /* $A24E bank 5 */
   uint8_t sp0 = R.sp;
   LDY(rd(Tmp01));                                                                        /* $A24E ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $A250 lda */
@@ -3518,7 +3518,7 @@ void Sub_B5_A24E(void) {  /* $A24E bank 5 */
   RTS_RET(sp0);                                                                          /* $A268 rts */
 }
 
-void Sub_B5_A269(void) {  /* $A269 bank 5 */
+void SoundCmdB_01(void) {  /* $A269 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(rd(Tmp01));                                                                        /* $A269 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $A26B lda */
@@ -3537,7 +3537,7 @@ void Sub_B5_A269(void) {  /* $A269 bank 5 */
   RTS_RET(sp0);                                                                          /* $A283 rts */
 }
 
-void Sub_B5_A284(void) {  /* $A284 bank 5 */
+void SoundCmdB_02(void) {  /* $A284 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(0x13);                                                                             /* $A284 ldy */
   LDA(rd((uint16_t)(rd16zp(SndPtrLo) + R.y)));                                           /* $A286 lda */
@@ -3563,7 +3563,7 @@ void Sub_B5_A284(void) {  /* $A284 bank 5 */
   RTS_RET(sp0);                                                                          /* $A2A7 rts */
 }
 
-void Sub_B5_A2A8(void) {  /* $A2A8 bank 5 */
+void SoundCmdB_03(void) {  /* $A2A8 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(rd(Tmp01));                                                                        /* $A2A8 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $A2AA lda */
@@ -3610,7 +3610,7 @@ void Sub_B5_A2A8(void) {  /* $A2A8 bank 5 */
   RTS_RET(sp0);                                                                          /* $A2F3 rts */
 }
 
-void Sub_B5_A2F4(void) {  /* $A2F4 bank 5 */
+void SoundCmdB_04(void) {  /* $A2F4 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(0x0B);                                                                             /* $A2F4 ldy */
   SEC();                                                                                 /* $A2F6 sec */
@@ -3640,7 +3640,7 @@ void Sub_B5_A2F4(void) {  /* $A2F4 bank 5 */
   RTS_RET(sp0);                                                                          /* $A320 rts */
 }
 
-void Sub_B5_A321(void) {  /* $A321 bank 5 */
+void SoundCmdB_05(void) {  /* $A321 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(rd(Tmp01));                                                                        /* $A321 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $A323 lda */
@@ -3650,7 +3650,7 @@ void Sub_B5_A321(void) {  /* $A321 bank 5 */
   RTS_RET(sp0);                                                                          /* $A32B rts */
 }
 
-void Sub_B5_A32C(void) {  /* $A32C bank 5 */
+void SoundCmdB_06(void) {  /* $A32C bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $A32C lda */
   LDY(0x00);                                                                             /* $A32E ldy */

@@ -32,18 +32,18 @@ Bank1Dispatch_SceneState:
   sta z:Tmp01                  ; $803C
   jmp ($0000)                  ; $803E
 Data_B1_8041:
-  .addr Sub_B1_8049, Sub_B1_8054, Sub_B1_805D, Sub_B1_80A5  ; $8041 pointer table
-Sub_B1_8049:
+  .addr Bank1Title_00, Bank1Title_01, Bank1Title_02, Bank1Title_03  ; $8041 pointer table
+Bank1Title_00:
   inc SceneState               ; $8049
   jsr Sub_B1_85A0              ; $804C
 Sub_B1_804F:
   lda #$00                     ; $804F
   jmp SetPpuMask               ; $8051
-Sub_B1_8054:
+Bank1Title_01:
   inc SceneState               ; $8054
   jsr Sub_B1_83D5              ; $8057
   jmp ReadJoypads              ; $805A
-Sub_B1_805D:
+Bank1Title_02:
   jsr Sub_B1_8146              ; $805D
   lda #$1E                     ; $8060
   jsr SetPpuMask               ; $8062
@@ -78,7 +78,7 @@ Loc_B1_8098:
   ldy #$0D                     ; $809E
   sty z:MmcChr1Shadow          ; $80A0
   jmp MmcWriteChr1             ; $80A2
-Sub_B1_80A5:
+Bank1Title_03:
   jsr Sub_B1_804F              ; $80A5
   jsr FillPaletteBlack         ; $80A8
   jsr Sub_B1_812B              ; $80AB
@@ -574,9 +574,9 @@ Loc_B1_8DBB:
 Loc_B1_8DCE:
   rts                          ; $8DCE
 Data_B1_8DCF:
-  .addr Sub_B1_9231, Sub_B1_8DFF, Sub_B1_8F59, Sub_B1_90A6, Sub_B1_9360, Sub_B1_9583, Sub_B1_97B7, Sub_B1_99E0, Sub_B1_9C47, Sub_B1_9DB9, Sub_B1_9DB9  ; $8DCF pointer table
+  .addr Bank1State_00, Bank1State_01, Bank1State_02, Bank1State_03, Bank1State_04, Bank1State_05, Bank1State_06, Bank1State_07, Bank1State_08, Bank1State_09, Bank1State_09  ; $8DCF pointer table
   .incbin "prg_bank_1.bin", $0DE5, $1A  ; $8DE5
-Sub_B1_8DFF:
+Bank1State_01:
   ldy #$0C                     ; $8DFF
   lda (Tmp00),y                ; $8E01
   beq Loc_B1_8E0D              ; $8E03
@@ -766,7 +766,7 @@ Loc_B1_8F51:
   lda #$00                     ; $8F54
   sta z:PaletteDirty           ; $8F56
   rts                          ; $8F58
-Sub_B1_8F59:
+Bank1State_02:
   jsr Sub_B1_8F8C              ; $8F59  [heuristic code]
   ldy #$08                     ; $8F5C
   lda (Tmp00),y                ; $8F5E
@@ -870,7 +870,7 @@ Data_B1_900A:
   .incbin "prg_bank_1.bin", $100A, $1  ; $900A
 Data_B1_900B:
   .incbin "prg_bank_1.bin", $100B, $9B  ; $900B
-Sub_B1_90A6:
+Bank1State_03:
   jsr Sub_B1_90C6              ; $90A6
   ldy #$08                     ; $90A9
   lda (Tmp00),y                ; $90AB
@@ -902,7 +902,7 @@ Data_B1_90D9:
   .incbin "prg_bank_1.bin", $10D9, $1  ; $90D9
 Data_B1_90DA:
   .incbin "prg_bank_1.bin", $10DA, $157  ; $90DA
-Sub_B1_9231:
+Bank1State_00:
   jsr Sub_B1_9260              ; $9231
   ldy #$08                     ; $9234
   lda (Tmp00),y                ; $9236
@@ -1020,7 +1020,7 @@ Data_B1_9307:
   .incbin "prg_bank_1.bin", $1307, $1  ; $9307
 Data_B1_9308:
   .incbin "prg_bank_1.bin", $1308, $58  ; $9308
-Sub_B1_9360:
+Bank1State_04:
   jsr Sub_B1_93B8              ; $9360
   ldy #$07                     ; $9363
   lda (Tmp00),y                ; $9365
@@ -1228,7 +1228,7 @@ Data_B1_94E8:
   .incbin "prg_bank_1.bin", $14E8, $1  ; $94E8
 Data_B1_94E9:
   .incbin "prg_bank_1.bin", $14E9, $9A  ; $94E9
-Sub_B1_9583:
+Bank1State_05:
   jsr Sub_B1_95E6              ; $9583
   ldy #$07                     ; $9586
   lda (Tmp00),y                ; $9588
@@ -1454,7 +1454,7 @@ Data_B1_970C:
   .incbin "prg_bank_1.bin", $170C, $1  ; $970C
 Data_B1_970D:
   .incbin "prg_bank_1.bin", $170D, $AA  ; $970D
-Sub_B1_97B7:
+Bank1State_06:
   jsr Sub_B1_9816              ; $97B7
   ldy #$07                     ; $97BA
   lda (Tmp00),y                ; $97BC
@@ -1642,7 +1642,7 @@ Data_B1_990A:
   .incbin "prg_bank_1.bin", $190A, $1  ; $990A
 Data_B1_990B:
   .incbin "prg_bank_1.bin", $190B, $D5  ; $990B
-Sub_B1_99E0:
+Bank1State_07:
   ldy #$07                     ; $99E0
   lda (Tmp00),y                ; $99E2
   bmi Loc_B1_99F4              ; $99E4
@@ -1879,7 +1879,7 @@ Data_B1_9B81:
   .incbin "prg_bank_1.bin", $1B81, $1  ; $9B81
 Data_B1_9B82:
   .incbin "prg_bank_1.bin", $1B82, $C5  ; $9B82
-Sub_B1_9C47:
+Bank1State_08:
   jsr Sub_B1_9C68              ; $9C47
   ldy #$08                     ; $9C4A
   lda (Tmp00),y                ; $9C4C
@@ -1960,7 +1960,7 @@ Data_B1_9CD4:
   .incbin "prg_bank_1.bin", $1CD4, $1  ; $9CD4
 Data_B1_9CD5:
   .incbin "prg_bank_1.bin", $1CD5, $E4  ; $9CD5
-Sub_B1_9DB9:
+Bank1State_09:
   jsr Sub_B1_9DEE              ; $9DB9
   ldy #$00                     ; $9DBC
   lda (Tmp00),y                ; $9DBE
@@ -2444,29 +2444,29 @@ Loc_B1_AB91:
 Loc_B1_AB9C:
   rts                          ; $AB9C
 Data_B1_AB9D:
-  .addr Sub_B1_ABAB, Sub_B1_ABB9, Sub_B1_ABBD, Sub_B1_ABC1, Sub_B1_ABCD  ; $AB9D pointer table
+  .addr Bank1ObjAnim_00, Bank1ObjAnim_01, Bank1ObjAnim_02, Bank1ObjAnim_03, Bank1ObjAnim_04  ; $AB9D pointer table
   .incbin "prg_bank_1.bin", $2BA7, $4  ; $ABA7
-Sub_B1_ABAB:
+Bank1ObjAnim_00:
   ldy #$0D                     ; $ABAB
   lda (Tmp00),y                ; $ABAD
   and $04AB                    ; $ABAF
   sta $04AB                    ; $ABB2
   jsr Sub_B1_AFC6              ; $ABB5
   rts                          ; $ABB8
-Sub_B1_ABB9:
+Bank1ObjAnim_01:
   jsr Sub_B1_ABE0              ; $ABB9
   rts                          ; $ABBC
-Sub_B1_ABBD:
+Bank1ObjAnim_02:
   jsr Sub_B1_AC5B              ; $ABBD
   rts                          ; $ABC0
-Sub_B1_ABC1:
+Bank1ObjAnim_03:
   jsr Sub_B1_AFC6              ; $ABC1
   lda $04AB                    ; $ABC4
   beq Loc_B1_ABCC              ; $ABC7
   jsr Sub_B1_AC8A              ; $ABC9
 Loc_B1_ABCC:
   rts                          ; $ABCC
-Sub_B1_ABCD:
+Bank1ObjAnim_04:
   jsr Sub_B1_AFC6              ; $ABCD
   rts                          ; $ABD0
   ldy #$07                     ; $ABD1  [heuristic code]

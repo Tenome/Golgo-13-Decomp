@@ -427,7 +427,7 @@
      }
     },
     {
-     "name": "Sub_B1_8049",
+     "name": "Bank1Title_00",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -443,7 +443,7 @@
      }
     },
     {
-     "name": "Sub_B1_8054",
+     "name": "Bank1Title_01",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -451,7 +451,7 @@
      }
     },
     {
-     "name": "Sub_B1_805D",
+     "name": "Bank1Title_02",
      "size": "72",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -459,7 +459,7 @@
      }
     },
     {
-     "name": "Sub_B1_80A5",
+     "name": "Bank1Title_03",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -587,7 +587,7 @@
      }
     },
     {
-     "name": "Sub_B1_8DFF",
+     "name": "Bank1State_01",
      "size": "128",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -611,7 +611,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F59",
+     "name": "Bank1State_02",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -651,7 +651,7 @@
      }
     },
     {
-     "name": "Sub_B1_90A6",
+     "name": "Bank1State_03",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -667,7 +667,7 @@
      }
     },
     {
-     "name": "Sub_B1_9231",
+     "name": "Bank1State_00",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -699,7 +699,7 @@
      }
     },
     {
-     "name": "Sub_B1_9360",
+     "name": "Bank1State_04",
      "size": "88",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -755,7 +755,7 @@
      }
     },
     {
-     "name": "Sub_B1_9583",
+     "name": "Bank1State_05",
      "size": "99",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -827,7 +827,7 @@
      }
     },
     {
-     "name": "Sub_B1_97B7",
+     "name": "Bank1State_06",
      "size": "95",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -867,7 +867,7 @@
      }
     },
     {
-     "name": "Sub_B1_99E0",
+     "name": "Bank1State_07",
      "size": "77",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -915,7 +915,7 @@
      }
     },
     {
-     "name": "Sub_B1_9C47",
+     "name": "Bank1State_08",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -947,7 +947,7 @@
      }
     },
     {
-     "name": "Sub_B1_9DB9",
+     "name": "Bank1State_09",
      "size": "53",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1083,7 +1083,7 @@
      }
     },
     {
-     "name": "Sub_B1_ABAB",
+     "name": "Bank1ObjAnim_00",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1091,7 +1091,7 @@
      }
     },
     {
-     "name": "Sub_B1_ABB9",
+     "name": "Bank1ObjAnim_01",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1099,7 +1099,7 @@
      }
     },
     {
-     "name": "Sub_B1_ABBD",
+     "name": "Bank1ObjAnim_02",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1107,7 +1107,7 @@
      }
     },
     {
-     "name": "Sub_B1_ABC1",
+     "name": "Bank1ObjAnim_03",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1115,7 +1115,7 @@
      }
     },
     {
-     "name": "Sub_B1_ABCD",
+     "name": "Bank1ObjAnim_04",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1952,7 +1952,7 @@
      }
     },
     {
-     "name": "Sub_B4_8107",
+     "name": "Bank4State_00",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1960,7 +1960,7 @@
      }
     },
     {
-     "name": "Sub_B4_8112",
+     "name": "Bank4State_03",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1968,7 +1968,7 @@
      }
     },
     {
-     "name": "Sub_B4_811D",
+     "name": "Bank4State_01",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1976,7 +1976,7 @@
      }
     },
     {
-     "name": "Sub_B4_8128",
+     "name": "Bank4State_02",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1984,7 +1984,7 @@
      }
     },
     {
-     "name": "Sub_B4_8133",
+     "name": "Bank4State_04",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1992,7 +1992,7 @@
      }
     },
     {
-     "name": "Sub_B4_8139",
+     "name": "Bank4State_05",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2000,7 +2000,7 @@
      }
     },
     {
-     "name": "Sub_B4_8165",
+     "name": "Bank4State_06",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2008,7 +2008,7 @@
      }
     },
     {
-     "name": "Sub_B4_8177",
+     "name": "Bank4State_07",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2016,7 +2016,7 @@
      }
     },
     {
-     "name": "Sub_B4_8188",
+     "name": "Bank4State_08",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2024,7 +2024,7 @@
      }
     },
     {
-     "name": "Sub_B4_81C1",
+     "name": "Bank4State_09",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2032,7 +2032,7 @@
      }
     },
     {
-     "name": "Sub_B4_81CC",
+     "name": "Bank4State_0A",
      "size": "41",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2040,7 +2040,7 @@
      }
     },
     {
-     "name": "Sub_B4_81F5",
+     "name": "Bank4State_0B",
      "size": "62",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2048,7 +2048,7 @@
      }
     },
     {
-     "name": "Sub_B4_8233",
+     "name": "Bank4State_0C",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2056,7 +2056,7 @@
      }
     },
     {
-     "name": "Sub_B4_8239",
+     "name": "Bank4State_0D",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2064,7 +2064,7 @@
      }
     },
     {
-     "name": "Sub_B4_8260",
+     "name": "Bank4State_0E",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2072,7 +2072,7 @@
      }
     },
     {
-     "name": "Sub_B4_8264",
+     "name": "Bank4State_0F",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2080,7 +2080,7 @@
      }
     },
     {
-     "name": "Sub_B4_826D",
+     "name": "Bank4State_10",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2088,7 +2088,7 @@
      }
     },
     {
-     "name": "Sub_B4_8284",
+     "name": "Bank4State_11",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2096,7 +2096,7 @@
      }
     },
     {
-     "name": "Sub_B4_828A",
+     "name": "Bank4State_12",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2112,7 +2112,7 @@
      }
     },
     {
-     "name": "Sub_B4_830E",
+     "name": "Bank4State_13",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2120,7 +2120,7 @@
      }
     },
     {
-     "name": "Sub_B4_8314",
+     "name": "Bank4State_14",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2128,7 +2128,7 @@
      }
     },
     {
-     "name": "Sub_B4_8326",
+     "name": "Bank4State_15",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2136,7 +2136,7 @@
      }
     },
     {
-     "name": "Sub_B4_833D",
+     "name": "Bank4State_16",
      "size": "34",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2144,7 +2144,7 @@
      }
     },
     {
-     "name": "Sub_B4_8361",
+     "name": "Bank4State_17",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2152,7 +2152,7 @@
      }
     },
     {
-     "name": "Sub_B4_8367",
+     "name": "Bank4State_18",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2160,7 +2160,7 @@
      }
     },
     {
-     "name": "Sub_B4_838D",
+     "name": "Bank4State_19",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2168,7 +2168,7 @@
      }
     },
     {
-     "name": "Sub_B4_8393",
+     "name": "Bank4State_1A",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2176,7 +2176,7 @@
      }
     },
     {
-     "name": "Sub_B4_8399",
+     "name": "Bank4State_1B",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2184,7 +2184,7 @@
      }
     },
     {
-     "name": "Sub_B4_83B6",
+     "name": "Bank4State_1C",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2192,7 +2192,7 @@
      }
     },
     {
-     "name": "Sub_B4_83BC",
+     "name": "Bank4State_1D",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2200,7 +2200,7 @@
      }
     },
     {
-     "name": "Sub_B4_83DF",
+     "name": "Bank4State_1E",
      "size": "62",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2208,7 +2208,7 @@
      }
     },
     {
-     "name": "Sub_B4_841D",
+     "name": "Bank4State_1F",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2216,7 +2216,7 @@
      }
     },
     {
-     "name": "Sub_B4_8441",
+     "name": "Bank4State_20",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2288,7 +2288,7 @@
      }
     },
     {
-     "name": "Sub_B4_85D3",
+     "name": "Bank4StateB_00",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2296,7 +2296,7 @@
      }
     },
     {
-     "name": "Sub_B4_85D8",
+     "name": "Bank4StateB_01",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2304,7 +2304,7 @@
      }
     },
     {
-     "name": "Sub_B4_85DF",
+     "name": "Bank4StateB_02",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2312,7 +2312,7 @@
      }
     },
     {
-     "name": "Sub_B4_85E6",
+     "name": "Bank4StateB_03",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2320,7 +2320,7 @@
      }
     },
     {
-     "name": "Sub_B4_85ED",
+     "name": "Bank4StateB_04",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2328,7 +2328,7 @@
      }
     },
     {
-     "name": "Sub_B4_85F4",
+     "name": "Bank4StateB_05",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2336,7 +2336,7 @@
      }
     },
     {
-     "name": "Sub_B4_860D",
+     "name": "Bank4StateB_06",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2344,7 +2344,7 @@
      }
     },
     {
-     "name": "Sub_B4_861D",
+     "name": "Bank4StateB_07",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2352,7 +2352,7 @@
      }
     },
     {
-     "name": "Sub_B4_8629",
+     "name": "Bank4StateB_08",
      "size": "46",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2360,7 +2360,7 @@
      }
     },
     {
-     "name": "Sub_B4_8657",
+     "name": "Bank4StateB_09",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2368,7 +2368,7 @@
      }
     },
     {
-     "name": "Sub_B4_866A",
+     "name": "Bank4StateB_0A",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2376,7 +2376,7 @@
      }
     },
     {
-     "name": "Sub_B4_8680",
+     "name": "Bank4StateB_0B",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2384,7 +2384,7 @@
      }
     },
     {
-     "name": "Sub_B4_86AB",
+     "name": "Bank4StateB_0C",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2392,7 +2392,7 @@
      }
     },
     {
-     "name": "Sub_B4_86B4",
+     "name": "Bank4StateB_0D",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2504,7 +2504,7 @@
      }
     },
     {
-     "name": "Sub_B4_8E90",
+     "name": "Bank4StateC_00",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2512,7 +2512,7 @@
      }
     },
     {
-     "name": "Sub_B4_8E92",
+     "name": "Bank4StateC_01",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2520,7 +2520,7 @@
      }
     },
     {
-     "name": "Sub_B4_8E9C",
+     "name": "Bank4StateC_02",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2528,7 +2528,7 @@
      }
     },
     {
-     "name": "Sub_B4_8EA8",
+     "name": "Bank4StateC_06",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2536,7 +2536,7 @@
      }
     },
     {
-     "name": "Sub_B4_8EB4",
+     "name": "Bank4StateC_0A",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2544,7 +2544,7 @@
      }
     },
     {
-     "name": "Sub_B4_8EBE",
+     "name": "Bank4StateC_11",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3095,7 +3095,7 @@
      }
     },
     {
-     "name": "Sub_B5_8139",
+     "name": "Bank5Scene_00",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3111,7 +3111,7 @@
      }
     },
     {
-     "name": "Sub_B5_8153",
+     "name": "Bank5Scene_01",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3119,7 +3119,7 @@
      }
     },
     {
-     "name": "Sub_B5_8158",
+     "name": "Bank5Scene_02",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3127,7 +3127,7 @@
      }
     },
     {
-     "name": "Sub_B5_815D",
+     "name": "Bank5Scene_03",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3135,7 +3135,7 @@
      }
     },
     {
-     "name": "Sub_B5_816B",
+     "name": "Bank5Scene_04",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3143,7 +3143,7 @@
      }
     },
     {
-     "name": "Sub_B5_8176",
+     "name": "Bank5Scene_05",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3159,7 +3159,7 @@
      }
     },
     {
-     "name": "Sub_B5_818A",
+     "name": "Bank5Scene_06",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3167,7 +3167,7 @@
      }
     },
     {
-     "name": "Sub_B5_819E",
+     "name": "Bank5Scene_07",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3175,7 +3175,7 @@
      }
     },
     {
-     "name": "Sub_B5_81AC",
+     "name": "Bank5Scene_08",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3183,7 +3183,7 @@
      }
     },
     {
-     "name": "Sub_B5_81BD",
+     "name": "Bank5Scene_09",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3191,7 +3191,7 @@
      }
     },
     {
-     "name": "Sub_B5_81CB",
+     "name": "Bank5Scene_0A",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3199,7 +3199,7 @@
      }
     },
     {
-     "name": "Sub_B5_81E2",
+     "name": "Bank5Scene_0B",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3207,7 +3207,7 @@
      }
     },
     {
-     "name": "Sub_B5_81EB",
+     "name": "Bank5Scene_0C",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3215,7 +3215,7 @@
      }
     },
     {
-     "name": "Sub_B5_81F6",
+     "name": "Bank5Scene_0D",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3223,7 +3223,7 @@
      }
     },
     {
-     "name": "Sub_B5_820B",
+     "name": "Bank5Scene_0E",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3231,7 +3231,7 @@
      }
     },
     {
-     "name": "Sub_B5_821C",
+     "name": "Bank5Scene_0F",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3239,7 +3239,7 @@
      }
     },
     {
-     "name": "Sub_B5_822A",
+     "name": "Bank5Scene_10",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3247,7 +3247,7 @@
      }
     },
     {
-     "name": "Sub_B5_8236",
+     "name": "Bank5Scene_11",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3255,7 +3255,7 @@
      }
     },
     {
-     "name": "Sub_B5_8253",
+     "name": "Bank5Scene_12",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3263,7 +3263,7 @@
      }
     },
     {
-     "name": "Sub_B5_825E",
+     "name": "Bank5Scene_13",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3271,7 +3271,7 @@
      }
     },
     {
-     "name": "Sub_B5_828A",
+     "name": "Bank5Scene_14",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3279,7 +3279,7 @@
      }
     },
     {
-     "name": "Sub_B5_829D",
+     "name": "Bank5Scene_15",
      "size": "26",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3287,7 +3287,7 @@
      }
     },
     {
-     "name": "Sub_B5_82B7",
+     "name": "Bank5Scene_16",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3295,7 +3295,7 @@
      }
     },
     {
-     "name": "Sub_B5_82C5",
+     "name": "Bank5Scene_17",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3303,7 +3303,7 @@
      }
     },
     {
-     "name": "Sub_B5_82E0",
+     "name": "Bank5Scene_18",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3311,7 +3311,7 @@
      }
     },
     {
-     "name": "Sub_B5_82FB",
+     "name": "Bank5Scene_19",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3319,7 +3319,7 @@
      }
     },
     {
-     "name": "Sub_B5_8306",
+     "name": "Bank5Scene_1A",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3327,7 +3327,7 @@
      }
     },
     {
-     "name": "Sub_B5_8311",
+     "name": "Bank5Scene_1B",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3335,7 +3335,7 @@
      }
     },
     {
-     "name": "Sub_B5_8322",
+     "name": "Bank5Scene_1C",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3343,7 +3343,7 @@
      }
     },
     {
-     "name": "Sub_B5_8333",
+     "name": "Bank5Scene_1D",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3351,7 +3351,7 @@
      }
     },
     {
-     "name": "Sub_B5_8344",
+     "name": "Bank5Scene_1E",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3359,7 +3359,7 @@
      }
     },
     {
-     "name": "Sub_B5_8358",
+     "name": "Bank5Scene_1F",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3367,7 +3367,7 @@
      }
     },
     {
-     "name": "Sub_B5_8361",
+     "name": "Bank5Scene_20",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3375,7 +3375,7 @@
      }
     },
     {
-     "name": "Sub_B5_836C",
+     "name": "Bank5Scene_21",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3383,7 +3383,7 @@
      }
     },
     {
-     "name": "Sub_B5_837A",
+     "name": "Bank5Scene_22",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3391,7 +3391,7 @@
      }
     },
     {
-     "name": "Sub_B5_8386",
+     "name": "Bank5Scene_23",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3399,7 +3399,7 @@
      }
     },
     {
-     "name": "Sub_B5_838A",
+     "name": "Bank5Scene_24",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3415,7 +3415,7 @@
      }
     },
     {
-     "name": "Sub_B5_83B3",
+     "name": "Bank5Scene_25",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3423,7 +3423,7 @@
      }
     },
     {
-     "name": "Sub_B5_83C2",
+     "name": "Bank5Scene_26",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3431,7 +3431,7 @@
      }
     },
     {
-     "name": "Sub_B5_83DB",
+     "name": "Bank5Scene_27",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3439,7 +3439,7 @@
      }
     },
     {
-     "name": "Sub_B5_83EC",
+     "name": "Bank5Scene_28",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3447,7 +3447,7 @@
      }
     },
     {
-     "name": "Sub_B5_843C",
+     "name": "Bank5Scene_29",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3455,7 +3455,7 @@
      }
     },
     {
-     "name": "Sub_B5_8457",
+     "name": "Bank5Scene_2A",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3471,7 +3471,7 @@
      }
     },
     {
-     "name": "Sub_B5_8488",
+     "name": "Bank5Scene_2B",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3479,7 +3479,7 @@
      }
     },
     {
-     "name": "Sub_B5_8496",
+     "name": "Bank5Scene_2C",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3487,7 +3487,7 @@
      }
     },
     {
-     "name": "Sub_B5_849F",
+     "name": "Bank5Scene_37",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3495,7 +3495,7 @@
      }
     },
     {
-     "name": "Sub_B5_84A5",
+     "name": "Bank5Scene_38",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3503,7 +3503,7 @@
      }
     },
     {
-     "name": "Sub_B5_84B0",
+     "name": "Bank5Scene_39",
      "size": "26",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3511,7 +3511,7 @@
      }
     },
     {
-     "name": "Sub_B5_84CA",
+     "name": "Bank5Scene_3A",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3519,7 +3519,7 @@
      }
     },
     {
-     "name": "Sub_B5_84DA",
+     "name": "Bank5Scene_3B",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3527,7 +3527,7 @@
      }
     },
     {
-     "name": "Sub_B5_84F3",
+     "name": "Bank5Scene_3C",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3535,7 +3535,7 @@
      }
     },
     {
-     "name": "Sub_B5_8513",
+     "name": "Bank5Scene_46",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3543,7 +3543,7 @@
      }
     },
     {
-     "name": "Sub_B5_8520",
+     "name": "Bank5Scene_47",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3551,7 +3551,7 @@
      }
     },
     {
-     "name": "Sub_B5_8535",
+     "name": "Bank5Scene_48",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3559,7 +3559,7 @@
      }
     },
     {
-     "name": "Sub_B5_8554",
+     "name": "Bank5Scene_49",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3567,7 +3567,7 @@
      }
     },
     {
-     "name": "Sub_B5_8566",
+     "name": "Bank5Scene_4A",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3575,7 +3575,7 @@
      }
     },
     {
-     "name": "Sub_B5_857E",
+     "name": "Bank5Scene_4B",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3583,7 +3583,7 @@
      }
     },
     {
-     "name": "Sub_B5_8591",
+     "name": "Bank5Scene_4C",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3591,7 +3591,7 @@
      }
     },
     {
-     "name": "Sub_B5_85A8",
+     "name": "Bank5Scene_4D",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3599,7 +3599,7 @@
      }
     },
     {
-     "name": "Sub_B5_85BC",
+     "name": "Bank5Scene_2D",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3607,7 +3607,7 @@
      }
     },
     {
-     "name": "Sub_B5_85C2",
+     "name": "Bank5Scene_2E",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3615,7 +3615,7 @@
      }
     },
     {
-     "name": "Sub_B5_85D0",
+     "name": "Bank5Scene_2F",
      "size": "56",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3623,7 +3623,7 @@
      }
     },
     {
-     "name": "Sub_B5_8608",
+     "name": "Bank5Scene_4E",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3631,7 +3631,7 @@
      }
     },
     {
-     "name": "Sub_B5_860E",
+     "name": "Bank5Scene_4F",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3639,7 +3639,7 @@
      }
     },
     {
-     "name": "Sub_B5_861F",
+     "name": "Bank5Scene_50",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3647,7 +3647,7 @@
      }
     },
     {
-     "name": "Sub_B5_862D",
+     "name": "Bank5Scene_51",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3655,7 +3655,7 @@
      }
     },
     {
-     "name": "Sub_B5_8646",
+     "name": "Bank5Scene_52",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3663,7 +3663,7 @@
      }
     },
     {
-     "name": "Sub_B5_864C",
+     "name": "Bank5Scene_53",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3671,7 +3671,7 @@
      }
     },
     {
-     "name": "Sub_B5_865D",
+     "name": "Bank5Scene_54",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3679,7 +3679,7 @@
      }
     },
     {
-     "name": "Sub_B5_8672",
+     "name": "Bank5Scene_55",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3687,7 +3687,7 @@
      }
     },
     {
-     "name": "Sub_B5_8678",
+     "name": "Bank5Scene_56",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3695,7 +3695,7 @@
      }
     },
     {
-     "name": "Sub_B5_868E",
+     "name": "Bank5Scene_57",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3703,7 +3703,7 @@
      }
     },
     {
-     "name": "Sub_B5_869C",
+     "name": "Bank5Scene_58",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3711,7 +3711,7 @@
      }
     },
     {
-     "name": "Sub_B5_86A2",
+     "name": "Bank5Scene_59",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3719,7 +3719,7 @@
      }
     },
     {
-     "name": "Sub_B5_86BB",
+     "name": "Bank5Scene_5A",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3727,7 +3727,7 @@
      }
     },
     {
-     "name": "Sub_B5_86CC",
+     "name": "Bank5Scene_5B",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3735,7 +3735,7 @@
      }
     },
     {
-     "name": "Sub_B5_86D2",
+     "name": "Bank5Scene_5C",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3743,7 +3743,7 @@
      }
     },
     {
-     "name": "Sub_B5_86DD",
+     "name": "Bank5Scene_5D",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3967,7 +3967,7 @@
      }
     },
     {
-     "name": "Sub_B5_8B09",
+     "name": "Bank5SubScene_00",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3975,7 +3975,7 @@
      }
     },
     {
-     "name": "Sub_B5_8B12",
+     "name": "Bank5SubScene_01",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3983,7 +3983,7 @@
      }
     },
     {
-     "name": "Sub_B5_8B29",
+     "name": "Bank5SubScene_02",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3999,7 +3999,7 @@
      }
     },
     {
-     "name": "Sub_B5_8B3F",
+     "name": "Bank5SubScene_03",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4007,7 +4007,7 @@
      }
     },
     {
-     "name": "Sub_B5_8B67",
+     "name": "Bank5SubScene_04",
      "size": "34",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4015,7 +4015,7 @@
      }
     },
     {
-     "name": "Sub_B5_8B92",
+     "name": "Bank5SubScene_05",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4023,7 +4023,7 @@
      }
     },
     {
-     "name": "Sub_B5_8BCF",
+     "name": "Bank5SubScene_06",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4031,7 +4031,7 @@
      }
     },
     {
-     "name": "Sub_B5_8BF0",
+     "name": "Bank5SubScene_07",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4047,7 +4047,7 @@
      }
     },
     {
-     "name": "Sub_B5_8C48",
+     "name": "Bank5SubScene_08",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4055,7 +4055,7 @@
      }
     },
     {
-     "name": "Sub_B5_8C61",
+     "name": "Bank5SubScene_09",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4063,7 +4063,7 @@
      }
     },
     {
-     "name": "Sub_B5_8C8E",
+     "name": "Bank5SubScene_0A",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4447,7 +4447,7 @@
      }
     },
     {
-     "name": "Sub_B5_A1BE",
+     "name": "SoundCmdA_00",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4455,7 +4455,7 @@
      }
     },
     {
-     "name": "Sub_B5_A1CE",
+     "name": "SoundCmdA_02",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4463,7 +4463,7 @@
      }
     },
     {
-     "name": "Sub_B5_A1EA",
+     "name": "SoundCmdA_04",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4471,7 +4471,7 @@
      }
     },
     {
-     "name": "Sub_B5_A1FF",
+     "name": "SoundCmdA_05",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4479,7 +4479,7 @@
      }
     },
     {
-     "name": "Sub_B5_A22E",
+     "name": "SoundCmdA_06",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4487,7 +4487,7 @@
      }
     },
     {
-     "name": "Sub_B5_A237",
+     "name": "SoundCmdA_07",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4495,7 +4495,7 @@
      }
     },
     {
-     "name": "Sub_B5_A24E",
+     "name": "SoundCmdB_00",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4503,7 +4503,7 @@
      }
     },
     {
-     "name": "Sub_B5_A269",
+     "name": "SoundCmdB_01",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4511,7 +4511,7 @@
      }
     },
     {
-     "name": "Sub_B5_A284",
+     "name": "SoundCmdB_02",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4519,7 +4519,7 @@
      }
     },
     {
-     "name": "Sub_B5_A2A8",
+     "name": "SoundCmdB_03",
      "size": "76",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4527,7 +4527,7 @@
      }
     },
     {
-     "name": "Sub_B5_A2F4",
+     "name": "SoundCmdB_04",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4535,7 +4535,7 @@
      }
     },
     {
-     "name": "Sub_B5_A321",
+     "name": "SoundCmdB_05",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4543,7 +4543,7 @@
      }
     },
     {
-     "name": "Sub_B5_A32C",
+     "name": "SoundCmdB_06",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {

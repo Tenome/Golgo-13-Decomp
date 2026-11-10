@@ -89,31 +89,31 @@ Loc_B4_80B8:
   sta z:$6E                    ; $80C4
   jmp ($006D)                  ; $80C6
 Data_B4_80C9:
-  .addr Sub_B4_810B, Sub_B4_8121, Sub_B4_812C, Sub_B4_8116, Sub_B4_8137, Sub_B4_813D, Sub_B4_8169, Sub_B4_817B, Sub_B4_818C, Sub_B4_81C5, Sub_B4_81D0, Sub_B4_81F9, Sub_B4_8237, Sub_B4_823D, Sub_B4_8264, Sub_B4_8268, Sub_B4_8271, Sub_B4_8288, Sub_B4_828E, Sub_B4_8316, Sub_B4_831C, Sub_B4_832E, Sub_B4_8345, Sub_B4_8369, Sub_B4_836F, Sub_B4_8395, Sub_B4_839B, Sub_B4_83A1, Sub_B4_83BE, Sub_B4_83C4, Sub_B4_83E7, Sub_B4_8425, Sub_B4_8449  ; $80C9 pointer table
-Sub_B4_810B:
+  .addr Bank4Tbl80C9_00, Bank4Tbl80C9_01, Bank4Tbl80C9_02, Bank4Tbl80C9_03, Bank4Tbl80C9_04, Bank4Tbl80C9_05, Bank4Tbl80C9_06, Bank4Tbl80C9_07, Bank4Tbl80C9_08, Bank4Tbl80C9_09, Bank4Tbl80C9_0A, Bank4Tbl80C9_0B, Bank4Tbl80C9_0C, Bank4Tbl80C9_0D, Bank4Tbl80C9_0E, Bank4Tbl80C9_0F, Bank4Tbl80C9_10, Bank4Tbl80C9_11, Bank4Tbl80C9_12, Bank4Tbl80C9_13, Bank4Tbl80C9_14, Bank4Tbl80C9_15, Bank4Tbl80C9_16, Bank4Tbl80C9_17, Bank4Tbl80C9_18, Bank4Tbl80C9_19, Bank4Tbl80C9_1A, Bank4Tbl80C9_1B, Bank4Tbl80C9_1C, Bank4Tbl80C9_1D, Bank4Tbl80C9_1E, Bank4Tbl80C9_1F, Bank4Tbl80C9_20  ; $80C9 pointer table
+Bank4Tbl80C9_00:
   lda #$00                     ; $810B
   sta $050A                    ; $810D
   sta $050B                    ; $8110
   sta $050C                    ; $8113
-Sub_B4_8116:
+Bank4Tbl80C9_03:
   lda #$04                     ; $8116
   sta SceneState               ; $8118
   jsr Sub_B4_84FD              ; $811B
   jmp Loc_B4_849E              ; $811E
-Sub_B4_8121:
+Bank4Tbl80C9_01:
   lda #$1C                     ; $8121
   sta SceneState               ; $8123
   jsr Sub_B4_8507              ; $8126
   jmp Loc_B4_849E              ; $8129
-Sub_B4_812C:
+Bank4Tbl80C9_02:
   lda #$1E                     ; $812C
   sta SceneState               ; $812E
   jsr Sub_B4_8507              ; $8131
   jmp Loc_B4_849E              ; $8134
-Sub_B4_8137:
+Bank4Tbl80C9_04:
   inc SceneState               ; $8137
   jmp Sub_B4_90D6              ; $813A
-Sub_B4_813D:
+Bank4Tbl80C9_05:
   inc SceneState               ; $813D
   jsr FillPaletteBlack         ; $8140
   jsr Sub_B4_8476              ; $8143
@@ -129,14 +129,14 @@ Sub_B4_813D:
   jsr Sub_B4_A0F1              ; $8160
   jsr Sub_B4_901A              ; $8163
   jmp ApplyScroll              ; $8166
-Sub_B4_8169:
+Bank4Tbl80C9_06:
   inc SceneState               ; $8169
   jsr Sub_B4_B4B1              ; $816C
   jsr Sub_B4_B4B1              ; $816F
   jsr DrawObjects              ; $8172
   jsr Sub_B4_905D              ; $8175
   jmp ApplyScroll              ; $8178
-Sub_B4_817B:
+Bank4Tbl80C9_07:
   inc SceneState               ; $817B
   jsr Sub_B4_95DA              ; $817E
   lda #$00                     ; $8181
@@ -144,7 +144,7 @@ Sub_B4_817B:
   lda #$11                     ; $8185
   sta z:$8A                    ; $8187
   jmp Loc_B4_90CF              ; $8189
-Sub_B4_818C:
+Bank4Tbl80C9_08:
   lda PPU_STATUS               ; $818C
   jsr ReadJoypads              ; $818F
   jsr Sub_B4_8D35              ; $8192
@@ -169,12 +169,12 @@ Loc_B4_81BB:
   rts                          ; $81BB
 Data_B4_81BC:
   .incbin "prg_bank_4.bin", $01BC, $9  ; $81BC
-Sub_B4_81C5:
+Bank4Tbl80C9_09:
   lda #$45                     ; $81C5
   jsr QueueSound               ; $81C7
   jsr Sub_B4_B011              ; $81CA
   jmp Loc_B4_8511              ; $81CD
-Sub_B4_81D0:
+Bank4Tbl80C9_0A:
   inc SceneState               ; $81D0
   jsr Sub_B4_90D6              ; $81D3
   lda $0501                    ; $81D6
@@ -194,7 +194,7 @@ Loc_B4_81EE:
   tay                          ; $81F2
   jsr Sub_B4_8BD5              ; $81F3
   jmp Loc_B4_8306              ; $81F6
-Sub_B4_81F9:
+Bank4Tbl80C9_0B:
   lda #$06                     ; $81F9
   sta SceneState               ; $81FB
   jsr FillPaletteBlack         ; $81FE
@@ -219,10 +219,10 @@ Sub_B4_81F9:
   jsr Sub_B4_901A              ; $822E
   jsr ApplyScroll              ; $8231
   jmp Loc_B4_8ADF              ; $8234
-Sub_B4_8237:
+Bank4Tbl80C9_0C:
   inc SceneState               ; $8237
   jmp Sub_B4_90D6              ; $823A
-Sub_B4_823D:
+Bank4Tbl80C9_0D:
   inc SceneState               ; $823D
   jsr FillPaletteBlack         ; $8240
   jsr Sub_B4_8476              ; $8243
@@ -238,14 +238,14 @@ Sub_B4_823D:
   jsr Sub_B4_86DD              ; $825B
   jsr Sub_B4_95A1              ; $825E
   jmp DrawObjects              ; $8261
-Sub_B4_8264:
+Bank4Tbl80C9_0E:
   inc SceneState               ; $8264
   rts                          ; $8267
-Sub_B4_8268:
+Bank4Tbl80C9_0F:
   inc SceneState               ; $8268
   jsr Sub_B4_95DA              ; $826B
   jmp Loc_B4_90CF              ; $826E
-Sub_B4_8271:
+Bank4Tbl80C9_10:
   jsr ReadJoypads              ; $8271
   lda JoyNew1                  ; $8274
   lsr a                        ; $8277
@@ -259,10 +259,10 @@ Loc_B4_827E:
   sta SceneState               ; $8284
 Loc_B4_8287:
   rts                          ; $8287
-Sub_B4_8288:
+Bank4Tbl80C9_11:
   inc SceneState               ; $8288
   jmp Sub_B4_90D6              ; $828B
-Sub_B4_828E:
+Bank4Tbl80C9_12:
   lda z:PpuCtrlShadow          ; $828E
   and #$FD                     ; $8290
   sta z:PpuCtrlShadow          ; $8292
@@ -287,17 +287,17 @@ Loc_B4_8306:
   sta z:GameState              ; $830A
   rts                          ; $830C
   .incbin "prg_bank_4.bin", $030D, $9  ; $830D
-Sub_B4_8316:
+Bank4Tbl80C9_13:
   inc SceneState               ; $8316
   jmp Sub_B4_90D6              ; $8319
-Sub_B4_831C:
+Bank4Tbl80C9_14:
   inc SceneState               ; $831C
   jsr FillPaletteBlack         ; $831F
   jsr Sub_B4_8476              ; $8322
   jsr Sub_B4_A177              ; $8325
   jsr ApplyScroll              ; $8328
   jmp Sub_B4_86DD              ; $832B
-Sub_B4_832E:
+Bank4Tbl80C9_15:
   inc SceneState               ; $832E
   lda $052E                    ; $8331
   ldx z:$81                    ; $8334
@@ -308,7 +308,7 @@ Loc_B4_833C:
   sta $052A                    ; $833C
   jsr Sub_B4_95DA              ; $833F
   jmp Loc_B4_90CF              ; $8342
-Sub_B4_8345:
+Bank4Tbl80C9_16:
   jsr ReadJoypads              ; $8345
   lda JoyNew1                  ; $8348
   lsr a                        ; $834B
@@ -330,10 +330,10 @@ Loc_B4_8366:
   rts                          ; $8366
 Data_B4_8367:
   .incbin "prg_bank_4.bin", $0367, $2  ; $8367
-Sub_B4_8369:
+Bank4Tbl80C9_17:
   inc SceneState               ; $8369
   jmp Sub_B4_90D6              ; $836C
-Sub_B4_836F:
+Bank4Tbl80C9_18:
   lda #$06                     ; $836F
   sta SceneState               ; $8371
   jsr FillPaletteBlack         ; $8374
@@ -347,13 +347,13 @@ Sub_B4_836F:
   jsr Sub_B4_A0F1              ; $838C
   jsr Sub_B4_901A              ; $838F
   jmp ApplyScroll              ; $8392
-Sub_B4_8395:
+Bank4Tbl80C9_19:
   inc SceneState               ; $8395
   jmp Sub_B4_90D6              ; $8398
-Sub_B4_839B:
+Bank4Tbl80C9_1A:
   jsr Sub_B4_8C24              ; $839B
   jmp Loc_B4_8306              ; $839E
-Sub_B4_83A1:
+Bank4Tbl80C9_1B:
   lda #$06                     ; $83A1
   sta SceneState               ; $83A3
   jsr Sub_B4_90D6              ; $83A6
@@ -366,10 +366,10 @@ Sub_B4_83A1:
   and #$FD                     ; $83B9
   sta z:PpuCtrlShadow          ; $83BB
   rts                          ; $83BD
-Sub_B4_83BE:
+Bank4Tbl80C9_1C:
   inc SceneState               ; $83BE
   jmp Sub_B4_90D6              ; $83C1
-Sub_B4_83C4:
+Bank4Tbl80C9_1D:
   lda #$06                     ; $83C4
   sta SceneState               ; $83C6
   jsr FillPaletteBlack         ; $83C9
@@ -382,7 +382,7 @@ Sub_B4_83C4:
   jsr Sub_B4_A0F1              ; $83DE
   jsr Sub_B4_901A              ; $83E1
   jmp ApplyScroll              ; $83E4
-Sub_B4_83E7:
+Bank4Tbl80C9_1E:
   lda #$06                     ; $83E7
   sta SceneState               ; $83E9
   jsr FillPaletteBlack         ; $83EC
@@ -404,7 +404,7 @@ Sub_B4_83E7:
   jsr Sub_B4_A0F1              ; $841C
   jsr Sub_B4_901A              ; $841F
   jmp ApplyScroll              ; $8422
-Sub_B4_8425:
+Bank4Tbl80C9_1F:
   inc SceneState               ; $8425
   lda #$78                     ; $8428
   sta $058F                    ; $842A
@@ -420,7 +420,7 @@ Loc_B4_8434:
   jmp QueueSound               ; $843F
 Data_B4_8442:
   .incbin "prg_bank_4.bin", $0442, $7  ; $8442
-Sub_B4_8449:
+Bank4Tbl80C9_20:
   dec $058F                    ; $8449
   bne Loc_B4_8463              ; $844C
   lda #$05                     ; $844E
@@ -617,63 +617,63 @@ Loc_B4_85B2:
   sta z:$6E                    ; $85BE
   jmp ($006D)                  ; $85C0
 Data_B4_85C3:
-  .addr Sub_B4_85DF, Sub_B4_85E4, Sub_B4_85EB, Sub_B4_85F2, Sub_B4_85F9, Sub_B4_8600, Sub_B4_8619, Sub_B4_8629, Sub_B4_8635, Sub_B4_8663, Sub_B4_8676, Sub_B4_868C, Sub_B4_86B7, Sub_B4_86C0  ; $85C3 pointer table
-Sub_B4_85DF:
+  .addr Bank4Tbl85C3_00, Bank4Tbl85C3_01, Bank4Tbl85C3_02, Bank4Tbl85C3_03, Bank4Tbl85C3_04, Bank4Tbl85C3_05, Bank4Tbl85C3_06, Bank4Tbl85C3_07, Bank4Tbl85C3_08, Bank4Tbl85C3_09, Bank4Tbl85C3_0A, Bank4Tbl85C3_0B, Bank4Tbl85C3_0C, Bank4Tbl85C3_0D  ; $85C3 pointer table
+Bank4Tbl85C3_00:
   lda #$00                     ; $85DF
   sta z:$7C                    ; $85E1
   rts                          ; $85E3
-Sub_B4_85E4:
+Bank4Tbl85C3_01:
   dec z:$7F                    ; $85E4
   lda #$02                     ; $85E6
   sta z:$7C                    ; $85E8
   rts                          ; $85EA
-Sub_B4_85EB:
+Bank4Tbl85C3_02:
   inc z:$7E                    ; $85EB
   lda #$02                     ; $85ED
   sta z:$7C                    ; $85EF
   rts                          ; $85F1
-Sub_B4_85F2:
+Bank4Tbl85C3_03:
   inc z:$7F                    ; $85F2
   lda #$02                     ; $85F4
   sta z:$7C                    ; $85F6
   rts                          ; $85F8
-Sub_B4_85F9:
+Bank4Tbl85C3_04:
   dec z:$7E                    ; $85F9
   lda #$02                     ; $85FB
   sta z:$7C                    ; $85FD
   rts                          ; $85FF
-Sub_B4_8600:
+Bank4Tbl85C3_05:
   lda $0508                    ; $8600
   ora $050B                    ; $8603
   bne Loc_B4_8610              ; $8606
   ldy #$EA                     ; $8608
   jsr Sub_B4_B43F              ; $860A
-  jmp Sub_B4_85DF              ; $860D
+  jmp Bank4Tbl85C3_00          ; $860D
 Loc_B4_8610:
   lda #$00                     ; $8610
   ldx #$08                     ; $8612
   ldy #$03                     ; $8614
   jmp Sub_B4_8BD5              ; $8616
-Sub_B4_8619:
+Bank4Tbl85C3_06:
   lda $0508                    ; $8619
   ora $050C                    ; $861C
-  bne Sub_B4_85F9              ; $861F
+  bne Bank4Tbl85C3_04          ; $861F
   ldy #$E9                     ; $8621
   jsr Sub_B4_B43F              ; $8623
-  jmp Sub_B4_85DF              ; $8626
-Sub_B4_8629:
+  jmp Bank4Tbl85C3_00          ; $8626
+Bank4Tbl85C3_07:
   lda #$01                     ; $8629
   sta $050C                    ; $862B
   ldx #$05                     ; $862E
   ldy #$04                     ; $8630
   jmp Sub_B4_8BD5              ; $8632
-Sub_B4_8635:
+Bank4Tbl85C3_08:
   lda $0508                    ; $8635
   ora $050C                    ; $8638
   bne Loc_B4_8645              ; $863B
   ldy #$E9                     ; $863D
   jsr Sub_B4_B43F              ; $863F
-  jmp Sub_B4_85DF              ; $8642
+  jmp Bank4Tbl85C3_00          ; $8642
 Loc_B4_8645:
   lda #$06                     ; $8645
   sta $0510                    ; $8647
@@ -689,33 +689,33 @@ Loc_B4_8659:
   lda #$08                     ; $865E
   sta z:$7C                    ; $8660
   rts                          ; $8662
-Sub_B4_8663:
+Bank4Tbl85C3_09:
   lda $0508                    ; $8663
   ora $050C                    ; $8666
   beq Loc_B4_866E              ; $8669
-  jmp Sub_B4_85F9              ; $866B
+  jmp Bank4Tbl85C3_04          ; $866B
 Loc_B4_866E:
   ldy #$E9                     ; $866E
   jsr Sub_B4_B43F              ; $8670
-  jmp Sub_B4_85DF              ; $8673
-Sub_B4_8676:
+  jmp Bank4Tbl85C3_00          ; $8673
+Bank4Tbl85C3_0A:
   lda $0508                    ; $8676
   bne Loc_B4_8683              ; $8679
   ldy #$EB                     ; $867B
   jsr Sub_B4_B43F              ; $867D
-  jmp Sub_B4_85DF              ; $8680
+  jmp Bank4Tbl85C3_00          ; $8680
 Loc_B4_8683:
   lda #$00                     ; $8683
   ldx #$0B                     ; $8685
   ldy #$03                     ; $8687
   jmp Sub_B4_8BD5              ; $8689
-Sub_B4_868C:
+Bank4Tbl85C3_0B:
   lda $0508                    ; $868C
   ora $050C                    ; $868F
   bne Loc_B4_869C              ; $8692
   ldy #$E9                     ; $8694
   jsr Sub_B4_B43F              ; $8696
-  jmp Sub_B4_85DF              ; $8699
+  jmp Bank4Tbl85C3_00          ; $8699
 Loc_B4_869C:
   lda #$04                     ; $869C
   sta $0510                    ; $869E
@@ -728,12 +728,12 @@ Loc_B4_869C:
   lda #$02                     ; $86AF
   sta $0513                    ; $86B1
   jmp Loc_B4_8659              ; $86B4
-Sub_B4_86B7:
+Bank4Tbl85C3_0C:
   lda #$00                     ; $86B7
   ldx #$11                     ; $86B9
   ldy #$03                     ; $86BB
   jmp Sub_B4_8BD5              ; $86BD
-Sub_B4_86C0:
+Bank4Tbl85C3_0D:
   lda #$0B                     ; $86C0
   sta $0510                    ; $86C2
   lda #$07                     ; $86C5
@@ -1058,13 +1058,13 @@ Sub_B4_8E16:
   rts                          ; $8E22
 Sub_B4_8E23:
   tya                          ; $8E23
-  beq Sub_B4_8EA4              ; $8E24
+  beq Bank4Tbl8E4A_00          ; $8E24
   jsr AslA4                    ; $8E26
   tax                          ; $8E29
   stx z:$6B                    ; $8E2A
   lda $0309,x                  ; $8E2C
   asl a                        ; $8E2F
-  bpl Sub_B4_8EA4              ; $8E30
+  bpl Bank4Tbl8E4A_00          ; $8E30
   lda $0300,x                  ; $8E32
   and #$3F                     ; $8E35
   cmp #$2D                     ; $8E37
@@ -1085,48 +1085,48 @@ Data_B4_8E4A:
   bcs *-112                    ; $8E52
   ldy z:$8E                    ; $8E54
   ldy Data_B4_A48E,x           ; $8E56
-  stx Sub_B4_8EA4              ; $8E59
+  stx Bank4Tbl8E4A_00          ; $8E59
   ldy z:$8E                    ; $8E5C
   iny                          ; $8E5E
-  stx Sub_B4_8EA4              ; $8E5F
+  stx Bank4Tbl8E4A_00          ; $8E5F
   ldy z:$8E                    ; $8E62
   ldy z:$8E                    ; $8E64
   ldy z:$8E                    ; $8E66
   ldy z:$8E                    ; $8E68
   ldy z:$8E                    ; $8E6A
   .incbin "prg_bank_4.bin", $0E6C, $38  ; $8E6C
-Sub_B4_8EA4:
+Bank4Tbl8E4A_00:
   clc                          ; $8EA4
   rts                          ; $8EA5
-Sub_B4_8EA6:
+Bank4Tbl8E4A_01:
   ldx z:$6B                    ; $8EA6
   lda $0302,x                  ; $8EA8
   cmp $0207                    ; $8EAB
-  bne Sub_B4_8EA4              ; $8EAE
-Sub_B4_8EB0:
+  bne Bank4Tbl8E4A_00          ; $8EAE
+Bank4Tbl8E4A_02:
   ldx z:$6B                    ; $8EB0
   lda $0309,x                  ; $8EB2
   ora #$80                     ; $8EB5
   sta $0309,x                  ; $8EB7
   sec                          ; $8EBA
   rts                          ; $8EBB
-Sub_B4_8EBC:
+Bank4Tbl8E4A_06:
   ldx z:$6B                    ; $8EBC
   lda ObjectCount,x            ; $8EBE
   cmp #$44                     ; $8EC1
-  bcc Sub_B4_8EA4              ; $8EC3
-  jmp Sub_B4_8EA6              ; $8EC5
-Sub_B4_8EC8:
+  bcc Bank4Tbl8E4A_00          ; $8EC3
+  jmp Bank4Tbl8E4A_01          ; $8EC5
+Bank4Tbl8E4A_0A:
   ldx z:$6B                    ; $8EC8
   lda $0305,x                  ; $8ECA
-  beq Sub_B4_8EA6              ; $8ECD
-  jmp Sub_B4_8EA4              ; $8ECF
-Sub_B4_8ED2:
+  beq Bank4Tbl8E4A_01          ; $8ECD
+  jmp Bank4Tbl8E4A_00          ; $8ECF
+Bank4Tbl8E4A_11:
   ldx z:$6B                    ; $8ED2
   lda $0302,x                  ; $8ED4
   cmp $0207                    ; $8ED7
-  bne Sub_B4_8EA4              ; $8EDA
-  jmp Sub_B4_8EB0              ; $8EDC
+  bne Bank4Tbl8E4A_00          ; $8EDA
+  jmp Bank4Tbl8E4A_02          ; $8EDC
   sta z:$60                    ; $8EDF  [heuristic code]
   asl a                        ; $8EE1
   adc z:$60                    ; $8EE2
