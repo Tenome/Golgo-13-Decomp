@@ -30,3 +30,7 @@ Blind routes plateau at about 9.8K opcodes (first scenes of the acts). Directed 
 - Directed play for deeper coverage (banks 0, 1, 4, 6 especially), then re-run the classifier.
 - Names: RAM variables (object fields, enemy state, inventory), scene routines, per-bank state tables.
 - Structured data: text (kana/Latin), map/scroll data, palettes, pointer tables.
+
+## Native build check
+`recomp/build_native.ps1` produces `build/native/<ver>/golgo13-<ver>.exe` (SDL window). `tools/native_check.sh <ver> <seed> <frames>` runs it and NESRecomp's own interpreter on the same random input route and compares the per-frame hashes (CPU trace, memory, picture, registers, hardware state).
+Result on 2026-11-09: 8 US and 8 JP routes of 20,000 frames plus a 9,000-frame route: all identical to the interpreter. US runs 0 interpreted ROM cycles; JP interprets about 10 ROM cycles (a few unclassified instructions) and both versions interpret the RAM routine the game copies into RAM (about 0.0 %). The routes show the intro, story text (English and Japanese), act 1 gameplay and the title/game-over screens.
