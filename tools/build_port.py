@@ -12,12 +12,12 @@ out = os.path.join(ROOT, 'build', 'port'); os.makedirs(out, exist_ok=True)
 exe = os.path.join(out, f'golgo13_port_{v}' + ('.exe' if os.name == 'nt' else ''))
 srcs = [os.path.join(ROOT, 'c', 'port', 'port.c'), os.path.join(ROOT, 'c', 'port', 'main.c'), os.path.join(ROOT, 'c', 'port', 'apu.c'), os.path.join(ROOT, 'c', 'auto', 'runtime.c'),
         os.path.join(gen, 'dispatch.c'), os.path.join(gen, 'ram_code.c')] + [os.path.join(gen, f'bank_{b}.c') for b in range(8)]
-subprocess.check_call([cc, a.opt, '-w', '-DPORT_CYCLES', '-I', os.path.join(ROOT, 'c', 'auto'), '-o', exe] + srcs)
+subprocess.check_call([cc] + a.opt.split() + ['-w', '-DPORT_CYCLES', '-I', os.path.join(ROOT, 'c', 'auto'), '-o', exe] + srcs)
 print(exe)
 if a.sdl:
     play = os.path.join(out, f'golgo13_play_{v}' + ('.exe' if os.name == 'nt' else ''))
     lib = os.path.join(a.sdl, 'lib', 'x64', 'SDL2.lib') if os.name == 'nt' else '-lSDL2'
     psrcs = [os.path.join(ROOT, 'c', 'port', 'port.c'), os.path.join(ROOT, 'c', 'port', 'sdl_main.c'), os.path.join(ROOT, 'c', 'port', 'apu.c'), os.path.join(ROOT, 'c', 'auto', 'runtime.c'), os.path.join(gen, 'dispatch.c'), os.path.join(gen, 'ram_code.c')] + [os.path.join(gen, f'bank_{b}.c') for b in range(8)]
-    subprocess.check_call([cc, a.opt, '-w', '-DPORT_CYCLES', '-I', os.path.join(ROOT, 'c', 'auto'), '-I', os.path.join(a.sdl, 'include'), '-I', os.path.join(a.sdl, 'include', 'SDL2'), '-o', play] + psrcs + [lib])
+    subprocess.check_call([cc] + a.opt.split() + ['-w', '-DPORT_CYCLES', '-I', os.path.join(ROOT, 'c', 'auto'), '-I', os.path.join(a.sdl, 'include'), '-I', os.path.join(a.sdl, 'include', 'SDL2'), '-o', play] + psrcs + [lib])
     if os.name == 'nt': shutil.copy(os.path.join(a.sdl, 'lib', 'x64', 'SDL2.dll'), out)
     print(play)
