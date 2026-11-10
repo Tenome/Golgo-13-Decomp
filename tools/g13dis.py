@@ -245,6 +245,10 @@ def emit(code, labels, outdir):
     vecp = [p_of(7, v) if v >= 0xC000 else None for v in vec]
     for tp, nm in zip(vecp, ('Nmi', 'Reset', 'Irq')):
         if tp is not None: names.setdefault(f'{addr_of(tp):04X}', nm); labels.add(tp); mark(tp, 'sub')
+    for key in names:                  # a named address always gets a label
+        try: np = parse_loc(key) if ':' in key else p_of(7, int(key, 16))
+        except ValueError: continue
+        if code[np] == 'S': labels.add(np); mark(np, KIND.get(np, 'sub') if np in KIND else 'sub')
     equ = []                       # labels that fall inside an instruction -> equates
     stats = {}
     for b in range(NB):

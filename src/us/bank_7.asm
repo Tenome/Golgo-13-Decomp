@@ -40,7 +40,7 @@ Loc_C025:
   lda #$C0                     ; $C040
   sta JOYPAD2                  ; $C042
   lda #$30                     ; $C045
-  sta z:AreaId                 ; $C047
+  sta z:GameState              ; $C047
   lda #$1F                     ; $C049
   sta z:MmcControlShadow       ; $C04B
   jsr MmcWriteControl          ; $C04D
@@ -241,18 +241,18 @@ DoOamDma:
   lda #$02                     ; $C1E9
   sta OAM_DMA                  ; $C1EB
   rts                          ; $C1EE
-AslA5:
+AslA6:
   asl a                        ; $C1EF
-AslA4:
+AslA5:
   asl a                        ; $C1F0
-AslA3:
+AslA4:
   asl a                        ; $C1F1
-AslA2:
+AslA3:
   asl a                        ; $C1F2
   asl a                        ; $C1F3
   asl a                        ; $C1F4
   rts                          ; $C1F5
-Sub_C1F6:
+LsrA6:
   lsr a                        ; $C1F6
 LsrA5:
   lsr a                        ; $C1F7
@@ -271,6 +271,7 @@ SetPpuMask:
   sta z:PpuMaskShadow          ; $C203
   sta PPU_MASK                 ; $C205
   rts                          ; $C208
+ResetPpuScroll:
   lda PPU_STATUS               ; $C209  [heuristic code]
   lda #$00                     ; $C20C
   sta PPU_SCROLL               ; $C20E
@@ -543,7 +544,7 @@ Sub_C3FC:
   and #$3F                     ; $C400
   asl a                        ; $C402
   tay                          ; $C403
-  lda z:AreaId                 ; $C404
+  lda z:GameState              ; $C404
   cmp #$10                     ; $C406
   bcs Loc_C413                 ; $C408
   ldx $A800,y                  ; $C40A
@@ -583,7 +584,7 @@ Sub_C43D:
   sta z:Tmp03                  ; $C448
   sta z:$05                    ; $C44A
   lda ObjectCount              ; $C44C
-  jsr AslA3                    ; $C44F
+  jsr AslA4                    ; $C44F
   sec                          ; $C452
   sbc z:Tmp00                  ; $C453
   bne Loc_C460                 ; $C455
@@ -696,7 +697,7 @@ LoadPaletteSet:
   asl a                        ; $C4F7
   tax                          ; $C4F8
   lda $BA6C,x                  ; $C4F9
-  jsr AslA3                    ; $C4FC
+  jsr AslA4                    ; $C4FC
   clc                          ; $C4FF
   adc #$42                     ; $C500
   sta z:Tmp00                  ; $C502
@@ -709,7 +710,7 @@ LoadPaletteSet:
   adc z:Tmp01                  ; $C511
   sta z:Tmp01                  ; $C513
   lda $BA6D,x                  ; $C515
-  jsr AslA3                    ; $C518
+  jsr AslA4                    ; $C518
   clc                          ; $C51B
   adc #$A2                     ; $C51C
   sta z:Tmp02                  ; $C51E
@@ -973,7 +974,7 @@ Loc_C71C:
   txa                          ; $C71F
 Loc_C720:
   and #$03                     ; $C720
-  jsr AslA4                    ; $C722
+  jsr AslA5                    ; $C722
   sta z:Tmp00                  ; $C725
   lda z:ScrollX                ; $C727
   and #$F0                     ; $C729
@@ -1012,7 +1013,7 @@ Sub_C761:
   adc z:$21,x                  ; $C768
   sta z:$21,x                  ; $C76A
   lda a:Tmp00,y                ; $C76C
-  jsr AslA2                    ; $C76F
+  jsr AslA3                    ; $C76F
   clc                          ; $C772
   adc z:$20,x                  ; $C773
   sta z:$20,x                  ; $C775
@@ -1259,7 +1260,7 @@ Data_C90F:
 Data_C910:
   .incbin "prg_bank_7.bin", $0910, $19  ; $C910
 DrawHud:
-  lda z:AreaId                 ; $C929
+  lda z:GameState              ; $C929
   cmp #$07                     ; $C92B
   beq Loc_C940                 ; $C92D
   ldy #$00                     ; $C92F
@@ -1274,7 +1275,7 @@ Loc_C940:
   rts                          ; $C940
 Sub_C941:
   ldx #$00                     ; $C941
-  lda z:AreaId                 ; $C943
+  lda z:GameState              ; $C943
   cmp #$10                     ; $C945
   bcc Loc_C94F                 ; $C947
   cmp #$30                     ; $C949
@@ -1292,7 +1293,7 @@ Loc_C94F:
   rts                          ; $C961
 Sub_C962:
   ldx #$20                     ; $C962
-  lda z:AreaId                 ; $C964
+  lda z:GameState              ; $C964
   cmp #$10                     ; $C966
   bcc Loc_C970                 ; $C968
   cmp #$30                     ; $C96A
@@ -1356,13 +1357,13 @@ Loc_CA0B:
   beq Loc_CA13                 ; $CA0E
   jmp Loc_CB9B                 ; $CA10
 Loc_CA13:
-  lda z:AreaId                 ; $CA13
+  lda z:GameState              ; $CA13
   cmp #$0C                     ; $CA15
   bne Loc_CA1F                 ; $CA17
   jsr Sub_DBD5                 ; $CA19
   jmp Loc_CB9B                 ; $CA1C
 Loc_CA1F:
-  lda z:AreaId                 ; $CA1F
+  lda z:GameState              ; $CA1F
   bne Loc_CA5C                 ; $CA21
   lda #$00                     ; $CA23
   sta $0300                    ; $CA25
@@ -1383,7 +1384,7 @@ Loc_CA1F:
   jmp Loc_CB8E                 ; $CA4C
 Loc_CA4F:
   jsr Sub_CBA3                 ; $CA4F
-  inc z:AreaId                 ; $CA52
+  inc z:GameState              ; $CA52
   lda #$00                     ; $CA54
   jsr EnqueueByte              ; $CA56
   jmp Loc_CB8E                 ; $CA59
@@ -1580,7 +1581,7 @@ Loc_CBE6:
   sta z:ScrollPage             ; $CBF2
   dec z:ScrollPage             ; $CBF4
   lda z:$2A                    ; $CBF6
-  jsr AslA3                    ; $CBF8
+  jsr AslA4                    ; $CBF8
   sec                          ; $CBFB
   sbc #$08                     ; $CBFC
   sta z:ScrollX                ; $CBFE
@@ -2006,7 +2007,7 @@ Sub_CF84:
   sta z:Tmp03,x                ; $CF8F
   lda a:Tmp00,y                ; $CF91
   and #$0F                     ; $CF94
-  jsr AslA3                    ; $CF96
+  jsr AslA4                    ; $CF96
   clc                          ; $CF99
   adc z:Tmp02,x                ; $CF9A
   sta z:Tmp02,x                ; $CF9C
@@ -2023,7 +2024,7 @@ Sub_CFA3:
   sta z:$21,x                  ; $CFAE
   lda a:$06,y                  ; $CFB0
   and #$1F                     ; $CFB3
-  jsr AslA2                    ; $CFB5
+  jsr AslA3                    ; $CFB5
   clc                          ; $CFB8
   adc z:$20,x                  ; $CFB9
   sta z:$20,x                  ; $CFBB
@@ -2236,7 +2237,7 @@ Loc_D12E:
   lda z:ScrollX                ; $D131
   and #$F0                     ; $D133
   sta z:ScrollX                ; $D135
-  inc z:AreaId                 ; $D137
+  inc z:GameState              ; $D137
   rts                          ; $D139
 Sub_D13A:
   jsr LoadPaletteSet           ; $D13A
@@ -2260,7 +2261,7 @@ Sub_D13A:
   jsr LsrA4                    ; $D166
   clc                          ; $D169
   adc #$03                     ; $D16A
-  sta z:AreaId                 ; $D16C
+  sta z:GameState              ; $D16C
   lda #$18                     ; $D16E
   jsr SetPpuMask               ; $D170
   jsr Sub_D177                 ; $D173
@@ -2307,7 +2308,7 @@ Data_D1B7:
 Data_D1B8:
   .incbin "prg_bank_7.bin", $11B8, $9D  ; $D1B8
 Sub_D255:
-  lda z:AreaId                 ; $D255
+  lda z:GameState              ; $D255
   cmp #$03                     ; $D257
   bne Loc_D28D                 ; $D259
   lda z:$15                    ; $D25B
@@ -2368,7 +2369,7 @@ Loc_D2B4:
   sta z:Tmp03                  ; $D2C0
   sta z:$05                    ; $D2C2
   sta $0402                    ; $D2C4
-  lda z:AreaId                 ; $D2C7
+  lda z:GameState              ; $D2C7
   cmp #$03                     ; $D2C9
   bne Loc_D2D2                 ; $D2CB
   lda #$58                     ; $D2CD
@@ -3290,7 +3291,7 @@ Loc_DB5F:
   tax                          ; $DB62
   lda $0430,x                  ; $DB63
   bne Loc_DB57                 ; $DB66
-  lda z:AreaId                 ; $DB68
+  lda z:GameState              ; $DB68
   cmp #$07                     ; $DB6A
   beq Loc_DB75                 ; $DB6C
   lda $023B                    ; $DB6E
@@ -3314,7 +3315,7 @@ Sub_DBD5:
   bcs Loc_DBE8                 ; $DBDF
   sta z:PaletteSetIndex        ; $DBE1
   lda #$00                     ; $DBE3
-  sta z:AreaId                 ; $DBE5
+  sta z:GameState              ; $DBE5
 Loc_DBE7:
   rts                          ; $DBE7
 Loc_DBE8:
@@ -3440,7 +3441,7 @@ Sub_DDD0:
   lda #$00                     ; $DDD4
   sta z:PaletteDirty           ; $DDD6
   lda #$10                     ; $DDD8
-  sta z:AreaId                 ; $DDDA
+  sta z:GameState              ; $DDDA
   lda #$02                     ; $DDDC
   sta z:MmcPrgShadow           ; $DDDE
   rts                          ; $DDE0
@@ -3570,7 +3571,7 @@ Loc_DF01:
   rts                          ; $DF01
 Sub_DF02:
   lda #$00                     ; $DF02
-  sta z:AreaId                 ; $DF04
+  sta z:GameState              ; $DF04
   sta z:$1B                    ; $DF06
   sta z:PaletteDirty           ; $DF08
   sta $0139                    ; $DF0A
@@ -3742,7 +3743,7 @@ Sub_E089:
   rts                          ; $E08D
 Loc_E08E:
   lda z:ScrollPage             ; $E08E
-  jsr AslA3                    ; $E090
+  jsr AslA4                    ; $E090
   sta z:Tmp02                  ; $E093
   lda z:ScrollX                ; $E095
   clc                          ; $E097
@@ -3771,7 +3772,7 @@ Loc_E0BB:
 Loc_E0BD:
   iny                          ; $E0BD
   lda (Tmp00),y                ; $E0BE
-  jsr AslA3                    ; $E0C0
+  jsr AslA4                    ; $E0C0
   sta z:$04                    ; $E0C3
   iny                          ; $E0C5
   lda (Tmp00),y                ; $E0C6
@@ -3808,7 +3809,7 @@ Loc_E0E2:
   bcs Loc_E16E                 ; $E0FD
 Loc_E0FF:
   dey                          ; $E0FF
-  lda z:AreaId                 ; $E100
+  lda z:GameState              ; $E100
   cmp #$03                     ; $E102
   bne Loc_E10A                 ; $E104
   lda z:$13                    ; $E106
@@ -3898,7 +3899,7 @@ Data_E193:
   .incbin "prg_bank_7.bin", $2193, $400  ; $E193
   .incbin "prg_bank_7.bin", $2593, $6A  ; $E593
 Sub_E5FD:
-  lda z:AreaId                 ; $E5FD
+  lda z:GameState              ; $E5FD
   cmp #$03                     ; $E5FF
   bcc Loc_E613                 ; $E601
   cmp #$07                     ; $E603
@@ -4037,7 +4038,7 @@ Loc_E6EF:
 Loc_E703:
   sta z:MmcPrgShadow           ; $E703
 Loc_E705:
-  stx z:AreaId                 ; $E705
+  stx z:GameState              ; $E705
   lda #$03                     ; $E707
   sta $0106                    ; $E709
   jsr Sub_E85E                 ; $E70C
@@ -4270,7 +4271,7 @@ Loc_EA21:
   lda #$01                     ; $EA23
   sta z:$30                    ; $EA25
   ldx #$03                     ; $EA27
-  jsr Sub_EAAA                 ; $EA29
+  jsr SetFireModeLow           ; $EA29
 Loc_EA2C:
   rts                          ; $EA2C
 Sub_EA2D:
@@ -4298,7 +4299,7 @@ Loc_EA51:
   bcc Loc_EA60                 ; $EA55
   ldx #$00                     ; $EA57
 Loc_EA59:
-  jsr Sub_EAAA                 ; $EA59
+  jsr SetFireModeLow           ; $EA59
   lda #$00                     ; $EA5C
   sta z:$33                    ; $EA5E
 Loc_EA60:
@@ -4336,14 +4337,14 @@ Loc_EA81:
 Loc_EA9C:
   ldx #$04                     ; $EA9C
 Loc_EA9E:
-  jsr Sub_EAAA                 ; $EA9E
+  jsr SetFireModeLow           ; $EA9E
   lda #$01                     ; $EAA1
   sta z:$33                    ; $EAA3
   lda #$00                     ; $EAA5
   sta z:$34                    ; $EAA7
 Loc_EAA9:
   rts                          ; $EAA9
-Sub_EAAA:
+SetFireModeLow:
   lda z:FireMode               ; $EAAA
   and #$10                     ; $EAAC
   sta z:FireMode               ; $EAAE
@@ -4391,7 +4392,7 @@ Loc_EAED:
   bne Loc_EB09                 ; $EAF4
   ldx #$00                     ; $EAF6
 Loc_EAF8:
-  jsr Sub_EAAA                 ; $EAF8
+  jsr SetFireModeLow           ; $EAF8
   jsr UseAmmo                  ; $EAFB
 Loc_EAFE:
   lda z:FireMode               ; $EAFE
@@ -4416,7 +4417,7 @@ Loc_EB1F:
   bne Loc_EB2E                 ; $EB24
   ldx #$00                     ; $EB26
 Loc_EB28:
-  jsr Sub_EAAA                 ; $EB28
+  jsr SetFireModeLow           ; $EB28
   jsr UseAmmo                  ; $EB2B
 Loc_EB2E:
   rts                          ; $EB2E
@@ -4512,7 +4513,7 @@ Loc_EBCD:
   jmp Loc_EBD9                 ; $EBCF
 Loc_EBD2:
   ldx #$00                     ; $EBD2
-  jsr Sub_EAAA                 ; $EBD4
+  jsr SetFireModeLow           ; $EBD4
 Loc_EBD7:
   lda #$07                     ; $EBD7
 Loc_EBD9:
@@ -4640,7 +4641,7 @@ Sub_EF2D:
   jsr UpdateFireMode           ; $EF33
 Loc_EF36:
   ldx #$00                     ; $EF36
-  jsr Sub_EAAA                 ; $EF38
+  jsr SetFireModeLow           ; $EF38
   ldx #$01                     ; $EF3B
   lda z:FireMode               ; $EF3D
   and #$10                     ; $EF3F
@@ -4663,7 +4664,7 @@ Loc_EF54:
   cmp #$20                     ; $EF5F
   bne Loc_EF66                 ; $EF61
 Loc_EF63:
-  jsr Sub_EAAA                 ; $EF63
+  jsr SetFireModeLow           ; $EF63
 Loc_EF66:
   lda JoyHeld1                 ; $EF66
   and #$30                     ; $EF69
@@ -5129,7 +5130,7 @@ Loc_F4E4:
   lda #$00                     ; $F4F7
   sta $023A                    ; $F4F9
   lda z:$2B                    ; $F4FC
-  jsr AslA3                    ; $F4FE
+  jsr AslA4                    ; $F4FE
   ora #$08                     ; $F501
   sta $023B                    ; $F503
   ldx #$00                     ; $F506
@@ -5173,7 +5174,7 @@ Loc_F55A:
   and #$F0                     ; $F55C
   sta $0238                    ; $F55E
   lda z:$2B                    ; $F561
-  jsr AslA3                    ; $F563
+  jsr AslA4                    ; $F563
   sta $023B                    ; $F566
   ldx #$3A                     ; $F569
   lda #$00                     ; $F56B
@@ -5194,7 +5195,7 @@ Loc_F579:
   sta $0239                    ; $F582
   sta $023A                    ; $F585
   lda z:$2B                    ; $F588
-  jsr AslA3                    ; $F58A
+  jsr AslA4                    ; $F58A
   clc                          ; $F58D
   adc #$08                     ; $F58E
   sta $023B                    ; $F590
@@ -5239,7 +5240,7 @@ Loc_F5DB:
   and #$F0                     ; $F5DD
   sta $0238                    ; $F5DF
   lda z:$2B                    ; $F5E2
-  jsr AslA3                    ; $F5E4
+  jsr AslA4                    ; $F5E4
   sta $023B                    ; $F5E7
   ldx #$3A                     ; $F5EA
   lda #$00                     ; $F5EC

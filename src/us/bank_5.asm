@@ -7,6 +7,7 @@
   sta Data_B5_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_5.bin", $0009, $7  ; $8009
+Bank5Nmi:
   lda PPU_STATUS               ; $8010
   lda z:PpuCtrlShadow          ; $8013
   and #$7F                     ; $8015
@@ -411,7 +412,7 @@ Sub_B5_83EC:
   jsr Sub_B5_814C              ; $83F6
   lda #$00                     ; $83F9
   sta z:MmcPrgShadow           ; $83FB
-  sta z:AreaId                 ; $83FD
+  sta z:GameState              ; $83FD
   lda #$C8                     ; $83FF
   sta z:PlayerLifeLo           ; $8401
   jsr Sub_B5_8971              ; $8403
@@ -542,7 +543,7 @@ Sub_B5_84F3:
   ldy #$00                     ; $84F8
   sty z:MmcPrgShadow           ; $84FA
   sty z:PaletteDirty           ; $84FC
-  sty z:AreaId                 ; $84FE
+  sty z:GameState              ; $84FE
   iny                          ; $8500
   sty z:$28                    ; $8501
   sty $0507                    ; $8503
@@ -1562,7 +1563,7 @@ Loc_B5_8FED:
   lda #$60                     ; $8FF9
   sta $0600                    ; $8FFB
   lda #$00                     ; $8FFE
-  sta z:AreaId                 ; $9000
+  sta z:GameState              ; $9000
   lda #$03                     ; $9002
   sta $0106                    ; $9004
   lda #$01                     ; $9007

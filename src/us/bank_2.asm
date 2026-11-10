@@ -7,10 +7,11 @@
   sta Data_B2_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_2.bin", $0009, $7  ; $8009
+Bank2Nmi:
   lda z:PpuCtrlShadow          ; $8010
   and #$7F                     ; $8012
   jsr SetPpuCtrl               ; $8014
-  lda z:AreaId                 ; $8017
+  lda z:GameState              ; $8017
   cmp #$13                     ; $8019
   beq Loc_B2_8094              ; $801B
   cmp #$10                     ; $801D
@@ -48,7 +49,7 @@
   jsr Sub_B2_8609              ; $8070
   lda #$00                     ; $8073
   jsr EnqueueByte              ; $8075
-  inc z:AreaId                 ; $8078
+  inc z:GameState              ; $8078
   jmp Loc_B2_815C              ; $807A
 Loc_B2_807D:
   cmp #$11                     ; $807D
@@ -58,7 +59,7 @@ Loc_B2_807D:
 Loc_B2_8087:
   lda #$18                     ; $8087
   jsr SetPpuMask               ; $8089
-  inc z:AreaId                 ; $808C
+  inc z:GameState              ; $808C
   jsr Sub_B2_8167              ; $808E
   jmp Loc_B2_811B              ; $8091
 Loc_B2_8094:
@@ -175,7 +176,7 @@ Sub_B2_818E:
 Loc_B2_8199:
   lda #$00                     ; $8199
 Loc_B2_819B:
-  sta z:AreaId                 ; $819B
+  sta z:GameState              ; $819B
   lda #$00                     ; $819D
   sta z:MmcPrgShadow           ; $819F
   sta z:PaletteDirty           ; $81A1
@@ -296,7 +297,7 @@ Sub_B2_837A:
   lda #$00                     ; $838A
   sta z:ScrollX                ; $838C
   sta JoyHeld1                 ; $838E
-  inc z:AreaId                 ; $8391
+  inc z:GameState              ; $8391
   lda z:PaletteSetIndex        ; $8393
   sec                          ; $8395
   sbc #$50                     ; $8396
@@ -1001,7 +1002,7 @@ Sub_B2_8AB8:
   jsr LsrA4                    ; $8ABC
   sta (Tmp02,x)                ; $8ABF
   lda z:$05                    ; $8AC1
-  jsr AslA3                    ; $8AC3
+  jsr AslA4                    ; $8AC3
   inc z:Tmp02                  ; $8AC6
   sta (Tmp02,x)                ; $8AC8
   rts                          ; $8ACA

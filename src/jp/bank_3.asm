@@ -7,6 +7,7 @@
   sta Data_B3_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_3.bin", $0009, $7  ; $8009
+Bank3Nmi:
   pha                          ; $8010
   txa                          ; $8011
   pha                          ; $8012

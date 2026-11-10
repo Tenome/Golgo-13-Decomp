@@ -7,6 +7,7 @@
   sta Data_B1_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_1.bin", $0009, $7  ; $8009
+Bank1Nmi:
   lda PPU_STATUS               ; $8010
   lda #$10                     ; $8013
   jsr SetPpuCtrl               ; $8015
@@ -482,7 +483,7 @@ Loc_B1_8D33:
   ldx #$00                     ; $8D35
 Loc_B1_8D37:
   lda z:Tmp03                  ; $8D37
-  jsr AslA3                    ; $8D39
+  jsr AslA4                    ; $8D39
   adc #$04                     ; $8D3C
   tay                          ; $8D3E
   lda (Tmp00),y                ; $8D3F
@@ -1166,7 +1167,7 @@ Sub_B1_946C:
   sta z:$05                    ; $9479
   inc ObjectCount              ; $947B
   lda ObjectCount              ; $947E
-  jsr AslA3                    ; $9481
+  jsr AslA4                    ; $9481
   sta z:Tmp00                  ; $9484
   ldx z:$04                    ; $9486
   ldy z:Tmp00                  ; $9488
@@ -2293,7 +2294,7 @@ Sub_B1_AA84:
 Loc_B1_AA92:
   inc ObjectCount              ; $AA92
   lda ObjectCount              ; $AA95
-  jsr AslA3                    ; $AA98
+  jsr AslA4                    ; $AA98
   sta z:$04                    ; $AA9B
   lda #$03                     ; $AA9D
   sta z:$05                    ; $AA9F
@@ -2336,7 +2337,7 @@ Sub_B1_AAD5:
   pha                          ; $AADE
   inc ObjectCount              ; $AADF
   lda ObjectCount              ; $AAE2
-  jsr AslA3                    ; $AAE5
+  jsr AslA4                    ; $AAE5
   tay                          ; $AAE8
   sta z:Tmp00                  ; $AAE9
   lda z:ScrollX                ; $AAEB
@@ -2474,7 +2475,7 @@ Sub_B1_ABE0:
   inc ObjectCount              ; $ABE0
   lda ObjectCount              ; $ABE3
   inc ObjectCount              ; $ABE6
-  jsr AslA3                    ; $ABE9
+  jsr AslA4                    ; $ABE9
   sta z:Tmp03                  ; $ABEC
   lda #$03                     ; $ABEE
   sta z:$04                    ; $ABF0
@@ -2620,7 +2621,7 @@ Loc_B1_ACE6:
 Loc_B1_ACFB:
   inc ObjectCount              ; $ACFB
   lda ObjectCount              ; $ACFE
-  jsr AslA3                    ; $AD01
+  jsr AslA4                    ; $AD01
   sta z:$04                    ; $AD04
   lda #$03                     ; $AD06
   sta z:$05                    ; $AD08

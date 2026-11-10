@@ -7,6 +7,7 @@
   sta Data_B6_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_6.bin", $0009, $7  ; $8009
+Bank6Nmi:
   jsr Sub_B6_82F5              ; $8010
   jsr Sub_B6_81E3              ; $8013
   jsr DrawObjects              ; $8016
@@ -19,7 +20,7 @@ Sub_B6_801F:
   lda $023B                    ; $8025
   cmp #$78                     ; $8028
   beq Loc_B6_8036              ; $802A
-  lda z:AreaId                 ; $802C
+  lda z:GameState              ; $802C
   cmp #$04                     ; $802E
   beq Loc_B6_8045              ; $8030
   cmp #$06                     ; $8032
@@ -87,7 +88,7 @@ Sub_B6_808E:
 Sub_B6_809D:
   lda z:ScrollPage             ; $809D
 Loc_B6_809F:
-  jsr AslA3                    ; $809F
+  jsr AslA4                    ; $809F
   sta z:Tmp02                  ; $80A2
   lda z:ScrollX                ; $80A4
   jsr LsrA4                    ; $80A6
@@ -168,7 +169,7 @@ Sub_B6_8117:
   bcs Loc_B6_8157              ; $811C
   inc ObjectCount              ; $811E
   lda ObjectCount              ; $8121
-  jsr AslA3                    ; $8124
+  jsr AslA4                    ; $8124
   sta z:$0A                    ; $8127
   lda #$03                     ; $8129
   sta z:$0B                    ; $812B
@@ -242,7 +243,7 @@ Loc_B6_8216:
   ldx #$00                     ; $8218
 Loc_B6_821A:
   lda z:Tmp03                  ; $821A
-  jsr AslA3                    ; $821C
+  jsr AslA4                    ; $821C
   adc #$04                     ; $821F
   tay                          ; $8221
   lda (Tmp00),y                ; $8222
@@ -440,7 +441,7 @@ Sub_B6_83F4:
   rts                          ; $8400
 Sub_B6_8401:
   lda z:$08                    ; $8401
-  jsr AslA5                    ; $8403
+  jsr AslA6                    ; $8403
   ldy #$09                     ; $8406
   ora ($0A),y                  ; $8408
   sta ($0A),y                  ; $840A
@@ -472,7 +473,7 @@ Sub_B6_840D:
   .incbin "prg_bank_6.bin", $043D, $1C0  ; $843D
   jsr Sub_B6_83F4              ; $85FD
   lda z:$08                    ; $8600
-  jsr AslA5                    ; $8602
+  jsr AslA6                    ; $8602
   sta z:$08                    ; $8605
   jsr GetRandomByte            ; $8607
   and #$30                     ; $860A
@@ -804,7 +805,7 @@ Loc_B6_8847:
   rts                          ; $886A
 Sub_B6_886B:
   lda z:$08                    ; $886B
-  jsr AslA4                    ; $886D
+  jsr AslA5                    ; $886D
   sta z:$08                    ; $8870
   jsr GetRandomByte            ; $8872
   and #$10                     ; $8875
@@ -816,7 +817,7 @@ Sub_B6_886B:
   jsr Sub_B6_83F4              ; $8880  [heuristic code]
   ldy #$09                     ; $8883
   lda z:$08                    ; $8885
-  jsr AslA3                    ; $8887
+  jsr AslA4                    ; $8887
   ora ($0A),y                  ; $888A
   sta ($0A),y                  ; $888C
   ldy #$00                     ; $888E
@@ -829,7 +830,7 @@ Sub_B6_886B:
   jsr Sub_B6_83F4              ; $889B  [heuristic code]
   ldy #$09                     ; $889E
   lda z:$08                    ; $88A0
-  jsr AslA3                    ; $88A2
+  jsr AslA4                    ; $88A2
   ora ($0A),y                  ; $88A5
   sta ($0A),y                  ; $88A7
   ldy #$00                     ; $88A9
@@ -875,7 +876,7 @@ Sub_B6_8932:
 Loc_B6_8948:
   ldy z:$06                    ; $8948
   lda (Tmp02),y                ; $894A
-  jsr Sub_C1F6                 ; $894C
+  jsr LsrA6                    ; $894C
   beq Loc_B6_8967              ; $894F
   tax                          ; $8951
   lda #$00                     ; $8952
@@ -1134,7 +1135,7 @@ Loc_B6_8AEA:
 Sub_B6_8AF4:
   ldy #$09                     ; $8AF4
   lda (Tmp00),y                ; $8AF6
-  jsr AslA3                    ; $8AF8
+  jsr AslA4                    ; $8AF8
   sta z:$04                    ; $8AFB
   iny                          ; $8AFD
   lda (Tmp00),y                ; $8AFE
@@ -1325,7 +1326,7 @@ Loc_B6_9655:
 Loc_B6_9656:
   inc ObjectCount              ; $9656
   lda ObjectCount              ; $9659
-  jsr AslA3                    ; $965C
+  jsr AslA4                    ; $965C
   sta z:$0A                    ; $965F
   lda #$03                     ; $9661
   sta z:$0B                    ; $9663
@@ -1446,7 +1447,7 @@ Loc_B6_97A0:
   adc z:$06                    ; $97A8
   sta z:$06                    ; $97AA
   lda ObjectCount              ; $97AC
-  jsr AslA3                    ; $97AF
+  jsr AslA4                    ; $97AF
   tax                          ; $97B2
   inc ObjectCount              ; $97B3
   inc ObjectCount              ; $97B6

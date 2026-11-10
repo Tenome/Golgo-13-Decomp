@@ -7,6 +7,7 @@
   sta Data_B4_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_4.bin", $0009, $7  ; $8009
+Bank4Nmi:
   lda PPU_STATUS               ; $8010
   lda z:PpuCtrlShadow          ; $8013
   and #$7B                     ; $8015
@@ -277,7 +278,7 @@ Data_B4_82A2:
 Loc_B4_82FE:
   lda #$00                     ; $82FE
   sta z:MmcPrgShadow           ; $8300
-  sta z:AreaId                 ; $8302
+  sta z:GameState              ; $8302
   rts                          ; $8304
   .incbin "prg_bank_4.bin", $0305, $9  ; $8305
 Sub_B4_830E:
@@ -455,7 +456,7 @@ Sub_B4_8481:
   rts                          ; $8495
 Loc_B4_8496:
   lda #$20                     ; $8496
-  sta z:AreaId                 ; $8498
+  sta z:GameState              ; $8498
   lda #$03                     ; $849A
   sta $0300                    ; $849C
   lda #$23                     ; $849F
@@ -778,7 +779,7 @@ Loc_B4_8AD9:
   lda Data_B4_8728,x           ; $8AF7
   sta z:$65                    ; $8AFA
   lda $0518                    ; $8AFC
-  jsr AslA3                    ; $8AFF
+  jsr AslA4                    ; $8AFF
   ora $0519                    ; $8B02
   sta z:$6A                    ; $8B05
   ldy #$00                     ; $8B07
@@ -807,7 +808,7 @@ Loc_B4_8B23:
 Sub_B4_8B2D:
   lda ObjectCount              ; $8B2D
   beq Loc_B4_8B42              ; $8B30
-  jsr AslA3                    ; $8B32
+  jsr AslA4                    ; $8B32
   sta z:Tmp00                  ; $8B35
   lda #$03                     ; $8B37
   sta z:Tmp01                  ; $8B39
@@ -908,7 +909,7 @@ Loc_B4_8D2C:
   lda JoyNew1                  ; $8D2C
   and #$01                     ; $8D2F
   beq Loc_B4_8D4C              ; $8D31
-  jsr AslA3                    ; $8D33
+  jsr AslA4                    ; $8D33
   ldy #$00                     ; $8D36
 Loc_B4_8D38:
   tax                          ; $8D38
@@ -969,7 +970,7 @@ Loc_B4_8D8E:
   lda $051F                    ; $8D8E
   beq Loc_B4_8DA8              ; $8D91
   lda ObjectCount              ; $8D93
-  jsr AslA3                    ; $8D96
+  jsr AslA4                    ; $8D96
   tax                          ; $8D99
 Loc_B4_8D9A:
   lda $0309,x                  ; $8D9A
@@ -1046,7 +1047,7 @@ Sub_B4_8E06:
 Sub_B4_8E13:
   tya                          ; $8E13
   beq Sub_B4_8E90              ; $8E14
-  jsr AslA3                    ; $8E16
+  jsr AslA4                    ; $8E16
   tax                          ; $8E19
   stx z:$6B                    ; $8E1A
   lda $0309,x                  ; $8E1C
@@ -1123,7 +1124,7 @@ Data_B4_8F53:
 Sub_B4_8FAB:
   inc ObjectCount              ; $8FAB
   lda ObjectCount              ; $8FAE
-  jsr AslA3                    ; $8FB1
+  jsr AslA4                    ; $8FB1
   sta z:Tmp00                  ; $8FB4
   lda #$03                     ; $8FB6
   sta z:Tmp01                  ; $8FB8
@@ -1262,7 +1263,7 @@ Sub_B4_915B:
   bcc Loc_B4_916C              ; $9160
   lda #$00                     ; $9162
   sta z:MmcPrgShadow           ; $9164
-  sta z:AreaId                 ; $9166
+  sta z:GameState              ; $9166
   sta $0503                    ; $9168
   rts                          ; $916B
 Loc_B4_916C:
@@ -1360,7 +1361,7 @@ Data_B4_9600:
 Sub_B4_9603:
   lda ObjectCount              ; $9603
   beq Loc_B4_961A              ; $9606
-  jsr AslA3                    ; $9608
+  jsr AslA4                    ; $9608
   ldy #$00                     ; $960B
 Loc_B4_960D:
   tax                          ; $960D
@@ -1507,7 +1508,7 @@ Sub_B4_96EA:
   lda Data_B4_97B7,y           ; $9708
   sta z:$65                    ; $970B
   lda $0518                    ; $970D
-  jsr AslA3                    ; $9710
+  jsr AslA4                    ; $9710
   ora $0519                    ; $9713
   sta z:$6A                    ; $9716
   ldy #$00                     ; $9718
@@ -2041,7 +2042,7 @@ Sub_B4_B402:
   cmp #$0F                     ; $B405
   bcs Loc_B4_B414              ; $B407
   inc ObjectCount              ; $B409
-  jsr AslA3                    ; $B40C
+  jsr AslA4                    ; $B40C
   tax                          ; $B40F
   tya                          ; $B410
   sta ObjectTable,x            ; $B411
@@ -2124,7 +2125,7 @@ Loc_B4_B479:
 Loc_B4_B48D:
   ldx #$00                     ; $B48D
   lda $0302                    ; $B48F
-  jsr AslA3                    ; $B492
+  jsr AslA4                    ; $B492
   tay                          ; $B495
   lda $0300,y                  ; $B496
   bpl Loc_B4_B4A8              ; $B499
@@ -2149,7 +2150,7 @@ Sub_B4_B4B2:
   rts                          ; $B4BA
 Sub_B4_B4BB:
   lda $0302                    ; $B4BB
-  jsr AslA3                    ; $B4BE
+  jsr AslA4                    ; $B4BE
   tay                          ; $B4C1
   sta z:Tmp00                  ; $B4C2
   lda #$03                     ; $B4C4

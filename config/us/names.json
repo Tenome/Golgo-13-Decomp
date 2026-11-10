@@ -2,10 +2,10 @@
  "C196": "ApplyScroll",
  "C1A9": "BinToDecimal",
  "C1E4": "DoOamDma",
- "C1EF": "AslA5",
- "C1F0": "AslA4",
- "C1F1": "AslA3",
- "C1F2": "AslA2",
+ "C1EF": "AslA6",
+ "C1F0": "AslA5",
+ "C1F1": "AslA4",
+ "C1F2": "AslA3",
  "C1F8": "LsrA4",
  "C1F9": "LsrA3",
  "C1FD": "SetPpuCtrl",
@@ -58,5 +58,7 @@
  "C929": "DrawHud",
  "1:802F": "Bank1Dispatch_SceneState",
  "3:8081": "Bank3Dispatch_0421",
- "3:87FF": "Bank3Dispatch_041C"
+ "3:87FF": "Bank3Dispatch_041C",
+ "C1F6": "LsrA6",
+ "EAAA": "SetFireModeLow"
 }
