@@ -7,6 +7,7 @@
   sta Data_B0_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_0.bin", $0009, $7  ; $8009
+Loc_B0_8010:
   sta ($07,x)                  ; $8010
   brk                          ; $8012
   .incbin "prg_bank_0.bin", $0013, $1  ; $8013

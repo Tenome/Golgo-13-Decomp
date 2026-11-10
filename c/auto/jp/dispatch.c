@@ -4,9 +4,9 @@
 
 static int fixed_bank(uint16_t a) {
     switch (a) {
-    case 0xC000: Loc_C000(); return 1;
+    case 0xC000: Reset(); return 1;
     case 0xC078: MainIdleLoop(); return 1;
-    case 0xC081: Loc_C081(); return 1;
+    case 0xC081: Nmi(); return 1;
     case 0xC0C0: Sub_C0C0(); return 1;
     case 0xC0E6: CallBank5_A000(); return 1;
     case 0xC100: ProcessPpuUpdateList(); return 1;
@@ -196,6 +196,7 @@ static int bank1(uint16_t a) {
     case 0x85A3: Sub_B1_85A3(); return 1;
     case 0x85AF: Sub_B1_85AF(); return 1;
     case 0x85BB: Sub_B1_85BB(); return 1;
+    case 0x8D00: Sub_B1_8D00(); return 1;
     case 0x8DFF: Sub_B1_8DFF(); return 1;
     case 0x8EA2: Sub_B1_8EA2(); return 1;
     case 0x8F1E: Sub_B1_8F1E(); return 1;
@@ -269,6 +270,7 @@ static int bank1(uint16_t a) {
     case 0xAD18: Sub_B1_AD18(); return 1;
     case 0xAD82: Sub_B1_AD82(); return 1;
     case 0xAE43: Sub_B1_AE43(); return 1;
+    case 0xAF00: Sub_B1_AF00(); return 1;
     case 0xAF6E: Sub_B1_AF6E(); return 1;
     case 0xAFC6: Sub_B1_AFC6(); return 1;
     case 0xAFE3: Sub_B1_AFE3(); return 1;
@@ -282,6 +284,7 @@ static int bank2(uint16_t a) {
     switch (a) {
     case 0x8000: Loc_B2_8000(); return 1;
     case 0x8010: Bank2Nmi(); return 1;
+    case 0x8081: Sub_B2_8081(); return 1;
     case 0x8167: Sub_B2_8167(); return 1;
     case 0x818E: Sub_B2_818E(); return 1;
     case 0x8211: Sub_B2_8211(); return 1;
@@ -300,6 +303,7 @@ static int bank2(uint16_t a) {
     case 0x8AB0: Sub_B2_8AB0(); return 1;
     case 0x8AB8: Sub_B2_8AB8(); return 1;
     case 0x8B06: Sub_B2_8B06(); return 1;
+    case 0x90B0: Sub_B2_90B0(); return 1;
     }
     return 0;
 }
@@ -308,11 +312,28 @@ static int bank3(uint16_t a) {
     case 0x8000: Loc_B3_8000(); return 1;
     case 0x8010: Bank3Nmi(); return 1;
     case 0x8081: Bank3Dispatch_0421(); return 1;
+    case 0x8094: Sub_B3_8094(); return 1;
+    case 0x809F: Sub_B3_809F(); return 1;
+    case 0x812B: Sub_B3_812B(); return 1;
+    case 0x819C: Sub_B3_819C(); return 1;
+    case 0x81F0: Sub_B3_81F0(); return 1;
+    case 0x820B: Sub_B3_820B(); return 1;
+    case 0x8210: Sub_B3_8210(); return 1;
+    case 0x8215: Sub_B3_8215(); return 1;
+    case 0x821A: Sub_B3_821A(); return 1;
+    case 0x822B: Sub_B3_822B(); return 1;
+    case 0x826C: Sub_B3_826C(); return 1;
     case 0x8270: Sub_B3_8270(); return 1;
     case 0x828B: Sub_B3_828B(); return 1;
     case 0x831D: Sub_B3_831D(); return 1;
     case 0x8371: Bank3Dispatch_041C(); return 1;
+    case 0x838F: Sub_B3_838F(); return 1;
+    case 0x8397: Sub_B3_8397(); return 1;
+    case 0x839F: Sub_B3_839F(); return 1;
     case 0x83D8: Sub_B3_83D8(); return 1;
+    case 0x84DB: Sub_B3_84DB(); return 1;
+    case 0x8550: Sub_B3_8550(); return 1;
+    case 0x8593: Sub_B3_8593(); return 1;
     case 0x85AD: Sub_B3_85AD(); return 1;
     case 0x85C6: Sub_B3_85C6(); return 1;
     case 0x85DB: Sub_B3_85DB(); return 1;
@@ -594,6 +615,7 @@ static int bank5(uint16_t a) {
     case 0x9092: Sub_B5_9092(); return 1;
     case 0x9098: Sub_B5_9098(); return 1;
     case 0x90A7: Sub_B5_90A7(); return 1;
+    case 0x90B0: Sub_B5_90B0(); return 1;
     case 0x91DF: Sub_B5_91DF(); return 1;
     case 0x9283: Sub_B5_9283(); return 1;
     case 0x93E0: Sub_B5_93E0(); return 1;
@@ -605,6 +627,7 @@ static int bank5(uint16_t a) {
     case 0x98FB: Sub_B5_98FB(); return 1;
     case 0x9902: Sub_B5_9902(); return 1;
     case 0x9A6C: Sub_B5_9A6C(); return 1;
+    case 0xA000: Sub_B5_A000(); return 1;
     case 0xA044: Sub_B5_A044(); return 1;
     case 0xA0C9: Sub_B5_A0C9(); return 1;
     case 0xA17F: Sub_B5_A17F(); return 1;
@@ -615,6 +638,7 @@ static int bank5(uint16_t a) {
     case 0xA1EA: Sub_B5_A1EA(); return 1;
     case 0xA1FF: Sub_B5_A1FF(); return 1;
     case 0xA22E: Sub_B5_A22E(); return 1;
+    case 0xA237: Sub_B5_A237(); return 1;
     case 0xA24E: Sub_B5_A24E(); return 1;
     case 0xA269: Sub_B5_A269(); return 1;
     case 0xA284: Sub_B5_A284(); return 1;
@@ -677,7 +701,6 @@ static int bank6(uint16_t a) {
     case 0x886B: Sub_B6_886B(); return 1;
     case 0x8880: Loc_B6_8880(); return 1;
     case 0x889B: Loc_B6_889B(); return 1;
-    case 0x88BB: Loc_B6_88BB(); return 1;
     case 0x8932: Sub_B6_8932(); return 1;
     case 0x89A7: Sub_B6_89A7(); return 1;
     case 0x89B2: Sub_B6_89B2(); return 1;
@@ -702,8 +725,24 @@ static int bank6(uint16_t a) {
     }
     return 0;
 }
+static int ram_match_0(void) {
+    if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0006) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0007) & 0x7FF] != 0xC1) return 0;
+    if (g_ram[(0x000A) & 0x7FF] != 0x60) return 0;
+    return 1;
+}
+static int ram_images(uint16_t a) {
+    switch (a) {
+    case 0x0005:
+        if (ram_match_0()) { Ram_0005_0(); return 1; }
+        break;
+    }
+    return 0;
+}
 void call_addr(uint16_t a) {
-    if (a >= 0xC000) { if (fixed_bank(a)) return; }
+    if (a < 0x2000) { if (ram_images(a)) return; }
+    else if (a >= 0xC000) { if (fixed_bank(a)) return; }
     else if (a >= 0x8000) {
         switch (g_bank) {
         case 0: if (bank0(a)) return; break;

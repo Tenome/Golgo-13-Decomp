@@ -54,6 +54,7 @@ Bank2Nmi:
 Loc_B2_807D:
   cmp #$11                     ; $807D
   bne Loc_B2_8087              ; $807F
+Sub_B2_8081:
   jsr Sub_B2_837A              ; $8081
   jmp Loc_B2_815C              ; $8084
 Loc_B2_8087:
@@ -1053,6 +1054,7 @@ Data_B2_8B16:
 Data_B2_8B17:
   .incbin "prg_bank_2.bin", $0B17, $400  ; $8B17
   .incbin "prg_bank_2.bin", $0F17, $199  ; $8F17
+Sub_B2_90B0:
   lda $04A8                    ; $90B0
   bne Loc_B2_90B8              ; $90B3
   jmp Loc_B2_912A              ; $90B5

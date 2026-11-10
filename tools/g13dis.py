@@ -13,7 +13,7 @@ assert VER in ('us', 'jp'), VER
 CONF = os.path.join(PROJ, 'config', VER); SRCDIR = os.path.join(PROJ, 'src', VER); ASSETS = os.path.join(PROJ, 'assets', VER)
 ROMPATH = os.path.join(PROJ, 'orig', f'golgo13_{VER}.nes')
 ROM = open(ROMPATH, 'rb').read()
-PRG = ROM[16:16 + 0x20000]
+PRG = bytearray(ROM[16:16 + 0x20000])   # extended below with RAM-code images (one 16 KB slot each, from 0x20000)
 NB = 8
 # ---------- opcode table: op -> (mnemonic, mode) ----------
 def build_table():
@@ -56,11 +56,39 @@ IDX = {}   # p -> set of banks-of-referrers (indexed abs operand targets)
 RANK = {'sub': 3, 'loc': 2, 'data': 1}
 def mark(p, k):
     if RANK[k] > RANK.get(KIND.get(p), 0): KIND[p] = k
+IMAGES = []     # RAM code seen executing (config/<ver>/ramcode.json): dict(base, end, inst=[(addr, bytes)], slot)
+def build_ram_images():
+    f = os.path.join(CONF, 'ramcode.json')
+    if not os.path.exists(f): return
+    insns = sorted(set((a, bytes.fromhex(h)) for a, h in json.load(open(f))['insns']))
+    layers = []                                     # variants: instructions that overlap with different bytes go to another layer
+    for a, b in insns:
+        for ly in layers:
+            if all(not (a < a2 + len(b2) and a2 < a + len(b)) or (a == a2 and b == b2) for a2, b2 in ly): ly.append((a, b)); break
+        else: layers.append([(a, b)])
+    for ly in layers:
+        ly.sort(); cl = []
+        for a, b in ly:
+            if cl and a <= cl[-1][-1][0] + len(cl[-1][-1][1]) + 2: cl[-1].append((a, b))      # inline argument bytes sit between instructions
+            else: cl.append([(a, b)])
+        for c in cl: IMAGES.append(dict(base=c[0][0], end=c[-1][0] + len(c[-1][1]), inst=c))
+    for k, im in enumerate(IMAGES):
+        im['slot'] = 0x20000 + 0x4000 * k; PRG.extend(bytes(0x4000))
+        for a, b in im['inst']: PRG[im['slot'] + a - im['base']: im['slot'] + a - im['base'] + len(b)] = b
+build_ram_images()
 def p_of(bank, addr): return bank * 0x4000 + (addr & 0x3FFF)
 def bank_of(p): return p >> 14
-def addr_of(p): return (0xC000 if p >> 14 == 7 else 0x8000) + (p & 0x3FFF)
+def addr_of(p):
+    if p >= 0x20000: return IMAGES[(p - 0x20000) >> 14]['base'] + (p & 0x3FFF)
+    return (0xC000 if p >> 14 == 7 else 0x8000) + (p & 0x3FFF)
 def resolve(cur_p, target):
     """CPU target -> PRG offset, or None if unknown/not ROM."""
+    if cur_p >= 0x20000:                                    # code running from a RAM image
+        if target < 0x2000:
+            im = IMAGES[(cur_p - 0x20000) >> 14]; off = target - im['base']
+            return (cur_p >> 14 << 14) + off if 0 <= off < im['end'] - im['base'] else None
+        if target >= 0xC000: return p_of(7, target)
+        return None
     if target >= 0xC000: return p_of(7, target)
     if 0x8000 <= target < 0xC000:
         return p_of(bank_of(cur_p), target) if bank_of(cur_p) != 7 else None
@@ -71,10 +99,13 @@ def decode(p):
     n, m = TAB[op]; l = LENM[m]
     if (p & 0x3FFF) + l > 0x4000: return None
     return op, n, m, l, PRG[p+1:p+l]
+build_ram_images_pending = True
 def load_roots(files=None):
     """Executed opcode offsets (PRG-relative) recorded from play: config/<ver>/coverage.json.
     The jp version also inherits us coverage wherever the instruction bytes are identical."""
     roots = set(json.load(open(os.path.join(CONF, 'coverage.json'))))
+    for im in IMAGES:
+        for a_, b_ in im['inst']: roots.add(im['slot'] + a_ - im['base'])
     if VER != 'us':
         usrom = os.path.join(PROJ, 'orig', 'golgo13_us.nes'); usc = os.path.join(PROJ, 'config', 'us', 'coverage.json')
         if os.path.exists(usrom) and os.path.exists(usc):
@@ -87,16 +118,22 @@ def load_roots(files=None):
     return roots
 def parse_loc(x):
     b, a = x.split(':'); return p_of(int(b), int(a, 16))
+def load_entries():
+    """Routine entries reached through computed jumps (jump tables, RTS tricks); learned by tools/frametest.py, config/<ver>/entries.json"""
+    f = os.path.join(CONF, 'entries.json')
+    return [parse_loc(x) for x in json.load(open(f))['entries']] if os.path.exists(f) else []
 def load_hints():
     f = os.path.join(CONF, 'hints.json')
     h = json.load(open(f)) if os.path.exists(f) else {}
-    code = [parse_loc(x) for x in h.get('code', [])]
+    code = [parse_loc(x) for x in h.get('code', [])] + load_entries()
     forbid = set()
     for r in h.get('data', []):          # "bank:start-end" inclusive, CPU addresses
         b, rng = r.split(':'); lo, hi = [int(v, 16) for v in rng.split('-')]
         for a in range(lo, hi + 1): forbid.add(p_of(int(b), a))
     return code, forbid
 INLINE_DISP = set()   # routines that dispatch through a table of code addresses placed right after the JSR (never return to the caller)
+RAMCALLS = set()   # RAM addresses that ROM code calls (JSR/JMP absolute < $2000)
+XCALL = {}         # p of a bank-7 JSR/JMP into the switchable window -> candidate routines (banks where that address was executed)
 INLINE_N = {}      # routine p -> number of inline argument bytes that follow every JSR to it (execution resumes after them)
 INLINEPTR = {}     # p of an inline pointer word -> p of the data it points to
 def load_inline():
@@ -106,7 +143,7 @@ def load_inline():
     for k, n in h.get('inline_args', {}).items(): INLINE_N[parse_loc(k) if ':' in k else p_of(7, int(k, 16))] = n
 def classify(roots, extra_code=()):
     hint_code, forbid = load_hints(); extra_code = list(extra_code) + hint_code
-    load_inline(); INLINEPTR.clear()
+    load_inline(); INLINEPTR.clear(); XCALL.clear(); RAMCALLS.clear(); rootset = set(roots)
     code = [None] * len(PRG)          # None=data, else instruction start offsets flag 'S' / 'c' for continuation
     labels = set()
     work = sorted(roots) + list(extra_code)
@@ -133,6 +170,12 @@ def classify(roots, extra_code=()):
                 tgt = resolve(p, t)
             elif n in ('jsr', 'jmp') and m == 'abs':
                 tgt = resolve(p, ob[0] | ob[1] << 8)
+            if tgt is None and n in ('jsr', 'jmp') and m == 'abs' and (ob[0] | ob[1] << 8) < 0x2000: RAMCALLS.add(ob[0] | ob[1] << 8)
+            if tgt is None and n in ('jsr', 'jmp') and m == 'abs' and bank_of(p) == 7 and 0x8000 <= (ob[0] | ob[1] << 8) < 0xC000:
+                T = ob[0] | ob[1] << 8                          # bank unknown here: the banks where this address was really executed are the candidates
+                cand = [p_of(b, T) for b in range(7) if p_of(b, T) in rootset]
+                if cand: XCALL[p] = cand
+                for cp in cand: labels.add(cp); mark(cp, 'sub' if n == 'jsr' else 'loc'); work.append(cp)
             if tgt is not None:
                 labels.add(tgt); work.append(tgt); mark(tgt, 'sub' if n == 'jsr' else 'loc')
             elif m in ('abs', 'abx', 'aby') and n not in ('jsr', 'jmp'):
@@ -173,6 +216,7 @@ def _plaus(p, need=3):
             if t < 0x8000: return False
         cnt += 1; q += l
         if n in ('rts', 'rti', 'jmp'): return cnt >= need
+        if n == 'jsr' and m == 'abs' and resolve(q - l, ob[0] | ob[1] << 8) in INLINE_DISP: return cnt >= need     # never returns here
         if n == 'brk': return False
     return cnt >= need
 def _entry_ok(q, v, code):
@@ -225,6 +269,13 @@ def classify_full(roots):
         extra = list(set(extra) | set(new))
     for t in TABLES.values():
         for x in t['tg']: labels.add(x); mark(x, 'sub')
+    for ep in load_entries():
+        if code[ep] == 'S': labels.add(ep); mark(ep, 'sub')
+    for im in IMAGES:                                         # RAM stubs: entry = cluster start and every address ROM code calls
+        for a_, b_ in im['inst']:
+            if a_ == im['inst'][0][0] or a_ in RAMCALLS:
+                pp = im['slot'] + a_ - im['base']
+                if code[pp] == 'S': labels.add(pp); mark(pp, 'sub')
     return code, labels, conf
 # ---------- emission ----------
 BANKNOTES = json.load(open(os.path.join(CONF, 'banks.json'))) if os.path.exists(os.path.join(CONF, 'banks.json')) else {}
@@ -232,6 +283,7 @@ def load_names():
     f = os.path.join(CONF, 'names.json')
     return json.load(open(f)) if os.path.exists(f) else {}
 def lname(p, names):
+    if p >= 0x20000: return f'Ram_{addr_of(p):04X}_{(p - 0x20000) >> 14}'
     key = f'{addr_of(p):04X}' if bank_of(p) == 7 else f'{bank_of(p)}:{addr_of(p):04X}'
     if key in names: return names[key]
     pre = {'sub': 'Sub', 'loc': 'Loc', 'data': 'Data'}.get(KIND.get(p), 'Loc')
@@ -291,7 +343,8 @@ def emit(code, labels, outdir):
                 if text is None:
                     lines.append(f'  .byte {", ".join(f"${x:02X}" for x in PRG[p:p+l])}  ; ${addr_of(p):04X} {n} (target outside bank)')
                 else:
-                    lines.append(f'  {text:<28} ; ${addr_of(p):04X}' + ('  [heuristic code]' if p in HEUR else ''))
+                    cm = ('  -> ' + ', '.join(lname(c_, names) for c_ in XCALL[p])) if p in XCALL else ''
+                    lines.append(f'  {text:<28} ; ${addr_of(p):04X}' + cm + ('  [heuristic code]' if p in HEUR else ''))
                 p += l; ncode += l; continue
             if p in INLINEPTR and p + 1 < end:
                 lines.append(f'  .addr {lname(INLINEPTR[p], names)}  ; ${addr_of(p):04X} inline pointer (data after a JSR)')

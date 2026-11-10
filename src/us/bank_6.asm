@@ -471,6 +471,7 @@ Sub_B6_840D:
   sta ($0A),y                  ; $843A
   rts                          ; $843C
   .incbin "prg_bank_6.bin", $043D, $1C0  ; $843D
+Sub_B6_85FD:
   jsr Sub_B6_83F4              ; $85FD
   lda z:$08                    ; $8600
   jsr AslA6                    ; $8602
@@ -1208,6 +1209,7 @@ Loc_B6_8BF2:
   .incbin "prg_bank_6.bin", $0BF3, $400  ; $8BF3
   .incbin "prg_bank_6.bin", $0FF3, $400  ; $8FF3
   .incbin "prg_bank_6.bin", $13F3, $67  ; $93F3
+Sub_B6_945A:
   jsr Sub_B6_9489              ; $945A
   ldy #$08                     ; $945D
   lda (Tmp00),y                ; $945F
@@ -1494,6 +1496,7 @@ Loc_B6_97A0:
   sta $0336,x                  ; $981A
   rts                          ; $981D
   .incbin "prg_bank_6.bin", $181E, $1F6  ; $981E
+Sub_B6_9A14:
   jsr Sub_B6_9A38              ; $9A14
   ldy #$08                     ; $9A17
   lda (Tmp00),y                ; $9A19
@@ -1523,6 +1526,7 @@ Data_B6_9A46:
 Data_B6_9A47:
   .incbin "prg_bank_6.bin", $1A47, $400  ; $9A47
   .incbin "prg_bank_6.bin", $1E47, $252  ; $9E47
+Sub_B6_A099:
   jsr Sub_B6_A0A6              ; $A099
   jsr Sub_B6_8932              ; $A09C
   jsr Sub_B6_8A76              ; $A09F

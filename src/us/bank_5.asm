@@ -1360,6 +1360,7 @@ Loc_B5_8CEE:
   lda (Tmp00),y                ; $8CFB
   and #$0F                     ; $8CFD
   asl a                        ; $8CFF
+Sub_B5_8D00:
   asl a                        ; $8D00
   asl a                        ; $8D01
   adc $0531                    ; $8D02
@@ -2351,6 +2352,7 @@ Loc_B5_9DBB:
   jmp EnqueueByte              ; $9DFE
 Data_B5_9E01:
   .incbin "prg_bank_5.bin", $1E01, $1FF  ; $9E01
+Sub_B5_A000:
   lda ByteQueue                ; $A000
   beq Loc_B5_A013              ; $A003
   lda #$00                     ; $A005
@@ -2603,8 +2605,7 @@ Sub_B5_A1A3:
   lsr a                        ; $A1A9
   lsr a                        ; $A1AA
   jsr Sub_B5_A464              ; $A1AB
-  .addr Sub_B5_A1BE, Sub_B5_A1BE, Sub_B5_A1CE, Sub_B5_A1CE, Sub_B5_A1EA, Sub_B5_A1FF, Sub_B5_A22E  ; $A1AE pointer table
-  .incbin "prg_bank_5.bin", $21BC, $2  ; $A1BC
+  .addr Sub_B5_A1BE, Sub_B5_A1BE, Sub_B5_A1CE, Sub_B5_A1CE, Sub_B5_A1EA, Sub_B5_A1FF, Sub_B5_A22E, Sub_B5_A237  ; $A1AE pointer table
 Sub_B5_A1BE:
   lda z:$06                    ; $A1BE
   and #$1F                     ; $A1C0
@@ -2680,6 +2681,7 @@ Sub_B5_A22E:
   ldy #$0D                     ; $A232
   sta (ScriptPtrLo),y          ; $A234
   rts                          ; $A236
+Sub_B5_A237:
   lda z:$06                    ; $A237
   and #$07                     ; $A239
   jsr Sub_B5_A464              ; $A23B
@@ -2882,7 +2884,7 @@ Sub_B5_A363:
   ora z:$04                    ; $A38F
   sta z:$04                    ; $A391
   and #$10                     ; $A393
-  beq Loc_B5_A3B1              ; $A395
+  beq *+28                     ; $A395
   lda z:$04                    ; $A397
   and #$0F                     ; $A399
   ldy #$0D                     ; $A39B
@@ -2898,9 +2900,7 @@ Loc_B5_A3A4:
   sta z:$04                    ; $A3AB
   pla                          ; $A3AD
   ora z:$04                    ; $A3AE
-  .incbin "prg_bank_5.bin", $23B0, $1  ; $A3B0
-Loc_B5_A3B1:
-  lda z:$04                    ; $A3B1
+  bit $04A5                    ; $A3B0
   ldy #$0F                     ; $A3B3
   sta (ScriptPtrLo),y          ; $A3B5
   jsr Sub_B5_A402              ; $A3B7

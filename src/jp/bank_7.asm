@@ -74,13 +74,13 @@ Nmi:
   bne Loc_C08B                 ; $C086
   jmp Loc_C0E3                 ; $C088
 Loc_C08B:
-  jmp $8010                    ; $C08B
+  jmp $8010                    ; $C08B  -> Loc_B0_8010, Bank1Nmi, Bank2Nmi, Bank3Nmi, Bank4Nmi, Bank5Nmi, Bank6Nmi
   .incbin "prg_bank_7.bin", $008E, $32  ; $C08E
 Sub_C0C0:
   dec z:MmcPrgShadow           ; $C0C0
   jsr MmcWritePrg              ; $C0C2
-  jsr $AF00                    ; $C0C5
-  jsr $8D00                    ; $C0C8
+  jsr $AF00                    ; $C0C5  -> Sub_B1_AF00
+  jsr $8D00                    ; $C0C8  -> Sub_B1_8D00
   jsr DrawObjects              ; $C0CB
   inc z:MmcPrgShadow           ; $C0CE
   jsr MmcWritePrg              ; $C0D0
@@ -96,7 +96,7 @@ CallBank5_A000:
   lda #$05                     ; $C0EB
   sta z:MmcPrgShadow           ; $C0ED
   jsr MmcWritePrg              ; $C0EF
-  jsr $A000                    ; $C0F2
+  jsr $A000                    ; $C0F2  -> Sub_B5_A000
   lda $0105                    ; $C0F5
   sta z:MmcPrgShadow           ; $C0F8
   jsr MmcWritePrg              ; $C0FA
@@ -803,7 +803,7 @@ Loc_C5BA:
   lda #$00                     ; $C5BA
   sta PPU_MASK                 ; $C5BC
   jsr UploadPalette            ; $C5BF
-  jsr $90B0                    ; $C5C2
+  jsr $90B0                    ; $C5C2  -> Sub_B2_90B0, Sub_B5_90B0
   lda z:PpuMaskShadow          ; $C5C5
   sta PPU_MASK                 ; $C5C7
 Loc_C5CA:
@@ -1462,7 +1462,7 @@ Loc_CB00:
   lda #$03                     ; $CB00
   sta z:MmcPrgShadow           ; $CB02
   jsr MmcWritePrg              ; $CB04
-  jsr $8081                    ; $CB07
+  jsr $8081                    ; $CB07  -> Sub_B2_8081, Bank3Dispatch_0421
   lda #$00                     ; $CB0A
   sta z:MmcPrgShadow           ; $CB0C
   jsr MmcWritePrg              ; $CB0E
@@ -1477,7 +1477,7 @@ Loc_CB1F:
   lda #$06                     ; $CB22
   sta z:MmcPrgShadow           ; $CB24
   jsr MmcWritePrg              ; $CB26
-  jmp $8010                    ; $CB29
+  jmp $8010                    ; $CB29  -> Loc_B0_8010, Bank1Nmi, Bank2Nmi, Bank3Nmi, Bank4Nmi, Bank5Nmi, Bank6Nmi
 Loc_CB2C:
   lda #$00                     ; $CB2C
   sta z:MmcPrgShadow           ; $CB2E
@@ -1711,7 +1711,7 @@ Loc_CD16:
   lda #$03                     ; $CD16
   sta z:MmcPrgShadow           ; $CD18
   jsr MmcWritePrg              ; $CD1A
-  jsr $8081                    ; $CD1D
+  jsr $8081                    ; $CD1D  -> Sub_B2_8081, Bank3Dispatch_0421
   jsr ApplyScroll              ; $CD20
   lda #$00                     ; $CD23
   sta z:MmcPrgShadow           ; $CD25

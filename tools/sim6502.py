@@ -11,7 +11,7 @@ class CPU:
         self.a = self.x = self.y = 0; self.sp = 0xFF; self.pc = 0
         self.c = self.z = self.i = self.d = self.v = self.n = 0
         self.io_writes = []; self.cycles = 0; self.io_reads = {}
-        self.bank = 0; self.mmc_shift = 0; self.mmc_count = 0; self.trace = None; self.stray_write = False; self.io_ctr = 0
+        self.bank = 0; self.mmc_shift = 0; self.mmc_count = 0; self.trace = None; self.stray_write = False; self.io_ctr = 0; self.ram_log = None; self.pad = 0xA5; self.pad_idx = 0; self.exec_log = None
     # -- memory
     def rd(self, a):
         a &= 0xFFFF
@@ -21,12 +21,16 @@ class CPU:
         if a in self.io_reads: return self.io_reads[a]
         n = self.io_ctr; self.io_ctr += 1                     # same pattern as c/core.c io_read
         if a == 0x2002: return (0x80 if n % 3 == 0 else 0) | (0x40 if n % 2 == 0 else 0)
-        if a in (0x4016, 0x4017): return n & 1
+        if a == 0x4016:
+            i = self.pad_idx; self.pad_idx += 1
+            return (self.pad >> i) & 1 if i < 8 else 1
+        if a == 0x4017: return 0
         return 0
     def wr(self, a, v):
         a &= 0xFFFF; v &= 0xFF
         if a < 0x2000: self.ram[a & 0x7FF] = v
         elif a >= 0x2000:
+            if a == 0x4016: self.pad_idx = 0
             self.io_writes.append((a, v))
             if a >= 0x8000: self.mmc1(a, v)
     def mmc1(self, a, v):
@@ -65,6 +69,12 @@ class CPU:
     def cmp(self, r, v): self.c = int(r >= v); self.nz(r - v)
     def step(self):
         from g13dis import TAB
+        if self.exec_log is not None and self.pc >= 0x8000:   # executed ROM instruction (PRG offset)
+            self.exec_log.add(7 * 0x4000 + (self.pc & 0x3FFF) if self.pc >= 0xC000 else self.bank * 0x4000 + (self.pc & 0x3FFF))
+        if self.ram_log is not None and self.pc < 0x2000:     # RAM code: remember each executed instruction with its bytes
+            from g13dis import TAB, LENM
+            o_ = self.rd(self.pc)
+            if o_ in TAB: self.ram_log.add((self.pc, bytes(self.rd(self.pc + i_) for i_ in range(LENM[TAB[o_][1]])).hex()))
         if self.trace is not None: self.trace.append((self.pc, self.a, self.x, self.y, self.c, self.z, self.n))
         op = self.rd(self.pc); self.pc += 1
         if op not in TAB: raise RuntimeError(f'unsupported opcode {op:02X} at {self.pc - 1:04X}')

@@ -1,18 +1,18 @@
 {
  "measures": {
   "fuzzy_match_percent": 100.0,
-  "total_code": "34740",
-  "matched_code": "34740",
+  "total_code": "34738",
+  "matched_code": "34738",
   "matched_code_percent": 100.0,
-  "total_data": "227404",
-  "matched_data": "227404",
+  "total_data": "227406",
+  "matched_data": "227406",
   "matched_data_percent": 100.0,
-  "total_functions": 748,
-  "matched_functions": 748,
+  "total_functions": 766,
+  "matched_functions": 766,
   "matched_functions_percent": 100.0,
-  "complete_code": "34740",
+  "complete_code": "34738",
   "complete_code_percent": 100.0,
-  "complete_data": "227404",
+  "complete_data": "227406",
   "complete_data_percent": 100.0,
   "total_units": 9,
   "complete_units": 9
@@ -571,7 +571,7 @@
      }
     },
     {
-     "name": "Loc_B1_8D00",
+     "name": "Sub_B1_8D00",
      "size": "168",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1171,7 +1171,7 @@
      }
     },
     {
-     "name": "Loc_B1_AF00",
+     "name": "Sub_B1_AF00",
      "size": "110",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1242,8 +1242,8 @@
     "total_data": "14245",
     "matched_data": "14245",
     "matched_data_percent": 100.0,
-    "total_functions": 22,
-    "matched_functions": 22,
+    "total_functions": 23,
+    "matched_functions": 23,
     "matched_functions_percent": 100.0,
     "complete_code": "2139",
     "complete_code_percent": 100.0,
@@ -1275,10 +1275,18 @@
     },
     {
      "name": "Bank2Nmi",
-     "size": "343",
+     "size": "113",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "32800"
+     }
+    },
+    {
+     "name": "Sub_B2_8081",
+     "size": "230",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "32913"
      }
     },
     {
@@ -1434,7 +1442,7 @@
      }
     },
     {
-     "name": "Loc_B2_90B0",
+     "name": "Sub_B2_90B0",
      "size": "123",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1457,8 +1465,8 @@
     "total_data": "12662",
     "matched_data": "12662",
     "matched_data_percent": 100.0,
-    "total_functions": 32,
-    "matched_functions": 32,
+    "total_functions": 49,
+    "matched_functions": 49,
     "matched_functions_percent": 100.0,
     "complete_code": "3722",
     "complete_code_percent": 100.0,
@@ -1498,10 +1506,98 @@
     },
     {
      "name": "Bank3Dispatch_0421",
-     "size": "495",
+     "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "49297"
+     }
+    },
+    {
+     "name": "Sub_B3_8094",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49316"
+     }
+    },
+    {
+     "name": "Sub_B3_809F",
+     "size": "140",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49327"
+     }
+    },
+    {
+     "name": "Sub_B3_812B",
+     "size": "113",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49467"
+     }
+    },
+    {
+     "name": "Sub_B3_819C",
+     "size": "84",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49580"
+     }
+    },
+    {
+     "name": "Sub_B3_81F0",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49664"
+     }
+    },
+    {
+     "name": "Sub_B3_820B",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49691"
+     }
+    },
+    {
+     "name": "Sub_B3_8210",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49696"
+     }
+    },
+    {
+     "name": "Sub_B3_8215",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49701"
+     }
+    },
+    {
+     "name": "Sub_B3_821A",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49706"
+     }
+    },
+    {
+     "name": "Sub_B3_822B",
+     "size": "65",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49723"
+     }
+    },
+    {
+     "name": "Sub_B3_826C",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49788"
      }
     },
     {
@@ -1530,26 +1626,50 @@
     },
     {
      "name": "Bank3Dispatch_041C",
-     "size": "33",
+     "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "50049"
      }
     },
     {
+     "name": "Sub_B3_838F",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "50079"
+     }
+    },
+    {
      "name": "Loc_B3_8394",
-     "size": "6",
+     "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "50084"
      }
     },
     {
+     "name": "Sub_B3_8397",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "50087"
+     }
+    },
+    {
      "name": "Loc_B3_839C",
-     "size": "6",
+     "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "50092"
+     }
+    },
+    {
+     "name": "Sub_B3_839F",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "50095"
      }
     },
     {
@@ -1562,10 +1682,34 @@
     },
     {
      "name": "Sub_B3_83D8",
-     "size": "469",
+     "size": "259",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "50152"
+     }
+    },
+    {
+     "name": "Sub_B3_84DB",
+     "size": "117",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "50411"
+     }
+    },
+    {
+     "name": "Sub_B3_8550",
+     "size": "67",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "50528"
+     }
+    },
+    {
+     "name": "Sub_B3_8593",
+     "size": "26",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "50595"
      }
     },
     {
@@ -2881,18 +3025,18 @@
    "name": "main/bank_5",
    "measures": {
     "fuzzy_match_percent": 100.0,
-    "total_code": "5546",
-    "matched_code": "5546",
+    "total_code": "5547",
+    "matched_code": "5547",
     "matched_code_percent": 100.0,
-    "total_data": "10838",
-    "matched_data": "10838",
+    "total_data": "10837",
+    "matched_data": "10837",
     "matched_data_percent": 100.0,
-    "total_functions": 187,
-    "matched_functions": 187,
+    "total_functions": 188,
+    "matched_functions": 188,
     "matched_functions_percent": 100.0,
-    "complete_code": "5546",
+    "complete_code": "5547",
     "complete_code_percent": 100.0,
-    "complete_data": "10838",
+    "complete_data": "10837",
     "complete_data_percent": 100.0,
     "total_units": 1,
     "complete_units": 1
@@ -2900,12 +3044,12 @@
    "sections": [
     {
      "name": ".text",
-     "size": "5546",
+     "size": "5547",
      "fuzzy_match_percent": 100.0
     },
     {
      "name": ".data",
-     "size": "10838",
+     "size": "10837",
      "fuzzy_match_percent": 100.0
     }
    ],
@@ -3968,10 +4112,18 @@
     },
     {
      "name": "Sub_B5_90A7",
-     "size": "28",
+     "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "86199"
+     }
+    },
+    {
+     "name": "Sub_B5_90B0",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86208"
      }
     },
     {
@@ -4215,7 +4367,7 @@
      }
     },
     {
-     "name": "Loc_B5_A000",
+     "name": "Sub_B5_A000",
      "size": "68",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4296,10 +4448,18 @@
     },
     {
      "name": "Sub_B5_A22E",
-     "size": "16",
+     "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "90686"
+     }
+    },
+    {
+     "name": "Sub_B5_A237",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90695"
      }
     },
     {
@@ -4368,18 +4528,10 @@
     },
     {
      "name": "Sub_B5_A363",
-     "size": "77",
+     "size": "100",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "90995"
-     }
-    },
-    {
-     "name": "Loc_B5_A3B1",
-     "size": "22",
-     "fuzzy_match_percent": 100.0,
-     "metadata": {
-      "virtual_address": "91073"
      }
     },
     {
@@ -4959,18 +5111,18 @@
    "name": "main/bank_7",
    "measures": {
     "fuzzy_match_percent": 100.0,
-    "total_code": "11148",
-    "matched_code": "11148",
+    "total_code": "11145",
+    "matched_code": "11145",
     "matched_code_percent": 100.0,
-    "total_data": "5236",
-    "matched_data": "5236",
+    "total_data": "5239",
+    "matched_data": "5239",
     "matched_data_percent": 100.0,
-    "total_functions": 165,
-    "matched_functions": 165,
+    "total_functions": 164,
+    "matched_functions": 164,
     "matched_functions_percent": 100.0,
-    "complete_code": "11148",
+    "complete_code": "11145",
     "complete_code_percent": 100.0,
-    "complete_data": "5236",
+    "complete_data": "5239",
     "complete_data_percent": 100.0,
     "total_units": 1,
     "complete_units": 1
@@ -4978,12 +5130,12 @@
    "sections": [
     {
      "name": ".text",
-     "size": "11148",
+     "size": "11145",
      "fuzzy_match_percent": 100.0
     },
     {
      "name": ".data",
-     "size": "5236",
+     "size": "5239",
      "fuzzy_match_percent": 100.0
     }
    ],
@@ -6298,14 +6450,6 @@
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "130769"
-     }
-    },
-    {
-     "name": "Loc_FFFA",
-     "size": "3",
-     "fuzzy_match_percent": 100.0,
-     "metadata": {
-      "virtual_address": "131082"
      }
     }
    ],

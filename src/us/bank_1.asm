@@ -455,6 +455,7 @@ Data_B1_88EB:
 Data_B1_88EC:
   .incbin "prg_bank_1.bin", $08EC, $400  ; $88EC
   .incbin "prg_bank_1.bin", $0CEC, $14  ; $8CEC
+Sub_B1_8D00:
   ldx #$0F                     ; $8D00
   ldy #$03                     ; $8D02
 Loc_B1_8D04:
@@ -2799,6 +2800,7 @@ Data_B1_AE76:
   .incbin "prg_bank_1.bin", $2E76, $1  ; $AE76
 Data_B1_AE77:
   .incbin "prg_bank_1.bin", $2E77, $89  ; $AE77
+Sub_B1_AF00:
   jsr Sub_B1_B013              ; $AF00
   lda z:PaletteSetIndex        ; $AF03
   cmp #$69                     ; $AF05

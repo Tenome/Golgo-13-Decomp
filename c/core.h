@@ -20,5 +20,6 @@ extern uint16_t g_iolog_addr[IOLOG_MAX];
 extern uint8_t g_iolog_val[IOLOG_MAX];
 extern int g_iolog_n;
 uint8_t io_read(uint16_t addr);               /* PPU/APU/joypad register reads (0 in the tests) */
+extern uint8_t g_pad;                          /* controller 1 state read through $4016 */
 void iolog_reset(void);                        /* clears the log and the MMC1 shift register */
 

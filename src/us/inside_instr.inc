@@ -9,6 +9,7 @@ Data_B5_8062 = $8062
 Data_B5_89D2 = $89D2
 Data_B5_8AF4 = $8AF4
 Loc_B5_A139 = $A139
+Loc_B5_A3B1 = $A3B1
 Data_CD00 = $CD00
 Data_DBDE = $DBDE
 Data_FE5C = $FE5C

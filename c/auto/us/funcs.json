@@ -139,6 +139,13 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B1_8D00": {
+  "addr": 36096,
+  "bank": 1,
+  "instrs": 104,
+  "ok": true,
+  "reason": null
+ },
  "Sub_B1_8DFF": {
   "addr": 36351,
   "bank": 1,
@@ -650,6 +657,13 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B1_AF00": {
+  "addr": 44800,
+  "bank": 1,
+  "instrs": 47,
+  "ok": true,
+  "reason": null
+ },
  "Sub_B1_AF6E": {
   "addr": 44910,
   "bank": 1,
@@ -702,7 +716,14 @@
  "Bank2Nmi": {
   "addr": 32784,
   "bank": 2,
-  "instrs": 137,
+  "instrs": 135,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8081": {
+  "addr": 32897,
+  "bank": 2,
+  "instrs": 7,
   "ok": true,
   "reason": null
  },
@@ -832,6 +853,13 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B2_90B0": {
+  "addr": 37040,
+  "bank": 2,
+  "instrs": 50,
+  "ok": true,
+  "reason": null
+ },
  "Loc_B3_8000": {
   "addr": 32768,
   "bank": 3,
@@ -850,6 +878,83 @@
   "addr": 32897,
   "bank": 3,
   "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8094": {
+  "addr": 32916,
+  "bank": 3,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_809F": {
+  "addr": 32927,
+  "bank": 3,
+  "instrs": 59,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_812B": {
+  "addr": 33067,
+  "bank": 3,
+  "instrs": 51,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_819C": {
+  "addr": 33180,
+  "bank": 3,
+  "instrs": 27,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_81E1": {
+  "addr": 33249,
+  "bank": 3,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_81FC": {
+  "addr": 33276,
+  "bank": 3,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8201": {
+  "addr": 33281,
+  "bank": 3,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8206": {
+  "addr": 33286,
+  "bank": 3,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_820B": {
+  "addr": 33291,
+  "bank": 3,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_821C": {
+  "addr": 33308,
+  "bank": 3,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_825D": {
+  "addr": 33373,
+  "bank": 3,
+  "instrs": 2,
   "ok": true,
   "reason": null
  },
@@ -881,10 +986,52 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B3_881D": {
+  "addr": 34845,
+  "bank": 3,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8825": {
+  "addr": 34853,
+  "bank": 3,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_882D": {
+  "addr": 34861,
+  "bank": 3,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
  "Sub_B3_8866": {
   "addr": 34918,
   "bank": 3,
-  "instrs": 238,
+  "instrs": 193,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8969": {
+  "addr": 35177,
+  "bank": 3,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_89DE": {
+  "addr": 35294,
+  "bank": 3,
+  "instrs": 25,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8A21": {
+  "addr": 35361,
+  "bank": 3,
+  "instrs": 11,
   "ok": true,
   "reason": null
  },
@@ -1003,7 +1150,14 @@
  "Sub_B3_9094": {
   "addr": 37012,
   "bank": 3,
-  "instrs": 148,
+  "instrs": 66,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_90B0": {
+  "addr": 37040,
+  "bank": 3,
+  "instrs": 83,
   "ok": true,
   "reason": null
  },
@@ -2718,7 +2872,14 @@
  "Sub_B5_8CC4": {
   "addr": 36036,
   "bank": 5,
-  "instrs": 57,
+  "instrs": 38,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8D00": {
+  "addr": 36096,
+  "bank": 5,
+  "instrs": 38,
   "ok": true,
   "reason": null
  },
@@ -2897,6 +3058,13 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B5_A000": {
+  "addr": 40960,
+  "bank": 5,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
  "Sub_B5_A044": {
   "addr": 41028,
   "bank": 5,
@@ -2964,6 +3132,13 @@
   "addr": 41518,
   "bank": 5,
   "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A237": {
+  "addr": 41527,
+  "bank": 5,
+  "instrs": 3,
   "ok": true,
   "reason": null
  },
@@ -3205,6 +3380,13 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B6_85FD": {
+  "addr": 34301,
+  "bank": 6,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
  "Loc_B6_8621": {
   "addr": 34337,
   "bank": 6,
@@ -3366,13 +3548,6 @@
   "ok": true,
   "reason": null
  },
- "Loc_B6_88BB": {
-  "addr": 35003,
-  "bank": 6,
-  "instrs": 0,
-  "ok": false,
-  "reason": "flow reaches data at $88BB"
- },
  "Sub_B6_8932": {
   "addr": 35122,
   "bank": 6,
@@ -3457,6 +3632,13 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B6_945A": {
+  "addr": 37978,
+  "bank": 6,
+  "instrs": 18,
+  "ok": true,
+  "reason": null
+ },
  "Sub_B6_9489": {
   "addr": 38025,
   "bank": 6,
@@ -3506,10 +3688,24 @@
   "ok": true,
   "reason": null
  },
+ "Sub_B6_9A14": {
+  "addr": 39444,
+  "bank": 6,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
  "Sub_B6_9A38": {
   "addr": 39480,
   "bank": 6,
   "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_A099": {
+  "addr": 41113,
+  "bank": 6,
+  "instrs": 5,
   "ok": true,
   "reason": null
  },
@@ -3520,7 +3716,7 @@
   "ok": true,
   "reason": null
  },
- "Loc_C000": {
+ "Reset": {
   "addr": 49152,
   "bank": 7,
   "instrs": 56,
@@ -3534,7 +3730,7 @@
   "ok": true,
   "reason": null
  },
- "Loc_C081": {
+ "Nmi": {
   "addr": 49281,
   "bank": 7,
   "instrs": 168,
@@ -3824,7 +4020,14 @@
  "MmcWritePrg": {
   "addr": 50582,
   "bank": 7,
-  "instrs": 11,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C598": {
+  "addr": 50584,
+  "bank": 7,
+  "instrs": 10,
   "ok": true,
   "reason": null
  },
@@ -4665,6 +4868,27 @@
   "addr": 65217,
   "bank": 7,
   "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Ram_0005_0": {
+  "addr": 5,
+  "bank": 8,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Ram_051E_1": {
+  "addr": 1310,
+  "bank": 9,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Ram_05B8_2": {
+  "addr": 1464,
+  "bank": 10,
+  "instrs": 9,
   "ok": true,
   "reason": null
  }

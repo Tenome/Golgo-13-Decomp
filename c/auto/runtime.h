@@ -72,3 +72,11 @@ extern const char *g_unsupported_why;
 #define CLD() (R.d = 0)
 #define SED() (R.d = 1)
 #define CLV() (R.v = 0)
+
+/* RTS: normally the caller's return address is on top of the stack (R.sp == sp0 at entry). If the routine pushed extra words
+ * (the "push a handler address, RTS to it" idiom) the RTS is a jump: the handler runs, then control returns to our caller. */
+void rts_slow(uint8_t sp0, const char *fn);
+extern const char *g_rts_fn;
+extern int g_unwind;     /* >0: a callee popped return addresses and RTSed past this many callers; each of them returns immediately */
+#define UNW() do { if (g_unwind) { g_unwind--; return; } } while (0)
+#define RTS_RET(sp0) do { if (R.sp == (sp0)) return; if ((uint8_t)(R.sp - (sp0)) < 0x80) { g_unwind = (uint8_t)(R.sp - (sp0)) / 2; return; } rts_slow(sp0, __func__); return; } while (0)

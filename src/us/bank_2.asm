@@ -54,6 +54,7 @@ Bank2Nmi:
 Loc_B2_807D:
   cmp #$11                     ; $807D
   bne Loc_B2_8087              ; $807F
+Sub_B2_8081:
   jsr Sub_B2_837A              ; $8081
   jmp Loc_B2_815C              ; $8084
 Loc_B2_8087:
@@ -1053,6 +1054,7 @@ Data_B2_8B16:
 Data_B2_8B17:
   .incbin "prg_bank_2.bin", $0B17, $400  ; $8B17
   .incbin "prg_bank_2.bin", $0F17, $199  ; $8F17
+Sub_B2_90B0:
   lda $04A8                    ; $90B0
   bne Loc_B2_90B8              ; $90B3
   jmp Loc_B2_912A              ; $90B5
@@ -1120,14 +1122,15 @@ Data_B2_9153:
   .incbin "prg_bank_2.bin", $1153, $400  ; $9153
   .incbin "prg_bank_2.bin", $1553, $400  ; $9553
   .incbin "prg_bank_2.bin", $1953, $400  ; $9953
-  .incbin "prg_bank_2.bin", $1D53, $400  ; $9D53
-  .incbin "prg_bank_2.bin", $2153, $400  ; $A153
-  .incbin "prg_bank_2.bin", $2553, $400  ; $A553
-  .incbin "prg_bank_2.bin", $2953, $400  ; $A953
-  .incbin "prg_bank_2.bin", $2D53, $400  ; $AD53
-  .incbin "prg_bank_2.bin", $3153, $400  ; $B153
-  .incbin "prg_bank_2.bin", $3553, $400  ; $B553
-  .incbin "prg_bank_2.bin", $3953, $400  ; $B953
-  .incbin "prg_bank_2.bin", $3D53, $2AA  ; $BD53
+  .incbin "prg_bank_2.bin", $1D53, $2AD  ; $9D53
+Sub_B2_A000:
+  .incbin "prg_bank_2.bin", $2000, $400  ; $A000
+  .incbin "prg_bank_2.bin", $2400, $400  ; $A400
+  .incbin "prg_bank_2.bin", $2800, $400  ; $A800
+  .incbin "prg_bank_2.bin", $2C00, $400  ; $AC00
+  .incbin "prg_bank_2.bin", $3000, $400  ; $B000
+  .incbin "prg_bank_2.bin", $3400, $400  ; $B400
+  .incbin "prg_bank_2.bin", $3800, $400  ; $B800
+  .incbin "prg_bank_2.bin", $3C00, $3FD  ; $BC00
 Data_B2_BFFD:
   .incbin "prg_bank_2.bin", $3FFD, $3  ; $BFFD

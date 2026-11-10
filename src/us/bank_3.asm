@@ -77,10 +77,12 @@ Bank3Dispatch_0421:
   lda Data_B3_82C8,y           ; $808C
   sta z:Tmp01                  ; $808F
   jmp ($0000)                  ; $8091
+Sub_B3_8094:
   jsr Sub_B3_8261              ; $8094
   lda #$00                     ; $8097
   sta $0422                    ; $8099
   inc $0421                    ; $809C
+Sub_B3_809F:
   lda z:PpuCtrlShadow          ; $809F
   and #$FB                     ; $80A1
   sta z:PpuCtrlShadow          ; $80A3
@@ -143,6 +145,7 @@ Loc_B3_8118:
   inc $0421                    ; $8123
   lda #$00                     ; $8126
   sta $0422                    ; $8128
+Sub_B3_812B:
   lda $0422                    ; $812B
   bne Loc_B3_8139              ; $812E
   lda #$00                     ; $8130
@@ -199,6 +202,7 @@ Loc_B3_8173:
   inc $0421                    ; $8194
   lda #$00                     ; $8197
   sta $0422                    ; $8199
+Sub_B3_819C:
   lda $0427                    ; $819C
   bne Loc_B3_81A4              ; $819F
   jmp Loc_B3_8260              ; $81A1
@@ -228,6 +232,7 @@ Loc_B3_81D4:
   lda #$FF                     ; $81D9
   sta $0423                    ; $81DB
   jmp Loc_B3_8260              ; $81DE
+Sub_B3_81E1:
   inc $041F                    ; $81E1
   lda $041F                    ; $81E4
   cmp #$0E                     ; $81E7
@@ -239,12 +244,16 @@ Loc_B3_81EE:
   sta $0422                    ; $81F3
   inc $0421                    ; $81F6
   jmp Loc_B3_8260              ; $81F9
+Sub_B3_81FC:
   lda #$00                     ; $81FC
   jmp Loc_B3_820D              ; $81FE
+Sub_B3_8201:
   lda #$20                     ; $8201
   jmp Loc_B3_820D              ; $8203
+Sub_B3_8206:
   lda #$40                     ; $8206
   jmp Loc_B3_820D              ; $8208
+Sub_B3_820B:
   lda #$60                     ; $820B
 Loc_B3_820D:
   sta z:Tmp00                  ; $820D
@@ -253,6 +262,7 @@ Loc_B3_820D:
   jsr Sub_B3_827C              ; $8213
   inc $0421                    ; $8216
   jmp Loc_B3_8260              ; $8219
+Sub_B3_821C:
   lda z:PpuCtrlShadow          ; $821C
   and #$FB                     ; $821E
   sta z:PpuCtrlShadow          ; $8220
@@ -284,6 +294,7 @@ Loc_B3_823E:
 Loc_B3_8257:
   inc $0421                    ; $8257
   jmp Loc_B3_8260              ; $825A
+Sub_B3_825D:
   jsr Sub_B3_9362              ; $825D
 Loc_B3_8260:
   rts                          ; $8260
@@ -399,12 +410,15 @@ Bank3Dispatch_041C:
   adc #$88                     ; $8816
   sta z:Tmp01                  ; $8818
   jmp ($0000)                  ; $881A
+Sub_B3_881D:
   jsr ProcessPpuUpdateList     ; $881D
   .addr Data_B3_884B  ; $8820 inline pointer (data after a JSR)
   jmp Loc_B3_8832              ; $8822
+Sub_B3_8825:
   jsr ProcessPpuUpdateList     ; $8825
   .addr Data_B3_8854  ; $8828 inline pointer (data after a JSR)
   jmp Loc_B3_8832              ; $882A
+Sub_B3_882D:
   jsr ProcessPpuUpdateList     ; $882D
   .addr Data_B3_885D  ; $8830 inline pointer (data after a JSR)
 Loc_B3_8832:
@@ -552,6 +566,7 @@ Loc_B3_8961:
   jsr Sub_B3_8A54              ; $8961
   lda #$01                     ; $8964
   sta $0418                    ; $8966
+Sub_B3_8969:
   lda JoyHeld1                 ; $8969
   and #$01                     ; $896C
   bne Loc_B3_8976              ; $896E
@@ -609,6 +624,7 @@ Loc_B3_89CC:
 Loc_B3_89D9:
   lda #$03                     ; $89D9
   sta $0418                    ; $89DB
+Sub_B3_89DE:
   lda JoyNew1                  ; $89DE
   and #$03                     ; $89E1
   bne Loc_B3_89EB              ; $89E3
@@ -639,6 +655,7 @@ Loc_B3_8A19:
   lda #$02                     ; $8A19
   sta $0418                    ; $8A1B
   jsr Sub_B3_8A54              ; $8A1E
+Sub_B3_8A21:
   lda JoyHeld1                 ; $8A21
   and #$01                     ; $8A24
   bne Loc_B3_8A2E              ; $8A26
@@ -1464,7 +1481,7 @@ Loc_B3_909C:
   ldx #$00                     ; $90AA
   lda #$08                     ; $90AC
   sta z:Tmp01                  ; $90AE
-Loc_B3_90B0:
+Sub_B3_90B0:
   lda #$08                     ; $90B0
   sta z:Tmp00                  ; $90B2
 Loc_B3_90B4:
@@ -1485,7 +1502,7 @@ Loc_B3_90B4:
   adc z:Tmp03                  ; $90CB
   sta z:Tmp03                  ; $90CD
   dec z:Tmp01                  ; $90CF
-  bne Loc_B3_90B0              ; $90D1
+  bne Sub_B3_90B0              ; $90D1
   lda $0414                    ; $90D3
   and #$02                     ; $90D6
   bne Loc_B3_90DD              ; $90D8

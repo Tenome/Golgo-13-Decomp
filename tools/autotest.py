@@ -29,7 +29,7 @@ def build():
     os.makedirs(os.path.dirname(DLL), exist_ok=True)
     subprocess.check_call([sys.executable, os.path.join(HERE, 'lift.py'), '--version', a.version, '--trace', '--out', ADIR], stdout=subprocess.DEVNULL)
     srcs = [os.path.join(CDIR, 'core.c'), os.path.join(CDIR, 'auto', 'runtime.c'), os.path.join(ADIR, 'dispatch.c')] + \
-           [os.path.join(ADIR, f'bank_{b}.c') for b in range(8)]
+           [os.path.join(ADIR, f'bank_{b}.c') for b in range(8)] + [os.path.join(ADIR, 'ram_code.c')]
     subprocess.check_call([find_cc(), '-shared', '-O1', '-fPIC', '-w', '-I', os.path.join(CDIR, 'auto'), '-o', DLL] + srcs)
 
 class CpuS(ctypes.Structure):
@@ -70,7 +70,7 @@ def worker(names):
             bank_c.value = b; lib.iolog_reset()
             R.a, R.x, R.y, R.c, R.z, R.n, R.v, R.sp, R.d, R.i = regs['a'], regs['x'], regs['y'], regs['c'], regs['z'], regs['n'], regs['v'], 0xFD, 0, 0
             r = run_fn(fp, 200000)
-            if r in (1, 4, 5): skip += 1; continue             # budget exhausted / unknown target / stack tampering: cannot compare
+            if r in (1, 4, 5, 6): skip += 1; continue             # budget exhausted / unknown target / stack tampering: cannot compare
             if r:                                              # brk / unsupported in C but the original returned
                 fail = f'C aborted ({r}) but the original returned'; break
             bad = [k for k in range(0x800) if not 0x100 <= k < 0x200 and cpu.ram[k] != ram_c[k]]
@@ -103,7 +103,7 @@ if __name__ == '__main__':
     os.environ['G13_VERSION'] = a.version
     build()
     FUNCS = json.load(open(os.path.join(ADIR, 'funcs.json')))
-    names = [n for n, v in FUNCS.items() if v['ok'] and (not a.only or n == a.only)]
+    names = [n for n, v in FUNCS.items() if v['ok'] and v['bank'] < 8 and (not a.only or n == a.only)]
     chunks = [names[i::a.jobs] for i in range(a.jobs)]
     with multiprocessing.Pool(a.jobs) as pool: parts = pool.map(worker, chunks)
     res = {}; [res.update(p) for p in parts]

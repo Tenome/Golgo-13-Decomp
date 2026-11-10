@@ -4,9 +4,9 @@
 
 static int fixed_bank(uint16_t a) {
     switch (a) {
-    case 0xC000: Loc_C000(); return 1;
+    case 0xC000: Reset(); return 1;
     case 0xC078: MainIdleLoop(); return 1;
-    case 0xC081: Loc_C081(); return 1;
+    case 0xC081: Nmi(); return 1;
     case 0xC0C0: Sub_C0C0(); return 1;
     case 0xC0E6: CallBank5_A000(); return 1;
     case 0xC100: ProcessPpuUpdateList(); return 1;
@@ -48,6 +48,7 @@ static int fixed_bank(uint16_t a) {
     case 0xC580: MmcWriteChr1(); return 1;
     case 0xC582: MmcWriteChr1A(); return 1;
     case 0xC596: MmcWritePrg(); return 1;
+    case 0xC598: Sub_C598(); return 1;
     case 0xC5AC: Sub_C5AC(); return 1;
     case 0xC5FF: Sub_C5FF(); return 1;
     case 0xC711: Sub_C711(); return 1;
@@ -198,6 +199,7 @@ static int bank1(uint16_t a) {
     case 0x85AC: Sub_B1_85AC(); return 1;
     case 0x85B8: Sub_B1_85B8(); return 1;
     case 0x85B9: Loc_B1_85B9(); return 1;
+    case 0x8D00: Sub_B1_8D00(); return 1;
     case 0x8DFF: Sub_B1_8DFF(); return 1;
     case 0x8EA2: Sub_B1_8EA2(); return 1;
     case 0x8F1E: Sub_B1_8F1E(); return 1;
@@ -271,6 +273,7 @@ static int bank1(uint16_t a) {
     case 0xAD18: Sub_B1_AD18(); return 1;
     case 0xAD82: Sub_B1_AD82(); return 1;
     case 0xAE43: Sub_B1_AE43(); return 1;
+    case 0xAF00: Sub_B1_AF00(); return 1;
     case 0xAF6E: Sub_B1_AF6E(); return 1;
     case 0xAFC6: Sub_B1_AFC6(); return 1;
     case 0xAFE3: Sub_B1_AFE3(); return 1;
@@ -284,6 +287,7 @@ static int bank2(uint16_t a) {
     switch (a) {
     case 0x8000: Loc_B2_8000(); return 1;
     case 0x8010: Bank2Nmi(); return 1;
+    case 0x8081: Sub_B2_8081(); return 1;
     case 0x8167: Sub_B2_8167(); return 1;
     case 0x818E: Sub_B2_818E(); return 1;
     case 0x8211: Sub_B2_8211(); return 1;
@@ -302,6 +306,7 @@ static int bank2(uint16_t a) {
     case 0x8AB0: Sub_B2_8AB0(); return 1;
     case 0x8AB8: Sub_B2_8AB8(); return 1;
     case 0x8B06: Sub_B2_8B06(); return 1;
+    case 0x90B0: Sub_B2_90B0(); return 1;
     }
     return 0;
 }
@@ -310,11 +315,28 @@ static int bank3(uint16_t a) {
     case 0x8000: Loc_B3_8000(); return 1;
     case 0x8010: Bank3Nmi(); return 1;
     case 0x8081: Bank3Dispatch_0421(); return 1;
+    case 0x8094: Sub_B3_8094(); return 1;
+    case 0x809F: Sub_B3_809F(); return 1;
+    case 0x812B: Sub_B3_812B(); return 1;
+    case 0x819C: Sub_B3_819C(); return 1;
+    case 0x81E1: Sub_B3_81E1(); return 1;
+    case 0x81FC: Sub_B3_81FC(); return 1;
+    case 0x8201: Sub_B3_8201(); return 1;
+    case 0x8206: Sub_B3_8206(); return 1;
+    case 0x820B: Sub_B3_820B(); return 1;
+    case 0x821C: Sub_B3_821C(); return 1;
+    case 0x825D: Sub_B3_825D(); return 1;
     case 0x8261: Sub_B3_8261(); return 1;
     case 0x827C: Sub_B3_827C(); return 1;
     case 0x87BA: Sub_B3_87BA(); return 1;
     case 0x87FF: Bank3Dispatch_041C(); return 1;
+    case 0x881D: Sub_B3_881D(); return 1;
+    case 0x8825: Sub_B3_8825(); return 1;
+    case 0x882D: Sub_B3_882D(); return 1;
     case 0x8866: Sub_B3_8866(); return 1;
+    case 0x8969: Sub_B3_8969(); return 1;
+    case 0x89DE: Sub_B3_89DE(); return 1;
+    case 0x8A21: Sub_B3_8A21(); return 1;
     case 0x8A3B: Sub_B3_8A3B(); return 1;
     case 0x8A54: Sub_B3_8A54(); return 1;
     case 0x8A69: Sub_B3_8A69(); return 1;
@@ -332,6 +354,7 @@ static int bank3(uint16_t a) {
     case 0x8EE9: Sub_B3_8EE9(); return 1;
     case 0x9060: Sub_B3_9060(); return 1;
     case 0x9094: Sub_B3_9094(); return 1;
+    case 0x90B0: Sub_B3_90B0(); return 1;
     case 0x91B1: Sub_B3_91B1(); return 1;
     case 0x91FF: Sub_B3_91FF(); return 1;
     case 0x92B7: Sub_B3_92B7(); return 1;
@@ -587,6 +610,7 @@ static int bank5(uint16_t a) {
     case 0x8C8E: Sub_B5_8C8E(); return 1;
     case 0x8CBB: Bank5NextAnimFrame(); return 1;
     case 0x8CC4: Sub_B5_8CC4(); return 1;
+    case 0x8D00: Sub_B5_8D00(); return 1;
     case 0x8E22: Sub_B5_8E22(); return 1;
     case 0x8F3A: Sub_B5_8F3A(); return 1;
     case 0x8F51: Sub_B5_8F51(); return 1;
@@ -612,6 +636,7 @@ static int bank5(uint16_t a) {
     case 0x9974: Sub_B5_9974(); return 1;
     case 0x997B: Sub_B5_997B(); return 1;
     case 0x9AE5: Sub_B5_9AE5(); return 1;
+    case 0xA000: Sub_B5_A000(); return 1;
     case 0xA044: Sub_B5_A044(); return 1;
     case 0xA0C9: Sub_B5_A0C9(); return 1;
     case 0xA17F: Sub_B5_A17F(); return 1;
@@ -622,6 +647,7 @@ static int bank5(uint16_t a) {
     case 0xA1EA: Sub_B5_A1EA(); return 1;
     case 0xA1FF: Sub_B5_A1FF(); return 1;
     case 0xA22E: Sub_B5_A22E(); return 1;
+    case 0xA237: Sub_B5_A237(); return 1;
     case 0xA24E: Sub_B5_A24E(); return 1;
     case 0xA269: Sub_B5_A269(); return 1;
     case 0xA284: Sub_B5_A284(); return 1;
@@ -661,6 +687,7 @@ static int bank6(uint16_t a) {
     case 0x840D: Sub_B6_840D(); return 1;
     case 0x8417: Loc_B6_8417(); return 1;
     case 0x842A: Loc_B6_842A(); return 1;
+    case 0x85FD: Sub_B6_85FD(); return 1;
     case 0x8621: Loc_B6_8621(); return 1;
     case 0x863C: Sub_B6_863C(); return 1;
     case 0x865C: Sub_B6_865C(); return 1;
@@ -684,7 +711,6 @@ static int bank6(uint16_t a) {
     case 0x886B: Sub_B6_886B(); return 1;
     case 0x8880: Loc_B6_8880(); return 1;
     case 0x889B: Loc_B6_889B(); return 1;
-    case 0x88BB: Loc_B6_88BB(); return 1;
     case 0x8932: Sub_B6_8932(); return 1;
     case 0x89A7: Sub_B6_89A7(); return 1;
     case 0x89B2: Sub_B6_89B2(); return 1;
@@ -697,6 +723,7 @@ static int bank6(uint16_t a) {
     case 0x8B08: Sub_B6_8B08(); return 1;
     case 0x8B9C: Sub_B6_8B9C(); return 1;
     case 0x8BE6: Sub_B6_8BE6(); return 1;
+    case 0x945A: Sub_B6_945A(); return 1;
     case 0x9489: Sub_B6_9489(); return 1;
     case 0x9497: Sub_B6_9497(); return 1;
     case 0x95EE: Sub_B6_95EE(); return 1;
@@ -704,13 +731,75 @@ static int bank6(uint16_t a) {
     case 0x96B8: Loc_B6_96B8(); return 1;
     case 0x96D4: Sub_B6_96D4(); return 1;
     case 0x975A: Sub_B6_975A(); return 1;
+    case 0x9A14: Sub_B6_9A14(); return 1;
     case 0x9A38: Sub_B6_9A38(); return 1;
+    case 0xA099: Sub_B6_A099(); return 1;
     case 0xA0A6: Sub_B6_A0A6(); return 1;
     }
     return 0;
 }
+static int ram_match_0(void) {
+    if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0006) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0007) & 0x7FF] != 0xC1) return 0;
+    if (g_ram[(0x000A) & 0x7FF] != 0x60) return 0;
+    return 1;
+}
+static int ram_match_1(void) {
+    if (g_ram[(0x051E) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x051F) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0520) & 0x7FF] != 0xC1) return 0;
+    if (g_ram[(0x0523) & 0x7FF] != 0x4C) return 0;
+    if (g_ram[(0x0524) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x0525) & 0x7FF] != 0xC1) return 0;
+    return 1;
+}
+static int ram_match_2(void) {
+    if (g_ram[(0x05B8) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x05B9) & 0x7FF] != 0xCA) return 0;
+    if (g_ram[(0x05BA) & 0x7FF] != 0x8F) return 0;
+    if (g_ram[(0x05BB) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x05BC) & 0x7FF] != 0x01) return 0;
+    if (g_ram[(0x05BD) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x05BE) & 0x7FF] != 0x98) return 0;
+    if (g_ram[(0x05BF) & 0x7FF] != 0xC5) return 0;
+    if (g_ram[(0x05C0) & 0x7FF] != 0xB9) return 0;
+    if (g_ram[(0x05C1) & 0x7FF] != 0x0C) return 0;
+    if (g_ram[(0x05C2) & 0x7FF] != 0x80) return 0;
+    if (g_ram[(0x05C3) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x05C4) & 0x7FF] != 0x21) return 0;
+    if (g_ram[(0x05C5) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x05C6) & 0x7FF] != 0xB9) return 0;
+    if (g_ram[(0x05C7) & 0x7FF] != 0x0D) return 0;
+    if (g_ram[(0x05C8) & 0x7FF] != 0x80) return 0;
+    if (g_ram[(0x05C9) & 0x7FF] != 0x8D) return 0;
+    if (g_ram[(0x05CA) & 0x7FF] != 0x22) return 0;
+    if (g_ram[(0x05CB) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x05CC) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x05CD) & 0x7FF] != 0x1E) return 0;
+    if (g_ram[(0x05CE) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x05CF) & 0x7FF] != 0x4C) return 0;
+    if (g_ram[(0x05D0) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x05D1) & 0x7FF] != 0xC5) return 0;
+    return 1;
+}
+static int ram_images(uint16_t a) {
+    switch (a) {
+    case 0x0005:
+        if (ram_match_0()) { Ram_0005_0(); return 1; }
+        break;
+    case 0x051E:
+        if (ram_match_1()) { Ram_051E_1(); return 1; }
+        break;
+    case 0x05B8:
+        if (ram_match_2()) { Ram_05B8_2(); return 1; }
+        break;
+    }
+    return 0;
+}
 void call_addr(uint16_t a) {
-    if (a >= 0xC000) { if (fixed_bank(a)) return; }
+    if (a < 0x2000) { if (ram_images(a)) return; }
+    else if (a >= 0xC000) { if (fixed_bank(a)) return; }
     else if (a >= 0x8000) {
         switch (g_bank) {
         case 0: if (bank0(a)) return; break;
