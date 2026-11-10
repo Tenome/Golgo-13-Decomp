@@ -7,13 +7,13 @@ A work-in-progress **matching decompilation** of *Golgo 13* for the Famicom/NES,
 | `us` | Golgo 13: Top Secret Episode (USA, Vic Tokai) | localized release |
 | `jp` | Golgo 13: Daiisshou - Kamigami no Tasogare (Japan) | original release; 19 % of the bytes differ (text, banks 3-5, CHR) |
 
-The source is ca65 assembly that rebuilds each 256 KB ROM **byte for byte**; the long-term goal is readable, named source and a native Windows port without an emulation core.
+The source is ca65 assembly that rebuilds each 256 KB ROM **byte for byte**; the goals are readable, named source, C that is checked against the original code, and native Windows builds without an emulation core. All three exist in first form (see below).
 This repository contains no game files. You need your own ROMs.
 
 | | |
 |---|---|
 | Board | MMC1 (mapper 1), 8 x 16 KB PRG (banks 0-6 switchable at `$8000`, bank 7 fixed at `$C000`), 128 KB CHR-ROM, NES 2.0 header |
-| Code found so far | about 34 KB in 718 routines (per version), all bytes of every executed instruction plus code reached statically from it |
+| Code found so far | about 34 KB in about 770 routines per version: every executed instruction plus code reached statically from it. A scan for code-looking gaps finds almost nothing more, so the other 94 KB of PRG is probably data (maps, scripts, text, graphics) |
 | Data | everything else (`.incbin` of files extracted from your ROM into `assets/`, git-ignored) |
 | Byte identity | `python tools/build.py` prints `MATCH` for both versions |
 | C lifting | mechanical C for every classified routine (`c/auto/`: 652 of 711 routines verified against the 6502 code on random states, none failing; the whole lifted program runs 12,000 frames from power-on identical to the original) plus readable hand-lifted C (`c/golgo13.c`, 37 routines) |
@@ -59,4 +59,16 @@ The retail code is table driven and banked, so a plain linear or reset-vector tr
 4. a conservative gap scan, marked `[heuristic code]` in the source.
 
 A hold-out check classified from part of the coverage and compared with code reached later: 0 misaligned predictions, 64 % of newly executed instructions already found.
-Everything not found is data. Bank 0 and large parts of banks 1-6 are still data, because blind play never reached those scenes.
+Everything not found is data. Later acts have not been played, so some code there may still be missing; `tools/frametest.py`, `tools/frameloop.sh` and `tools/portloop.sh` add missing routines automatically when the lifted C or the native port reaches them.
+
+## Playing the native port
+
+```
+python tools/build_port.py --version us --sdl <SDL2 development folder>      # also needs clang or gcc (--clang PATH)
+build/port/golgo13_play_us.exe orig/golgo13_us.nes                           # arrows, Z = A, X = B, Enter = Start, Right Shift = Select
+```
+`build/port/golgo13_port_us.exe ROM --frames N --input route.txt --out DIR --shot-every N --wav out.wav` runs headless and dumps pictures / audio.
+The port runs the lifted game logic on a small PPU/APU/MMC1 host written for this project; it is not an emulator of the original CPU. See `docs/NOTES.md`.
+
+## Verification in one command
+`tools/verify_all.sh us [cc65 dir] [frames]` regenerates the sources, checks that the ROM rebuilds byte for byte, rewrites the report, lifts the C and runs the per-routine and the whole-program differential tests.
