@@ -46,7 +46,7 @@ def signature(path):
                 a0 = int(line[4:8], 16); b = bytes(int(x, 16) for x in line[10:].split())
                 if a0 + len(b) <= 0x800: ram[a0:a0 + len(b)] = b
     except OSError: return None
-    return (ram[0xFB], ram[0x14], ram[0x0500], ram[0x17])
+    return (ram[0xFB], ram[0x14], ram[0x0500], ram[0x17], ram[0x18], ram[0x19] >> 5)   # bank, area, scene state, palette set, scroll page/position
 def one(job):
     rnd = random.Random(a.seed * 1000003 + job)
     with lock:
