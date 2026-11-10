@@ -14,8 +14,9 @@ a = ap.parse_args()
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..'))
 sys.argv = [sys.argv[0], '--version', a.version]; sys.path.insert(0, HERE)
 import g13dis, sim6502
-CDIR = os.path.join(ROOT, 'c'); ADIR = os.path.join(CDIR, 'auto', a.version)
-FUNCS = json.load(open(os.path.join(ADIR, 'funcs.json')))
+CDIR = os.path.join(ROOT, 'c'); ADIR = os.path.join(ROOT, 'build', f'auto_{a.version}')   # traced copy of the lifted C, regenerated for every run
+
+FUNCS = None
 DLL = os.path.join(ROOT, 'build', f'golgo13_auto_{a.version}' + ('.dll' if os.name == 'nt' else '.so'))
 
 def find_cc():
@@ -26,14 +27,17 @@ def find_cc():
     sys.exit('no C compiler found (pass --clang PATH or set CLANG)')
 def build():
     os.makedirs(os.path.dirname(DLL), exist_ok=True)
+    subprocess.check_call([sys.executable, os.path.join(HERE, 'lift.py'), '--version', a.version, '--trace', '--out', ADIR], stdout=subprocess.DEVNULL)
     srcs = [os.path.join(CDIR, 'core.c'), os.path.join(CDIR, 'auto', 'runtime.c'), os.path.join(ADIR, 'dispatch.c')] + \
            [os.path.join(ADIR, f'bank_{b}.c') for b in range(8)]
-    subprocess.check_call([find_cc(), '-shared', '-O1', '-fPIC', '-w', '-o', DLL] + srcs)
+    subprocess.check_call([find_cc(), '-shared', '-O1', '-fPIC', '-w', '-I', os.path.join(CDIR, 'auto'), '-o', DLL] + srcs)
 
 class CpuS(ctypes.Structure):
     _fields_ = [(n, ctypes.c_uint8) for n in ('a', 'x', 'y', 'sp', 'c', 'z', 'n', 'v', 'd', 'i')]
 
 def worker(names):
+    global FUNCS
+    FUNCS = json.load(open(os.path.join(ADIR, 'funcs.json')))
     lib = ctypes.CDLL(DLL)
     R = CpuS.in_dll(lib, 'R'); ram_c = (ctypes.c_uint8 * 0x800).in_dll(lib, 'g_ram')
     log_addr = (ctypes.c_uint16 * 8192).in_dll(lib, 'g_iolog_addr'); log_val = (ctypes.c_uint8 * 8192).in_dll(lib, 'g_iolog_val')
@@ -98,6 +102,7 @@ def worker(names):
 if __name__ == '__main__':
     os.environ['G13_VERSION'] = a.version
     build()
+    FUNCS = json.load(open(os.path.join(ADIR, 'funcs.json')))
     names = [n for n, v in FUNCS.items() if v['ok'] and (not a.only or n == a.only)]
     chunks = [names[i::a.jobs] for i in range(a.jobs)]
     with multiprocessing.Pool(a.jobs) as pool: parts = pool.map(worker, chunks)
