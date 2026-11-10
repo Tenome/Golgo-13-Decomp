@@ -3020,7 +3020,7 @@ Loc_D8E6:
   sta z:$09                    ; $D8F6
   jsr a:$05                    ; $D8F8
   jsr ProcessPpuUpdateList     ; $D8FB
-  .incbin "prg_bank_7.bin", $18FE, $2  ; $D8FE
+  .addr Data_DAAF  ; $D8FE inline pointer (data after a JSR)
   jsr Sub_DA4B                 ; $D900
   lda #$0F                     ; $D903
   sta $014F                    ; $D905
@@ -3228,6 +3228,7 @@ Loc_DAA8:
   dex                          ; $DAAB
   bne Loc_DAA8                 ; $DAAC
   rts                          ; $DAAE
+Data_DAAF:
   .incbin "prg_bank_7.bin", $1AAF, $7  ; $DAAF
 Data_DAB6:
   .incbin "prg_bank_7.bin", $1AB6, $21  ; $DAB6

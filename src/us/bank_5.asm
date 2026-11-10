@@ -1061,7 +1061,7 @@ Sub_B5_897C:
   jsr Sub_B5_8944              ; $8991
   jsr Sub_B5_8971              ; $8994
   jsr ProcessPpuUpdateList     ; $8997
-  .incbin "prg_bank_5.bin", $099A, $2  ; $899A
+  .addr Data_B5_89D9  ; $899A inline pointer (data after a JSR)
   ldx #$03                     ; $899C
 Loc_B5_899E:
   lda Data_B5_89D2,x           ; $899E
@@ -1087,7 +1087,9 @@ Loc_B5_899E:
   jmp Sub_B5_90B9              ; $89D0
   .incbin "prg_bank_5.bin", $09D3, $2  ; $89D3
 Data_B5_89D5:
-  .incbin "prg_bank_5.bin", $09D5, $D6  ; $89D5
+  .incbin "prg_bank_5.bin", $09D5, $4  ; $89D5
+Data_B5_89D9:
+  .incbin "prg_bank_5.bin", $09D9, $D2  ; $89D9
 Loc_B5_8AAB:
   lda #$1C                     ; $8AAB
   ldx #$0C                     ; $8AAD
@@ -1098,7 +1100,7 @@ Loc_B5_8AAB:
   ldx #$20                     ; $8AB9
   jsr Sub_B5_8944              ; $8ABB
   jsr ProcessPpuUpdateList     ; $8ABE
-  .incbin "prg_bank_5.bin", $0AC1, $2  ; $8AC1
+  .addr Data_B5_8ADC  ; $8AC1 inline pointer (data after a JSR)
   ldx #$07                     ; $8AC3
 Loc_B5_8AC5:
   lda Data_B5_8AD4,x           ; $8AC5
@@ -1109,7 +1111,9 @@ Loc_B5_8AC5:
   sta SceneTimer               ; $8AD0
   rts                          ; $8AD3
 Data_B5_8AD4:
-  .incbin "prg_bank_5.bin", $0AD4, $D  ; $8AD4
+  .incbin "prg_bank_5.bin", $0AD4, $8  ; $8AD4
+Data_B5_8ADC:
+  .incbin "prg_bank_5.bin", $0ADC, $5  ; $8ADC
 Bank5SubStateDispatch:
   lda SceneSubState            ; $8AE1
   asl a                        ; $8AE4
@@ -1669,7 +1673,7 @@ Sub_B5_90C8:
   lda #$10                     ; $90CF
   sta z:HwScrollX              ; $90D1
   jsr ProcessPpuUpdateList     ; $90D3
-  .incbin "prg_bank_5.bin", $10D6, $2  ; $90D6
+  .addr Data_B5_911E  ; $90D6 inline pointer (data after a JSR)
   lda $050F                    ; $90D8
   and #$3F                     ; $90DB
   sta z:Tmp03                  ; $90DD
@@ -1702,7 +1706,9 @@ Loc_B5_910E:
   bpl Loc_B5_910E              ; $9115
   jmp Sub_B5_895B              ; $9117
 Data_B5_911A:
-  .incbin "prg_bank_5.bin", $111A, $EC  ; $911A
+  .incbin "prg_bank_5.bin", $111A, $4  ; $911A
+Data_B5_911E:
+  .incbin "prg_bank_5.bin", $111E, $E8  ; $911E
 Sub_B5_9206:
   jsr Sub_B5_814C              ; $9206
   lda #$1C                     ; $9209
@@ -1860,7 +1866,22 @@ Loc_B5_948C:
   ldx #$2C                     ; $94A7
   jsr Sub_B5_8944              ; $94A9
   jsr ProcessPpuUpdateList     ; $94AC
-  .incbin "prg_bank_5.bin", $14AF, $1D2  ; $94AF
+  .addr Data_B5_94E7  ; $94AF inline pointer (data after a JSR)
+  ldy #$1F                     ; $94B1
+Loc_B5_94B3:
+  lda Data_B5_94C7,y           ; $94B3
+  sta PaletteBuffer,y          ; $94B6
+  dey                          ; $94B9
+  bpl Loc_B5_94B3              ; $94BA
+  ldy #$00                     ; $94BC
+  sty $0501                    ; $94BE
+  ldy #$D0                     ; $94C1
+  sty $0502                    ; $94C3
+  rts                          ; $94C6
+Data_B5_94C7:
+  .incbin "prg_bank_5.bin", $14C7, $20  ; $94C7
+Data_B5_94E7:
+  .incbin "prg_bank_5.bin", $14E7, $19A  ; $94E7
 Sub_B5_9681:
   ldy #$78                     ; $9681
   sty $0511                    ; $9683
@@ -1989,7 +2010,30 @@ Loc_B5_9785:
   jsr Sub_B5_895D              ; $97A0
   jsr Sub_B5_8971              ; $97A3
   jsr ProcessPpuUpdateList     ; $97A6
-  .incbin "prg_bank_5.bin", $17A9, $9F  ; $97A9
+  .addr Data_B5_97DF  ; $97A9 inline pointer (data after a JSR)
+  lda #$0F                     ; $97AB
+  sta $014F                    ; $97AD
+  ldy #$07                     ; $97B0
+Loc_B5_97B2:
+  lda Data_B5_97D7,y           ; $97B2
+  sta $0150,y                  ; $97B5
+  dey                          ; $97B8
+  bpl Loc_B5_97B2              ; $97B9
+  lda #$12                     ; $97BB
+  sta SceneTimer               ; $97BD
+  lda #$C0                     ; $97C0
+  sta $0502                    ; $97C2
+  lda #$28                     ; $97C5
+  sta $0501                    ; $97C7
+  lda #$00                     ; $97CA
+  sta $0510                    ; $97CC
+  jsr Sub_B5_9681              ; $97CF
+  lda #$00                     ; $97D2
+  jmp EnqueueByte              ; $97D4
+Data_B5_97D7:
+  .incbin "prg_bank_5.bin", $17D7, $8  ; $97D7
+Data_B5_97DF:
+  .incbin "prg_bank_5.bin", $17DF, $69  ; $97DF
 Sub_B5_9848:
   lda #$58                     ; $9848
   sta $0531                    ; $984A
@@ -2129,7 +2173,7 @@ Loc_B5_9A4F:
   lda #$20                     ; $9A5A
   sta $014F                    ; $9A5C
   jsr ProcessPpuUpdateList     ; $9A5F
-  sbc z:$9A,x                  ; $9A62
+  .addr Data_B5_9AF5  ; $9A62 inline pointer (data after a JSR)
   lda $0512                    ; $9A64
   asl a                        ; $9A67
   tax                          ; $9A68
@@ -2204,6 +2248,7 @@ Sub_B5_9AE5:
   dey                          ; $9AF1
   bne Sub_B5_9AE5              ; $9AF2
   rts                          ; $9AF4
+Data_B5_9AF5:
   .incbin "prg_bank_5.bin", $1AF5, $6  ; $9AF5
 Data_B5_9AFB:
   .incbin "prg_bank_5.bin", $1AFB, $1  ; $9AFB
@@ -2231,13 +2276,10 @@ Loc_B5_9D0C:
   ldx #$20                     ; $9D20
   jsr Sub_B5_8944              ; $9D22
   jsr ProcessPpuUpdateList     ; $9D25
-  and $4C9D                    ; $9D28
-  lda $2190,y                  ; $9D2B
-  ldx Data_B5_A004             ; $9D2E
-  ldx #$A4                     ; $9D31
-  ldx z:$21                    ; $9D33
-  dec Data_B5_A104             ; $9D35
-  .incbin "prg_bank_5.bin", $1D38, $12  ; $9D38
+  .addr Data_B5_9D2D  ; $9D28 inline pointer (data after a JSR)
+  jmp Sub_B5_90B9              ; $9D2A
+Data_B5_9D2D:
+  .incbin "prg_bank_5.bin", $1D2D, $1D  ; $9D2D
 Loc_B5_9D4A:
   jsr Sub_B5_814C              ; $9D4A
   lda #$1C                     ; $9D4D
@@ -2250,7 +2292,16 @@ Loc_B5_9D4A:
   ldx #$20                     ; $9D5E
   jsr Sub_B5_8944              ; $9D60
   jsr ProcessPpuUpdateList     ; $9D63
-  .incbin "prg_bank_5.bin", $1D66, $22  ; $9D66
+  .addr Data_B5_9D7A  ; $9D66 inline pointer (data after a JSR)
+  lda #$20                     ; $9D68
+  sta $014F                    ; $9D6A
+  lda #$78                     ; $9D6D
+  sta SceneTimer               ; $9D6F
+  jsr Sub_B5_90B9              ; $9D72
+  lda #$0A                     ; $9D75
+  jmp EnqueueByte              ; $9D77
+Data_B5_9D7A:
+  .incbin "prg_bank_5.bin", $1D7A, $E  ; $9D7A
 Loc_B5_9D88:
   jsr Sub_B5_814C              ; $9D88
   lda #$1C                     ; $9D8B
@@ -2263,11 +2314,12 @@ Loc_B5_9D88:
   ldx #$20                     ; $9D9C
   jsr Sub_B5_8944              ; $9D9E
   jsr ProcessPpuUpdateList     ; $9DA1
-  ldx Data_B5_A99D             ; $9DA4
-  jsr $4F8D                    ; $9DA7
-  ora ($4C,x)                  ; $9DAA
-  lda $2190,y                  ; $9DAC
-  .incbin "prg_bank_5.bin", $1DAF, $C  ; $9DAF
+  .addr Data_B5_9DAE  ; $9DA4 inline pointer (data after a JSR)
+  lda #$20                     ; $9DA6
+  sta $014F                    ; $9DA8
+  jmp Sub_B5_90B9              ; $9DAB
+Data_B5_9DAE:
+  .incbin "prg_bank_5.bin", $1DAE, $D  ; $9DAE
 Loc_B5_9DBB:
   jsr Sub_B5_814C              ; $9DBB
   lda #$1C                     ; $9DBE
@@ -2282,7 +2334,7 @@ Loc_B5_9DBB:
   lda #$20                     ; $9DD4
   sta $014F                    ; $9DD6
   jsr ProcessPpuUpdateList     ; $9DD9
-  ora ($9E,x)                  ; $9DDC
+  .addr Data_B5_9E01  ; $9DDC inline pointer (data after a JSR)
   inc $050F                    ; $9DDE
   lda #$C8                     ; $9DE1
   sta z:PlayerLifeLo           ; $9DE3
@@ -2297,6 +2349,7 @@ Loc_B5_9DBB:
   jsr EnqueueByte              ; $9DF9
   lda #$29                     ; $9DFC
   jmp EnqueueByte              ; $9DFE
+Data_B5_9E01:
   .incbin "prg_bank_5.bin", $1E01, $1FF  ; $9E01
   lda ByteQueue                ; $A000
   beq Loc_B5_A013              ; $A003
@@ -2550,14 +2603,9 @@ Sub_B5_A1A3:
   lsr a                        ; $A1A9
   lsr a                        ; $A1AA
   jsr Sub_B5_A464              ; $A1AB
-  ldx Data_B5_BEA1,y           ; $A1AE
-  lda ($CE,x)                  ; $A1B1
-  lda ($CE,x)                  ; $A1B3
-  lda ($EA,x)                  ; $A1B5
-  lda (PpuCtrlShadow,x)        ; $A1B7
-  lda ($2E,x)                  ; $A1B9
-  ldx #$37                     ; $A1BB
-  .incbin "prg_bank_5.bin", $21BD, $1  ; $A1BD
+  .addr Sub_B5_A1BE, Sub_B5_A1BE, Sub_B5_A1CE, Sub_B5_A1CE, Sub_B5_A1EA, Sub_B5_A1FF, Sub_B5_A22E  ; $A1AE pointer table
+  .incbin "prg_bank_5.bin", $21BC, $2  ; $A1BC
+Sub_B5_A1BE:
   lda z:$06                    ; $A1BE
   and #$1F                     ; $A1C0
   tax                          ; $A1C2
@@ -2567,6 +2615,7 @@ Sub_B5_A1A3:
   iny                          ; $A1CA
   sta (ScriptPtrLo),y          ; $A1CB
   rts                          ; $A1CD
+Sub_B5_A1CE:
   lda z:$06                    ; $A1CE
   and #$1F                     ; $A1D0
   asl a                        ; $A1D2
@@ -2582,6 +2631,7 @@ Sub_B5_A1A3:
   sta (ScriptPtrLo),y          ; $A1E4
   jsr Sub_B5_A363              ; $A1E6
   rts                          ; $A1E9
+Sub_B5_A1EA:
   lda z:$06                    ; $A1EA
   and #$0F                     ; $A1EC
   ldy #$11                     ; $A1EE
@@ -2593,6 +2643,7 @@ Sub_B5_A1A3:
   pla                          ; $A1FA
   pla                          ; $A1FB
   jmp Loc_B5_A16E              ; $A1FC
+Sub_B5_A1FF:
   lda z:$06                    ; $A1FF
   and #$0F                     ; $A201
   cmp #$08                     ; $A203
@@ -2623,6 +2674,7 @@ Loc_B5_A21A:
   sta (ScriptPtrLo),y          ; $A22B
 Loc_B5_A22D:
   rts                          ; $A22D
+Sub_B5_A22E:
   lda z:$06                    ; $A22E
   and #$0F                     ; $A230
   ldy #$0D                     ; $A232
@@ -2631,12 +2683,8 @@ Loc_B5_A22D:
   lda z:$06                    ; $A237
   and #$07                     ; $A239
   jsr Sub_B5_A464              ; $A23B
-  lsr $69A2                    ; $A23E
-  ldx #$84                     ; $A241
-  ldx #$A8                     ; $A243
-  ldx #$F4                     ; $A245
-  ldx #$21                     ; $A247
-  .incbin "prg_bank_5.bin", $2249, $5  ; $A249
+  .addr Sub_B5_A24E, Sub_B5_A269, Sub_B5_A284, Sub_B5_A2A8, Sub_B5_A2F4, Sub_B5_A321, Sub_B5_A32C, Sub_B5_A32C  ; $A23E pointer table
+Sub_B5_A24E:
   ldy z:Tmp01                  ; $A24E
   lda (Tmp02),y                ; $A250
   pha                          ; $A252
@@ -2654,6 +2702,7 @@ Loc_B5_A22D:
   sta (ScriptPtrLo),y          ; $A264
   sta z:Tmp02                  ; $A266
   rts                          ; $A268
+Sub_B5_A269:
   ldy z:Tmp01                  ; $A269
   lda (Tmp02),y                ; $A26B
   ldy #$13                     ; $A26D
@@ -2669,6 +2718,7 @@ Loc_B5_A22D:
   adc #$00                     ; $A27F
   sta (ScriptPtrLo),y          ; $A281
   rts                          ; $A283
+Sub_B5_A284:
   ldy #$13                     ; $A284
   lda (ScriptPtrLo),y          ; $A286
   sec                          ; $A288
@@ -2691,6 +2741,7 @@ Loc_B5_A22D:
   sta z:Tmp01                  ; $A2A5
 Loc_B5_A2A7:
   rts                          ; $A2A7
+Sub_B5_A2A8:
   ldy z:Tmp01                  ; $A2A8
   lda (Tmp02),y                ; $A2AA
   ldy #$03                     ; $A2AC
@@ -2734,6 +2785,7 @@ Loc_B5_A2A7:
   lda (ScriptPtrLo),y          ; $A2EF
   sta z:Tmp03                  ; $A2F1
   rts                          ; $A2F3
+Sub_B5_A2F4:
   ldy #$0B                     ; $A2F4
   sec                          ; $A2F6
   lda (ScriptPtrLo),y          ; $A2F7
@@ -2760,12 +2812,14 @@ Loc_B5_A2A7:
   lda #$00                     ; $A31C
   sta z:Tmp01                  ; $A31E
   rts                          ; $A320
-  ldy z:Tmp01                  ; $A321  [heuristic code]
+Sub_B5_A321:
+  ldy z:Tmp01                  ; $A321
   lda (Tmp02),y                ; $A323
   inc z:Tmp01                  ; $A325
   ldy #$10                     ; $A327
   sta (ScriptPtrLo),y          ; $A329
   rts                          ; $A32B
+Sub_B5_A32C:
   lda #$00                     ; $A32C
   ldy #$00                     ; $A32E
   sta (ScriptPtrLo),y          ; $A330
@@ -2944,15 +2998,12 @@ Data_B5_A4B6:
 Data_B5_A4B7:
   .incbin "prg_bank_5.bin", $24B7, $EF  ; $A4B7
 Data_B5_A5A6:
-  .incbin "prg_bank_5.bin", $25A6, $3F7  ; $A5A6
-Data_B5_A99D:
-  .incbin "prg_bank_5.bin", $299D, $400  ; $A99D
-  .incbin "prg_bank_5.bin", $2D9D, $400  ; $AD9D
-  .incbin "prg_bank_5.bin", $319D, $400  ; $B19D
-  .incbin "prg_bank_5.bin", $359D, $400  ; $B59D
-  .incbin "prg_bank_5.bin", $399D, $400  ; $B99D
-  .incbin "prg_bank_5.bin", $3D9D, $104  ; $BD9D
-Data_B5_BEA1:
-  .incbin "prg_bank_5.bin", $3EA1, $15C  ; $BEA1
+  .incbin "prg_bank_5.bin", $25A6, $400  ; $A5A6
+  .incbin "prg_bank_5.bin", $29A6, $400  ; $A9A6
+  .incbin "prg_bank_5.bin", $2DA6, $400  ; $ADA6
+  .incbin "prg_bank_5.bin", $31A6, $400  ; $B1A6
+  .incbin "prg_bank_5.bin", $35A6, $400  ; $B5A6
+  .incbin "prg_bank_5.bin", $39A6, $400  ; $B9A6
+  .incbin "prg_bank_5.bin", $3DA6, $257  ; $BDA6
 Data_B5_BFFD:
   .incbin "prg_bank_5.bin", $3FFD, $3  ; $BFFD

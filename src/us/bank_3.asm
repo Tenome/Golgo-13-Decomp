@@ -400,13 +400,13 @@ Bank3Dispatch_041C:
   sta z:Tmp01                  ; $8818
   jmp ($0000)                  ; $881A
   jsr ProcessPpuUpdateList     ; $881D
-  .incbin "prg_bank_3.bin", $0820, $2  ; $8820
+  .addr Data_B3_884B  ; $8820 inline pointer (data after a JSR)
   jmp Loc_B3_8832              ; $8822
   jsr ProcessPpuUpdateList     ; $8825
-  .incbin "prg_bank_3.bin", $0828, $2  ; $8828
+  .addr Data_B3_8854  ; $8828 inline pointer (data after a JSR)
   jmp Loc_B3_8832              ; $882A
   jsr ProcessPpuUpdateList     ; $882D
-  .incbin "prg_bank_3.bin", $0830, $2  ; $8830
+  .addr Data_B3_885D  ; $8830 inline pointer (data after a JSR)
 Loc_B3_8832:
   ldy #$2D                     ; $8832
   lda #$FF                     ; $8834
@@ -420,7 +420,12 @@ Loc_B3_8832:
   sta $0418                    ; $8847
 Loc_B3_884A:
   rts                          ; $884A
-  .incbin "prg_bank_3.bin", $084B, $1B  ; $884B
+Data_B3_884B:
+  .incbin "prg_bank_3.bin", $084B, $9  ; $884B
+Data_B3_8854:
+  .incbin "prg_bank_3.bin", $0854, $9  ; $8854
+Data_B3_885D:
+  .incbin "prg_bank_3.bin", $085D, $9  ; $885D
 Sub_B3_8866:
   lda $0411                    ; $8866
   beq Loc_B3_88B5              ; $8869
@@ -1280,7 +1285,7 @@ Loc_B3_8F25:
   sta z:Tmp01                  ; $8F35
   jsr Sub_B3_9060              ; $8F37
   jsr ProcessPpuUpdateList     ; $8F3A
-  .incbin "prg_bank_3.bin", $0F3D, $2  ; $8F3D
+  .addr Data_B3_908B  ; $8F3D inline pointer (data after a JSR)
   lda #$84                     ; $8F3F
   sta z:$60                    ; $8F41
   lda #$28                     ; $8F43
@@ -1440,7 +1445,9 @@ Loc_B3_9078:
   cpy #$06                     ; $9081
   bne Loc_B3_9078              ; $9083
   rts                          ; $9085
-  .incbin "prg_bank_3.bin", $1086, $E  ; $9086
+  .incbin "prg_bank_3.bin", $1086, $5  ; $9086
+Data_B3_908B:
+  .incbin "prg_bank_3.bin", $108B, $9  ; $908B
 Sub_B3_9094:
   lda $0411                    ; $9094
   beq Loc_B3_909C              ; $9097

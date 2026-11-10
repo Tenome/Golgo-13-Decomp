@@ -1,25 +1,5 @@
 #include "golgo13.h"
 
-uint8_t g_ram[0x800];
-const uint8_t *g_prg;
-uint8_t g_bank;
-uint16_t g_iolog_addr[IOLOG_MAX];
-uint8_t g_iolog_val[IOLOG_MAX];
-int g_iolog_n;
-static uint8_t mmc_shift, mmc_count;
-
-void iolog_reset(void) { g_iolog_n = 0; mmc_shift = 0; mmc_count = 0; }
-void io_write(uint16_t addr, uint8_t v) {
-    if (g_iolog_n < IOLOG_MAX) { g_iolog_addr[g_iolog_n] = addr; g_iolog_val[g_iolog_n] = v; g_iolog_n++; }
-    if (addr >= 0x8000) {                       /* MMC1 serial port */
-        if (v & 0x80) { mmc_shift = 0; mmc_count = 0; return; }
-        mmc_shift |= (uint8_t)((v & 1) << mmc_count); mmc_count++;
-        if (mmc_count == 5) { if (addr >= 0xE000) g_bank = mmc_shift & 7; mmc_shift = 0; mmc_count = 0; }
-    }
-}
-
-uint8_t io_read(uint16_t addr) { (void)addr; return 0; }   /* tests: every register reads 0; the host replaces this */
-
 /* ---- tiny 6502 helpers so the lifted code keeps the exact arithmetic of the original ---- */
 static inline uint8_t sbc8(uint8_t a, uint8_t m, uint8_t *c) { unsigned r = a + (uint8_t)~m + *c; *c = r > 0xFF; return (uint8_t)r; }
 static inline uint8_t adc8(uint8_t a, uint8_t m, uint8_t *c) { unsigned r = a + m + *c; *c = r > 0xFF; return (uint8_t)r; }

@@ -11,7 +11,7 @@ class CPU:
         self.a = self.x = self.y = 0; self.sp = 0xFF; self.pc = 0
         self.c = self.z = self.i = self.d = self.v = self.n = 0
         self.io_writes = []; self.cycles = 0; self.io_reads = {}
-        self.bank = 0; self.mmc_shift = 0; self.mmc_count = 0
+        self.bank = 0; self.mmc_shift = 0; self.mmc_count = 0; self.trace = None; self.stray_write = False; self.io_ctr = 0
     # -- memory
     def rd(self, a):
         a &= 0xFFFF
@@ -19,6 +19,9 @@ class CPU:
         if a >= 0xC000: return self.prg[7 * 0x4000 + (a & 0x3FFF)]
         if a >= 0x8000: return self.prg[self.bank * 0x4000 + (a & 0x3FFF)]
         if a in self.io_reads: return self.io_reads[a]
+        n = self.io_ctr; self.io_ctr += 1                     # same pattern as c/core.c io_read
+        if a == 0x2002: return (0x80 if n % 3 == 0 else 0) | (0x40 if n % 2 == 0 else 0)
+        if a in (0x4016, 0x4017): return n & 1
         return 0
     def wr(self, a, v):
         a &= 0xFFFF; v &= 0xFF
@@ -62,6 +65,7 @@ class CPU:
     def cmp(self, r, v): self.c = int(r >= v); self.nz(r - v)
     def step(self):
         from g13dis import TAB
+        if self.trace is not None: self.trace.append((self.pc, self.a, self.x, self.y, self.c, self.z, self.n))
         op = self.rd(self.pc); self.pc += 1
         if op not in TAB: raise RuntimeError(f'unsupported opcode {op:02X} at {self.pc - 1:04X}')
         n, m = TAB[op]
@@ -109,6 +113,7 @@ class CPU:
             t = self.rd16(self.pc); ret = self.pc + 1; self.push(ret >> 8); self.push(ret & 0xFF); self.pc = t; return
         if n == 'jmp': self.pc = self.ea(m); return
         a = self.ea(m)
+        if m != 'abs' and a >= 0x8000 and n in ('sta', 'stx', 'sty', 'inc', 'dec', 'asl', 'lsr', 'rol', 'ror'): self.stray_write = True   # a random pointer aimed at ROM: not a mapper write
         if n == 'lda': self.a = self.nz(self.rd(a))
         elif n == 'ldx': self.x = self.nz(self.rd(a))
         elif n == 'ldy': self.y = self.nz(self.rd(a))

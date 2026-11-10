@@ -411,13 +411,13 @@ Bank3Dispatch_041C:
   sta z:Tmp01                  ; $838A
   jmp ($0000)                  ; $838C
   jsr ProcessPpuUpdateList     ; $838F
-  .incbin "prg_bank_3.bin", $0392, $2  ; $8392
+  .addr Data_B3_83BD  ; $8392 inline pointer (data after a JSR)
   jmp Loc_B3_83A4              ; $8394
   jsr ProcessPpuUpdateList     ; $8397
-  dec z:$83                    ; $839A
+  .addr Data_B3_83C6  ; $839A inline pointer (data after a JSR)
   jmp Loc_B3_83A4              ; $839C
   jsr ProcessPpuUpdateList     ; $839F
-  .incbin "prg_bank_3.bin", $03A2, $2  ; $83A2
+  .addr Data_B3_83CF  ; $83A2 inline pointer (data after a JSR)
 Loc_B3_83A4:
   ldy #$2D                     ; $83A4
   lda #$FF                     ; $83A6
@@ -431,7 +431,12 @@ Loc_B3_83A4:
   sta $0418                    ; $83B9
 Loc_B3_83BC:
   rts                          ; $83BC
-  .incbin "prg_bank_3.bin", $03BD, $1B  ; $83BD
+Data_B3_83BD:
+  .incbin "prg_bank_3.bin", $03BD, $9  ; $83BD
+Data_B3_83C6:
+  .incbin "prg_bank_3.bin", $03C6, $9  ; $83C6
+Data_B3_83CF:
+  .incbin "prg_bank_3.bin", $03CF, $9  ; $83CF
 Sub_B3_83D8:
   lda $0411                    ; $83D8
   beq Loc_B3_8427              ; $83DB
@@ -1203,9 +1208,9 @@ Loc_B3_8A97:
   sta z:Tmp01                  ; $8AA7
   jsr Sub_B3_8BD2              ; $8AA9
   jsr ProcessPpuUpdateList     ; $8AAC
-  sbc Data_B3_A98B,x           ; $8AAF
-  sty z:$85                    ; $8AB2
-  rts                          ; $8AB4
+  .addr Data_B3_8BFD  ; $8AAF inline pointer (data after a JSR)
+  lda #$84                     ; $8AB1
+  sta z:$60                    ; $8AB3
   lda #$28                     ; $8AB5
   sta z:$61                    ; $8AB7
   lda #$A4                     ; $8AB9
@@ -1363,7 +1368,9 @@ Loc_B3_8BEA:
   cpy #$06                     ; $8BF3
   bne Loc_B3_8BEA              ; $8BF5
   rts                          ; $8BF7
-  .incbin "prg_bank_3.bin", $0BF8, $E  ; $8BF8
+  .incbin "prg_bank_3.bin", $0BF8, $5  ; $8BF8
+Data_B3_8BFD:
+  .incbin "prg_bank_3.bin", $0BFD, $9  ; $8BFD
 Sub_B3_8C06:
   lda $0411                    ; $8C06
   beq Loc_B3_8C0E              ; $8C09
@@ -1837,13 +1844,11 @@ Data_B3_90CC:
   .incbin "prg_bank_3.bin", $1CCC, $400  ; $9CCC
   .incbin "prg_bank_3.bin", $20CC, $400  ; $A0CC
   .incbin "prg_bank_3.bin", $24CC, $400  ; $A4CC
-  .incbin "prg_bank_3.bin", $28CC, $BF  ; $A8CC
-Data_B3_A98B:
-  .incbin "prg_bank_3.bin", $298B, $400  ; $A98B
-  .incbin "prg_bank_3.bin", $2D8B, $400  ; $AD8B
-  .incbin "prg_bank_3.bin", $318B, $400  ; $B18B
-  .incbin "prg_bank_3.bin", $358B, $400  ; $B58B
-  .incbin "prg_bank_3.bin", $398B, $400  ; $B98B
-  .incbin "prg_bank_3.bin", $3D8B, $272  ; $BD8B
+  .incbin "prg_bank_3.bin", $28CC, $400  ; $A8CC
+  .incbin "prg_bank_3.bin", $2CCC, $400  ; $ACCC
+  .incbin "prg_bank_3.bin", $30CC, $400  ; $B0CC
+  .incbin "prg_bank_3.bin", $34CC, $400  ; $B4CC
+  .incbin "prg_bank_3.bin", $38CC, $400  ; $B8CC
+  .incbin "prg_bank_3.bin", $3CCC, $331  ; $BCCC
 Data_B3_BFFD:
   .incbin "prg_bank_3.bin", $3FFD, $3  ; $BFFD

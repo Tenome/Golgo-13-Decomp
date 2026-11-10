@@ -245,8 +245,7 @@ Data_B1_8209:
   .incbin "prg_bank_1.bin", $0209, $1CC  ; $8209
 Sub_B1_83D5:
   jsr ProcessPpuUpdateList     ; $83D5
-  pha                          ; $83D8
-  .incbin "prg_bank_1.bin", $03D9, $1  ; $83D9
+  .addr Data_B1_8448  ; $83D8 inline pointer (data after a JSR)
   ldy #$08                     ; $83DA
   sty z:HwScrollX              ; $83DC
   ldy #$00                     ; $83DE
@@ -264,10 +263,9 @@ Sub_B1_83D5:
   jsr MmcWriteChr0             ; $83FC
   jsr Sub_B1_812B              ; $83FF
   jsr ProcessPpuUpdateList     ; $8402
-  rts                          ; $8405
-  .incbin "prg_bank_1.bin", $0406, $1  ; $8406
+  .addr Data_B1_8460  ; $8405 inline pointer (data after a JSR)
   jsr ProcessPpuUpdateList     ; $8407
-  .incbin "prg_bank_1.bin", $040A, $2  ; $840A
+  .addr Data_B1_84D2  ; $840A inline pointer (data after a JSR)
   ldy #$03                     ; $840C
 Loc_B1_840E:
   lda Data_B1_859C,y           ; $840E
@@ -295,7 +293,12 @@ Loc_B1_841B:
   jsr EnqueueByte              ; $8440
   lda #$01                     ; $8443
   jmp EnqueueByte              ; $8445
-  .incbin "prg_bank_1.bin", $0448, $154  ; $8448
+Data_B1_8448:
+  .incbin "prg_bank_1.bin", $0448, $18  ; $8448
+Data_B1_8460:
+  .incbin "prg_bank_1.bin", $0460, $72  ; $8460
+Data_B1_84D2:
+  .incbin "prg_bank_1.bin", $04D2, $CA  ; $84D2
 Data_B1_859C:
   .incbin "prg_bank_1.bin", $059C, $4  ; $859C
 Sub_B1_85A0:

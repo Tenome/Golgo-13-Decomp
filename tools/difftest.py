@@ -19,7 +19,7 @@ def find_cc():
     sys.exit('no C compiler found (pass --clang PATH or set CLANG)')
 dll = os.path.join(ROOT, 'build', 'golgo13_c' + ('.dll' if os.name == 'nt' else '.so'))
 os.makedirs(os.path.dirname(dll), exist_ok=True)
-subprocess.check_call([find_cc(), '-shared', '-O1', '-fPIC', '-Wall', '-Wno-unused-function', '-o', dll, os.path.join(ROOT, 'c', 'golgo13.c')])
+subprocess.check_call([find_cc(), '-shared', '-O1', '-fPIC', '-Wall', '-Wno-unused-function', '-o', dll, os.path.join(ROOT, 'c', 'golgo13.c'), os.path.join(ROOT, 'c', 'core.c')])
 lib = ctypes.CDLL(dll)
 class Regs(ctypes.Structure): _fields_ = [('a', ctypes.c_uint8), ('x', ctypes.c_uint8), ('y', ctypes.c_uint8), ('c', ctypes.c_uint8)]
 ram_c = (ctypes.c_uint8 * 0x800).in_dll(lib, 'g_ram')

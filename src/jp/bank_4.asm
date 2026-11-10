@@ -1201,12 +1201,22 @@ Sub_B4_901A:
   lda #$00                     ; $902B
   sta $054B                    ; $902D
   sta $054C                    ; $9030
+Loc_B4_9033:
   ldy #$40                     ; $9033
   jsr Sub_B4_8FE1              ; $9035
   jsr ProcessPpuUpdateList     ; $9038
-  lsr a                        ; $903B
-  ora z:$AD                    ; $903C
-  .incbin "prg_bank_4.bin", $103E, $1F  ; $903E
+  .incbin "prg_bank_4.bin", $103B, $2  ; $903B
+  lda $054B                    ; $903D
+  clc                          ; $9040
+  adc #$40                     ; $9041
+  sta $054B                    ; $9043
+  lda $054A                    ; $9046
+  adc #$00                     ; $9049
+  sta $054A                    ; $904B
+  dec $058E                    ; $904E
+  bne Loc_B4_9033              ; $9051
+  rts                          ; $9053
+  .incbin "prg_bank_4.bin", $1054, $9  ; $9054
 Sub_B4_905D:
   lda $0502                    ; $905D
   ldx #$00                     ; $9060
@@ -1227,14 +1237,9 @@ Data_B4_9079:
   .incbin "prg_bank_4.bin", $1079, $13  ; $9079
 Sub_B4_908C:
   jsr ProcessPpuUpdateList     ; $908C
-  lsr a                        ; $908F
-  ora z:$60                    ; $9090
-  jsr ProcessPpuUpdateList     ; $9092
-  lsr a                        ; $9095
-  ora z:$A2                    ; $9096
-  jsr $4CAD                    ; $9098
-  ora z:FrameCounter           ; $909B
-  .incbin "prg_bank_4.bin", $109D, $19  ; $909D
+  .incbin "prg_bank_4.bin", $108F, $2  ; $908F
+  rts                          ; $9091
+  .incbin "prg_bank_4.bin", $1092, $24  ; $9092
 Sub_B4_90B6:
   ldx #$05                     ; $90B6
 Loc_B4_90B8:
@@ -1775,9 +1780,9 @@ Data_B4_99C6:
   .incbin "prg_bank_4.bin", $19C6, $7E  ; $99C6
 Sub_B4_9A44:
   jsr ProcessPpuUpdateList     ; $9A44
-  lsr a                        ; $9A47
-  txs                          ; $9A48
+  .addr Data_B4_9A4A  ; $9A47 inline pointer (data after a JSR)
   rts                          ; $9A49
+Data_B4_9A4A:
   .incbin "prg_bank_4.bin", $1A4A, $41  ; $9A4A
 Sub_B4_9A8B:
   ldy #$00                     ; $9A8B
@@ -1833,12 +1838,17 @@ Loc_B4_9AE6:
   and #$02                     ; $9AF7
   bne Loc_B4_9B01              ; $9AF9
   jsr ProcessPpuUpdateList     ; $9AFB
-  .incbin "prg_bank_4.bin", $1AFE, $2  ; $9AFE
+  .addr Data_B4_9B0C  ; $9AFE inline pointer (data after a JSR)
 Loc_B4_9B00:
   rts                          ; $9B00
 Loc_B4_9B01:
   jsr ProcessPpuUpdateList     ; $9B01
-  .incbin "prg_bank_4.bin", $1B04, $D  ; $9B04
+  .addr Data_B4_9B07  ; $9B04 inline pointer (data after a JSR)
+  rts                          ; $9B06
+Data_B4_9B07:
+  .incbin "prg_bank_4.bin", $1B07, $5  ; $9B07
+Data_B4_9B0C:
+  .incbin "prg_bank_4.bin", $1B0C, $5  ; $9B0C
 Data_B4_9B11:
   .incbin "prg_bank_4.bin", $1B11, $14  ; $9B11
 Data_B4_9B25:
@@ -1854,7 +1864,15 @@ Data_B4_9B75:
 Data_B4_9B89:
   .incbin "prg_bank_4.bin", $1B89, $1  ; $9B89
 Data_B4_9B8A:
-  .incbin "prg_bank_4.bin", $1B8A, $3BD  ; $9B8A
+  .incbin "prg_bank_4.bin", $1B8A, $3A1  ; $9B8A
+Data_B4_9F2B:
+  .incbin "prg_bank_4.bin", $1F2B, $5  ; $9F2B
+Data_B4_9F30:
+  .incbin "prg_bank_4.bin", $1F30, $5  ; $9F30
+Data_B4_9F35:
+  .incbin "prg_bank_4.bin", $1F35, $9  ; $9F35
+Data_B4_9F3E:
+  .incbin "prg_bank_4.bin", $1F3E, $9  ; $9F3E
 Sub_B4_9F47:
   lda z:$9B                    ; $9F47
   bne Loc_B4_9F93              ; $9F49
@@ -1865,17 +1883,36 @@ Sub_B4_9F47:
   lda z:$A0                    ; $9F53
   beq Loc_B4_9F5C              ; $9F55
   jsr ProcessPpuUpdateList     ; $9F57
-  and z:$9F,x                  ; $9F5A
+  .addr Data_B4_9F35  ; $9F5A inline pointer (data after a JSR)
 Loc_B4_9F5C:
   lda z:$AB                    ; $9F5C
-  bne *+15                     ; $9F5E
+  bne Loc_B4_9F6D              ; $9F5E
   lda z:$A3                    ; $9F60
-  bne *+11                     ; $9F62
+  bne Loc_B4_9F6D              ; $9F62
   lda z:$A4                    ; $9F64
-  beq *+7                      ; $9F66
+  beq Loc_B4_9F6D              ; $9F66
   jsr ProcessPpuUpdateList     ; $9F68
-  rol Data_B4_A59F,x           ; $9F6B
-  .incbin "prg_bank_4.bin", $1F6E, $25  ; $9F6E
+  .addr Data_B4_9F3E  ; $9F6B inline pointer (data after a JSR)
+Loc_B4_9F6D:
+  lda z:$9C                    ; $9F6D
+  bne Loc_B4_9F93              ; $9F6F
+  lda z:$A8                    ; $9F71
+  bne Loc_B4_9F82              ; $9F73
+  lda z:$A0                    ; $9F75
+  bne Loc_B4_9F82              ; $9F77
+  lda z:$A1                    ; $9F79
+  beq Loc_B4_9F82              ; $9F7B
+  jsr ProcessPpuUpdateList     ; $9F7D
+  .addr Data_B4_9F2B  ; $9F80 inline pointer (data after a JSR)
+Loc_B4_9F82:
+  lda z:$AC                    ; $9F82
+  bne Loc_B4_9F93              ; $9F84
+  lda z:$A4                    ; $9F86
+  bne Loc_B4_9F93              ; $9F88
+  lda z:$A5                    ; $9F8A
+  beq Loc_B4_9F93              ; $9F8C
+  jsr ProcessPpuUpdateList     ; $9F8E
+  .addr Data_B4_9F30  ; $9F91 inline pointer (data after a JSR)
 Loc_B4_9F93:
   rts                          ; $9F93
 Sub_B4_9F94:
@@ -2033,10 +2070,24 @@ Data_B4_A116:
   .incbin "prg_bank_4.bin", $2116, $16  ; $A116
 Sub_B4_A12C:
   jsr ProcessPpuUpdateList     ; $A12C
-  .incbin "prg_bank_4.bin", $212F, $2D  ; $A12F
+  .addr Data_B4_A13B  ; $A12F inline pointer (data after a JSR)
+  jsr Sub_B4_8FBF              ; $A131
+  lda #$D4                     ; $A134
+  ldy #$00                     ; $A136
+  sta (Tmp00),y                ; $A138
+  rts                          ; $A13A
+Data_B4_A13B:
+  .incbin "prg_bank_4.bin", $213B, $21  ; $A13B
 Loc_B4_A15C:
   jsr ProcessPpuUpdateList     ; $A15C
-  .incbin "prg_bank_4.bin", $215F, $18  ; $A15F
+  .addr Data_B4_A16B  ; $A15F inline pointer (data after a JSR)
+  jsr Sub_B4_8FBF              ; $A161
+  lda #$D5                     ; $A164
+  ldy #$00                     ; $A166
+  sta (Tmp00),y                ; $A168
+  rts                          ; $A16A
+Data_B4_A16B:
+  .incbin "prg_bank_4.bin", $216B, $C  ; $A16B
 Sub_B4_A177:
   ldx #$0A                     ; $A177
 Loc_B4_A179:
@@ -2048,11 +2099,9 @@ Loc_B4_A179:
 Data_B4_A184:
   .incbin "prg_bank_4.bin", $2184, $30A  ; $A184
 Data_B4_A48E:
-  .incbin "prg_bank_4.bin", $248E, $111  ; $A48E
-Data_B4_A59F:
-  .incbin "prg_bank_4.bin", $259F, $400  ; $A59F
-  .incbin "prg_bank_4.bin", $299F, $400  ; $A99F
-  .incbin "prg_bank_4.bin", $2D9F, $272  ; $AD9F
+  .incbin "prg_bank_4.bin", $248E, $400  ; $A48E
+  .incbin "prg_bank_4.bin", $288E, $400  ; $A88E
+  .incbin "prg_bank_4.bin", $2C8E, $383  ; $AC8E
 Sub_B4_B011:
   ldx #$05                     ; $B011
   stx $0502                    ; $B013

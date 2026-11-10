@@ -1,0 +1,4622 @@
+{
+ "Loc_B0_8000": {
+  "addr": 32768,
+  "bank": 0,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B1_8000": {
+  "addr": 32768,
+  "bank": 1,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Bank1Nmi": {
+  "addr": 32784,
+  "bank": 1,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_802F": {
+  "addr": 32815,
+  "bank": 1,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_804D": {
+  "addr": 32845,
+  "bank": 1,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8053": {
+  "addr": 32851,
+  "bank": 1,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8058": {
+  "addr": 32856,
+  "bank": 1,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8061": {
+  "addr": 32865,
+  "bank": 1,
+  "instrs": 31,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_80A9": {
+  "addr": 32937,
+  "bank": 1,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_80D5": {
+  "addr": 32981,
+  "bank": 1,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_80E0": {
+  "addr": 32992,
+  "bank": 1,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8101": {
+  "addr": 33025,
+  "bank": 1,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_812F": {
+  "addr": 33071,
+  "bank": 1,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_814A": {
+  "addr": 33098,
+  "bank": 1,
+  "instrs": 68,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_83D8": {
+  "addr": 33752,
+  "bank": 1,
+  "instrs": 44,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_85A3": {
+  "addr": 34211,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_85AF": {
+  "addr": 34223,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_85BB": {
+  "addr": 34235,
+  "bank": 1,
+  "instrs": 24,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8DFF": {
+  "addr": 36351,
+  "bank": 1,
+  "instrs": 68,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8EA2": {
+  "addr": 36514,
+  "bank": 1,
+  "instrs": 60,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8F1E": {
+  "addr": 36638,
+  "bank": 1,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8F59": {
+  "addr": 36697,
+  "bank": 1,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8F79": {
+  "addr": 36729,
+  "bank": 1,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8F8C": {
+  "addr": 36748,
+  "bank": 1,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8F9F": {
+  "addr": 36767,
+  "bank": 1,
+  "instrs": 30,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_8FDE": {
+  "addr": 36830,
+  "bank": 1,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_90A6": {
+  "addr": 37030,
+  "bank": 1,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_90C6": {
+  "addr": 37062,
+  "bank": 1,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9231": {
+  "addr": 37425,
+  "bank": 1,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9260": {
+  "addr": 37472,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_926E": {
+  "addr": 37486,
+  "bank": 1,
+  "instrs": 26,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_929F": {
+  "addr": 37535,
+  "bank": 1,
+  "instrs": 46,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9360": {
+  "addr": 37728,
+  "bank": 1,
+  "instrs": 40,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_93B8": {
+  "addr": 37816,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_93C6": {
+  "addr": 37830,
+  "bank": 1,
+  "instrs": 25,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_93FA": {
+  "addr": 37882,
+  "bank": 1,
+  "instrs": 25,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_942E": {
+  "addr": 37934,
+  "bank": 1,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_946C": {
+  "addr": 37996,
+  "bank": 1,
+  "instrs": 35,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_94BD": {
+  "addr": 38077,
+  "bank": 1,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9583": {
+  "addr": 38275,
+  "bank": 1,
+  "instrs": 45,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_95E6": {
+  "addr": 38374,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_95F4": {
+  "addr": 38388,
+  "bank": 1,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_960A": {
+  "addr": 38410,
+  "bank": 1,
+  "instrs": 71,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9694": {
+  "addr": 38548,
+  "bank": 1,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_96A4": {
+  "addr": 38564,
+  "bank": 1,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_96BE": {
+  "addr": 38590,
+  "bank": 1,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_96E8": {
+  "addr": 38632,
+  "bank": 1,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_96F0": {
+  "addr": 38640,
+  "bank": 1,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_97B7": {
+  "addr": 38839,
+  "bank": 1,
+  "instrs": 40,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9816": {
+  "addr": 38934,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9824": {
+  "addr": 38948,
+  "bank": 1,
+  "instrs": 65,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_98A3": {
+  "addr": 39075,
+  "bank": 1,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_98E7": {
+  "addr": 39143,
+  "bank": 1,
+  "instrs": 18,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_99E0": {
+  "addr": 39392,
+  "bank": 1,
+  "instrs": 34,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9A2D": {
+  "addr": 39469,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9A3B": {
+  "addr": 39483,
+  "bank": 1,
+  "instrs": 63,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9ABA": {
+  "addr": 39610,
+  "bank": 1,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9ACB": {
+  "addr": 39627,
+  "bank": 1,
+  "instrs": 41,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9B20": {
+  "addr": 39712,
+  "bank": 1,
+  "instrs": 48,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9C47": {
+  "addr": 40007,
+  "bank": 1,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9C68": {
+  "addr": 40040,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9C76": {
+  "addr": 40054,
+  "bank": 1,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9C92": {
+  "addr": 40082,
+  "bank": 1,
+  "instrs": 31,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9DB9": {
+  "addr": 40377,
+  "bank": 1,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9DEE": {
+  "addr": 40430,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9DFC": {
+  "addr": 40444,
+  "bank": 1,
+  "instrs": 18,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_9E20": {
+  "addr": 40480,
+  "bank": 1,
+  "instrs": 41,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_A032": {
+  "addr": 41010,
+  "bank": 1,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_A957": {
+  "addr": 43351,
+  "bank": 1,
+  "instrs": 60,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_A9BD": {
+  "addr": 43453,
+  "bank": 1,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_A9E2": {
+  "addr": 43490,
+  "bank": 1,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AA03": {
+  "addr": 43523,
+  "bank": 1,
+  "instrs": 53,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AA64": {
+  "addr": 43620,
+  "bank": 1,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AA7A": {
+  "addr": 43642,
+  "bank": 1,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AA84": {
+  "addr": 43652,
+  "bank": 1,
+  "instrs": 31,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AAC3": {
+  "addr": 43715,
+  "bank": 1,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AAD5": {
+  "addr": 43733,
+  "bank": 1,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AB1E": {
+  "addr": 43806,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AB27": {
+  "addr": 43815,
+  "bank": 1,
+  "instrs": 59,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_ABAB": {
+  "addr": 43947,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_ABB9": {
+  "addr": 43961,
+  "bank": 1,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_ABBD": {
+  "addr": 43965,
+  "bank": 1,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_ABC1": {
+  "addr": 43969,
+  "bank": 1,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_ABCD": {
+  "addr": 43981,
+  "bank": 1,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B1_ABD1": {
+  "addr": 43985,
+  "bank": 1,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_ABE0": {
+  "addr": 44000,
+  "bank": 1,
+  "instrs": 55,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AC5B": {
+  "addr": 44123,
+  "bank": 1,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AC8A": {
+  "addr": 44170,
+  "bank": 1,
+  "instrs": 68,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AD18": {
+  "addr": 44312,
+  "bank": 1,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AD82": {
+  "addr": 44418,
+  "bank": 1,
+  "instrs": 99,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AE43": {
+  "addr": 44611,
+  "bank": 1,
+  "instrs": 27,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AF6E": {
+  "addr": 44910,
+  "bank": 1,
+  "instrs": 42,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AFC6": {
+  "addr": 44998,
+  "bank": 1,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_AFE3": {
+  "addr": 45027,
+  "bank": 1,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_B013": {
+  "addr": 45075,
+  "bank": 1,
+  "instrs": 57,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_B09C": {
+  "addr": 45212,
+  "bank": 1,
+  "instrs": 43,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B1_B0EF": {
+  "addr": 45295,
+  "bank": 1,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B2_8000": {
+  "addr": 32768,
+  "bank": 2,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Bank2Nmi": {
+  "addr": 32784,
+  "bank": 2,
+  "instrs": 137,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8167": {
+  "addr": 33127,
+  "bank": 2,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_818E": {
+  "addr": 33166,
+  "bank": 2,
+  "instrs": 27,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8211": {
+  "addr": 33297,
+  "bank": 2,
+  "instrs": 47,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_827E": {
+  "addr": 33406,
+  "bank": 2,
+  "instrs": 27,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_837A": {
+  "addr": 33658,
+  "bank": 2,
+  "instrs": 39,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_83C7": {
+  "addr": 33735,
+  "bank": 2,
+  "instrs": 59,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8488": {
+  "addr": 33928,
+  "bank": 2,
+  "instrs": 100,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8609": {
+  "addr": 34313,
+  "bank": 2,
+  "instrs": 80,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_87AC": {
+  "addr": 34732,
+  "bank": 2,
+  "instrs": 83,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_886A": {
+  "addr": 34922,
+  "bank": 2,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8882": {
+  "addr": 34946,
+  "bank": 2,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_88AA": {
+  "addr": 34986,
+  "bank": 2,
+  "instrs": 60,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8938": {
+  "addr": 35128,
+  "bank": 2,
+  "instrs": 63,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_89E2": {
+  "addr": 35298,
+  "bank": 2,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8A0F": {
+  "addr": 35343,
+  "bank": 2,
+  "instrs": 102,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8AB0": {
+  "addr": 35504,
+  "bank": 2,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8AB8": {
+  "addr": 35512,
+  "bank": 2,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B2_8B06": {
+  "addr": 35590,
+  "bank": 2,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B3_8000": {
+  "addr": 32768,
+  "bank": 3,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Bank3Nmi": {
+  "addr": 32784,
+  "bank": 3,
+  "instrs": 50,
+  "ok": true,
+  "reason": null
+ },
+ "Bank3Dispatch_0421": {
+  "addr": 32897,
+  "bank": 3,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8270": {
+  "addr": 33392,
+  "bank": 3,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_828B": {
+  "addr": 33419,
+  "bank": 3,
+  "instrs": 35,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_831D": {
+  "addr": 33565,
+  "bank": 3,
+  "instrs": 36,
+  "ok": true,
+  "reason": null
+ },
+ "Bank3Dispatch_041C": {
+  "addr": 33649,
+  "bank": 3,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_83D8": {
+  "addr": 33752,
+  "bank": 3,
+  "instrs": 238,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_85AD": {
+  "addr": 34221,
+  "bank": 3,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_85C6": {
+  "addr": 34246,
+  "bank": 3,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_85DB": {
+  "addr": 34267,
+  "bank": 3,
+  "instrs": 70,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8666": {
+  "addr": 34406,
+  "bank": 3,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_867A": {
+  "addr": 34426,
+  "bank": 3,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_868C": {
+  "addr": 34444,
+  "bank": 3,
+  "instrs": 51,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_86E9": {
+  "addr": 34537,
+  "bank": 3,
+  "instrs": 32,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_872B": {
+  "addr": 34603,
+  "bank": 3,
+  "instrs": 94,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B3_87F0": {
+  "addr": 34800,
+  "bank": 3,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8813": {
+  "addr": 34835,
+  "bank": 3,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B3_88CE": {
+  "addr": 35022,
+  "bank": 3,
+  "instrs": 66,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B3_8965": {
+  "addr": 35173,
+  "bank": 3,
+  "instrs": 69,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8A02": {
+  "addr": 35330,
+  "bank": 3,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8A1D": {
+  "addr": 35357,
+  "bank": 3,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8A5B": {
+  "addr": 35419,
+  "bank": 3,
+  "instrs": 164,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8BD2": {
+  "addr": 35794,
+  "bank": 3,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8C06": {
+  "addr": 35846,
+  "bank": 3,
+  "instrs": 148,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8D23": {
+  "addr": 36131,
+  "bank": 3,
+  "instrs": 37,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8D71": {
+  "addr": 36209,
+  "bank": 3,
+  "instrs": 86,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8E29": {
+  "addr": 36393,
+  "bank": 3,
+  "instrs": 67,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B3_8EC6": {
+  "addr": 36550,
+  "bank": 3,
+  "instrs": 74,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_8000": {
+  "addr": 32768,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Bank4Nmi": {
+  "addr": 32784,
+  "bank": 4,
+  "instrs": 62,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_80B3": {
+  "addr": 32947,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_810B": {
+  "addr": 33035,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8116": {
+  "addr": 33046,
+  "bank": 4,
+  "instrs": 43,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8121": {
+  "addr": 33057,
+  "bank": 4,
+  "instrs": 43,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_812C": {
+  "addr": 33068,
+  "bank": 4,
+  "instrs": 43,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8137": {
+  "addr": 33079,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_813D": {
+  "addr": 33085,
+  "bank": 4,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8169": {
+  "addr": 33129,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_817B": {
+  "addr": 33147,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_818C": {
+  "addr": 33164,
+  "bank": 4,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_81C5": {
+  "addr": 33221,
+  "bank": 4,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_81D0": {
+  "addr": 33232,
+  "bank": 4,
+  "instrs": 27,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_81F9": {
+  "addr": 33273,
+  "bank": 4,
+  "instrs": 65,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8237": {
+  "addr": 33335,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_823D": {
+  "addr": 33341,
+  "bank": 4,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8264": {
+  "addr": 33380,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8268": {
+  "addr": 33384,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8271": {
+  "addr": 33393,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8288": {
+  "addr": 33416,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_828E": {
+  "addr": 33422,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8316": {
+  "addr": 33558,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_831C": {
+  "addr": 33564,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_832E": {
+  "addr": 33582,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8345": {
+  "addr": 33605,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8369": {
+  "addr": 33641,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_836F": {
+  "addr": 33647,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8395": {
+  "addr": 33685,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_839B": {
+  "addr": 33691,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_83A1": {
+  "addr": 33697,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_83BE": {
+  "addr": 33726,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_83C4": {
+  "addr": 33732,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_83E7": {
+  "addr": 33767,
+  "bank": 4,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8425": {
+  "addr": 33829,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8449": {
+  "addr": 33865,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8476": {
+  "addr": 33910,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_847B": {
+  "addr": 33915,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8489": {
+  "addr": 33929,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_84FD": {
+  "addr": 34045,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8507": {
+  "addr": 34055,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_854E": {
+  "addr": 34126,
+  "bank": 4,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_858B": {
+  "addr": 34187,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_85DF": {
+  "addr": 34271,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_85E4": {
+  "addr": 34276,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_85EB": {
+  "addr": 34283,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_85F2": {
+  "addr": 34290,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_85F9": {
+  "addr": 34297,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8600": {
+  "addr": 34304,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8619": {
+  "addr": 34329,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8629": {
+  "addr": 34345,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8635": {
+  "addr": 34357,
+  "bank": 4,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8663": {
+  "addr": 34403,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8676": {
+  "addr": 34422,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_868C": {
+  "addr": 34444,
+  "bank": 4,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_86B7": {
+  "addr": 34487,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_86C0": {
+  "addr": 34496,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_86DD": {
+  "addr": 34525,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8B39": {
+  "addr": 35641,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8B4F": {
+  "addr": 35663,
+  "bank": 4,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8BD5": {
+  "addr": 35797,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8C07": {
+  "addr": 35847,
+  "bank": 4,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8C24": {
+  "addr": 35876,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8C2A": {
+  "addr": 35882,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8D35": {
+  "addr": 36149,
+  "bank": 4,
+  "instrs": 124,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8E16": {
+  "addr": 36374,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8E23": {
+  "addr": 36387,
+  "bank": 4,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8EA4": {
+  "addr": 36516,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8EA6": {
+  "addr": 36518,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8EB0": {
+  "addr": 36528,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8EBC": {
+  "addr": 36540,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8EC8": {
+  "addr": 36552,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8ED2": {
+  "addr": 36562,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_8EDF": {
+  "addr": 36575,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8EF1": {
+  "addr": 36593,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8FBF": {
+  "addr": 36799,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_8FCF": {
+  "addr": 36815,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_8FE1": {
+  "addr": 36833,
+  "bank": 4,
+  "instrs": 25,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_901A": {
+  "addr": 36890,
+  "bank": 4,
+  "instrs": 23,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_905D": {
+  "addr": 36957,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_908C": {
+  "addr": 37004,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_90B6": {
+  "addr": 37046,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_90D6": {
+  "addr": 37078,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_90F1": {
+  "addr": 37105,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_9106": {
+  "addr": 37126,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9173": {
+  "addr": 37235,
+  "bank": 4,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9196": {
+  "addr": 37270,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9583": {
+  "addr": 38275,
+  "bank": 4,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_95A1": {
+  "addr": 38305,
+  "bank": 4,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_95DA": {
+  "addr": 38362,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_95E0": {
+  "addr": 38368,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_961B": {
+  "addr": 38427,
+  "bank": 4,
+  "instrs": 120,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9702": {
+  "addr": 38658,
+  "bank": 4,
+  "instrs": 56,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9880": {
+  "addr": 39040,
+  "bank": 4,
+  "instrs": 24,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_98A6": {
+  "addr": 39078,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_98BB": {
+  "addr": 39099,
+  "bank": 4,
+  "instrs": 40,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_990E": {
+  "addr": 39182,
+  "bank": 4,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9924": {
+  "addr": 39204,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_993A": {
+  "addr": 39226,
+  "bank": 4,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_995B": {
+  "addr": 39259,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_997B": {
+  "addr": 39291,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_998D": {
+  "addr": 39309,
+  "bank": 4,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9A44": {
+  "addr": 39492,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9A8B": {
+  "addr": 39563,
+  "bank": 4,
+  "instrs": 54,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9F47": {
+  "addr": 40775,
+  "bank": 4,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9F94": {
+  "addr": 40852,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9FAC": {
+  "addr": 40876,
+  "bank": 4,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_9FD6": {
+  "addr": 40918,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_9FEB": {
+  "addr": 40939,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_A033": {
+  "addr": 41011,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_A065": {
+  "addr": 41061,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_A080": {
+  "addr": 41088,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_A09B": {
+  "addr": 41115,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_A0B6": {
+  "addr": 41142,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_A0F1": {
+  "addr": 41201,
+  "bank": 4,
+  "instrs": 24,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_A12C": {
+  "addr": 41260,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_A177": {
+  "addr": 41335,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_B011": {
+  "addr": 45073,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_B43F": {
+  "addr": 46143,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_B452": {
+  "addr": 46162,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_B467": {
+  "addr": 46183,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_B47A": {
+  "addr": 46202,
+  "bank": 4,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B4_B488": {
+  "addr": 46216,
+  "bank": 4,
+  "instrs": 23,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_B4B1": {
+  "addr": 46257,
+  "bank": 4,
+  "instrs": 28,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_B4EF": {
+  "addr": 46319,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B4_B4F8": {
+  "addr": 46328,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B5_8000": {
+  "addr": 32768,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Bank5Nmi": {
+  "addr": 32784,
+  "bank": 5,
+  "instrs": 24,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_804F": {
+  "addr": 32847,
+  "bank": 5,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_813D": {
+  "addr": 33085,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8150": {
+  "addr": 33104,
+  "bank": 5,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8157": {
+  "addr": 33111,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_815C": {
+  "addr": 33116,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8161": {
+  "addr": 33121,
+  "bank": 5,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_816F": {
+  "addr": 33135,
+  "bank": 5,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_817A": {
+  "addr": 33146,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8187": {
+  "addr": 33159,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_818E": {
+  "addr": 33166,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_81A2": {
+  "addr": 33186,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_81B0": {
+  "addr": 33200,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_81C1": {
+  "addr": 33217,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_81CF": {
+  "addr": 33231,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_81E6": {
+  "addr": 33254,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_81EF": {
+  "addr": 33263,
+  "bank": 5,
+  "instrs": 40,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_81FA": {
+  "addr": 33274,
+  "bank": 5,
+  "instrs": 26,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_820F": {
+  "addr": 33295,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8220": {
+  "addr": 33312,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_822E": {
+  "addr": 33326,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_823A": {
+  "addr": 33338,
+  "bank": 5,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8257": {
+  "addr": 33367,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8262": {
+  "addr": 33378,
+  "bank": 5,
+  "instrs": 74,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_827A": {
+  "addr": 33402,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_828D": {
+  "addr": 33421,
+  "bank": 5,
+  "instrs": 75,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_82A8": {
+  "addr": 33448,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_82B1": {
+  "addr": 33457,
+  "bank": 5,
+  "instrs": 23,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_82BC": {
+  "addr": 33468,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_82C7": {
+  "addr": 33479,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_82D8": {
+  "addr": 33496,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_82E9": {
+  "addr": 33513,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_82FA": {
+  "addr": 33530,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_830E": {
+  "addr": 33550,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8317": {
+  "addr": 33559,
+  "bank": 5,
+  "instrs": 24,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8322": {
+  "addr": 33570,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8330": {
+  "addr": 33584,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_833C": {
+  "addr": 33596,
+  "bank": 5,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8347": {
+  "addr": 33607,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8353": {
+  "addr": 33619,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8367": {
+  "addr": 33639,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8370": {
+  "addr": 33648,
+  "bank": 5,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8395": {
+  "addr": 33685,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_83A4": {
+  "addr": 33700,
+  "bank": 5,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_83BD": {
+  "addr": 33725,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_83C9": {
+  "addr": 33737,
+  "bank": 5,
+  "instrs": 30,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8411": {
+  "addr": 33809,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8427": {
+  "addr": 33831,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8432": {
+  "addr": 33842,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8440": {
+  "addr": 33856,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8449": {
+  "addr": 33865,
+  "bank": 5,
+  "instrs": 27,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_844F": {
+  "addr": 33871,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_845A": {
+  "addr": 33882,
+  "bank": 5,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8474": {
+  "addr": 33908,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8484": {
+  "addr": 33924,
+  "bank": 5,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_849D": {
+  "addr": 33949,
+  "bank": 5,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_84BD": {
+  "addr": 33981,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_84CA": {
+  "addr": 33994,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_84DF": {
+  "addr": 34015,
+  "bank": 5,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_84FE": {
+  "addr": 34046,
+  "bank": 5,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8510": {
+  "addr": 34064,
+  "bank": 5,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8528": {
+  "addr": 34088,
+  "bank": 5,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_853B": {
+  "addr": 34107,
+  "bank": 5,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8552": {
+  "addr": 34130,
+  "bank": 5,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8566": {
+  "addr": 34150,
+  "bank": 5,
+  "instrs": 35,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_856C": {
+  "addr": 34156,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_857A": {
+  "addr": 34170,
+  "bank": 5,
+  "instrs": 25,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_85B2": {
+  "addr": 34226,
+  "bank": 5,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_85B8": {
+  "addr": 34232,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_85C9": {
+  "addr": 34249,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_85D7": {
+  "addr": 34263,
+  "bank": 5,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_85F0": {
+  "addr": 34288,
+  "bank": 5,
+  "instrs": 82,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_85F6": {
+  "addr": 34294,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8607": {
+  "addr": 34311,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_861C": {
+  "addr": 34332,
+  "bank": 5,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8622": {
+  "addr": 34338,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8638": {
+  "addr": 34360,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8646": {
+  "addr": 34374,
+  "bank": 5,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_864C": {
+  "addr": 34380,
+  "bank": 5,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8665": {
+  "addr": 34405,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8676": {
+  "addr": 34422,
+  "bank": 5,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_867C": {
+  "addr": 34428,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8687": {
+  "addr": 34439,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_87B5": {
+  "addr": 34741,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_87BD": {
+  "addr": 34749,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_87C8": {
+  "addr": 34760,
+  "bank": 5,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_87DB": {
+  "addr": 34779,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8853": {
+  "addr": 34899,
+  "bank": 5,
+  "instrs": 54,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8919": {
+  "addr": 35097,
+  "bank": 5,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8930": {
+  "addr": 35120,
+  "bank": 5,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8932": {
+  "addr": 35122,
+  "bank": 5,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8934": {
+  "addr": 35124,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_893B": {
+  "addr": 35131,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8946": {
+  "addr": 35142,
+  "bank": 5,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8948": {
+  "addr": 35144,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8951": {
+  "addr": 35153,
+  "bank": 5,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8A50": {
+  "addr": 35408,
+  "bank": 5,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8A78": {
+  "addr": 35448,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8A81": {
+  "addr": 35457,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8A98": {
+  "addr": 35480,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8AA2": {
+  "addr": 35490,
+  "bank": 5,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8AAE": {
+  "addr": 35502,
+  "bank": 5,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8AD6": {
+  "addr": 35542,
+  "bank": 5,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8B01": {
+  "addr": 35585,
+  "bank": 5,
+  "instrs": 18,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8B3E": {
+  "addr": 35646,
+  "bank": 5,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8B5F": {
+  "addr": 35679,
+  "bank": 5,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8BA5": {
+  "addr": 35749,
+  "bank": 5,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8BBC": {
+  "addr": 35772,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8BC5": {
+  "addr": 35781,
+  "bank": 5,
+  "instrs": 57,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8D23": {
+  "addr": 36131,
+  "bank": 5,
+  "instrs": 67,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8E3B": {
+  "addr": 36411,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8E52": {
+  "addr": 36434,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8E5E": {
+  "addr": 36446,
+  "bank": 5,
+  "instrs": 46,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8F67": {
+  "addr": 36711,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8F70": {
+  "addr": 36720,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8FA9": {
+  "addr": 36777,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_8FBD": {
+  "addr": 36797,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B5_904E": {
+  "addr": 36942,
+  "bank": 5,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_9061": {
+  "addr": 36961,
+  "bank": 5,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_907F": {
+  "addr": 36991,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_9092": {
+  "addr": 37010,
+  "bank": 5,
+  "instrs": 2,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_9098": {
+  "addr": 37016,
+  "bank": 5,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_90A7": {
+  "addr": 37031,
+  "bank": 5,
+  "instrs": 106,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_91DF": {
+  "addr": 37343,
+  "bank": 5,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_9283": {
+  "addr": 37507,
+  "bank": 5,
+  "instrs": 45,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_93E0": {
+  "addr": 37856,
+  "bank": 5,
+  "instrs": 40,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_9608": {
+  "addr": 38408,
+  "bank": 5,
+  "instrs": 85,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_96F2": {
+  "addr": 38642,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_97CF": {
+  "addr": 38863,
+  "bank": 5,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_97F4": {
+  "addr": 38900,
+  "bank": 5,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_981C": {
+  "addr": 38940,
+  "bank": 5,
+  "instrs": 36,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_98FB": {
+  "addr": 39163,
+  "bank": 5,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_9902": {
+  "addr": 39170,
+  "bank": 5,
+  "instrs": 23,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_9A6C": {
+  "addr": 39532,
+  "bank": 5,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A044": {
+  "addr": 41028,
+  "bank": 5,
+  "instrs": 71,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A0C9": {
+  "addr": 41161,
+  "bank": 5,
+  "instrs": 102,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A17F": {
+  "addr": 41343,
+  "bank": 5,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A184": {
+  "addr": 41348,
+  "bank": 5,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A1A3": {
+  "addr": 41379,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A1BE": {
+  "addr": 41406,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A1CE": {
+  "addr": 41422,
+  "bank": 5,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A1EA": {
+  "addr": 41450,
+  "bank": 5,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A1FF": {
+  "addr": 41471,
+  "bank": 5,
+  "instrs": 28,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A22E": {
+  "addr": 41518,
+  "bank": 5,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A24E": {
+  "addr": 41550,
+  "bank": 5,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A269": {
+  "addr": 41577,
+  "bank": 5,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A284": {
+  "addr": 41604,
+  "bank": 5,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A2A8": {
+  "addr": 41640,
+  "bank": 5,
+  "instrs": 43,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A2F4": {
+  "addr": 41716,
+  "bank": 5,
+  "instrs": 26,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A321": {
+  "addr": 41761,
+  "bank": 5,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A32C": {
+  "addr": 41772,
+  "bank": 5,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A357": {
+  "addr": 41815,
+  "bank": 5,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A363": {
+  "addr": 41827,
+  "bank": 5,
+  "instrs": 56,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A3C7": {
+  "addr": 41927,
+  "bank": 5,
+  "instrs": 30,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A402": {
+  "addr": 41986,
+  "bank": 5,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B5_A464": {
+  "addr": 42084,
+  "bank": 5,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8000": {
+  "addr": 32768,
+  "bank": 6,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Bank6Nmi": {
+  "addr": 32784,
+  "bank": 6,
+  "instrs": 55,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_801F": {
+  "addr": 32799,
+  "bank": 6,
+  "instrs": 26,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8055": {
+  "addr": 32853,
+  "bank": 6,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8080": {
+  "addr": 32896,
+  "bank": 6,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_808E": {
+  "addr": 32910,
+  "bank": 6,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_809D": {
+  "addr": 32925,
+  "bank": 6,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_80AE": {
+  "addr": 32942,
+  "bank": 6,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_80B5": {
+  "addr": 32949,
+  "bank": 6,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_80D8": {
+  "addr": 32984,
+  "bank": 6,
+  "instrs": 34,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8117": {
+  "addr": 33047,
+  "bank": 6,
+  "instrs": 28,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_81AA": {
+  "addr": 33194,
+  "bank": 6,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_81E3": {
+  "addr": 33251,
+  "bank": 6,
+  "instrs": 97,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_82F5": {
+  "addr": 33525,
+  "bank": 6,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_831C": {
+  "addr": 33564,
+  "bank": 6,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_83BE": {
+  "addr": 33726,
+  "bank": 6,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_83D3": {
+  "addr": 33747,
+  "bank": 6,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_83F4": {
+  "addr": 33780,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8401": {
+  "addr": 33793,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_840D": {
+  "addr": 33805,
+  "bank": 6,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8417": {
+  "addr": 33815,
+  "bank": 6,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_842A": {
+  "addr": 33834,
+  "bank": 6,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8621": {
+  "addr": 34337,
+  "bank": 6,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_863C": {
+  "addr": 34364,
+  "bank": 6,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_865C": {
+  "addr": 34396,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8668": {
+  "addr": 34408,
+  "bank": 6,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_868C": {
+  "addr": 34444,
+  "bank": 6,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_869A": {
+  "addr": 34458,
+  "bank": 6,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_86BA": {
+  "addr": 34490,
+  "bank": 6,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8703": {
+  "addr": 34563,
+  "bank": 6,
+  "instrs": 30,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8708": {
+  "addr": 34568,
+  "bank": 6,
+  "instrs": 23,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_873E": {
+  "addr": 34622,
+  "bank": 6,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8746": {
+  "addr": 34630,
+  "bank": 6,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8756": {
+  "addr": 34646,
+  "bank": 6,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_877B": {
+  "addr": 34683,
+  "bank": 6,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8797": {
+  "addr": 34711,
+  "bank": 6,
+  "instrs": 26,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_87D3": {
+  "addr": 34771,
+  "bank": 6,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_87DA": {
+  "addr": 34778,
+  "bank": 6,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8803": {
+  "addr": 34819,
+  "bank": 6,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8822": {
+  "addr": 34850,
+  "bank": 6,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8837": {
+  "addr": 34871,
+  "bank": 6,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8858": {
+  "addr": 34904,
+  "bank": 6,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_886B": {
+  "addr": 34923,
+  "bank": 6,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_8880": {
+  "addr": 34944,
+  "bank": 6,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_889B": {
+  "addr": 34971,
+  "bank": 6,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_88BB": {
+  "addr": 35003,
+  "bank": 6,
+  "instrs": 0,
+  "ok": false,
+  "reason": "flow reaches data at $88BB"
+ },
+ "Sub_B6_8932": {
+  "addr": 35122,
+  "bank": 6,
+  "instrs": 65,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_89A7": {
+  "addr": 35239,
+  "bank": 6,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_89B2": {
+  "addr": 35250,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_89C0": {
+  "addr": 35264,
+  "bank": 6,
+  "instrs": 18,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_89DE": {
+  "addr": 35294,
+  "bank": 6,
+  "instrs": 65,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8A66": {
+  "addr": 35430,
+  "bank": 6,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8A76": {
+  "addr": 35446,
+  "bank": 6,
+  "instrs": 53,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8AD9": {
+  "addr": 35545,
+  "bank": 6,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8AF4": {
+  "addr": 35572,
+  "bank": 6,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8B08": {
+  "addr": 35592,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8B9C": {
+  "addr": 35740,
+  "bank": 6,
+  "instrs": 58,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_8BE6": {
+  "addr": 35814,
+  "bank": 6,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_9489": {
+  "addr": 38025,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_9497": {
+  "addr": 38039,
+  "bank": 6,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_95EE": {
+  "addr": 38382,
+  "bank": 6,
+  "instrs": 25,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_9621": {
+  "addr": 38433,
+  "bank": 6,
+  "instrs": 77,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_B6_96B8": {
+  "addr": 38584,
+  "bank": 6,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_96D4": {
+  "addr": 38612,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_975A": {
+  "addr": 38746,
+  "bank": 6,
+  "instrs": 87,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_9A38": {
+  "addr": 39480,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_B6_A0A6": {
+  "addr": 41126,
+  "bank": 6,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_C000": {
+  "addr": 49152,
+  "bank": 7,
+  "instrs": 56,
+  "ok": true,
+  "reason": null
+ },
+ "MainIdleLoop": {
+  "addr": 49272,
+  "bank": 7,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_C081": {
+  "addr": 49281,
+  "bank": 7,
+  "instrs": 168,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C0C0": {
+  "addr": 49344,
+  "bank": 7,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "CallBank5_A000": {
+  "addr": 49382,
+  "bank": 7,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "ProcessPpuUpdateList": {
+  "addr": 49408,
+  "bank": 7,
+  "instrs": 60,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C170": {
+  "addr": 49520,
+  "bank": 7,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "ApplyScroll": {
+  "addr": 49558,
+  "bank": 7,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "BinToDecimal": {
+  "addr": 49577,
+  "bank": 7,
+  "instrs": 32,
+  "ok": true,
+  "reason": null
+ },
+ "DoOamDma": {
+  "addr": 49636,
+  "bank": 7,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "AslA6": {
+  "addr": 49647,
+  "bank": 7,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "AslA5": {
+  "addr": 49648,
+  "bank": 7,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "AslA4": {
+  "addr": 49649,
+  "bank": 7,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "AslA3": {
+  "addr": 49650,
+  "bank": 7,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "LsrA6": {
+  "addr": 49654,
+  "bank": 7,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "LsrA5": {
+  "addr": 49655,
+  "bank": 7,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "LsrA4": {
+  "addr": 49656,
+  "bank": 7,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "LsrA3": {
+  "addr": 49657,
+  "bank": 7,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "SetPpuCtrl": {
+  "addr": 49661,
+  "bank": 7,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "SetPpuMask": {
+  "addr": 49667,
+  "bank": 7,
+  "instrs": 3,
+  "ok": true,
+  "reason": null
+ },
+ "ResetPpuScroll": {
+  "addr": 49673,
+  "bank": 7,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "SetPpuAddrFromBuf": {
+  "addr": 49692,
+  "bank": 7,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "EnqueueByte": {
+  "addr": 49708,
+  "bank": 7,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "TickClock": {
+  "addr": 49724,
+  "bank": 7,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "FillPaletteBlack": {
+  "addr": 49742,
+  "bank": 7,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "UploadPalette": {
+  "addr": 49758,
+  "bank": 7,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "SetPaletteAddr": {
+  "addr": 49776,
+  "bank": 7,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "ResetPpuAddr": {
+  "addr": 49797,
+  "bank": 7,
+  "instrs": 6,
+  "ok": true,
+  "reason": null
+ },
+ "WaitSprite0": {
+  "addr": 49812,
+  "bank": 7,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "GetRandomByte": {
+  "addr": 49827,
+  "bank": 7,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "ReadJoypads": {
+  "addr": 49881,
+  "bank": 7,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "ReadJoypadPort": {
+  "addr": 49911,
+  "bank": 7,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "DrawObjects": {
+  "addr": 49929,
+  "bank": 7,
+  "instrs": 32,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C355": {
+  "addr": 50005,
+  "bank": 7,
+  "instrs": 88,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C3FC": {
+  "addr": 50172,
+  "bank": 7,
+  "instrs": 32,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C43D": {
+  "addr": 50237,
+  "bank": 7,
+  "instrs": 37,
+  "ok": true,
+  "reason": null
+ },
+ "Loc_C481": {
+  "addr": 50305,
+  "bank": 7,
+  "instrs": 43,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C4C8": {
+  "addr": 50376,
+  "bank": 7,
+  "instrs": 24,
+  "ok": true,
+  "reason": null
+ },
+ "LoadPaletteSet": {
+  "addr": 50411,
+  "bank": 7,
+  "instrs": 53,
+  "ok": true,
+  "reason": null
+ },
+ "MmcWriteControl": {
+  "addr": 50516,
+  "bank": 7,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "MmcWriteChr0": {
+  "addr": 50538,
+  "bank": 7,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "MmcWriteChr1": {
+  "addr": 50560,
+  "bank": 7,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "MmcWriteChr1A": {
+  "addr": 50562,
+  "bank": 7,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "MmcWritePrg": {
+  "addr": 50582,
+  "bank": 7,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C5AC": {
+  "addr": 50604,
+  "bank": 7,
+  "instrs": 34,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C5FF": {
+  "addr": 50687,
+  "bank": 7,
+  "instrs": 112,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C711": {
+  "addr": 50961,
+  "bank": 7,
+  "instrs": 37,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C761": {
+  "addr": 51041,
+  "bank": 7,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C77C": {
+  "addr": 51068,
+  "bank": 7,
+  "instrs": 54,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C7F6": {
+  "addr": 51190,
+  "bank": 7,
+  "instrs": 62,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C85F": {
+  "addr": 51295,
+  "bank": 7,
+  "instrs": 83,
+  "ok": true,
+  "reason": null
+ },
+ "DrawHud": {
+  "addr": 51497,
+  "bank": 7,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C941": {
+  "addr": 51521,
+  "bank": 7,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_C962": {
+  "addr": 51554,
+  "bank": 7,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "InitHudSprites": {
+  "addr": 51587,
+  "bank": 7,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "DrawHudNumber": {
+  "addr": 51604,
+  "bank": 7,
+  "instrs": 18,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CBA3": {
+  "addr": 52131,
+  "bank": 7,
+  "instrs": 121,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CCD3": {
+  "addr": 52435,
+  "bank": 7,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "UploadPaletteIfDirty": {
+  "addr": 52457,
+  "bank": 7,
+  "instrs": 59,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CD74": {
+  "addr": 52596,
+  "bank": 7,
+  "instrs": 49,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CDE0": {
+  "addr": 52704,
+  "bank": 7,
+  "instrs": 74,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CE7E": {
+  "addr": 52862,
+  "bank": 7,
+  "instrs": 14,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CEDA": {
+  "addr": 52954,
+  "bank": 7,
+  "instrs": 23,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CF13": {
+  "addr": 53011,
+  "bank": 7,
+  "instrs": 49,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CF84": {
+  "addr": 53124,
+  "bank": 7,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CFA3": {
+  "addr": 53155,
+  "bank": 7,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_CFC2": {
+  "addr": 53186,
+  "bank": 7,
+  "instrs": 58,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D042": {
+  "addr": 53314,
+  "bank": 7,
+  "instrs": 62,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D0AB": {
+  "addr": 53419,
+  "bank": 7,
+  "instrs": 34,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D0FB": {
+  "addr": 53499,
+  "bank": 7,
+  "instrs": 30,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D13A": {
+  "addr": 53562,
+  "bank": 7,
+  "instrs": 26,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D177": {
+  "addr": 53623,
+  "bank": 7,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D255": {
+  "addr": 53845,
+  "bank": 7,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D28E": {
+  "addr": 53902,
+  "bank": 7,
+  "instrs": 57,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D308": {
+  "addr": 54024,
+  "bank": 7,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D318": {
+  "addr": 54040,
+  "bank": 7,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D32D": {
+  "addr": 54061,
+  "bank": 7,
+  "instrs": 59,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D3A4": {
+  "addr": 54180,
+  "bank": 7,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "CopyPlayerSprites": {
+  "addr": 54227,
+  "bank": 7,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D4D3": {
+  "addr": 54483,
+  "bank": 7,
+  "instrs": 56,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D573": {
+  "addr": 54643,
+  "bank": 7,
+  "instrs": 39,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D5BD": {
+  "addr": 54717,
+  "bank": 7,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D5E2": {
+  "addr": 54754,
+  "bank": 7,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D607": {
+  "addr": 54791,
+  "bank": 7,
+  "instrs": 40,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D6A4": {
+  "addr": 54948,
+  "bank": 7,
+  "instrs": 27,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D710": {
+  "addr": 55056,
+  "bank": 7,
+  "instrs": 34,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D740": {
+  "addr": 55104,
+  "bank": 7,
+  "instrs": 55,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D7B2": {
+  "addr": 55218,
+  "bank": 7,
+  "instrs": 86,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D86D": {
+  "addr": 55405,
+  "bank": 7,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_D8CB": {
+  "addr": 55499,
+  "bank": 7,
+  "instrs": 132,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DA0A": {
+  "addr": 55818,
+  "bank": 7,
+  "instrs": 27,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DA4B": {
+  "addr": 55883,
+  "bank": 7,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DA77": {
+  "addr": 55927,
+  "bank": 7,
+  "instrs": 26,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DB07": {
+  "addr": 56071,
+  "bank": 7,
+  "instrs": 62,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DBD5": {
+  "addr": 56277,
+  "bank": 7,
+  "instrs": 45,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DC48": {
+  "addr": 56392,
+  "bank": 7,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "HideEnemySprites": {
+  "addr": 56439,
+  "bank": 7,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DC87": {
+  "addr": 56455,
+  "bank": 7,
+  "instrs": 31,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DDD0": {
+  "addr": 56784,
+  "bank": 7,
+  "instrs": 9,
+  "ok": true,
+  "reason": null
+ },
+ "AnimatePalette": {
+  "addr": 56801,
+  "bank": 7,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DE15": {
+  "addr": 56853,
+  "bank": 7,
+  "instrs": 55,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DED0": {
+  "addr": 57040,
+  "bank": 7,
+  "instrs": 23,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DF02": {
+  "addr": 57090,
+  "bank": 7,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DF12": {
+  "addr": 57106,
+  "bank": 7,
+  "instrs": 23,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_DF44": {
+  "addr": 57156,
+  "bank": 7,
+  "instrs": 45,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E018": {
+  "addr": 57368,
+  "bank": 7,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E042": {
+  "addr": 57410,
+  "bank": 7,
+  "instrs": 15,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E05E": {
+  "addr": 57438,
+  "bank": 7,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E079": {
+  "addr": 57465,
+  "bank": 7,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E089": {
+  "addr": 57481,
+  "bank": 7,
+  "instrs": 129,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E17D": {
+  "addr": 57725,
+  "bank": 7,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E5FD": {
+  "addr": 58877,
+  "bank": 7,
+  "instrs": 44,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E664": {
+  "addr": 58980,
+  "bank": 7,
+  "instrs": 84,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E85E": {
+  "addr": 59486,
+  "bank": 7,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E883": {
+  "addr": 59523,
+  "bank": 7,
+  "instrs": 37,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E8D3": {
+  "addr": 59603,
+  "bank": 7,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E916": {
+  "addr": 59670,
+  "bank": 7,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E939": {
+  "addr": 59705,
+  "bank": 7,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_E971": {
+  "addr": 59761,
+  "bank": 7,
+  "instrs": 44,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EA02": {
+  "addr": 59906,
+  "bank": 7,
+  "instrs": 20,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EA2D": {
+  "addr": 59949,
+  "bank": 7,
+  "instrs": 25,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EA61": {
+  "addr": 60001,
+  "bank": 7,
+  "instrs": 35,
+  "ok": true,
+  "reason": null
+ },
+ "SetFireModeLow": {
+  "addr": 60074,
+  "bank": 7,
+  "instrs": 7,
+  "ok": true,
+  "reason": null
+ },
+ "UpdateFireMode": {
+  "addr": 60086,
+  "bank": 7,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "UseAmmo": {
+  "addr": 60111,
+  "bank": 7,
+  "instrs": 5,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EAD9": {
+  "addr": 60121,
+  "bank": 7,
+  "instrs": 38,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EB2F": {
+  "addr": 60207,
+  "bank": 7,
+  "instrs": 82,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EBE4": {
+  "addr": 60388,
+  "bank": 7,
+  "instrs": 37,
+  "ok": true,
+  "reason": null
+ },
+ "AdjustAmmo": {
+  "addr": 61111,
+  "bank": 7,
+  "instrs": 10,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EEC9": {
+  "addr": 61129,
+  "bank": 7,
+  "instrs": 40,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EF19": {
+  "addr": 61209,
+  "bank": 7,
+  "instrs": 8,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EF2D": {
+  "addr": 61229,
+  "bank": 7,
+  "instrs": 35,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EF7B": {
+  "addr": 61307,
+  "bank": 7,
+  "instrs": 22,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EFA9": {
+  "addr": 61353,
+  "bank": 7,
+  "instrs": 1,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_EFAA": {
+  "addr": 61354,
+  "bank": 7,
+  "instrs": 46,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F23D": {
+  "addr": 62013,
+  "bank": 7,
+  "instrs": 48,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F29D": {
+  "addr": 62109,
+  "bank": 7,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F2DA": {
+  "addr": 62170,
+  "bank": 7,
+  "instrs": 16,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F2FA": {
+  "addr": 62202,
+  "bank": 7,
+  "instrs": 72,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F394": {
+  "addr": 62356,
+  "bank": 7,
+  "instrs": 4,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F39E": {
+  "addr": 62366,
+  "bank": 7,
+  "instrs": 62,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F430": {
+  "addr": 62512,
+  "bank": 7,
+  "instrs": 24,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F470": {
+  "addr": 62576,
+  "bank": 7,
+  "instrs": 33,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F4B8": {
+  "addr": 62648,
+  "bank": 7,
+  "instrs": 132,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F606": {
+  "addr": 62982,
+  "bank": 7,
+  "instrs": 11,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F61E": {
+  "addr": 63006,
+  "bank": 7,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F634": {
+  "addr": 63028,
+  "bank": 7,
+  "instrs": 24,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F664": {
+  "addr": 63076,
+  "bank": 7,
+  "instrs": 26,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F698": {
+  "addr": 63128,
+  "bank": 7,
+  "instrs": 19,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F6BC": {
+  "addr": 63164,
+  "bank": 7,
+  "instrs": 21,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F804": {
+  "addr": 63492,
+  "bank": 7,
+  "instrs": 196,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_F984": {
+  "addr": 63876,
+  "bank": 7,
+  "instrs": 78,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FA47": {
+  "addr": 64071,
+  "bank": 7,
+  "instrs": 36,
+  "ok": true,
+  "reason": null
+ },
+ "TickObjectStates": {
+  "addr": 64142,
+  "bank": 7,
+  "instrs": 56,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FB00": {
+  "addr": 64256,
+  "bank": 7,
+  "instrs": 92,
+  "ok": true,
+  "reason": null
+ },
+ "ClearObjectStatusBits": {
+  "addr": 64480,
+  "bank": 7,
+  "instrs": 17,
+  "ok": true,
+  "reason": null
+ },
+ "UpdateLifeBlink": {
+  "addr": 64510,
+  "bank": 7,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FC1A": {
+  "addr": 64538,
+  "bank": 7,
+  "instrs": 28,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FC62": {
+  "addr": 64610,
+  "bank": 7,
+  "instrs": 37,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FCBD": {
+  "addr": 64701,
+  "bank": 7,
+  "instrs": 37,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FD18": {
+  "addr": 64792,
+  "bank": 7,
+  "instrs": 29,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FD61": {
+  "addr": 64865,
+  "bank": 7,
+  "instrs": 110,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FEA7": {
+  "addr": 65191,
+  "bank": 7,
+  "instrs": 12,
+  "ok": true,
+  "reason": null
+ },
+ "Sub_FEC1": {
+  "addr": 65217,
+  "bank": 7,
+  "instrs": 13,
+  "ok": true,
+  "reason": null
+ }
+}

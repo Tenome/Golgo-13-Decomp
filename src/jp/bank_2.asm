@@ -253,7 +253,7 @@ Loc_B2_8256:
   sta $0232                    ; $8272
   sta $0236                    ; $8275
   jsr ProcessPpuUpdateList     ; $8278
-  .incbin "prg_bank_2.bin", $027B, $2  ; $827B
+  .addr Data_B2_82FF  ; $827B inline pointer (data after a JSR)
   rts                          ; $827D
 Sub_B2_827E:
   lda z:PaletteSetIndex        ; $827E
@@ -284,7 +284,9 @@ Sub_B2_827E:
   jsr MmcWriteChr1             ; $82B7
   rts                          ; $82BA
 Data_B2_82BB:
-  .incbin "prg_bank_2.bin", $02BB, $BF  ; $82BB
+  .incbin "prg_bank_2.bin", $02BB, $44  ; $82BB
+Data_B2_82FF:
+  .incbin "prg_bank_2.bin", $02FF, $7B  ; $82FF
 Sub_B2_837A:
   lda z:ScrollPage             ; $837A
   cmp #$02                     ; $837C

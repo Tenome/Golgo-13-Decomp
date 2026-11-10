@@ -96,8 +96,17 @@ def load_hints():
         b, rng = r.split(':'); lo, hi = [int(v, 16) for v in rng.split('-')]
         for a in range(lo, hi + 1): forbid.add(p_of(int(b), a))
     return code, forbid
+INLINE_DISP = set()   # routines that dispatch through a table of code addresses placed right after the JSR (never return to the caller)
+INLINE_N = {}      # routine p -> number of inline argument bytes that follow every JSR to it (execution resumes after them)
+INLINEPTR = {}     # p of an inline pointer word -> p of the data it points to
+def load_inline():
+    f = os.path.join(CONF, 'hints.json'); h = json.load(open(f)) if os.path.exists(f) else {}
+    INLINE_N.clear(); INLINE_DISP.clear()
+    for k in h.get('inline_dispatch', []): INLINE_DISP.add(parse_loc(k) if ':' in k else p_of(7, int(k, 16)))
+    for k, n in h.get('inline_args', {}).items(): INLINE_N[parse_loc(k) if ':' in k else p_of(7, int(k, 16))] = n
 def classify(roots, extra_code=()):
     hint_code, forbid = load_hints(); extra_code = list(extra_code) + hint_code
+    load_inline(); INLINEPTR.clear()
     code = [None] * len(PRG)          # None=data, else instruction start offsets flag 'S' / 'c' for continuation
     labels = set()
     work = sorted(roots) + list(extra_code)
@@ -132,6 +141,22 @@ def classify(roots, extra_code=()):
                     labels.add(dp); mark(dp, 'data')
                     if m in ('abx', 'aby'): IDX.setdefault(dp, set()).add(op)
             if n in ('rts', 'rti', 'jmp', 'brk'): break
+            if n == 'jsr' and tgt in INLINE_DISP:
+                q0 = q = p + l; tg = []; bend = (p >> 14 << 14) + 0x4000
+                while len(tg) < 64 and q + 1 < bend and code[q] is None:
+                    v = PRG[q] | PRG[q + 1] << 8; t = resolve(q, v)
+                    if t is None or v < 0x8000 or code[t] == 'c' or not _plaus(t, 1): break
+                    tg.append(t); q += 2
+                if tg:
+                    TABLES[q0] = dict(kind='word', n=len(tg), trick=0, tg=tg)
+                    for t in tg: labels.add(t); mark(t, 'sub'); work.append(t)
+                break
+            if n == 'jsr' and tgt in INLINE_N:         # the callee consumes N inline bytes (a data pointer) and returns after them
+                N = INLINE_N[tgt]
+                if N == 2:
+                    dp = resolve(p, PRG[p + l] | PRG[p + l + 1] << 8)
+                    if dp is not None: labels.add(dp); mark(dp, 'data'); INLINEPTR[p + l] = dp
+                p += l + N; continue
             p += l
     return code, labels, conflicts
 
@@ -268,6 +293,9 @@ def emit(code, labels, outdir):
                 else:
                     lines.append(f'  {text:<28} ; ${addr_of(p):04X}' + ('  [heuristic code]' if p in HEUR else ''))
                 p += l; ncode += l; continue
+            if p in INLINEPTR and p + 1 < end:
+                lines.append(f'  .addr {lname(INLINEPTR[p], names)}  ; ${addr_of(p):04X} inline pointer (data after a JSR)')
+                p += 2; continue
             tb = TABLES.get(p)
             hi = next((t for t in TABLES.values() if t['kind'] == 'split' and t['hi'] == p), None)
             sfx = lambda t: '-1' if t['trick'] else ''
@@ -287,7 +315,7 @@ def emit(code, labels, outdir):
             while q < end and code[q] is None and (q == p or q not in labels) and q - p < 16: q += 1
             if q == p: q = p + 1
             # data stays out of the repository: it is read from assets/<ver>/prg_bank_N.bin (extracted from your ROM)
-            while q < end and code[q] is None and q not in labels and (q - p) < 0x400 and not (TABLES.get(q) or any(t['kind'] == 'split' and t['hi'] == q for t in TABLES.values())): q += 1
+            while q < end and code[q] is None and q not in labels and q not in INLINEPTR and (q - p) < 0x400 and not (TABLES.get(q) or any(t['kind'] == 'split' and t['hi'] == q for t in TABLES.values())): q += 1
             lines.append(f'  .incbin "prg_bank_{b}.bin", ${p & 0x3FFF:04X}, ${q - p:X}  ; ${addr_of(p):04X}')
             p = q
         for lp in sorted(labels):
