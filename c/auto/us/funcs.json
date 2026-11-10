@@ -1890,7 +1890,7 @@
    ]
   ]
  },
- "Sub_B3_8261": {
+ "CalcMenuRowNametableAddr": {
   "addr": 33377,
   "bank": 3,
   "instrs": 16,
@@ -1942,7 +1942,7 @@
    ]
   ]
  },
- "Sub_B3_881D": {
+ "QueueMenuPpuListA": {
   "addr": 34845,
   "bank": 3,
   "instrs": 13,
@@ -1963,7 +1963,7 @@
    ]
   ]
  },
- "Sub_B3_8825": {
+ "QueueMenuPpuListB": {
   "addr": 34853,
   "bank": 3,
   "instrs": 13,
@@ -1984,7 +1984,7 @@
    ]
   ]
  },
- "Sub_B3_882D": {
+ "QueueMenuPpuListC": {
   "addr": 34861,
   "bank": 3,
   "instrs": 12,
@@ -2116,7 +2116,7 @@
    ]
   ]
  },
- "Sub_B3_8AF4": {
+ "LoadFourBytesFromPtr70": {
   "addr": 35572,
   "bank": 3,
   "instrs": 12,
@@ -2129,7 +2129,7 @@
    ]
   ]
  },
- "Sub_B3_8B08": {
+ "StoreSpriteYTileX": {
   "addr": 35592,
   "bank": 3,
   "instrs": 11,
@@ -2198,7 +2198,7 @@
    ]
   ]
  },
- "Sub_B3_8CA1": {
+ "HideMenuSpritesAndRestoreScroll": {
   "addr": 36001,
   "bank": 3,
   "instrs": 20,
@@ -2292,7 +2292,7 @@
    ]
   ]
  },
- "Sub_B3_9060": {
+ "WriteSixPaletteEntries": {
   "addr": 36960,
   "bank": 3,
   "instrs": 17,

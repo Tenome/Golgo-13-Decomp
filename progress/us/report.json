@@ -1601,7 +1601,7 @@
      }
     },
     {
-     "name": "Sub_B3_8261",
+     "name": "CalcMenuRowNametableAddr",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1633,7 +1633,7 @@
      }
     },
     {
-     "name": "Sub_B3_881D",
+     "name": "QueueMenuPpuListA",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1649,7 +1649,7 @@
      }
     },
     {
-     "name": "Sub_B3_8825",
+     "name": "QueueMenuPpuListB",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1665,7 +1665,7 @@
      }
     },
     {
-     "name": "Sub_B3_882D",
+     "name": "QueueMenuPpuListC",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1737,7 +1737,7 @@
      }
     },
     {
-     "name": "Sub_B3_8AF4",
+     "name": "LoadFourBytesFromPtr70",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1745,7 +1745,7 @@
      }
     },
     {
-     "name": "Sub_B3_8B08",
+     "name": "StoreSpriteYTileX",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1777,7 +1777,7 @@
      }
     },
     {
-     "name": "Sub_B3_8CA1",
+     "name": "HideMenuSpritesAndRestoreScroll",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1833,7 +1833,7 @@
      }
     },
     {
-     "name": "Sub_B3_9060",
+     "name": "WriteSixPaletteEntries",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {

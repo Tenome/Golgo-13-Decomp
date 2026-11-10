@@ -78,7 +78,7 @@ Bank3Dispatch_0421:
   sta z:Tmp01                  ; $808F
   jmp ($0000)                  ; $8091
 Sub_B3_8094:
-  jsr Sub_B3_8261              ; $8094
+  jsr CalcMenuRowNametableAddr ; $8094
   lda #$00                     ; $8097
   sta $0422                    ; $8099
   inc $0421                    ; $809C
@@ -298,7 +298,7 @@ Sub_B3_825D:
   jsr Sub_B3_9362              ; $825D
 Loc_B3_8260:
   rts                          ; $8260
-Sub_B3_8261:
+CalcMenuRowNametableAddr:
   lda z:ScrollX                ; $8261
   and #$E0                     ; $8263
   lsr a                        ; $8265
@@ -410,15 +410,15 @@ Bank3Dispatch_041C:
   adc #$88                     ; $8816
   sta z:Tmp01                  ; $8818
   jmp ($0000)                  ; $881A
-Sub_B3_881D:
+QueueMenuPpuListA:
   jsr ProcessPpuUpdateList     ; $881D
   .addr Data_B3_884B  ; $8820 inline pointer (data after a JSR)
   jmp Loc_B3_8832              ; $8822
-Sub_B3_8825:
+QueueMenuPpuListB:
   jsr ProcessPpuUpdateList     ; $8825
   .addr Data_B3_8854  ; $8828 inline pointer (data after a JSR)
   jmp Loc_B3_8832              ; $882A
-Sub_B3_882D:
+QueueMenuPpuListC:
   jsr ProcessPpuUpdateList     ; $882D
   .addr Data_B3_885D  ; $8830 inline pointer (data after a JSR)
 Loc_B3_8832:
@@ -466,7 +466,7 @@ Loc_B3_8885:
   lda Data_B3_8CCD,x           ; $8897
   and #$3F                     ; $889A
   bne Loc_B3_88A4              ; $889C
-  jsr Sub_B3_8CA1              ; $889E
+  jsr HideMenuSpritesAndRestoreScroll ; $889E
   jmp Loc_B3_8A3A              ; $88A1
 Loc_B3_88A4:
   lda z:Tmp00                  ; $88A4
@@ -613,7 +613,7 @@ Loc_B3_8998:
   bpl Loc_B3_89D9              ; $89C0
   and #$40                     ; $89C2
   bne Loc_B3_89CC              ; $89C4
-  jsr Sub_B3_8CA1              ; $89C6
+  jsr HideMenuSpritesAndRestoreScroll ; $89C6
   jmp Loc_B3_8A3A              ; $89C9
 Loc_B3_89CC:
   lda #$04                     ; $89CC
@@ -633,7 +633,7 @@ Sub_B3_89DE:
 Loc_B3_89EB:
   cmp #$01                     ; $89EB
   beq Loc_B3_89F5              ; $89ED
-  jsr Sub_B3_8CA1              ; $89EF
+  jsr HideMenuSpritesAndRestoreScroll ; $89EF
   jmp Loc_B3_8A3A              ; $89F2
 Loc_B3_89F5:
   inc $040C                    ; $89F5
@@ -746,9 +746,9 @@ Loc_B3_8AB1:
   lda z:Tmp01                  ; $8AB5
   sta z:$71                    ; $8AB7
   ldy #$00                     ; $8AB9
-  jsr Sub_B3_8AF4              ; $8ABB
+  jsr LoadFourBytesFromPtr70   ; $8ABB
   ldy #$01                     ; $8ABE
-  jsr Sub_B3_8B08              ; $8AC0
+  jsr StoreSpriteYTileX        ; $8AC0
   lda z:Tmp03                  ; $8AC3
   sta z:Tmp02                  ; $8AC5
   lda z:Tmp00                  ; $8AC7
@@ -758,11 +758,11 @@ Loc_B3_8AB1:
   inc z:Tmp00                  ; $8ACF
 Loc_B3_8AD1:
   ldy #$05                     ; $8AD1
-  jsr Sub_B3_8B08              ; $8AD3
+  jsr StoreSpriteYTileX        ; $8AD3
   ldy #$04                     ; $8AD6
-  jsr Sub_B3_8AF4              ; $8AD8
+  jsr LoadFourBytesFromPtr70   ; $8AD8
   ldy #$09                     ; $8ADB
-  jsr Sub_B3_8B08              ; $8ADD
+  jsr StoreSpriteYTileX        ; $8ADD
   lda #$00                     ; $8AE0
   sta $0408                    ; $8AE2
   sta $0409                    ; $8AE5
@@ -772,7 +772,7 @@ Loc_B3_8AEE:
   lda #$00                     ; $8AEE
   sta $041B                    ; $8AF0
   rts                          ; $8AF3
-Sub_B3_8AF4:
+LoadFourBytesFromPtr70:
   lda ($70),y                  ; $8AF4
   sta z:Tmp00                  ; $8AF6
   iny                          ; $8AF8
@@ -785,7 +785,7 @@ Sub_B3_8AF4:
   lda ($70),y                  ; $8B03
   sta z:Tmp03                  ; $8B05
   rts                          ; $8B07
-Sub_B3_8B08:
+StoreSpriteYTileX:
   lda z:Tmp00                  ; $8B08
   sta ($5C),y                  ; $8B0A
   iny                          ; $8B0C
@@ -1007,9 +1007,9 @@ Loc_B3_8C92:
 Loc_B3_8C96:
   lda #$00                     ; $8C96
   sta $041D                    ; $8C98
-  jsr Sub_B3_8CA1              ; $8C9B
+  jsr HideMenuSpritesAndRestoreScroll ; $8C9B
   jmp Loc_B3_8A3A              ; $8C9E
-Sub_B3_8CA1:
+HideMenuSpritesAndRestoreScroll:
   ldy #$00                     ; $8CA1
   lda #$F0                     ; $8CA3
 Loc_B3_8CA5:
@@ -1132,7 +1132,7 @@ Loc_B3_8DBD:
   and #$CF                     ; $8DC9
   sta $0418                    ; $8DCB
   bmi Loc_B3_8DD6              ; $8DCE
-  jsr Sub_B3_8CA1              ; $8DD0
+  jsr HideMenuSpritesAndRestoreScroll ; $8DD0
   jmp Loc_B3_8A3A              ; $8DD3
 Loc_B3_8DD6:
   inc $0418                    ; $8DD6
@@ -1220,7 +1220,7 @@ Loc_B3_8E7A:
   lda $0409                    ; $8E83
   cmp #$03                     ; $8E86
   bcc Loc_B3_8E8D              ; $8E88
-  jsr Sub_B3_8CA1              ; $8E8A
+  jsr HideMenuSpritesAndRestoreScroll ; $8E8A
 Loc_B3_8E8D:
   jmp Loc_B3_8A3A              ; $8E8D
 Sub_B3_8E90:
@@ -1300,7 +1300,7 @@ Loc_B3_8F25:
   sta z:Tmp00                  ; $8F31
   lda #$2B                     ; $8F33
   sta z:Tmp01                  ; $8F35
-  jsr Sub_B3_9060              ; $8F37
+  jsr WriteSixPaletteEntries   ; $8F37
   jsr ProcessPpuUpdateList     ; $8F3A
   .addr Data_B3_908B  ; $8F3D inline pointer (data after a JSR)
   lda #$84                     ; $8F3F
@@ -1443,7 +1443,7 @@ Loc_B3_904A:
   sta $0410                    ; $905C
 Loc_B3_905F:
   rts                          ; $905F
-Sub_B3_9060:
+WriteSixPaletteEntries:
   lda z:PpuCtrlShadow          ; $9060
   and #$FB                     ; $9062
   sta z:PpuCtrlShadow          ; $9064

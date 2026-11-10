@@ -276,5 +276,13 @@
  "D308": "HideObjectSpriteRange",
  "D318": "HideSpritesUntilE0",
  "D86D": "SelectChr1Bank0D",
- "DA77": "FillNametable2Blank"
+ "DA77": "FillNametable2Blank",
+ "3:8261": "CalcMenuRowNametableAddr",
+ "3:881D": "QueueMenuPpuListA",
+ "3:8825": "QueueMenuPpuListB",
+ "3:882D": "QueueMenuPpuListC",
+ "3:8AF4": "LoadFourBytesFromPtr70",
+ "3:8B08": "StoreSpriteYTileX",
+ "3:9060": "WriteSixPaletteEntries",
+ "3:8CA1": "HideMenuSpritesAndRestoreScroll"
 }
