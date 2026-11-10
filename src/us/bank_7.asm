@@ -96,7 +96,7 @@ RunSoundDriver:
   lda #$05                     ; $C0EB
   sta z:MmcPrgShadow           ; $C0ED
   jsr MmcWritePrg              ; $C0EF
-  jsr $A000                    ; $C0F2  -> Sub_B2_A000, SoundDriver
+  jsr $A000                    ; $C0F2  -> Sub_B2_A000, Sub_B4_A000, SoundDriver
   lda $0105                    ; $C0F5
   sta z:MmcPrgShadow           ; $C0F8
   jsr MmcWritePrg              ; $C0FA
@@ -1049,6 +1049,7 @@ Loc_C78C:
   tax                          ; $C7A3
   lda Data_C7DC,x              ; $C7A4
   sta z:$F6                    ; $C7A7
+Data_C7A9:
   lda Data_C7DD,x              ; $C7A9
   sta z:$F7                    ; $C7AC
   ldy #$00                     ; $C7AE

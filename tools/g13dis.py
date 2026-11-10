@@ -60,11 +60,20 @@ IMAGES = []     # RAM code seen executing (config/<ver>/ramcode.json): dict(base
 def build_ram_images():
     f = os.path.join(CONF, 'ramcode.json')
     if not os.path.exists(f): return
-    insns = sorted(set((a, bytes.fromhex(h)) for a, h in json.load(open(f))['insns']))
+    d_ = json.load(open(f))
+    insns = sorted(set((a, bytes.fromhex(h)) for a, h in d_['insns']))
     layers = []                                     # variants: instructions that overlap with different bytes go to another layer
-    for a, b in insns:
+    fits = lambda ly, a, b: all(not (a < a2 + len(b2) and a2 < a + len(b)) or (a == a2 and b == b2) for a2, b2 in ly)
+    done = set()
+    for run in sorted(set(tuple((a, bytes.fromhex(h)) for a, h in r) for r in d_.get('runs', []))):   # instructions of one observed run stay in one variant
         for ly in layers:
-            if all(not (a < a2 + len(b2) and a2 < a + len(b)) or (a == a2 and b == b2) for a2, b2 in ly): ly.append((a, b)); break
+            if all(fits(ly, a, b) for a, b in run): ly.extend(x for x in run if x not in ly); break
+        else: layers.append(list(run))
+        done |= set(run)
+    for a, b in insns:
+        if (a, b) in done: continue
+        for ly in layers:
+            if fits(ly, a, b): ly.append((a, b)); break
         else: layers.append([(a, b)])
     for ly in layers:
         ly.sort(); cl = []

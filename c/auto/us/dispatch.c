@@ -228,6 +228,7 @@ static int bank1(uint16_t a) {
     case 0x95E6: Sub_B1_95E6(); return 1;
     case 0x95F4: Sub_B1_95F4(); return 1;
     case 0x960A: Sub_B1_960A(); return 1;
+    case 0x9643: Sub_B1_9643(); return 1;
     case 0x9694: CalcViewEdgeColumn(); return 1;
     case 0x96A4: Sub_B1_96A4(); return 1;
     case 0x96BE: Sub_B1_96BE(); return 1;
@@ -252,6 +253,10 @@ static int bank1(uint16_t a) {
     case 0x9DEE: Sub_B1_9DEE(); return 1;
     case 0x9DFC: Sub_B1_9DFC(); return 1;
     case 0x9E20: Sub_B1_9E20(); return 1;
+    case 0x9EE8: Sub_B1_9EE8(); return 1;
+    case 0x9F53: Sub_B1_9F53(); return 1;
+    case 0x9F61: Sub_B1_9F61(); return 1;
+    case 0x9F68: Sub_B1_9F68(); return 1;
     case 0xA007: Sub_B1_A007(); return 1;
     case 0xA032: Sub_B1_A032(); return 1;
     case 0xA957: Sub_B1_A957(); return 1;
@@ -432,6 +437,11 @@ static int bank4(uint16_t a) {
     case 0x8BFB: CheckLowLifeSound(); return 1;
     case 0x8C18: Sub_B4_8C18(); return 1;
     case 0x8C1E: Sub_B4_8C1E(); return 1;
+    case 0x8CCB: Sub_B4_8CCB(); return 1;
+    case 0x8CD8: Sub_B4_8CD8(); return 1;
+    case 0x8CE1: Sub_B4_8CE1(); return 1;
+    case 0x8CEE: Loc_B4_8CEE(); return 1;
+    case 0x8CFD: Loc_B4_8CFD(); return 1;
     case 0x8D25: Sub_B4_8D25(); return 1;
     case 0x8E06: HideCursorSprites(); return 1;
     case 0x8E13: Sub_B4_8E13(); return 1;
@@ -441,18 +451,26 @@ static int bank4(uint16_t a) {
     case 0x8EA8: Bank4StateC_06(); return 1;
     case 0x8EB4: Bank4StateC_0A(); return 1;
     case 0x8EBE: Bank4StateC_11(); return 1;
-    case 0x8ECB: Loc_B4_8ECB(); return 1;
+    case 0x8ECB: Sub_B4_8ECB(); return 1;
     case 0x8EDD: Sub_B4_8EDD(); return 1;
+    case 0x8F71: Sub_B4_8F71(); return 1;
     case 0x8FAB: AllocObjectSlot(); return 1;
-    case 0x8FBB: Loc_B4_8FBB(); return 1;
+    case 0x8FBB: Sub_B4_8FBB(); return 1;
+    case 0x8FBD: Sub_B4_8FBD(); return 1;
+    case 0x8FC5: Sub_B4_8FC5(); return 1;
     case 0x8FCD: Sub_B4_8FCD(); return 1;
     case 0x9006: Sub_B4_9006(); return 1;
     case 0x9049: Sub_B4_9049(); return 1;
+    case 0x9070: Sub_B4_9070(); return 1;
+    case 0x9071: Sub_B4_9071(); return 1;
     case 0x9074: Sub_B4_9074(); return 1;
     case 0x909E: CopyPpuListStubToRam(); return 1;
+    case 0x90AA: Sub_B4_90AA(); return 1;
     case 0x90BE: DisableSpriteBgRendering(); return 1;
+    case 0x90C5: Sub_B4_90C5(); return 1;
+    case 0x90CF: Sub_B4_90CF(); return 1;
     case 0x90D9: HideSpritesWithTileFE(); return 1;
-    case 0x90EE: Loc_B4_90EE(); return 1;
+    case 0x90EE: Sub_B4_90EE(); return 1;
     case 0x915B: Sub_B4_915B(); return 1;
     case 0x917E: Sub_B4_917E(); return 1;
     case 0x956B: InitPaletteBuffer(); return 1;
@@ -475,22 +493,108 @@ static int bank4(uint16_t a) {
     case 0x9F2F: Sub_B4_9F2F(); return 1;
     case 0x9F7C: Sub_B4_9F7C(); return 1;
     case 0x9F94: Sub_B4_9F94(); return 1;
-    case 0x9FBE: Loc_B4_9FBE(); return 1;
+    case 0x9FBE: Sub_B4_9FBE(); return 1;
     case 0x9FD3: Sub_B4_9FD3(); return 1;
+    case 0xA000: Sub_B4_A000(); return 1;
     case 0xA01B: Sub_B4_A01B(); return 1;
+    case 0xA048: Sub_B4_A048(); return 1;
     case 0xA04D: SelectPpuListA(); return 1;
+    case 0xA063: Sub_B4_A063(); return 1;
     case 0xA068: SelectPpuListB(); return 1;
+    case 0xA07E: Sub_B4_A07E(); return 1;
     case 0xA083: SelectPpuListC(); return 1;
     case 0xA09E: SelectPpuListD(); return 1;
     case 0xA0D9: Sub_B4_A0D9(); return 1;
     case 0xA114: Sub_B4_A114(); return 1;
     case 0xA15F: Sub_B4_A15F(); return 1;
+    case 0xA20A: Sub_B4_A20A(); return 1;
+    case 0xA271: Sub_B4_A271(); return 1;
+    case 0xA294: Sub_B4_A294(); return 1;
+    case 0xA2AF: Sub_B4_A2AF(); return 1;
+    case 0xA2BF: Sub_B4_A2BF(); return 1;
+    case 0xA311: Sub_B4_A311(); return 1;
+    case 0xA328: Sub_B4_A328(); return 1;
+    case 0xA39C: Sub_B4_A39C(); return 1;
+    case 0xA3B8: Sub_B4_A3B8(); return 1;
+    case 0xA40E: Sub_B4_A40E(); return 1;
+    case 0xA470: Sub_B4_A470(); return 1;
+    case 0xA478: Sub_B4_A478(); return 1;
+    case 0xA483: Sub_B4_A483(); return 1;
+    case 0xA4A0: Loc_B4_A4A0(); return 1;
+    case 0xA4C6: Loc_B4_A4C6(); return 1;
+    case 0xA4DF: Sub_B4_A4DF(); return 1;
+    case 0xA4E7: Sub_B4_A4E7(); return 1;
+    case 0xA500: Loc_B4_A500(); return 1;
+    case 0xA526: Loc_B4_A526(); return 1;
+    case 0xA9AB: Sub_B4_A9AB(); return 1;
+    case 0xA9D9: Sub_B4_A9D9(); return 1;
+    case 0xA9F6: Sub_B4_A9F6(); return 1;
+    case 0xAA01: Sub_B4_AA01(); return 1;
+    case 0xAA07: Sub_B4_AA07(); return 1;
+    case 0xAA48: Sub_B4_AA48(); return 1;
+    case 0xAA84: Sub_B4_AA84(); return 1;
+    case 0xAA88: Sub_B4_AA88(); return 1;
+    case 0xAA99: Sub_B4_AA99(); return 1;
+    case 0xAADB: Sub_B4_AADB(); return 1;
+    case 0xAAFC: Sub_B4_AAFC(); return 1;
+    case 0xAB14: Sub_B4_AB14(); return 1;
+    case 0xAB20: Sub_B4_AB20(); return 1;
+    case 0xAB41: Sub_B4_AB41(); return 1;
+    case 0xAB5E: Sub_B4_AB5E(); return 1;
+    case 0xAB7D: Sub_B4_AB7D(); return 1;
+    case 0xAB93: Sub_B4_AB93(); return 1;
+    case 0xABBA: Sub_B4_ABBA(); return 1;
+    case 0xAC25: Sub_B4_AC25(); return 1;
+    case 0xAC2B: Sub_B4_AC2B(); return 1;
+    case 0xAC2D: Sub_B4_AC2D(); return 1;
+    case 0xAC55: Sub_B4_AC55(); return 1;
+    case 0xAC6A: Loc_B4_AC6A(); return 1;
+    case 0xAC94: Loc_B4_AC94(); return 1;
+    case 0xACBE: Loc_B4_ACBE(); return 1;
+    case 0xACDF: Sub_B4_ACDF(); return 1;
+    case 0xACED: Sub_B4_ACED(); return 1;
+    case 0xAD05: Sub_B4_AD05(); return 1;
+    case 0xAE25: Sub_B4_AE25(); return 1;
+    case 0xAE55: Sub_B4_AE55(); return 1;
+    case 0xAE6A: Sub_B4_AE6A(); return 1;
+    case 0xAE72: Loc_B4_AE72(); return 1;
+    case 0xAEC5: Sub_B4_AEC5(); return 1;
+    case 0xAECB: Sub_B4_AECB(); return 1;
+    case 0xAEEE: Sub_B4_AEEE(); return 1;
+    case 0xAF15: Sub_B4_AF15(); return 1;
+    case 0xAF28: Sub_B4_AF28(); return 1;
+    case 0xAF38: Sub_B4_AF38(); return 1;
+    case 0xAF7E: Sub_B4_AF7E(); return 1;
+    case 0xAF8F: Sub_B4_AF8F(); return 1;
+    case 0xAF9D: Sub_B4_AF9D(); return 1;
+    case 0xAFB1: Sub_B4_AFB1(); return 1;
     case 0xAFE8: Sub_B4_AFE8(); return 1;
+    case 0xB003: Sub_B4_B003(); return 1;
+    case 0xB022: Sub_B4_B022(); return 1;
+    case 0xB03F: Sub_B4_B03F(); return 1;
+    case 0xB08D: Sub_B4_B08D(); return 1;
+    case 0xB0A6: Sub_B4_B0A6(); return 1;
+    case 0xB0AF: Sub_B4_B0AF(); return 1;
+    case 0xB0B2: Sub_B4_B0B2(); return 1;
+    case 0xB0C9: Sub_B4_B0C9(); return 1;
+    case 0xB0D9: Loc_B4_B0D9(); return 1;
+    case 0xB0F2: Sub_B4_B0F2(); return 1;
+    case 0xB12E: Sub_B4_B12E(); return 1;
+    case 0xB143: Sub_B4_B143(); return 1;
+    case 0xB39F: Sub_B4_B39F(); return 1;
+    case 0xB3B2: Sub_B4_B3B2(); return 1;
+    case 0xB3BC: Sub_B4_B3BC(); return 1;
+    case 0xB3C2: Sub_B4_B3C2(); return 1;
+    case 0xB3C7: Sub_B4_B3C7(); return 1;
+    case 0xB3DA: Sub_B4_B3DA(); return 1;
+    case 0xB3EE: Sub_B4_B3EE(); return 1;
+    case 0xB3F2: Sub_B4_B3F2(); return 1;
+    case 0xB3FB: Sub_B4_B3FB(); return 1;
     case 0xB402: AddObjectOfType(); return 1;
     case 0xB415: Loc_B4_B415(); return 1;
-    case 0xB42A: Loc_B4_B42A(); return 1;
-    case 0xB43D: Loc_B4_B43D(); return 1;
-    case 0xB44B: Loc_B4_B44B(); return 1;
+    case 0xB42A: Sub_B4_B42A(); return 1;
+    case 0xB43D: Sub_B4_B43D(); return 1;
+    case 0xB44B: Sub_B4_B44B(); return 1;
     case 0xB474: UpdateAllObjectHandlers(); return 1;
     case 0xB4B2: Sub_B4_B4B2(); return 1;
     case 0xB4BB: DispatchObjectHandler(); return 1;
@@ -500,6 +604,7 @@ static int bank4(uint16_t a) {
 static int bank5(uint16_t a) {
     switch (a) {
     case 0x8000: Loc_B5_8000(); return 1;
+    case 0x800D: Sub_B5_800D(); return 1;
     case 0x8010: Bank5Nmi(); return 1;
     case 0x804F: Bank5SceneDispatch(); return 1;
     case 0x8139: Bank5Scene_00(); return 1;
@@ -754,10 +859,20 @@ static int bank6(uint16_t a) {
     return 0;
 }
 static int ram_match_20000(void) {
+    if (g_ram[(0x0000) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x0001) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x0002) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0003) & 0x7FF] != 0x98) return 0;
+    if (g_ram[(0x0004) & 0x7FF] != 0xC5) return 0;
+    return 1;
+}
+static int ram_match_20005(void) {
     if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
-    if (g_ram[(0x0006) & 0x7FF] != 0x00) return 0;
-    if (g_ram[(0x0007) & 0x7FF] != 0xC1) return 0;
-    if (g_ram[(0x000A) & 0x7FF] != 0x60) return 0;
+    if (g_ram[(0x0006) & 0x7FF] != 0x0A) return 0;
+    if (g_ram[(0x0007) & 0x7FF] != 0x80) return 0;
+    if (g_ram[(0x0008) & 0x7FF] != 0x4C) return 0;
+    if (g_ram[(0x0009) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x000A) & 0x7FF] != 0xC5) return 0;
     return 1;
 }
 static int ram_match_24000(void) {
@@ -890,16 +1005,56 @@ static int ram_match_2C000(void) {
     if (g_ram[(0x05D1) & 0x7FF] != 0xC5) return 0;
     return 1;
 }
+static int ram_match_30000(void) {
+    if (g_ram[(0x0000) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x0001) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x0002) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0003) & 0x7FF] != 0x98) return 0;
+    if (g_ram[(0x0004) & 0x7FF] != 0xC5) return 0;
+    return 1;
+}
+static int ram_match_30005(void) {
+    if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0006) & 0x7FF] != 0x0D) return 0;
+    if (g_ram[(0x0007) & 0x7FF] != 0x80) return 0;
+    if (g_ram[(0x0008) & 0x7FF] != 0x4C) return 0;
+    if (g_ram[(0x0009) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x000A) & 0x7FF] != 0xC5) return 0;
+    return 1;
+}
+static int ram_match_34000(void) {
+    if (g_ram[(0x0520) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0521) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0522) & 0x7FF] != 0xC1) return 0;
+    if (g_ram[(0x0525) & 0x7FF] != 0x60) return 0;
+    return 1;
+}
+static int ram_match_38000(void) {
+    if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0006) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0007) & 0x7FF] != 0xC1) return 0;
+    if (g_ram[(0x000A) & 0x7FF] != 0x60) return 0;
+    return 1;
+}
 static int ram_images(uint16_t a) {
     switch (a) {
+    case 0x0000:
+        if (ram_match_20000()) { Ram_0000_0(); return 1; }
+        if (ram_match_30000()) { Ram_0000_4(); return 1; }
+        break;
     case 0x0005:
-        if (ram_match_20000()) { Ram_0005_0(); return 1; }
+        if (ram_match_20005()) { Ram_0005_0(); return 1; }
+        if (ram_match_30005()) { Ram_0005_4(); return 1; }
+        if (ram_match_38000()) { Ram_0005_6(); return 1; }
         break;
     case 0x0513:
         if (ram_match_24000()) { Ram_0513_1(); return 1; }
         break;
     case 0x051E:
         if (ram_match_2400B()) { Ram_051E_1(); return 1; }
+        break;
+    case 0x0520:
+        if (ram_match_34000()) { Ram_0520_5(); return 1; }
         break;
     case 0x0568:
         if (ram_match_28000()) { Ram_0568_2(); return 1; }

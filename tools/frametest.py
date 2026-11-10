@@ -13,6 +13,9 @@ ap.add_argument('--out-exec', help='write the ROM code the simulator executed (P
 ap.add_argument('--dll', help='use a separate DLL path (parallel runs)')
 ap.add_argument('--dump-ram', help='append a snapshot of CPU RAM to this file every --dump-every frames (realistic starting states for tools/autotest.py --snaps)')
 ap.add_argument('--dump-every', type=int, default=40)
+ap.add_argument('--dump-from', type=int, default=0, help='with --dump-ram: only frames >= this')
+ap.add_argument('--fuzz-state', type=int, default=0, help='every N frames (after frame 1500) overwrite scene variables (PaletteSetIndex, StageIndex, GameState, SceneState, transition request) on both sides to reach code the random route never gets to')
+ap.add_argument('--out-first', help='write {prg offset: [frame, GameState, PaletteSetIndex, StageIndex, bank]} for every ROM instruction the first time it ran')
 a = ap.parse_args()
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..'))
 sys.argv = [sys.argv[0], '--version', a.version]; sys.path.insert(0, HERE)
@@ -71,13 +74,17 @@ def learn_cov():
     if new != old: json.dump(sorted(new), open(COV, 'w')); return len(new) - len(old)
     return 0
 def learn():
-    old = set(map(tuple, json.load(open(RC))['insns'])) if os.path.exists(RC) else set()
-    new = old | cpu.ram_log
-    if new != old: json.dump({'insns': sorted(new)}, open(RC, 'w')); return len(new) - len(old)
+    d = json.load(open(RC)) if os.path.exists(RC) else {'insns': []}
+    old = set(map(tuple, d['insns'])); oldruns = set(tuple(map(tuple, r)) for r in d.get('runs', []))
+    new = old | cpu.ram_log; newruns = oldruns | cpu.ram_runs
+    if new != old or newruns != oldruns:
+        json.dump({'insns': sorted(new), 'runs': [list(map(list, r)) for r in sorted(newruns)]}, open(RC, 'w'))
+        return len(new) - len(old) + len(newruns) - len(oldruns)
     return 0
 if not compare('after reset'): sys.exit(1)
 seen = set()
 import random
+first = {}; known = set(); next_fz = 1500; fz = random.Random(a.seed * 7919 + 1)
 rnd = random.Random(a.seed); style = rnd.choice([(0.2, 0.5), (0.4, 0.3), (0.6, 0.2)]);  pad_c = ctypes.c_uint8.in_dll(lib, 'g_pad'); pad = 0
 nmi_c = fn('Nmi')
 for frame in range(a.frames):
@@ -86,6 +93,11 @@ for frame in range(a.frames):
         for bit, p_ in ((0x80, style[1]), (0x40, 0.1), (0x10, 0.15), (0x20, 0.1), (0x01, style[0]), (0x02, 0.2), (0x04, 0.02)):
             if rnd.random() < p_: pad |= bit
         if rnd.random() < 0.12: pad |= 0x08
+    if a.fuzz_state and frame >= next_fz and cpu.ram[0xFB] == 0 and cpu.ram[0x14] >= 7:
+        next_fz = frame + a.fuzz_state
+        tgt = fz.choice([fz.randrange(0x78, 0x90)] * 3 + [fz.randrange(0x50, 0x78), fz.randrange(0x90, 0xA8), fz.randrange(0, 0x50)])
+        pk = [(0x28, 1), (0x29, tgt), (0x2A, 0), (0x14, 0x0C), (0x0100, fz.randrange(0, 8))]       # ask for a scene change the way the street code does
+        for ad, vl in pk: cpu.ram[ad] = vl; ram_c[ad] = vl
     cpu.pad = pad; pad_c.value = pad
     if a.assist:                                         # same data-only help on both sides: life >= 200, ammo >= 32
         for addr_, mn_ in ((0x38, 0xC8), (0x3A, 0x20)):
@@ -95,7 +107,13 @@ for frame in range(a.frames):
     # interrupt entry in the simulator: push PC and P, jump to the NMI vector, run until the RTI returns to the idle loop
     cpu.push(IDLE >> 8); cpu.push(IDLE & 0xFF); cpu.push(cpu.getp(0x20)); cpu.i = 1; cpu.pc = NMI; steps = 0
     while cpu.pc != IDLE and steps < 2_000_000: cpu.step(); steps += 1
-    if cpu.pc != IDLE: print(f'frame {frame}: the simulator did not return from NMI'); sys.exit(1)
+    if cpu.pc != IDLE:
+        print(f'frame {frame}: the simulator did not return from NMI' + (' (forced state; run stops here)' if a.fuzz_state else ''))
+        if a.fuzz_state:
+            if a.out_first: json.dump(first, open(a.out_first, 'w'))
+            if a.out_exec: json.dump(sorted(cpu.exec_log), open(a.out_exec, 'w'))
+            sys.exit(5)
+        sys.exit(1)
     # C: same, keeping the I/O log per frame (g_iolog_n reset, MMC1 shift state kept by core.c)
     log_n.value = 0
     rc = run_fn(nmi_c, 5_000_000)
@@ -111,9 +129,13 @@ for frame in range(a.frames):
     if rc: print(f'frame {frame}: C aborted with code {rc}' + (f' (unknown call target ${ctypes.c_uint16.in_dll(lib, "g_unknown_addr").value:04X} in bank {bank_c.value})' if rc == 4 else '') + (f' (JSR at ${ctypes.c_uint16.in_dll(lib, "g_ret_exp").value - 2:04X} returned to ${ctypes.c_uint16.in_dll(lib, "g_ret_got").value + 1:04X}, bank {bank_c.value})' if rc == 5 else '')); sys.exit(1)
     if not compare(f'frame {frame}'): sys.exit(1)
     seen.add((cpu.ram[0x14], cpu.ram[0x0100], cpu.ram[0xFB]))
-    if a.dump_ram and frame % a.dump_every == 0:
+    if len(cpu.exec_log) != len(known):
+        for o in cpu.exec_log - known: first[o] = [frame, cpu.ram[0x14], cpu.ram[0x17], cpu.ram[0x0100], cpu.ram[0xFB]]
+        known = set(cpu.exec_log)
+    if a.dump_ram and frame % a.dump_every == 0 and frame >= a.dump_from:
         with open(a.dump_ram, 'ab') as df: df.write(bytes(cpu.ram))
     cpu.io_writes[:] = cpu.io_writes
+if a.out_first: json.dump(first, open(a.out_first, 'w'))
 if a.out_exec: json.dump(sorted(cpu.exec_log), open(a.out_exec, 'w'))
 print('states seen (GameState, StageIndex, PRG bank):', sorted(seen)[:40], '...' if len(seen) > 40 else '')
 print(f'[{a.version}] {a.frames} frames from power-on: RAM, I/O writes and PRG bank identical after every NMI')

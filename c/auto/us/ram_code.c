@@ -3,10 +3,17 @@
 #include "names.h"
 #include "decls.h"
 
+void Ram_0000_0(void) {  /* $0000 bank 8 */
+  uint8_t sp0 = R.sp;
+  LDA(0x05);                                                                             /* $0000 lda */
+  push16(0x0004); MmcWritePrgA(); UNW(); ret_check(0x0004);                              /* $0002 jsr */
+  { call_addr(0x0005); return; }
+}
+
 void Ram_0005_0(void) {  /* $0005 bank 8 */
   uint8_t sp0 = R.sp;
-  push16(0x0007); ProcessPpuUpdateList(); UNW(); ret_check(0x0009);                      /* $0005 jsr */
-  RTS_RET(sp0);                                                                          /* $000A rts */
+  push16(0x0007); call_addr(0x800A); UNW(); ret_check(0x0007);                           /* $0005 jsr */
+  { MmcWritePrg(); return; }                                                             /* $0008 jmp */
 }
 
 void Ram_0513_1(void) {  /* $0513 bank 9 */
@@ -73,5 +80,30 @@ void Ram_05B8_3(void) {  /* $05B8 bank 11 */
   STA(0x0522);                                                                           /* $05C9 sta */
   push16(0x05CE); call_addr(0x051E); UNW(); ret_check(0x05CE);                           /* $05CC jsr */
   { MmcWritePrg(); return; }                                                             /* $05CF jmp */
+}
+
+void Ram_0000_4(void) {  /* $0000 bank 12 */
+  uint8_t sp0 = R.sp;
+  LDA(0x05);                                                                             /* $0000 lda */
+  push16(0x0004); MmcWritePrgA(); UNW(); ret_check(0x0004);                              /* $0002 jsr */
+  { call_addr(0x0005); return; }
+}
+
+void Ram_0005_4(void) {  /* $0005 bank 12 */
+  uint8_t sp0 = R.sp;
+  push16(0x0007); call_addr(0x800D); UNW(); ret_check(0x0007);                           /* $0005 jsr */
+  { MmcWritePrg(); return; }                                                             /* $0008 jmp */
+}
+
+void Ram_0520_5(void) {  /* $0520 bank 13 */
+  uint8_t sp0 = R.sp;
+  push16(0x0522); ProcessPpuUpdateList(); UNW(); ret_check(0x0524);                      /* $0520 jsr */
+  RTS_RET(sp0);                                                                          /* $0525 rts */
+}
+
+void Ram_0005_6(void) {  /* $0005 bank 14 */
+  uint8_t sp0 = R.sp;
+  push16(0x0007); ProcessPpuUpdateList(); UNW(); ret_check(0x0009);                      /* $0005 jsr */
+  RTS_RET(sp0);                                                                          /* $000A rts */
 }
 

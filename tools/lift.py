@@ -33,7 +33,7 @@ for v_, nm_ in zip([g.PRG[0x1FFFA + i * 2] | g.PRG[0x1FFFB + i * 2] << 8 for i i
 # ---- entries -------------------------------------------------------------------------------------------------------
 entries = set()
 for p in labels:
-    if code[p] == 'S' and g.KIND.get(p) == 'sub': entries.add(p)
+    if (code[p] == 'S' or p in CONF) and g.KIND.get(p) == 'sub': entries.add(p)
 for key in names:
     try: p = g.parse_loc(key) if ':' in key else g.p_of(7, int(key, 16))
     except ValueError: continue
@@ -270,7 +270,7 @@ def lift_function(entry):
             ft = p + l + inline_skip(p, body[p])
             if ft in body:
                 if nxt != ft: need_label.add(ft); extra = f' goto {label(ft)};'; XGOTO[p] = label(ft)
-            elif ft in entries and ft != entry: extra = f' {{ {fname(ft)}(); return; }}'; XTAIL[p] = extra.strip()
+            elif ft in entries and ft != entry: extra = f' {{ call_addr(0x{g.addr_of(ft):04X}); return; }}' if ft >= 0x20000 else f' {{ {fname(ft)}(); return; }}'; XTAIL[p] = extra.strip()   # RAM images: pick the variant matching RAM at run time
             else: reason = reason or f'falls off at ${g.addr_of(p):04X}'
         BASE[p] = stmts[p]
         stmts[p] = stmts[p] + extra

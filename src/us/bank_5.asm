@@ -6,7 +6,9 @@
   lda #$80                     ; $8001
   sta Data_B5_BFFD             ; $8003
   jmp Reset                    ; $8006
-  .incbin "prg_bank_5.bin", $0009, $7  ; $8009
+  .incbin "prg_bank_5.bin", $0009, $4  ; $8009
+Sub_B5_800D:
+  jmp Loc_B5_BDF9              ; $800D
 Bank5Nmi:
   lda PPU_STATUS               ; $8010
   lda z:PpuCtrlShadow          ; $8013
@@ -3013,6 +3015,61 @@ Data_B5_A5A6:
   .incbin "prg_bank_5.bin", $31A6, $400  ; $B1A6
   .incbin "prg_bank_5.bin", $35A6, $400  ; $B5A6
   .incbin "prg_bank_5.bin", $39A6, $400  ; $B9A6
-  .incbin "prg_bank_5.bin", $3DA6, $257  ; $BDA6
+  .incbin "prg_bank_5.bin", $3DA6, $53  ; $BDA6
+Loc_B5_BDF9:
+  lda z:PpuCtrlShadow          ; $BDF9
+  ora #$02                     ; $BDFB
+  sta z:PpuCtrlShadow          ; $BDFD
+  ldx z:$81                    ; $BDFF
+  dex                          ; $BE01
+  beq Loc_B5_BE08              ; $BE02
+  dex                          ; $BE04
+  beq Loc_B5_BE29              ; $BE05
+  rts                          ; $BE07
+Loc_B5_BE08:
+  ldx #$07                     ; $BE08
+Loc_B5_BE0A:
+  lda Data_B5_BE42,x           ; $BE0A
+  sta $0210,x                  ; $BE0D
+  dex                          ; $BE10
+  bpl Loc_B5_BE0A              ; $BE11
+  lda #$F0                     ; $BE13
+  sta $0218                    ; $BE15
+  sta $021C                    ; $BE18
+  ldx #$57                     ; $BE1B
+Loc_B5_BE1D:
+  lda Data_B5_BE5A,x           ; $BE1D
+  sta $0220,x                  ; $BE20
+  dex                          ; $BE23
+  bpl Loc_B5_BE1D              ; $BE24
+  jmp Loc_B5_BF2A              ; $BE26
+Loc_B5_BE29:
+  ldx #$0F                     ; $BE29
+Loc_B5_BE2B:
+  lda Data_B5_BE4A,x           ; $BE2B
+  sta $0210,x                  ; $BE2E
+  dex                          ; $BE31
+  bpl Loc_B5_BE2B              ; $BE32
+  ldx #$77                     ; $BE34
+Loc_B5_BE36:
+  lda Data_B5_BEB2,x           ; $BE36
+  sta $0220,x                  ; $BE39
+  dex                          ; $BE3C
+  bpl Loc_B5_BE36              ; $BE3D
+  jmp Loc_B5_BF2A              ; $BE3F
+Data_B5_BE42:
+  .incbin "prg_bank_5.bin", $3E42, $8  ; $BE42
+Data_B5_BE4A:
+  .incbin "prg_bank_5.bin", $3E4A, $10  ; $BE4A
+Data_B5_BE5A:
+  .incbin "prg_bank_5.bin", $3E5A, $58  ; $BE5A
+Data_B5_BEB2:
+  .incbin "prg_bank_5.bin", $3EB2, $78  ; $BEB2
+Loc_B5_BF2A:
+  jsr ProcessPpuUpdateList     ; $BF2A
+  .addr Data_B5_BF30  ; $BF2D inline pointer (data after a JSR)
+  rts                          ; $BF2F
+Data_B5_BF30:
+  .incbin "prg_bank_5.bin", $3F30, $CD  ; $BF30
 Data_B5_BFFD:
   .incbin "prg_bank_5.bin", $3FFD, $3  ; $BFFD
