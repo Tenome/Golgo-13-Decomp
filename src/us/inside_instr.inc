@@ -1,0 +1,19 @@
+; labels that point inside an instruction
+Data_B1_8042 = $8042
+Data_B1_8DD0 = $8DD0
+Data_B1_AB9E = $AB9E
+Data_B4_80C6 = $80C6
+Data_B4_85B8 = $85B8
+Data_B4_8E37 = $8E37
+Loc_B4_9F44 = $9F44
+Data_B5_8062 = $8062
+Data_B5_89D2 = $89D2
+Data_B5_8AF4 = $8AF4
+Data_B5_A004 = $A004
+Data_B5_A104 = $A104
+Loc_B5_A139 = $A139
+Data_CD00 = $CD00
+Data_DBDE = $DBDE
+Data_FE5C = $FE5C
+Data_FFFD = $FFFD
+Data_FFFF = $FFFF

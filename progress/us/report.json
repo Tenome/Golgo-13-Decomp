@@ -1,0 +1,6113 @@
+{
+ "measures": {
+  "fuzzy_match_percent": 100.0,
+  "total_code": "34291",
+  "matched_code": "34291",
+  "matched_code_percent": 100.0,
+  "total_data": "227853",
+  "matched_data": "227853",
+  "matched_data_percent": 100.0,
+  "total_functions": 718,
+  "matched_functions": 718,
+  "matched_functions_percent": 100.0,
+  "complete_code": "34291",
+  "complete_code_percent": 100.0,
+  "complete_data": "227853",
+  "complete_data_percent": 100.0,
+  "total_units": 9,
+  "complete_units": 9
+ },
+ "units": [
+  {
+   "name": "main/bank_0",
+   "measures": {
+    "fuzzy_match_percent": 100.0,
+    "total_code": "125",
+    "matched_code": "125",
+    "matched_code_percent": 100.0,
+    "total_data": "16259",
+    "matched_data": "16259",
+    "matched_data_percent": 100.0,
+    "total_functions": 39,
+    "matched_functions": 39,
+    "matched_functions_percent": 100.0,
+    "complete_code": "125",
+    "complete_code_percent": 100.0,
+    "complete_data": "16259",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".text",
+     "size": "125",
+     "fuzzy_match_percent": 100.0
+    },
+    {
+     "name": ".data",
+     "size": "16259",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [
+    {
+     "name": "Loc_B0_8000",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16"
+     }
+    },
+    {
+     "name": "Loc_B0_8010",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "32"
+     }
+    },
+    {
+     "name": "Loc_B0_8014",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "36"
+     }
+    },
+    {
+     "name": "Loc_B0_8016",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "38"
+     }
+    },
+    {
+     "name": "Loc_B0_801A",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "42"
+     }
+    },
+    {
+     "name": "Loc_B0_801E",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "46"
+     }
+    },
+    {
+     "name": "Loc_B0_8024",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52"
+     }
+    },
+    {
+     "name": "Loc_B0_84F1",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1281"
+     }
+    },
+    {
+     "name": "Loc_B0_84F7",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1287"
+     }
+    },
+    {
+     "name": "Loc_B0_84FB",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1291"
+     }
+    },
+    {
+     "name": "Loc_B0_8505",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1301"
+     }
+    },
+    {
+     "name": "Loc_B0_8508",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1304"
+     }
+    },
+    {
+     "name": "Loc_B0_850B",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1307"
+     }
+    },
+    {
+     "name": "Loc_B0_8513",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1315"
+     }
+    },
+    {
+     "name": "Loc_B0_8525",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1333"
+     }
+    },
+    {
+     "name": "Loc_B0_8558",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1384"
+     }
+    },
+    {
+     "name": "Loc_B0_855B",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1387"
+     }
+    },
+    {
+     "name": "Loc_B0_8563",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1395"
+     }
+    },
+    {
+     "name": "Loc_B0_856C",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1404"
+     }
+    },
+    {
+     "name": "Loc_B0_8571",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1409"
+     }
+    },
+    {
+     "name": "Loc_B0_857B",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1419"
+     }
+    },
+    {
+     "name": "Loc_B0_857E",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1422"
+     }
+    },
+    {
+     "name": "Loc_B0_8581",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1425"
+     }
+    },
+    {
+     "name": "Loc_B0_8588",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1432"
+     }
+    },
+    {
+     "name": "Loc_B0_858D",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1437"
+     }
+    },
+    {
+     "name": "Loc_B0_8591",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1441"
+     }
+    },
+    {
+     "name": "Loc_B0_8593",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1443"
+     }
+    },
+    {
+     "name": "Loc_B0_8596",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1446"
+     }
+    },
+    {
+     "name": "Loc_B0_859F",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1455"
+     }
+    },
+    {
+     "name": "Loc_B0_85A8",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1464"
+     }
+    },
+    {
+     "name": "Loc_B0_85B0",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1472"
+     }
+    },
+    {
+     "name": "Loc_B0_85B6",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1478"
+     }
+    },
+    {
+     "name": "Loc_B0_85BC",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1484"
+     }
+    },
+    {
+     "name": "Loc_B0_86F2",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1794"
+     }
+    },
+    {
+     "name": "Loc_B0_86F7",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1799"
+     }
+    },
+    {
+     "name": "Loc_B0_86F9",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1801"
+     }
+    },
+    {
+     "name": "Loc_B0_86FB",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "1803"
+     }
+    },
+    {
+     "name": "Loc_B0_AB8F",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "11167"
+     }
+    },
+    {
+     "name": "Loc_B0_ABF3",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "11267"
+     }
+    }
+   ],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/bank_0.asm"
+   }
+  },
+  {
+   "name": "main/bank_1",
+   "measures": {
+    "fuzzy_match_percent": 100.0,
+    "total_code": "5422",
+    "matched_code": "5422",
+    "matched_code_percent": 100.0,
+    "total_data": "10962",
+    "matched_data": "10962",
+    "matched_data_percent": 100.0,
+    "total_functions": 103,
+    "matched_functions": 103,
+    "matched_functions_percent": 100.0,
+    "complete_code": "5422",
+    "complete_code_percent": 100.0,
+    "complete_data": "10962",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".text",
+     "size": "5422",
+     "fuzzy_match_percent": 100.0
+    },
+    {
+     "name": ".data",
+     "size": "10962",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [
+    {
+     "name": "Loc_B1_8000",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16400"
+     }
+    },
+    {
+     "name": "Bank1Nmi",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16416"
+     }
+    },
+    {
+     "name": "Sub_B1_802F",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16447"
+     }
+    },
+    {
+     "name": "Sub_B1_8049",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16473"
+     }
+    },
+    {
+     "name": "Sub_B1_804F",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16479"
+     }
+    },
+    {
+     "name": "Sub_B1_8054",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16484"
+     }
+    },
+    {
+     "name": "Sub_B1_805D",
+     "size": "72",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16493"
+     }
+    },
+    {
+     "name": "Sub_B1_80A5",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16565"
+     }
+    },
+    {
+     "name": "Sub_B1_80D1",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16609"
+     }
+    },
+    {
+     "name": "Sub_B1_80DC",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16620"
+     }
+    },
+    {
+     "name": "Sub_B1_80FD",
+     "size": "46",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16653"
+     }
+    },
+    {
+     "name": "Sub_B1_812B",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16699"
+     }
+    },
+    {
+     "name": "Sub_B1_8146",
+     "size": "145",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "16726"
+     }
+    },
+    {
+     "name": "Sub_B1_83D5",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "17381"
+     }
+    },
+    {
+     "name": "Loc_B1_83DA",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "17386"
+     }
+    },
+    {
+     "name": "Loc_B1_8407",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "17431"
+     }
+    },
+    {
+     "name": "Loc_B1_840C",
+     "size": "60",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "17436"
+     }
+    },
+    {
+     "name": "Sub_B1_85A0",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "17840"
+     }
+    },
+    {
+     "name": "Sub_B1_85AC",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "17852"
+     }
+    },
+    {
+     "name": "Sub_B1_85B8",
+     "size": "58",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "17864"
+     }
+    },
+    {
+     "name": "Loc_B1_8600",
+     "size": "183",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "17936"
+     }
+    },
+    {
+     "name": "Loc_B1_8D00",
+     "size": "168",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "19728"
+     }
+    },
+    {
+     "name": "Loc_B1_8DA9",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "19897"
+     }
+    },
+    {
+     "name": "Sub_B1_8DFF",
+     "size": "128",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "19983"
+     }
+    },
+    {
+     "name": "Sub_B1_8EA2",
+     "size": "124",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20146"
+     }
+    },
+    {
+     "name": "Sub_B1_8F1E",
+     "size": "59",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20270"
+     }
+    },
+    {
+     "name": "Sub_B1_8F59",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20329"
+     }
+    },
+    {
+     "name": "Sub_B1_8F79",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20361"
+     }
+    },
+    {
+     "name": "Sub_B1_8F8C",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20380"
+     }
+    },
+    {
+     "name": "Sub_B1_8F9F",
+     "size": "63",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20399"
+     }
+    },
+    {
+     "name": "Sub_B1_8FDE",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20462"
+     }
+    },
+    {
+     "name": "Sub_B1_90A6",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20662"
+     }
+    },
+    {
+     "name": "Sub_B1_90C6",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "20694"
+     }
+    },
+    {
+     "name": "Sub_B1_9231",
+     "size": "47",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21057"
+     }
+    },
+    {
+     "name": "Sub_B1_9260",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21104"
+     }
+    },
+    {
+     "name": "Sub_B1_926E",
+     "size": "49",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21118"
+     }
+    },
+    {
+     "name": "Sub_B1_929F",
+     "size": "96",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21167"
+     }
+    },
+    {
+     "name": "Sub_B1_9360",
+     "size": "88",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21360"
+     }
+    },
+    {
+     "name": "Sub_B1_93B8",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21448"
+     }
+    },
+    {
+     "name": "Sub_B1_93C6",
+     "size": "52",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21462"
+     }
+    },
+    {
+     "name": "Sub_B1_93FA",
+     "size": "52",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21514"
+     }
+    },
+    {
+     "name": "Sub_B1_942E",
+     "size": "62",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21566"
+     }
+    },
+    {
+     "name": "Sub_B1_946C",
+     "size": "81",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21628"
+     }
+    },
+    {
+     "name": "Sub_B1_94BD",
+     "size": "43",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21709"
+     }
+    },
+    {
+     "name": "Sub_B1_9583",
+     "size": "99",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "21907"
+     }
+    },
+    {
+     "name": "Sub_B1_95E6",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22006"
+     }
+    },
+    {
+     "name": "Sub_B1_95F4",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22020"
+     }
+    },
+    {
+     "name": "Sub_B1_960A",
+     "size": "138",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22042"
+     }
+    },
+    {
+     "name": "Sub_B1_9694",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22180"
+     }
+    },
+    {
+     "name": "Sub_B1_96A4",
+     "size": "26",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22196"
+     }
+    },
+    {
+     "name": "Sub_B1_96BE",
+     "size": "42",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22222"
+     }
+    },
+    {
+     "name": "Sub_B1_96E8",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22264"
+     }
+    },
+    {
+     "name": "Sub_B1_96F0",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22272"
+     }
+    },
+    {
+     "name": "Sub_B1_97B7",
+     "size": "95",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22471"
+     }
+    },
+    {
+     "name": "Sub_B1_9816",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22566"
+     }
+    },
+    {
+     "name": "Sub_B1_9824",
+     "size": "127",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22580"
+     }
+    },
+    {
+     "name": "Sub_B1_98A3",
+     "size": "68",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22707"
+     }
+    },
+    {
+     "name": "Sub_B1_98E7",
+     "size": "35",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22775"
+     }
+    },
+    {
+     "name": "Sub_B1_99E0",
+     "size": "77",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23024"
+     }
+    },
+    {
+     "name": "Sub_B1_9A2D",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23101"
+     }
+    },
+    {
+     "name": "Sub_B1_9A3B",
+     "size": "127",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23115"
+     }
+    },
+    {
+     "name": "Sub_B1_9ABA",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23242"
+     }
+    },
+    {
+     "name": "Sub_B1_9ACB",
+     "size": "85",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23259"
+     }
+    },
+    {
+     "name": "Sub_B1_9B20",
+     "size": "97",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23344"
+     }
+    },
+    {
+     "name": "Sub_B1_9C47",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23639"
+     }
+    },
+    {
+     "name": "Sub_B1_9C68",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23672"
+     }
+    },
+    {
+     "name": "Sub_B1_9C76",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23686"
+     }
+    },
+    {
+     "name": "Sub_B1_9C92",
+     "size": "66",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "23714"
+     }
+    },
+    {
+     "name": "Sub_B1_9DB9",
+     "size": "53",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24009"
+     }
+    },
+    {
+     "name": "Sub_B1_9DEE",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24062"
+     }
+    },
+    {
+     "name": "Sub_B1_9DFC",
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24076"
+     }
+    },
+    {
+     "name": "Sub_B1_9E20",
+     "size": "84",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24112"
+     }
+    },
+    {
+     "name": "Loc_B1_A007",
+     "size": "43",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24599"
+     }
+    },
+    {
+     "name": "Sub_B1_A032",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24642"
+     }
+    },
+    {
+     "name": "Sub_B1_A957",
+     "size": "102",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "26983"
+     }
+    },
+    {
+     "name": "Sub_B1_A9BD",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27085"
+     }
+    },
+    {
+     "name": "Sub_B1_A9E2",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27122"
+     }
+    },
+    {
+     "name": "Sub_B1_AA03",
+     "size": "97",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27155"
+     }
+    },
+    {
+     "name": "Sub_B1_AA64",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27252"
+     }
+    },
+    {
+     "name": "Sub_B1_AA7A",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27274"
+     }
+    },
+    {
+     "name": "Sub_B1_AA84",
+     "size": "63",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27284"
+     }
+    },
+    {
+     "name": "Sub_B1_AAC3",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27347"
+     }
+    },
+    {
+     "name": "Sub_B1_AAD5",
+     "size": "73",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27365"
+     }
+    },
+    {
+     "name": "Sub_B1_AB1E",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27438"
+     }
+    },
+    {
+     "name": "Sub_B1_AB27",
+     "size": "118",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27447"
+     }
+    },
+    {
+     "name": "Sub_B1_ABAB",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27579"
+     }
+    },
+    {
+     "name": "Sub_B1_ABB9",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27593"
+     }
+    },
+    {
+     "name": "Sub_B1_ABBD",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27597"
+     }
+    },
+    {
+     "name": "Sub_B1_ABC1",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27601"
+     }
+    },
+    {
+     "name": "Sub_B1_ABCD",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27613"
+     }
+    },
+    {
+     "name": "Sub_B1_ABE0",
+     "size": "105",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27632"
+     }
+    },
+    {
+     "name": "Sub_B1_AC5B",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27755"
+     }
+    },
+    {
+     "name": "Sub_B1_AC8A",
+     "size": "142",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27802"
+     }
+    },
+    {
+     "name": "Sub_B1_AD18",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "27944"
+     }
+    },
+    {
+     "name": "Sub_B1_AD82",
+     "size": "193",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28050"
+     }
+    },
+    {
+     "name": "Sub_B1_AE43",
+     "size": "51",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28243"
+     }
+    },
+    {
+     "name": "Loc_B1_AF00",
+     "size": "110",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28432"
+     }
+    },
+    {
+     "name": "Sub_B1_AF6E",
+     "size": "88",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28542"
+     }
+    },
+    {
+     "name": "Sub_B1_AFC6",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28630"
+     }
+    },
+    {
+     "name": "Sub_B1_AFE3",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28659"
+     }
+    },
+    {
+     "name": "Sub_B1_B013",
+     "size": "137",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28707"
+     }
+    },
+    {
+     "name": "Sub_B1_B09C",
+     "size": "83",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28844"
+     }
+    },
+    {
+     "name": "Sub_B1_B0EF",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "28927"
+     }
+    }
+   ],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/bank_1.asm"
+   }
+  },
+  {
+   "name": "main/bank_2",
+   "measures": {
+    "fuzzy_match_percent": 100.0,
+    "total_code": "2139",
+    "matched_code": "2139",
+    "matched_code_percent": 100.0,
+    "total_data": "14245",
+    "matched_data": "14245",
+    "matched_data_percent": 100.0,
+    "total_functions": 22,
+    "matched_functions": 22,
+    "matched_functions_percent": 100.0,
+    "complete_code": "2139",
+    "complete_code_percent": 100.0,
+    "complete_data": "14245",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".text",
+     "size": "2139",
+     "fuzzy_match_percent": 100.0
+    },
+    {
+     "name": ".data",
+     "size": "14245",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [
+    {
+     "name": "Loc_B2_8000",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "32784"
+     }
+    },
+    {
+     "name": "Bank2Nmi",
+     "size": "343",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "32800"
+     }
+    },
+    {
+     "name": "Sub_B2_8167",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "33143"
+     }
+    },
+    {
+     "name": "Sub_B2_818E",
+     "size": "53",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "33182"
+     }
+    },
+    {
+     "name": "Sub_B2_8211",
+     "size": "106",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "33313"
+     }
+    },
+    {
+     "name": "Loc_B2_827D",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "33421"
+     }
+    },
+    {
+     "name": "Sub_B2_827E",
+     "size": "61",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "33422"
+     }
+    },
+    {
+     "name": "Sub_B2_837A",
+     "size": "77",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "33674"
+     }
+    },
+    {
+     "name": "Sub_B2_83C7",
+     "size": "115",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "33751"
+     }
+    },
+    {
+     "name": "Sub_B2_8488",
+     "size": "233",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "33944"
+     }
+    },
+    {
+     "name": "Sub_B2_8609",
+     "size": "163",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "34329"
+     }
+    },
+    {
+     "name": "Sub_B2_87AC",
+     "size": "190",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "34748"
+     }
+    },
+    {
+     "name": "Sub_B2_886A",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "34938"
+     }
+    },
+    {
+     "name": "Sub_B2_8882",
+     "size": "40",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "34962"
+     }
+    },
+    {
+     "name": "Sub_B2_88AA",
+     "size": "142",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "35002"
+     }
+    },
+    {
+     "name": "Sub_B2_8938",
+     "size": "154",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "35144"
+     }
+    },
+    {
+     "name": "Sub_B2_89E2",
+     "size": "45",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "35314"
+     }
+    },
+    {
+     "name": "Sub_B2_8A0F",
+     "size": "161",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "35359"
+     }
+    },
+    {
+     "name": "Sub_B2_8AB0",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "35520"
+     }
+    },
+    {
+     "name": "Sub_B2_8AB8",
+     "size": "78",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "35528"
+     }
+    },
+    {
+     "name": "Sub_B2_8B06",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "35606"
+     }
+    },
+    {
+     "name": "Loc_B2_90B0",
+     "size": "123",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "37056"
+     }
+    }
+   ],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/bank_2.asm"
+   }
+  },
+  {
+   "name": "main/bank_3",
+   "measures": {
+    "fuzzy_match_percent": 100.0,
+    "total_code": "3706",
+    "matched_code": "3706",
+    "matched_code_percent": 100.0,
+    "total_data": "12678",
+    "matched_data": "12678",
+    "matched_data_percent": 100.0,
+    "total_functions": 32,
+    "matched_functions": 32,
+    "matched_functions_percent": 100.0,
+    "complete_code": "3706",
+    "complete_code_percent": 100.0,
+    "complete_data": "12678",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".text",
+     "size": "3706",
+     "fuzzy_match_percent": 100.0
+    },
+    {
+     "name": ".data",
+     "size": "12678",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [
+    {
+     "name": "Loc_B3_8000",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49168"
+     }
+    },
+    {
+     "name": "Bank3Nmi",
+     "size": "113",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49184"
+     }
+    },
+    {
+     "name": "Sub_B3_8081",
+     "size": "480",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49297"
+     }
+    },
+    {
+     "name": "Sub_B3_8261",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49777"
+     }
+    },
+    {
+     "name": "Sub_B3_827C",
+     "size": "76",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "49804"
+     }
+    },
+    {
+     "name": "Sub_B3_87BA",
+     "size": "69",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51146"
+     }
+    },
+    {
+     "name": "Sub_B3_87FF",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51215"
+     }
+    },
+    {
+     "name": "Loc_B3_8822",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51250"
+     }
+    },
+    {
+     "name": "Loc_B3_882A",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51258"
+     }
+    },
+    {
+     "name": "Loc_B3_8832",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51266"
+     }
+    },
+    {
+     "name": "Sub_B3_8866",
+     "size": "469",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51318"
+     }
+    },
+    {
+     "name": "Sub_B3_8A3B",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51787"
+     }
+    },
+    {
+     "name": "Sub_B3_8A54",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51812"
+     }
+    },
+    {
+     "name": "Sub_B3_8A69",
+     "size": "139",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51833"
+     }
+    },
+    {
+     "name": "Sub_B3_8AF4",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51972"
+     }
+    },
+    {
+     "name": "Sub_B3_8B08",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "51992"
+     }
+    },
+    {
+     "name": "Sub_B3_8B1A",
+     "size": "93",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52010"
+     }
+    },
+    {
+     "name": "Sub_B3_8B77",
+     "size": "66",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52103"
+     }
+    },
+    {
+     "name": "Sub_B3_8BB9",
+     "size": "232",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52169"
+     }
+    },
+    {
+     "name": "Sub_B3_8CA1",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52401"
+     }
+    },
+    {
+     "name": "Loc_B3_8D0C",
+     "size": "388",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52508"
+     }
+    },
+    {
+     "name": "Sub_B3_8E90",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52896"
+     }
+    },
+    {
+     "name": "Sub_B3_8EAB",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52923"
+     }
+    },
+    {
+     "name": "Sub_B3_8EE9",
+     "size": "52",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "52985"
+     }
+    },
+    {
+     "name": "Loc_B3_8F1F",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "53039"
+     }
+    },
+    {
+     "name": "Loc_B3_8F3F",
+     "size": "289",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "53071"
+     }
+    },
+    {
+     "name": "Sub_B3_9060",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "53360"
+     }
+    },
+    {
+     "name": "Sub_B3_9094",
+     "size": "285",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "53412"
+     }
+    },
+    {
+     "name": "Sub_B3_91B1",
+     "size": "78",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "53697"
+     }
+    },
+    {
+     "name": "Sub_B3_91FF",
+     "size": "184",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "53775"
+     }
+    },
+    {
+     "name": "Sub_B3_92B7",
+     "size": "171",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "53959"
+     }
+    },
+    {
+     "name": "Sub_B3_9362",
+     "size": "175",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "54130"
+     }
+    }
+   ],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/bank_3.asm"
+   }
+  },
+  {
+   "name": "main/bank_4",
+   "measures": {
+    "fuzzy_match_percent": 100.0,
+    "total_code": "3810",
+    "matched_code": "3810",
+    "matched_code_percent": 100.0,
+    "total_data": "12574",
+    "matched_data": "12574",
+    "matched_data_percent": 100.0,
+    "total_functions": 129,
+    "matched_functions": 129,
+    "matched_functions_percent": 100.0,
+    "complete_code": "3810",
+    "complete_code_percent": 100.0,
+    "complete_data": "12574",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".text",
+     "size": "3810",
+     "fuzzy_match_percent": 100.0
+    },
+    {
+     "name": ".data",
+     "size": "12574",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [
+    {
+     "name": "Loc_B4_8000",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65552"
+     }
+    },
+    {
+     "name": "Bank4Nmi",
+     "size": "147",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65568"
+     }
+    },
+    {
+     "name": "Sub_B4_80B3",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65731"
+     }
+    },
+    {
+     "name": "Sub_B4_8107",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65815"
+     }
+    },
+    {
+     "name": "Sub_B4_8112",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65826"
+     }
+    },
+    {
+     "name": "Sub_B4_811D",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65837"
+     }
+    },
+    {
+     "name": "Sub_B4_8128",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65848"
+     }
+    },
+    {
+     "name": "Sub_B4_8133",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65859"
+     }
+    },
+    {
+     "name": "Sub_B4_8139",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65865"
+     }
+    },
+    {
+     "name": "Sub_B4_8165",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65909"
+     }
+    },
+    {
+     "name": "Sub_B4_8177",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65927"
+     }
+    },
+    {
+     "name": "Sub_B4_8188",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "65944"
+     }
+    },
+    {
+     "name": "Sub_B4_81C1",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66001"
+     }
+    },
+    {
+     "name": "Sub_B4_81CC",
+     "size": "41",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66012"
+     }
+    },
+    {
+     "name": "Sub_B4_81F5",
+     "size": "62",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66053"
+     }
+    },
+    {
+     "name": "Sub_B4_8233",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66115"
+     }
+    },
+    {
+     "name": "Sub_B4_8239",
+     "size": "39",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66121"
+     }
+    },
+    {
+     "name": "Sub_B4_8260",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66160"
+     }
+    },
+    {
+     "name": "Sub_B4_8264",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66164"
+     }
+    },
+    {
+     "name": "Sub_B4_826D",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66173"
+     }
+    },
+    {
+     "name": "Sub_B4_8284",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66196"
+     }
+    },
+    {
+     "name": "Sub_B4_828A",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66202"
+     }
+    },
+    {
+     "name": "Loc_B4_82FE",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66318"
+     }
+    },
+    {
+     "name": "Sub_B4_830E",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66334"
+     }
+    },
+    {
+     "name": "Sub_B4_8314",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66340"
+     }
+    },
+    {
+     "name": "Sub_B4_8326",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66358"
+     }
+    },
+    {
+     "name": "Sub_B4_833D",
+     "size": "34",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66381"
+     }
+    },
+    {
+     "name": "Sub_B4_8361",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66417"
+     }
+    },
+    {
+     "name": "Sub_B4_8367",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66423"
+     }
+    },
+    {
+     "name": "Sub_B4_838D",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66461"
+     }
+    },
+    {
+     "name": "Sub_B4_8393",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66467"
+     }
+    },
+    {
+     "name": "Sub_B4_8399",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66473"
+     }
+    },
+    {
+     "name": "Sub_B4_83B6",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66502"
+     }
+    },
+    {
+     "name": "Sub_B4_83BC",
+     "size": "35",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66508"
+     }
+    },
+    {
+     "name": "Sub_B4_83DF",
+     "size": "62",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66543"
+     }
+    },
+    {
+     "name": "Sub_B4_841D",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66605"
+     }
+    },
+    {
+     "name": "Sub_B4_8441",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66641"
+     }
+    },
+    {
+     "name": "Sub_B4_846E",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66686"
+     }
+    },
+    {
+     "name": "Sub_B4_8473",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66691"
+     }
+    },
+    {
+     "name": "Sub_B4_8481",
+     "size": "116",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66705"
+     }
+    },
+    {
+     "name": "Sub_B4_84F5",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66821"
+     }
+    },
+    {
+     "name": "Sub_B4_84FF",
+     "size": "67",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66831"
+     }
+    },
+    {
+     "name": "Sub_B4_8546",
+     "size": "61",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66902"
+     }
+    },
+    {
+     "name": "Sub_B4_8583",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "66963"
+     }
+    },
+    {
+     "name": "Loc_B4_85A8",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67000"
+     }
+    },
+    {
+     "name": "Sub_B4_85D3",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67043"
+     }
+    },
+    {
+     "name": "Sub_B4_85D8",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67048"
+     }
+    },
+    {
+     "name": "Sub_B4_85DF",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67055"
+     }
+    },
+    {
+     "name": "Sub_B4_85E6",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67062"
+     }
+    },
+    {
+     "name": "Sub_B4_85ED",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67069"
+     }
+    },
+    {
+     "name": "Sub_B4_85F4",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67076"
+     }
+    },
+    {
+     "name": "Sub_B4_860D",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67101"
+     }
+    },
+    {
+     "name": "Sub_B4_861D",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67117"
+     }
+    },
+    {
+     "name": "Sub_B4_8629",
+     "size": "46",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67129"
+     }
+    },
+    {
+     "name": "Sub_B4_8657",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67175"
+     }
+    },
+    {
+     "name": "Sub_B4_866A",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67194"
+     }
+    },
+    {
+     "name": "Sub_B4_8680",
+     "size": "43",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67216"
+     }
+    },
+    {
+     "name": "Sub_B4_86AB",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67259"
+     }
+    },
+    {
+     "name": "Sub_B4_86B4",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67268"
+     }
+    },
+    {
+     "name": "Sub_B4_86D1",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "67297"
+     }
+    },
+    {
+     "name": "Loc_B4_8AD3",
+     "size": "90",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68323"
+     }
+    },
+    {
+     "name": "Sub_B4_8B2D",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68413"
+     }
+    },
+    {
+     "name": "Sub_B4_8B43",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68435"
+     }
+    },
+    {
+     "name": "Sub_B4_8BC9",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68569"
+     }
+    },
+    {
+     "name": "Sub_B4_8BFB",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68619"
+     }
+    },
+    {
+     "name": "Sub_B4_8C18",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68648"
+     }
+    },
+    {
+     "name": "Sub_B4_8C1E",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68654"
+     }
+    },
+    {
+     "name": "Loc_B4_8D1B",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68907"
+     }
+    },
+    {
+     "name": "Sub_B4_8D25",
+     "size": "97",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68917"
+     }
+    },
+    {
+     "name": "Loc_B4_8D8E",
+     "size": "120",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69022"
+     }
+    },
+    {
+     "name": "Sub_B4_8E06",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69142"
+     }
+    },
+    {
+     "name": "Sub_B4_8E13",
+     "size": "35",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69155"
+     }
+    },
+    {
+     "name": "Sub_B4_8E90",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69280"
+     }
+    },
+    {
+     "name": "Sub_B4_8E92",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69282"
+     }
+    },
+    {
+     "name": "Sub_B4_8E9C",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69292"
+     }
+    },
+    {
+     "name": "Sub_B4_8EA8",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69304"
+     }
+    },
+    {
+     "name": "Sub_B4_8EB4",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69316"
+     }
+    },
+    {
+     "name": "Sub_B4_8EBE",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69326"
+     }
+    },
+    {
+     "name": "Sub_B4_8EDD",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69357"
+     }
+    },
+    {
+     "name": "Sub_B4_8FAB",
+     "size": "26",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69563"
+     }
+    },
+    {
+     "name": "Sub_B4_8FCD",
+     "size": "57",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69597"
+     }
+    },
+    {
+     "name": "Sub_B4_9006",
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69654"
+     }
+    },
+    {
+     "name": "Sub_B4_9049",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69721"
+     }
+    },
+    {
+     "name": "Loc_B4_9070",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69760"
+     }
+    },
+    {
+     "name": "Sub_B4_9074",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69764"
+     }
+    },
+    {
+     "name": "Sub_B4_909E",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69806"
+     }
+    },
+    {
+     "name": "Loc_B4_90B7",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69831"
+     }
+    },
+    {
+     "name": "Sub_B4_90BE",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69838"
+     }
+    },
+    {
+     "name": "Sub_B4_90D9",
+     "size": "42",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69865"
+     }
+    },
+    {
+     "name": "Sub_B4_915B",
+     "size": "35",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69995"
+     }
+    },
+    {
+     "name": "Sub_B4_917E",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "70030"
+     }
+    },
+    {
+     "name": "Sub_B4_956B",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71035"
+     }
+    },
+    {
+     "name": "Sub_B4_9589",
+     "size": "57",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71065"
+     }
+    },
+    {
+     "name": "Sub_B4_95C2",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71122"
+     }
+    },
+    {
+     "name": "Sub_B4_95C8",
+     "size": "24",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71128"
+     }
+    },
+    {
+     "name": "Sub_B4_9603",
+     "size": "231",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71187"
+     }
+    },
+    {
+     "name": "Sub_B4_96EA",
+     "size": "110",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71418"
+     }
+    },
+    {
+     "name": "Sub_B4_9868",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71800"
+     }
+    },
+    {
+     "name": "Sub_B4_988E",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71838"
+     }
+    },
+    {
+     "name": "Sub_B4_98A3",
+     "size": "77",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71859"
+     }
+    },
+    {
+     "name": "Sub_B4_98F6",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71942"
+     }
+    },
+    {
+     "name": "Sub_B4_990C",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71964"
+     }
+    },
+    {
+     "name": "Sub_B4_9922",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "71986"
+     }
+    },
+    {
+     "name": "Sub_B4_9943",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "72019"
+     }
+    },
+    {
+     "name": "Sub_B4_9963",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "72051"
+     }
+    },
+    {
+     "name": "Sub_B4_9975",
+     "size": "57",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "72069"
+     }
+    },
+    {
+     "name": "Sub_B4_9A2C",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "72252"
+     }
+    },
+    {
+     "name": "Sub_B4_9A73",
+     "size": "115",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "72323"
+     }
+    },
+    {
+     "name": "Loc_B4_9AE8",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "72440"
+     }
+    },
+    {
+     "name": "Sub_B4_9F2F",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73535"
+     }
+    },
+    {
+     "name": "Loc_B4_9F7B",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73611"
+     }
+    },
+    {
+     "name": "Sub_B4_9F7C",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73612"
+     }
+    },
+    {
+     "name": "Sub_B4_9F94",
+     "size": "63",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73636"
+     }
+    },
+    {
+     "name": "Sub_B4_9FD3",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73699"
+     }
+    },
+    {
+     "name": "Loc_B4_9FF7",
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73735"
+     }
+    },
+    {
+     "name": "Sub_B4_A01B",
+     "size": "45",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73771"
+     }
+    },
+    {
+     "name": "Sub_B4_A04D",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73821"
+     }
+    },
+    {
+     "name": "Sub_B4_A068",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73848"
+     }
+    },
+    {
+     "name": "Sub_B4_A083",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73875"
+     }
+    },
+    {
+     "name": "Sub_B4_A09E",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73902"
+     }
+    },
+    {
+     "name": "Sub_B4_A0D9",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73961"
+     }
+    },
+    {
+     "name": "Sub_B4_A114",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74020"
+     }
+    },
+    {
+     "name": "Loc_B4_A144",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74068"
+     }
+    },
+    {
+     "name": "Sub_B4_A15F",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74095"
+     }
+    },
+    {
+     "name": "Sub_B4_AFE8",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77816"
+     }
+    },
+    {
+     "name": "Sub_B4_B402",
+     "size": "114",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78866"
+     }
+    },
+    {
+     "name": "Sub_B4_B474",
+     "size": "62",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78980"
+     }
+    },
+    {
+     "name": "Sub_B4_B4B2",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "79042"
+     }
+    },
+    {
+     "name": "Sub_B4_B4BB",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "79051"
+     }
+    }
+   ],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/bank_4.asm"
+   }
+  },
+  {
+   "name": "main/bank_5",
+   "measures": {
+    "fuzzy_match_percent": 100.0,
+    "total_code": "5234",
+    "matched_code": "5234",
+    "matched_code_percent": 100.0,
+    "total_data": "11150",
+    "matched_data": "11150",
+    "matched_data_percent": 100.0,
+    "total_functions": 164,
+    "matched_functions": 164,
+    "matched_functions_percent": 100.0,
+    "complete_code": "5234",
+    "complete_code_percent": 100.0,
+    "complete_data": "11150",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".text",
+     "size": "5234",
+     "fuzzy_match_percent": 100.0
+    },
+    {
+     "name": ".data",
+     "size": "11150",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [
+    {
+     "name": "Loc_B5_8000",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "81936"
+     }
+    },
+    {
+     "name": "Bank5Nmi",
+     "size": "63",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "81952"
+     }
+    },
+    {
+     "name": "Bank5SceneDispatch",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82015"
+     }
+    },
+    {
+     "name": "Sub_B5_8139",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82249"
+     }
+    },
+    {
+     "name": "Sub_B5_814C",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82268"
+     }
+    },
+    {
+     "name": "Sub_B5_8153",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82275"
+     }
+    },
+    {
+     "name": "Sub_B5_8158",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82280"
+     }
+    },
+    {
+     "name": "Sub_B5_815D",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82285"
+     }
+    },
+    {
+     "name": "Sub_B5_816B",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82299"
+     }
+    },
+    {
+     "name": "Sub_B5_8176",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82310"
+     }
+    },
+    {
+     "name": "Sub_B5_8183",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82323"
+     }
+    },
+    {
+     "name": "Sub_B5_818A",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82330"
+     }
+    },
+    {
+     "name": "Sub_B5_819E",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82350"
+     }
+    },
+    {
+     "name": "Sub_B5_81AC",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82364"
+     }
+    },
+    {
+     "name": "Sub_B5_81BD",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82381"
+     }
+    },
+    {
+     "name": "Sub_B5_81CB",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82395"
+     }
+    },
+    {
+     "name": "Sub_B5_81E2",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82418"
+     }
+    },
+    {
+     "name": "Sub_B5_81EB",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82427"
+     }
+    },
+    {
+     "name": "Sub_B5_81F6",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82438"
+     }
+    },
+    {
+     "name": "Sub_B5_820B",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82459"
+     }
+    },
+    {
+     "name": "Sub_B5_821C",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82476"
+     }
+    },
+    {
+     "name": "Sub_B5_822A",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82490"
+     }
+    },
+    {
+     "name": "Sub_B5_8236",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82502"
+     }
+    },
+    {
+     "name": "Sub_B5_8253",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82531"
+     }
+    },
+    {
+     "name": "Sub_B5_825E",
+     "size": "40",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82542"
+     }
+    },
+    {
+     "name": "Sub_B5_828A",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82586"
+     }
+    },
+    {
+     "name": "Sub_B5_829D",
+     "size": "26",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82605"
+     }
+    },
+    {
+     "name": "Sub_B5_82B7",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82631"
+     }
+    },
+    {
+     "name": "Sub_B5_82C5",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82645"
+     }
+    },
+    {
+     "name": "Sub_B5_82E0",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82672"
+     }
+    },
+    {
+     "name": "Sub_B5_82FB",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82699"
+     }
+    },
+    {
+     "name": "Sub_B5_8306",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82710"
+     }
+    },
+    {
+     "name": "Sub_B5_8311",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82721"
+     }
+    },
+    {
+     "name": "Sub_B5_8322",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82738"
+     }
+    },
+    {
+     "name": "Sub_B5_8333",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82755"
+     }
+    },
+    {
+     "name": "Sub_B5_8344",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82772"
+     }
+    },
+    {
+     "name": "Sub_B5_8358",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82792"
+     }
+    },
+    {
+     "name": "Sub_B5_8361",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82801"
+     }
+    },
+    {
+     "name": "Sub_B5_836C",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82812"
+     }
+    },
+    {
+     "name": "Sub_B5_837A",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82826"
+     }
+    },
+    {
+     "name": "Sub_B5_8386",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82838"
+     }
+    },
+    {
+     "name": "Sub_B5_838A",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82842"
+     }
+    },
+    {
+     "name": "Sub_B5_838E",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82846"
+     }
+    },
+    {
+     "name": "Sub_B5_83B3",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82883"
+     }
+    },
+    {
+     "name": "Sub_B5_83C2",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82898"
+     }
+    },
+    {
+     "name": "Sub_B5_83DB",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82923"
+     }
+    },
+    {
+     "name": "Sub_B5_83EC",
+     "size": "80",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "82940"
+     }
+    },
+    {
+     "name": "Sub_B5_843C",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83020"
+     }
+    },
+    {
+     "name": "Sub_B5_8457",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83047"
+     }
+    },
+    {
+     "name": "Sub_B5_8462",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83058"
+     }
+    },
+    {
+     "name": "Sub_B5_8488",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83096"
+     }
+    },
+    {
+     "name": "Sub_B5_8496",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83110"
+     }
+    },
+    {
+     "name": "Sub_B5_849F",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83119"
+     }
+    },
+    {
+     "name": "Sub_B5_84A5",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83125"
+     }
+    },
+    {
+     "name": "Sub_B5_84B0",
+     "size": "26",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83136"
+     }
+    },
+    {
+     "name": "Sub_B5_84CA",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83162"
+     }
+    },
+    {
+     "name": "Sub_B5_84DA",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83178"
+     }
+    },
+    {
+     "name": "Sub_B5_84F3",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83203"
+     }
+    },
+    {
+     "name": "Sub_B5_8513",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83235"
+     }
+    },
+    {
+     "name": "Sub_B5_8520",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83248"
+     }
+    },
+    {
+     "name": "Sub_B5_8535",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83269"
+     }
+    },
+    {
+     "name": "Sub_B5_8554",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83300"
+     }
+    },
+    {
+     "name": "Sub_B5_8566",
+     "size": "24",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83318"
+     }
+    },
+    {
+     "name": "Sub_B5_857E",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83342"
+     }
+    },
+    {
+     "name": "Sub_B5_8591",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83361"
+     }
+    },
+    {
+     "name": "Sub_B5_85A8",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83384"
+     }
+    },
+    {
+     "name": "Sub_B5_85BC",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83404"
+     }
+    },
+    {
+     "name": "Sub_B5_85C2",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83410"
+     }
+    },
+    {
+     "name": "Sub_B5_85D0",
+     "size": "56",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83424"
+     }
+    },
+    {
+     "name": "Sub_B5_8608",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83480"
+     }
+    },
+    {
+     "name": "Sub_B5_860E",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83486"
+     }
+    },
+    {
+     "name": "Sub_B5_861F",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83503"
+     }
+    },
+    {
+     "name": "Sub_B5_862D",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83517"
+     }
+    },
+    {
+     "name": "Sub_B5_8646",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83542"
+     }
+    },
+    {
+     "name": "Sub_B5_864C",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83548"
+     }
+    },
+    {
+     "name": "Sub_B5_865D",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83565"
+     }
+    },
+    {
+     "name": "Sub_B5_8672",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83586"
+     }
+    },
+    {
+     "name": "Sub_B5_8678",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83592"
+     }
+    },
+    {
+     "name": "Sub_B5_868E",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83614"
+     }
+    },
+    {
+     "name": "Sub_B5_869C",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83628"
+     }
+    },
+    {
+     "name": "Sub_B5_86A2",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83634"
+     }
+    },
+    {
+     "name": "Sub_B5_86BB",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83659"
+     }
+    },
+    {
+     "name": "Sub_B5_86CC",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83676"
+     }
+    },
+    {
+     "name": "Sub_B5_86D2",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83682"
+     }
+    },
+    {
+     "name": "Sub_B5_86DD",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83693"
+     }
+    },
+    {
+     "name": "Loc_B5_86EA",
+     "size": "65",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83706"
+     }
+    },
+    {
+     "name": "Loc_B5_874E",
+     "size": "146",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83806"
+     }
+    },
+    {
+     "name": "Sub_B5_87E0",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83952"
+     }
+    },
+    {
+     "name": "Sub_B5_87E8",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83960"
+     }
+    },
+    {
+     "name": "Sub_B5_87F3",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83971"
+     }
+    },
+    {
+     "name": "Sub_B5_8806",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83990"
+     }
+    },
+    {
+     "name": "Sub_B5_887E",
+     "size": "101",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84110"
+     }
+    },
+    {
+     "name": "Sub_B5_8944",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84308"
+     }
+    },
+    {
+     "name": "Sub_B5_895B",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84331"
+     }
+    },
+    {
+     "name": "Sub_B5_895D",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84333"
+     }
+    },
+    {
+     "name": "Sub_B5_895F",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84335"
+     }
+    },
+    {
+     "name": "Sub_B5_8966",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84342"
+     }
+    },
+    {
+     "name": "Sub_B5_8971",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84353"
+     }
+    },
+    {
+     "name": "Sub_B5_8973",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84355"
+     }
+    },
+    {
+     "name": "Sub_B5_897C",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84364"
+     }
+    },
+    {
+     "name": "Loc_B5_899C",
+     "size": "55",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84396"
+     }
+    },
+    {
+     "name": "Loc_B5_8AAB",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84667"
+     }
+    },
+    {
+     "name": "Loc_B5_8AC3",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84691"
+     }
+    },
+    {
+     "name": "Bank5SubStateDispatch",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84721"
+     }
+    },
+    {
+     "name": "Sub_B5_8B09",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84761"
+     }
+    },
+    {
+     "name": "Sub_B5_8B12",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84770"
+     }
+    },
+    {
+     "name": "Sub_B5_8B29",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84793"
+     }
+    },
+    {
+     "name": "Sub_B5_8B33",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84803"
+     }
+    },
+    {
+     "name": "Sub_B5_8B3F",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84815"
+     }
+    },
+    {
+     "name": "Sub_B5_8B67",
+     "size": "34",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84855"
+     }
+    },
+    {
+     "name": "Sub_B5_8B92",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84898"
+     }
+    },
+    {
+     "name": "Sub_B5_8BCF",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84959"
+     }
+    },
+    {
+     "name": "Sub_B5_8BF0",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "84992"
+     }
+    },
+    {
+     "name": "Sub_B5_8C0C",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85020"
+     }
+    },
+    {
+     "name": "Sub_B5_8C48",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85080"
+     }
+    },
+    {
+     "name": "Sub_B5_8C61",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85105"
+     }
+    },
+    {
+     "name": "Sub_B5_8C8E",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85150"
+     }
+    },
+    {
+     "name": "Bank5NextAnimFrame",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85195"
+     }
+    },
+    {
+     "name": "Sub_B5_8CC4",
+     "size": "118",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85204"
+     }
+    },
+    {
+     "name": "Sub_B5_8E22",
+     "size": "141",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85554"
+     }
+    },
+    {
+     "name": "Sub_B5_8F3A",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85834"
+     }
+    },
+    {
+     "name": "Sub_B5_8F51",
+     "size": "55",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85857"
+     }
+    },
+    {
+     "name": "Sub_B5_8F88",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85912"
+     }
+    },
+    {
+     "name": "Sub_B5_8F91",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85921"
+     }
+    },
+    {
+     "name": "Sub_B5_8FCA",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85978"
+     }
+    },
+    {
+     "name": "Sub_B5_8FDE",
+     "size": "164",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "85998"
+     }
+    },
+    {
+     "name": "Sub_B5_9082",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86162"
+     }
+    },
+    {
+     "name": "Sub_B5_90A0",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86192"
+     }
+    },
+    {
+     "name": "Sub_B5_90B3",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86211"
+     }
+    },
+    {
+     "name": "Sub_B5_90B9",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86217"
+     }
+    },
+    {
+     "name": "Sub_B5_90C8",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86232"
+     }
+    },
+    {
+     "name": "Loc_B5_90D8",
+     "size": "66",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86248"
+     }
+    },
+    {
+     "name": "Sub_B5_9206",
+     "size": "49",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86550"
+     }
+    },
+    {
+     "name": "Sub_B5_9237",
+     "size": "34",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86599"
+     }
+    },
+    {
+     "name": "Sub_B5_92DB",
+     "size": "84",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "86763"
+     }
+    },
+    {
+     "name": "Sub_B5_9438",
+     "size": "119",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "87112"
+     }
+    },
+    {
+     "name": "Sub_B5_9681",
+     "size": "163",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "87697"
+     }
+    },
+    {
+     "name": "Sub_B5_976B",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "87931"
+     }
+    },
+    {
+     "name": "Loc_B5_9785",
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "87957"
+     }
+    },
+    {
+     "name": "Sub_B5_9848",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "88152"
+     }
+    },
+    {
+     "name": "Sub_B5_986D",
+     "size": "40",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "88189"
+     }
+    },
+    {
+     "name": "Sub_B5_9895",
+     "size": "64",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "88229"
+     }
+    },
+    {
+     "name": "Sub_B5_9974",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "88452"
+     }
+    },
+    {
+     "name": "Sub_B5_997B",
+     "size": "47",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "88459"
+     }
+    },
+    {
+     "name": "Loc_B5_9A2E",
+     "size": "183",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "88638"
+     }
+    },
+    {
+     "name": "Sub_B5_9AE5",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "88821"
+     }
+    },
+    {
+     "name": "Loc_B5_9D0C",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "89372"
+     }
+    },
+    {
+     "name": "Loc_B5_9D4A",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "89434"
+     }
+    },
+    {
+     "name": "Loc_B5_9D88",
+     "size": "39",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "89496"
+     }
+    },
+    {
+     "name": "Loc_B5_9DBB",
+     "size": "70",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "89547"
+     }
+    },
+    {
+     "name": "Loc_B5_A000",
+     "size": "68",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90128"
+     }
+    },
+    {
+     "name": "Sub_B5_A044",
+     "size": "133",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90196"
+     }
+    },
+    {
+     "name": "Sub_B5_A0C9",
+     "size": "182",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90329"
+     }
+    },
+    {
+     "name": "Sub_B5_A17F",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90511"
+     }
+    },
+    {
+     "name": "Sub_B5_A184",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90516"
+     }
+    },
+    {
+     "name": "Sub_B5_A1A3",
+     "size": "26",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90547"
+     }
+    },
+    {
+     "name": "Loc_B5_A1BE",
+     "size": "139",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90574"
+     }
+    },
+    {
+     "name": "Loc_B5_A24E",
+     "size": "265",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90718"
+     }
+    },
+    {
+     "name": "Sub_B5_A357",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90983"
+     }
+    },
+    {
+     "name": "Sub_B5_A363",
+     "size": "77",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "90995"
+     }
+    },
+    {
+     "name": "Loc_B5_A3B1",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "91073"
+     }
+    },
+    {
+     "name": "Sub_B5_A3C7",
+     "size": "59",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "91095"
+     }
+    },
+    {
+     "name": "Sub_B5_A402",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "91154"
+     }
+    },
+    {
+     "name": "Sub_B5_A464",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "91252"
+     }
+    }
+   ],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/bank_5.asm"
+   }
+  },
+  {
+   "name": "main/bank_6",
+   "measures": {
+    "fuzzy_match_percent": 100.0,
+    "total_code": "2707",
+    "matched_code": "2707",
+    "matched_code_percent": 100.0,
+    "total_data": "13677",
+    "matched_data": "13677",
+    "matched_data_percent": 100.0,
+    "total_functions": 63,
+    "matched_functions": 63,
+    "matched_functions_percent": 100.0,
+    "complete_code": "2707",
+    "complete_code_percent": 100.0,
+    "complete_data": "13677",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".text",
+     "size": "2707",
+     "fuzzy_match_percent": 100.0
+    },
+    {
+     "name": ".data",
+     "size": "13677",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [
+    {
+     "name": "Loc_B6_8000",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98320"
+     }
+    },
+    {
+     "name": "Bank6Nmi",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98336"
+     }
+    },
+    {
+     "name": "Sub_B6_801F",
+     "size": "54",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98351"
+     }
+    },
+    {
+     "name": "Sub_B6_8055",
+     "size": "43",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98405"
+     }
+    },
+    {
+     "name": "Sub_B6_8080",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98448"
+     }
+    },
+    {
+     "name": "Sub_B6_808E",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98462"
+     }
+    },
+    {
+     "name": "Sub_B6_809D",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98477"
+     }
+    },
+    {
+     "name": "Sub_B6_80AE",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98494"
+     }
+    },
+    {
+     "name": "Sub_B6_80B5",
+     "size": "35",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98501"
+     }
+    },
+    {
+     "name": "Sub_B6_80D8",
+     "size": "63",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98536"
+     }
+    },
+    {
+     "name": "Sub_B6_8117",
+     "size": "60",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98599"
+     }
+    },
+    {
+     "name": "Loc_B6_8154",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98660"
+     }
+    },
+    {
+     "name": "Sub_B6_81AA",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98746"
+     }
+    },
+    {
+     "name": "Sub_B6_81E3",
+     "size": "172",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98803"
+     }
+    },
+    {
+     "name": "Loc_B6_8290",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98976"
+     }
+    },
+    {
+     "name": "Sub_B6_82F5",
+     "size": "39",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99077"
+     }
+    },
+    {
+     "name": "Sub_B6_831C",
+     "size": "56",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99116"
+     }
+    },
+    {
+     "name": "Loc_B6_83A8",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99256"
+     }
+    },
+    {
+     "name": "Sub_B6_83BE",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99278"
+     }
+    },
+    {
+     "name": "Sub_B6_83D3",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99299"
+     }
+    },
+    {
+     "name": "Sub_B6_83F4",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99332"
+     }
+    },
+    {
+     "name": "Sub_B6_8401",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99345"
+     }
+    },
+    {
+     "name": "Sub_B6_840D",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99357"
+     }
+    },
+    {
+     "name": "Loc_B6_85FD",
+     "size": "63",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99853"
+     }
+    },
+    {
+     "name": "Sub_B6_863C",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99916"
+     }
+    },
+    {
+     "name": "Sub_B6_865C",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99948"
+     }
+    },
+    {
+     "name": "Sub_B6_868C",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "99996"
+     }
+    },
+    {
+     "name": "Sub_B6_869A",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100010"
+     }
+    },
+    {
+     "name": "Sub_B6_86BA",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100042"
+     }
+    },
+    {
+     "name": "Loc_B6_86CD",
+     "size": "54",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100061"
+     }
+    },
+    {
+     "name": "Sub_B6_8703",
+     "size": "59",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100115"
+     }
+    },
+    {
+     "name": "Sub_B6_873E",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100174"
+     }
+    },
+    {
+     "name": "Sub_B6_8746",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100182"
+     }
+    },
+    {
+     "name": "Sub_B6_8756",
+     "size": "125",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100198"
+     }
+    },
+    {
+     "name": "Sub_B6_87D3",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100323"
+     }
+    },
+    {
+     "name": "Sub_B6_87DA",
+     "size": "41",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100330"
+     }
+    },
+    {
+     "name": "Sub_B6_8803",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100371"
+     }
+    },
+    {
+     "name": "Sub_B6_8822",
+     "size": "73",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100402"
+     }
+    },
+    {
+     "name": "Sub_B6_886B",
+     "size": "80",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100475"
+     }
+    },
+    {
+     "name": "Loc_B6_890F",
+     "size": "35",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100639"
+     }
+    },
+    {
+     "name": "Sub_B6_8932",
+     "size": "117",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100674"
+     }
+    },
+    {
+     "name": "Sub_B6_89A7",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100791"
+     }
+    },
+    {
+     "name": "Sub_B6_89B2",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100802"
+     }
+    },
+    {
+     "name": "Sub_B6_89C0",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100816"
+     }
+    },
+    {
+     "name": "Sub_B6_89DE",
+     "size": "136",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100846"
+     }
+    },
+    {
+     "name": "Sub_B6_8A66",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100982"
+     }
+    },
+    {
+     "name": "Sub_B6_8A76",
+     "size": "99",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "100998"
+     }
+    },
+    {
+     "name": "Sub_B6_8AD9",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "101097"
+     }
+    },
+    {
+     "name": "Sub_B6_8AF4",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "101124"
+     }
+    },
+    {
+     "name": "Sub_B6_8B08",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "101144"
+     }
+    },
+    {
+     "name": "Sub_B6_8B9C",
+     "size": "74",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "101292"
+     }
+    },
+    {
+     "name": "Sub_B6_8BE6",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "101366"
+     }
+    },
+    {
+     "name": "Loc_B6_945A",
+     "size": "47",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "103530"
+     }
+    },
+    {
+     "name": "Sub_B6_9489",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "103577"
+     }
+    },
+    {
+     "name": "Sub_B6_9497",
+     "size": "39",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "103591"
+     }
+    },
+    {
+     "name": "Sub_B6_95EE",
+     "size": "51",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "103934"
+     }
+    },
+    {
+     "name": "Sub_B6_9621",
+     "size": "179",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "103985"
+     }
+    },
+    {
+     "name": "Sub_B6_96D4",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "104164"
+     }
+    },
+    {
+     "name": "Sub_B6_975A",
+     "size": "196",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "104298"
+     }
+    },
+    {
+     "name": "Loc_B6_9A14",
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "104996"
+     }
+    },
+    {
+     "name": "Sub_B6_9A38",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "105032"
+     }
+    },
+    {
+     "name": "Loc_B6_A099",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "106665"
+     }
+    },
+    {
+     "name": "Sub_B6_A0A6",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "106678"
+     }
+    }
+   ],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/bank_6.asm"
+   }
+  },
+  {
+   "name": "main/bank_7",
+   "measures": {
+    "fuzzy_match_percent": 100.0,
+    "total_code": "11148",
+    "matched_code": "11148",
+    "matched_code_percent": 100.0,
+    "total_data": "5236",
+    "matched_data": "5236",
+    "matched_data_percent": 100.0,
+    "total_functions": 166,
+    "matched_functions": 166,
+    "matched_functions_percent": 100.0,
+    "complete_code": "11148",
+    "complete_code_percent": 100.0,
+    "complete_data": "5236",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".text",
+     "size": "11148",
+     "fuzzy_match_percent": 100.0
+    },
+    {
+     "name": ".data",
+     "size": "5236",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [
+    {
+     "name": "Loc_C000",
+     "size": "142",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "114704"
+     }
+    },
+    {
+     "name": "Sub_C0C0",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "114896"
+     }
+    },
+    {
+     "name": "Loc_C0E0",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "114928"
+     }
+    },
+    {
+     "name": "CallBank5_A000",
+     "size": "24",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "114934"
+     }
+    },
+    {
+     "name": "ProcessPpuUpdateList",
+     "size": "112",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "114960"
+     }
+    },
+    {
+     "name": "Sub_C170",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115072"
+     }
+    },
+    {
+     "name": "ApplyScroll",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115110"
+     }
+    },
+    {
+     "name": "BinToDecimal",
+     "size": "59",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115129"
+     }
+    },
+    {
+     "name": "DoOamDma",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115188"
+     }
+    },
+    {
+     "name": "AslA5",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115199"
+     }
+    },
+    {
+     "name": "AslA4",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115200"
+     }
+    },
+    {
+     "name": "AslA3",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115201"
+     }
+    },
+    {
+     "name": "AslA2",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115202"
+     }
+    },
+    {
+     "name": "Sub_C1F6",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115206"
+     }
+    },
+    {
+     "name": "Sub_C1F7",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115207"
+     }
+    },
+    {
+     "name": "LsrA4",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115208"
+     }
+    },
+    {
+     "name": "LsrA3",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115209"
+     }
+    },
+    {
+     "name": "SetPpuCtrl",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115213"
+     }
+    },
+    {
+     "name": "SetPpuMask",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115219"
+     }
+    },
+    {
+     "name": "SetPpuAddrFromBuf",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115244"
+     }
+    },
+    {
+     "name": "EnqueueByte",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115260"
+     }
+    },
+    {
+     "name": "TickClock",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115276"
+     }
+    },
+    {
+     "name": "FillPaletteBlack",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115294"
+     }
+    },
+    {
+     "name": "UploadPalette",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115310"
+     }
+    },
+    {
+     "name": "SetPaletteAddr",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115328"
+     }
+    },
+    {
+     "name": "ResetPpuAddr",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115349"
+     }
+    },
+    {
+     "name": "WaitSprite0",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115364"
+     }
+    },
+    {
+     "name": "GetRandomByte",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115379"
+     }
+    },
+    {
+     "name": "ReadJoypads",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115433"
+     }
+    },
+    {
+     "name": "ReadJoypadPort",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115463"
+     }
+    },
+    {
+     "name": "DrawObjects",
+     "size": "62",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115481"
+     }
+    },
+    {
+     "name": "Sub_C355",
+     "size": "167",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115557"
+     }
+    },
+    {
+     "name": "Sub_C3FC",
+     "size": "65",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115724"
+     }
+    },
+    {
+     "name": "Sub_C43D",
+     "size": "139",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115789"
+     }
+    },
+    {
+     "name": "Sub_C4C8",
+     "size": "35",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115928"
+     }
+    },
+    {
+     "name": "LoadPaletteSet",
+     "size": "105",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "115963"
+     }
+    },
+    {
+     "name": "MmcWriteControl",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116068"
+     }
+    },
+    {
+     "name": "MmcWriteChr0",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116090"
+     }
+    },
+    {
+     "name": "MmcWriteChr1",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116112"
+     }
+    },
+    {
+     "name": "Sub_C582",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116114"
+     }
+    },
+    {
+     "name": "MmcWritePrg",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116134"
+     }
+    },
+    {
+     "name": "Sub_C5AC",
+     "size": "83",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116156"
+     }
+    },
+    {
+     "name": "Sub_C5FF",
+     "size": "274",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116239"
+     }
+    },
+    {
+     "name": "Sub_C711",
+     "size": "74",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116513"
+     }
+    },
+    {
+     "name": "Sub_C761",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116593"
+     }
+    },
+    {
+     "name": "Sub_C77C",
+     "size": "96",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116620"
+     }
+    },
+    {
+     "name": "Sub_C7F6",
+     "size": "105",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116742"
+     }
+    },
+    {
+     "name": "Sub_C85F",
+     "size": "172",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "116847"
+     }
+    },
+    {
+     "name": "Sub_C929",
+     "size": "24",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "117049"
+     }
+    },
+    {
+     "name": "Sub_C941",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "117073"
+     }
+    },
+    {
+     "name": "Sub_C962",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "117106"
+     }
+    },
+    {
+     "name": "Sub_C983",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "117139"
+     }
+    },
+    {
+     "name": "Sub_C994",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "117156"
+     }
+    },
+    {
+     "name": "Loc_C9F9",
+     "size": "426",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "117257"
+     }
+    },
+    {
+     "name": "Sub_CBA3",
+     "size": "248",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "117683"
+     }
+    },
+    {
+     "name": "Sub_CCD3",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "117987"
+     }
+    },
+    {
+     "name": "Sub_CCE9",
+     "size": "139",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118009"
+     }
+    },
+    {
+     "name": "Sub_CD74",
+     "size": "108",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118148"
+     }
+    },
+    {
+     "name": "Sub_CDE0",
+     "size": "158",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118256"
+     }
+    },
+    {
+     "name": "Sub_CE7E",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118414"
+     }
+    },
+    {
+     "name": "Sub_CEDA",
+     "size": "57",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118506"
+     }
+    },
+    {
+     "name": "Sub_CF13",
+     "size": "97",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118563"
+     }
+    },
+    {
+     "name": "Sub_CF84",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118676"
+     }
+    },
+    {
+     "name": "Sub_CFA3",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118707"
+     }
+    },
+    {
+     "name": "Sub_CFC2",
+     "size": "102",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118738"
+     }
+    },
+    {
+     "name": "Sub_D042",
+     "size": "105",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118866"
+     }
+    },
+    {
+     "name": "Sub_D0AB",
+     "size": "80",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "118971"
+     }
+    },
+    {
+     "name": "Sub_D0FB",
+     "size": "63",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119051"
+     }
+    },
+    {
+     "name": "Sub_D13A",
+     "size": "61",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119114"
+     }
+    },
+    {
+     "name": "Sub_D177",
+     "size": "64",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119175"
+     }
+    },
+    {
+     "name": "Sub_D255",
+     "size": "57",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119397"
+     }
+    },
+    {
+     "name": "Sub_D28E",
+     "size": "122",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119454"
+     }
+    },
+    {
+     "name": "Sub_D308",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119576"
+     }
+    },
+    {
+     "name": "Sub_D318",
+     "size": "15",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119592"
+     }
+    },
+    {
+     "name": "Sub_D32D",
+     "size": "119",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119613"
+     }
+    },
+    {
+     "name": "Sub_D3A4",
+     "size": "47",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119732"
+     }
+    },
+    {
+     "name": "Sub_D3D3",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "119779"
+     }
+    },
+    {
+     "name": "Sub_D4D3",
+     "size": "96",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120035"
+     }
+    },
+    {
+     "name": "Sub_D573",
+     "size": "74",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120195"
+     }
+    },
+    {
+     "name": "Sub_D5BD",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120269"
+     }
+    },
+    {
+     "name": "Sub_D5E2",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120306"
+     }
+    },
+    {
+     "name": "Sub_D607",
+     "size": "77",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120343"
+     }
+    },
+    {
+     "name": "Sub_D6A4",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120500"
+     }
+    },
+    {
+     "name": "Sub_D710",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120608"
+     }
+    },
+    {
+     "name": "Sub_D740",
+     "size": "114",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120656"
+     }
+    },
+    {
+     "name": "Sub_D7B2",
+     "size": "187",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120770"
+     }
+    },
+    {
+     "name": "Sub_D86D",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "120957"
+     }
+    },
+    {
+     "name": "Sub_D8CB",
+     "size": "51",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121051"
+     }
+    },
+    {
+     "name": "Loc_D900",
+     "size": "266",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121104"
+     }
+    },
+    {
+     "name": "Sub_DA0A",
+     "size": "59",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121370"
+     }
+    },
+    {
+     "name": "Sub_DA4B",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121435"
+     }
+    },
+    {
+     "name": "Sub_DA77",
+     "size": "56",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121479"
+     }
+    },
+    {
+     "name": "Sub_DB07",
+     "size": "122",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121623"
+     }
+    },
+    {
+     "name": "Sub_DBD5",
+     "size": "89",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121829"
+     }
+    },
+    {
+     "name": "Sub_DC48",
+     "size": "47",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121944"
+     }
+    },
+    {
+     "name": "Sub_DC77",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "121991"
+     }
+    },
+    {
+     "name": "Sub_DC87",
+     "size": "61",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122007"
+     }
+    },
+    {
+     "name": "Sub_DDD0",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122336"
+     }
+    },
+    {
+     "name": "Sub_DDE1",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122353"
+     }
+    },
+    {
+     "name": "Sub_DE15",
+     "size": "115",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122405"
+     }
+    },
+    {
+     "name": "Sub_DED0",
+     "size": "50",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122592"
+     }
+    },
+    {
+     "name": "Sub_DF02",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122642"
+     }
+    },
+    {
+     "name": "Sub_DF12",
+     "size": "50",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122658"
+     }
+    },
+    {
+     "name": "Sub_DF44",
+     "size": "96",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122708"
+     }
+    },
+    {
+     "name": "Sub_E018",
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122920"
+     }
+    },
+    {
+     "name": "Sub_E042",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122962"
+     }
+    },
+    {
+     "name": "Sub_E05E",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "122990"
+     }
+    },
+    {
+     "name": "Sub_E079",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "123017"
+     }
+    },
+    {
+     "name": "Sub_E089",
+     "size": "244",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "123033"
+     }
+    },
+    {
+     "name": "Sub_E17D",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "123277"
+     }
+    },
+    {
+     "name": "Sub_E5FD",
+     "size": "103",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "124429"
+     }
+    },
+    {
+     "name": "Sub_E664",
+     "size": "174",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "124532"
+     }
+    },
+    {
+     "name": "Sub_E85E",
+     "size": "37",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125038"
+     }
+    },
+    {
+     "name": "Sub_E883",
+     "size": "80",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125075"
+     }
+    },
+    {
+     "name": "Sub_E8D3",
+     "size": "67",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125155"
+     }
+    },
+    {
+     "name": "Sub_E916",
+     "size": "35",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125222"
+     }
+    },
+    {
+     "name": "Sub_E939",
+     "size": "40",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125257"
+     }
+    },
+    {
+     "name": "Sub_E971",
+     "size": "97",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125313"
+     }
+    },
+    {
+     "name": "Sub_EA02",
+     "size": "43",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125458"
+     }
+    },
+    {
+     "name": "Sub_EA2D",
+     "size": "52",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125501"
+     }
+    },
+    {
+     "name": "Sub_EA61",
+     "size": "73",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125553"
+     }
+    },
+    {
+     "name": "Sub_EAAA",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125626"
+     }
+    },
+    {
+     "name": "Sub_EAB6",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125638"
+     }
+    },
+    {
+     "name": "Sub_EACF",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125663"
+     }
+    },
+    {
+     "name": "Sub_EAD9",
+     "size": "86",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125673"
+     }
+    },
+    {
+     "name": "Sub_EB2F",
+     "size": "181",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125759"
+     }
+    },
+    {
+     "name": "Sub_EBE4",
+     "size": "75",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "125940"
+     }
+    },
+    {
+     "name": "Sub_EEB7",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "126663"
+     }
+    },
+    {
+     "name": "Sub_EEC9",
+     "size": "80",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "126681"
+     }
+    },
+    {
+     "name": "Sub_EF19",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "126761"
+     }
+    },
+    {
+     "name": "Sub_EF2D",
+     "size": "78",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "126781"
+     }
+    },
+    {
+     "name": "Sub_EF7B",
+     "size": "42",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "126859"
+     }
+    },
+    {
+     "name": "Sub_EFA9",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "126905"
+     }
+    },
+    {
+     "name": "Sub_EFAA",
+     "size": "83",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "126906"
+     }
+    },
+    {
+     "name": "Sub_F23D",
+     "size": "96",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "127565"
+     }
+    },
+    {
+     "name": "Sub_F29D",
+     "size": "61",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "127661"
+     }
+    },
+    {
+     "name": "Sub_F2DA",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "127722"
+     }
+    },
+    {
+     "name": "Sub_F2FA",
+     "size": "154",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "127754"
+     }
+    },
+    {
+     "name": "Sub_F394",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "127908"
+     }
+    },
+    {
+     "name": "Sub_F39E",
+     "size": "138",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "127918"
+     }
+    },
+    {
+     "name": "Sub_F430",
+     "size": "49",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128064"
+     }
+    },
+    {
+     "name": "Sub_F470",
+     "size": "72",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128128"
+     }
+    },
+    {
+     "name": "Sub_F4B8",
+     "size": "134",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128200"
+     }
+    },
+    {
+     "name": "Loc_F55A",
+     "size": "113",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128362"
+     }
+    },
+    {
+     "name": "Loc_F5DB",
+     "size": "43",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128491"
+     }
+    },
+    {
+     "name": "Sub_F606",
+     "size": "24",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128534"
+     }
+    },
+    {
+     "name": "Sub_F61E",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128558"
+     }
+    },
+    {
+     "name": "Sub_F634",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128580"
+     }
+    },
+    {
+     "name": "Sub_F664",
+     "size": "52",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128628"
+     }
+    },
+    {
+     "name": "Sub_F698",
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128680"
+     }
+    },
+    {
+     "name": "Sub_F6BC",
+     "size": "48",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "128716"
+     }
+    },
+    {
+     "name": "Sub_F804",
+     "size": "384",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "129044"
+     }
+    },
+    {
+     "name": "Sub_F984",
+     "size": "153",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "129428"
+     }
+    },
+    {
+     "name": "Sub_FA47",
+     "size": "71",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "129623"
+     }
+    },
+    {
+     "name": "Sub_FA8E",
+     "size": "114",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "129694"
+     }
+    },
+    {
+     "name": "Sub_FB00",
+     "size": "224",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "129808"
+     }
+    },
+    {
+     "name": "Sub_FBE0",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130032"
+     }
+    },
+    {
+     "name": "Sub_FBFE",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130062"
+     }
+    },
+    {
+     "name": "Sub_FC1A",
+     "size": "72",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130090"
+     }
+    },
+    {
+     "name": "Sub_FC62",
+     "size": "91",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130162"
+     }
+    },
+    {
+     "name": "Sub_FCBD",
+     "size": "91",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130253"
+     }
+    },
+    {
+     "name": "Sub_FD18",
+     "size": "73",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130344"
+     }
+    },
+    {
+     "name": "Sub_FD61",
+     "size": "267",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130417"
+     }
+    },
+    {
+     "name": "Sub_FEA7",
+     "size": "26",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130743"
+     }
+    },
+    {
+     "name": "Sub_FEC1",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "130769"
+     }
+    },
+    {
+     "name": "Loc_FFFA",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "131082"
+     }
+    }
+   ],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/bank_7.asm"
+   }
+  },
+  {
+   "name": "main/chr",
+   "measures": {
+    "fuzzy_match_percent": 0.0,
+    "total_code": "0",
+    "matched_code": "0",
+    "matched_code_percent": 0.0,
+    "total_data": "131072",
+    "matched_data": "131072",
+    "matched_data_percent": 100.0,
+    "total_functions": 0,
+    "matched_functions": 0,
+    "matched_functions_percent": 0.0,
+    "complete_code": "0",
+    "complete_code_percent": 0.0,
+    "complete_data": "131072",
+    "complete_data_percent": 100.0,
+    "total_units": 1,
+    "complete_units": 1
+   },
+   "sections": [
+    {
+     "name": ".data",
+     "size": "131072",
+     "fuzzy_match_percent": 100.0
+    }
+   ],
+   "functions": [],
+   "metadata": {
+    "complete": true,
+    "source_path": "src/us/golgo13.asm"
+   }
+  }
+ ],
+ "version": 2,
+ "categories": []
+}
