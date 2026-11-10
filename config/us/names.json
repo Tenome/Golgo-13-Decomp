@@ -300,5 +300,18 @@
  "4:90D9": "HideSpritesWithTileFE",
  "4:956B": "InitPaletteBuffer",
  "4:9943": "ExtractBitPair",
- "4:9975": "DrawRleScreen"
+ "4:9975": "DrawRleScreen",
+ "6:808E": "LoadStageSpawnListPtr",
+ "6:809D": "CalcScrollColumnIndex",
+ "6:80AE": "CalcNextScrollColumnIndex",
+ "6:80B5": "FindObjectByType",
+ "6:831C": "CollectPickup",
+ "6:83BE": "StoreSpawnStats",
+ "6:83D3": "SetSpawnXFromScroll",
+ "6:8401": "SetSpawnFacingBits",
+ "6:840D": "SetRandomSpawnPhase",
+ "6:863C": "SetRandomSpawnYNearPlayer",
+ "6:873E": "SetSpawnYToPlayerY",
+ "6:8803": "DuplicateObjectEntry",
+ "6:89A7": "GetObjectBehaviorIndex"
 }

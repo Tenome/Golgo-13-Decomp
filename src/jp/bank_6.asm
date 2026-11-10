@@ -46,8 +46,8 @@ Loc_B6_8051:
 Loc_B6_8054:
   rts                          ; $8054
 Sub_B6_8055:
-  jsr Sub_B6_808E              ; $8055
-  jsr Sub_B6_809D              ; $8058
+  jsr LoadStageSpawnListPtr    ; $8055
+  jsr CalcScrollColumnIndex    ; $8058
   ldy $0102                    ; $805B
   lda #$00                     ; $805E
 Loc_B6_8060:
@@ -63,7 +63,7 @@ Loc_B6_8060:
   lda (Tmp00),y                ; $806F
   beq Loc_B6_807C              ; $8071
   sta z:$06                    ; $8073
-  jsr Sub_B6_80B5              ; $8075
+  jsr FindObjectByType         ; $8075
   cpx #$00                     ; $8078
   bne Loc_B6_807F              ; $807A
 Loc_B6_807C:
@@ -71,12 +71,12 @@ Loc_B6_807C:
 Loc_B6_807F:
   rts                          ; $807F
 Sub_B6_8080:
-  jsr Sub_B6_808E              ; $8080
-  jsr Sub_B6_80AE              ; $8083
+  jsr LoadStageSpawnListPtr    ; $8080
+  jsr CalcNextScrollColumnIndex ; $8083
   ldy $0103                    ; $8086
   lda #$01                     ; $8089
   jmp Loc_B6_8060              ; $808B
-Sub_B6_808E:
+LoadStageSpawnListPtr:
   lda z:PaletteSetIndex        ; $808E
   asl a                        ; $8090
   tax                          ; $8091
@@ -85,7 +85,7 @@ Sub_B6_808E:
   lda Data_B6_B501,x           ; $8097
   sta z:Tmp01                  ; $809A
   rts                          ; $809C
-Sub_B6_809D:
+CalcScrollColumnIndex:
   lda z:ScrollPage             ; $809D
 Loc_B6_809F:
   jsr AslA4                    ; $809F
@@ -95,12 +95,12 @@ Loc_B6_809F:
   ora z:Tmp02                  ; $80A9
   sta z:Tmp02                  ; $80AB
   rts                          ; $80AD
-Sub_B6_80AE:
+CalcNextScrollColumnIndex:
   ldx z:ScrollPage             ; $80AE
   inx                          ; $80B0
   txa                          ; $80B1
   jmp Loc_B6_809F              ; $80B2
-Sub_B6_80B5:
+FindObjectByType:
   ldx ObjectCount              ; $80B5
   beq Loc_B6_80D7              ; $80B8
   lda #$17                     ; $80BA
@@ -124,8 +124,8 @@ Loc_B6_80CD:
 Loc_B6_80D7:
   rts                          ; $80D7
 Sub_B6_80D8:
-  jsr Sub_B6_808E              ; $80D8
-  jsr Sub_B6_809D              ; $80DB
+  jsr LoadStageSpawnListPtr    ; $80D8
+  jsr CalcScrollColumnIndex    ; $80DB
   inc z:Tmp02                  ; $80DE
   ldy #$05                     ; $80E0
 Loc_B6_80E2:
@@ -144,7 +144,7 @@ Loc_B6_80F3:
   sec                          ; $80F4
   sbc #$05                     ; $80F5
   sta $0102                    ; $80F7
-  jsr Sub_B6_80AE              ; $80FA
+  jsr CalcNextScrollColumnIndex ; $80FA
   ldy #$05                     ; $80FD
 Loc_B6_80FF:
   lda (Tmp00),y                ; $80FF
@@ -339,7 +339,7 @@ Loc_B6_8303:
   lda (Tmp00),y                ; $8305
   and #$0F                     ; $8307
   bne Loc_B6_8311              ; $8309
-  jsr Sub_B6_831C              ; $830B
+  jsr CollectPickup            ; $830B
   jsr Sub_B6_8703              ; $830E
 Loc_B6_8311:
   lda z:Tmp00                  ; $8311
@@ -349,7 +349,7 @@ Loc_B6_8311:
   dex                          ; $8318
   bne Loc_B6_8303              ; $8319
   rts                          ; $831B
-Sub_B6_831C:
+CollectPickup:
   lda z:PlayerLifeLo           ; $831C
   beq Loc_B6_8353              ; $831E
   ldy #$00                     ; $8320
@@ -388,8 +388,8 @@ Data_B6_837E:
   .incbin "prg_bank_6.bin", $037E, $2A  ; $837E
 Sub_B6_83A8:
   jsr Sub_B6_83F4              ; $83A8
-  jsr Sub_B6_840D              ; $83AB
-  jsr Sub_B6_8401              ; $83AE
+  jsr SetRandomSpawnPhase      ; $83AB
+  jsr SetSpawnFacingBits       ; $83AE
   ldy #$00                     ; $83B1
   lda #$C0                     ; $83B3
   sta ($0A),y                  ; $83B5
@@ -397,7 +397,7 @@ Sub_B6_83A8:
   lda #$01                     ; $83B9
   sta ($0A),y                  ; $83BB
   rts                          ; $83BD
-Sub_B6_83BE:
+StoreSpawnStats:
   iny                          ; $83BE
   iny                          ; $83BF
   iny                          ; $83C0
@@ -412,7 +412,7 @@ Sub_B6_83BE:
   ldy #$07                     ; $83CE
   sta ($0A),y                  ; $83D0
   rts                          ; $83D2
-Sub_B6_83D3:
+SetSpawnXFromScroll:
   lda z:$08                    ; $83D3
   bne Loc_B6_83E3              ; $83D5
   ldy #$09                     ; $83D7
@@ -434,27 +434,27 @@ Loc_B6_83E3:
   sta ($0A),y                  ; $83F1
   rts                          ; $83F3
 Sub_B6_83F4:
-  jsr Sub_B6_83BE              ; $83F4
-  jsr Sub_B6_83D3              ; $83F7
+  jsr StoreSpawnStats          ; $83F4
+  jsr SetSpawnXFromScroll      ; $83F7
   ldy #$0E                     ; $83FA
   lda #$00                     ; $83FC
   sta ($0A),y                  ; $83FE
   rts                          ; $8400
-Sub_B6_8401:
+SetSpawnFacingBits:
   lda z:$08                    ; $8401
   jsr AslA6                    ; $8403
   ldy #$09                     ; $8406
   ora ($0A),y                  ; $8408
   sta ($0A),y                  ; $840A
   rts                          ; $840C
-Sub_B6_840D:
+SetRandomSpawnPhase:
   jsr GetRandomByte            ; $840D
   and #$03                     ; $8410
   ldy #$0E                     ; $8412
   sta ($0A),y                  ; $8414
   rts                          ; $8416
   jsr Sub_B6_83F4              ; $8417  [heuristic code]
-  jsr Sub_B6_8401              ; $841A
+  jsr SetSpawnFacingBits       ; $841A
   ldy #$00                     ; $841D
   lda #$C2                     ; $841F
   sta ($0A),y                  ; $8421
@@ -463,7 +463,7 @@ Sub_B6_840D:
   sta ($0A),y                  ; $8427
   rts                          ; $8429
   jsr Sub_B6_83F4              ; $842A  [heuristic code]
-  jsr Sub_B6_8401              ; $842D
+  jsr SetSpawnFacingBits       ; $842D
   ldy #$00                     ; $8430
   lda #$C3                     ; $8432
   sta ($0A),y                  ; $8434
@@ -490,8 +490,8 @@ Sub_B6_85FD:
   lda #$01                     ; $861C
   sta ($0A),y                  ; $861E
   rts                          ; $8620
-  jsr Sub_B6_863C              ; $8621  [heuristic code]
-  jsr Sub_B6_83D3              ; $8624
+  jsr SetRandomSpawnYNearPlayer ; $8621  [heuristic code]
+  jsr SetSpawnXFromScroll      ; $8624
   jsr Sub_B6_865C              ; $8627
   ldy #$00                     ; $862A
   lda #$CC                     ; $862C
@@ -502,7 +502,7 @@ Sub_B6_85FD:
   lda #$16                     ; $8636
   jsr QueueSound               ; $8638
   rts                          ; $863B
-Sub_B6_863C:
+SetRandomSpawnYNearPlayer:
   jsr GetRandomByte            ; $863C
   and #$30                     ; $863F
   clc                          ; $8641
@@ -531,7 +531,7 @@ Sub_B6_865C:
   lda z:FrameCounter           ; $8668  [heuristic code]
   and #$01                     ; $866A
   bne Loc_B6_868B              ; $866C
-  jsr Sub_B6_83D3              ; $866E
+  jsr SetSpawnXFromScroll      ; $866E
   jsr Sub_B6_86BA              ; $8671
   jsr Sub_B6_869A              ; $8674
   jsr Sub_B6_868C              ; $8677
@@ -625,9 +625,9 @@ Loc_B6_8715:
   dec ObjectCount              ; $8715
   rts                          ; $8718
 Loc_B6_8719:
-  jsr Sub_B6_83D3              ; $8719
+  jsr SetSpawnXFromScroll      ; $8719
   jsr Sub_B6_8746              ; $871C
-  jsr Sub_B6_873E              ; $871F
+  jsr SetSpawnYToPlayerY       ; $871F
   jsr Sub_B6_8756              ; $8722
   inc ObjectCount              ; $8725
   inc ObjectCount              ; $8728
@@ -640,7 +640,7 @@ Loc_B6_8719:
   lda #$3F                     ; $8739
   sta ($0A),y                  ; $873B
   rts                          ; $873D
-Sub_B6_873E:
+SetSpawnYToPlayerY:
   ldy #$0B                     ; $873E
   lda PlayerSpriteY0           ; $8740
   sta ($0A),y                  ; $8743
@@ -678,7 +678,7 @@ Sub_B6_8756:
   lda z:FrameCounter           ; $877B  [heuristic code]
   and #$01                     ; $877D
   bne Loc_B6_8796              ; $877F
-  jsr Sub_B6_83D3              ; $8781
+  jsr SetSpawnXFromScroll      ; $8781
   ldy #$0B                     ; $8784
   lda #$C8                     ; $8786
   sta ($0A),y                  ; $8788
@@ -700,7 +700,7 @@ Loc_B6_87A5:
   dec ObjectCount              ; $87A5
   rts                          ; $87A8
 Loc_B6_87A9:
-  jsr Sub_B6_83D3              ; $87A9
+  jsr SetSpawnXFromScroll      ; $87A9
   jsr Sub_B6_87DA              ; $87AC
   jsr Sub_B6_87D3              ; $87AF
   ldy #$00                     ; $87B2
@@ -713,7 +713,7 @@ Loc_B6_87A9:
   lda #$01                     ; $87C0
   sta ($0A),y                  ; $87C2
   inc ObjectCount              ; $87C4
-  jsr Sub_B6_8803              ; $87C7
+  jsr DuplicateObjectEntry     ; $87C7
   jsr Sub_B6_8822              ; $87CA
   lda #$3D                     ; $87CD
   jsr QueueSound               ; $87CF
@@ -748,7 +748,7 @@ Loc_B6_87F4:
 Loc_B6_8800:
   sta ($0A),y                  ; $8800
   rts                          ; $8802
-Sub_B6_8803:
+DuplicateObjectEntry:
   lda z:$0A                    ; $8803
   clc                          ; $8805
   adc #$10                     ; $8806
@@ -935,7 +935,7 @@ Loc_B6_8991:
   sta (Tmp00),y                ; $89A4
 Loc_B6_89A6:
   rts                          ; $89A6
-Sub_B6_89A7:
+GetObjectBehaviorIndex:
   ldy #$09                     ; $89A7
   lda (Tmp00),y                ; $89A9
   and #$F0                     ; $89AB
@@ -945,7 +945,7 @@ Sub_B6_89A7:
   tay                          ; $89B0
   rts                          ; $89B1
 Sub_B6_89B2:
-  jsr Sub_B6_89A7              ; $89B2
+  jsr GetObjectBehaviorIndex   ; $89B2
   lda Data_B6_8B14,y           ; $89B5
   sta z:Tmp02                  ; $89B8
   lda Data_B6_8B15,y           ; $89BA
@@ -1233,7 +1233,7 @@ Loc_B6_9479:
   jsr Sub_B6_9621              ; $9485
   rts                          ; $9488
 Sub_B6_9489:
-  jsr Sub_B6_89A7              ; $9489
+  jsr GetObjectBehaviorIndex   ; $9489
   lda Data_B6_94BE,y           ; $948C
   sta z:Tmp02                  ; $948F
   lda Data_B6_94BF,y           ; $9491
@@ -1393,7 +1393,7 @@ Loc_B6_96C7:
   jsr Sub_B6_975A              ; $96D0
   rts                          ; $96D3
 Sub_B6_96D4:
-  jsr Sub_B6_89A7              ; $96D4
+  jsr GetObjectBehaviorIndex   ; $96D4
   lda Data_B6_96E2,y           ; $96D7
   sta z:Tmp02                  ; $96DA
   lda Data_B6_96E3,y           ; $96DC
@@ -1516,7 +1516,7 @@ Loc_B6_9A2E:
   jsr Sub_B6_8B08              ; $9A34
   rts                          ; $9A37
 Sub_B6_9A38:
-  jsr Sub_B6_89A7              ; $9A38
+  jsr GetObjectBehaviorIndex   ; $9A38
   lda Data_B6_9A46,y           ; $9A3B
   sta z:Tmp02                  ; $9A3E
   lda Data_B6_9A47,y           ; $9A40
@@ -1534,7 +1534,7 @@ Sub_B6_A099:
   jsr Sub_B6_8B08              ; $A0A2
   rts                          ; $A0A5
 Sub_B6_A0A6:
-  jsr Sub_B6_89A7              ; $A0A6
+  jsr GetObjectBehaviorIndex   ; $A0A6
   lda Data_B6_A0B4,y           ; $A0A9
   sta z:Tmp02                  ; $A0AC
   lda Data_B6_A0B5,y           ; $A0AE

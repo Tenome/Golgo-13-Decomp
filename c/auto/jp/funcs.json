@@ -6571,7 +6571,7 @@
    ]
   ]
  },
- "Sub_B6_808E": {
+ "LoadStageSpawnListPtr": {
   "addr": 32910,
   "bank": 6,
   "instrs": 8,
@@ -6584,7 +6584,7 @@
    ]
   ]
  },
- "Sub_B6_809D": {
+ "CalcScrollColumnIndex": {
   "addr": 32925,
   "bank": 6,
   "instrs": 8,
@@ -6597,7 +6597,7 @@
    ]
   ]
  },
- "Sub_B6_80AE": {
+ "CalcNextScrollColumnIndex": {
   "addr": 32942,
   "bank": 6,
   "instrs": 11,
@@ -6610,7 +6610,7 @@
    ]
   ]
  },
- "Sub_B6_80B5": {
+ "FindObjectByType": {
   "addr": 32949,
   "bank": 6,
   "instrs": 19,
@@ -6696,7 +6696,7 @@
    ]
   ]
  },
- "Sub_B6_831C": {
+ "CollectPickup": {
   "addr": 33564,
   "bank": 6,
   "instrs": 29,
@@ -6722,7 +6722,7 @@
    ]
   ]
  },
- "Sub_B6_83BE": {
+ "StoreSpawnStats": {
   "addr": 33726,
   "bank": 6,
   "instrs": 14,
@@ -6735,7 +6735,7 @@
    ]
   ]
  },
- "Sub_B6_83D3": {
+ "SetSpawnXFromScroll": {
   "addr": 33747,
   "bank": 6,
   "instrs": 19,
@@ -6761,7 +6761,7 @@
    ]
   ]
  },
- "Sub_B6_8401": {
+ "SetSpawnFacingBits": {
   "addr": 33793,
   "bank": 6,
   "instrs": 6,
@@ -6774,7 +6774,7 @@
    ]
   ]
  },
- "Sub_B6_840D": {
+ "SetRandomSpawnPhase": {
   "addr": 33805,
   "bank": 6,
   "instrs": 5,
@@ -6839,7 +6839,7 @@
    ]
   ]
  },
- "Sub_B6_863C": {
+ "SetRandomSpawnYNearPlayer": {
   "addr": 34364,
   "bank": 6,
   "instrs": 16,
@@ -6943,7 +6943,7 @@
    ]
   ]
  },
- "Sub_B6_873E": {
+ "SetSpawnYToPlayerY": {
   "addr": 34622,
   "bank": 6,
   "instrs": 4,
@@ -7034,7 +7034,7 @@
    ]
   ]
  },
- "Sub_B6_8803": {
+ "DuplicateObjectEntry": {
   "addr": 34819,
   "bank": 6,
   "instrs": 17,
@@ -7151,7 +7151,7 @@
    ]
   ]
  },
- "Sub_B6_89A7": {
+ "GetObjectBehaviorIndex": {
   "addr": 35239,
   "bank": 6,
   "instrs": 8,

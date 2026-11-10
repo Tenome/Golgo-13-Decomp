@@ -4702,7 +4702,7 @@
      }
     },
     {
-     "name": "Sub_B6_808E",
+     "name": "LoadStageSpawnListPtr",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4710,7 +4710,7 @@
      }
     },
     {
-     "name": "Sub_B6_809D",
+     "name": "CalcScrollColumnIndex",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4718,7 +4718,7 @@
      }
     },
     {
-     "name": "Sub_B6_80AE",
+     "name": "CalcNextScrollColumnIndex",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4726,7 +4726,7 @@
      }
     },
     {
-     "name": "Sub_B6_80B5",
+     "name": "FindObjectByType",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4790,7 +4790,7 @@
      }
     },
     {
-     "name": "Sub_B6_831C",
+     "name": "CollectPickup",
      "size": "56",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4806,7 +4806,7 @@
      }
     },
     {
-     "name": "Sub_B6_83BE",
+     "name": "StoreSpawnStats",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4814,7 +4814,7 @@
      }
     },
     {
-     "name": "Sub_B6_83D3",
+     "name": "SetSpawnXFromScroll",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4830,7 +4830,7 @@
      }
     },
     {
-     "name": "Sub_B6_8401",
+     "name": "SetSpawnFacingBits",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4838,7 +4838,7 @@
      }
     },
     {
-     "name": "Sub_B6_840D",
+     "name": "SetRandomSpawnPhase",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4854,7 +4854,7 @@
      }
     },
     {
-     "name": "Sub_B6_863C",
+     "name": "SetRandomSpawnYNearPlayer",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4910,7 +4910,7 @@
      }
     },
     {
-     "name": "Sub_B6_873E",
+     "name": "SetSpawnYToPlayerY",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4950,7 +4950,7 @@
      }
     },
     {
-     "name": "Sub_B6_8803",
+     "name": "DuplicateObjectEntry",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4990,7 +4990,7 @@
      }
     },
     {
-     "name": "Sub_B6_89A7",
+     "name": "GetObjectBehaviorIndex",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
