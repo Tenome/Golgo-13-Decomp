@@ -4201,7 +4201,7 @@
    ]
   ]
  },
- "Sub_B5_814C": {
+ "DisableRendering": {
   "addr": 33100,
   "bank": 5,
   "instrs": 3,
@@ -4303,7 +4303,7 @@
    ]
   ]
  },
- "Sub_B5_8183": {
+ "EnableRendering": {
   "addr": 33155,
   "bank": 5,
   "instrs": 4,
@@ -4751,7 +4751,7 @@
    ]
   ]
  },
- "Sub_B5_838E": {
+ "SkipSceneOnStart": {
   "addr": 33678,
   "bank": 5,
   "instrs": 17,
@@ -5600,7 +5600,7 @@
    ]
   ]
  },
- "Sub_B5_8944": {
+ "FillNametableWithA": {
   "addr": 35140,
   "bank": 5,
   "instrs": 11,
@@ -5613,7 +5613,7 @@
    ]
   ]
  },
- "Sub_B5_895B": {
+ "FillPaletteBufferBlack": {
   "addr": 35163,
   "bank": 5,
   "instrs": 1,
@@ -5626,7 +5626,7 @@
    ]
   ]
  },
- "Sub_B5_895D": {
+ "FillPaletteBufferWithA": {
   "addr": 35165,
   "bank": 5,
   "instrs": 1,
@@ -5652,7 +5652,7 @@
    ]
   ]
  },
- "Sub_B5_8966": {
+ "ClearSceneStateTailB5": {
   "addr": 35174,
   "bank": 5,
   "instrs": 6,
@@ -5665,7 +5665,7 @@
    ]
   ]
  },
- "Sub_B5_8971": {
+ "HideAllSpritesB5": {
   "addr": 35185,
   "bank": 5,
   "instrs": 1,
@@ -5678,7 +5678,7 @@
    ]
   ]
  },
- "Sub_B5_8973": {
+ "HideSpritesFromX": {
   "addr": 35187,
   "bank": 5,
   "instrs": 5,
@@ -5963,7 +5963,7 @@
    ]
   ]
  },
- "Sub_B5_8F3A": {
+ "CopyRamStub0513": {
   "addr": 36666,
   "bank": 5,
   "instrs": 6,
@@ -5976,7 +5976,7 @@
    ]
   ]
  },
- "Sub_B5_8F51": {
+ "CopyRamStub05B8": {
   "addr": 36689,
   "bank": 5,
   "instrs": 6,
@@ -6015,7 +6015,7 @@
    ]
   ]
  },
- "Sub_B5_8FCA": {
+ "CopyRamStub051E": {
   "addr": 36810,
   "bank": 5,
   "instrs": 6,
@@ -6028,7 +6028,7 @@
    ]
   ]
  },
- "Sub_B5_8FDE": {
+ "SetMmcControlChr0Chr1": {
   "addr": 36830,
   "bank": 5,
   "instrs": 6,
@@ -6054,7 +6054,7 @@
    ]
   ]
  },
- "Sub_B5_9082": {
+ "RunSoundDriverBank5Timed": {
   "addr": 36994,
   "bank": 5,
   "instrs": 14,
@@ -6067,7 +6067,7 @@
    ]
   ]
  },
- "Sub_B5_90A0": {
+ "InitDmcAndJoypad2": {
   "addr": 37024,
   "bank": 5,
   "instrs": 8,

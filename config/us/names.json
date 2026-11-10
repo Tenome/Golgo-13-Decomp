@@ -328,7 +328,7 @@
  "5:8944": "FillNametableWithA",
  "5:895B": "FillPaletteBufferBlack",
  "5:895D": "FillPaletteBufferWithA",
- "5:8966": "ClearSceneStateTail",
+ "5:8966": "ClearSceneStateTailB5",
  "5:8971": "HideAllSpritesB5",
  "5:8973": "HideSpritesFromX",
  "5:8F3A": "CopyRamStub0513",

@@ -50,7 +50,7 @@ Bank5Scene_00:
   lda #$04                     ; $8139
 Loc_B5_813B:
   sta SceneState               ; $813B
-  jsr ClearSceneStateTail      ; $813E
+  jsr ClearSceneStateTailB5    ; $813E
   jsr Sub_B5_90B3              ; $8141
   jsr InitDmcAndJoypad2        ; $8144
   lda #$00                     ; $8147
@@ -1040,7 +1040,7 @@ Sub_B5_895F:
   dex                          ; $8962
   bpl Sub_B5_895F              ; $8963
   rts                          ; $8965
-ClearSceneStateTail:
+ClearSceneStateTailB5:
   lda #$00                     ; $8966
   ldx #$10                     ; $8968
 Loc_B5_896A:

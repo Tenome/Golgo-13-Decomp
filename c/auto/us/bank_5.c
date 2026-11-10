@@ -31,8 +31,8 @@ void Bank5Nmi(void) {  /* $8010 bank 5 */
   push16(0x8037); Bank5SceneDispatch(); UNW(); ret_check(0x8037);                        /* $8035 jsr */
   push16(0x803A); ApplyScroll(); UNW(); ret_check(0x803A);                               /* $8038 jsr */
   push16(0x803D); ReadJoypads(); UNW(); ret_check(0x803D);                               /* $803B jsr */
-  push16(0x8040); Sub_B5_838E(); UNW(); ret_check(0x8040);                               /* $803E jsr */
-  push16(0x8043); Sub_B5_9082(); UNW(); ret_check(0x8043);                               /* $8041 jsr */
+  push16(0x8040); SkipSceneOnStart(); UNW(); ret_check(0x8040);                          /* $803E jsr */
+  push16(0x8043); RunSoundDriverBank5Timed(); UNW(); ret_check(0x8043);                  /* $8041 jsr */
   LDA(rd(PPU_STATUS));                                                                   /* $8044 lda */
   LDA(rd(PpuCtrlShadow));                                                                /* $8047 lda */
   ORA(0x80);                                                                             /* $8049 ora */
@@ -56,15 +56,15 @@ void Bank5Scene_00(void) {  /* $8139 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x04);                                                                             /* $8139 lda */
   STA(SceneState);                                                                       /* $813B sta */
-  push16(0x8140); Sub_B5_8966(); UNW(); ret_check(0x8140);                               /* $813E jsr */
+  push16(0x8140); ClearSceneStateTailB5(); UNW(); ret_check(0x8140);                     /* $813E jsr */
   push16(0x8143); Sub_B5_90B3(); UNW(); ret_check(0x8143);                               /* $8141 jsr */
-  push16(0x8146); Sub_B5_90A0(); UNW(); ret_check(0x8146);                               /* $8144 jsr */
+  push16(0x8146); InitDmcAndJoypad2(); UNW(); ret_check(0x8146);                         /* $8144 jsr */
   LDA(0x00);                                                                             /* $8147 lda */
   push16(0x814B); QueueSound(); UNW(); ret_check(0x814B);                                /* $8149 jsr */
-  { Sub_B5_814C(); return; }
+  { DisableRendering(); return; }
 }
 
-void Sub_B5_814C(void) {  /* $814C bank 5 */
+void DisableRendering(void) {  /* $814C bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuMaskShadow));                                                                /* $814C lda */
   AND(0xE7);                                                                             /* $814E and */
@@ -76,12 +76,12 @@ void Bank5Scene_01(void) {  /* $8153 bank 5 */
   goto L8153;
 L813B: BUDGET();
   STA(SceneState);                                                                       /* $813B sta */
-  push16(0x8140); Sub_B5_8966(); UNW(); ret_check(0x8140);                               /* $813E jsr */
+  push16(0x8140); ClearSceneStateTailB5(); UNW(); ret_check(0x8140);                     /* $813E jsr */
   push16(0x8143); Sub_B5_90B3(); UNW(); ret_check(0x8143);                               /* $8141 jsr */
-  push16(0x8146); Sub_B5_90A0(); UNW(); ret_check(0x8146);                               /* $8144 jsr */
+  push16(0x8146); InitDmcAndJoypad2(); UNW(); ret_check(0x8146);                         /* $8144 jsr */
   LDA(0x00);                                                                             /* $8147 lda */
   push16(0x814B); QueueSound(); UNW(); ret_check(0x814B);                                /* $8149 jsr */
-  { Sub_B5_814C(); return; }
+  { DisableRendering(); return; }
 L8153: BUDGET();
   LDA(0x2B);                                                                             /* $8153 lda */
   goto L813B;                                                                            /* $8155 jmp */
@@ -92,12 +92,12 @@ void Bank5Scene_02(void) {  /* $8158 bank 5 */
   goto L8158;
 L813B: BUDGET();
   STA(SceneState);                                                                       /* $813B sta */
-  push16(0x8140); Sub_B5_8966(); UNW(); ret_check(0x8140);                               /* $813E jsr */
+  push16(0x8140); ClearSceneStateTailB5(); UNW(); ret_check(0x8140);                     /* $813E jsr */
   push16(0x8143); Sub_B5_90B3(); UNW(); ret_check(0x8143);                               /* $8141 jsr */
-  push16(0x8146); Sub_B5_90A0(); UNW(); ret_check(0x8146);                               /* $8144 jsr */
+  push16(0x8146); InitDmcAndJoypad2(); UNW(); ret_check(0x8146);                         /* $8144 jsr */
   LDA(0x00);                                                                             /* $8147 lda */
   push16(0x814B); QueueSound(); UNW(); ret_check(0x814B);                                /* $8149 jsr */
-  { Sub_B5_814C(); return; }
+  { DisableRendering(); return; }
 L8158: BUDGET();
   LDA(0x3D);                                                                             /* $8158 lda */
   goto L813B;                                                                            /* $815A jmp */
@@ -108,12 +108,12 @@ void Bank5Scene_03(void) {  /* $815D bank 5 */
   goto L815D;
 L813B: BUDGET();
   STA(SceneState);                                                                       /* $813B sta */
-  push16(0x8140); Sub_B5_8966(); UNW(); ret_check(0x8140);                               /* $813E jsr */
+  push16(0x8140); ClearSceneStateTailB5(); UNW(); ret_check(0x8140);                     /* $813E jsr */
   push16(0x8143); Sub_B5_90B3(); UNW(); ret_check(0x8143);                               /* $8141 jsr */
-  push16(0x8146); Sub_B5_90A0(); UNW(); ret_check(0x8146);                               /* $8144 jsr */
+  push16(0x8146); InitDmcAndJoypad2(); UNW(); ret_check(0x8146);                         /* $8144 jsr */
   LDA(0x00);                                                                             /* $8147 lda */
   push16(0x814B); QueueSound(); UNW(); ret_check(0x814B);                                /* $8149 jsr */
-  { Sub_B5_814C(); return; }
+  { DisableRendering(); return; }
 L815D: BUDGET();
   LDA(0x5F);                                                                             /* $815D lda */
   LDX(rd(0x050F));                                                                       /* $815F ldx */
@@ -134,11 +134,11 @@ L8AAB: BUDGET();
   LDA(0x1C);                                                                             /* $8AAB lda */
   LDX(0x0C);                                                                             /* $8AAD ldx */
   LDY(0x08);                                                                             /* $8AAF ldy */
-  push16(0x8AB3); Sub_B5_8FDE(); UNW(); ret_check(0x8AB3);                               /* $8AB1 jsr */
-  push16(0x8AB6); Sub_B5_8FCA(); UNW(); ret_check(0x8AB6);                               /* $8AB4 jsr */
+  push16(0x8AB3); SetMmcControlChr0Chr1(); UNW(); ret_check(0x8AB3);                     /* $8AB1 jsr */
+  push16(0x8AB6); CopyRamStub051E(); UNW(); ret_check(0x8AB6);                           /* $8AB4 jsr */
   LDA(0x00);                                                                             /* $8AB7 lda */
   LDX(0x20);                                                                             /* $8AB9 ldx */
-  push16(0x8ABD); Sub_B5_8944(); UNW(); ret_check(0x8ABD);                               /* $8ABB jsr */
+  push16(0x8ABD); FillNametableWithA(); UNW(); ret_check(0x8ABD);                        /* $8ABB jsr */
   push16(0x8AC0); ProcessPpuUpdateList(); UNW(); ret_check(0x8AC2);                      /* $8ABE jsr */
   LDX(0x07);                                                                             /* $8AC3 ldx */
   do { BUDGET();
@@ -158,12 +158,12 @@ void Bank5Scene_05(void) {  /* $8176 bank 5 */
     INC_M(SceneState);                                                                   /* $817B inc */
     LDA(0x0E);                                                                           /* $817E lda */
     push16(0x8182); QueueSound(); UNW(); ret_check(0x8182);                              /* $8180 jsr */
-    { Sub_B5_8183(); return; }
+    { EnableRendering(); return; }
   }
   RTS_RET(sp0);                                                                          /* $8189 rts */
 }
 
-void Sub_B5_8183(void) {  /* $8183 bank 5 */
+void EnableRendering(void) {  /* $8183 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuMaskShadow));                                                                /* $8183 lda */
   ORA(0x18);                                                                             /* $8185 ora */
@@ -226,8 +226,8 @@ void Bank5Scene_0A(void) {  /* $81CB bank 5 */
     INC_M(SceneState);                                                                   /* $81D3 inc */
     LDA(0x1E);                                                                           /* $81D6 lda */
     STA(SceneTimer);                                                                     /* $81D8 sta */
-    push16(0x81DD); Sub_B5_895B(); UNW(); ret_check(0x81DD);                             /* $81DB jsr */
-    { Sub_B5_8971(); return; }                                                           /* $81DE jmp */
+    push16(0x81DD); FillPaletteBufferBlack(); UNW(); ret_check(0x81DD);                  /* $81DB jsr */
+    { HideAllSpritesB5(); return; }                                                      /* $81DE jmp */
   }
   RTS_RET(sp0);                                                                          /* $81E1 rts */
 }
@@ -248,11 +248,11 @@ void Bank5Scene_0C(void) {  /* $81EB bank 5 */
   STA(0x012A);                                                                           /* $81F0 sta */
   goto L8FED;                                                                            /* $81F3 jmp */
 L8FED: BUDGET();
-  push16(0x8FEF); Sub_B5_814C(); UNW(); ret_check(0x8FEF);                               /* $8FED jsr */
+  push16(0x8FEF); DisableRendering(); UNW(); ret_check(0x8FEF);                          /* $8FED jsr */
   LDA(0x1F);                                                                             /* $8FF0 lda */
   LDX(0x1A);                                                                             /* $8FF2 ldx */
   LDY(0x08);                                                                             /* $8FF4 ldy */
-  push16(0x8FF8); Sub_B5_8FDE(); UNW(); ret_check(0x8FF8);                               /* $8FF6 jsr */
+  push16(0x8FF8); SetMmcControlChr0Chr1(); UNW(); ret_check(0x8FF8);                     /* $8FF6 jsr */
   LDA(0x60);                                                                             /* $8FF9 lda */
   STA(0x0600);                                                                           /* $8FFB sta */
   LDA(0x00);                                                                             /* $8FFE lda */
@@ -373,7 +373,7 @@ void Bank5Scene_12(void) {  /* $8253 bank 5 */
   if (R.z) {                                                                             /* $8256 bne */
     INC_M(SceneState);                                                                   /* $8258 inc */
   }
-  { Sub_B5_8183(); return; }                                                             /* $825B jmp */
+  { EnableRendering(); return; }                                                         /* $825B jmp */
 }
 
 void Bank5Scene_13(void) {  /* $825E bank 5 */
@@ -399,7 +399,7 @@ void Bank5Scene_13(void) {  /* $825E bank 5 */
   goto L874E;                                                                            /* $8283 jmp */
 L874E: BUDGET();
   LDX(0x04);                                                                             /* $874E ldx */
-  push16(0x8752); Sub_B5_8973(); UNW(); ret_check(0x8752);                               /* $8750 jsr */
+  push16(0x8752); HideSpritesFromX(); UNW(); ret_check(0x8752);                          /* $8750 jsr */
   LDA(rd(0x053A));                                                                       /* $8753 lda */
   SEC();                                                                                 /* $8756 sec */
   sbc(rd(0x053B));                                                                       /* $8757 sbc */
@@ -562,13 +562,13 @@ void Bank5Scene_17(void) {  /* $82C5 bank 5 */
     STA(PpuCtrlShadow);                                                                  /* $82D0 sta */
     LDA(0x3C);                                                                           /* $82D2 lda */
     STA(SceneTimer);                                                                     /* $82D4 sta */
-    { Sub_B5_814C(); return; }                                                           /* $82D7 jmp */
+    { DisableRendering(); return; }                                                      /* $82D7 jmp */
   }
   push16(0x82DC); ApplyScroll(); UNW(); ret_check(0x82DC);                               /* $82DA jsr */
   goto L874E;                                                                            /* $82DD jmp */
 L874E: BUDGET();
   LDX(0x04);                                                                             /* $874E ldx */
-  push16(0x8752); Sub_B5_8973(); UNW(); ret_check(0x8752);                               /* $8750 jsr */
+  push16(0x8752); HideSpritesFromX(); UNW(); ret_check(0x8752);                          /* $8750 jsr */
   LDA(rd(0x053A));                                                                       /* $8753 lda */
   SEC();                                                                                 /* $8756 sec */
   sbc(rd(0x053B));                                                                       /* $8757 sbc */
@@ -676,7 +676,7 @@ void Bank5Scene_1A(void) {  /* $8306 bank 5 */
   INC_M(SceneState);                                                                     /* $8306 inc */
   LDA(0x05);                                                                             /* $8309 lda */
   STA(SceneSubState);                                                                    /* $830B sta */
-  { Sub_B5_8183(); return; }                                                             /* $830E jmp */
+  { EnableRendering(); return; }                                                         /* $830E jmp */
 }
 
 void Bank5Scene_1B(void) {  /* $8311 bank 5 */
@@ -721,7 +721,7 @@ void Bank5Scene_1E(void) {  /* $8344 bank 5 */
   LDA(rd(AnimCounter));                                                                  /* $8347 lda */
   if (R.a == 0) {                                                                        /* $834A bne */
     INC_M(SceneState);                                                                   /* $834C inc */
-    push16(0x8351); Sub_B5_814C(); UNW(); ret_check(0x8351);                             /* $834F jsr */
+    push16(0x8351); DisableRendering(); UNW(); ret_check(0x8351);                        /* $834F jsr */
     LDA(0x28);                                                                           /* $8352 lda */
     STA(SceneTimer);                                                                     /* $8354 sta */
   }
@@ -744,17 +744,17 @@ void Bank5Scene_20(void) {  /* $8361 bank 5 */
   STA(0x012A);                                                                           /* $8366 sta */
   goto L903F;                                                                            /* $8369 jmp */
 L903F: BUDGET();
-  push16(0x9041); Sub_B5_814C(); UNW(); ret_check(0x9041);                               /* $903F jsr */
+  push16(0x9041); DisableRendering(); UNW(); ret_check(0x9041);                          /* $903F jsr */
   LDA(0x1F);                                                                             /* $9042 lda */
   LDX(0x0F);                                                                             /* $9044 ldx */
   LDY(0x0D);                                                                             /* $9046 ldy */
-  push16(0x904A); Sub_B5_8FDE(); UNW(); ret_check(0x904A);                               /* $9048 jsr */
-  push16(0x904D); Sub_B5_895B(); UNW(); ret_check(0x904D);                               /* $904B jsr */
+  push16(0x904A); SetMmcControlChr0Chr1(); UNW(); ret_check(0x904A);                     /* $9048 jsr */
+  push16(0x904D); FillPaletteBufferBlack(); UNW(); ret_check(0x904D);                    /* $904B jsr */
   LDA(0xFF);                                                                             /* $904E lda */
   LDX(0x20);                                                                             /* $9050 ldx */
-  push16(0x9054); Sub_B5_8944(); UNW(); ret_check(0x9054);                               /* $9052 jsr */
+  push16(0x9054); FillNametableWithA(); UNW(); ret_check(0x9054);                        /* $9052 jsr */
   LDX(0x2C);                                                                             /* $9055 ldx */
-  push16(0x9059); Sub_B5_8944(); UNW(); ret_check(0x9059);                               /* $9057 jsr */
+  push16(0x9059); FillNametableWithA(); UNW(); ret_check(0x9059);                        /* $9057 jsr */
   LDA(0x20);                                                                             /* $905A lda */
   STA(0x014F);                                                                           /* $905C sta */
   LDA(0x00);                                                                             /* $905F lda */
@@ -771,8 +771,8 @@ void Bank5Scene_21(void) {  /* $836C bank 5 */
   INC_M(SceneState);                                                                     /* $836C inc */
   LDA(0x3C);                                                                             /* $836F lda */
   STA(0x0547);                                                                           /* $8371 sta */
-  push16(0x8376); Sub_B5_8F3A(); UNW(); ret_check(0x8376);                               /* $8374 jsr */
-  { Sub_B5_8183(); return; }                                                             /* $8377 jmp */
+  push16(0x8376); CopyRamStub0513(); UNW(); ret_check(0x8376);                           /* $8374 jsr */
+  { EnableRendering(); return; }                                                         /* $8377 jmp */
 }
 
 void Bank5Scene_22(void) {  /* $837A bank 5 */
@@ -797,7 +797,7 @@ void Bank5Scene_24(void) {  /* $838A bank 5 */
   RTS_RET(sp0);                                                                          /* $838D rts */
 }
 
-void Sub_B5_838E(void) {  /* $838E bank 5 */
+void SkipSceneOnStart(void) {  /* $838E bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(SceneState));                                                                   /* $838E lda */
   cmp8(R.a, 0x61);                                                                       /* $8391 cmp */
@@ -850,7 +850,7 @@ L83C2: BUDGET();
   STA(AnimCounter);                                                                      /* $83C7 sta */
   LDA(0x07);                                                                             /* $83CA lda */
   STA(SceneSubState);                                                                    /* $83CC sta */
-  push16(0x83D1); Sub_B5_8183(); UNW(); ret_check(0x83D1);                               /* $83CF jsr */
+  push16(0x83D1); EnableRendering(); UNW(); ret_check(0x83D1);                           /* $83CF jsr */
   LDA(rd(0x052A));                                                                       /* $83D2 lda */
   if (R.a == 0) {                                                                        /* $83D5 bne */
     goto L8241;                                                                          /* $83D7 jmp */
@@ -897,13 +897,13 @@ void Bank5Scene_28(void) {  /* $83EC bank 5 */
   LDA(rd(JoyNew1));                                                                      /* $83EF lda */
   AND(0x08);                                                                             /* $83F2 and */
   if (R.a != 0) {                                                                        /* $83F4 beq */
-    push16(0x83F8); Sub_B5_814C(); UNW(); ret_check(0x83F8);                             /* $83F6 jsr */
+    push16(0x83F8); DisableRendering(); UNW(); ret_check(0x83F8);                        /* $83F6 jsr */
     LDA(0x00);                                                                           /* $83F9 lda */
     STA(MmcPrgShadow);                                                                   /* $83FB sta */
     STA(GameState);                                                                      /* $83FD sta */
     LDA(0xC8);                                                                           /* $83FF lda */
     STA(PlayerLifeLo);                                                                   /* $8401 sta */
-    push16(0x8405); Sub_B5_8971(); UNW(); ret_check(0x8405);                             /* $8403 jsr */
+    push16(0x8405); HideAllSpritesB5(); UNW(); ret_check(0x8405);                        /* $8403 jsr */
     LDA(rd(0x050F));                                                                     /* $8406 lda */
     if (R.a == 0) goto L8418;                                                            /* $8409 beq */
     LDA(0x01);                                                                           /* $840B lda */
@@ -1011,8 +1011,8 @@ void Bank5Scene_2B(void) {  /* $8488 bank 5 */
   INC_M(SceneState);                                                                     /* $8488 inc */
   LDA(0x3C);                                                                             /* $848B lda */
   STA(SceneTimer);                                                                       /* $848D sta */
-  push16(0x8492); Sub_B5_895B(); UNW(); ret_check(0x8492);                               /* $8490 jsr */
-  { Sub_B5_814C(); return; }                                                             /* $8493 jmp */
+  push16(0x8492); FillPaletteBufferBlack(); UNW(); ret_check(0x8492);                    /* $8490 jsr */
+  { DisableRendering(); return; }                                                        /* $8493 jmp */
 }
 
 void Bank5Scene_2C(void) {  /* $8496 bank 5 */
@@ -1036,13 +1036,13 @@ L948C: BUDGET();
   LDA(0x1E);                                                                             /* $9495 lda */
   LDX(0x0F);                                                                             /* $9497 ldx */
   LDY(0x0D);                                                                             /* $9499 ldy */
-  push16(0x949D); Sub_B5_8FDE(); UNW(); ret_check(0x949D);                               /* $949B jsr */
+  push16(0x949D); SetMmcControlChr0Chr1(); UNW(); ret_check(0x949D);                     /* $949B jsr */
   LDA(0xFE);                                                                             /* $949E lda */
   LDX(0x20);                                                                             /* $94A0 ldx */
-  push16(0x94A4); Sub_B5_8944(); UNW(); ret_check(0x94A4);                               /* $94A2 jsr */
+  push16(0x94A4); FillNametableWithA(); UNW(); ret_check(0x94A4);                        /* $94A2 jsr */
   LDA(0xFF);                                                                             /* $94A5 lda */
   LDX(0x2C);                                                                             /* $94A7 ldx */
-  push16(0x94AB); Sub_B5_8944(); UNW(); ret_check(0x94AB);                               /* $94A9 jsr */
+  push16(0x94AB); FillNametableWithA(); UNW(); ret_check(0x94AB);                        /* $94A9 jsr */
   push16(0x94AE); ProcessPpuUpdateList(); UNW(); ret_check(0x94B0);                      /* $94AC jsr */
   LDY(0x1F);                                                                             /* $94B1 ldy */
   do { BUDGET();
@@ -1060,7 +1060,7 @@ L948C: BUDGET();
 void Bank5Scene_38(void) {  /* $84A5 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $84A5 inc */
-  push16(0x84AA); Sub_B5_8183(); UNW(); ret_check(0x84AA);                               /* $84A8 jsr */
+  push16(0x84AA); EnableRendering(); UNW(); ret_check(0x84AA);                           /* $84A8 jsr */
   LDA(0x15);                                                                             /* $84AB lda */
   { QueueSound(); return; }                                                              /* $84AD jmp */
 }
@@ -1101,7 +1101,7 @@ void Bank5Scene_3B(void) {  /* $84DA bank 5 */
     INC_M(SceneState);                                                                   /* $84E2 inc */
     LDA(0x5A);                                                                           /* $84E5 lda */
     STA(SceneTimer);                                                                     /* $84E7 sta */
-    push16(0x84EC); Sub_B5_895B(); UNW(); ret_check(0x84EC);                             /* $84EA jsr */
+    push16(0x84EC); FillPaletteBufferBlack(); UNW(); ret_check(0x84EC);                  /* $84EA jsr */
     LDA(0x00);                                                                           /* $84ED lda */
     { QueueSound(); return; }                                                            /* $84EF jmp */
   }
@@ -1132,7 +1132,7 @@ void Bank5Scene_3C(void) {  /* $84F3 bank 5 */
 void Bank5Scene_46(void) {  /* $8513 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8515); Bank5Scene_37(); UNW(); ret_check(0x8515);                             /* $8513 jsr */
-  push16(0x8518); Sub_B5_8971(); UNW(); ret_check(0x8518);                               /* $8516 jsr */
+  push16(0x8518); HideAllSpritesB5(); UNW(); ret_check(0x8518);                          /* $8516 jsr */
   LDA(0x05);                                                                             /* $8519 lda */
   LDX(0x00);                                                                             /* $851B ldx */
   { Sub_B5_9895(); return; }                                                             /* $851D jmp */
@@ -1141,7 +1141,7 @@ void Bank5Scene_46(void) {  /* $8513 bank 5 */
 void Bank5Scene_47(void) {  /* $8520 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8520 inc */
-  push16(0x8525); Sub_B5_8183(); UNW(); ret_check(0x8525);                               /* $8523 jsr */
+  push16(0x8525); EnableRendering(); UNW(); ret_check(0x8525);                           /* $8523 jsr */
   LDA(0x72);                                                                             /* $8526 lda */
   STA(0x0528);                                                                           /* $8528 sta */
   LDA(0x04);                                                                             /* $852B lda */
@@ -1224,7 +1224,7 @@ L8566: BUDGET();
   INC_M(SceneState);                                                                     /* $856E inc */
   LDA(0x3C);                                                                             /* $8571 lda */
   STA(SceneTimer);                                                                       /* $8573 sta */
-  push16(0x8578); Sub_B5_8971(); UNW(); ret_check(0x8578);                               /* $8576 jsr */
+  push16(0x8578); HideAllSpritesB5(); UNW(); ret_check(0x8578);                          /* $8576 jsr */
   LDA(0x07);                                                                             /* $8579 lda */
   { Sub_B5_9895(); return; }                                                             /* $857B jmp */
 }
@@ -1250,8 +1250,8 @@ L857E: BUDGET();
   INC_M(SceneState);                                                                     /* $8583 inc */
   LDA(0xF0);                                                                             /* $8586 lda */
   STA(SceneTimer);                                                                       /* $8588 sta */
-  push16(0x858D); Sub_B5_895B(); UNW(); ret_check(0x858D);                               /* $858B jsr */
-  { Sub_B5_8971(); return; }                                                             /* $858E jmp */
+  push16(0x858D); FillPaletteBufferBlack(); UNW(); ret_check(0x858D);                    /* $858B jsr */
+  { HideAllSpritesB5(); return; }                                                        /* $858E jmp */
 }
 
 void Bank5Scene_4C(void) {  /* $8591 bank 5 */
@@ -1317,13 +1317,13 @@ L9785: BUDGET();
   LDA(0x1D);                                                                             /* $978E lda */
   LDX(0x1A);                                                                             /* $9790 ldx */
   LDY(0x0D);                                                                             /* $9792 ldy */
-  push16(0x9796); Sub_B5_8FDE(); UNW(); ret_check(0x9796);                               /* $9794 jsr */
+  push16(0x9796); SetMmcControlChr0Chr1(); UNW(); ret_check(0x9796);                     /* $9794 jsr */
   LDA(0xFF);                                                                             /* $9797 lda */
   LDX(0x20);                                                                             /* $9799 ldx */
-  push16(0x979D); Sub_B5_8944(); UNW(); ret_check(0x979D);                               /* $979B jsr */
+  push16(0x979D); FillNametableWithA(); UNW(); ret_check(0x979D);                        /* $979B jsr */
   LDA(0x22);                                                                             /* $979E lda */
-  push16(0x97A2); Sub_B5_895D(); UNW(); ret_check(0x97A2);                               /* $97A0 jsr */
-  push16(0x97A5); Sub_B5_8971(); UNW(); ret_check(0x97A5);                               /* $97A3 jsr */
+  push16(0x97A2); FillPaletteBufferWithA(); UNW(); ret_check(0x97A2);                    /* $97A0 jsr */
+  push16(0x97A5); HideAllSpritesB5(); UNW(); ret_check(0x97A5);                          /* $97A3 jsr */
   push16(0x97A8); ProcessPpuUpdateList(); UNW(); ret_check(0x97AA);                      /* $97A6 jsr */
   LDA(0x0F);                                                                             /* $97AB lda */
   STA(0x014F);                                                                           /* $97AD sta */
@@ -1386,7 +1386,7 @@ L85ED: BUDGET();
   AND(0x08);                                                                             /* $85FD and */
   if (R.a != 0) {                                                                        /* $85FF beq */
     INC_M(SceneState);                                                                   /* $8601 inc */
-    { Sub_B5_814C(); return; }                                                           /* $8604 jmp */
+    { DisableRendering(); return; }                                                      /* $8604 jmp */
   }
   RTS_RET(sp0);                                                                          /* $8607 rts */
 }
@@ -1396,16 +1396,16 @@ void Bank5Scene_4E(void) {  /* $8608 bank 5 */
   INC_M(SceneState);                                                                     /* $8608 inc */
   goto L9D4A;                                                                            /* $860B jmp */
 L9D4A: BUDGET();
-  push16(0x9D4C); Sub_B5_814C(); UNW(); ret_check(0x9D4C);                               /* $9D4A jsr */
+  push16(0x9D4C); DisableRendering(); UNW(); ret_check(0x9D4C);                          /* $9D4A jsr */
   LDA(0x1C);                                                                             /* $9D4D lda */
   LDX(0x1F);                                                                             /* $9D4F ldx */
   LDY(0x0D);                                                                             /* $9D51 ldy */
-  push16(0x9D55); Sub_B5_8FDE(); UNW(); ret_check(0x9D55);                               /* $9D53 jsr */
-  push16(0x9D58); Sub_B5_895B(); UNW(); ret_check(0x9D58);                               /* $9D56 jsr */
-  push16(0x9D5B); Sub_B5_8971(); UNW(); ret_check(0x9D5B);                               /* $9D59 jsr */
+  push16(0x9D55); SetMmcControlChr0Chr1(); UNW(); ret_check(0x9D55);                     /* $9D53 jsr */
+  push16(0x9D58); FillPaletteBufferBlack(); UNW(); ret_check(0x9D58);                    /* $9D56 jsr */
+  push16(0x9D5B); HideAllSpritesB5(); UNW(); ret_check(0x9D5B);                          /* $9D59 jsr */
   LDA(0xFF);                                                                             /* $9D5C lda */
   LDX(0x20);                                                                             /* $9D5E ldx */
-  push16(0x9D62); Sub_B5_8944(); UNW(); ret_check(0x9D62);                               /* $9D60 jsr */
+  push16(0x9D62); FillNametableWithA(); UNW(); ret_check(0x9D62);                        /* $9D60 jsr */
   push16(0x9D65); ProcessPpuUpdateList(); UNW(); ret_check(0x9D67);                      /* $9D63 jsr */
   LDA(0x20);                                                                             /* $9D68 lda */
   STA(0x014F);                                                                           /* $9D6A sta */
@@ -1421,7 +1421,7 @@ void Bank5Scene_4F(void) {  /* $860E bank 5 */
   DEC_M(SceneTimer);                                                                     /* $860E dec */
   if (R.z) {                                                                             /* $8611 bne */
     INC_M(SceneState);                                                                   /* $8613 inc */
-    push16(0x8618); Sub_B5_8183(); UNW(); ret_check(0x8618);                             /* $8616 jsr */
+    push16(0x8618); EnableRendering(); UNW(); ret_check(0x8618);                         /* $8616 jsr */
     LDA(0x78);                                                                           /* $8619 lda */
     STA(SceneTimer);                                                                     /* $861B sta */
   }
@@ -1447,11 +1447,11 @@ void Bank5Scene_51(void) {  /* $862D bank 5 */
     LDA(0x1C);                                                                           /* $8635 lda */
     LDX(0x10);                                                                           /* $8637 ldx */
     LDY(0x0D);                                                                           /* $8639 ldy */
-    push16(0x863D); Sub_B5_8FDE(); UNW(); ret_check(0x863D);                             /* $863B jsr */
+    push16(0x863D); SetMmcControlChr0Chr1(); UNW(); ret_check(0x863D);                   /* $863B jsr */
     LDA(0x00);                                                                           /* $863E lda */
     STA(0x0512);                                                                         /* $8640 sta */
   }
-  { Sub_B5_814C(); return; }                                                             /* $8643 jmp */
+  { DisableRendering(); return; }                                                        /* $8643 jmp */
 }
 
 void Bank5Scene_52(void) {  /* $8646 bank 5 */
@@ -1459,13 +1459,13 @@ void Bank5Scene_52(void) {  /* $8646 bank 5 */
   INC_M(SceneState);                                                                     /* $8646 inc */
   goto L9A2E;                                                                            /* $8649 jmp */
 L9A2E: BUDGET();
-  push16(0x9A30); Sub_B5_814C(); UNW(); ret_check(0x9A30);                               /* $9A2E jsr */
-  push16(0x9A33); Sub_B5_895B(); UNW(); ret_check(0x9A33);                               /* $9A31 jsr */
-  push16(0x9A36); Sub_B5_8971(); UNW(); ret_check(0x9A36);                               /* $9A34 jsr */
-  push16(0x9A39); Sub_B5_8FCA(); UNW(); ret_check(0x9A39);                               /* $9A37 jsr */
+  push16(0x9A30); DisableRendering(); UNW(); ret_check(0x9A30);                          /* $9A2E jsr */
+  push16(0x9A33); FillPaletteBufferBlack(); UNW(); ret_check(0x9A33);                    /* $9A31 jsr */
+  push16(0x9A36); HideAllSpritesB5(); UNW(); ret_check(0x9A36);                          /* $9A34 jsr */
+  push16(0x9A39); CopyRamStub051E(); UNW(); ret_check(0x9A39);                           /* $9A37 jsr */
   LDA(0xFF);                                                                             /* $9A3A lda */
   LDX(0x20);                                                                             /* $9A3C ldx */
-  push16(0x9A40); Sub_B5_8944(); UNW(); ret_check(0x9A40);                               /* $9A3E jsr */
+  push16(0x9A40); FillNametableWithA(); UNW(); ret_check(0x9A40);                        /* $9A3E jsr */
   LDX(rd(0x0512));                                                                       /* $9A41 ldx */
   LDA(rd((uint16_t)(0x9CB8 + R.x)));                                                     /* $9A44 lda */
   if ((R.a & 0x80)) {                                                                    /* $9A47 bpl */
@@ -1552,7 +1552,7 @@ void Bank5Scene_53(void) {  /* $864C bank 5 */
   if (R.a != 0) {                                                                        /* $864F beq */
     DEC_M(SceneTimer);                                                                   /* $8651 dec */
     if (!R.z) goto L865C;                                                                /* $8654 bne */
-    push16(0x8658); Sub_B5_8183(); UNW(); ret_check(0x8658);                             /* $8656 jsr */
+    push16(0x8658); EnableRendering(); UNW(); ret_check(0x8658);                         /* $8656 jsr */
   }
   INC_M(SceneState);                                                                     /* $8659 inc */
 L865C: BUDGET();
@@ -1579,16 +1579,16 @@ void Bank5Scene_55(void) {  /* $8672 bank 5 */
   INC_M(SceneState);                                                                     /* $8672 inc */
   goto L9D88;                                                                            /* $8675 jmp */
 L9D88: BUDGET();
-  push16(0x9D8A); Sub_B5_814C(); UNW(); ret_check(0x9D8A);                               /* $9D88 jsr */
+  push16(0x9D8A); DisableRendering(); UNW(); ret_check(0x9D8A);                          /* $9D88 jsr */
   LDA(0x1C);                                                                             /* $9D8B lda */
   LDX(0x1F);                                                                             /* $9D8D ldx */
   LDY(0x0D);                                                                             /* $9D8F ldy */
-  push16(0x9D93); Sub_B5_8FDE(); UNW(); ret_check(0x9D93);                               /* $9D91 jsr */
-  push16(0x9D96); Sub_B5_895B(); UNW(); ret_check(0x9D96);                               /* $9D94 jsr */
-  push16(0x9D99); Sub_B5_8971(); UNW(); ret_check(0x9D99);                               /* $9D97 jsr */
+  push16(0x9D93); SetMmcControlChr0Chr1(); UNW(); ret_check(0x9D93);                     /* $9D91 jsr */
+  push16(0x9D96); FillPaletteBufferBlack(); UNW(); ret_check(0x9D96);                    /* $9D94 jsr */
+  push16(0x9D99); HideAllSpritesB5(); UNW(); ret_check(0x9D99);                          /* $9D97 jsr */
   LDA(0xFF);                                                                             /* $9D9A lda */
   LDX(0x20);                                                                             /* $9D9C ldx */
-  push16(0x9DA0); Sub_B5_8944(); UNW(); ret_check(0x9DA0);                               /* $9D9E jsr */
+  push16(0x9DA0); FillNametableWithA(); UNW(); ret_check(0x9DA0);                        /* $9D9E jsr */
   push16(0x9DA3); ProcessPpuUpdateList(); UNW(); ret_check(0x9DA5);                      /* $9DA1 jsr */
   LDA(0x20);                                                                             /* $9DA6 lda */
   STA(0x014F);                                                                           /* $9DA8 sta */
@@ -1601,7 +1601,7 @@ void Bank5Scene_56(void) {  /* $8678 bank 5 */
   if (R.z) {                                                                             /* $867B bne */
     LDA(rd(0x0507));                                                                     /* $867D lda */
     if (R.a != 0) {                                                                      /* $8680 beq */
-      push16(0x8684); Sub_B5_8183(); UNW(); ret_check(0x8684);                           /* $8682 jsr */
+      push16(0x8684); EnableRendering(); UNW(); ret_check(0x8684);                       /* $8682 jsr */
       LDA(0x78);                                                                         /* $8685 lda */
       STA(SceneTimer);                                                                   /* $8687 sta */
     }
@@ -1627,17 +1627,17 @@ void Bank5Scene_58(void) {  /* $869C bank 5 */
   INC_M(SceneState);                                                                     /* $869C inc */
   goto L903F;                                                                            /* $869F jmp */
 L903F: BUDGET();
-  push16(0x9041); Sub_B5_814C(); UNW(); ret_check(0x9041);                               /* $903F jsr */
+  push16(0x9041); DisableRendering(); UNW(); ret_check(0x9041);                          /* $903F jsr */
   LDA(0x1F);                                                                             /* $9042 lda */
   LDX(0x0F);                                                                             /* $9044 ldx */
   LDY(0x0D);                                                                             /* $9046 ldy */
-  push16(0x904A); Sub_B5_8FDE(); UNW(); ret_check(0x904A);                               /* $9048 jsr */
-  push16(0x904D); Sub_B5_895B(); UNW(); ret_check(0x904D);                               /* $904B jsr */
+  push16(0x904A); SetMmcControlChr0Chr1(); UNW(); ret_check(0x904A);                     /* $9048 jsr */
+  push16(0x904D); FillPaletteBufferBlack(); UNW(); ret_check(0x904D);                    /* $904B jsr */
   LDA(0xFF);                                                                             /* $904E lda */
   LDX(0x20);                                                                             /* $9050 ldx */
-  push16(0x9054); Sub_B5_8944(); UNW(); ret_check(0x9054);                               /* $9052 jsr */
+  push16(0x9054); FillNametableWithA(); UNW(); ret_check(0x9054);                        /* $9052 jsr */
   LDX(0x2C);                                                                             /* $9055 ldx */
-  push16(0x9059); Sub_B5_8944(); UNW(); ret_check(0x9059);                               /* $9057 jsr */
+  push16(0x9059); FillNametableWithA(); UNW(); ret_check(0x9059);                        /* $9057 jsr */
   LDA(0x20);                                                                             /* $905A lda */
   STA(0x014F);                                                                           /* $905C sta */
   LDA(0x00);                                                                             /* $905F lda */
@@ -1657,8 +1657,8 @@ void Bank5Scene_59(void) {  /* $86A2 bank 5 */
     STA(0x0545);                                                                         /* $86A9 sta */
     LDA(0x3C);                                                                           /* $86AC lda */
     STA(0x0547);                                                                         /* $86AE sta */
-    push16(0x86B3); Sub_B5_8F3A(); UNW(); ret_check(0x86B3);                             /* $86B1 jsr */
-    push16(0x86B6); Sub_B5_8183(); UNW(); ret_check(0x86B6);                             /* $86B4 jsr */
+    push16(0x86B3); CopyRamStub0513(); UNW(); ret_check(0x86B3);                         /* $86B1 jsr */
+    push16(0x86B6); EnableRendering(); UNW(); ret_check(0x86B6);                         /* $86B4 jsr */
   }
   INC_M(SceneState);                                                                     /* $86B7 inc */
   RTS_RET(sp0);                                                                          /* $86BA rts */
@@ -1682,16 +1682,16 @@ void Bank5Scene_5B(void) {  /* $86CC bank 5 */
   INC_M(SceneState);                                                                     /* $86CC inc */
   goto L9D0C;                                                                            /* $86CF jmp */
 L9D0C: BUDGET();
-  push16(0x9D0E); Sub_B5_814C(); UNW(); ret_check(0x9D0E);                               /* $9D0C jsr */
+  push16(0x9D0E); DisableRendering(); UNW(); ret_check(0x9D0E);                          /* $9D0C jsr */
   LDA(0x1C);                                                                             /* $9D0F lda */
   LDX(0x14);                                                                             /* $9D11 ldx */
   LDY(0x14);                                                                             /* $9D13 ldy */
-  push16(0x9D17); Sub_B5_8FDE(); UNW(); ret_check(0x9D17);                               /* $9D15 jsr */
-  push16(0x9D1A); Sub_B5_895B(); UNW(); ret_check(0x9D1A);                               /* $9D18 jsr */
-  push16(0x9D1D); Sub_B5_8971(); UNW(); ret_check(0x9D1D);                               /* $9D1B jsr */
+  push16(0x9D17); SetMmcControlChr0Chr1(); UNW(); ret_check(0x9D17);                     /* $9D15 jsr */
+  push16(0x9D1A); FillPaletteBufferBlack(); UNW(); ret_check(0x9D1A);                    /* $9D18 jsr */
+  push16(0x9D1D); HideAllSpritesB5(); UNW(); ret_check(0x9D1D);                          /* $9D1B jsr */
   LDA(0xFF);                                                                             /* $9D1E lda */
   LDX(0x20);                                                                             /* $9D20 ldx */
-  push16(0x9D24); Sub_B5_8944(); UNW(); ret_check(0x9D24);                               /* $9D22 jsr */
+  push16(0x9D24); FillNametableWithA(); UNW(); ret_check(0x9D24);                        /* $9D22 jsr */
   push16(0x9D27); ProcessPpuUpdateList(); UNW(); ret_check(0x9D29);                      /* $9D25 jsr */
   { Sub_B5_90B9(); return; }                                                             /* $9D2A jmp */
 }
@@ -1701,7 +1701,7 @@ void Bank5Scene_5C(void) {  /* $86D2 bank 5 */
   INC_M(SceneState);                                                                     /* $86D2 inc */
   LDA(0x01);                                                                             /* $86D5 lda */
   STA(SceneSubState);                                                                    /* $86D7 sta */
-  { Sub_B5_8183(); return; }                                                             /* $86DA jmp */
+  { EnableRendering(); return; }                                                         /* $86DA jmp */
 }
 
 void Bank5Scene_5D(void) {  /* $86DD bank 5 */
@@ -1721,16 +1721,16 @@ void Sub_B5_86EA(void) {  /* $86EA bank 5 */
   STA(0x012A);                                                                           /* $86EF sta */
   goto L9DBB;                                                                            /* $86F2 jmp */
 L9DBB: BUDGET();
-  push16(0x9DBD); Sub_B5_814C(); UNW(); ret_check(0x9DBD);                               /* $9DBB jsr */
+  push16(0x9DBD); DisableRendering(); UNW(); ret_check(0x9DBD);                          /* $9DBB jsr */
   LDA(0x1C);                                                                             /* $9DBE lda */
   LDX(0x0B);                                                                             /* $9DC0 ldx */
   LDY(0x0D);                                                                             /* $9DC2 ldy */
-  push16(0x9DC6); Sub_B5_8FDE(); UNW(); ret_check(0x9DC6);                               /* $9DC4 jsr */
-  push16(0x9DC9); Sub_B5_895B(); UNW(); ret_check(0x9DC9);                               /* $9DC7 jsr */
-  push16(0x9DCC); Sub_B5_8971(); UNW(); ret_check(0x9DCC);                               /* $9DCA jsr */
+  push16(0x9DC6); SetMmcControlChr0Chr1(); UNW(); ret_check(0x9DC6);                     /* $9DC4 jsr */
+  push16(0x9DC9); FillPaletteBufferBlack(); UNW(); ret_check(0x9DC9);                    /* $9DC7 jsr */
+  push16(0x9DCC); HideAllSpritesB5(); UNW(); ret_check(0x9DCC);                          /* $9DCA jsr */
   LDA(0xFF);                                                                             /* $9DCD lda */
   LDX(0x20);                                                                             /* $9DCF ldx */
-  push16(0x9DD3); Sub_B5_8944(); UNW(); ret_check(0x9DD3);                               /* $9DD1 jsr */
+  push16(0x9DD3); FillNametableWithA(); UNW(); ret_check(0x9DD3);                        /* $9DD1 jsr */
   LDA(0x20);                                                                             /* $9DD4 lda */
   STA(0x014F);                                                                           /* $9DD6 sta */
   push16(0x9DDB); ProcessPpuUpdateList(); UNW(); ret_check(0x9DDD);                      /* $9DD9 jsr */
@@ -1755,7 +1755,7 @@ void Sub_B5_86F5(void) {  /* $86F5 bank 5 */
   DEC_M(SceneTimer);                                                                     /* $86F5 dec */
   if (R.z) {                                                                             /* $86F8 bne */
     INC_M(SceneState);                                                                   /* $86FA inc */
-    { Sub_B5_8183(); return; }                                                           /* $86FD jmp */
+    { EnableRendering(); return; }                                                       /* $86FD jmp */
   }
   RTS_RET(sp0);                                                                          /* $8700 rts */
 }
@@ -1773,7 +1773,7 @@ void Sub_B5_8701(void) {  /* $8701 bank 5 */
 void Sub_B5_870D(void) {  /* $870D bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $870D inc */
-  { Sub_B5_814C(); return; }                                                             /* $8710 jmp */
+  { DisableRendering(); return; }                                                        /* $8710 jmp */
 }
 
 void Sub_B5_8713(void) {  /* $8713 bank 5 */
@@ -1791,7 +1791,7 @@ void Sub_B5_8717(void) {  /* $8717 bank 5 */
 void Sub_B5_871B(void) {  /* $871B bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $871B inc */
-  { Sub_B5_814C(); return; }                                                             /* $871E jmp */
+  { DisableRendering(); return; }                                                        /* $871E jmp */
 }
 
 void Sub_B5_8721(void) {  /* $8721 bank 5 */
@@ -1849,7 +1849,7 @@ void Sub_B5_8806(void) {  /* $8806 bank 5 */
 
 void Sub_B5_887E(void) {  /* $887E bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x8880); Sub_B5_8971(); UNW(); ret_check(0x8880);                               /* $887E jsr */
+  push16(0x8880); HideAllSpritesB5(); UNW(); ret_check(0x8880);                          /* $887E jsr */
   LDX(rd(0x052B));                                                                       /* $8881 ldx */
   INX();                                                                                 /* $8884 inx */
   cmp8(R.x, 0x59);                                                                       /* $8885 cpx */
@@ -1910,7 +1910,7 @@ L88E2: BUDGET();
   RTS_RET(sp0);                                                                          /* $88E2 rts */
 }
 
-void Sub_B5_8944(void) {  /* $8944 bank 5 */
+void FillNametableWithA(void) {  /* $8944 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(rd(PPU_STATUS));                                                                   /* $8944 ldy */
   STX(PPU_ADDR);                                                                         /* $8947 stx */
@@ -1927,13 +1927,13 @@ L8951: BUDGET();
   RTS_RET(sp0);                                                                          /* $895A rts */
 }
 
-void Sub_B5_895B(void) {  /* $895B bank 5 */
+void FillPaletteBufferBlack(void) {  /* $895B bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x0F);                                                                             /* $895B lda */
-  { Sub_B5_895D(); return; }
+  { FillPaletteBufferWithA(); return; }
 }
 
-void Sub_B5_895D(void) {  /* $895D bank 5 */
+void FillPaletteBufferWithA(void) {  /* $895D bank 5 */
   uint8_t sp0 = R.sp;
   LDX(0x1F);                                                                             /* $895D ldx */
   { Sub_B5_895F(); return; }
@@ -1948,7 +1948,7 @@ void Sub_B5_895F(void) {  /* $895F bank 5 */
   RTS_RET(sp0);                                                                          /* $8965 rts */
 }
 
-void Sub_B5_8966(void) {  /* $8966 bank 5 */
+void ClearSceneStateTailB5(void) {  /* $8966 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $8966 lda */
   LDX(0x10);                                                                             /* $8968 ldx */
@@ -1959,13 +1959,13 @@ void Sub_B5_8966(void) {  /* $8966 bank 5 */
   RTS_RET(sp0);                                                                          /* $8970 rts */
 }
 
-void Sub_B5_8971(void) {  /* $8971 bank 5 */
+void HideAllSpritesB5(void) {  /* $8971 bank 5 */
   uint8_t sp0 = R.sp;
   LDX(0x00);                                                                             /* $8971 ldx */
-  { Sub_B5_8973(); return; }
+  { HideSpritesFromX(); return; }
 }
 
-void Sub_B5_8973(void) {  /* $8973 bank 5 */
+void HideSpritesFromX(void) {  /* $8973 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0xF0);                                                                             /* $8973 lda */
   do { BUDGET();
@@ -1977,17 +1977,17 @@ void Sub_B5_8973(void) {  /* $8973 bank 5 */
 
 void Sub_B5_897C(void) {  /* $897C bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x897E); Sub_B5_814C(); UNW(); ret_check(0x897E);                               /* $897C jsr */
+  push16(0x897E); DisableRendering(); UNW(); ret_check(0x897E);                          /* $897C jsr */
   LDA(0x1E);                                                                             /* $897F lda */
   LDX(0x0F);                                                                             /* $8981 ldx */
   LDY(0x0E);                                                                             /* $8983 ldy */
-  push16(0x8987); Sub_B5_8FDE(); UNW(); ret_check(0x8987);                               /* $8985 jsr */
+  push16(0x8987); SetMmcControlChr0Chr1(); UNW(); ret_check(0x8987);                     /* $8985 jsr */
   LDA(0xFF);                                                                             /* $8988 lda */
   LDX(0x20);                                                                             /* $898A ldx */
-  push16(0x898E); Sub_B5_8944(); UNW(); ret_check(0x898E);                               /* $898C jsr */
+  push16(0x898E); FillNametableWithA(); UNW(); ret_check(0x898E);                        /* $898C jsr */
   LDX(0x2C);                                                                             /* $898F ldx */
-  push16(0x8993); Sub_B5_8944(); UNW(); ret_check(0x8993);                               /* $8991 jsr */
-  push16(0x8996); Sub_B5_8971(); UNW(); ret_check(0x8996);                               /* $8994 jsr */
+  push16(0x8993); FillNametableWithA(); UNW(); ret_check(0x8993);                        /* $8991 jsr */
+  push16(0x8996); HideAllSpritesB5(); UNW(); ret_check(0x8996);                          /* $8994 jsr */
   push16(0x8999); ProcessPpuUpdateList(); UNW(); ret_check(0x899B);                      /* $8997 jsr */
   LDX(0x03);                                                                             /* $899C ldx */
   do { BUDGET();
@@ -2078,7 +2078,7 @@ void Bank5SubScene_03(void) {  /* $8B3F bank 5 */
   push16(0x8B41); Bank5NextAnimFrame(); UNW(); ret_check(0x8B41);                        /* $8B3F jsr */
   cmp8(R.a, 0x04);                                                                       /* $8B42 cmp */
   if (R.a >= 0x04) {                                                                     /* $8B44 bcc */
-    push16(0x8B48); Sub_B5_895B(); UNW(); ret_check(0x8B48);                             /* $8B46 jsr */
+    push16(0x8B48); FillPaletteBufferBlack(); UNW(); ret_check(0x8B48);                  /* $8B46 jsr */
     { Bank5SubScene_00(); return; }                                                      /* $8B49 jmp */
   }
   push16(0x8B4E); Sub_B5_8B33(); UNW(); ret_check(0x8B4E);                               /* $8B4C jsr */
@@ -2096,7 +2096,7 @@ void Bank5SubScene_04(void) {  /* $8B67 bank 5 */
   cmp8(R.a, 0x03);                                                                       /* $8B6A cmp */
   if (R.a >= 0x03) {                                                                     /* $8B6C bcc */
     push16(0x8B70); Bank5SubScene_00(); UNW(); ret_check(0x8B70);                        /* $8B6E jsr */
-    { Sub_B5_895B(); return; }                                                           /* $8B71 jmp */
+    { FillPaletteBufferBlack(); return; }                                                /* $8B71 jmp */
   }
   STA(Tmp00);                                                                            /* $8B74 sta */
   ASL_A();                                                                               /* $8B76 asl */
@@ -2210,7 +2210,7 @@ L8C48: BUDGET();
     if (R.a != 0x03) {                                                                   /* $8C4F beq */
       { Bank5SubScene_00(); return; }                                                    /* $8C51 jmp */
     }
-    { Sub_B5_895B(); return; }                                                           /* $8C54 jmp */
+    { FillPaletteBufferBlack(); return; }                                                /* $8C54 jmp */
   }
   TAX();                                                                                 /* $8C57 tax */
   LDA(rd((uint16_t)(0x8C5E + R.x)));                                                     /* $8C58 lda */
@@ -2263,7 +2263,7 @@ void Bank5NextAnimFrame(void) {  /* $8CBB bank 5 */
 void Sub_B5_8CC4(void) {  /* $8CC4 bank 5 */
   uint8_t sp0 = R.sp;
   LDX(0x38);                                                                             /* $8CC4 ldx */
-  push16(0x8CC8); Sub_B5_8973(); UNW(); ret_check(0x8CC8);                               /* $8CC6 jsr */
+  push16(0x8CC8); HideSpritesFromX(); UNW(); ret_check(0x8CC8);                          /* $8CC6 jsr */
   LDA(rd(0x052E));                                                                       /* $8CC9 lda */
   if (R.a == 0) {                                                                        /* $8CCC bne */
     LDA(0x11);                                                                           /* $8CCE lda */
@@ -2437,7 +2437,7 @@ L8E9A: BUDGET();
   goto L8E8F;                                                                            /* $8EAC jmp */
 }
 
-void Sub_B5_8F3A(void) {  /* $8F3A bank 5 */
+void CopyRamStub0513(void) {  /* $8F3A bank 5 */
   uint8_t sp0 = R.sp;
   LDX(0x0A);                                                                             /* $8F3A ldx */
   do { BUDGET();
@@ -2448,7 +2448,7 @@ void Sub_B5_8F3A(void) {  /* $8F3A bank 5 */
   RTS_RET(sp0);                                                                          /* $8F45 rts */
 }
 
-void Sub_B5_8F51(void) {  /* $8F51 bank 5 */
+void CopyRamStub05B8(void) {  /* $8F51 bank 5 */
   uint8_t sp0 = R.sp;
   LDX(0x19);                                                                             /* $8F51 ldx */
   do { BUDGET();
@@ -2484,7 +2484,7 @@ L8F9C: BUDGET();
   RTS_RET(sp0);                                                                          /* $8FA0 rts */
 }
 
-void Sub_B5_8FCA(void) {  /* $8FCA bank 5 */
+void CopyRamStub051E(void) {  /* $8FCA bank 5 */
   uint8_t sp0 = R.sp;
   LDX(0x07);                                                                             /* $8FCA ldx */
   do { BUDGET();
@@ -2495,7 +2495,7 @@ void Sub_B5_8FCA(void) {  /* $8FCA bank 5 */
   RTS_RET(sp0);                                                                          /* $8FD5 rts */
 }
 
-void Sub_B5_8FDE(void) {  /* $8FDE bank 5 */
+void SetMmcControlChr0Chr1(void) {  /* $8FDE bank 5 */
   uint8_t sp0 = R.sp;
   STA(MmcControlShadow);                                                                 /* $8FDE sta */
   STX(MmcChr0Shadow);                                                                    /* $8FE0 stx */
@@ -2521,7 +2521,7 @@ void Loc_B5_906F(void) {  /* $906F bank 5 */
   RTS_RET(sp0);                                                                          /* $9081 rts */
 }
 
-void Sub_B5_9082(void) {  /* $9082 bank 5 */
+void RunSoundDriverBank5Timed(void) {  /* $9082 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0528));                                                                       /* $9082 lda */
   ORA(rd(0x0529));                                                                       /* $9085 ora */
@@ -2541,7 +2541,7 @@ L9092: BUDGET();
   RTS_RET(sp0);                                                                          /* $909F rts */
 }
 
-void Sub_B5_90A0(void) {  /* $90A0 bank 5 */
+void InitDmcAndJoypad2(void) {  /* $90A0 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $90A0 lda */
   STA(APU_DMC_FREQ);                                                                     /* $90A2 sta */
@@ -2555,8 +2555,8 @@ void Sub_B5_90A0(void) {  /* $90A0 bank 5 */
 
 void Sub_B5_90B3(void) {  /* $90B3 bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x90B5); Sub_B5_895B(); UNW(); ret_check(0x90B5);                               /* $90B3 jsr */
-  push16(0x90B8); Sub_B5_8971(); UNW(); ret_check(0x90B8);                               /* $90B6 jsr */
+  push16(0x90B5); FillPaletteBufferBlack(); UNW(); ret_check(0x90B5);                    /* $90B3 jsr */
+  push16(0x90B8); HideAllSpritesB5(); UNW(); ret_check(0x90B8);                          /* $90B6 jsr */
   { Sub_B5_90B9(); return; }
 }
 
@@ -2610,25 +2610,25 @@ void Sub_B5_90C8(void) {  /* $90C8 bank 5 */
     STA((uint16_t)(OamBuffer + R.x));                                                    /* $9111 sta */
     DEX();                                                                               /* $9114 dex */
   } while (!(R.x & 0x80));                                                               /* $9115 bpl */
-  { Sub_B5_895B(); return; }                                                             /* $9117 jmp */
+  { FillPaletteBufferBlack(); return; }                                                  /* $9117 jmp */
 }
 
 void Sub_B5_9206(void) {  /* $9206 bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x9208); Sub_B5_814C(); UNW(); ret_check(0x9208);                               /* $9206 jsr */
+  push16(0x9208); DisableRendering(); UNW(); ret_check(0x9208);                          /* $9206 jsr */
   LDA(0x1C);                                                                             /* $9209 lda */
   LDX(0x0F);                                                                             /* $920B ldx */
   LDY(0x0E);                                                                             /* $920D ldy */
-  push16(0x9211); Sub_B5_8FDE(); UNW(); ret_check(0x9211);                               /* $920F jsr */
-  push16(0x9214); Sub_B5_895B(); UNW(); ret_check(0x9214);                               /* $9212 jsr */
-  push16(0x9217); Sub_B5_8971(); UNW(); ret_check(0x9217);                               /* $9215 jsr */
+  push16(0x9211); SetMmcControlChr0Chr1(); UNW(); ret_check(0x9211);                     /* $920F jsr */
+  push16(0x9214); FillPaletteBufferBlack(); UNW(); ret_check(0x9214);                    /* $9212 jsr */
+  push16(0x9217); HideAllSpritesB5(); UNW(); ret_check(0x9217);                          /* $9215 jsr */
   LDA(0xFF);                                                                             /* $9218 lda */
   LDX(0x20);                                                                             /* $921A ldx */
-  push16(0x921E); Sub_B5_8944(); UNW(); ret_check(0x921E);                               /* $921C jsr */
-  push16(0x9221); Sub_B5_8F51(); UNW(); ret_check(0x9221);                               /* $921F jsr */
+  push16(0x921E); FillNametableWithA(); UNW(); ret_check(0x921E);                        /* $921C jsr */
+  push16(0x9221); CopyRamStub05B8(); UNW(); ret_check(0x9221);                           /* $921F jsr */
   LDY(0x02);                                                                             /* $9222 ldy */
   push16(0x9226); call_addr(0x05B8); UNW(); ret_check(0x9226);                           /* $9224 jsr */
-  push16(0x9229); Sub_B5_895B(); UNW(); ret_check(0x9229);                               /* $9227 jsr */
+  push16(0x9229); FillPaletteBufferBlack(); UNW(); ret_check(0x9229);                    /* $9227 jsr */
   LDA(0x27);                                                                             /* $922A lda */
   STA(0x0151);                                                                           /* $922C sta */
   LDA(0x20);                                                                             /* $922F lda */
@@ -2658,7 +2658,7 @@ void Sub_B5_9237(void) {  /* $9237 bank 5 */
 
 void Sub_B5_92DB(void) {  /* $92DB bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x92DD); Sub_B5_8971(); UNW(); ret_check(0x92DD);                               /* $92DB jsr */
+  push16(0x92DD); HideAllSpritesB5(); UNW(); ret_check(0x92DD);                          /* $92DB jsr */
   LDX(rd(0x053F));                                                                       /* $92DE ldx */
   TXA();                                                                                 /* $92E1 txa */
   INX();                                                                                 /* $92E2 inx */
@@ -2756,7 +2756,7 @@ L9467: BUDGET();
     cmp8(R.y, 0x78);                                                                     /* $9481 cpy */
     if (R.y >= 0x78) goto L948B;                                                         /* $9483 bcs */
     STA(SceneTimer);                                                                     /* $9485 sta */
-    { Sub_B5_8971(); return; }                                                           /* $9488 jmp */
+    { HideAllSpritesB5(); return; }                                                      /* $9488 jmp */
   }
 L948B: BUDGET();
   RTS_RET(sp0);                                                                          /* $948B rts */
@@ -2876,10 +2876,10 @@ void Sub_B5_9848(void) {  /* $9848 bank 5 */
   STA(0x0531);                                                                           /* $984A sta */
   LDA(0x58);                                                                             /* $984D lda */
   STA(0x0532);                                                                           /* $984F sta */
-  push16(0x9854); Sub_B5_8971(); UNW(); ret_check(0x9854);                               /* $9852 jsr */
+  push16(0x9854); HideAllSpritesB5(); UNW(); ret_check(0x9854);                          /* $9852 jsr */
   push16(0x9857); Sub_B5_8CC4(); UNW(); ret_check(0x9857);                               /* $9855 jsr */
   LDX(0xC0);                                                                             /* $9858 ldx */
-  push16(0x985C); Sub_B5_8973(); UNW(); ret_check(0x985C);                               /* $985A jsr */
+  push16(0x985C); HideSpritesFromX(); UNW(); ret_check(0x985C);                          /* $985A jsr */
   LDY(0x06);                                                                             /* $985D ldy */
   LDA(rd(0x052E));                                                                       /* $985F lda */
   cmp8(R.a, 0x06);                                                                       /* $9862 cmp */
@@ -2893,7 +2893,7 @@ void Sub_B5_9848(void) {  /* $9848 bank 5 */
 
 void Sub_B5_986D(void) {  /* $986D bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x986F); Sub_B5_8971(); UNW(); ret_check(0x986F);                               /* $986D jsr */
+  push16(0x986F); HideAllSpritesB5(); UNW(); ret_check(0x986F);                          /* $986D jsr */
   LDA(0x00);                                                                             /* $9870 lda */
   TAX();                                                                                 /* $9872 tax */
   push16(0x9875); Sub_B5_9895(); UNW(); ret_check(0x9875);                               /* $9873 jsr */
@@ -2970,7 +2970,7 @@ void Sub_B5_9974(void) {  /* $9974 bank 5 */
 
 void Sub_B5_997B(void) {  /* $997B bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x997D); Sub_B5_8971(); UNW(); ret_check(0x997D);                               /* $997B jsr */
+  push16(0x997D); HideAllSpritesB5(); UNW(); ret_check(0x997D);                          /* $997B jsr */
   do { BUDGET();
     LDA(rd((uint16_t)(0x99AA + R.y)));                                                   /* $997E lda */
     CLC();                                                                               /* $9981 clc */

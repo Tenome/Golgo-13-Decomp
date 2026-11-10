@@ -3103,7 +3103,7 @@
      }
     },
     {
-     "name": "Sub_B5_814C",
+     "name": "DisableRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3151,7 +3151,7 @@
      }
     },
     {
-     "name": "Sub_B5_8183",
+     "name": "EnableRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3407,7 +3407,7 @@
      }
     },
     {
-     "name": "Sub_B5_838E",
+     "name": "SkipSceneOnStart",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3871,7 +3871,7 @@
      }
     },
     {
-     "name": "Sub_B5_8944",
+     "name": "FillNametableWithA",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3879,7 +3879,7 @@
      }
     },
     {
-     "name": "Sub_B5_895B",
+     "name": "FillPaletteBufferBlack",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3887,7 +3887,7 @@
      }
     },
     {
-     "name": "Sub_B5_895D",
+     "name": "FillPaletteBufferWithA",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3903,7 +3903,7 @@
      }
     },
     {
-     "name": "Sub_B5_8966",
+     "name": "ClearSceneStateTailB5",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3911,7 +3911,7 @@
      }
     },
     {
-     "name": "Sub_B5_8971",
+     "name": "HideAllSpritesB5",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3919,7 +3919,7 @@
      }
     },
     {
-     "name": "Sub_B5_8973",
+     "name": "HideSpritesFromX",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4103,7 +4103,7 @@
      }
     },
     {
-     "name": "Sub_B5_8F3A",
+     "name": "CopyRamStub0513",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4111,7 +4111,7 @@
      }
     },
     {
-     "name": "Sub_B5_8F51",
+     "name": "CopyRamStub05B8",
      "size": "55",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4135,7 +4135,7 @@
      }
     },
     {
-     "name": "Sub_B5_8FCA",
+     "name": "CopyRamStub051E",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4143,7 +4143,7 @@
      }
     },
     {
-     "name": "Sub_B5_8FDE",
+     "name": "SetMmcControlChr0Chr1",
      "size": "164",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4151,7 +4151,7 @@
      }
     },
     {
-     "name": "Sub_B5_9082",
+     "name": "RunSoundDriverBank5Timed",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4159,7 +4159,7 @@
      }
     },
     {
-     "name": "Sub_B5_90A0",
+     "name": "InitDmcAndJoypad2",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
