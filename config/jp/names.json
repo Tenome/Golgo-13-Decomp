@@ -261,5 +261,14 @@
  "5:A2A8": "SoundCmdB_03",
  "5:A2F4": "SoundCmdB_04",
  "5:A321": "SoundCmdB_05",
- "5:A32C": "SoundCmdB_06"
+ "5:A32C": "SoundCmdB_06",
+ "C0C0": "DrawObjectsBanked",
+ "C0E3": "JumpNmiGameStateDispatch",
+ "C5AC": "UploadColumnOrPalette",
+ "CE7E": "LoadScrollSegmentParams",
+ "D28E": "CheckPlayerNearObject",
+ "D308": "HideObjectSpriteRange",
+ "D318": "HideSpritesUntilE0",
+ "D86D": "SelectChr1Bank0D",
+ "DA77": "FillNametable2Blank"
 }

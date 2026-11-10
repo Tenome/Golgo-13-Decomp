@@ -7,8 +7,8 @@ static int fixed_bank(uint16_t a) {
     case 0xC000: Reset(); return 1;
     case 0xC078: MainIdleLoop(); return 1;
     case 0xC081: Nmi(); return 1;
-    case 0xC0C0: Sub_C0C0(); return 1;
-    case 0xC0E3: Sub_C0E3(); return 1;
+    case 0xC0C0: DrawObjectsBanked(); return 1;
+    case 0xC0E3: JumpNmiGameStateDispatch(); return 1;
     case 0xC0E6: RunSoundDriver(); return 1;
     case 0xC100: ProcessPpuUpdateList(); return 1;
     case 0xC170: FetchInlineWord(); return 1;
@@ -50,7 +50,7 @@ static int fixed_bank(uint16_t a) {
     case 0xC582: MmcWriteChr1A(); return 1;
     case 0xC596: MmcWritePrg(); return 1;
     case 0xC598: MmcWritePrgA(); return 1;
-    case 0xC5AC: Sub_C5AC(); return 1;
+    case 0xC5AC: UploadColumnOrPalette(); return 1;
     case 0xC5FF: ScrollByInput(); return 1;
     case 0xC711: Sub_C711(); return 1;
     case 0xC761: Sub_C761(); return 1;
@@ -68,7 +68,7 @@ static int fixed_bank(uint16_t a) {
     case 0xCCE9: UploadPaletteIfDirty(); return 1;
     case 0xCD74: UploadNametableColumn(); return 1;
     case 0xCDE0: Sub_CDE0(); return 1;
-    case 0xCE7E: Sub_CE7E(); return 1;
+    case 0xCE7E: LoadScrollSegmentParams(); return 1;
     case 0xCEDA: ReadColumnFromPpu(); return 1;
     case 0xCF13: Sub_CF13(); return 1;
     case 0xCF84: Sub_CF84(); return 1;
@@ -80,9 +80,9 @@ static int fixed_bank(uint16_t a) {
     case 0xD13A: StartLevelScene(); return 1;
     case 0xD177: Sub_D177(); return 1;
     case 0xD255: CheckObjectContact(); return 1;
-    case 0xD28E: Sub_D28E(); return 1;
-    case 0xD308: Sub_D308(); return 1;
-    case 0xD318: Sub_D318(); return 1;
+    case 0xD28E: CheckPlayerNearObject(); return 1;
+    case 0xD308: HideObjectSpriteRange(); return 1;
+    case 0xD318: HideSpritesUntilE0(); return 1;
     case 0xD32D: UpdatePlayerAction(); return 1;
     case 0xD3A4: PlayerActionIdle(); return 1;
     case 0xD3D3: CopyPlayerSprites(); return 1;
@@ -95,11 +95,11 @@ static int fixed_bank(uint16_t a) {
     case 0xD710: PlayerActionState7(); return 1;
     case 0xD740: SetTransitionFromCode(); return 1;
     case 0xD7B2: Sub_D7B2(); return 1;
-    case 0xD86D: Sub_D86D(); return 1;
+    case 0xD86D: SelectChr1Bank0D(); return 1;
     case 0xD8CB: Sub_D8CB(); return 1;
     case 0xDA0A: Sub_DA0A(); return 1;
     case 0xDA4B: Sub_DA4B(); return 1;
-    case 0xDA77: Sub_DA77(); return 1;
+    case 0xDA77: FillNametable2Blank(); return 1;
     case 0xDB07: Sub_DB07(); return 1;
     case 0xDBD5: Sub_DBD5(); return 1;
     case 0xDC48: Sub_DC48(); return 1;

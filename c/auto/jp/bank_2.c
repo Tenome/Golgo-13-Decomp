@@ -68,11 +68,11 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
   } else {
     push16(0x8096); DoOamDma(); UNW(); ret_check(0x8096);                                /* $8094 jsr */
     push16(0x8099); MmcWriteChr1(); UNW(); ret_check(0x8099);                            /* $8097 jsr */
-    push16(0x809C); Sub_C5AC(); UNW(); ret_check(0x809C);                                /* $809A jsr */
+    push16(0x809C); UploadColumnOrPalette(); UNW(); ret_check(0x809C);                   /* $809A jsr */
     push16(0x809F); ApplyScroll(); UNW(); ret_check(0x809F);                             /* $809D jsr */
     push16(0x80A2); DrawHud(); UNW(); ret_check(0x80A2);                                 /* $80A0 jsr */
     push16(0x80A5); Sub_B2_83C7(); UNW(); ret_check(0x80A5);                             /* $80A3 jsr */
-    push16(0x80A8); Sub_C0C0(); UNW(); ret_check(0x80A8);                                /* $80A6 jsr */
+    push16(0x80A8); DrawObjectsBanked(); UNW(); ret_check(0x80A8);                       /* $80A6 jsr */
     LDA(rd(PaletteSetIndex));                                                            /* $80A9 lda */
     cmp8(R.a, 0x69);                                                                     /* $80AB cmp */
     if (R.a == 0x69) {                                                                   /* $80AD bne */
@@ -342,7 +342,7 @@ L83A9: BUDGET();
   LDA(0x80);                                                                             /* $83B4 lda */
   STA(JoyHeld1);                                                                         /* $83B6 sta */
   push16(0x83BB); DoOamDma(); UNW(); ret_check(0x83BB);                                  /* $83B9 jsr */
-  push16(0x83BE); Sub_C5AC(); UNW(); ret_check(0x83BE);                                  /* $83BC jsr */
+  push16(0x83BE); UploadColumnOrPalette(); UNW(); ret_check(0x83BE);                     /* $83BC jsr */
   push16(0x83C1); ApplyScroll(); UNW(); ret_check(0x83C1);                               /* $83BF jsr */
   DEC_M(ScrollX);                                                                        /* $83C2 dec */
   DEC_M(ScrollX);                                                                        /* $83C4 dec */

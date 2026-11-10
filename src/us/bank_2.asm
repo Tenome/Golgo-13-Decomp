@@ -66,11 +66,11 @@ Loc_B2_8087:
 Loc_B2_8094:
   jsr DoOamDma                 ; $8094
   jsr MmcWriteChr1             ; $8097
-  jsr Sub_C5AC                 ; $809A
+  jsr UploadColumnOrPalette    ; $809A
   jsr ApplyScroll              ; $809D
   jsr DrawHud                  ; $80A0
   jsr Sub_B2_83C7              ; $80A3
-  jsr Sub_C0C0                 ; $80A6
+  jsr DrawObjectsBanked        ; $80A6
   lda z:PaletteSetIndex        ; $80A9
   cmp #$69                     ; $80AB
   bne Loc_B2_80B5              ; $80AD
@@ -325,7 +325,7 @@ Loc_B2_83B4:
   lda #$80                     ; $83B4
   sta JoyHeld1                 ; $83B6
   jsr DoOamDma                 ; $83B9
-  jsr Sub_C5AC                 ; $83BC
+  jsr UploadColumnOrPalette    ; $83BC
   jsr ApplyScroll              ; $83BF
   dec z:ScrollX                ; $83C2
   dec z:ScrollX                ; $83C4

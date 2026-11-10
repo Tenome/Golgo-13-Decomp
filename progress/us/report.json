@@ -5181,7 +5181,7 @@
      }
     },
     {
-     "name": "Sub_C0C0",
+     "name": "DrawObjectsBanked",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5197,7 +5197,7 @@
      }
     },
     {
-     "name": "Sub_C0E3",
+     "name": "JumpNmiGameStateDispatch",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5517,7 +5517,7 @@
      }
     },
     {
-     "name": "Sub_C5AC",
+     "name": "UploadColumnOrPalette",
      "size": "83",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5661,7 +5661,7 @@
      }
     },
     {
-     "name": "Sub_CE7E",
+     "name": "LoadScrollSegmentParams",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5757,7 +5757,7 @@
      }
     },
     {
-     "name": "Sub_D28E",
+     "name": "CheckPlayerNearObject",
      "size": "122",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5765,7 +5765,7 @@
      }
     },
     {
-     "name": "Sub_D308",
+     "name": "HideObjectSpriteRange",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5773,7 +5773,7 @@
      }
     },
     {
-     "name": "Sub_D318",
+     "name": "HideSpritesUntilE0",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5877,7 +5877,7 @@
      }
     },
     {
-     "name": "Sub_D86D",
+     "name": "SelectChr1Bank0D",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5917,7 +5917,7 @@
      }
     },
     {
-     "name": "Sub_DA77",
+     "name": "FillNametable2Blank",
      "size": "56",
      "fuzzy_match_percent": 100.0,
      "metadata": {

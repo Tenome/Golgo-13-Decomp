@@ -37,7 +37,7 @@ void Ram_0568_2(void) {  /* $0568 bank 10 */
   STA(JoyNew1);                                                                          /* $057C sta */
   STA(MmcPrgShadow);                                                                     /* $057F sta */
   push16(0x0583); MmcWritePrg(); UNW(); ret_check(0x0583);                               /* $0581 jsr */
-  push16(0x0586); Sub_C0E3(); UNW(); ret_check(0x0586);                                  /* $0584 jsr */
+  push16(0x0586); JumpNmiGameStateDispatch(); UNW(); ret_check(0x0586);                  /* $0584 jsr */
   LDA(0x05);                                                                             /* $0587 lda */
   STA(MmcPrgShadow);                                                                     /* $0589 sta */
   push16(0x058D); MmcWritePrg(); UNW(); ret_check(0x058D);                               /* $058B jsr */

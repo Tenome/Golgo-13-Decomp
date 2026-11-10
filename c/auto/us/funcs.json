@@ -7606,7 +7606,7 @@
    ]
   ]
  },
- "Sub_C0C0": {
+ "DrawObjectsBanked": {
   "addr": 49344,
   "bank": 7,
   "instrs": 8,
@@ -7619,7 +7619,7 @@
    ]
   ]
  },
- "Sub_C0E3": {
+ "JumpNmiGameStateDispatch": {
   "addr": 49379,
   "bank": 7,
   "instrs": 1,
@@ -8169,7 +8169,7 @@
    ]
   ]
  },
- "Sub_C5AC": {
+ "UploadColumnOrPalette": {
   "addr": 50604,
   "bank": 7,
   "instrs": 34,
@@ -8407,7 +8407,7 @@
    ]
   ]
  },
- "Sub_CE7E": {
+ "LoadScrollSegmentParams": {
   "addr": 52862,
   "bank": 7,
   "instrs": 14,
@@ -8563,7 +8563,7 @@
    ]
   ]
  },
- "Sub_D28E": {
+ "CheckPlayerNearObject": {
   "addr": 53902,
   "bank": 7,
   "instrs": 57,
@@ -8576,7 +8576,7 @@
    ]
   ]
  },
- "Sub_D308": {
+ "HideObjectSpriteRange": {
   "addr": 54024,
   "bank": 7,
   "instrs": 8,
@@ -8589,7 +8589,7 @@
    ]
   ]
  },
- "Sub_D318": {
+ "HideSpritesUntilE0": {
   "addr": 54040,
   "bank": 7,
   "instrs": 8,
@@ -8766,7 +8766,7 @@
    ]
   ]
  },
- "Sub_D86D": {
+ "SelectChr1Bank0D": {
   "addr": 55405,
   "bank": 7,
   "instrs": 11,
@@ -8822,7 +8822,7 @@
    ]
   ]
  },
- "Sub_DA77": {
+ "FillNametable2Blank": {
   "addr": 55927,
   "bank": 7,
   "instrs": 26,

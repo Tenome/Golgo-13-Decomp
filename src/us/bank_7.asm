@@ -72,11 +72,11 @@ Nmi:
   jsr MmcWritePrg              ; $C081
   lda z:MmcPrgShadow           ; $C084
   bne Loc_C08B                 ; $C086
-  jmp Sub_C0E3                 ; $C088
+  jmp JumpNmiGameStateDispatch ; $C088
 Loc_C08B:
   jmp $8010                    ; $C08B  -> Loc_B0_8010, Bank1Nmi, Bank2Nmi, Bank3Nmi, Bank4Nmi, Bank5Nmi, Bank6Nmi
   .incbin "prg_bank_7.bin", $008E, $32  ; $C08E
-Sub_C0C0:
+DrawObjectsBanked:
   dec z:MmcPrgShadow           ; $C0C0
   jsr MmcWritePrg              ; $C0C2
   jsr $AF00                    ; $C0C5  -> Sub_B1_AF00
@@ -88,7 +88,7 @@ Sub_C0C0:
   .incbin "prg_bank_7.bin", $00D4, $C  ; $C0D4
 Loc_C0E0:
   jmp Loc_CB2C                 ; $C0E0
-Sub_C0E3:
+JumpNmiGameStateDispatch:
   jmp NmiGameStateDispatch     ; $C0E3
 RunSoundDriver:
   lda z:MmcPrgShadow           ; $C0E6
@@ -793,7 +793,7 @@ MmcWritePrgA:
   lsr a                        ; $C5A7
   sta MMC1_PRG                 ; $C5A8
   rts                          ; $C5AB
-Sub_C5AC:
+UploadColumnOrPalette:
   lda z:ScrollColumnPending    ; $C5AC
   beq Loc_C5BA                 ; $C5AE
   jsr UploadNametableColumn    ; $C5B0
@@ -822,7 +822,7 @@ Loc_C5CA:
   jsr ScrollByInput            ; $C5E2
   lda z:ScrollColumnPending    ; $C5E5
   beq Loc_C5FB                 ; $C5E7
-  jsr Sub_CE7E                 ; $C5E9
+  jsr LoadScrollSegmentParams  ; $C5E9
   jsr ReadColumnFromPpu        ; $C5EC
   jsr ApplyScroll              ; $C5EF
   jsr Sub_C711                 ; $C5F2
@@ -1742,7 +1742,7 @@ Loc_CD50:
   jsr Sub_D0AB                 ; $CD57
   lda z:ScrollColumnPending    ; $CD5A
   beq Loc_CD73                 ; $CD5C
-  jsr Sub_CE7E                 ; $CD5E
+  jsr LoadScrollSegmentParams  ; $CD5E
   jsr ReadColumnFromPpu        ; $CD61
   jsr ApplyScroll              ; $CD64
   jsr Sub_CF13                 ; $CD67
@@ -1896,7 +1896,7 @@ Loc_CE7B:
   sta z:$32                    ; $CE7B
 Loc_CE7D:
   rts                          ; $CE7D
-Sub_CE7E:
+LoadScrollSegmentParams:
   lda z:ScrollX                ; $CE7E
   and #$F0                     ; $CE80
   lsr a                        ; $CE82
@@ -2334,14 +2334,14 @@ Loc_D27B:
   sec                          ; $D27B
   sbc #$80                     ; $D27C
   sta $0400                    ; $D27E
-  jsr Sub_D28E                 ; $D281
+  jsr CheckPlayerNearObject    ; $D281
   beq Loc_D28D                 ; $D284
   sta ContactLock              ; $D286
   lda #$03                     ; $D289
   sta z:MmcPrgShadow           ; $D28B
 Loc_D28D:
   rts                          ; $D28D
-Sub_D28E:
+CheckPlayerNearObject:
   lda $0311,x                  ; $D28E
   sta z:Tmp00                  ; $D291
   lda $0312,x                  ; $D293
@@ -2396,8 +2396,8 @@ Loc_D2D4:
   lda z:Tmp02                  ; $D2F1
   sta z:$5C                    ; $D2F3
 Loc_D2F5:
-  jsr Sub_D308                 ; $D2F5
-  jsr Sub_D318                 ; $D2F8
+  jsr HideObjectSpriteRange    ; $D2F5
+  jsr HideSpritesUntilE0       ; $D2F8
   lda #$00                     ; $D2FB
   sta $0110                    ; $D2FD
   lda #$01                     ; $D300
@@ -2406,7 +2406,7 @@ Loc_D305:
   lda #$00                     ; $D305
 Loc_D307:
   rts                          ; $D307
-Sub_D308:
+HideObjectSpriteRange:
   ldy #$00                     ; $D308
 Loc_D30A:
   lda #$F0                     ; $D30A
@@ -2416,7 +2416,7 @@ Loc_D30A:
   cmp $0313,x                  ; $D312
   bcc Loc_D30A                 ; $D315
   rts                          ; $D317
-Sub_D318:
+HideSpritesUntilE0:
   ldy #$00                     ; $D318
 Loc_D31A:
   lda #$F0                     ; $D31A
@@ -2922,7 +2922,7 @@ Loc_D7FD:
   sta $0405                    ; $D802
   sta $050E                    ; $D805
   dec $050E                    ; $D808
-  jsr Sub_D86D                 ; $D80B
+  jsr SelectChr1Bank0D         ; $D80B
   lda #$1F                     ; $D80E
   sta MMC1_CHR0                ; $D810
   lsr a                        ; $D813
@@ -2970,12 +2970,12 @@ Loc_D852:
   sta $0438                    ; $D859
   jmp Loc_D823                 ; $D85C
 Loc_D85F:
-  jsr Sub_D86D                 ; $D85F
+  jsr SelectChr1Bank0D         ; $D85F
   lda z:Tmp02                  ; $D862
   jsr LsrA4                    ; $D864
   sta $0405                    ; $D867
   jmp Loc_D823                 ; $D86A
-Sub_D86D:
+SelectChr1Bank0D:
   lda #$0D                     ; $D86D
   sta MMC1_CHR1                ; $D86F
   lsr a                        ; $D872
@@ -3152,7 +3152,7 @@ Sub_DA0A:
   jsr SetPpuCtrl               ; $DA15
   lda #$00                     ; $DA18
   sta z:HwScrollX              ; $DA1A
-  jsr Sub_DA77                 ; $DA1C
+  jsr FillNametable2Blank      ; $DA1C
   jsr ApplyScroll              ; $DA1F
   ldy #$00                     ; $DA22
 Loc_DA24:
@@ -3198,7 +3198,7 @@ Loc_DA6B:
   cpy #$30                     ; $DA72
   bcc Loc_DA6B                 ; $DA74
   rts                          ; $DA76
-Sub_DA77:
+FillNametable2Blank:
   lda PPU_STATUS               ; $DA77
   lda z:PpuCtrlShadow          ; $DA7A
   and #$FB                     ; $DA7C
