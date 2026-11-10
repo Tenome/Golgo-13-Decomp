@@ -12,8 +12,10 @@ import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..'))
 sys.path.insert(0, HERE)
 import g13dis as g
+import structure
 VER = g.VER
 TRACE = '--trace' in sys.argv
+STRUCT = '--flat' not in sys.argv     # structured output (if / do-while) built from the gotos; --flat keeps the one-statement-per-instruction listing
 CYCLES = '--cycles' in sys.argv      # emit CYC(n) per instruction (nominal 6502 cycle counts) for the native port's PPU timing
 OUT = os.path.join(ROOT, 'c', 'auto', VER)
 if '--out' in sys.argv: OUT = os.path.abspath(sys.argv[sys.argv.index('--out') + 1])
@@ -81,10 +83,12 @@ def ea_expr(m, ob):
 def val_expr(m, ob):
     return f'0x{ob[0]:02X}' if m == 'imm' else f'rd({ea_expr(m, ob)})'
 
+CUR_ENTRY = [None]
 def target_code(cur, t):
     """CPU target address -> (kind, payload): ('local'|'entry'|'dyn', p or addr)"""
     tp = g.resolve(cur, t)
     if tp is None or (code[tp] is None and tp not in CONF): return ('dyn', t)
+    if tp == CUR_ENTRY[0]: return ('local', tp)            # a jump back to the routine's own entry is a loop, not a call
     return ('entry' if tp in entries else 'local', tp)
 
 def is_dispatch_call(p, d):
@@ -110,6 +114,7 @@ def pushed_return(p):
     return None
 def lift_function(entry):
     """returns (c_source_lines, unsupported_reason or None)"""
+    CUR_ENTRY[0] = entry
     body = {}; work = [entry]; reason = None
     while work:
         p = work.pop()
@@ -176,20 +181,26 @@ def lift_function(entry):
         ft = p + body[p][3] + inline_skip(p, body[p])
         if nxt is not None and ft != nxt and ft in body: join.add(ft)
     prov = None
-    stmts = {}
+    stmts = {}; CBI = {}; GOTOI = {}; XGOTO = {}; BASE = {}; PUSHED = {}; XTAIL = {}
     for p in order:
         op, n, m, l, ob = body[p]; s = ''
         if p in join or p == entry: prov = None
         if m == 'rel':
             t = (g.addr_of(p) + 2 + (ob[0] - 256 if ob[0] > 127 else ob[0])) & 0xFFFF
-            cond = {'bpl': '!R.n', 'bmi': 'R.n', 'bvc': '!R.v', 'bvs': 'R.v', 'bcc': '!R.c', 'bcs': 'R.c', 'bne': '!R.z', 'beq': 'R.z'}[n]
+            cond, neg = {'bpl': ('!R.n', 'R.n'), 'bmi': ('R.n', '!R.n'), 'bvc': ('!R.v', 'R.v'), 'bvs': ('R.v', '!R.v'), 'bcc': ('!R.c', 'R.c'),
+                         'bcs': ('R.c', '!R.c'), 'bne': ('!R.z', 'R.z'), 'beq': ('R.z', '!R.z')}[n]
             if prov and prov[0] == 'nz' and n in ('beq', 'bne', 'bmi', 'bpl'):
-                r_ = prov[1]; cond = {'beq': f'{r_} == 0', 'bne': f'{r_} != 0', 'bmi': f'({r_} & 0x80)', 'bpl': f'!({r_} & 0x80)'}[n]
+                r_ = prov[1]
+                cond, neg = {'beq': (f'{r_} == 0', f'{r_} != 0'), 'bne': (f'{r_} != 0', f'{r_} == 0'),
+                             'bmi': (f'({r_} & 0x80)', f'!({r_} & 0x80)'), 'bpl': (f'!({r_} & 0x80)', f'({r_} & 0x80)')}[n]
             elif prov and prov[0] == 'cmp' and n in ('beq', 'bne', 'bcs', 'bcc', 'bmi', 'bpl'):
-                r_, m_ = prov[1], prov[2]
-                cond = {'beq': f'{r_} == {m_}', 'bne': f'{r_} != {m_}', 'bcs': f'{r_} >= {m_}', 'bcc': f'{r_} < {m_}',
-                        'bmi': f'((uint8_t)({r_} - {m_}) & 0x80)', 'bpl': f'!((uint8_t)({r_} - {m_}) & 0x80)'}[n]
-            s = jump_to(p, t, cond)
+                r_, m_ = prov[1], prov[2]; sg = f'((uint8_t)({r_} - {m_}) & 0x80)'
+                cond, neg = {'beq': (f'{r_} == {m_}', f'{r_} != {m_}'), 'bne': (f'{r_} != {m_}', f'{r_} == {m_}'),
+                             'bcs': (f'{r_} >= {m_}', f'{r_} < {m_}'), 'bcc': (f'{r_} < {m_}', f'{r_} >= {m_}'),
+                             'bmi': (sg, f'!{sg}'), 'bpl': (f'!{sg}', sg)}[n]
+            k_ = target_code(p, t)
+            if k_[0] == 'local': need_label.add(k_[1]); CBI[p] = (cond, neg, label(k_[1])); s = ''
+            else: s = jump_to(p, t, cond)
         elif n == 'jsr' and is_dispatch_call(p, body[p]):      # the callee jumps to a handler whose RTS returns to our caller
             k0 = target_code(p, ob[0] | ob[1] << 8); s = f'push16(0x{g.addr_of(p) + 2:04X}); {fname(k0[1])}(); return;'
         elif n == 'jsr': s = call(p, ob[0] | ob[1] << 8)
@@ -197,9 +208,12 @@ def lift_function(entry):
             rp = pushed_return(p); need_label.add(rp)
             if m == 'abs': k0 = target_code(p, ob[0] | ob[1] << 8); inner = (f'{fname(k0[1])}();' if k0[0] in ('local', 'entry') else f'call_addr(0x{ob[0] | ob[1] << 8:04X});')
             else: inner = f'call_addr(rd16bug(0x{ob[0] | ob[1] << 8:04X}));'
-            s = f'{inner} UNW(); R.sp += 2; goto {label(rp)};'
+            s = f'{inner} UNW(); R.sp += 2; goto {label(rp)};'; PUSHED[p] = label(rp)
         elif n == 'jmp':
-            if m == 'abs': s = jump_to(p, ob[0] | ob[1] << 8)
+            if m == 'abs':
+                k_ = target_code(p, ob[0] | ob[1] << 8)
+                if k_[0] == 'local': need_label.add(k_[1]); GOTOI[p] = label(k_[1]); s = ''
+                else: s = jump_to(p, ob[0] | ob[1] << 8)
             else:
                 v = ob[0] | ob[1] << 8; s = f'call_addr(rd16bug(0x{v:04X})); return;'
         elif n == 'rts': s = 'RTS_RET(sp0);'
@@ -249,11 +263,27 @@ def lift_function(entry):
         if not ends:
             ft = p + l + inline_skip(p, body[p])
             if ft in body:
-                if nxt != ft: need_label.add(ft); extra = f' goto {label(ft)};'
-            elif ft in entries and ft != entry: extra = f' {{ {fname(ft)}(); return; }}'
+                if nxt != ft: need_label.add(ft); extra = f' goto {label(ft)};'; XGOTO[p] = label(ft)
+            elif ft in entries and ft != entry: extra = f' {{ {fname(ft)}(); return; }}'; XTAIL[p] = extra.strip()
             else: reason = reason or f'falls off at ${g.addr_of(p):04X}'
+        BASE[p] = stmts[p]
         stmts[p] = stmts[p] + extra
     lines = [f'void {fname(entry)}(void) {{  /* ${g.addr_of(entry):04X} bank {g.bank_of(entry)} */', '  uint8_t sp0 = R.sp;']
+    if STRUCT:
+        prefix = lambda p_: (f"TR(0x{g.addr_of(p_):04X}); " if TRACE else "") + (f"CYC({cycles_of(body[p_][1], body[p_][2])}); " if CYCLES else "")
+        items = []
+        if order[0] != entry: items.append(structure.Item('goto', target=label(entry), labels=[]))
+        for p in order:
+            op, n, m, l, ob = body[p]; lab = [label(p)] if p in need_label else []
+            cm = f'${g.addr_of(p):04X} {n}'
+            if p in CBI: items.append(structure.Item('cb', cond=CBI[p][0], neg=CBI[p][1], target=CBI[p][2], labels=lab, text=prefix(p), comment=cm))
+            elif p in GOTOI: items.append(structure.Item('goto', target=GOTOI[p], labels=lab, text=prefix(p), comment=cm))
+            else: items.append(structure.Item('plain', text=prefix(p) + BASE[p], labels=lab, comment=cm, target=PUSHED.get(p)))
+            if p in XGOTO: items.append(structure.Item('goto', target=XGOTO[p], labels=[]))   # fall-through that is not the next instruction in address order
+            if p in XTAIL: items.append(structure.Item('plain', text=XTAIL[p], labels=[]))     # falls into another routine: tail call
+        lines += structure.run(items)
+        lines.append('}')
+        return lines, reason, len(order)
     if order[0] != entry: lines.append(f'  goto {label(entry)};')
     for p in order:
         op, n, m, l, ob = body[p]

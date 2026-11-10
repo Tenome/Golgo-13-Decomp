@@ -16,7 +16,7 @@ This repository contains no game files. You need your own ROMs.
 | Code found so far | about 34 KB in 718 routines (per version), all bytes of every executed instruction plus code reached statically from it |
 | Data | everything else (`.incbin` of files extracted from your ROM into `assets/`, git-ignored) |
 | Byte identity | `python tools/build.py` prints `MATCH` for both versions |
-| C lifting | mechanical C for every classified routine (`c/auto/`: 639 of 696 routines verified against the 6502 code on random states, none failing; the whole lifted program runs 12,000 frames from power-on identical to the original) plus readable hand-lifted C (`c/golgo13.c`, 37 routines) |
+| C lifting | mechanical C for every classified routine (`c/auto/`: 652 of 711 routines verified against the 6502 code on random states, none failing; the whole lifted program runs 12,000 frames from power-on identical to the original) plus readable hand-lifted C (`c/golgo13.c`, 37 routines) |
 | Native port from the lifted C | `c/port/` + `tools/build_port.py`: PPU/APU/MMC1 host around the lifted game logic, headless or SDL2 window (runs both versions; see docs/NOTES.md) |
 | Native build (static recompilation) | `recomp/build_native.ps1` statically recompiles the classified code to C with [NESRecomp](https://github.com/mstan/nesrecomp) (about 99.8 % of cycles native in a 600-frame boot test) |
 

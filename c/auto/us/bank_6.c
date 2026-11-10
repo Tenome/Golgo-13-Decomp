@@ -5,1718 +5,1854 @@
 
 void Loc_B6_8000(void) {  /* $8000 bank 6 */
   uint8_t sp0 = R.sp;
- L8000: BUDGET(); SEI();                                                           /* $8000 sei */
-        LDA(0x80);                                                       /* $8001 lda */
-        STA(0xBFFD);                                                     /* $8003 sta */
-        { Reset(); return; }                                             /* $8006 jmp */
+  SEI();                                                                                 /* $8000 sei */
+  LDA(0x80);                                                                             /* $8001 lda */
+  STA(0xBFFD);                                                                           /* $8003 sta */
+  { Reset(); return; }                                                                   /* $8006 jmp */
 }
 
 void Bank6Nmi(void) {  /* $8010 bank 6 */
   uint8_t sp0 = R.sp;
- L8010: BUDGET(); push16(0x8012); Sub_B6_82F5(); UNW(); ret_check(0x8012);         /* $8010 jsr */
-        push16(0x8015); Sub_B6_81E3(); UNW(); ret_check(0x8015);         /* $8013 jsr */
-        push16(0x8018); DrawObjects(); UNW(); ret_check(0x8018);         /* $8016 jsr */
-        push16(0x801B); Sub_B6_801F(); UNW(); ret_check(0x801B);         /* $8019 jsr */
-        goto LC0E0;                                                      /* $801C jmp */
- LC0E0: BUDGET(); goto LCB2C;                                                      /* $C0E0 jmp */
- LCB2C: BUDGET(); LDA(0x00);                                                       /* $CB2C lda */
-        STA(MmcPrgShadow);                                               /* $CB2E sta */
-        push16(0xCB32); MmcWritePrg(); UNW(); ret_check(0xCB32);         /* $CB30 jsr */
-        push16(0xCB35); UpdateGameOverSequence(); UNW(); ret_check(0xCB35); /* $CB33 jsr */
-        push16(0xCB38); DrawHud(); UNW(); ret_check(0xCB38);             /* $CB36 jsr */
-        push16(0xCB3B); CheckObjectContact(); UNW(); ret_check(0xCB3B);  /* $CB39 jsr */
-        LDA(rd(ScrollColumnPending));                                    /* $CB3C lda */
-        if (R.a != 0) goto LCB62;                                        /* $CB3E bne */
-        push16(0xCB42); Sub_DB07(); UNW(); ret_check(0xCB42);            /* $CB40 jsr */
-        LDA(rd(0x0404));                                                 /* $CB43 lda */
-        cmp8(R.a, 0xFF);                                                 /* $CB46 cmp */
-        if (R.a == 0xFF) goto LCB62;                                     /* $CB48 beq */
-        LDA(0x00);                                                       /* $CB4A lda */
-        STA(0x0421);                                                     /* $CB4C sta */
-        STA(0x0403);                                                     /* $CB4F sta */
-        LDA(0x01);                                                       /* $CB52 lda */
-        STA(0x0402);                                                     /* $CB54 sta */
-        LDA(rd(ScrollX));                                                /* $CB57 lda */
-        STA(HwScrollX);                                                  /* $CB59 sta */
-        push16(0xCB5D); ApplyScroll(); UNW(); ret_check(0xCB5D);         /* $CB5B jsr */
-        LDA(0x03);                                                       /* $CB5E lda */
-        STA(MmcPrgShadow);                                               /* $CB60 sta */
- LCB62: BUDGET(); push16(0xCB64); Sub_E089(); UNW(); ret_check(0xCB64);            /* $CB62 jsr */
-        LDA(rd(0x0600));                                                 /* $CB65 lda */
-        cmp8(R.a, 0x60);                                                 /* $CB68 cmp */
-        if (R.a != 0x60) goto LCB75;                                     /* $CB6A bne */
-        LDA(0x00);                                                       /* $CB6C lda */
-        STA(JoyHeld1);                                                   /* $CB6E sta */
-        push16(0xCB73); Sub_DBD5(); UNW(); ret_check(0xCB73);            /* $CB71 jsr */
- LCB74: BUDGET(); RTS_RET(sp0);                                                    /* $CB74 rts */
- LCB75: BUDGET(); push16(0xCB77); ReadJoypads(); UNW(); ret_check(0xCB77);         /* $CB75 jsr */
-        LDA(rd(PlayerLifeLo));                                           /* $CB78 lda */
-        if (R.a == 0) goto LCB80;                                        /* $CB7A beq */
-        LDA(rd(PaletteDirty));                                           /* $CB7C lda */
-        if (R.a == 0) goto LCB88;                                        /* $CB7E beq */
- LCB80: BUDGET(); LDA(0x00);                                                       /* $CB80 lda */
-        STA(JoyHeld1);                                                   /* $CB82 sta */
-        STA(JoyNew1);                                                    /* $CB85 sta */
- LCB88: BUDGET(); push16(0xCB8A); Sub_F29D(); UNW(); ret_check(0xCB8A);            /* $CB88 jsr */
-        push16(0xCB8D); Sub_DBD5(); UNW(); ret_check(0xCB8D);            /* $CB8B jsr */
-        LDA(rd(0x0600));                                                 /* $CB8E lda */
-        cmp8(R.a, 0x60);                                                 /* $CB91 cmp */
-        if (R.a == 0x60) goto LCB74;                                     /* $CB93 beq */
-        push16(0xCB97); RunSoundDriver(); UNW(); ret_check(0xCB97);      /* $CB95 jsr */
-        push16(0xCB9A); CheckStartPause(); UNW(); ret_check(0xCB9A);     /* $CB98 jsr */
-        LDA(rd(PpuCtrlShadow));                                          /* $CB9B lda */
-        ORA(0x80);                                                       /* $CB9D ora */
-        push16(0xCBA1); SetPpuCtrl(); UNW(); ret_check(0xCBA1);          /* $CB9F jsr */
-        return;                                                          /* $CBA2 rti */
+  push16(0x8012); Sub_B6_82F5(); UNW(); ret_check(0x8012);                               /* $8010 jsr */
+  push16(0x8015); Sub_B6_81E3(); UNW(); ret_check(0x8015);                               /* $8013 jsr */
+  push16(0x8018); DrawObjects(); UNW(); ret_check(0x8018);                               /* $8016 jsr */
+  push16(0x801B); Sub_B6_801F(); UNW(); ret_check(0x801B);                               /* $8019 jsr */
+  goto LC0E0;                                                                            /* $801C jmp */
+LC0E0: BUDGET();
+  goto LCB2C;                                                                            /* $C0E0 jmp */
+LCB2C: BUDGET();
+  LDA(0x00);                                                                             /* $CB2C lda */
+  STA(MmcPrgShadow);                                                                     /* $CB2E sta */
+  push16(0xCB32); MmcWritePrg(); UNW(); ret_check(0xCB32);                               /* $CB30 jsr */
+  push16(0xCB35); UpdateGameOverSequence(); UNW(); ret_check(0xCB35);                    /* $CB33 jsr */
+  push16(0xCB38); DrawHud(); UNW(); ret_check(0xCB38);                                   /* $CB36 jsr */
+  push16(0xCB3B); CheckObjectContact(); UNW(); ret_check(0xCB3B);                        /* $CB39 jsr */
+  LDA(rd(ScrollColumnPending));                                                          /* $CB3C lda */
+  if (R.a == 0) {                                                                        /* $CB3E bne */
+    push16(0xCB42); Sub_DB07(); UNW(); ret_check(0xCB42);                                /* $CB40 jsr */
+    LDA(rd(0x0404));                                                                     /* $CB43 lda */
+    cmp8(R.a, 0xFF);                                                                     /* $CB46 cmp */
+    if (R.a == 0xFF) goto LCB62;                                                         /* $CB48 beq */
+    LDA(0x00);                                                                           /* $CB4A lda */
+    STA(0x0421);                                                                         /* $CB4C sta */
+    STA(0x0403);                                                                         /* $CB4F sta */
+    LDA(0x01);                                                                           /* $CB52 lda */
+    STA(0x0402);                                                                         /* $CB54 sta */
+    LDA(rd(ScrollX));                                                                    /* $CB57 lda */
+    STA(HwScrollX);                                                                      /* $CB59 sta */
+    push16(0xCB5D); ApplyScroll(); UNW(); ret_check(0xCB5D);                             /* $CB5B jsr */
+    LDA(0x03);                                                                           /* $CB5E lda */
+    STA(MmcPrgShadow);                                                                   /* $CB60 sta */
+  }
+LCB62: BUDGET();
+  push16(0xCB64); Sub_E089(); UNW(); ret_check(0xCB64);                                  /* $CB62 jsr */
+  LDA(rd(0x0600));                                                                       /* $CB65 lda */
+  cmp8(R.a, 0x60);                                                                       /* $CB68 cmp */
+  if (R.a != 0x60) goto LCB75;                                                           /* $CB6A bne */
+  LDA(0x00);                                                                             /* $CB6C lda */
+  STA(JoyHeld1);                                                                         /* $CB6E sta */
+  push16(0xCB73); Sub_DBD5(); UNW(); ret_check(0xCB73);                                  /* $CB71 jsr */
+LCB74: BUDGET();
+  RTS_RET(sp0);                                                                          /* $CB74 rts */
+LCB75: BUDGET();
+  push16(0xCB77); ReadJoypads(); UNW(); ret_check(0xCB77);                               /* $CB75 jsr */
+  LDA(rd(PlayerLifeLo));                                                                 /* $CB78 lda */
+  if (R.a != 0) {                                                                        /* $CB7A beq */
+    LDA(rd(PaletteDirty));                                                               /* $CB7C lda */
+    if (R.a == 0) goto LCB88;                                                            /* $CB7E beq */
+  }
+  LDA(0x00);                                                                             /* $CB80 lda */
+  STA(JoyHeld1);                                                                         /* $CB82 sta */
+  STA(JoyNew1);                                                                          /* $CB85 sta */
+LCB88: BUDGET();
+  push16(0xCB8A); Sub_F29D(); UNW(); ret_check(0xCB8A);                                  /* $CB88 jsr */
+  push16(0xCB8D); Sub_DBD5(); UNW(); ret_check(0xCB8D);                                  /* $CB8B jsr */
+  LDA(rd(0x0600));                                                                       /* $CB8E lda */
+  cmp8(R.a, 0x60);                                                                       /* $CB91 cmp */
+  if (R.a == 0x60) goto LCB74;                                                           /* $CB93 beq */
+  push16(0xCB97); RunSoundDriver(); UNW(); ret_check(0xCB97);                            /* $CB95 jsr */
+  push16(0xCB9A); CheckStartPause(); UNW(); ret_check(0xCB9A);                           /* $CB98 jsr */
+  LDA(rd(PpuCtrlShadow));                                                                /* $CB9B lda */
+  ORA(0x80);                                                                             /* $CB9D ora */
+  push16(0xCBA1); SetPpuCtrl(); UNW(); ret_check(0xCBA1);                                /* $CB9F jsr */
+  return;                                                                                /* $CBA2 rti */
 }
 
 void Sub_B6_801F(void) {  /* $801F bank 6 */
   uint8_t sp0 = R.sp;
- L801F: BUDGET(); LDA(rd(ScrollX));                                                /* $801F lda */
-        AND(0x0F);                                                       /* $8021 and */
-        if (R.a != 0) goto L8049;                                        /* $8023 bne */
-        LDA(rd(PlayerSpriteX0));                                         /* $8025 lda */
-        cmp8(R.a, 0x78);                                                 /* $8028 cmp */
-        if (R.a == 0x78) goto L8036;                                     /* $802A beq */
-        LDA(rd(GameState));                                              /* $802C lda */
-        cmp8(R.a, 0x04);                                                 /* $802E cmp */
-        if (R.a == 0x04) goto L8045;                                     /* $8030 beq */
-        cmp8(R.a, 0x06);                                                 /* $8032 cmp */
-        if (R.a == 0x06) goto L8045;                                     /* $8034 beq */
- L8036: BUDGET(); LDA(rd(JoyHeld1));                                               /* $8036 lda */
-        AND(0xC0);                                                       /* $8039 and */
-        if (R.a == 0) goto L8054;                                        /* $803B beq */
-        cmp8(R.a, 0x40);                                                 /* $803D cmp */
-        if (R.a != 0x40) goto L8045;                                     /* $803F bne */
-        push16(0x8043); Sub_B6_8055(); UNW(); ret_check(0x8043);         /* $8041 jsr */
-        RTS_RET(sp0);                                                    /* $8044 rts */
- L8045: BUDGET(); push16(0x8047); Sub_B6_8080(); UNW(); ret_check(0x8047);         /* $8045 jsr */
-        RTS_RET(sp0);                                                    /* $8048 rts */
- L8049: BUDGET(); cmp8(R.a, 0x03);                                                 /* $8049 cmp */
-        if (R.a < 0x03) goto L8051;                                      /* $804B bcc */
-        cmp8(R.a, 0x0E);                                                 /* $804D cmp */
-        if (R.a < 0x0E) goto L8054;                                      /* $804F bcc */
- L8051: BUDGET(); push16(0x8053); Sub_B6_80D8(); UNW(); ret_check(0x8053);         /* $8051 jsr */
- L8054: BUDGET(); RTS_RET(sp0);                                                    /* $8054 rts */
+  LDA(rd(ScrollX));                                                                      /* $801F lda */
+  AND(0x0F);                                                                             /* $8021 and */
+  if (R.a == 0) {                                                                        /* $8023 bne */
+    LDA(rd(PlayerSpriteX0));                                                             /* $8025 lda */
+    cmp8(R.a, 0x78);                                                                     /* $8028 cmp */
+    if (R.a != 0x78) {                                                                   /* $802A beq */
+      LDA(rd(GameState));                                                                /* $802C lda */
+      cmp8(R.a, 0x04);                                                                   /* $802E cmp */
+      if (R.a == 0x04) goto L8045;                                                       /* $8030 beq */
+      cmp8(R.a, 0x06);                                                                   /* $8032 cmp */
+      if (R.a == 0x06) goto L8045;                                                       /* $8034 beq */
+    }
+    LDA(rd(JoyHeld1));                                                                   /* $8036 lda */
+    AND(0xC0);                                                                           /* $8039 and */
+    if (R.a == 0) goto L8054;                                                            /* $803B beq */
+    cmp8(R.a, 0x40);                                                                     /* $803D cmp */
+    if (R.a == 0x40) {                                                                   /* $803F bne */
+      push16(0x8043); Sub_B6_8055(); UNW(); ret_check(0x8043);                           /* $8041 jsr */
+      RTS_RET(sp0);                                                                      /* $8044 rts */
+    }
+L8045: BUDGET();
+    push16(0x8047); Sub_B6_8080(); UNW(); ret_check(0x8047);                             /* $8045 jsr */
+    RTS_RET(sp0);                                                                        /* $8048 rts */
+  }
+  cmp8(R.a, 0x03);                                                                       /* $8049 cmp */
+  if (R.a >= 0x03) {                                                                     /* $804B bcc */
+    cmp8(R.a, 0x0E);                                                                     /* $804D cmp */
+    if (R.a < 0x0E) goto L8054;                                                          /* $804F bcc */
+  }
+  push16(0x8053); Sub_B6_80D8(); UNW(); ret_check(0x8053);                               /* $8051 jsr */
+L8054: BUDGET();
+  RTS_RET(sp0);                                                                          /* $8054 rts */
 }
 
 void Sub_B6_8055(void) {  /* $8055 bank 6 */
   uint8_t sp0 = R.sp;
- L8055: BUDGET(); push16(0x8057); Sub_B6_808E(); UNW(); ret_check(0x8057);         /* $8055 jsr */
-        push16(0x805A); Sub_B6_809D(); UNW(); ret_check(0x805A);         /* $8058 jsr */
-        LDY(rd(0x0102));                                                 /* $805B ldy */
-        LDA(0x00);                                                       /* $805E lda */
-        STA(0x08);                                                       /* $8060 sta */
-        INY();                                                           /* $8062 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8063 lda */
-        cmp8(R.a, 0xFE);                                                 /* $8065 cmp */
-        if (R.a >= 0xFE) goto L807F;                                     /* $8067 bcs */
-        cmp8(R.a, rd(Tmp02));                                            /* $8069 cmp */
-        if (R.a != rd(Tmp02)) goto L807F;                                /* $806B bne */
-        INY();                                                           /* $806D iny */
-        INY();                                                           /* $806E iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $806F lda */
-        if (R.a == 0) goto L807C;                                        /* $8071 beq */
-        STA(0x06);                                                       /* $8073 sta */
-        push16(0x8077); Sub_B6_80B5(); UNW(); ret_check(0x8077);         /* $8075 jsr */
-        cmp8(R.x, 0x00);                                                 /* $8078 cpx */
-        if (R.x != 0x00) goto L807F;                                     /* $807A bne */
- L807C: BUDGET(); push16(0x807E); Sub_B6_8117(); UNW(); ret_check(0x807E);         /* $807C jsr */
- L807F: BUDGET(); RTS_RET(sp0);                                                    /* $807F rts */
+  push16(0x8057); Sub_B6_808E(); UNW(); ret_check(0x8057);                               /* $8055 jsr */
+  push16(0x805A); Sub_B6_809D(); UNW(); ret_check(0x805A);                               /* $8058 jsr */
+  LDY(rd(0x0102));                                                                       /* $805B ldy */
+  LDA(0x00);                                                                             /* $805E lda */
+  STA(0x08);                                                                             /* $8060 sta */
+  INY();                                                                                 /* $8062 iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8063 lda */
+  cmp8(R.a, 0xFE);                                                                       /* $8065 cmp */
+  if (R.a < 0xFE) {                                                                      /* $8067 bcs */
+    cmp8(R.a, rd(Tmp02));                                                                /* $8069 cmp */
+    if (R.a != rd(Tmp02)) goto L807F;                                                    /* $806B bne */
+    INY();                                                                               /* $806D iny */
+    INY();                                                                               /* $806E iny */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $806F lda */
+    if (R.a != 0) {                                                                      /* $8071 beq */
+      STA(0x06);                                                                         /* $8073 sta */
+      push16(0x8077); Sub_B6_80B5(); UNW(); ret_check(0x8077);                           /* $8075 jsr */
+      cmp8(R.x, 0x00);                                                                   /* $8078 cpx */
+      if (R.x != 0x00) goto L807F;                                                       /* $807A bne */
+    }
+    push16(0x807E); Sub_B6_8117(); UNW(); ret_check(0x807E);                             /* $807C jsr */
+  }
+L807F: BUDGET();
+  RTS_RET(sp0);                                                                          /* $807F rts */
 }
 
 void Sub_B6_8080(void) {  /* $8080 bank 6 */
   uint8_t sp0 = R.sp;
   goto L8080;
- L8060: BUDGET(); STA(0x08);                                                       /* $8060 sta */
-        INY();                                                           /* $8062 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8063 lda */
-        cmp8(R.a, 0xFE);                                                 /* $8065 cmp */
-        if (R.a >= 0xFE) goto L807F;                                     /* $8067 bcs */
-        cmp8(R.a, rd(Tmp02));                                            /* $8069 cmp */
-        if (R.a != rd(Tmp02)) goto L807F;                                /* $806B bne */
-        INY();                                                           /* $806D iny */
-        INY();                                                           /* $806E iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $806F lda */
-        if (R.a == 0) goto L807C;                                        /* $8071 beq */
-        STA(0x06);                                                       /* $8073 sta */
-        push16(0x8077); Sub_B6_80B5(); UNW(); ret_check(0x8077);         /* $8075 jsr */
-        cmp8(R.x, 0x00);                                                 /* $8078 cpx */
-        if (R.x != 0x00) goto L807F;                                     /* $807A bne */
- L807C: BUDGET(); push16(0x807E); Sub_B6_8117(); UNW(); ret_check(0x807E);         /* $807C jsr */
- L807F: BUDGET(); RTS_RET(sp0);                                                    /* $807F rts */
- L8080: BUDGET(); push16(0x8082); Sub_B6_808E(); UNW(); ret_check(0x8082);         /* $8080 jsr */
-        push16(0x8085); Sub_B6_80AE(); UNW(); ret_check(0x8085);         /* $8083 jsr */
-        LDY(rd(0x0103));                                                 /* $8086 ldy */
-        LDA(0x01);                                                       /* $8089 lda */
-        goto L8060;                                                      /* $808B jmp */
+L8060: BUDGET();
+  STA(0x08);                                                                             /* $8060 sta */
+  INY();                                                                                 /* $8062 iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8063 lda */
+  cmp8(R.a, 0xFE);                                                                       /* $8065 cmp */
+  if (R.a < 0xFE) {                                                                      /* $8067 bcs */
+    cmp8(R.a, rd(Tmp02));                                                                /* $8069 cmp */
+    if (R.a != rd(Tmp02)) goto L807F;                                                    /* $806B bne */
+    INY();                                                                               /* $806D iny */
+    INY();                                                                               /* $806E iny */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $806F lda */
+    if (R.a != 0) {                                                                      /* $8071 beq */
+      STA(0x06);                                                                         /* $8073 sta */
+      push16(0x8077); Sub_B6_80B5(); UNW(); ret_check(0x8077);                           /* $8075 jsr */
+      cmp8(R.x, 0x00);                                                                   /* $8078 cpx */
+      if (R.x != 0x00) goto L807F;                                                       /* $807A bne */
+    }
+    push16(0x807E); Sub_B6_8117(); UNW(); ret_check(0x807E);                             /* $807C jsr */
+  }
+L807F: BUDGET();
+  RTS_RET(sp0);                                                                          /* $807F rts */
+L8080: BUDGET();
+  push16(0x8082); Sub_B6_808E(); UNW(); ret_check(0x8082);                               /* $8080 jsr */
+  push16(0x8085); Sub_B6_80AE(); UNW(); ret_check(0x8085);                               /* $8083 jsr */
+  LDY(rd(0x0103));                                                                       /* $8086 ldy */
+  LDA(0x01);                                                                             /* $8089 lda */
+  goto L8060;                                                                            /* $808B jmp */
 }
 
 void Sub_B6_808E(void) {  /* $808E bank 6 */
   uint8_t sp0 = R.sp;
- L808E: BUDGET(); LDA(rd(PaletteSetIndex));                                        /* $808E lda */
-        ASL_A();                                                         /* $8090 asl */
-        TAX();                                                           /* $8091 tax */
-        LDA(rd((uint16_t)(0xB500 + R.x)));                               /* $8092 lda */
-        STA(Tmp00);                                                      /* $8095 sta */
-        LDA(rd((uint16_t)(0xB501 + R.x)));                               /* $8097 lda */
-        STA(Tmp01);                                                      /* $809A sta */
-        RTS_RET(sp0);                                                    /* $809C rts */
+  LDA(rd(PaletteSetIndex));                                                              /* $808E lda */
+  ASL_A();                                                                               /* $8090 asl */
+  TAX();                                                                                 /* $8091 tax */
+  LDA(rd((uint16_t)(0xB500 + R.x)));                                                     /* $8092 lda */
+  STA(Tmp00);                                                                            /* $8095 sta */
+  LDA(rd((uint16_t)(0xB501 + R.x)));                                                     /* $8097 lda */
+  STA(Tmp01);                                                                            /* $809A sta */
+  RTS_RET(sp0);                                                                          /* $809C rts */
 }
 
 void Sub_B6_809D(void) {  /* $809D bank 6 */
   uint8_t sp0 = R.sp;
- L809D: BUDGET(); LDA(rd(ScrollPage));                                             /* $809D lda */
-        push16(0x80A1); AslA4(); UNW(); ret_check(0x80A1);               /* $809F jsr */
-        STA(Tmp02);                                                      /* $80A2 sta */
-        LDA(rd(ScrollX));                                                /* $80A4 lda */
-        push16(0x80A8); LsrA4(); UNW(); ret_check(0x80A8);               /* $80A6 jsr */
-        ORA(rd(Tmp02));                                                  /* $80A9 ora */
-        STA(Tmp02);                                                      /* $80AB sta */
-        RTS_RET(sp0);                                                    /* $80AD rts */
+  LDA(rd(ScrollPage));                                                                   /* $809D lda */
+  push16(0x80A1); AslA4(); UNW(); ret_check(0x80A1);                                     /* $809F jsr */
+  STA(Tmp02);                                                                            /* $80A2 sta */
+  LDA(rd(ScrollX));                                                                      /* $80A4 lda */
+  push16(0x80A8); LsrA4(); UNW(); ret_check(0x80A8);                                     /* $80A6 jsr */
+  ORA(rd(Tmp02));                                                                        /* $80A9 ora */
+  STA(Tmp02);                                                                            /* $80AB sta */
+  RTS_RET(sp0);                                                                          /* $80AD rts */
 }
 
 void Sub_B6_80AE(void) {  /* $80AE bank 6 */
   uint8_t sp0 = R.sp;
   goto L80AE;
- L809F: BUDGET(); push16(0x80A1); AslA4(); UNW(); ret_check(0x80A1);               /* $809F jsr */
-        STA(Tmp02);                                                      /* $80A2 sta */
-        LDA(rd(ScrollX));                                                /* $80A4 lda */
-        push16(0x80A8); LsrA4(); UNW(); ret_check(0x80A8);               /* $80A6 jsr */
-        ORA(rd(Tmp02));                                                  /* $80A9 ora */
-        STA(Tmp02);                                                      /* $80AB sta */
-        RTS_RET(sp0);                                                    /* $80AD rts */
- L80AE: BUDGET(); LDX(rd(ScrollPage));                                             /* $80AE ldx */
-        INX();                                                           /* $80B0 inx */
-        TXA();                                                           /* $80B1 txa */
-        goto L809F;                                                      /* $80B2 jmp */
+L809F: BUDGET();
+  push16(0x80A1); AslA4(); UNW(); ret_check(0x80A1);                                     /* $809F jsr */
+  STA(Tmp02);                                                                            /* $80A2 sta */
+  LDA(rd(ScrollX));                                                                      /* $80A4 lda */
+  push16(0x80A8); LsrA4(); UNW(); ret_check(0x80A8);                                     /* $80A6 jsr */
+  ORA(rd(Tmp02));                                                                        /* $80A9 ora */
+  STA(Tmp02);                                                                            /* $80AB sta */
+  RTS_RET(sp0);                                                                          /* $80AD rts */
+L80AE: BUDGET();
+  LDX(rd(ScrollPage));                                                                   /* $80AE ldx */
+  INX();                                                                                 /* $80B0 inx */
+  TXA();                                                                                 /* $80B1 txa */
+  goto L809F;                                                                            /* $80B2 jmp */
 }
 
 void Sub_B6_80B5(void) {  /* $80B5 bank 6 */
   uint8_t sp0 = R.sp;
- L80B5: BUDGET(); LDX(rd(ObjectCount));                                            /* $80B5 ldx */
-        if (R.x == 0) goto L80D7;                                        /* $80B8 beq */
-        LDA(0x17);                                                       /* $80BA lda */
-        STA(0x04);                                                       /* $80BC sta */
-        LDA(0x03);                                                       /* $80BE lda */
-        STA(0x05);                                                       /* $80C0 sta */
-        LDY(0x00);                                                       /* $80C2 ldy */
- L80C4: BUDGET(); LDA(rd((uint16_t)(rd16zp(0x04) + R.y)));                         /* $80C4 lda */
-        cmp8(R.a, rd(0x06));                                             /* $80C6 cmp */
-        if (R.a != rd(0x06)) goto L80CD;                                 /* $80C8 bne */
-        LDX(0x01);                                                       /* $80CA ldx */
-        RTS_RET(sp0);                                                    /* $80CC rts */
- L80CD: BUDGET(); LDA(0x10);                                                       /* $80CD lda */
-        CLC();                                                           /* $80CF clc */
-        adc(rd(0x04));                                                   /* $80D0 adc */
-        STA(0x04);                                                       /* $80D2 sta */
-        DEX();                                                           /* $80D4 dex */
-        if (R.x != 0) goto L80C4;                                        /* $80D5 bne */
- L80D7: BUDGET(); RTS_RET(sp0);                                                    /* $80D7 rts */
+  LDX(rd(ObjectCount));                                                                  /* $80B5 ldx */
+  if (R.x != 0) {                                                                        /* $80B8 beq */
+    LDA(0x17);                                                                           /* $80BA lda */
+    STA(0x04);                                                                           /* $80BC sta */
+    LDA(0x03);                                                                           /* $80BE lda */
+    STA(0x05);                                                                           /* $80C0 sta */
+    LDY(0x00);                                                                           /* $80C2 ldy */
+    do { BUDGET();
+      LDA(rd((uint16_t)(rd16zp(0x04) + R.y)));                                           /* $80C4 lda */
+      cmp8(R.a, rd(0x06));                                                               /* $80C6 cmp */
+      if (R.a == rd(0x06)) {                                                             /* $80C8 bne */
+        LDX(0x01);                                                                       /* $80CA ldx */
+        RTS_RET(sp0);                                                                    /* $80CC rts */
+      }
+      LDA(0x10);                                                                         /* $80CD lda */
+      CLC();                                                                             /* $80CF clc */
+      adc(rd(0x04));                                                                     /* $80D0 adc */
+      STA(0x04);                                                                         /* $80D2 sta */
+      DEX();                                                                             /* $80D4 dex */
+    } while (R.x != 0);                                                                  /* $80D5 bne */
+  }
+  RTS_RET(sp0);                                                                          /* $80D7 rts */
 }
 
 void Sub_B6_80D8(void) {  /* $80D8 bank 6 */
   uint8_t sp0 = R.sp;
- L80D8: BUDGET(); push16(0x80DA); Sub_B6_808E(); UNW(); ret_check(0x80DA);         /* $80D8 jsr */
-        push16(0x80DD); Sub_B6_809D(); UNW(); ret_check(0x80DD);         /* $80DB jsr */
-        INC_M(Tmp02);                                                    /* $80DE inc */
-        LDY(0x05);                                                       /* $80E0 ldy */
- L80E2: BUDGET(); LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $80E2 lda */
-        cmp8(R.a, 0xFF);                                                 /* $80E4 cmp */
-        if (R.a >= 0xFF) goto L80F3;                                     /* $80E6 bcs */
-        cmp8(R.a, rd(Tmp02));                                            /* $80E8 cmp */
-        if (R.a >= rd(Tmp02)) goto L80F3;                                /* $80EA bcs */
-        INY();                                                           /* $80EC iny */
-        INY();                                                           /* $80ED iny */
-        INY();                                                           /* $80EE iny */
-        INY();                                                           /* $80EF iny */
-        goto L80E2;                                                      /* $80F0 jmp */
- L80F3: BUDGET(); TYA();                                                           /* $80F3 tya */
-        SEC();                                                           /* $80F4 sec */
-        sbc(0x05);                                                       /* $80F5 sbc */
-        STA(0x0102);                                                     /* $80F7 sta */
-        push16(0x80FC); Sub_B6_80AE(); UNW(); ret_check(0x80FC);         /* $80FA jsr */
-        LDY(0x05);                                                       /* $80FD ldy */
- L80FF: BUDGET(); LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $80FF lda */
-        cmp8(R.a, 0xFF);                                                 /* $8101 cmp */
-        if (R.a == 0xFF) goto L8112;                                     /* $8103 beq */
-        cmp8(R.a, rd(Tmp02));                                            /* $8105 cmp */
-        if (R.a == rd(Tmp02)) goto L810B;                                /* $8107 beq */
-        if (R.a >= rd(Tmp02)) goto L8112;                                /* $8109 bcs */
- L810B: BUDGET(); INY();                                                           /* $810B iny */
-        INY();                                                           /* $810C iny */
-        INY();                                                           /* $810D iny */
-        INY();                                                           /* $810E iny */
-        goto L80FF;                                                      /* $810F jmp */
- L8112: BUDGET(); DEY();                                                           /* $8112 dey */
-        STY(0x0103);                                                     /* $8113 sty */
-        RTS_RET(sp0);                                                    /* $8116 rts */
+  push16(0x80DA); Sub_B6_808E(); UNW(); ret_check(0x80DA);                               /* $80D8 jsr */
+  push16(0x80DD); Sub_B6_809D(); UNW(); ret_check(0x80DD);                               /* $80DB jsr */
+  INC_M(Tmp02);                                                                          /* $80DE inc */
+  LDY(0x05);                                                                             /* $80E0 ldy */
+  for (;;) { BUDGET();
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $80E2 lda */
+    cmp8(R.a, 0xFF);                                                                     /* $80E4 cmp */
+    if (R.a >= 0xFF) goto L80F3;                                                         /* $80E6 bcs */
+    cmp8(R.a, rd(Tmp02));                                                                /* $80E8 cmp */
+    if (R.a >= rd(Tmp02)) goto L80F3;                                                    /* $80EA bcs */
+    INY();                                                                               /* $80EC iny */
+    INY();                                                                               /* $80ED iny */
+    INY();                                                                               /* $80EE iny */
+    INY();                                                                               /* $80EF iny */
+  }                                                                                      /* $80F0 jmp */
+L80F3: BUDGET();
+  TYA();                                                                                 /* $80F3 tya */
+  SEC();                                                                                 /* $80F4 sec */
+  sbc(0x05);                                                                             /* $80F5 sbc */
+  STA(0x0102);                                                                           /* $80F7 sta */
+  push16(0x80FC); Sub_B6_80AE(); UNW(); ret_check(0x80FC);                               /* $80FA jsr */
+  LDY(0x05);                                                                             /* $80FD ldy */
+  for (;;) { BUDGET();
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $80FF lda */
+    cmp8(R.a, 0xFF);                                                                     /* $8101 cmp */
+    if (R.a == 0xFF) goto L8112;                                                         /* $8103 beq */
+    cmp8(R.a, rd(Tmp02));                                                                /* $8105 cmp */
+    if (R.a != rd(Tmp02)) {                                                              /* $8107 beq */
+      if (R.a >= rd(Tmp02)) goto L8112;                                                  /* $8109 bcs */
+    }
+    INY();                                                                               /* $810B iny */
+    INY();                                                                               /* $810C iny */
+    INY();                                                                               /* $810D iny */
+    INY();                                                                               /* $810E iny */
+  }                                                                                      /* $810F jmp */
+L8112: BUDGET();
+  DEY();                                                                                 /* $8112 dey */
+  STY(0x0103);                                                                           /* $8113 sty */
+  RTS_RET(sp0);                                                                          /* $8116 rts */
 }
 
 void Sub_B6_8117(void) {  /* $8117 bank 6 */
   uint8_t sp0 = R.sp;
- L8117: BUDGET(); LDA(rd(ObjectCount));                                            /* $8117 lda */
-        cmp8(R.a, 0x09);                                                 /* $811A cmp */
-        if (R.a >= 0x09) goto L8157;                                     /* $811C bcs */
-        INC_M(ObjectCount);                                              /* $811E inc */
-        LDA(rd(ObjectCount));                                            /* $8121 lda */
-        push16(0x8126); AslA4(); UNW(); ret_check(0x8126);               /* $8124 jsr */
-        STA(0x0A);                                                       /* $8127 sta */
-        LDA(0x03);                                                       /* $8129 lda */
-        STA(0x0B);                                                       /* $812B sta */
-        LDA(rd(0x08));                                                   /* $812D lda */
-        if (R.a != 0) goto L8137;                                        /* $812F bne */
-        LDY(rd(0x0102));                                                 /* $8131 ldy */
-        goto L813A;                                                      /* $8134 jmp */
- L8137: BUDGET(); LDY(rd(0x0103));                                                 /* $8137 ldy */
- L813A: BUDGET(); LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $813A lda */
-        ASL_A();                                                         /* $813C asl */
-        TAX();                                                           /* $813D tax */
-        LDA(rd((uint16_t)(0x8158 + R.x)));                               /* $813E lda */
-        STA(0x0304);                                                     /* $8141 sta */
-        LDA(rd((uint16_t)(0x8159 + R.x)));                               /* $8144 lda */
-        STA(0x0305);                                                     /* $8147 sta */
-        LDA(0x81);                                                       /* $814A lda */
-        PHA();                                                           /* $814C pha */
-        LDA(0x53);                                                       /* $814D lda */
-        PHA();                                                           /* $814F pha */
-        call_addr(rd16bug(0x0304)); UNW(); R.sp += 2; goto L8154;        /* $8150 jmp */
- L8154: BUDGET(); push16(0x8156); Sub_B6_81AA(); UNW(); ret_check(0x8156);         /* $8154 jsr */
- L8157: BUDGET(); RTS_RET(sp0);                                                    /* $8157 rts */
+  LDA(rd(ObjectCount));                                                                  /* $8117 lda */
+  cmp8(R.a, 0x09);                                                                       /* $811A cmp */
+  if (R.a < 0x09) {                                                                      /* $811C bcs */
+    INC_M(ObjectCount);                                                                  /* $811E inc */
+    LDA(rd(ObjectCount));                                                                /* $8121 lda */
+    push16(0x8126); AslA4(); UNW(); ret_check(0x8126);                                   /* $8124 jsr */
+    STA(0x0A);                                                                           /* $8127 sta */
+    LDA(0x03);                                                                           /* $8129 lda */
+    STA(0x0B);                                                                           /* $812B sta */
+    LDA(rd(0x08));                                                                       /* $812D lda */
+    if (R.a == 0) {                                                                      /* $812F bne */
+      LDY(rd(0x0102));                                                                   /* $8131 ldy */
+    } else {
+      LDY(rd(0x0103));                                                                   /* $8137 ldy */
+    }
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $813A lda */
+    ASL_A();                                                                             /* $813C asl */
+    TAX();                                                                               /* $813D tax */
+    LDA(rd((uint16_t)(0x8158 + R.x)));                                                   /* $813E lda */
+    STA(0x0304);                                                                         /* $8141 sta */
+    LDA(rd((uint16_t)(0x8159 + R.x)));                                                   /* $8144 lda */
+    STA(0x0305);                                                                         /* $8147 sta */
+    LDA(0x81);                                                                           /* $814A lda */
+    PHA();                                                                               /* $814C pha */
+    LDA(0x53);                                                                           /* $814D lda */
+    PHA();                                                                               /* $814F pha */
+    call_addr(rd16bug(0x0304)); UNW(); R.sp += 2; goto L8154;                            /* $8150 jmp */
+L8154: BUDGET();
+    push16(0x8156); Sub_B6_81AA(); UNW(); ret_check(0x8156);                             /* $8154 jsr */
+  }
+  RTS_RET(sp0);                                                                          /* $8157 rts */
 }
 
 void Sub_B6_81AA(void) {  /* $81AA bank 6 */
   uint8_t sp0 = R.sp;
- L81AA: BUDGET(); LDY(0x00);                                                       /* $81AA ldy */
-        LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $81AC lda */
-        AND(0x3F);                                                       /* $81AE and */
-        TAX();                                                           /* $81B0 tax */
-        LDA(rd((uint16_t)(0x81B9 + R.x)));                               /* $81B1 lda */
-        LDY(0x06);                                                       /* $81B4 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $81B6 sta */
-        RTS_RET(sp0);                                                    /* $81B8 rts */
+  LDY(0x00);                                                                             /* $81AA ldy */
+  LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $81AC lda */
+  AND(0x3F);                                                                             /* $81AE and */
+  TAX();                                                                                 /* $81B0 tax */
+  LDA(rd((uint16_t)(0x81B9 + R.x)));                                                     /* $81B1 lda */
+  LDY(0x06);                                                                             /* $81B4 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $81B6 sta */
+  RTS_RET(sp0);                                                                          /* $81B8 rts */
 }
 
 void Sub_B6_81E3(void) {  /* $81E3 bank 6 */
   uint8_t sp0 = R.sp;
- L81E3: BUDGET(); LDX(0x0F);                                                       /* $81E3 ldx */
-        LDY(0x03);                                                       /* $81E5 ldy */
- L81E7: BUDGET(); LDA(0x00);                                                       /* $81E7 lda */
-        STA((uint16_t)(ObjectTable + R.y));                              /* $81E9 sta */
-        TYA();                                                           /* $81EC tya */
-        CLC();                                                           /* $81ED clc */
-        adc(0x10);                                                       /* $81EE adc */
-        TAY();                                                           /* $81F0 tay */
-        DEX();                                                           /* $81F1 dex */
-        if (R.x != 0) goto L81E7;                                        /* $81F2 bne */
-        LDA(0x10);                                                       /* $81F4 lda */
-        STA(Tmp00);                                                      /* $81F6 sta */
-        LDA(0x03);                                                       /* $81F8 lda */
-        STA(Tmp01);                                                      /* $81FA sta */
-        LDA(rd(0x0300));                                                 /* $81FC lda */
-        ASL_A();                                                         /* $81FF asl */
-        TAY();                                                           /* $8200 tay */
-        LDA(rd((uint16_t)(0xC347 + R.y)));                               /* $8201 lda */
-        STA(Tmp02);                                                      /* $8204 sta */
-        INC_M(0x0303);                                                   /* $8206 inc */
-        LDA(rd(0x0303));                                                 /* $8209 lda */
-        cmp8(R.a, rd(ObjectCount));                                      /* $820C cmp */
-        if (R.a < rd(ObjectCount)) goto L8216;                           /* $820F bcc */
-        LDA(0x00);                                                       /* $8211 lda */
-        STA(0x0303);                                                     /* $8213 sta */
- L8216: BUDGET(); STA(Tmp03);                                                      /* $8216 sta */
-        LDX(0x00);                                                       /* $8218 ldx */
- L821A: BUDGET(); LDA(rd(Tmp03));                                                  /* $821A lda */
-        push16(0x821E); AslA4(); UNW(); ret_check(0x821E);               /* $821C jsr */
-        adc(0x04);                                                       /* $821F adc */
-        TAY();                                                           /* $8221 tay */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8222 lda */
-        if (R.a != 0) goto L8229;                                        /* $8224 bne */
-        goto L822E;                                                      /* $8226 jmp */
- L8229: BUDGET(); DEY();                                                           /* $8229 dey */
-        LDA(rd(Tmp02));                                                  /* $822A lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $822C sta */
- L822E: BUDGET(); INC_M(Tmp03);                                                    /* $822E inc */
-        LDA(rd(Tmp03));                                                  /* $8230 lda */
-        cmp8(R.a, rd(ObjectCount));                                      /* $8232 cmp */
-        if (R.a < rd(ObjectCount)) goto L823B;                           /* $8235 bcc */
-        LDA(0x00);                                                       /* $8237 lda */
-        STA(Tmp03);                                                      /* $8239 sta */
- L823B: BUDGET(); TYA();                                                           /* $823B tya */
-        AND(0xF0);                                                       /* $823C and */
-        TAY();                                                           /* $823E tay */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $823F lda */
-        AND(0x80);                                                       /* $8241 and */
-        if (R.a == 0) goto L825E;                                        /* $8243 beq */
-        INY();                                                           /* $8245 iny */
-        INY();                                                           /* $8246 iny */
-        INY();                                                           /* $8247 iny */
-        INY();                                                           /* $8248 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8249 lda */
-        AND(0x1F);                                                       /* $824B and */
-        ASL_A();                                                         /* $824D asl */
-        ASL_A();                                                         /* $824E asl */
-        CLC();                                                           /* $824F clc */
-        adc(rd(Tmp02));                                                  /* $8250 adc */
-        STA(Tmp02);                                                      /* $8252 sta */
-        if (!R.c) goto L825E;                                            /* $8254 bcc */
-        DEY();                                                           /* $8256 dey */
-        LDA(0x00);                                                       /* $8257 lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8259 sta */
-        goto L8264;                                                      /* $825B jmp */
- L825E: BUDGET(); INX();                                                           /* $825E inx */
-        cmp8(R.x, rd(ObjectCount));                                      /* $825F cpx */
-        if (R.x < rd(ObjectCount)) goto L821A;                           /* $8262 bcc */
- L8264: BUDGET(); LDA(rd(ObjectCount));                                            /* $8264 lda */
-        if (R.a == 0) goto L82A2;                                        /* $8267 beq */
-        LDA(0x00);                                                       /* $8269 lda */
-        STA(0x0302);                                                     /* $826B sta */
- L826E: BUDGET(); LDY(0x00);                                                       /* $826E ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8270 lda */
-        AND(0x3F);                                                       /* $8272 and */
-        cmp8(R.a, 0x30);                                                 /* $8274 cmp */
-        if (R.a >= 0x30) goto L8290;                                     /* $8276 bcs */
-        ASL_A();                                                         /* $8278 asl */
-        TAY();                                                           /* $8279 tay */
-        LDA(rd((uint16_t)(0x82A3 + R.y)));                               /* $827A lda */
-        STA(0x0304);                                                     /* $827D sta */
-        LDA(rd((uint16_t)(0x82A4 + R.y)));                               /* $8280 lda */
-        STA(0x0305);                                                     /* $8283 sta */
-        LDA(0x82);                                                       /* $8286 lda */
-        PHA();                                                           /* $8288 pha */
-        LDA(0x8F);                                                       /* $8289 lda */
-        PHA();                                                           /* $828B pha */
-        call_addr(rd16bug(0x0304)); UNW(); R.sp += 2; goto L8290;        /* $828C jmp */
- L8290: BUDGET(); LDA(rd(Tmp00));                                                  /* $8290 lda */
-        CLC();                                                           /* $8292 clc */
-        adc(0x10);                                                       /* $8293 adc */
-        STA(Tmp00);                                                      /* $8295 sta */
-        INC_M(0x0302);                                                   /* $8297 inc */
-        LDA(rd(0x0302));                                                 /* $829A lda */
-        cmp8(R.a, rd(ObjectCount));                                      /* $829D cmp */
-        if (R.a < rd(ObjectCount)) goto L826E;                           /* $82A0 bcc */
- L82A2: BUDGET(); RTS_RET(sp0);                                                    /* $82A2 rts */
+  LDX(0x0F);                                                                             /* $81E3 ldx */
+  LDY(0x03);                                                                             /* $81E5 ldy */
+  do { BUDGET();
+    LDA(0x00);                                                                           /* $81E7 lda */
+    STA((uint16_t)(ObjectTable + R.y));                                                  /* $81E9 sta */
+    TYA();                                                                               /* $81EC tya */
+    CLC();                                                                               /* $81ED clc */
+    adc(0x10);                                                                           /* $81EE adc */
+    TAY();                                                                               /* $81F0 tay */
+    DEX();                                                                               /* $81F1 dex */
+  } while (R.x != 0);                                                                    /* $81F2 bne */
+  LDA(0x10);                                                                             /* $81F4 lda */
+  STA(Tmp00);                                                                            /* $81F6 sta */
+  LDA(0x03);                                                                             /* $81F8 lda */
+  STA(Tmp01);                                                                            /* $81FA sta */
+  LDA(rd(0x0300));                                                                       /* $81FC lda */
+  ASL_A();                                                                               /* $81FF asl */
+  TAY();                                                                                 /* $8200 tay */
+  LDA(rd((uint16_t)(0xC347 + R.y)));                                                     /* $8201 lda */
+  STA(Tmp02);                                                                            /* $8204 sta */
+  INC_M(0x0303);                                                                         /* $8206 inc */
+  LDA(rd(0x0303));                                                                       /* $8209 lda */
+  cmp8(R.a, rd(ObjectCount));                                                            /* $820C cmp */
+  if (R.a >= rd(ObjectCount)) {                                                          /* $820F bcc */
+    LDA(0x00);                                                                           /* $8211 lda */
+    STA(0x0303);                                                                         /* $8213 sta */
+  }
+  STA(Tmp03);                                                                            /* $8216 sta */
+  LDX(0x00);                                                                             /* $8218 ldx */
+  do { BUDGET();
+    LDA(rd(Tmp03));                                                                      /* $821A lda */
+    push16(0x821E); AslA4(); UNW(); ret_check(0x821E);                                   /* $821C jsr */
+    adc(0x04);                                                                           /* $821F adc */
+    TAY();                                                                               /* $8221 tay */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $8222 lda */
+    if (R.a == 0) {                                                                      /* $8224 bne */
+    } else {
+      DEY();                                                                             /* $8229 dey */
+      LDA(rd(Tmp02));                                                                    /* $822A lda */
+      STA((uint16_t)(rd16zp(Tmp00) + R.y));                                              /* $822C sta */
+    }
+    INC_M(Tmp03);                                                                        /* $822E inc */
+    LDA(rd(Tmp03));                                                                      /* $8230 lda */
+    cmp8(R.a, rd(ObjectCount));                                                          /* $8232 cmp */
+    if (R.a >= rd(ObjectCount)) {                                                        /* $8235 bcc */
+      LDA(0x00);                                                                         /* $8237 lda */
+      STA(Tmp03);                                                                        /* $8239 sta */
+    }
+    TYA();                                                                               /* $823B tya */
+    AND(0xF0);                                                                           /* $823C and */
+    TAY();                                                                               /* $823E tay */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $823F lda */
+    AND(0x80);                                                                           /* $8241 and */
+    if (R.a != 0) {                                                                      /* $8243 beq */
+      INY();                                                                             /* $8245 iny */
+      INY();                                                                             /* $8246 iny */
+      INY();                                                                             /* $8247 iny */
+      INY();                                                                             /* $8248 iny */
+      LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $8249 lda */
+      AND(0x1F);                                                                         /* $824B and */
+      ASL_A();                                                                           /* $824D asl */
+      ASL_A();                                                                           /* $824E asl */
+      CLC();                                                                             /* $824F clc */
+      adc(rd(Tmp02));                                                                    /* $8250 adc */
+      STA(Tmp02);                                                                        /* $8252 sta */
+      if (!R.c) goto L825E;                                                              /* $8254 bcc */
+      DEY();                                                                             /* $8256 dey */
+      LDA(0x00);                                                                         /* $8257 lda */
+      STA((uint16_t)(rd16zp(Tmp00) + R.y));                                              /* $8259 sta */
+      goto L8264;                                                                        /* $825B jmp */
+    }
+L825E: BUDGET();
+    INX();                                                                               /* $825E inx */
+    cmp8(R.x, rd(ObjectCount));                                                          /* $825F cpx */
+  } while (R.x < rd(ObjectCount));                                                       /* $8262 bcc */
+L8264: BUDGET();
+  LDA(rd(ObjectCount));                                                                  /* $8264 lda */
+  if (R.a != 0) {                                                                        /* $8267 beq */
+    LDA(0x00);                                                                           /* $8269 lda */
+    STA(0x0302);                                                                         /* $826B sta */
+    do { BUDGET();
+      LDY(0x00);                                                                         /* $826E ldy */
+      LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $8270 lda */
+      AND(0x3F);                                                                         /* $8272 and */
+      cmp8(R.a, 0x30);                                                                   /* $8274 cmp */
+      if (R.a < 0x30) {                                                                  /* $8276 bcs */
+        ASL_A();                                                                         /* $8278 asl */
+        TAY();                                                                           /* $8279 tay */
+        LDA(rd((uint16_t)(0x82A3 + R.y)));                                               /* $827A lda */
+        STA(0x0304);                                                                     /* $827D sta */
+        LDA(rd((uint16_t)(0x82A4 + R.y)));                                               /* $8280 lda */
+        STA(0x0305);                                                                     /* $8283 sta */
+        LDA(0x82);                                                                       /* $8286 lda */
+        PHA();                                                                           /* $8288 pha */
+        LDA(0x8F);                                                                       /* $8289 lda */
+        PHA();                                                                           /* $828B pha */
+        call_addr(rd16bug(0x0304)); UNW(); R.sp += 2; goto L8290;                        /* $828C jmp */
+      }
+L8290: BUDGET();
+      LDA(rd(Tmp00));                                                                    /* $8290 lda */
+      CLC();                                                                             /* $8292 clc */
+      adc(0x10);                                                                         /* $8293 adc */
+      STA(Tmp00);                                                                        /* $8295 sta */
+      INC_M(0x0302);                                                                     /* $8297 inc */
+      LDA(rd(0x0302));                                                                   /* $829A lda */
+      cmp8(R.a, rd(ObjectCount));                                                        /* $829D cmp */
+    } while (R.a < rd(ObjectCount));                                                     /* $82A0 bcc */
+  }
+  RTS_RET(sp0);                                                                          /* $82A2 rts */
 }
 
 void Sub_B6_82F5(void) {  /* $82F5 bank 6 */
   uint8_t sp0 = R.sp;
- L82F5: BUDGET(); LDX(rd(ObjectCount));                                            /* $82F5 ldx */
-        if (R.x != 0) goto L82FB;                                        /* $82F8 bne */
-        RTS_RET(sp0);                                                    /* $82FA rts */
- L82FB: BUDGET(); LDA(0x10);                                                       /* $82FB lda */
-        STA(Tmp00);                                                      /* $82FD sta */
-        LDA(0x03);                                                       /* $82FF lda */
-        STA(Tmp01);                                                      /* $8301 sta */
- L8303: BUDGET(); LDY(0x06);                                                       /* $8303 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8305 lda */
-        AND(0x0F);                                                       /* $8307 and */
-        if (R.a != 0) goto L8311;                                        /* $8309 bne */
-        push16(0x830D); Sub_B6_831C(); UNW(); ret_check(0x830D);         /* $830B jsr */
-        push16(0x8310); Sub_B6_8703(); UNW(); ret_check(0x8310);         /* $830E jsr */
- L8311: BUDGET(); LDA(rd(Tmp00));                                                  /* $8311 lda */
-        CLC();                                                           /* $8313 clc */
-        adc(0x10);                                                       /* $8314 adc */
-        STA(Tmp00);                                                      /* $8316 sta */
-        DEX();                                                           /* $8318 dex */
-        if (R.x != 0) goto L8303;                                        /* $8319 bne */
-        RTS_RET(sp0);                                                    /* $831B rts */
+  LDX(rd(ObjectCount));                                                                  /* $82F5 ldx */
+  if (R.x == 0) {                                                                        /* $82F8 bne */
+    RTS_RET(sp0);                                                                        /* $82FA rts */
+  }
+  LDA(0x10);                                                                             /* $82FB lda */
+  STA(Tmp00);                                                                            /* $82FD sta */
+  LDA(0x03);                                                                             /* $82FF lda */
+  STA(Tmp01);                                                                            /* $8301 sta */
+  do { BUDGET();
+    LDY(0x06);                                                                           /* $8303 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $8305 lda */
+    AND(0x0F);                                                                           /* $8307 and */
+    if (R.a == 0) {                                                                      /* $8309 bne */
+      push16(0x830D); Sub_B6_831C(); UNW(); ret_check(0x830D);                           /* $830B jsr */
+      push16(0x8310); Sub_B6_8703(); UNW(); ret_check(0x8310);                           /* $830E jsr */
+    }
+    LDA(rd(Tmp00));                                                                      /* $8311 lda */
+    CLC();                                                                               /* $8313 clc */
+    adc(0x10);                                                                           /* $8314 adc */
+    STA(Tmp00);                                                                          /* $8316 sta */
+    DEX();                                                                               /* $8318 dex */
+  } while (R.x != 0);                                                                    /* $8319 bne */
+  RTS_RET(sp0);                                                                          /* $831B rts */
 }
 
 void Sub_B6_831C(void) {  /* $831C bank 6 */
   uint8_t sp0 = R.sp;
- L831C: BUDGET(); LDA(rd(PlayerLifeLo));                                           /* $831C lda */
-        if (R.a == 0) goto L8353;                                        /* $831E beq */
-        LDY(0x00);                                                       /* $8320 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8322 lda */
-        AND(0x3F);                                                       /* $8324 and */
-        TAY();                                                           /* $8326 tay */
-        LDA(rd(PlayerLifeLo));                                           /* $8327 lda */
-        CLC();                                                           /* $8329 clc */
-        adc(rd((uint16_t)(0x8354 + R.y)));                               /* $832A adc */
-        if (R.c) goto L8333;                                             /* $832D bcs */
-        cmp8(R.a, 0xC8);                                                 /* $832F cmp */
-        if (R.a < 0xC8) goto L8335;                                      /* $8331 bcc */
- L8333: BUDGET(); LDA(0xC8);                                                       /* $8333 lda */
- L8335: BUDGET(); STA(PlayerLifeLo);                                               /* $8335 sta */
-        LDA(rd(AmmoLo));                                                 /* $8337 lda */
-        CLC();                                                           /* $8339 clc */
-        adc(rd((uint16_t)(0x837E + R.y)));                               /* $833A adc */
-        STA(AmmoLo);                                                     /* $833D sta */
-        LDA(rd(AmmoHi));                                                 /* $833F lda */
-        adc(0x00);                                                       /* $8341 adc */
-        STA(AmmoHi);                                                     /* $8343 sta */
-        cmp8(R.a, 0x01);                                                 /* $8345 cmp */
-        if (R.a < 0x01) goto L8353;                                      /* $8347 bcc */
-        LDA(rd(AmmoLo));                                                 /* $8349 lda */
-        cmp8(R.a, 0x90);                                                 /* $834B cmp */
-        if (R.a < 0x90) goto L8353;                                      /* $834D bcc */
-        LDA(0x90);                                                       /* $834F lda */
-        STA(AmmoLo);                                                     /* $8351 sta */
- L8353: BUDGET(); RTS_RET(sp0);                                                    /* $8353 rts */
+  LDA(rd(PlayerLifeLo));                                                                 /* $831C lda */
+  if (R.a != 0) {                                                                        /* $831E beq */
+    LDY(0x00);                                                                           /* $8320 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $8322 lda */
+    AND(0x3F);                                                                           /* $8324 and */
+    TAY();                                                                               /* $8326 tay */
+    LDA(rd(PlayerLifeLo));                                                               /* $8327 lda */
+    CLC();                                                                               /* $8329 clc */
+    adc(rd((uint16_t)(0x8354 + R.y)));                                                   /* $832A adc */
+    if (!R.c) {                                                                          /* $832D bcs */
+      cmp8(R.a, 0xC8);                                                                   /* $832F cmp */
+      if (R.a < 0xC8) goto L8335;                                                        /* $8331 bcc */
+    }
+    LDA(0xC8);                                                                           /* $8333 lda */
+L8335: BUDGET();
+    STA(PlayerLifeLo);                                                                   /* $8335 sta */
+    LDA(rd(AmmoLo));                                                                     /* $8337 lda */
+    CLC();                                                                               /* $8339 clc */
+    adc(rd((uint16_t)(0x837E + R.y)));                                                   /* $833A adc */
+    STA(AmmoLo);                                                                         /* $833D sta */
+    LDA(rd(AmmoHi));                                                                     /* $833F lda */
+    adc(0x00);                                                                           /* $8341 adc */
+    STA(AmmoHi);                                                                         /* $8343 sta */
+    cmp8(R.a, 0x01);                                                                     /* $8345 cmp */
+    if (R.a < 0x01) goto L8353;                                                          /* $8347 bcc */
+    LDA(rd(AmmoLo));                                                                     /* $8349 lda */
+    cmp8(R.a, 0x90);                                                                     /* $834B cmp */
+    if (R.a < 0x90) goto L8353;                                                          /* $834D bcc */
+    LDA(0x90);                                                                           /* $834F lda */
+    STA(AmmoLo);                                                                         /* $8351 sta */
+  }
+L8353: BUDGET();
+  RTS_RET(sp0);                                                                          /* $8353 rts */
 }
 
 void Sub_B6_83A8(void) {  /* $83A8 bank 6 */
   uint8_t sp0 = R.sp;
- L83A8: BUDGET(); push16(0x83AA); Sub_B6_83F4(); UNW(); ret_check(0x83AA);         /* $83A8 jsr */
-        push16(0x83AD); Sub_B6_840D(); UNW(); ret_check(0x83AD);         /* $83AB jsr */
-        push16(0x83B0); Sub_B6_8401(); UNW(); ret_check(0x83B0);         /* $83AE jsr */
-        LDY(0x00);                                                       /* $83B1 ldy */
-        LDA(0xC0);                                                       /* $83B3 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83B5 sta */
-        LDY(0x08);                                                       /* $83B7 ldy */
-        LDA(0x01);                                                       /* $83B9 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83BB sta */
-        RTS_RET(sp0);                                                    /* $83BD rts */
+  push16(0x83AA); Sub_B6_83F4(); UNW(); ret_check(0x83AA);                               /* $83A8 jsr */
+  push16(0x83AD); Sub_B6_840D(); UNW(); ret_check(0x83AD);                               /* $83AB jsr */
+  push16(0x83B0); Sub_B6_8401(); UNW(); ret_check(0x83B0);                               /* $83AE jsr */
+  LDY(0x00);                                                                             /* $83B1 ldy */
+  LDA(0xC0);                                                                             /* $83B3 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $83B5 sta */
+  LDY(0x08);                                                                             /* $83B7 ldy */
+  LDA(0x01);                                                                             /* $83B9 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $83BB sta */
+  RTS_RET(sp0);                                                                          /* $83BD rts */
 }
 
 void Sub_B6_83BE(void) {  /* $83BE bank 6 */
   uint8_t sp0 = R.sp;
- L83BE: BUDGET(); INY();                                                           /* $83BE iny */
-        INY();                                                           /* $83BF iny */
-        INY();                                                           /* $83C0 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $83C1 lda */
-        PHA();                                                           /* $83C3 pha */
-        DEY();                                                           /* $83C4 dey */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $83C5 lda */
-        AND(0xFE);                                                       /* $83C7 and */
-        LDY(0x0B);                                                       /* $83C9 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83CB sta */
-        PLA();                                                           /* $83CD pla */
-        LDY(0x07);                                                       /* $83CE ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83D0 sta */
-        RTS_RET(sp0);                                                    /* $83D2 rts */
+  INY();                                                                                 /* $83BE iny */
+  INY();                                                                                 /* $83BF iny */
+  INY();                                                                                 /* $83C0 iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $83C1 lda */
+  PHA();                                                                                 /* $83C3 pha */
+  DEY();                                                                                 /* $83C4 dey */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $83C5 lda */
+  AND(0xFE);                                                                             /* $83C7 and */
+  LDY(0x0B);                                                                             /* $83C9 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $83CB sta */
+  PLA();                                                                                 /* $83CD pla */
+  LDY(0x07);                                                                             /* $83CE ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $83D0 sta */
+  RTS_RET(sp0);                                                                          /* $83D2 rts */
 }
 
 void Sub_B6_83D3(void) {  /* $83D3 bank 6 */
   uint8_t sp0 = R.sp;
- L83D3: BUDGET(); LDA(rd(0x08));                                                   /* $83D3 lda */
-        if (R.a != 0) goto L83E3;                                        /* $83D5 bne */
-        LDY(0x09);                                                       /* $83D7 ldy */
-        LDA(rd(ScrollPage));                                             /* $83D9 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83DB sta */
-        INY();                                                           /* $83DD iny */
-        LDA(rd(ScrollX));                                                /* $83DE lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83E0 sta */
-        RTS_RET(sp0);                                                    /* $83E2 rts */
- L83E3: BUDGET(); LDY(0x0A);                                                       /* $83E3 ldy */
-        LDA(0xFF);                                                       /* $83E5 lda */
-        CLC();                                                           /* $83E7 clc */
-        adc(rd(ScrollX));                                                /* $83E8 adc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83EA sta */
-        DEY();                                                           /* $83EC dey */
-        LDA(rd(ScrollPage));                                             /* $83ED lda */
-        adc(0x00);                                                       /* $83EF adc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83F1 sta */
-        RTS_RET(sp0);                                                    /* $83F3 rts */
+  LDA(rd(0x08));                                                                         /* $83D3 lda */
+  if (R.a == 0) {                                                                        /* $83D5 bne */
+    LDY(0x09);                                                                           /* $83D7 ldy */
+    LDA(rd(ScrollPage));                                                                 /* $83D9 lda */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $83DB sta */
+    INY();                                                                               /* $83DD iny */
+    LDA(rd(ScrollX));                                                                    /* $83DE lda */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $83E0 sta */
+    RTS_RET(sp0);                                                                        /* $83E2 rts */
+  }
+  LDY(0x0A);                                                                             /* $83E3 ldy */
+  LDA(0xFF);                                                                             /* $83E5 lda */
+  CLC();                                                                                 /* $83E7 clc */
+  adc(rd(ScrollX));                                                                      /* $83E8 adc */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $83EA sta */
+  DEY();                                                                                 /* $83EC dey */
+  LDA(rd(ScrollPage));                                                                   /* $83ED lda */
+  adc(0x00);                                                                             /* $83EF adc */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $83F1 sta */
+  RTS_RET(sp0);                                                                          /* $83F3 rts */
 }
 
 void Sub_B6_83F4(void) {  /* $83F4 bank 6 */
   uint8_t sp0 = R.sp;
- L83F4: BUDGET(); push16(0x83F6); Sub_B6_83BE(); UNW(); ret_check(0x83F6);         /* $83F4 jsr */
-        push16(0x83F9); Sub_B6_83D3(); UNW(); ret_check(0x83F9);         /* $83F7 jsr */
-        LDY(0x0E);                                                       /* $83FA ldy */
-        LDA(0x00);                                                       /* $83FC lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $83FE sta */
-        RTS_RET(sp0);                                                    /* $8400 rts */
+  push16(0x83F6); Sub_B6_83BE(); UNW(); ret_check(0x83F6);                               /* $83F4 jsr */
+  push16(0x83F9); Sub_B6_83D3(); UNW(); ret_check(0x83F9);                               /* $83F7 jsr */
+  LDY(0x0E);                                                                             /* $83FA ldy */
+  LDA(0x00);                                                                             /* $83FC lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $83FE sta */
+  RTS_RET(sp0);                                                                          /* $8400 rts */
 }
 
 void Sub_B6_8401(void) {  /* $8401 bank 6 */
   uint8_t sp0 = R.sp;
- L8401: BUDGET(); LDA(rd(0x08));                                                   /* $8401 lda */
-        push16(0x8405); AslA6(); UNW(); ret_check(0x8405);               /* $8403 jsr */
-        LDY(0x09);                                                       /* $8406 ldy */
-        ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $8408 ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $840A sta */
-        RTS_RET(sp0);                                                    /* $840C rts */
+  LDA(rd(0x08));                                                                         /* $8401 lda */
+  push16(0x8405); AslA6(); UNW(); ret_check(0x8405);                                     /* $8403 jsr */
+  LDY(0x09);                                                                             /* $8406 ldy */
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $8408 ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $840A sta */
+  RTS_RET(sp0);                                                                          /* $840C rts */
 }
 
 void Sub_B6_840D(void) {  /* $840D bank 6 */
   uint8_t sp0 = R.sp;
- L840D: BUDGET(); push16(0x840F); GetRandomByte(); UNW(); ret_check(0x840F);       /* $840D jsr */
-        AND(0x03);                                                       /* $8410 and */
-        LDY(0x0E);                                                       /* $8412 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8414 sta */
-        RTS_RET(sp0);                                                    /* $8416 rts */
+  push16(0x840F); GetRandomByte(); UNW(); ret_check(0x840F);                             /* $840D jsr */
+  AND(0x03);                                                                             /* $8410 and */
+  LDY(0x0E);                                                                             /* $8412 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8414 sta */
+  RTS_RET(sp0);                                                                          /* $8416 rts */
 }
 
 void Loc_B6_8417(void) {  /* $8417 bank 6 */
   uint8_t sp0 = R.sp;
- L8417: BUDGET(); push16(0x8419); Sub_B6_83F4(); UNW(); ret_check(0x8419);         /* $8417 jsr */
-        push16(0x841C); Sub_B6_8401(); UNW(); ret_check(0x841C);         /* $841A jsr */
-        LDY(0x00);                                                       /* $841D ldy */
-        LDA(0xC2);                                                       /* $841F lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8421 sta */
-        LDY(0x08);                                                       /* $8423 ldy */
-        LDA(0x30);                                                       /* $8425 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8427 sta */
-        RTS_RET(sp0);                                                    /* $8429 rts */
+  push16(0x8419); Sub_B6_83F4(); UNW(); ret_check(0x8419);                               /* $8417 jsr */
+  push16(0x841C); Sub_B6_8401(); UNW(); ret_check(0x841C);                               /* $841A jsr */
+  LDY(0x00);                                                                             /* $841D ldy */
+  LDA(0xC2);                                                                             /* $841F lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8421 sta */
+  LDY(0x08);                                                                             /* $8423 ldy */
+  LDA(0x30);                                                                             /* $8425 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8427 sta */
+  RTS_RET(sp0);                                                                          /* $8429 rts */
 }
 
 void Loc_B6_842A(void) {  /* $842A bank 6 */
   uint8_t sp0 = R.sp;
- L842A: BUDGET(); push16(0x842C); Sub_B6_83F4(); UNW(); ret_check(0x842C);         /* $842A jsr */
-        push16(0x842F); Sub_B6_8401(); UNW(); ret_check(0x842F);         /* $842D jsr */
-        LDY(0x00);                                                       /* $8430 ldy */
-        LDA(0xC3);                                                       /* $8432 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8434 sta */
-        LDY(0x08);                                                       /* $8436 ldy */
-        LDA(0x28);                                                       /* $8438 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $843A sta */
-        RTS_RET(sp0);                                                    /* $843C rts */
+  push16(0x842C); Sub_B6_83F4(); UNW(); ret_check(0x842C);                               /* $842A jsr */
+  push16(0x842F); Sub_B6_8401(); UNW(); ret_check(0x842F);                               /* $842D jsr */
+  LDY(0x00);                                                                             /* $8430 ldy */
+  LDA(0xC3);                                                                             /* $8432 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8434 sta */
+  LDY(0x08);                                                                             /* $8436 ldy */
+  LDA(0x28);                                                                             /* $8438 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $843A sta */
+  RTS_RET(sp0);                                                                          /* $843C rts */
 }
 
 void Sub_B6_85FD(void) {  /* $85FD bank 6 */
   uint8_t sp0 = R.sp;
- L85FD: BUDGET(); push16(0x85FF); Sub_B6_83F4(); UNW(); ret_check(0x85FF);         /* $85FD jsr */
-        LDA(rd(0x08));                                                   /* $8600 lda */
-        push16(0x8604); AslA6(); UNW(); ret_check(0x8604);               /* $8602 jsr */
-        STA(0x08);                                                       /* $8605 sta */
-        push16(0x8609); GetRandomByte(); UNW(); ret_check(0x8609);       /* $8607 jsr */
-        AND(0x30);                                                       /* $860A and */
-        ORA(rd(0x08));                                                   /* $860C ora */
-        LDY(0x09);                                                       /* $860E ldy */
-        ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $8610 ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8612 sta */
-        LDY(0x00);                                                       /* $8614 ldy */
-        LDA(0xCB);                                                       /* $8616 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8618 sta */
-        LDY(0x08);                                                       /* $861A ldy */
-        LDA(0x01);                                                       /* $861C lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $861E sta */
-        RTS_RET(sp0);                                                    /* $8620 rts */
+  push16(0x85FF); Sub_B6_83F4(); UNW(); ret_check(0x85FF);                               /* $85FD jsr */
+  LDA(rd(0x08));                                                                         /* $8600 lda */
+  push16(0x8604); AslA6(); UNW(); ret_check(0x8604);                                     /* $8602 jsr */
+  STA(0x08);                                                                             /* $8605 sta */
+  push16(0x8609); GetRandomByte(); UNW(); ret_check(0x8609);                             /* $8607 jsr */
+  AND(0x30);                                                                             /* $860A and */
+  ORA(rd(0x08));                                                                         /* $860C ora */
+  LDY(0x09);                                                                             /* $860E ldy */
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $8610 ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8612 sta */
+  LDY(0x00);                                                                             /* $8614 ldy */
+  LDA(0xCB);                                                                             /* $8616 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8618 sta */
+  LDY(0x08);                                                                             /* $861A ldy */
+  LDA(0x01);                                                                             /* $861C lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $861E sta */
+  RTS_RET(sp0);                                                                          /* $8620 rts */
 }
 
 void Loc_B6_8621(void) {  /* $8621 bank 6 */
   uint8_t sp0 = R.sp;
- L8621: BUDGET(); push16(0x8623); Sub_B6_863C(); UNW(); ret_check(0x8623);         /* $8621 jsr */
-        push16(0x8626); Sub_B6_83D3(); UNW(); ret_check(0x8626);         /* $8624 jsr */
-        push16(0x8629); Sub_B6_865C(); UNW(); ret_check(0x8629);         /* $8627 jsr */
-        LDY(0x00);                                                       /* $862A ldy */
-        LDA(0xCC);                                                       /* $862C lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $862E sta */
-        LDY(0x08);                                                       /* $8630 ldy */
-        LDA(0x06);                                                       /* $8632 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8634 sta */
-        LDA(0x16);                                                       /* $8636 lda */
-        push16(0x863A); QueueSound(); UNW(); ret_check(0x863A);          /* $8638 jsr */
-        RTS_RET(sp0);                                                    /* $863B rts */
+  push16(0x8623); Sub_B6_863C(); UNW(); ret_check(0x8623);                               /* $8621 jsr */
+  push16(0x8626); Sub_B6_83D3(); UNW(); ret_check(0x8626);                               /* $8624 jsr */
+  push16(0x8629); Sub_B6_865C(); UNW(); ret_check(0x8629);                               /* $8627 jsr */
+  LDY(0x00);                                                                             /* $862A ldy */
+  LDA(0xCC);                                                                             /* $862C lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $862E sta */
+  LDY(0x08);                                                                             /* $8630 ldy */
+  LDA(0x06);                                                                             /* $8632 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8634 sta */
+  LDA(0x16);                                                                             /* $8636 lda */
+  push16(0x863A); QueueSound(); UNW(); ret_check(0x863A);                                /* $8638 jsr */
+  RTS_RET(sp0);                                                                          /* $863B rts */
 }
 
 void Sub_B6_863C(void) {  /* $863C bank 6 */
   uint8_t sp0 = R.sp;
- L863C: BUDGET(); push16(0x863E); GetRandomByte(); UNW(); ret_check(0x863E);       /* $863C jsr */
-        AND(0x30);                                                       /* $863F and */
-        CLC();                                                           /* $8641 clc */
-        adc(0xE8);                                                       /* $8642 adc */
-        CLC();                                                           /* $8644 clc */
-        adc(rd(PlayerSpriteY0));                                         /* $8645 adc */
-        cmp8(R.a, 0x18);                                                 /* $8648 cmp */
-        if (R.a >= 0x18) goto L8651;                                     /* $864A bcs */
-        LDA(0x18);                                                       /* $864C lda */
-        goto L8657;                                                      /* $864E jmp */
- L8651: BUDGET(); cmp8(R.a, 0xC8);                                                 /* $8651 cmp */
-        if (R.a < 0xC8) goto L8657;                                      /* $8653 bcc */
-        LDA(0xC8);                                                       /* $8655 lda */
- L8657: BUDGET(); LDY(0x0B);                                                       /* $8657 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8659 sta */
-        RTS_RET(sp0);                                                    /* $865B rts */
+  push16(0x863E); GetRandomByte(); UNW(); ret_check(0x863E);                             /* $863C jsr */
+  AND(0x30);                                                                             /* $863F and */
+  CLC();                                                                                 /* $8641 clc */
+  adc(0xE8);                                                                             /* $8642 adc */
+  CLC();                                                                                 /* $8644 clc */
+  adc(rd(PlayerSpriteY0));                                                               /* $8645 adc */
+  cmp8(R.a, 0x18);                                                                       /* $8648 cmp */
+  if (R.a < 0x18) {                                                                      /* $864A bcs */
+    LDA(0x18);                                                                           /* $864C lda */
+  } else {
+    cmp8(R.a, 0xC8);                                                                     /* $8651 cmp */
+    if (R.a < 0xC8) goto L8657;                                                          /* $8653 bcc */
+    LDA(0xC8);                                                                           /* $8655 lda */
+  }
+L8657: BUDGET();
+  LDY(0x0B);                                                                             /* $8657 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8659 sta */
+  RTS_RET(sp0);                                                                          /* $865B rts */
 }
 
 void Sub_B6_865C(void) {  /* $865C bank 6 */
   uint8_t sp0 = R.sp;
- L865C: BUDGET(); push16(0x865E); GetRandomByte(); UNW(); ret_check(0x865E);       /* $865C jsr */
-        AND(0x70);                                                       /* $865F and */
-        LDY(0x09);                                                       /* $8661 ldy */
-        ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $8663 ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8665 sta */
-        RTS_RET(sp0);                                                    /* $8667 rts */
+  push16(0x865E); GetRandomByte(); UNW(); ret_check(0x865E);                             /* $865C jsr */
+  AND(0x70);                                                                             /* $865F and */
+  LDY(0x09);                                                                             /* $8661 ldy */
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $8663 ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8665 sta */
+  RTS_RET(sp0);                                                                          /* $8667 rts */
 }
 
 void Loc_B6_8668(void) {  /* $8668 bank 6 */
   uint8_t sp0 = R.sp;
- L8668: BUDGET(); LDA(rd(FrameCounter));                                           /* $8668 lda */
-        AND(0x01);                                                       /* $866A and */
-        if (R.a != 0) goto L868B;                                        /* $866C bne */
-        push16(0x8670); Sub_B6_83D3(); UNW(); ret_check(0x8670);         /* $866E jsr */
-        push16(0x8673); Sub_B6_86BA(); UNW(); ret_check(0x8673);         /* $8671 jsr */
-        push16(0x8676); Sub_B6_869A(); UNW(); ret_check(0x8676);         /* $8674 jsr */
-        push16(0x8679); Sub_B6_868C(); UNW(); ret_check(0x8679);         /* $8677 jsr */
-        LDY(0x00);                                                       /* $867A ldy */
-        LDA(0xCE);                                                       /* $867C lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $867E sta */
-        LDY(0x08);                                                       /* $8680 ldy */
-        LDA(0x02);                                                       /* $8682 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8684 sta */
-        LDA(0x33);                                                       /* $8686 lda */
-        push16(0x868A); QueueSound(); UNW(); ret_check(0x868A);          /* $8688 jsr */
- L868B: BUDGET(); RTS_RET(sp0);                                                    /* $868B rts */
+  LDA(rd(FrameCounter));                                                                 /* $8668 lda */
+  AND(0x01);                                                                             /* $866A and */
+  if (R.a == 0) {                                                                        /* $866C bne */
+    push16(0x8670); Sub_B6_83D3(); UNW(); ret_check(0x8670);                             /* $866E jsr */
+    push16(0x8673); Sub_B6_86BA(); UNW(); ret_check(0x8673);                             /* $8671 jsr */
+    push16(0x8676); Sub_B6_869A(); UNW(); ret_check(0x8676);                             /* $8674 jsr */
+    push16(0x8679); Sub_B6_868C(); UNW(); ret_check(0x8679);                             /* $8677 jsr */
+    LDY(0x00);                                                                           /* $867A ldy */
+    LDA(0xCE);                                                                           /* $867C lda */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $867E sta */
+    LDY(0x08);                                                                           /* $8680 ldy */
+    LDA(0x02);                                                                           /* $8682 lda */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $8684 sta */
+    LDA(0x33);                                                                           /* $8686 lda */
+    push16(0x868A); QueueSound(); UNW(); ret_check(0x868A);                              /* $8688 jsr */
+  }
+  RTS_RET(sp0);                                                                          /* $868B rts */
 }
 
 void Sub_B6_868C(void) {  /* $868C bank 6 */
   uint8_t sp0 = R.sp;
- L868C: BUDGET(); STX(0x06);                                                       /* $868C stx */
-        push16(0x8690); GetRandomByte(); UNW(); ret_check(0x8690);       /* $868E jsr */
-        AND(0x30);                                                       /* $8691 and */
-        adc(rd(0x06));                                                   /* $8693 adc */
-        LDY(0x0B);                                                       /* $8695 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8697 sta */
-        RTS_RET(sp0);                                                    /* $8699 rts */
+  STX(0x06);                                                                             /* $868C stx */
+  push16(0x8690); GetRandomByte(); UNW(); ret_check(0x8690);                             /* $868E jsr */
+  AND(0x30);                                                                             /* $8691 and */
+  adc(rd(0x06));                                                                         /* $8693 adc */
+  LDY(0x0B);                                                                             /* $8695 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8697 sta */
+  RTS_RET(sp0);                                                                          /* $8699 rts */
 }
 
 void Sub_B6_869A(void) {  /* $869A bank 6 */
   uint8_t sp0 = R.sp;
- L869A: BUDGET(); LDA(rd(PlayerSpriteY0));                                         /* $869A lda */
-        cmp8(R.a, 0x70);                                                 /* $869D cmp */
-        if (R.a >= 0x70) goto L86A8;                                     /* $869F bcs */
-        LDA(0x10);                                                       /* $86A1 lda */
-        LDX(0x28);                                                       /* $86A3 ldx */
-        goto L86AC;                                                      /* $86A5 jmp */
- L86A8: BUDGET(); LDA(0x00);                                                       /* $86A8 lda */
-        LDX(0x88);                                                       /* $86AA ldx */
- L86AC: BUDGET(); LDY(0x09);                                                       /* $86AC ldy */
-        ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $86AE ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $86B0 sta */
-        LDY(0x05);                                                       /* $86B2 ldy */
-        push16(0x86B6); LsrA4(); UNW(); ret_check(0x86B6);               /* $86B4 jsr */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $86B7 sta */
-        RTS_RET(sp0);                                                    /* $86B9 rts */
+  LDA(rd(PlayerSpriteY0));                                                               /* $869A lda */
+  cmp8(R.a, 0x70);                                                                       /* $869D cmp */
+  if (R.a < 0x70) {                                                                      /* $869F bcs */
+    LDA(0x10);                                                                           /* $86A1 lda */
+    LDX(0x28);                                                                           /* $86A3 ldx */
+  } else {
+    LDA(0x00);                                                                           /* $86A8 lda */
+    LDX(0x88);                                                                           /* $86AA ldx */
+  }
+  LDY(0x09);                                                                             /* $86AC ldy */
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $86AE ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $86B0 sta */
+  LDY(0x05);                                                                             /* $86B2 ldy */
+  push16(0x86B6); LsrA4(); UNW(); ret_check(0x86B6);                                     /* $86B4 jsr */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $86B7 sta */
+  RTS_RET(sp0);                                                                          /* $86B9 rts */
 }
 
 void Sub_B6_86BA(void) {  /* $86BA bank 6 */
   uint8_t sp0 = R.sp;
- L86BA: BUDGET(); LDY(0x0A);                                                       /* $86BA ldy */
-        LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $86BC lda */
-        SEC();                                                           /* $86BE sec */
-        sbc(0xFC);                                                       /* $86BF sbc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $86C1 sta */
-        DEY();                                                           /* $86C3 dey */
-        LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $86C4 lda */
-        sbc(0x00);                                                       /* $86C6 sbc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $86C8 sta */
-        RTS_RET(sp0);                                                    /* $86CA rts */
+  LDY(0x0A);                                                                             /* $86BA ldy */
+  LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $86BC lda */
+  SEC();                                                                                 /* $86BE sec */
+  sbc(0xFC);                                                                             /* $86BF sbc */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $86C1 sta */
+  DEY();                                                                                 /* $86C3 dey */
+  LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $86C4 lda */
+  sbc(0x00);                                                                             /* $86C6 sbc */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $86C8 sta */
+  RTS_RET(sp0);                                                                          /* $86CA rts */
 }
 
 void Sub_B6_8703(void) {  /* $8703 bank 6 */
   uint8_t sp0 = R.sp;
   goto L8703;
- L86CD: BUDGET(); STA(0x04);                                                       /* $86CD sta */
-        LDY(0x00);                                                       /* $86CF ldy */
-        LDA(0xD0);                                                       /* $86D1 lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $86D3 sta */
-        LDY(0x04);                                                       /* $86D5 ldy */
-        LDA(0x02);                                                       /* $86D7 lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $86D9 sta */
-        LDY(0x08);                                                       /* $86DB ldy */
-        LDA(0x02);                                                       /* $86DD lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $86DF sta */
-        INY();                                                           /* $86E1 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $86E2 lda */
-        AND(0x0F);                                                       /* $86E4 and */
-        ORA(rd(0x04));                                                   /* $86E6 ora */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $86E8 sta */
-        LDY(0x0E);                                                       /* $86EA ldy */
-        LDA(0x00);                                                       /* $86EC lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $86EE sta */
-        LDY(0x06);                                                       /* $86F0 ldy */
-        LDA(0x0F);                                                       /* $86F2 lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $86F4 sta */
-        INY();                                                           /* $86F6 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $86F7 lda */
-        AND(0x7F);                                                       /* $86F9 and */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $86FB sta */
-        LDA(0x10);                                                       /* $86FD lda */
-        push16(0x8701); QueueSound(); UNW(); ret_check(0x8701);          /* $86FF jsr */
-        RTS_RET(sp0);                                                    /* $8702 rts */
- L8703: BUDGET(); LDA(0x10);                                                       /* $8703 lda */
-        goto L86CD;                                                      /* $8705 jmp */
+L86CD: BUDGET();
+  STA(0x04);                                                                             /* $86CD sta */
+  LDY(0x00);                                                                             /* $86CF ldy */
+  LDA(0xD0);                                                                             /* $86D1 lda */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $86D3 sta */
+  LDY(0x04);                                                                             /* $86D5 ldy */
+  LDA(0x02);                                                                             /* $86D7 lda */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $86D9 sta */
+  LDY(0x08);                                                                             /* $86DB ldy */
+  LDA(0x02);                                                                             /* $86DD lda */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $86DF sta */
+  INY();                                                                                 /* $86E1 iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $86E2 lda */
+  AND(0x0F);                                                                             /* $86E4 and */
+  ORA(rd(0x04));                                                                         /* $86E6 ora */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $86E8 sta */
+  LDY(0x0E);                                                                             /* $86EA ldy */
+  LDA(0x00);                                                                             /* $86EC lda */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $86EE sta */
+  LDY(0x06);                                                                             /* $86F0 ldy */
+  LDA(0x0F);                                                                             /* $86F2 lda */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $86F4 sta */
+  INY();                                                                                 /* $86F6 iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $86F7 lda */
+  AND(0x7F);                                                                             /* $86F9 and */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $86FB sta */
+  LDA(0x10);                                                                             /* $86FD lda */
+  push16(0x8701); QueueSound(); UNW(); ret_check(0x8701);                                /* $86FF jsr */
+  RTS_RET(sp0);                                                                          /* $8702 rts */
+L8703: BUDGET();
+  LDA(0x10);                                                                             /* $8703 lda */
+  goto L86CD;                                                                            /* $8705 jmp */
 }
 
 void Loc_B6_8708(void) {  /* $8708 bank 6 */
   uint8_t sp0 = R.sp;
- L8708: BUDGET(); LDA(rd(FrameCounter));                                           /* $8708 lda */
-        AND(0x01);                                                       /* $870A and */
-        if (R.a == 0) goto L8715;                                        /* $870C beq */
-        LDA(rd(ObjectCount));                                            /* $870E lda */
-        cmp8(R.a, 0x09);                                                 /* $8711 cmp */
-        if (R.a < 0x09) goto L8719;                                      /* $8713 bcc */
- L8715: BUDGET(); DEC_M(ObjectCount);                                              /* $8715 dec */
-        RTS_RET(sp0);                                                    /* $8718 rts */
- L8719: BUDGET(); push16(0x871B); Sub_B6_83D3(); UNW(); ret_check(0x871B);         /* $8719 jsr */
-        push16(0x871E); Sub_B6_8746(); UNW(); ret_check(0x871E);         /* $871C jsr */
-        push16(0x8721); Sub_B6_873E(); UNW(); ret_check(0x8721);         /* $871F jsr */
-        push16(0x8724); Sub_B6_8756(); UNW(); ret_check(0x8724);         /* $8722 jsr */
-        INC_M(ObjectCount);                                              /* $8725 inc */
-        INC_M(ObjectCount);                                              /* $8728 inc */
-        INC_M(ObjectCount);                                              /* $872B inc */
-        INC_M(ObjectCount);                                              /* $872E inc */
-        LDY(0x00);                                                       /* $8731 ldy */
-        LDA(0x51);                                                       /* $8733 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8735 sta */
-        LDY(0x08);                                                       /* $8737 ldy */
-        LDA(0x3F);                                                       /* $8739 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $873B sta */
-        RTS_RET(sp0);                                                    /* $873D rts */
+  LDA(rd(FrameCounter));                                                                 /* $8708 lda */
+  AND(0x01);                                                                             /* $870A and */
+  if (R.a != 0) {                                                                        /* $870C beq */
+    LDA(rd(ObjectCount));                                                                /* $870E lda */
+    cmp8(R.a, 0x09);                                                                     /* $8711 cmp */
+    if (R.a < 0x09) goto L8719;                                                          /* $8713 bcc */
+  }
+  DEC_M(ObjectCount);                                                                    /* $8715 dec */
+  RTS_RET(sp0);                                                                          /* $8718 rts */
+L8719: BUDGET();
+  push16(0x871B); Sub_B6_83D3(); UNW(); ret_check(0x871B);                               /* $8719 jsr */
+  push16(0x871E); Sub_B6_8746(); UNW(); ret_check(0x871E);                               /* $871C jsr */
+  push16(0x8721); Sub_B6_873E(); UNW(); ret_check(0x8721);                               /* $871F jsr */
+  push16(0x8724); Sub_B6_8756(); UNW(); ret_check(0x8724);                               /* $8722 jsr */
+  INC_M(ObjectCount);                                                                    /* $8725 inc */
+  INC_M(ObjectCount);                                                                    /* $8728 inc */
+  INC_M(ObjectCount);                                                                    /* $872B inc */
+  INC_M(ObjectCount);                                                                    /* $872E inc */
+  LDY(0x00);                                                                             /* $8731 ldy */
+  LDA(0x51);                                                                             /* $8733 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8735 sta */
+  LDY(0x08);                                                                             /* $8737 ldy */
+  LDA(0x3F);                                                                             /* $8739 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $873B sta */
+  RTS_RET(sp0);                                                                          /* $873D rts */
 }
 
 void Sub_B6_873E(void) {  /* $873E bank 6 */
   uint8_t sp0 = R.sp;
- L873E: BUDGET(); LDY(0x0B);                                                       /* $873E ldy */
-        LDA(rd(PlayerSpriteY0));                                         /* $8740 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8743 sta */
-        RTS_RET(sp0);                                                    /* $8745 rts */
+  LDY(0x0B);                                                                             /* $873E ldy */
+  LDA(rd(PlayerSpriteY0));                                                               /* $8740 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8743 sta */
+  RTS_RET(sp0);                                                                          /* $8745 rts */
 }
 
 void Sub_B6_8746(void) {  /* $8746 bank 6 */
   uint8_t sp0 = R.sp;
- L8746: BUDGET(); LDY(0x0A);                                                       /* $8746 ldy */
-        LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $8748 lda */
-        adc(0x18);                                                       /* $874A adc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $874C sta */
-        DEY();                                                           /* $874E dey */
-        LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $874F lda */
-        adc(0x00);                                                       /* $8751 adc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8753 sta */
-        RTS_RET(sp0);                                                    /* $8755 rts */
+  LDY(0x0A);                                                                             /* $8746 ldy */
+  LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $8748 lda */
+  adc(0x18);                                                                             /* $874A adc */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $874C sta */
+  DEY();                                                                                 /* $874E dey */
+  LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $874F lda */
+  adc(0x00);                                                                             /* $8751 adc */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8753 sta */
+  RTS_RET(sp0);                                                                          /* $8755 rts */
 }
 
 void Sub_B6_8756(void) {  /* $8756 bank 6 */
   uint8_t sp0 = R.sp;
- L8756: BUDGET(); LDA(0x52);                                                       /* $8756 lda */
-        LDY(0x10);                                                       /* $8758 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $875A sta */
-        LDY(0x20);                                                       /* $875C ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $875E sta */
-        LDY(0x30);                                                       /* $8760 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8762 sta */
-        LDY(0x40);                                                       /* $8764 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8766 sta */
-        LDA(0x0F);                                                       /* $8768 lda */
-        LDY(0x16);                                                       /* $876A ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $876C sta */
-        LDY(0x26);                                                       /* $876E ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8770 sta */
-        LDY(0x36);                                                       /* $8772 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8774 sta */
-        LDY(0x46);                                                       /* $8776 ldy */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8778 sta */
-        RTS_RET(sp0);                                                    /* $877A rts */
+  LDA(0x52);                                                                             /* $8756 lda */
+  LDY(0x10);                                                                             /* $8758 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $875A sta */
+  LDY(0x20);                                                                             /* $875C ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $875E sta */
+  LDY(0x30);                                                                             /* $8760 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8762 sta */
+  LDY(0x40);                                                                             /* $8764 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8766 sta */
+  LDA(0x0F);                                                                             /* $8768 lda */
+  LDY(0x16);                                                                             /* $876A ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $876C sta */
+  LDY(0x26);                                                                             /* $876E ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8770 sta */
+  LDY(0x36);                                                                             /* $8772 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8774 sta */
+  LDY(0x46);                                                                             /* $8776 ldy */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8778 sta */
+  RTS_RET(sp0);                                                                          /* $877A rts */
 }
 
 void Loc_B6_877B(void) {  /* $877B bank 6 */
   uint8_t sp0 = R.sp;
- L877B: BUDGET(); LDA(rd(FrameCounter));                                           /* $877B lda */
-        AND(0x01);                                                       /* $877D and */
-        if (R.a != 0) goto L8796;                                        /* $877F bne */
-        push16(0x8783); Sub_B6_83D3(); UNW(); ret_check(0x8783);         /* $8781 jsr */
-        LDY(0x0B);                                                       /* $8784 ldy */
-        LDA(0xC8);                                                       /* $8786 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8788 sta */
-        LDY(0x00);                                                       /* $878A ldy */
-        LDA(0xD6);                                                       /* $878C lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $878E sta */
-        LDY(0x08);                                                       /* $8790 ldy */
-        LDA(0x3F);                                                       /* $8792 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8794 sta */
- L8796: BUDGET(); RTS_RET(sp0);                                                    /* $8796 rts */
+  LDA(rd(FrameCounter));                                                                 /* $877B lda */
+  AND(0x01);                                                                             /* $877D and */
+  if (R.a == 0) {                                                                        /* $877F bne */
+    push16(0x8783); Sub_B6_83D3(); UNW(); ret_check(0x8783);                             /* $8781 jsr */
+    LDY(0x0B);                                                                           /* $8784 ldy */
+    LDA(0xC8);                                                                           /* $8786 lda */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $8788 sta */
+    LDY(0x00);                                                                           /* $878A ldy */
+    LDA(0xD6);                                                                           /* $878C lda */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $878E sta */
+    LDY(0x08);                                                                           /* $8790 ldy */
+    LDA(0x3F);                                                                           /* $8792 lda */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $8794 sta */
+  }
+  RTS_RET(sp0);                                                                          /* $8796 rts */
 }
 
 void Loc_B6_8797(void) {  /* $8797 bank 6 */
   uint8_t sp0 = R.sp;
- L8797: BUDGET(); LDA(rd(ObjectCount));                                            /* $8797 lda */
-        cmp8(R.a, 0x0D);                                                 /* $879A cmp */
-        if (R.a >= 0x0D) goto L87A5;                                     /* $879C bcs */
-        LDA(rd(JoyHeld1));                                               /* $879E lda */
-        AND(0xC0);                                                       /* $87A1 and */
-        if (R.a != 0) goto L87A9;                                        /* $87A3 bne */
- L87A5: BUDGET(); DEC_M(ObjectCount);                                              /* $87A5 dec */
-        RTS_RET(sp0);                                                    /* $87A8 rts */
- L87A9: BUDGET(); push16(0x87AB); Sub_B6_83D3(); UNW(); ret_check(0x87AB);         /* $87A9 jsr */
-        push16(0x87AE); Sub_B6_87DA(); UNW(); ret_check(0x87AE);         /* $87AC jsr */
-        push16(0x87B1); Sub_B6_87D3(); UNW(); ret_check(0x87B1);         /* $87AF jsr */
-        LDY(0x00);                                                       /* $87B2 ldy */
-        LDA(0xD8);                                                       /* $87B4 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $87B6 sta */
-        LDY(0x08);                                                       /* $87B8 ldy */
-        LDA(0x3F);                                                       /* $87BA lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $87BC sta */
-        LDY(0x06);                                                       /* $87BE ldy */
-        LDA(0x01);                                                       /* $87C0 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $87C2 sta */
-        INC_M(ObjectCount);                                              /* $87C4 inc */
-        push16(0x87C9); Sub_B6_8803(); UNW(); ret_check(0x87C9);         /* $87C7 jsr */
-        push16(0x87CC); Sub_B6_8822(); UNW(); ret_check(0x87CC);         /* $87CA jsr */
-        LDA(0x3D);                                                       /* $87CD lda */
-        push16(0x87D1); QueueSound(); UNW(); ret_check(0x87D1);          /* $87CF jsr */
-        RTS_RET(sp0);                                                    /* $87D2 rts */
+  LDA(rd(ObjectCount));                                                                  /* $8797 lda */
+  cmp8(R.a, 0x0D);                                                                       /* $879A cmp */
+  if (R.a < 0x0D) {                                                                      /* $879C bcs */
+    LDA(rd(JoyHeld1));                                                                   /* $879E lda */
+    AND(0xC0);                                                                           /* $87A1 and */
+    if (R.a != 0) goto L87A9;                                                            /* $87A3 bne */
+  }
+  DEC_M(ObjectCount);                                                                    /* $87A5 dec */
+  RTS_RET(sp0);                                                                          /* $87A8 rts */
+L87A9: BUDGET();
+  push16(0x87AB); Sub_B6_83D3(); UNW(); ret_check(0x87AB);                               /* $87A9 jsr */
+  push16(0x87AE); Sub_B6_87DA(); UNW(); ret_check(0x87AE);                               /* $87AC jsr */
+  push16(0x87B1); Sub_B6_87D3(); UNW(); ret_check(0x87B1);                               /* $87AF jsr */
+  LDY(0x00);                                                                             /* $87B2 ldy */
+  LDA(0xD8);                                                                             /* $87B4 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $87B6 sta */
+  LDY(0x08);                                                                             /* $87B8 ldy */
+  LDA(0x3F);                                                                             /* $87BA lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $87BC sta */
+  LDY(0x06);                                                                             /* $87BE ldy */
+  LDA(0x01);                                                                             /* $87C0 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $87C2 sta */
+  INC_M(ObjectCount);                                                                    /* $87C4 inc */
+  push16(0x87C9); Sub_B6_8803(); UNW(); ret_check(0x87C9);                               /* $87C7 jsr */
+  push16(0x87CC); Sub_B6_8822(); UNW(); ret_check(0x87CC);                               /* $87CA jsr */
+  LDA(0x3D);                                                                             /* $87CD lda */
+  push16(0x87D1); QueueSound(); UNW(); ret_check(0x87D1);                                /* $87CF jsr */
+  RTS_RET(sp0);                                                                          /* $87D2 rts */
 }
 
 void Sub_B6_87D3(void) {  /* $87D3 bank 6 */
   uint8_t sp0 = R.sp;
- L87D3: BUDGET(); LDY(0x0B);                                                       /* $87D3 ldy */
-        LDA(0x10);                                                       /* $87D5 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $87D7 sta */
-        RTS_RET(sp0);                                                    /* $87D9 rts */
+  LDY(0x0B);                                                                             /* $87D3 ldy */
+  LDA(0x10);                                                                             /* $87D5 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $87D7 sta */
+  RTS_RET(sp0);                                                                          /* $87D9 rts */
 }
 
 void Sub_B6_87DA(void) {  /* $87DA bank 6 */
   uint8_t sp0 = R.sp;
- L87DA: BUDGET(); LDY(0x0A);                                                       /* $87DA ldy */
-        LDA(rd(JoyHeld1));                                               /* $87DC lda */
-        AND(0xC0);                                                       /* $87DF and */
-        cmp8(R.a, 0x40);                                                 /* $87E1 cmp */
-        if (R.a != 0x40) goto L87F4;                                     /* $87E3 bne */
-        LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $87E5 lda */
-        CLC();                                                           /* $87E7 clc */
-        adc(0x50);                                                       /* $87E8 adc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $87EA sta */
-        DEY();                                                           /* $87EC dey */
-        LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $87ED lda */
-        adc(0x00);                                                       /* $87EF adc */
-        goto L8800;                                                      /* $87F1 jmp */
- L87F4: BUDGET(); LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $87F4 lda */
-        SEC();                                                           /* $87F6 sec */
-        sbc(0x60);                                                       /* $87F7 sbc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $87F9 sta */
-        DEY();                                                           /* $87FB dey */
-        LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $87FC lda */
-        sbc(0x00);                                                       /* $87FE sbc */
- L8800: BUDGET(); STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8800 sta */
-        RTS_RET(sp0);                                                    /* $8802 rts */
+  LDY(0x0A);                                                                             /* $87DA ldy */
+  LDA(rd(JoyHeld1));                                                                     /* $87DC lda */
+  AND(0xC0);                                                                             /* $87DF and */
+  cmp8(R.a, 0x40);                                                                       /* $87E1 cmp */
+  if (R.a == 0x40) {                                                                     /* $87E3 bne */
+    LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                             /* $87E5 lda */
+    CLC();                                                                               /* $87E7 clc */
+    adc(0x50);                                                                           /* $87E8 adc */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $87EA sta */
+    DEY();                                                                               /* $87EC dey */
+    LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                             /* $87ED lda */
+    adc(0x00);                                                                           /* $87EF adc */
+  } else {
+    LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                             /* $87F4 lda */
+    SEC();                                                                               /* $87F6 sec */
+    sbc(0x60);                                                                           /* $87F7 sbc */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $87F9 sta */
+    DEY();                                                                               /* $87FB dey */
+    LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                             /* $87FC lda */
+    sbc(0x00);                                                                           /* $87FE sbc */
+  }
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8800 sta */
+  RTS_RET(sp0);                                                                          /* $8802 rts */
 }
 
 void Sub_B6_8803(void) {  /* $8803 bank 6 */
   uint8_t sp0 = R.sp;
- L8803: BUDGET(); LDA(rd(0x0A));                                                   /* $8803 lda */
-        CLC();                                                           /* $8805 clc */
-        adc(0x10);                                                       /* $8806 adc */
-        STA(0x04);                                                       /* $8808 sta */
-        LDA(0x03);                                                       /* $880A lda */
-        STA(0x05);                                                       /* $880C sta */
-        LDY(0x00);                                                       /* $880E ldy */
- L8810: BUDGET(); LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $8810 lda */
-        STA((uint16_t)(rd16zp(0x04) + R.y));                             /* $8812 sta */
-        INY();                                                           /* $8814 iny */
-        cmp8(R.y, 0x10);                                                 /* $8815 cpy */
-        if (R.y < 0x10) goto L8810;                                      /* $8817 bcc */
-        LDY(0x0B);                                                       /* $8819 ldy */
-        LDA(rd((uint16_t)(rd16zp(0x04) + R.y)));                         /* $881B lda */
-        adc(0x1C);                                                       /* $881D adc */
-        STA((uint16_t)(rd16zp(0x04) + R.y));                             /* $881F sta */
-        RTS_RET(sp0);                                                    /* $8821 rts */
+  LDA(rd(0x0A));                                                                         /* $8803 lda */
+  CLC();                                                                                 /* $8805 clc */
+  adc(0x10);                                                                             /* $8806 adc */
+  STA(0x04);                                                                             /* $8808 sta */
+  LDA(0x03);                                                                             /* $880A lda */
+  STA(0x05);                                                                             /* $880C sta */
+  LDY(0x00);                                                                             /* $880E ldy */
+  do { BUDGET();
+    LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                             /* $8810 lda */
+    STA((uint16_t)(rd16zp(0x04) + R.y));                                                 /* $8812 sta */
+    INY();                                                                               /* $8814 iny */
+    cmp8(R.y, 0x10);                                                                     /* $8815 cpy */
+  } while (R.y < 0x10);                                                                  /* $8817 bcc */
+  LDY(0x0B);                                                                             /* $8819 ldy */
+  LDA(rd((uint16_t)(rd16zp(0x04) + R.y)));                                               /* $881B lda */
+  adc(0x1C);                                                                             /* $881D adc */
+  STA((uint16_t)(rd16zp(0x04) + R.y));                                                   /* $881F sta */
+  RTS_RET(sp0);                                                                          /* $8821 rts */
 }
 
 void Sub_B6_8822(void) {  /* $8822 bank 6 */
   uint8_t sp0 = R.sp;
- L8822: BUDGET(); LDY(0x09);                                                       /* $8822 ldy */
-        push16(0x8826); GetRandomByte(); UNW(); ret_check(0x8826);       /* $8824 jsr */
-        AND(0x70);                                                       /* $8827 and */
-        ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $8829 ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $882B sta */
-        push16(0x882F); GetRandomByte(); UNW(); ret_check(0x882F);       /* $882D jsr */
-        AND(0x70);                                                       /* $8830 and */
-        ORA(rd((uint16_t)(rd16zp(0x04) + R.y)));                         /* $8832 ora */
-        STA((uint16_t)(rd16zp(0x04) + R.y));                             /* $8834 sta */
-        RTS_RET(sp0);                                                    /* $8836 rts */
+  LDY(0x09);                                                                             /* $8822 ldy */
+  push16(0x8826); GetRandomByte(); UNW(); ret_check(0x8826);                             /* $8824 jsr */
+  AND(0x70);                                                                             /* $8827 and */
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $8829 ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $882B sta */
+  push16(0x882F); GetRandomByte(); UNW(); ret_check(0x882F);                             /* $882D jsr */
+  AND(0x70);                                                                             /* $8830 and */
+  ORA(rd((uint16_t)(rd16zp(0x04) + R.y)));                                               /* $8832 ora */
+  STA((uint16_t)(rd16zp(0x04) + R.y));                                                   /* $8834 sta */
+  RTS_RET(sp0);                                                                          /* $8836 rts */
 }
 
 void Loc_B6_8837(void) {  /* $8837 bank 6 */
   uint8_t sp0 = R.sp;
- L8837: BUDGET(); push16(0x8839); Sub_B6_83F4(); UNW(); ret_check(0x8839);         /* $8837 jsr */
-        LDY(0x09);                                                       /* $883A ldy */
-        LDA(rd(0x08));                                                   /* $883C lda */
-        if (R.a != 0) goto L8845;                                        /* $883E bne */
-        LDA(0x10);                                                       /* $8840 lda */
-        goto L8847;                                                      /* $8842 jmp */
- L8845: BUDGET(); LDA(0x30);                                                       /* $8845 lda */
- L8847: BUDGET(); ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $8847 ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8849 sta */
-        LDY(0x00);                                                       /* $884B ldy */
-        LDA(0xD9);                                                       /* $884D lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $884F sta */
-        LDY(0x08);                                                       /* $8851 ldy */
-        LDA(0x0C);                                                       /* $8853 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8855 sta */
-        RTS_RET(sp0);                                                    /* $8857 rts */
+  push16(0x8839); Sub_B6_83F4(); UNW(); ret_check(0x8839);                               /* $8837 jsr */
+  LDY(0x09);                                                                             /* $883A ldy */
+  LDA(rd(0x08));                                                                         /* $883C lda */
+  if (R.a == 0) {                                                                        /* $883E bne */
+    LDA(0x10);                                                                           /* $8840 lda */
+  } else {
+    LDA(0x30);                                                                           /* $8845 lda */
+  }
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $8847 ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8849 sta */
+  LDY(0x00);                                                                             /* $884B ldy */
+  LDA(0xD9);                                                                             /* $884D lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $884F sta */
+  LDY(0x08);                                                                             /* $8851 ldy */
+  LDA(0x0C);                                                                             /* $8853 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8855 sta */
+  RTS_RET(sp0);                                                                          /* $8857 rts */
 }
 
 void Loc_B6_8858(void) {  /* $8858 bank 6 */
   uint8_t sp0 = R.sp;
- L8858: BUDGET(); push16(0x885A); Sub_B6_83F4(); UNW(); ret_check(0x885A);         /* $8858 jsr */
-        push16(0x885D); Sub_B6_886B(); UNW(); ret_check(0x885D);         /* $885B jsr */
-        LDY(0x00);                                                       /* $885E ldy */
-        LDA(0xDB);                                                       /* $8860 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8862 sta */
-        LDY(0x08);                                                       /* $8864 ldy */
-        LDA(0x20);                                                       /* $8866 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8868 sta */
-        RTS_RET(sp0);                                                    /* $886A rts */
+  push16(0x885A); Sub_B6_83F4(); UNW(); ret_check(0x885A);                               /* $8858 jsr */
+  push16(0x885D); Sub_B6_886B(); UNW(); ret_check(0x885D);                               /* $885B jsr */
+  LDY(0x00);                                                                             /* $885E ldy */
+  LDA(0xDB);                                                                             /* $8860 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8862 sta */
+  LDY(0x08);                                                                             /* $8864 ldy */
+  LDA(0x20);                                                                             /* $8866 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8868 sta */
+  RTS_RET(sp0);                                                                          /* $886A rts */
 }
 
 void Sub_B6_886B(void) {  /* $886B bank 6 */
   uint8_t sp0 = R.sp;
- L886B: BUDGET(); LDA(rd(0x08));                                                   /* $886B lda */
-        push16(0x886F); AslA5(); UNW(); ret_check(0x886F);               /* $886D jsr */
-        STA(0x08);                                                       /* $8870 sta */
-        push16(0x8874); GetRandomByte(); UNW(); ret_check(0x8874);       /* $8872 jsr */
-        AND(0x10);                                                       /* $8875 and */
-        ORA(rd(0x08));                                                   /* $8877 ora */
-        LDY(0x09);                                                       /* $8879 ldy */
-        ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $887B ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $887D sta */
-        RTS_RET(sp0);                                                    /* $887F rts */
+  LDA(rd(0x08));                                                                         /* $886B lda */
+  push16(0x886F); AslA5(); UNW(); ret_check(0x886F);                                     /* $886D jsr */
+  STA(0x08);                                                                             /* $8870 sta */
+  push16(0x8874); GetRandomByte(); UNW(); ret_check(0x8874);                             /* $8872 jsr */
+  AND(0x10);                                                                             /* $8875 and */
+  ORA(rd(0x08));                                                                         /* $8877 ora */
+  LDY(0x09);                                                                             /* $8879 ldy */
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $887B ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $887D sta */
+  RTS_RET(sp0);                                                                          /* $887F rts */
 }
 
 void Loc_B6_8880(void) {  /* $8880 bank 6 */
   uint8_t sp0 = R.sp;
- L8880: BUDGET(); push16(0x8882); Sub_B6_83F4(); UNW(); ret_check(0x8882);         /* $8880 jsr */
-        LDY(0x09);                                                       /* $8883 ldy */
-        LDA(rd(0x08));                                                   /* $8885 lda */
-        push16(0x8889); AslA4(); UNW(); ret_check(0x8889);               /* $8887 jsr */
-        ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $888A ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $888C sta */
-        LDY(0x00);                                                       /* $888E ldy */
-        LDA(0xDD);                                                       /* $8890 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8892 sta */
-        LDY(0x08);                                                       /* $8894 ldy */
-        LDA(0x20);                                                       /* $8896 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $8898 sta */
-        RTS_RET(sp0);                                                    /* $889A rts */
+  push16(0x8882); Sub_B6_83F4(); UNW(); ret_check(0x8882);                               /* $8880 jsr */
+  LDY(0x09);                                                                             /* $8883 ldy */
+  LDA(rd(0x08));                                                                         /* $8885 lda */
+  push16(0x8889); AslA4(); UNW(); ret_check(0x8889);                                     /* $8887 jsr */
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $888A ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $888C sta */
+  LDY(0x00);                                                                             /* $888E ldy */
+  LDA(0xDD);                                                                             /* $8890 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8892 sta */
+  LDY(0x08);                                                                             /* $8894 ldy */
+  LDA(0x20);                                                                             /* $8896 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $8898 sta */
+  RTS_RET(sp0);                                                                          /* $889A rts */
 }
 
 void Loc_B6_889B(void) {  /* $889B bank 6 */
   uint8_t sp0 = R.sp;
- L889B: BUDGET(); push16(0x889D); Sub_B6_83F4(); UNW(); ret_check(0x889D);         /* $889B jsr */
-        LDY(0x09);                                                       /* $889E ldy */
-        LDA(rd(0x08));                                                   /* $88A0 lda */
-        push16(0x88A4); AslA4(); UNW(); ret_check(0x88A4);               /* $88A2 jsr */
-        ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                         /* $88A5 ora */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $88A7 sta */
-        LDY(0x00);                                                       /* $88A9 ldy */
-        LDA(0xDF);                                                       /* $88AB lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $88AD sta */
-        LDY(0x08);                                                       /* $88AF ldy */
-        LDA(0x08);                                                       /* $88B1 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $88B3 sta */
-        LDA(0x32);                                                       /* $88B5 lda */
-        push16(0x88B9); QueueSound(); UNW(); ret_check(0x88B9);          /* $88B7 jsr */
-        RTS_RET(sp0);                                                    /* $88BA rts */
+  push16(0x889D); Sub_B6_83F4(); UNW(); ret_check(0x889D);                               /* $889B jsr */
+  LDY(0x09);                                                                             /* $889E ldy */
+  LDA(rd(0x08));                                                                         /* $88A0 lda */
+  push16(0x88A4); AslA4(); UNW(); ret_check(0x88A4);                                     /* $88A2 jsr */
+  ORA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $88A5 ora */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $88A7 sta */
+  LDY(0x00);                                                                             /* $88A9 ldy */
+  LDA(0xDF);                                                                             /* $88AB lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $88AD sta */
+  LDY(0x08);                                                                             /* $88AF ldy */
+  LDA(0x08);                                                                             /* $88B1 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $88B3 sta */
+  LDA(0x32);                                                                             /* $88B5 lda */
+  push16(0x88B9); QueueSound(); UNW(); ret_check(0x88B9);                                /* $88B7 jsr */
+  RTS_RET(sp0);                                                                          /* $88BA rts */
 }
 
 void Sub_B6_890F(void) {  /* $890F bank 6 */
   uint8_t sp0 = R.sp;
- L890F: BUDGET(); push16(0x8911); Sub_B6_89B2(); UNW(); ret_check(0x8911);         /* $890F jsr */
-        LDY(0x08);                                                       /* $8912 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8914 lda */
-        if (R.a != 0) goto L8928;                                        /* $8916 bne */
-        push16(0x891A); Sub_B6_8A66(); UNW(); ret_check(0x891A);         /* $8918 jsr */
-        cmp8(R.a, rd(0x04));                                             /* $891B cmp */
-        if (R.a < rd(0x04)) goto L8925;                                  /* $891D bcc */
-        push16(0x8921); Sub_B6_89DE(); UNW(); ret_check(0x8921);         /* $891F jsr */
-        push16(0x8924); Sub_B6_89B2(); UNW(); ret_check(0x8924);         /* $8922 jsr */
- L8925: BUDGET(); push16(0x8927); Sub_B6_89C0(); UNW(); ret_check(0x8927);         /* $8925 jsr */
- L8928: BUDGET(); push16(0x892A); Sub_B6_8932(); UNW(); ret_check(0x892A);         /* $8928 jsr */
-        push16(0x892D); Sub_B6_8A76(); UNW(); ret_check(0x892D);         /* $892B jsr */
-        push16(0x8930); Sub_B6_8B08(); UNW(); ret_check(0x8930);         /* $892E jsr */
-        RTS_RET(sp0);                                                    /* $8931 rts */
+  push16(0x8911); Sub_B6_89B2(); UNW(); ret_check(0x8911);                               /* $890F jsr */
+  LDY(0x08);                                                                             /* $8912 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8914 lda */
+  if (R.a == 0) {                                                                        /* $8916 bne */
+    push16(0x891A); Sub_B6_8A66(); UNW(); ret_check(0x891A);                             /* $8918 jsr */
+    cmp8(R.a, rd(0x04));                                                                 /* $891B cmp */
+    if (R.a >= rd(0x04)) {                                                               /* $891D bcc */
+      push16(0x8921); Sub_B6_89DE(); UNW(); ret_check(0x8921);                           /* $891F jsr */
+      push16(0x8924); Sub_B6_89B2(); UNW(); ret_check(0x8924);                           /* $8922 jsr */
+    }
+    push16(0x8927); Sub_B6_89C0(); UNW(); ret_check(0x8927);                             /* $8925 jsr */
+  }
+  push16(0x892A); Sub_B6_8932(); UNW(); ret_check(0x892A);                               /* $8928 jsr */
+  push16(0x892D); Sub_B6_8A76(); UNW(); ret_check(0x892D);                               /* $892B jsr */
+  push16(0x8930); Sub_B6_8B08(); UNW(); ret_check(0x8930);                               /* $892E jsr */
+  RTS_RET(sp0);                                                                          /* $8931 rts */
 }
 
 void Sub_B6_8932(void) {  /* $8932 bank 6 */
   uint8_t sp0 = R.sp;
- L8932: BUDGET(); LDY(0x0E);                                                       /* $8932 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8934 lda */
-        ASL_A();                                                         /* $8936 asl */
-        ASL_A();                                                         /* $8937 asl */
-        STA(0x06);                                                       /* $8938 sta */
-        INC_M(0x06);                                                     /* $893A inc */
-        TAY();                                                           /* $893C tay */
-        INY();                                                           /* $893D iny */
-        INY();                                                           /* $893E iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $893F lda */
-        AND(0xE0);                                                       /* $8941 and */
-        if (R.a == 0) goto L8948;                                        /* $8943 beq */
-        push16(0x8947); Sub_B6_8AD9(); UNW(); ret_check(0x8947);         /* $8945 jsr */
- L8948: BUDGET(); LDY(rd(0x06));                                                   /* $8948 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $894A lda */
-        push16(0x894E); LsrA6(); UNW(); ret_check(0x894E);               /* $894C jsr */
-        if (R.z) goto L8967;                                             /* $894F beq */
-        TAX();                                                           /* $8951 tax */
-        LDA(0x00);                                                       /* $8952 lda */
- L8954: BUDGET(); SEC();                                                           /* $8954 sec */
-        ROL_A();                                                         /* $8955 rol */
-        DEX();                                                           /* $8956 dex */
-        if (R.x != 0) goto L8954;                                        /* $8957 bne */
-        STA(0x04);                                                       /* $8959 sta */
-        LDA(rd(Tmp00));                                                  /* $895B lda */
-        push16(0x895F); LsrA4(); UNW(); ret_check(0x895F);               /* $895D jsr */
-        CLC();                                                           /* $8960 clc */
-        adc(rd(FrameCounter));                                           /* $8961 adc */
-        AND(rd(0x04));                                                   /* $8963 and */
-        if (R.a != 0) goto L89A6;                                        /* $8965 bne */
- L8967: BUDGET(); INC_M(0x06);                                                     /* $8967 inc */
-        INC_M(0x06);                                                     /* $8969 inc */
-        LDY(rd(0x06));                                                   /* $896B ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $896D lda */
-        CLC();                                                           /* $896F clc */
-        if (R.a == 0) goto L8991;                                        /* $8970 beq */
-        if (!(R.a & 0x80)) goto L8981;                                   /* $8972 bpl */
-        LDY(0x0A);                                                       /* $8974 ldy */
-        adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8976 adc */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8978 sta */
-        if (R.c) goto L8991;                                             /* $897A bcs */
-        LDA(0xFF);                                                       /* $897C lda */
-        goto L898B;                                                      /* $897E jmp */
- L8981: BUDGET(); LDY(0x0A);                                                       /* $8981 ldy */
-        adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8983 adc */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8985 sta */
-        if (!R.c) goto L8991;                                            /* $8987 bcc */
-        LDA(0x01);                                                       /* $8989 lda */
- L898B: BUDGET(); DEY();                                                           /* $898B dey */
-        CLC();                                                           /* $898C clc */
-        adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $898D adc */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $898F sta */
- L8991: BUDGET(); LDY(rd(0x06));                                                   /* $8991 ldy */
-        INY();                                                           /* $8993 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $8994 lda */
-        CLC();                                                           /* $8996 clc */
-        LDY(0x0B);                                                       /* $8997 ldy */
-        adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8999 adc */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $899B sta */
-        LDY(0x08);                                                       /* $899D ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $899F lda */
-        SEC();                                                           /* $89A1 sec */
-        sbc(0x01);                                                       /* $89A2 sbc */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $89A4 sta */
- L89A6: BUDGET(); RTS_RET(sp0);                                                    /* $89A6 rts */
+  LDY(0x0E);                                                                             /* $8932 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8934 lda */
+  ASL_A();                                                                               /* $8936 asl */
+  ASL_A();                                                                               /* $8937 asl */
+  STA(0x06);                                                                             /* $8938 sta */
+  INC_M(0x06);                                                                           /* $893A inc */
+  TAY();                                                                                 /* $893C tay */
+  INY();                                                                                 /* $893D iny */
+  INY();                                                                                 /* $893E iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $893F lda */
+  AND(0xE0);                                                                             /* $8941 and */
+  if (R.a != 0) {                                                                        /* $8943 beq */
+    push16(0x8947); Sub_B6_8AD9(); UNW(); ret_check(0x8947);                             /* $8945 jsr */
+  }
+  LDY(rd(0x06));                                                                         /* $8948 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $894A lda */
+  push16(0x894E); LsrA6(); UNW(); ret_check(0x894E);                                     /* $894C jsr */
+  if (!R.z) {                                                                            /* $894F beq */
+    TAX();                                                                               /* $8951 tax */
+    LDA(0x00);                                                                           /* $8952 lda */
+    do { BUDGET();
+      SEC();                                                                             /* $8954 sec */
+      ROL_A();                                                                           /* $8955 rol */
+      DEX();                                                                             /* $8956 dex */
+    } while (R.x != 0);                                                                  /* $8957 bne */
+    STA(0x04);                                                                           /* $8959 sta */
+    LDA(rd(Tmp00));                                                                      /* $895B lda */
+    push16(0x895F); LsrA4(); UNW(); ret_check(0x895F);                                   /* $895D jsr */
+    CLC();                                                                               /* $8960 clc */
+    adc(rd(FrameCounter));                                                               /* $8961 adc */
+    AND(rd(0x04));                                                                       /* $8963 and */
+    if (R.a != 0) goto L89A6;                                                            /* $8965 bne */
+  }
+  INC_M(0x06);                                                                           /* $8967 inc */
+  INC_M(0x06);                                                                           /* $8969 inc */
+  LDY(rd(0x06));                                                                         /* $896B ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $896D lda */
+  CLC();                                                                                 /* $896F clc */
+  if (R.a != 0) {                                                                        /* $8970 beq */
+    if ((R.a & 0x80)) {                                                                  /* $8972 bpl */
+      LDY(0x0A);                                                                         /* $8974 ldy */
+      adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $8976 adc */
+      STA((uint16_t)(rd16zp(Tmp00) + R.y));                                              /* $8978 sta */
+      if (R.c) goto L8991;                                                               /* $897A bcs */
+      LDA(0xFF);                                                                         /* $897C lda */
+    } else {
+      LDY(0x0A);                                                                         /* $8981 ldy */
+      adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $8983 adc */
+      STA((uint16_t)(rd16zp(Tmp00) + R.y));                                              /* $8985 sta */
+      if (!R.c) goto L8991;                                                              /* $8987 bcc */
+      LDA(0x01);                                                                         /* $8989 lda */
+    }
+    DEY();                                                                               /* $898B dey */
+    CLC();                                                                               /* $898C clc */
+    adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $898D adc */
+    STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $898F sta */
+  }
+L8991: BUDGET();
+  LDY(rd(0x06));                                                                         /* $8991 ldy */
+  INY();                                                                                 /* $8993 iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $8994 lda */
+  CLC();                                                                                 /* $8996 clc */
+  LDY(0x0B);                                                                             /* $8997 ldy */
+  adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8999 adc */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $899B sta */
+  LDY(0x08);                                                                             /* $899D ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $899F lda */
+  SEC();                                                                                 /* $89A1 sec */
+  sbc(0x01);                                                                             /* $89A2 sbc */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $89A4 sta */
+L89A6: BUDGET();
+  RTS_RET(sp0);                                                                          /* $89A6 rts */
 }
 
 void Sub_B6_89A7(void) {  /* $89A7 bank 6 */
   uint8_t sp0 = R.sp;
- L89A7: BUDGET(); LDY(0x09);                                                       /* $89A7 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $89A9 lda */
-        AND(0xF0);                                                       /* $89AB and */
-        LSR_A();                                                         /* $89AD lsr */
-        LSR_A();                                                         /* $89AE lsr */
-        LSR_A();                                                         /* $89AF lsr */
-        TAY();                                                           /* $89B0 tay */
-        RTS_RET(sp0);                                                    /* $89B1 rts */
+  LDY(0x09);                                                                             /* $89A7 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $89A9 lda */
+  AND(0xF0);                                                                             /* $89AB and */
+  LSR_A();                                                                               /* $89AD lsr */
+  LSR_A();                                                                               /* $89AE lsr */
+  LSR_A();                                                                               /* $89AF lsr */
+  TAY();                                                                                 /* $89B0 tay */
+  RTS_RET(sp0);                                                                          /* $89B1 rts */
 }
 
 void Sub_B6_89B2(void) {  /* $89B2 bank 6 */
   uint8_t sp0 = R.sp;
- L89B2: BUDGET(); push16(0x89B4); Sub_B6_89A7(); UNW(); ret_check(0x89B4);         /* $89B2 jsr */
-        LDA(rd((uint16_t)(0x8B14 + R.y)));                               /* $89B5 lda */
-        STA(Tmp02);                                                      /* $89B8 sta */
-        LDA(rd((uint16_t)(0x8B15 + R.y)));                               /* $89BA lda */
-        STA(Tmp03);                                                      /* $89BD sta */
-        RTS_RET(sp0);                                                    /* $89BF rts */
+  push16(0x89B4); Sub_B6_89A7(); UNW(); ret_check(0x89B4);                               /* $89B2 jsr */
+  LDA(rd((uint16_t)(0x8B14 + R.y)));                                                     /* $89B5 lda */
+  STA(Tmp02);                                                                            /* $89B8 sta */
+  LDA(rd((uint16_t)(0x8B15 + R.y)));                                                     /* $89BA lda */
+  STA(Tmp03);                                                                            /* $89BD sta */
+  RTS_RET(sp0);                                                                          /* $89BF rts */
 }
 
 void Sub_B6_89C0(void) {  /* $89C0 bank 6 */
   uint8_t sp0 = R.sp;
- L89C0: BUDGET(); LDY(0x0E);                                                       /* $89C0 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $89C2 lda */
-        ASL_A();                                                         /* $89C4 asl */
-        ASL_A();                                                         /* $89C5 asl */
-        TAY();                                                           /* $89C6 tay */
-        INY();                                                           /* $89C7 iny */
-        STY(0x06);                                                       /* $89C8 sty */
-        LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $89CA lda */
-        AND(0x3F);                                                       /* $89CC and */
-        LDY(0x08);                                                       /* $89CE ldy */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $89D0 sta */
-        LDY(rd(0x06));                                                   /* $89D2 ldy */
-        INY();                                                           /* $89D4 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $89D5 lda */
-        AND(0x1F);                                                       /* $89D7 and */
-        LDY(0x05);                                                       /* $89D9 ldy */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $89DB sta */
-        RTS_RET(sp0);                                                    /* $89DD rts */
+  LDY(0x0E);                                                                             /* $89C0 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $89C2 lda */
+  ASL_A();                                                                               /* $89C4 asl */
+  ASL_A();                                                                               /* $89C5 asl */
+  TAY();                                                                                 /* $89C6 tay */
+  INY();                                                                                 /* $89C7 iny */
+  STY(0x06);                                                                             /* $89C8 sty */
+  LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $89CA lda */
+  AND(0x3F);                                                                             /* $89CC and */
+  LDY(0x08);                                                                             /* $89CE ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $89D0 sta */
+  LDY(rd(0x06));                                                                         /* $89D2 ldy */
+  INY();                                                                                 /* $89D4 iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $89D5 lda */
+  AND(0x1F);                                                                             /* $89D7 and */
+  LDY(0x05);                                                                             /* $89D9 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $89DB sta */
+  RTS_RET(sp0);                                                                          /* $89DD rts */
 }
 
 void Sub_B6_89DE(void) {  /* $89DE bank 6 */
   uint8_t sp0 = R.sp;
- L89DE: BUDGET(); push16(0x89E0); Sub_B6_8AF4(); UNW(); ret_check(0x89E0);         /* $89DE jsr */
-        LDY(0x0C);                                                       /* $89E1 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $89E3 lda */
-        if (R.a == 0) goto L89EB;                                        /* $89E5 beq */
-        cmp8(R.a, rd(0x04));                                             /* $89E7 cmp */
-        if (R.a >= rd(0x04)) goto L8A0A;                                 /* $89E9 bcs */
- L89EB: BUDGET(); INY();                                                           /* $89EB iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $89EC lda */
-        if (R.a == 0) goto L89F4;                                        /* $89EE beq */
-        cmp8(R.a, rd(0x04));                                             /* $89F0 cmp */
-        if (R.a < rd(0x04)) goto L8A15;                                  /* $89F2 bcc */
- L89F4: BUDGET(); push16(0x89F6); GetRandomByte(); UNW(); ret_check(0x89F6);       /* $89F4 jsr */
-        STA(0x08);                                                       /* $89F7 sta */
-        LDY(0x02);                                                       /* $89F9 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $89FB lda */
-        STA(0x05);                                                       /* $89FD sta */
-        cmp8(R.a, 0x20);                                                 /* $89FF cmp */
-        if (R.a < 0x20) goto L8A0A;                                      /* $8A01 bcc */
-        cmp8(R.a, 0xE0);                                                 /* $8A03 cmp */
-        if (R.a >= 0xE0) goto L8A15;                                     /* $8A05 bcs */
-        goto L8A27;                                                      /* $8A07 jmp */
- L8A0A: BUDGET(); LDA(rd(0x08));                                                   /* $8A0A lda */
-        AND(0x07);                                                       /* $8A0C and */
-        cmp8(R.a, 0x05);                                                 /* $8A0E cmp */
-        if (R.a < 0x05) goto L8A1D;                                      /* $8A10 bcc */
-        goto L8A22;                                                      /* $8A12 jmp */
- L8A15: BUDGET(); LDA(rd(0x08));                                                   /* $8A15 lda */
-        AND(0x07);                                                       /* $8A17 and */
-        cmp8(R.a, 0x05);                                                 /* $8A19 cmp */
-        if (R.a < 0x05) goto L8A22;                                      /* $8A1B bcc */
- L8A1D: BUDGET(); LDA(0x00);                                                       /* $8A1D lda */
-        goto L8A53;                                                      /* $8A1F jmp */
- L8A22: BUDGET(); LDA(0x40);                                                       /* $8A22 lda */
-        goto L8A53;                                                      /* $8A24 jmp */
- L8A27: BUDGET(); LDY(0x09);                                                       /* $8A27 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A29 lda */
-        AND(0x40);                                                       /* $8A2B and */
-        STA(0x07);                                                       /* $8A2D sta */
-        if (R.a != 0) goto L8A3C;                                        /* $8A2F bne */
-        LDY(0x02);                                                       /* $8A31 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A33 lda */
-        cmp8(R.a, 0x58);                                                 /* $8A35 cmp */
-        if (R.a < 0x58) goto L8A44;                                      /* $8A37 bcc */
-        goto L8A4F;                                                      /* $8A39 jmp */
- L8A3C: BUDGET(); LDY(0x02);                                                       /* $8A3C ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A3E lda */
-        cmp8(R.a, 0x98);                                                 /* $8A40 cmp */
-        if (R.a < 0x98) goto L8A4F;                                      /* $8A42 bcc */
- L8A44: BUDGET(); LDA(rd(0x08));                                                   /* $8A44 lda */
-        AND(0x30);                                                       /* $8A46 and */
-        if (R.a != 0) goto L8A51;                                        /* $8A48 bne */
-        LDA(0x10);                                                       /* $8A4A lda */
-        goto L8A51;                                                      /* $8A4C jmp */
- L8A4F: BUDGET(); LDA(0x00);                                                       /* $8A4F lda */
- L8A51: BUDGET(); ORA(rd(0x07));                                                   /* $8A51 ora */
- L8A53: BUDGET(); STA(0x06);                                                       /* $8A53 sta */
-        LDY(0x09);                                                       /* $8A55 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A57 lda */
-        AND(0x0F);                                                       /* $8A59 and */
-        ORA(rd(0x06));                                                   /* $8A5B ora */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8A5D sta */
-        LDY(0x0E);                                                       /* $8A5F ldy */
-        LDA(0x00);                                                       /* $8A61 lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8A63 sta */
-        RTS_RET(sp0);                                                    /* $8A65 rts */
+  push16(0x89E0); Sub_B6_8AF4(); UNW(); ret_check(0x89E0);                               /* $89DE jsr */
+  LDY(0x0C);                                                                             /* $89E1 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $89E3 lda */
+  if (R.a != 0) {                                                                        /* $89E5 beq */
+    cmp8(R.a, rd(0x04));                                                                 /* $89E7 cmp */
+    if (R.a >= rd(0x04)) goto L8A0A;                                                     /* $89E9 bcs */
+  }
+  INY();                                                                                 /* $89EB iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $89EC lda */
+  if (R.a != 0) {                                                                        /* $89EE beq */
+    cmp8(R.a, rd(0x04));                                                                 /* $89F0 cmp */
+    if (R.a < rd(0x04)) goto L8A15;                                                      /* $89F2 bcc */
+  }
+  push16(0x89F6); GetRandomByte(); UNW(); ret_check(0x89F6);                             /* $89F4 jsr */
+  STA(0x08);                                                                             /* $89F7 sta */
+  LDY(0x02);                                                                             /* $89F9 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $89FB lda */
+  STA(0x05);                                                                             /* $89FD sta */
+  cmp8(R.a, 0x20);                                                                       /* $89FF cmp */
+  if (R.a >= 0x20) {                                                                     /* $8A01 bcc */
+    cmp8(R.a, 0xE0);                                                                     /* $8A03 cmp */
+    if (R.a >= 0xE0) goto L8A15;                                                         /* $8A05 bcs */
+    goto L8A27;                                                                          /* $8A07 jmp */
+  }
+L8A0A: BUDGET();
+  LDA(rd(0x08));                                                                         /* $8A0A lda */
+  AND(0x07);                                                                             /* $8A0C and */
+  cmp8(R.a, 0x05);                                                                       /* $8A0E cmp */
+  if (R.a < 0x05) goto L8A1D;                                                            /* $8A10 bcc */
+  goto L8A22;                                                                            /* $8A12 jmp */
+L8A15: BUDGET();
+  LDA(rd(0x08));                                                                         /* $8A15 lda */
+  AND(0x07);                                                                             /* $8A17 and */
+  cmp8(R.a, 0x05);                                                                       /* $8A19 cmp */
+  if (R.a < 0x05) goto L8A22;                                                            /* $8A1B bcc */
+L8A1D: BUDGET();
+  LDA(0x00);                                                                             /* $8A1D lda */
+  goto L8A53;                                                                            /* $8A1F jmp */
+L8A22: BUDGET();
+  LDA(0x40);                                                                             /* $8A22 lda */
+  goto L8A53;                                                                            /* $8A24 jmp */
+L8A27: BUDGET();
+  LDY(0x09);                                                                             /* $8A27 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A29 lda */
+  AND(0x40);                                                                             /* $8A2B and */
+  STA(0x07);                                                                             /* $8A2D sta */
+  if (R.a == 0) {                                                                        /* $8A2F bne */
+    LDY(0x02);                                                                           /* $8A31 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $8A33 lda */
+    cmp8(R.a, 0x58);                                                                     /* $8A35 cmp */
+    if (R.a < 0x58) goto L8A44;                                                          /* $8A37 bcc */
+    goto L8A4F;                                                                          /* $8A39 jmp */
+  }
+  LDY(0x02);                                                                             /* $8A3C ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A3E lda */
+  cmp8(R.a, 0x98);                                                                       /* $8A40 cmp */
+  if (R.a < 0x98) goto L8A4F;                                                            /* $8A42 bcc */
+L8A44: BUDGET();
+  LDA(rd(0x08));                                                                         /* $8A44 lda */
+  AND(0x30);                                                                             /* $8A46 and */
+  if (R.a != 0) goto L8A51;                                                              /* $8A48 bne */
+  LDA(0x10);                                                                             /* $8A4A lda */
+  goto L8A51;                                                                            /* $8A4C jmp */
+L8A4F: BUDGET();
+  LDA(0x00);                                                                             /* $8A4F lda */
+L8A51: BUDGET();
+  ORA(rd(0x07));                                                                         /* $8A51 ora */
+L8A53: BUDGET();
+  STA(0x06);                                                                             /* $8A53 sta */
+  LDY(0x09);                                                                             /* $8A55 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A57 lda */
+  AND(0x0F);                                                                             /* $8A59 and */
+  ORA(rd(0x06));                                                                         /* $8A5B ora */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $8A5D sta */
+  LDY(0x0E);                                                                             /* $8A5F ldy */
+  LDA(0x00);                                                                             /* $8A61 lda */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $8A63 sta */
+  RTS_RET(sp0);                                                                          /* $8A65 rts */
 }
 
 void Sub_B6_8A66(void) {  /* $8A66 bank 6 */
   uint8_t sp0 = R.sp;
- L8A66: BUDGET(); LDY(0x00);                                                       /* $8A66 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $8A68 lda */
-        STA(0x04);                                                       /* $8A6A sta */
-        LDY(0x0E);                                                       /* $8A6C ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A6E lda */
-        CLC();                                                           /* $8A70 clc */
-        adc(0x01);                                                       /* $8A71 adc */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8A73 sta */
-        RTS_RET(sp0);                                                    /* $8A75 rts */
+  LDY(0x00);                                                                             /* $8A66 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $8A68 lda */
+  STA(0x04);                                                                             /* $8A6A sta */
+  LDY(0x0E);                                                                             /* $8A6C ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A6E lda */
+  CLC();                                                                                 /* $8A70 clc */
+  adc(0x01);                                                                             /* $8A71 adc */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $8A73 sta */
+  RTS_RET(sp0);                                                                          /* $8A75 rts */
 }
 
 void Sub_B6_8A76(void) {  /* $8A76 bank 6 */
   uint8_t sp0 = R.sp;
- L8A76: BUDGET(); LDY(0x09);                                                       /* $8A76 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A78 lda */
-        AND(0x0F);                                                       /* $8A7A and */
-        STA(0x04);                                                       /* $8A7C sta */
-        INY();                                                           /* $8A7E iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A7F lda */
-        SEC();                                                           /* $8A81 sec */
-        sbc(rd(ScrollX));                                                /* $8A82 sbc */
-        STA(0x05);                                                       /* $8A84 sta */
-        if (R.c) goto L8A8A;                                             /* $8A86 bcs */
-        DEC_M(0x04);                                                     /* $8A88 dec */
- L8A8A: BUDGET(); LDA(rd(0x04));                                                   /* $8A8A lda */
-        SEC();                                                           /* $8A8C sec */
-        sbc(rd(ScrollPage));                                             /* $8A8D sbc */
-        if (R.a != 0) goto L8AAC;                                        /* $8A8F bne */
-        LDA(rd(0x05));                                                   /* $8A91 lda */
-        LDY(0x02);                                                       /* $8A93 ldy */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8A95 sta */
-        LDY(0x0B);                                                       /* $8A97 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A99 lda */
-        LDY(0x01);                                                       /* $8A9B ldy */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8A9D sta */
-        cmp8(R.a, 0xE8);                                                 /* $8A9F cmp */
-        if (R.a >= 0xE8) goto L8AAC;                                     /* $8AA1 bcs */
-        LDY(0x00);                                                       /* $8AA3 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8AA5 lda */
-        ORA(0x80);                                                       /* $8AA7 ora */
-        goto L8AB2;                                                      /* $8AA9 jmp */
- L8AAC: BUDGET(); LDY(0x00);                                                       /* $8AAC ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8AAE lda */
-        AND(0x7F);                                                       /* $8AB0 and */
- L8AB2: BUDGET(); STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8AB2 sta */
-        push16(0x8AB6); SelectSpriteTable(); UNW(); ret_check(0x8AB6);   /* $8AB4 jsr */
-        LDY(0x00);                                                       /* $8AB7 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $8AB9 lda */
-        AND(0x1F);                                                       /* $8ABB and */
-        STA(0x06);                                                       /* $8ABD sta */
-        LDY(0x04);                                                       /* $8ABF ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8AC1 lda */
-        AND(0xC0);                                                       /* $8AC3 and */
-        ORA(rd(0x06));                                                   /* $8AC5 ora */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8AC7 sta */
-        ASL_A();                                                         /* $8AC9 asl */
-        ASL_A();                                                         /* $8ACA asl */
-        DEY();                                                           /* $8ACB dey */
-        CLC();                                                           /* $8ACC clc */
-        adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8ACD adc */
-        if (!R.c) goto L8AD8;                                            /* $8ACF bcc */
-        LDA(0x00);                                                       /* $8AD1 lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8AD3 sta */
-        INY();                                                           /* $8AD5 iny */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8AD6 sta */
- L8AD8: BUDGET(); RTS_RET(sp0);                                                    /* $8AD8 rts */
+  LDY(0x09);                                                                             /* $8A76 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A78 lda */
+  AND(0x0F);                                                                             /* $8A7A and */
+  STA(0x04);                                                                             /* $8A7C sta */
+  INY();                                                                                 /* $8A7E iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A7F lda */
+  SEC();                                                                                 /* $8A81 sec */
+  sbc(rd(ScrollX));                                                                      /* $8A82 sbc */
+  STA(0x05);                                                                             /* $8A84 sta */
+  if (!R.c) {                                                                            /* $8A86 bcs */
+    DEC_M(0x04);                                                                         /* $8A88 dec */
+  }
+  LDA(rd(0x04));                                                                         /* $8A8A lda */
+  SEC();                                                                                 /* $8A8C sec */
+  sbc(rd(ScrollPage));                                                                   /* $8A8D sbc */
+  if (R.a == 0) {                                                                        /* $8A8F bne */
+    LDA(rd(0x05));                                                                       /* $8A91 lda */
+    LDY(0x02);                                                                           /* $8A93 ldy */
+    STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $8A95 sta */
+    LDY(0x0B);                                                                           /* $8A97 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $8A99 lda */
+    LDY(0x01);                                                                           /* $8A9B ldy */
+    STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $8A9D sta */
+    cmp8(R.a, 0xE8);                                                                     /* $8A9F cmp */
+    if (R.a >= 0xE8) goto L8AAC;                                                         /* $8AA1 bcs */
+    LDY(0x00);                                                                           /* $8AA3 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $8AA5 lda */
+    ORA(0x80);                                                                           /* $8AA7 ora */
+    goto L8AB2;                                                                          /* $8AA9 jmp */
+  }
+L8AAC: BUDGET();
+  LDY(0x00);                                                                             /* $8AAC ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8AAE lda */
+  AND(0x7F);                                                                             /* $8AB0 and */
+L8AB2: BUDGET();
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $8AB2 sta */
+  push16(0x8AB6); SelectSpriteTable(); UNW(); ret_check(0x8AB6);                         /* $8AB4 jsr */
+  LDY(0x00);                                                                             /* $8AB7 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $8AB9 lda */
+  AND(0x1F);                                                                             /* $8ABB and */
+  STA(0x06);                                                                             /* $8ABD sta */
+  LDY(0x04);                                                                             /* $8ABF ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8AC1 lda */
+  AND(0xC0);                                                                             /* $8AC3 and */
+  ORA(rd(0x06));                                                                         /* $8AC5 ora */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $8AC7 sta */
+  ASL_A();                                                                               /* $8AC9 asl */
+  ASL_A();                                                                               /* $8ACA asl */
+  DEY();                                                                                 /* $8ACB dey */
+  CLC();                                                                                 /* $8ACC clc */
+  adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8ACD adc */
+  if (R.c) {                                                                             /* $8ACF bcc */
+    LDA(0x00);                                                                           /* $8AD1 lda */
+    STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $8AD3 sta */
+    INY();                                                                               /* $8AD5 iny */
+    STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $8AD6 sta */
+  }
+  RTS_RET(sp0);                                                                          /* $8AD8 rts */
 }
 
 void Sub_B6_8AD9(void) {  /* $8AD9 bank 6 */
   uint8_t sp0 = R.sp;
- L8AD9: BUDGET(); push16(0x8ADB); LsrA5(); UNW(); ret_check(0x8ADB);               /* $8AD9 jsr */
-        TAX();                                                           /* $8ADC tax */
-        LDA(0x00);                                                       /* $8ADD lda */
-        SEC();                                                           /* $8ADF sec */
- L8AE0: BUDGET(); ROL_A();                                                         /* $8AE0 rol */
-        DEX();                                                           /* $8AE1 dex */
-        if (R.x != 0) goto L8AE0;                                        /* $8AE2 bne */
-        AND(rd(FrameCounter));                                           /* $8AE4 and */
-        if (R.a == 0) goto L8AEA;                                        /* $8AE6 beq */
-        LDA(0x01);                                                       /* $8AE8 lda */
- L8AEA: BUDGET(); CLC();                                                           /* $8AEA clc */
-        adc(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                        /* $8AEB adc */
-        AND(0x1F);                                                       /* $8AED and */
-        LDY(0x05);                                                       /* $8AEF ldy */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8AF1 sta */
-        RTS_RET(sp0);                                                    /* $8AF3 rts */
+  push16(0x8ADB); LsrA5(); UNW(); ret_check(0x8ADB);                                     /* $8AD9 jsr */
+  TAX();                                                                                 /* $8ADC tax */
+  LDA(0x00);                                                                             /* $8ADD lda */
+  SEC();                                                                                 /* $8ADF sec */
+  do { BUDGET();
+    ROL_A();                                                                             /* $8AE0 rol */
+    DEX();                                                                               /* $8AE1 dex */
+  } while (R.x != 0);                                                                    /* $8AE2 bne */
+  AND(rd(FrameCounter));                                                                 /* $8AE4 and */
+  if (R.a != 0) {                                                                        /* $8AE6 beq */
+    LDA(0x01);                                                                           /* $8AE8 lda */
+  }
+  CLC();                                                                                 /* $8AEA clc */
+  adc(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $8AEB adc */
+  AND(0x1F);                                                                             /* $8AED and */
+  LDY(0x05);                                                                             /* $8AEF ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $8AF1 sta */
+  RTS_RET(sp0);                                                                          /* $8AF3 rts */
 }
 
 void Sub_B6_8AF4(void) {  /* $8AF4 bank 6 */
   uint8_t sp0 = R.sp;
- L8AF4: BUDGET(); LDY(0x09);                                                       /* $8AF4 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8AF6 lda */
-        push16(0x8AFA); AslA4(); UNW(); ret_check(0x8AFA);               /* $8AF8 jsr */
-        STA(0x04);                                                       /* $8AFB sta */
-        INY();                                                           /* $8AFD iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8AFE lda */
-        push16(0x8B02); LsrA4(); UNW(); ret_check(0x8B02);               /* $8B00 jsr */
-        ORA(rd(0x04));                                                   /* $8B03 ora */
-        STA(0x04);                                                       /* $8B05 sta */
-        RTS_RET(sp0);                                                    /* $8B07 rts */
+  LDY(0x09);                                                                             /* $8AF4 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8AF6 lda */
+  push16(0x8AFA); AslA4(); UNW(); ret_check(0x8AFA);                                     /* $8AF8 jsr */
+  STA(0x04);                                                                             /* $8AFB sta */
+  INY();                                                                                 /* $8AFD iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8AFE lda */
+  push16(0x8B02); LsrA4(); UNW(); ret_check(0x8B02);                                     /* $8B00 jsr */
+  ORA(rd(0x04));                                                                         /* $8B03 ora */
+  STA(0x04);                                                                             /* $8B05 sta */
+  RTS_RET(sp0);                                                                          /* $8B07 rts */
 }
 
 void Sub_B6_8B08(void) {  /* $8B08 bank 6 */
   uint8_t sp0 = R.sp;
- L8B08: BUDGET(); LDY(0x00);                                                       /* $8B08 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8B0A lda */
-        AND(0x80);                                                       /* $8B0C and */
-        if (R.a != 0) goto L8B13;                                        /* $8B0E bne */
-        push16(0x8B12); RemoveObject(); UNW(); ret_check(0x8B12);        /* $8B10 jsr */
- L8B13: BUDGET(); RTS_RET(sp0);                                                    /* $8B13 rts */
+  LDY(0x00);                                                                             /* $8B08 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8B0A lda */
+  AND(0x80);                                                                             /* $8B0C and */
+  if (R.a == 0) {                                                                        /* $8B0E bne */
+    push16(0x8B12); RemoveObject(); UNW(); ret_check(0x8B12);                            /* $8B10 jsr */
+  }
+  RTS_RET(sp0);                                                                          /* $8B13 rts */
 }
 
 void Sub_B6_8B9C(void) {  /* $8B9C bank 6 */
   uint8_t sp0 = R.sp;
   goto L8B9C;
- L8A0A: BUDGET(); LDA(rd(0x08));                                                   /* $8A0A lda */
-        AND(0x07);                                                       /* $8A0C and */
-        cmp8(R.a, 0x05);                                                 /* $8A0E cmp */
-        if (R.a < 0x05) goto L8A1D;                                      /* $8A10 bcc */
-        goto L8A22;                                                      /* $8A12 jmp */
- L8A15: BUDGET(); LDA(rd(0x08));                                                   /* $8A15 lda */
-        AND(0x07);                                                       /* $8A17 and */
-        cmp8(R.a, 0x05);                                                 /* $8A19 cmp */
-        if (R.a < 0x05) goto L8A22;                                      /* $8A1B bcc */
- L8A1D: BUDGET(); LDA(0x00);                                                       /* $8A1D lda */
-        goto L8A53;                                                      /* $8A1F jmp */
- L8A22: BUDGET(); LDA(0x40);                                                       /* $8A22 lda */
-        goto L8A53;                                                      /* $8A24 jmp */
- L8A53: BUDGET(); STA(0x06);                                                       /* $8A53 sta */
-        LDY(0x09);                                                       /* $8A55 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8A57 lda */
-        AND(0x0F);                                                       /* $8A59 and */
-        ORA(rd(0x06));                                                   /* $8A5B ora */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8A5D sta */
-        LDY(0x0E);                                                       /* $8A5F ldy */
-        LDA(0x00);                                                       /* $8A61 lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8A63 sta */
-        RTS_RET(sp0);                                                    /* $8A65 rts */
- L8B9C: BUDGET(); push16(0x8B9E); GetRandomByte(); UNW(); ret_check(0x8B9E);       /* $8B9C jsr */
-        STA(0x08);                                                       /* $8B9F sta */
-        LDY(0x01);                                                       /* $8BA1 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8BA3 lda */
-        STA(0x04);                                                       /* $8BA5 sta */
-        INY();                                                           /* $8BA7 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8BA8 lda */
-        STA(0x05);                                                       /* $8BAA sta */
-        cmp8(R.a, 0x28);                                                 /* $8BAC cmp */
-        if (R.a >= 0x28) goto L8BB3;                                     /* $8BAE bcs */
-        goto L8A0A;                                                      /* $8BB0 jmp */
- L8BB3: BUDGET(); cmp8(R.a, 0xC0);                                                 /* $8BB3 cmp */
-        if (R.a < 0xC0) goto L8BBA;                                      /* $8BB5 bcc */
-        goto L8A15;                                                      /* $8BB7 jmp */
- L8BBA: BUDGET(); LDY(0x09);                                                       /* $8BBA ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8BBC lda */
-        AND(0x40);                                                       /* $8BBE and */
-        STA(0x07);                                                       /* $8BC0 sta */
-        LDA(rd(0x04));                                                   /* $8BC2 lda */
-        cmp8(R.a, 0x24);                                                 /* $8BC4 cmp */
-        if (R.a < 0x24) goto L8BDB;                                      /* $8BC6 bcc */
-        cmp8(R.a, 0xA8);                                                 /* $8BC8 cmp */
-        if (R.a >= 0xA8) goto L8BD4;                                     /* $8BCA bcs */
-        LDA(rd(PlayerSpriteY0));                                         /* $8BCC lda */
-        SEC();                                                           /* $8BCF sec */
-        sbc(rd(0x04));                                                   /* $8BD0 sbc */
-        if (R.c) goto L8BDB;                                             /* $8BD2 bcs */
- L8BD4: BUDGET(); LDA(rd(0x08));                                                   /* $8BD4 lda */
-        AND(0x10);                                                       /* $8BD6 and */
-        goto L8BE1;                                                      /* $8BD8 jmp */
- L8BDB: BUDGET(); LDA(rd(0x08));                                                   /* $8BDB lda */
-        AND(0x10);                                                       /* $8BDD and */
-        ORA(0x20);                                                       /* $8BDF ora */
- L8BE1: BUDGET(); ORA(rd(0x07));                                                   /* $8BE1 ora */
-        goto L8A53;                                                      /* $8BE3 jmp */
+L8A0A: BUDGET();
+  LDA(rd(0x08));                                                                         /* $8A0A lda */
+  AND(0x07);                                                                             /* $8A0C and */
+  cmp8(R.a, 0x05);                                                                       /* $8A0E cmp */
+  if (R.a < 0x05) goto L8A1D;                                                            /* $8A10 bcc */
+  goto L8A22;                                                                            /* $8A12 jmp */
+L8A15: BUDGET();
+  LDA(rd(0x08));                                                                         /* $8A15 lda */
+  AND(0x07);                                                                             /* $8A17 and */
+  cmp8(R.a, 0x05);                                                                       /* $8A19 cmp */
+  if (R.a < 0x05) goto L8A22;                                                            /* $8A1B bcc */
+L8A1D: BUDGET();
+  LDA(0x00);                                                                             /* $8A1D lda */
+  goto L8A53;                                                                            /* $8A1F jmp */
+L8A22: BUDGET();
+  LDA(0x40);                                                                             /* $8A22 lda */
+  goto L8A53;                                                                            /* $8A24 jmp */
+L8A53: BUDGET();
+  STA(0x06);                                                                             /* $8A53 sta */
+  LDY(0x09);                                                                             /* $8A55 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A57 lda */
+  AND(0x0F);                                                                             /* $8A59 and */
+  ORA(rd(0x06));                                                                         /* $8A5B ora */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $8A5D sta */
+  LDY(0x0E);                                                                             /* $8A5F ldy */
+  LDA(0x00);                                                                             /* $8A61 lda */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $8A63 sta */
+  RTS_RET(sp0);                                                                          /* $8A65 rts */
+L8B9C: BUDGET();
+  push16(0x8B9E); GetRandomByte(); UNW(); ret_check(0x8B9E);                             /* $8B9C jsr */
+  STA(0x08);                                                                             /* $8B9F sta */
+  LDY(0x01);                                                                             /* $8BA1 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8BA3 lda */
+  STA(0x04);                                                                             /* $8BA5 sta */
+  INY();                                                                                 /* $8BA7 iny */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8BA8 lda */
+  STA(0x05);                                                                             /* $8BAA sta */
+  cmp8(R.a, 0x28);                                                                       /* $8BAC cmp */
+  if (R.a < 0x28) {                                                                      /* $8BAE bcs */
+    goto L8A0A;                                                                          /* $8BB0 jmp */
+  }
+  cmp8(R.a, 0xC0);                                                                       /* $8BB3 cmp */
+  if (R.a >= 0xC0) {                                                                     /* $8BB5 bcc */
+    goto L8A15;                                                                          /* $8BB7 jmp */
+  }
+  LDY(0x09);                                                                             /* $8BBA ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8BBC lda */
+  AND(0x40);                                                                             /* $8BBE and */
+  STA(0x07);                                                                             /* $8BC0 sta */
+  LDA(rd(0x04));                                                                         /* $8BC2 lda */
+  cmp8(R.a, 0x24);                                                                       /* $8BC4 cmp */
+  if (R.a >= 0x24) {                                                                     /* $8BC6 bcc */
+    cmp8(R.a, 0xA8);                                                                     /* $8BC8 cmp */
+    if (R.a < 0xA8) {                                                                    /* $8BCA bcs */
+      LDA(rd(PlayerSpriteY0));                                                           /* $8BCC lda */
+      SEC();                                                                             /* $8BCF sec */
+      sbc(rd(0x04));                                                                     /* $8BD0 sbc */
+      if (R.c) goto L8BDB;                                                               /* $8BD2 bcs */
+    }
+    LDA(rd(0x08));                                                                       /* $8BD4 lda */
+    AND(0x10);                                                                           /* $8BD6 and */
+    goto L8BE1;                                                                          /* $8BD8 jmp */
+  }
+L8BDB: BUDGET();
+  LDA(rd(0x08));                                                                         /* $8BDB lda */
+  AND(0x10);                                                                             /* $8BDD and */
+  ORA(0x20);                                                                             /* $8BDF ora */
+L8BE1: BUDGET();
+  ORA(rd(0x07));                                                                         /* $8BE1 ora */
+  goto L8A53;                                                                            /* $8BE3 jmp */
 }
 
 void Sub_B6_8BE6(void) {  /* $8BE6 bank 6 */
   uint8_t sp0 = R.sp;
- L8BE6: BUDGET(); LDY(0x0B);                                                       /* $8BE6 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $8BE8 lda */
-        cmp8(R.a, 0x24);                                                 /* $8BEA cmp */
-        if (R.a >= 0x24) goto L8BF2;                                     /* $8BEC bcs */
-        LDA(0x24);                                                       /* $8BEE lda */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $8BF0 sta */
- L8BF2: BUDGET(); RTS_RET(sp0);                                                    /* $8BF2 rts */
+  LDY(0x0B);                                                                             /* $8BE6 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8BE8 lda */
+  cmp8(R.a, 0x24);                                                                       /* $8BEA cmp */
+  if (R.a < 0x24) {                                                                      /* $8BEC bcs */
+    LDA(0x24);                                                                           /* $8BEE lda */
+    STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $8BF0 sta */
+  }
+  RTS_RET(sp0);                                                                          /* $8BF2 rts */
 }
 
 void Sub_B6_945A(void) {  /* $945A bank 6 */
   uint8_t sp0 = R.sp;
- L945A: BUDGET(); push16(0x945C); Sub_B6_9489(); UNW(); ret_check(0x945C);         /* $945A jsr */
-        LDY(0x08);                                                       /* $945D ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $945F lda */
-        if (R.a != 0) goto L9479;                                        /* $9461 bne */
-        push16(0x9465); Sub_B6_8A66(); UNW(); ret_check(0x9465);         /* $9463 jsr */
-        cmp8(R.a, rd(0x04));                                             /* $9466 cmp */
-        if (R.a < rd(0x04)) goto L9473;                                  /* $9468 bcc */
-        push16(0x946C); Sub_B6_8B9C(); UNW(); ret_check(0x946C);         /* $946A jsr */
-        push16(0x946F); Sub_B6_9497(); UNW(); ret_check(0x946F);         /* $946D jsr */
-        push16(0x9472); Sub_B6_9489(); UNW(); ret_check(0x9472);         /* $9470 jsr */
- L9473: BUDGET(); push16(0x9475); Sub_B6_89C0(); UNW(); ret_check(0x9475);         /* $9473 jsr */
-        push16(0x9478); Sub_B6_95EE(); UNW(); ret_check(0x9478);         /* $9476 jsr */
- L9479: BUDGET(); push16(0x947B); Sub_B6_8932(); UNW(); ret_check(0x947B);         /* $9479 jsr */
-        push16(0x947E); Sub_B6_8BE6(); UNW(); ret_check(0x947E);         /* $947C jsr */
-        push16(0x9481); Sub_B6_8A76(); UNW(); ret_check(0x9481);         /* $947F jsr */
-        push16(0x9484); Sub_B6_8B08(); UNW(); ret_check(0x9484);         /* $9482 jsr */
-        push16(0x9487); Sub_B6_9621(); UNW(); ret_check(0x9487);         /* $9485 jsr */
-        RTS_RET(sp0);                                                    /* $9488 rts */
+  push16(0x945C); Sub_B6_9489(); UNW(); ret_check(0x945C);                               /* $945A jsr */
+  LDY(0x08);                                                                             /* $945D ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $945F lda */
+  if (R.a == 0) {                                                                        /* $9461 bne */
+    push16(0x9465); Sub_B6_8A66(); UNW(); ret_check(0x9465);                             /* $9463 jsr */
+    cmp8(R.a, rd(0x04));                                                                 /* $9466 cmp */
+    if (R.a >= rd(0x04)) {                                                               /* $9468 bcc */
+      push16(0x946C); Sub_B6_8B9C(); UNW(); ret_check(0x946C);                           /* $946A jsr */
+      push16(0x946F); Sub_B6_9497(); UNW(); ret_check(0x946F);                           /* $946D jsr */
+      push16(0x9472); Sub_B6_9489(); UNW(); ret_check(0x9472);                           /* $9470 jsr */
+    }
+    push16(0x9475); Sub_B6_89C0(); UNW(); ret_check(0x9475);                             /* $9473 jsr */
+    push16(0x9478); Sub_B6_95EE(); UNW(); ret_check(0x9478);                             /* $9476 jsr */
+  }
+  push16(0x947B); Sub_B6_8932(); UNW(); ret_check(0x947B);                               /* $9479 jsr */
+  push16(0x947E); Sub_B6_8BE6(); UNW(); ret_check(0x947E);                               /* $947C jsr */
+  push16(0x9481); Sub_B6_8A76(); UNW(); ret_check(0x9481);                               /* $947F jsr */
+  push16(0x9484); Sub_B6_8B08(); UNW(); ret_check(0x9484);                               /* $9482 jsr */
+  push16(0x9487); Sub_B6_9621(); UNW(); ret_check(0x9487);                               /* $9485 jsr */
+  RTS_RET(sp0);                                                                          /* $9488 rts */
 }
 
 void Sub_B6_9489(void) {  /* $9489 bank 6 */
   uint8_t sp0 = R.sp;
- L9489: BUDGET(); push16(0x948B); Sub_B6_89A7(); UNW(); ret_check(0x948B);         /* $9489 jsr */
-        LDA(rd((uint16_t)(0x94BE + R.y)));                               /* $948C lda */
-        STA(Tmp02);                                                      /* $948F sta */
-        LDA(rd((uint16_t)(0x94BF + R.y)));                               /* $9491 lda */
-        STA(Tmp03);                                                      /* $9494 sta */
-        RTS_RET(sp0);                                                    /* $9496 rts */
+  push16(0x948B); Sub_B6_89A7(); UNW(); ret_check(0x948B);                               /* $9489 jsr */
+  LDA(rd((uint16_t)(0x94BE + R.y)));                                                     /* $948C lda */
+  STA(Tmp02);                                                                            /* $948F sta */
+  LDA(rd((uint16_t)(0x94BF + R.y)));                                                     /* $9491 lda */
+  STA(Tmp03);                                                                            /* $9494 sta */
+  RTS_RET(sp0);                                                                          /* $9496 rts */
 }
 
 void Sub_B6_9497(void) {  /* $9497 bank 6 */
   uint8_t sp0 = R.sp;
- L9497: BUDGET(); LDY(0x02);                                                       /* $9497 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9499 lda */
-        TAX();                                                           /* $949B tax */
-        LDY(0x09);                                                       /* $949C ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $949E lda */
-        AND(0x40);                                                       /* $94A0 and */
-        if (R.a != 0) goto L94AD;                                        /* $94A2 bne */
-        cmp8(R.x, 0x50);                                                 /* $94A4 cpx */
-        if (R.x < 0x50) goto L94BD;                                      /* $94A6 bcc */
-        LDA(0x00);                                                       /* $94A8 lda */
-        goto L94B3;                                                      /* $94AA jmp */
- L94AD: BUDGET(); cmp8(R.x, 0xA0);                                                 /* $94AD cpx */
-        if (R.x >= 0xA0) goto L94BD;                                     /* $94AF bcs */
-        LDA(0x40);                                                       /* $94B1 lda */
- L94B3: BUDGET(); STA(0x07);                                                       /* $94B3 sta */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $94B5 lda */
-        AND(0x0F);                                                       /* $94B7 and */
-        ORA(rd(0x07));                                                   /* $94B9 ora */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $94BB sta */
- L94BD: BUDGET(); RTS_RET(sp0);                                                    /* $94BD rts */
+  LDY(0x02);                                                                             /* $9497 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9499 lda */
+  TAX();                                                                                 /* $949B tax */
+  LDY(0x09);                                                                             /* $949C ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $949E lda */
+  AND(0x40);                                                                             /* $94A0 and */
+  if (R.a == 0) {                                                                        /* $94A2 bne */
+    cmp8(R.x, 0x50);                                                                     /* $94A4 cpx */
+    if (R.x < 0x50) goto L94BD;                                                          /* $94A6 bcc */
+    LDA(0x00);                                                                           /* $94A8 lda */
+  } else {
+    cmp8(R.x, 0xA0);                                                                     /* $94AD cpx */
+    if (R.x >= 0xA0) goto L94BD;                                                         /* $94AF bcs */
+    LDA(0x40);                                                                           /* $94B1 lda */
+  }
+  STA(0x07);                                                                             /* $94B3 sta */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $94B5 lda */
+  AND(0x0F);                                                                             /* $94B7 and */
+  ORA(rd(0x07));                                                                         /* $94B9 ora */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $94BB sta */
+L94BD: BUDGET();
+  RTS_RET(sp0);                                                                          /* $94BD rts */
 }
 
 void Sub_B6_95EE(void) {  /* $95EE bank 6 */
   uint8_t sp0 = R.sp;
- L95EE: BUDGET(); LDY(0x0E);                                                       /* $95EE ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $95F0 lda */
-        cmp8(R.a, 0x05);                                                 /* $95F2 cmp */
-        if (R.a == 0x05) goto L95FA;                                     /* $95F4 beq */
-        cmp8(R.a, 0x07);                                                 /* $95F6 cmp */
-        if (R.a != 0x07) goto L9620;                                     /* $95F8 bne */
- L95FA: BUDGET(); push16(0x95FC); GetRandomByte(); UNW(); ret_check(0x95FC);       /* $95FA jsr */
-        AND(0x07);                                                       /* $95FD and */
-        cmp8(R.a, 0x03);                                                 /* $95FF cmp */
-        if (R.a >= 0x03) goto L9620;                                     /* $9601 bcs */
-        LDY(0x02);                                                       /* $9603 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9605 lda */
-        SEC();                                                           /* $9607 sec */
-        sbc(rd(PlayerSpriteX0));                                         /* $9608 sbc */
-        if (R.c) goto L9612;                                             /* $960B bcs */
-        LDA(0x00);                                                       /* $960D lda */
-        goto L9614;                                                      /* $960F jmp */
- L9612: BUDGET(); LDA(0x40);                                                       /* $9612 lda */
- L9614: BUDGET(); STA(0x04);                                                       /* $9614 sta */
-        LDY(0x09);                                                       /* $9616 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9618 lda */
-        AND(0x3F);                                                       /* $961A and */
-        ORA(rd(0x04));                                                   /* $961C ora */
-        STA((uint16_t)(rd16zp(Tmp00) + R.y));                            /* $961E sta */
- L9620: BUDGET(); RTS_RET(sp0);                                                    /* $9620 rts */
+  LDY(0x0E);                                                                             /* $95EE ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $95F0 lda */
+  cmp8(R.a, 0x05);                                                                       /* $95F2 cmp */
+  if (R.a != 0x05) {                                                                     /* $95F4 beq */
+    cmp8(R.a, 0x07);                                                                     /* $95F6 cmp */
+    if (R.a != 0x07) goto L9620;                                                         /* $95F8 bne */
+  }
+  push16(0x95FC); GetRandomByte(); UNW(); ret_check(0x95FC);                             /* $95FA jsr */
+  AND(0x07);                                                                             /* $95FD and */
+  cmp8(R.a, 0x03);                                                                       /* $95FF cmp */
+  if (R.a < 0x03) {                                                                      /* $9601 bcs */
+    LDY(0x02);                                                                           /* $9603 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9605 lda */
+    SEC();                                                                               /* $9607 sec */
+    sbc(rd(PlayerSpriteX0));                                                             /* $9608 sbc */
+    if (!R.c) {                                                                          /* $960B bcs */
+      LDA(0x00);                                                                         /* $960D lda */
+    } else {
+      LDA(0x40);                                                                         /* $9612 lda */
+    }
+    STA(0x04);                                                                           /* $9614 sta */
+    LDY(0x09);                                                                           /* $9616 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9618 lda */
+    AND(0x3F);                                                                           /* $961A and */
+    ORA(rd(0x04));                                                                       /* $961C ora */
+    STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $961E sta */
+  }
+L9620: BUDGET();
+  RTS_RET(sp0);                                                                          /* $9620 rts */
 }
 
 void Sub_B6_9621(void) {  /* $9621 bank 6 */
   uint8_t sp0 = R.sp;
- L9621: BUDGET(); LDA(rd(ObjectCount));                                            /* $9621 lda */
-        cmp8(R.a, 0x0D);                                                 /* $9624 cmp */
-        if (R.a >= 0x0D) goto L9655;                                     /* $9626 bcs */
-        LDY(0x08);                                                       /* $9628 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $962A lda */
-        cmp8(R.a, 0x17);                                                 /* $962C cmp */
-        if (R.a != 0x17) goto L9655;                                     /* $962E bne */
-        INY();                                                           /* $9630 iny */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9631 lda */
-        AND(0xF0);                                                       /* $9633 and */
-        if (R.a == 0) goto L9655;                                        /* $9635 beq */
-        cmp8(R.a, 0x40);                                                 /* $9637 cmp */
-        if (R.a == 0x40) goto L9655;                                     /* $9639 beq */
-        LDY(0x0E);                                                       /* $963B ldy */
-        cmp8(R.a, 0x30);                                                 /* $963D cmp */
-        if (R.a == 0x30) goto L964F;                                     /* $963F beq */
-        cmp8(R.a, 0x70);                                                 /* $9641 cmp */
-        if (R.a == 0x70) goto L964F;                                     /* $9643 beq */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9645 lda */
-        cmp8(R.a, 0x08);                                                 /* $9647 cmp */
-        if (R.a == 0x08) goto L9656;                                     /* $9649 beq */
-        cmp8(R.a, 0x06);                                                 /* $964B cmp */
-        if (R.a == 0x06) goto L9656;                                     /* $964D beq */
- L964F: BUDGET(); LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $964F lda */
-        cmp8(R.a, 0x04);                                                 /* $9651 cmp */
-        if (R.a == 0x04) goto L9656;                                     /* $9653 beq */
- L9655: BUDGET(); RTS_RET(sp0);                                                    /* $9655 rts */
- L9656: BUDGET(); INC_M(ObjectCount);                                              /* $9656 inc */
-        LDA(rd(ObjectCount));                                            /* $9659 lda */
-        push16(0x965E); AslA4(); UNW(); ret_check(0x965E);               /* $965C jsr */
-        STA(0x0A);                                                       /* $965F sta */
-        LDA(0x03);                                                       /* $9661 lda */
-        STA(0x0B);                                                       /* $9663 sta */
-        LDY(0x0B);                                                       /* $9665 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9667 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $9669 sta */
-        LDY(0x09);                                                       /* $966B ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $966D lda */
-        INY();                                                           /* $966F iny */
-        AND(0x40);                                                       /* $9670 and */
-        if (R.a == 0) goto L9687;                                        /* $9672 beq */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9674 lda */
-        SEC();                                                           /* $9676 sec */
-        sbc(0x08);                                                       /* $9677 sbc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $9679 sta */
-        DEY();                                                           /* $967B dey */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $967C lda */
-        sbc(0x00);                                                       /* $967E sbc */
-        AND(0x0F);                                                       /* $9680 and */
-        LDX(0x00);                                                       /* $9682 ldx */
-        goto L9699;                                                      /* $9684 jmp */
- L9687: BUDGET(); LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9687 lda */
-        CLC();                                                           /* $9689 clc */
-        adc(0x10);                                                       /* $968A adc */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $968C sta */
-        DEY();                                                           /* $968E dey */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $968F lda */
-        adc(0x00);                                                       /* $9691 adc */
-        AND(0x0F);                                                       /* $9693 and */
-        ORA(0x10);                                                       /* $9695 ora */
-        LDX(0x01);                                                       /* $9697 ldx */
- L9699: BUDGET(); STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $9699 sta */
-        LDY(0x05);                                                       /* $969B ldy */
-        TXA();                                                           /* $969D txa */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $969E sta */
-        LDY(0x00);                                                       /* $96A0 ldy */
-        LDA(0xDC);                                                       /* $96A2 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $96A4 sta */
-        LDY(0x08);                                                       /* $96A6 ldy */
-        LDA(0x3F);                                                       /* $96A8 lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $96AA sta */
-        LDY(0x06);                                                       /* $96AC ldy */
-        LDA(0x01);                                                       /* $96AE lda */
-        STA((uint16_t)(rd16zp(0x0A) + R.y));                             /* $96B0 sta */
-        LDA(0x0F);                                                       /* $96B2 lda */
-        push16(0x96B6); QueueSound(); UNW(); ret_check(0x96B6);          /* $96B4 jsr */
-        RTS_RET(sp0);                                                    /* $96B7 rts */
+  LDA(rd(ObjectCount));                                                                  /* $9621 lda */
+  cmp8(R.a, 0x0D);                                                                       /* $9624 cmp */
+  if (R.a < 0x0D) {                                                                      /* $9626 bcs */
+    LDY(0x08);                                                                           /* $9628 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $962A lda */
+    cmp8(R.a, 0x17);                                                                     /* $962C cmp */
+    if (R.a != 0x17) goto L9655;                                                         /* $962E bne */
+    INY();                                                                               /* $9630 iny */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9631 lda */
+    AND(0xF0);                                                                           /* $9633 and */
+    if (R.a == 0) goto L9655;                                                            /* $9635 beq */
+    cmp8(R.a, 0x40);                                                                     /* $9637 cmp */
+    if (R.a == 0x40) goto L9655;                                                         /* $9639 beq */
+    LDY(0x0E);                                                                           /* $963B ldy */
+    cmp8(R.a, 0x30);                                                                     /* $963D cmp */
+    if (R.a != 0x30) {                                                                   /* $963F beq */
+      cmp8(R.a, 0x70);                                                                   /* $9641 cmp */
+      if (R.a == 0x70) goto L964F;                                                       /* $9643 beq */
+      LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $9645 lda */
+      cmp8(R.a, 0x08);                                                                   /* $9647 cmp */
+      if (R.a == 0x08) goto L9656;                                                       /* $9649 beq */
+      cmp8(R.a, 0x06);                                                                   /* $964B cmp */
+      if (R.a == 0x06) goto L9656;                                                       /* $964D beq */
+    }
+L964F: BUDGET();
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $964F lda */
+    cmp8(R.a, 0x04);                                                                     /* $9651 cmp */
+    if (R.a == 0x04) goto L9656;                                                         /* $9653 beq */
+  }
+L9655: BUDGET();
+  RTS_RET(sp0);                                                                          /* $9655 rts */
+L9656: BUDGET();
+  INC_M(ObjectCount);                                                                    /* $9656 inc */
+  LDA(rd(ObjectCount));                                                                  /* $9659 lda */
+  push16(0x965E); AslA4(); UNW(); ret_check(0x965E);                                     /* $965C jsr */
+  STA(0x0A);                                                                             /* $965F sta */
+  LDA(0x03);                                                                             /* $9661 lda */
+  STA(0x0B);                                                                             /* $9663 sta */
+  LDY(0x0B);                                                                             /* $9665 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9667 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $9669 sta */
+  LDY(0x09);                                                                             /* $966B ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $966D lda */
+  INY();                                                                                 /* $966F iny */
+  AND(0x40);                                                                             /* $9670 and */
+  if (R.a != 0) {                                                                        /* $9672 beq */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9674 lda */
+    SEC();                                                                               /* $9676 sec */
+    sbc(0x08);                                                                           /* $9677 sbc */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $9679 sta */
+    DEY();                                                                               /* $967B dey */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $967C lda */
+    sbc(0x00);                                                                           /* $967E sbc */
+    AND(0x0F);                                                                           /* $9680 and */
+    LDX(0x00);                                                                           /* $9682 ldx */
+  } else {
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9687 lda */
+    CLC();                                                                               /* $9689 clc */
+    adc(0x10);                                                                           /* $968A adc */
+    STA((uint16_t)(rd16zp(0x0A) + R.y));                                                 /* $968C sta */
+    DEY();                                                                               /* $968E dey */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $968F lda */
+    adc(0x00);                                                                           /* $9691 adc */
+    AND(0x0F);                                                                           /* $9693 and */
+    ORA(0x10);                                                                           /* $9695 ora */
+    LDX(0x01);                                                                           /* $9697 ldx */
+  }
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $9699 sta */
+  LDY(0x05);                                                                             /* $969B ldy */
+  TXA();                                                                                 /* $969D txa */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $969E sta */
+  LDY(0x00);                                                                             /* $96A0 ldy */
+  LDA(0xDC);                                                                             /* $96A2 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $96A4 sta */
+  LDY(0x08);                                                                             /* $96A6 ldy */
+  LDA(0x3F);                                                                             /* $96A8 lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $96AA sta */
+  LDY(0x06);                                                                             /* $96AC ldy */
+  LDA(0x01);                                                                             /* $96AE lda */
+  STA((uint16_t)(rd16zp(0x0A) + R.y));                                                   /* $96B0 sta */
+  LDA(0x0F);                                                                             /* $96B2 lda */
+  push16(0x96B6); QueueSound(); UNW(); ret_check(0x96B6);                                /* $96B4 jsr */
+  RTS_RET(sp0);                                                                          /* $96B7 rts */
 }
 
 void Loc_B6_96B8(void) {  /* $96B8 bank 6 */
   uint8_t sp0 = R.sp;
- L96B8: BUDGET(); push16(0x96BA); Sub_B6_96D4(); UNW(); ret_check(0x96BA);         /* $96B8 jsr */
-        LDY(0x08);                                                       /* $96BB ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $96BD lda */
-        if (R.a != 0) goto L96C7;                                        /* $96BF bne */
-        push16(0x96C3); Sub_B6_8A66(); UNW(); ret_check(0x96C3);         /* $96C1 jsr */
-        push16(0x96C6); Sub_B6_89C0(); UNW(); ret_check(0x96C6);         /* $96C4 jsr */
- L96C7: BUDGET(); push16(0x96C9); Sub_B6_8932(); UNW(); ret_check(0x96C9);         /* $96C7 jsr */
-        push16(0x96CC); Sub_B6_8A76(); UNW(); ret_check(0x96CC);         /* $96CA jsr */
-        push16(0x96CF); Sub_B6_8B08(); UNW(); ret_check(0x96CF);         /* $96CD jsr */
-        push16(0x96D2); Sub_B6_975A(); UNW(); ret_check(0x96D2);         /* $96D0 jsr */
-        RTS_RET(sp0);                                                    /* $96D3 rts */
+  push16(0x96BA); Sub_B6_96D4(); UNW(); ret_check(0x96BA);                               /* $96B8 jsr */
+  LDY(0x08);                                                                             /* $96BB ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $96BD lda */
+  if (R.a == 0) {                                                                        /* $96BF bne */
+    push16(0x96C3); Sub_B6_8A66(); UNW(); ret_check(0x96C3);                             /* $96C1 jsr */
+    push16(0x96C6); Sub_B6_89C0(); UNW(); ret_check(0x96C6);                             /* $96C4 jsr */
+  }
+  push16(0x96C9); Sub_B6_8932(); UNW(); ret_check(0x96C9);                               /* $96C7 jsr */
+  push16(0x96CC); Sub_B6_8A76(); UNW(); ret_check(0x96CC);                               /* $96CA jsr */
+  push16(0x96CF); Sub_B6_8B08(); UNW(); ret_check(0x96CF);                               /* $96CD jsr */
+  push16(0x96D2); Sub_B6_975A(); UNW(); ret_check(0x96D2);                               /* $96D0 jsr */
+  RTS_RET(sp0);                                                                          /* $96D3 rts */
 }
 
 void Sub_B6_96D4(void) {  /* $96D4 bank 6 */
   uint8_t sp0 = R.sp;
- L96D4: BUDGET(); push16(0x96D6); Sub_B6_89A7(); UNW(); ret_check(0x96D6);         /* $96D4 jsr */
-        LDA(rd((uint16_t)(0x96E2 + R.y)));                               /* $96D7 lda */
-        STA(Tmp02);                                                      /* $96DA sta */
-        LDA(rd((uint16_t)(0x96E3 + R.y)));                               /* $96DC lda */
-        STA(Tmp03);                                                      /* $96DF sta */
-        RTS_RET(sp0);                                                    /* $96E1 rts */
+  push16(0x96D6); Sub_B6_89A7(); UNW(); ret_check(0x96D6);                               /* $96D4 jsr */
+  LDA(rd((uint16_t)(0x96E2 + R.y)));                                                     /* $96D7 lda */
+  STA(Tmp02);                                                                            /* $96DA sta */
+  LDA(rd((uint16_t)(0x96E3 + R.y)));                                                     /* $96DC lda */
+  STA(Tmp03);                                                                            /* $96DF sta */
+  RTS_RET(sp0);                                                                          /* $96E1 rts */
 }
 
 void Sub_B6_975A(void) {  /* $975A bank 6 */
   uint8_t sp0 = R.sp;
- L975A: BUDGET(); LDA(rd(ObjectCount));                                            /* $975A lda */
-        cmp8(R.a, 0x08);                                                 /* $975D cmp */
-        if (R.a >= 0x08) goto L9787;                                     /* $975F bcs */
-        LDY(0x02);                                                       /* $9761 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9763 lda */
-        cmp8(R.a, 0xD0);                                                 /* $9765 cmp */
-        if (R.a >= 0xD0) goto L9787;                                     /* $9767 bcs */
-        SEC();                                                           /* $9769 sec */
-        sbc(rd(PlayerSpriteX0));                                         /* $976A sbc */
-        TAX();                                                           /* $976D tax */
-        LDA(rd(Tmp00));                                                  /* $976E lda */
-        AND(0x10);                                                       /* $9770 and */
-        if (R.a != 0) goto L977F;                                        /* $9772 bne */
-        cmp8(R.x, 0x34);                                                 /* $9774 cpx */
-        if (R.x < 0x34) goto L9787;                                      /* $9776 bcc */
-        cmp8(R.x, 0x3A);                                                 /* $9778 cpx */
-        if (R.x >= 0x3A) goto L9787;                                     /* $977A bcs */
-        goto L9788;                                                      /* $977C jmp */
- L977F: BUDGET(); cmp8(R.x, 0x3C);                                                 /* $977F cpx */
-        if (R.x < 0x3C) goto L9787;                                      /* $9781 bcc */
-        cmp8(R.x, 0x42);                                                 /* $9783 cpx */
-        if (R.x < 0x42) goto L9788;                                      /* $9785 bcc */
- L9787: BUDGET(); RTS_RET(sp0);                                                    /* $9787 rts */
- L9788: BUDGET(); LDY(0x09);                                                       /* $9788 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $978A lda */
-        AND(0x70);                                                       /* $978C and */
-        if (R.a != 0) goto L9795;                                        /* $978E bne */
-        LDA(0x20);                                                       /* $9790 lda */
-        goto L97A0;                                                      /* $9792 jmp */
- L9795: BUDGET(); cmp8(R.a, 0x40);                                                 /* $9795 cmp */
-        if (R.a >= 0x40) goto L979E;                                     /* $9797 bcs */
-        LDA(0x00);                                                       /* $9799 lda */
-        goto L97A0;                                                      /* $979B jmp */
- L979E: BUDGET(); LDA(0x40);                                                       /* $979E lda */
- L97A0: BUDGET(); STA(0x06);                                                       /* $97A0 sta */
-        push16(0x97A4); GetRandomByte(); UNW(); ret_check(0x97A4);       /* $97A2 jsr */
-        AND(0x30);                                                       /* $97A5 and */
-        CLC();                                                           /* $97A7 clc */
-        adc(rd(0x06));                                                   /* $97A8 adc */
-        STA(0x06);                                                       /* $97AA sta */
-        LDA(rd(ObjectCount));                                            /* $97AC lda */
-        push16(0x97B1); AslA4(); UNW(); ret_check(0x97B1);               /* $97AF jsr */
-        TAX();                                                           /* $97B2 tax */
-        INC_M(ObjectCount);                                              /* $97B3 inc */
-        INC_M(ObjectCount);                                              /* $97B6 inc */
-        INC_M(ObjectCount);                                              /* $97B9 inc */
-        LDA(0xCD);                                                       /* $97BC lda */
-        STA((uint16_t)(ObjectTable + R.x));                              /* $97BE sta */
-        STA((uint16_t)(0x0320 + R.x));                                   /* $97C1 sta */
-        STA((uint16_t)(0x0330 + R.x));                                   /* $97C4 sta */
-        LDY(0x0B);                                                       /* $97C7 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $97C9 lda */
-        adc(0x08);                                                       /* $97CB adc */
-        STA((uint16_t)(0x031B + R.x));                                   /* $97CD sta */
-        STA((uint16_t)(0x032B + R.x));                                   /* $97D0 sta */
-        STA((uint16_t)(0x033B + R.x));                                   /* $97D3 sta */
-        DEY();                                                           /* $97D6 dey */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $97D7 lda */
-        STA((uint16_t)(0x031A + R.x));                                   /* $97D9 sta */
-        STA((uint16_t)(0x032A + R.x));                                   /* $97DC sta */
-        STA((uint16_t)(0x033A + R.x));                                   /* $97DF sta */
-        DEY();                                                           /* $97E2 dey */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $97E3 lda */
-        AND(0x0F);                                                       /* $97E5 and */
-        ORA(rd(0x06));                                                   /* $97E7 ora */
-        STA((uint16_t)(0x0319 + R.x));                                   /* $97E9 sta */
-        CLC();                                                           /* $97EC clc */
-        adc(0x10);                                                       /* $97ED adc */
-        STA((uint16_t)(0x0329 + R.x));                                   /* $97EF sta */
-        CLC();                                                           /* $97F2 clc */
-        adc(0x10);                                                       /* $97F3 adc */
-        STA((uint16_t)(0x0339 + R.x));                                   /* $97F5 sta */
-        LDA(0x3F);                                                       /* $97F8 lda */
-        STA((uint16_t)(0x0318 + R.x));                                   /* $97FA sta */
-        LDA(0x26);                                                       /* $97FD lda */
-        STA((uint16_t)(0x0328 + R.x));                                   /* $97FF sta */
-        LDA(0x13);                                                       /* $9802 lda */
-        STA((uint16_t)(0x0338 + R.x));                                   /* $9804 sta */
-        LDA(0x00);                                                       /* $9807 lda */
-        STA((uint16_t)(0x031E + R.x));                                   /* $9809 sta */
-        STA((uint16_t)(0x032E + R.x));                                   /* $980C sta */
-        STA((uint16_t)(0x033E + R.x));                                   /* $980F sta */
-        LDA(0x01);                                                       /* $9812 lda */
-        STA((uint16_t)(0x0316 + R.x));                                   /* $9814 sta */
-        STA((uint16_t)(0x0326 + R.x));                                   /* $9817 sta */
-        STA((uint16_t)(0x0336 + R.x));                                   /* $981A sta */
-        RTS_RET(sp0);                                                    /* $981D rts */
+  LDA(rd(ObjectCount));                                                                  /* $975A lda */
+  cmp8(R.a, 0x08);                                                                       /* $975D cmp */
+  if (R.a < 0x08) {                                                                      /* $975F bcs */
+    LDY(0x02);                                                                           /* $9761 ldy */
+    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9763 lda */
+    cmp8(R.a, 0xD0);                                                                     /* $9765 cmp */
+    if (R.a >= 0xD0) goto L9787;                                                         /* $9767 bcs */
+    SEC();                                                                               /* $9769 sec */
+    sbc(rd(PlayerSpriteX0));                                                             /* $976A sbc */
+    TAX();                                                                               /* $976D tax */
+    LDA(rd(Tmp00));                                                                      /* $976E lda */
+    AND(0x10);                                                                           /* $9770 and */
+    if (R.a == 0) {                                                                      /* $9772 bne */
+      cmp8(R.x, 0x34);                                                                   /* $9774 cpx */
+      if (R.x < 0x34) goto L9787;                                                        /* $9776 bcc */
+      cmp8(R.x, 0x3A);                                                                   /* $9778 cpx */
+      if (R.x >= 0x3A) goto L9787;                                                       /* $977A bcs */
+      goto L9788;                                                                        /* $977C jmp */
+    }
+    cmp8(R.x, 0x3C);                                                                     /* $977F cpx */
+    if (R.x < 0x3C) goto L9787;                                                          /* $9781 bcc */
+    cmp8(R.x, 0x42);                                                                     /* $9783 cpx */
+    if (R.x < 0x42) goto L9788;                                                          /* $9785 bcc */
+  }
+L9787: BUDGET();
+  RTS_RET(sp0);                                                                          /* $9787 rts */
+L9788: BUDGET();
+  LDY(0x09);                                                                             /* $9788 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $978A lda */
+  AND(0x70);                                                                             /* $978C and */
+  if (R.a == 0) {                                                                        /* $978E bne */
+    LDA(0x20);                                                                           /* $9790 lda */
+  } else {
+    cmp8(R.a, 0x40);                                                                     /* $9795 cmp */
+    if (R.a < 0x40) {                                                                    /* $9797 bcs */
+      LDA(0x00);                                                                         /* $9799 lda */
+      goto L97A0;                                                                        /* $979B jmp */
+    }
+    LDA(0x40);                                                                           /* $979E lda */
+  }
+L97A0: BUDGET();
+  STA(0x06);                                                                             /* $97A0 sta */
+  push16(0x97A4); GetRandomByte(); UNW(); ret_check(0x97A4);                             /* $97A2 jsr */
+  AND(0x30);                                                                             /* $97A5 and */
+  CLC();                                                                                 /* $97A7 clc */
+  adc(rd(0x06));                                                                         /* $97A8 adc */
+  STA(0x06);                                                                             /* $97AA sta */
+  LDA(rd(ObjectCount));                                                                  /* $97AC lda */
+  push16(0x97B1); AslA4(); UNW(); ret_check(0x97B1);                                     /* $97AF jsr */
+  TAX();                                                                                 /* $97B2 tax */
+  INC_M(ObjectCount);                                                                    /* $97B3 inc */
+  INC_M(ObjectCount);                                                                    /* $97B6 inc */
+  INC_M(ObjectCount);                                                                    /* $97B9 inc */
+  LDA(0xCD);                                                                             /* $97BC lda */
+  STA((uint16_t)(ObjectTable + R.x));                                                    /* $97BE sta */
+  STA((uint16_t)(0x0320 + R.x));                                                         /* $97C1 sta */
+  STA((uint16_t)(0x0330 + R.x));                                                         /* $97C4 sta */
+  LDY(0x0B);                                                                             /* $97C7 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $97C9 lda */
+  adc(0x08);                                                                             /* $97CB adc */
+  STA((uint16_t)(0x031B + R.x));                                                         /* $97CD sta */
+  STA((uint16_t)(0x032B + R.x));                                                         /* $97D0 sta */
+  STA((uint16_t)(0x033B + R.x));                                                         /* $97D3 sta */
+  DEY();                                                                                 /* $97D6 dey */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $97D7 lda */
+  STA((uint16_t)(0x031A + R.x));                                                         /* $97D9 sta */
+  STA((uint16_t)(0x032A + R.x));                                                         /* $97DC sta */
+  STA((uint16_t)(0x033A + R.x));                                                         /* $97DF sta */
+  DEY();                                                                                 /* $97E2 dey */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $97E3 lda */
+  AND(0x0F);                                                                             /* $97E5 and */
+  ORA(rd(0x06));                                                                         /* $97E7 ora */
+  STA((uint16_t)(0x0319 + R.x));                                                         /* $97E9 sta */
+  CLC();                                                                                 /* $97EC clc */
+  adc(0x10);                                                                             /* $97ED adc */
+  STA((uint16_t)(0x0329 + R.x));                                                         /* $97EF sta */
+  CLC();                                                                                 /* $97F2 clc */
+  adc(0x10);                                                                             /* $97F3 adc */
+  STA((uint16_t)(0x0339 + R.x));                                                         /* $97F5 sta */
+  LDA(0x3F);                                                                             /* $97F8 lda */
+  STA((uint16_t)(0x0318 + R.x));                                                         /* $97FA sta */
+  LDA(0x26);                                                                             /* $97FD lda */
+  STA((uint16_t)(0x0328 + R.x));                                                         /* $97FF sta */
+  LDA(0x13);                                                                             /* $9802 lda */
+  STA((uint16_t)(0x0338 + R.x));                                                         /* $9804 sta */
+  LDA(0x00);                                                                             /* $9807 lda */
+  STA((uint16_t)(0x031E + R.x));                                                         /* $9809 sta */
+  STA((uint16_t)(0x032E + R.x));                                                         /* $980C sta */
+  STA((uint16_t)(0x033E + R.x));                                                         /* $980F sta */
+  LDA(0x01);                                                                             /* $9812 lda */
+  STA((uint16_t)(0x0316 + R.x));                                                         /* $9814 sta */
+  STA((uint16_t)(0x0326 + R.x));                                                         /* $9817 sta */
+  STA((uint16_t)(0x0336 + R.x));                                                         /* $981A sta */
+  RTS_RET(sp0);                                                                          /* $981D rts */
 }
 
 void Sub_B6_9A14(void) {  /* $9A14 bank 6 */
   uint8_t sp0 = R.sp;
- L9A14: BUDGET(); push16(0x9A16); Sub_B6_9A38(); UNW(); ret_check(0x9A16);         /* $9A14 jsr */
-        LDY(0x08);                                                       /* $9A17 ldy */
-        LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                        /* $9A19 lda */
-        if (R.a != 0) goto L9A2E;                                        /* $9A1B bne */
-        push16(0x9A1F); Sub_B6_8A66(); UNW(); ret_check(0x9A1F);         /* $9A1D jsr */
-        cmp8(R.a, rd(0x04));                                             /* $9A20 cmp */
-        if (R.a < rd(0x04)) goto L9A28;                                  /* $9A22 bcc */
-        push16(0x9A26); RemoveObject(); UNW(); ret_check(0x9A26);        /* $9A24 jsr */
-        RTS_RET(sp0);                                                    /* $9A27 rts */
- L9A28: BUDGET(); push16(0x9A2A); Sub_B6_89C0(); UNW(); ret_check(0x9A2A);         /* $9A28 jsr */
-        push16(0x9A2D); Sub_B6_9A38(); UNW(); ret_check(0x9A2D);         /* $9A2B jsr */
- L9A2E: BUDGET(); push16(0x9A30); Sub_B6_8932(); UNW(); ret_check(0x9A30);         /* $9A2E jsr */
-        push16(0x9A33); Sub_B6_8A76(); UNW(); ret_check(0x9A33);         /* $9A31 jsr */
-        push16(0x9A36); Sub_B6_8B08(); UNW(); ret_check(0x9A36);         /* $9A34 jsr */
-        RTS_RET(sp0);                                                    /* $9A37 rts */
+  push16(0x9A16); Sub_B6_9A38(); UNW(); ret_check(0x9A16);                               /* $9A14 jsr */
+  LDY(0x08);                                                                             /* $9A17 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9A19 lda */
+  if (R.a == 0) {                                                                        /* $9A1B bne */
+    push16(0x9A1F); Sub_B6_8A66(); UNW(); ret_check(0x9A1F);                             /* $9A1D jsr */
+    cmp8(R.a, rd(0x04));                                                                 /* $9A20 cmp */
+    if (R.a >= rd(0x04)) {                                                               /* $9A22 bcc */
+      push16(0x9A26); RemoveObject(); UNW(); ret_check(0x9A26);                          /* $9A24 jsr */
+      RTS_RET(sp0);                                                                      /* $9A27 rts */
+    }
+    push16(0x9A2A); Sub_B6_89C0(); UNW(); ret_check(0x9A2A);                             /* $9A28 jsr */
+    push16(0x9A2D); Sub_B6_9A38(); UNW(); ret_check(0x9A2D);                             /* $9A2B jsr */
+  }
+  push16(0x9A30); Sub_B6_8932(); UNW(); ret_check(0x9A30);                               /* $9A2E jsr */
+  push16(0x9A33); Sub_B6_8A76(); UNW(); ret_check(0x9A33);                               /* $9A31 jsr */
+  push16(0x9A36); Sub_B6_8B08(); UNW(); ret_check(0x9A36);                               /* $9A34 jsr */
+  RTS_RET(sp0);                                                                          /* $9A37 rts */
 }
 
 void Sub_B6_9A38(void) {  /* $9A38 bank 6 */
   uint8_t sp0 = R.sp;
- L9A38: BUDGET(); push16(0x9A3A); Sub_B6_89A7(); UNW(); ret_check(0x9A3A);         /* $9A38 jsr */
-        LDA(rd((uint16_t)(0x9A46 + R.y)));                               /* $9A3B lda */
-        STA(Tmp02);                                                      /* $9A3E sta */
-        LDA(rd((uint16_t)(0x9A47 + R.y)));                               /* $9A40 lda */
-        STA(Tmp03);                                                      /* $9A43 sta */
-        RTS_RET(sp0);                                                    /* $9A45 rts */
+  push16(0x9A3A); Sub_B6_89A7(); UNW(); ret_check(0x9A3A);                               /* $9A38 jsr */
+  LDA(rd((uint16_t)(0x9A46 + R.y)));                                                     /* $9A3B lda */
+  STA(Tmp02);                                                                            /* $9A3E sta */
+  LDA(rd((uint16_t)(0x9A47 + R.y)));                                                     /* $9A40 lda */
+  STA(Tmp03);                                                                            /* $9A43 sta */
+  RTS_RET(sp0);                                                                          /* $9A45 rts */
 }
 
 void Sub_B6_A099(void) {  /* $A099 bank 6 */
   uint8_t sp0 = R.sp;
- LA099: BUDGET(); push16(0xA09B); Sub_B6_A0A6(); UNW(); ret_check(0xA09B);         /* $A099 jsr */
-        push16(0xA09E); Sub_B6_8932(); UNW(); ret_check(0xA09E);         /* $A09C jsr */
-        push16(0xA0A1); Sub_B6_8A76(); UNW(); ret_check(0xA0A1);         /* $A09F jsr */
-        push16(0xA0A4); Sub_B6_8B08(); UNW(); ret_check(0xA0A4);         /* $A0A2 jsr */
-        RTS_RET(sp0);                                                    /* $A0A5 rts */
+  push16(0xA09B); Sub_B6_A0A6(); UNW(); ret_check(0xA09B);                               /* $A099 jsr */
+  push16(0xA09E); Sub_B6_8932(); UNW(); ret_check(0xA09E);                               /* $A09C jsr */
+  push16(0xA0A1); Sub_B6_8A76(); UNW(); ret_check(0xA0A1);                               /* $A09F jsr */
+  push16(0xA0A4); Sub_B6_8B08(); UNW(); ret_check(0xA0A4);                               /* $A0A2 jsr */
+  RTS_RET(sp0);                                                                          /* $A0A5 rts */
 }
 
 void Sub_B6_A0A6(void) {  /* $A0A6 bank 6 */
   uint8_t sp0 = R.sp;
- LA0A6: BUDGET(); push16(0xA0A8); Sub_B6_89A7(); UNW(); ret_check(0xA0A8);         /* $A0A6 jsr */
-        LDA(rd((uint16_t)(0xA0B4 + R.y)));                               /* $A0A9 lda */
-        STA(Tmp02);                                                      /* $A0AC sta */
-        LDA(rd((uint16_t)(0xA0B5 + R.y)));                               /* $A0AE lda */
-        STA(Tmp03);                                                      /* $A0B1 sta */
-        RTS_RET(sp0);                                                    /* $A0B3 rts */
+  push16(0xA0A8); Sub_B6_89A7(); UNW(); ret_check(0xA0A8);                               /* $A0A6 jsr */
+  LDA(rd((uint16_t)(0xA0B4 + R.y)));                                                     /* $A0A9 lda */
+  STA(Tmp02);                                                                            /* $A0AC sta */
+  LDA(rd((uint16_t)(0xA0B5 + R.y)));                                                     /* $A0AE lda */
+  STA(Tmp03);                                                                            /* $A0B1 sta */
+  RTS_RET(sp0);                                                                          /* $A0B3 rts */
 }
 
