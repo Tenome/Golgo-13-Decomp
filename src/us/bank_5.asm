@@ -426,8 +426,8 @@ Bank5Scene_28:
 Loc_B5_8418:
   sta $013E                    ; $8418
   sta $0106                    ; $841B
-  sta z:$28                    ; $841E
-  sta z:$29                    ; $8420
+  sta z:TransitionPending      ; $841E
+  sta z:TransitionTarget       ; $8420
   sta z:$2A                    ; $8422
   sta z:$2B                    ; $8424
 Loc_B5_8426:
@@ -545,10 +545,10 @@ Bank5Scene_3C:
   sty z:PaletteDirty           ; $84FC
   sty z:GameState              ; $84FE
   iny                          ; $8500
-  sty z:$28                    ; $8501
+  sty z:TransitionPending      ; $8501
   sty $0507                    ; $8503
   ldy #$03                     ; $8506
-  sty z:$29                    ; $8508
+  sty z:TransitionTarget       ; $8508
   ldy #$70                     ; $850A
   sty z:$2A                    ; $850C
   ldy #$AA                     ; $850E
@@ -1581,9 +1581,9 @@ Loc_B5_8FED:
   lda #$03                     ; $9002
   sta $0106                    ; $9004
   lda #$01                     ; $9007
-  sta z:$28                    ; $9009
+  sta z:TransitionPending      ; $9009
   lda #$2E                     ; $900B
-  sta z:$29                    ; $900D
+  sta z:TransitionTarget       ; $900D
   lda #$00                     ; $900F
   sta z:$2A                    ; $9011
   lda #$64                     ; $9013

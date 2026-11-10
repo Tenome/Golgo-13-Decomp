@@ -260,9 +260,9 @@ L8FED: BUDGET();
   LDA(0x03);                                                                             /* $9002 lda */
   STA(0x0106);                                                                           /* $9004 sta */
   LDA(0x01);                                                                             /* $9007 lda */
-  STA(0x28);                                                                             /* $9009 sta */
+  STA(TransitionPending);                                                                /* $9009 sta */
   LDA(0x2E);                                                                             /* $900B lda */
-  STA(0x29);                                                                             /* $900D sta */
+  STA(TransitionTarget);                                                                 /* $900D sta */
   LDA(0x00);                                                                             /* $900F lda */
   STA(0x2A);                                                                             /* $9011 sta */
   LDA(0x64);                                                                             /* $9013 lda */
@@ -915,8 +915,8 @@ void Bank5Scene_28(void) {  /* $83EC bank 5 */
 L8418: BUDGET();
   STA(0x013E);                                                                           /* $8418 sta */
   STA(0x0106);                                                                           /* $841B sta */
-  STA(0x28);                                                                             /* $841E sta */
-  STA(0x29);                                                                             /* $8420 sta */
+  STA(TransitionPending);                                                                /* $841E sta */
+  STA(TransitionTarget);                                                                 /* $8420 sta */
   STA(0x2A);                                                                             /* $8422 sta */
   STA(0x2B);                                                                             /* $8424 sta */
 L8426: BUDGET();
@@ -1117,10 +1117,10 @@ void Bank5Scene_3C(void) {  /* $84F3 bank 5 */
     STY(PaletteDirty);                                                                   /* $84FC sty */
     STY(GameState);                                                                      /* $84FE sty */
     INY();                                                                               /* $8500 iny */
-    STY(0x28);                                                                           /* $8501 sty */
+    STY(TransitionPending);                                                              /* $8501 sty */
     STY(0x0507);                                                                         /* $8503 sty */
     LDY(0x03);                                                                           /* $8506 ldy */
-    STY(0x29);                                                                           /* $8508 sty */
+    STY(TransitionTarget);                                                               /* $8508 sty */
     LDY(0x70);                                                                           /* $850A ldy */
     STY(0x2A);                                                                           /* $850C sty */
     LDY(0xAA);                                                                           /* $850E ldy */

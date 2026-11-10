@@ -118,7 +118,7 @@ void Sub_B6_8055(void) {  /* $8055 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x8057); LoadStageSpawnListPtr(); UNW(); ret_check(0x8057);                     /* $8055 jsr */
   push16(0x805A); CalcScrollColumnIndex(); UNW(); ret_check(0x805A);                     /* $8058 jsr */
-  LDY(rd(0x0102));                                                                       /* $805B ldy */
+  LDY(rd(SpawnIndexCurrent));                                                            /* $805B ldy */
   LDA(0x00);                                                                             /* $805E lda */
   STA(0x08);                                                                             /* $8060 sta */
   INY();                                                                                 /* $8062 iny */
@@ -169,7 +169,7 @@ L807F: BUDGET();
 L8080: BUDGET();
   push16(0x8082); LoadStageSpawnListPtr(); UNW(); ret_check(0x8082);                     /* $8080 jsr */
   push16(0x8085); CalcNextScrollColumnIndex(); UNW(); ret_check(0x8085);                 /* $8083 jsr */
-  LDY(rd(0x0103));                                                                       /* $8086 ldy */
+  LDY(rd(SpawnIndexNext));                                                               /* $8086 ldy */
   LDA(0x01);                                                                             /* $8089 lda */
   goto L8060;                                                                            /* $808B jmp */
 }
@@ -263,7 +263,7 @@ L80F3: BUDGET();
   TYA();                                                                                 /* $80F3 tya */
   SEC();                                                                                 /* $80F4 sec */
   sbc(0x05);                                                                             /* $80F5 sbc */
-  STA(0x0102);                                                                           /* $80F7 sta */
+  STA(SpawnIndexCurrent);                                                                /* $80F7 sta */
   push16(0x80FC); CalcNextScrollColumnIndex(); UNW(); ret_check(0x80FC);                 /* $80FA jsr */
   LDY(0x05);                                                                             /* $80FD ldy */
   for (;;) { BUDGET();
@@ -281,7 +281,7 @@ L80F3: BUDGET();
   }                                                                                      /* $810F jmp */
 L8112: BUDGET();
   DEY();                                                                                 /* $8112 dey */
-  STY(0x0103);                                                                           /* $8113 sty */
+  STY(SpawnIndexNext);                                                                   /* $8113 sty */
   RTS_RET(sp0);                                                                          /* $8116 rts */
 }
 
@@ -298,9 +298,9 @@ void Sub_B6_8117(void) {  /* $8117 bank 6 */
     STA(0x0B);                                                                           /* $812B sta */
     LDA(rd(0x08));                                                                       /* $812D lda */
     if (R.a == 0) {                                                                      /* $812F bne */
-      LDY(rd(0x0102));                                                                   /* $8131 ldy */
+      LDY(rd(SpawnIndexCurrent));                                                        /* $8131 ldy */
     } else {
-      LDY(rd(0x0103));                                                                   /* $8137 ldy */
+      LDY(rd(SpawnIndexNext));                                                           /* $8137 ldy */
     }
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $813A lda */
     ASL_A();                                                                             /* $813C asl */

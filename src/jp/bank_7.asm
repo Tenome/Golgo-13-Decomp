@@ -173,7 +173,7 @@ Loc_C16F:
   rts                          ; $C16F
 FetchInlineWord:
   tsx                          ; $C170
-  lda $0103,x                  ; $C171
+  lda SpawnIndexNext,x         ; $C171
   sta z:$05                    ; $C174
   lda $0104,x                  ; $C176
   sta z:$06                    ; $C179
@@ -186,7 +186,7 @@ FetchInlineWord:
   clc                          ; $C186
   lda #$02                     ; $C187
   adc z:$05                    ; $C189
-  sta $0103,x                  ; $C18B
+  sta SpawnIndexNext,x         ; $C18B
   lda #$00                     ; $C18E
   adc z:$06                    ; $C190
   sta $0104,x                  ; $C192
@@ -983,10 +983,10 @@ Loc_C720:
   jsr LsrA3                    ; $C72B
   ora z:Tmp00                  ; $C72E
   tay                          ; $C730
-  lda ($2C),y                  ; $C731
+  lda (StageMapPtrLo),y        ; $C731
   sta z:Tmp00                  ; $C733
   iny                          ; $C735
-  lda ($2C),y                  ; $C736
+  lda (StageMapPtrLo),y        ; $C736
   sta z:Tmp01                  ; $C738
   lda $0111                    ; $C73A
   asl a                        ; $C73D
@@ -1547,7 +1547,7 @@ InitLevel:
   sta $0421                    ; $CBB0
   lda #$10                     ; $CBB3
   sta z:$0F                    ; $CBB5
-  lda z:$29                    ; $CBB7
+  lda z:TransitionTarget       ; $CBB7
   sta z:PaletteSetIndex        ; $CBB9
   jsr ComputeAreaGroup         ; $CBBB
   lda #$01                     ; $CBBE
@@ -1570,14 +1570,14 @@ Loc_CBD6:
   lda #$09                     ; $CBDB
   clc                          ; $CBDD
   adc z:Tmp00                  ; $CBDE
-  sta z:$2C                    ; $CBE0
+  sta z:StageMapPtrLo          ; $CBE0
   bcc Loc_CBE6                 ; $CBE2
   inc z:Tmp01                  ; $CBE4
 Loc_CBE6:
   lda #$80                     ; $CBE6
   clc                          ; $CBE8
   adc z:Tmp01                  ; $CBE9
-  sta z:$2D                    ; $CBEB
+  sta z:StageMapPtrHi          ; $CBEB
   lda z:$2A                    ; $CBED
   jsr LsrA4                    ; $CBEF
   sta z:ScrollPage             ; $CBF2
@@ -1596,7 +1596,7 @@ Loc_CC04:
   sta z:PaletteDirty           ; $CC0A
   sta $010E                    ; $CC0C
   sta $010F                    ; $CC0F
-  sta z:$32                    ; $CC12
+  sta z:PlayerScreenSide       ; $CC12
   lda z:PpuCtrlShadow          ; $CC14
   and #$FC                     ; $CC16
   sta z:PpuCtrlShadow          ; $CC18
@@ -1626,30 +1626,30 @@ Loc_CC3F:
   cpx #$38                     ; $CC46
   bcc Loc_CC3F                 ; $CC48
   ldy #$03                     ; $CC4A
-  lda ($2C),y                  ; $CC4C
+  lda (StageMapPtrLo),y        ; $CC4C
   jsr LsrA4                    ; $CC4E
   sta $0111                    ; $CC51
-  lda ($2C),y                  ; $CC54
+  lda (StageMapPtrLo),y        ; $CC54
   and #$0F                     ; $CC56
   sta $0112                    ; $CC58
   iny                          ; $CC5B
-  lda ($2C),y                  ; $CC5C
+  lda (StageMapPtrLo),y        ; $CC5C
   and #$1F                     ; $CC5E
   sta z:MmcChr0Shadow          ; $CC60
   iny                          ; $CC62
-  lda ($2C),y                  ; $CC63
+  lda (StageMapPtrLo),y        ; $CC63
   and #$1F                     ; $CC65
   sta z:MmcChr1Shadow          ; $CC67
   jsr MmcWriteChr0             ; $CC69
   jsr MmcWriteChr1             ; $CC6C
   ldy #$00                     ; $CC6F
-  lda ($2C),y                  ; $CC71
+  lda (StageMapPtrLo),y        ; $CC71
   sta z:Tmp02                  ; $CC73
   iny                          ; $CC75
-  lda ($2C),y                  ; $CC76
+  lda (StageMapPtrLo),y        ; $CC76
   sta z:Tmp03                  ; $CC78
   iny                          ; $CC7A
-  lda ($2C),y                  ; $CC7B
+  lda (StageMapPtrLo),y        ; $CC7B
   and #$0F                     ; $CC7D
   asl a                        ; $CC7F
   tay                          ; $CC80
@@ -1726,7 +1726,7 @@ Loc_CD2A:
   lda JoyHeld1                 ; $CD35
   and #$C0                     ; $CD38
   beq Loc_CD73                 ; $CD3A
-  lda z:$13                    ; $CD3C
+  lda z:StageViewMode          ; $CD3C
   bne Loc_CD50                 ; $CD3E
   lda z:PlayerPose             ; $CD40
   and #$0F                     ; $CD42
@@ -1806,7 +1806,7 @@ Loc_CDBC:
   sta PPU_MASK                 ; $CDDC
   rts                          ; $CDDF
 Sub_CDE0:
-  lda z:$32                    ; $CDE0
+  lda z:PlayerScreenSide       ; $CDE0
   beq Loc_CDF9                 ; $CDE2
   lda PlayerSpriteX0           ; $CDE4
   cmp #$78                     ; $CDE7
@@ -1817,7 +1817,7 @@ Sub_CDE0:
 Loc_CDF2:
   lda #$02                     ; $CDF2
 Loc_CDF4:
-  sta z:$32                    ; $CDF4
+  sta z:PlayerScreenSide       ; $CDF4
   jmp Loc_CE7D                 ; $CDF6
 Loc_CDF9:
   lda JoyHeld1                 ; $CDF9
@@ -1851,7 +1851,7 @@ Loc_CE23:
   inc z:ScrollColumnPending    ; $CE2D
   inc z:ScrollColumnPending    ; $CE2F
 Loc_CE31:
-  lda z:$13                    ; $CE31
+  lda z:StageViewMode          ; $CE31
   cmp #$03                     ; $CE33
   bne Loc_CE53                 ; $CE35
   lda z:ScrollX                ; $CE37
@@ -1878,14 +1878,14 @@ Loc_CE5B:
   jmp Loc_CE79                 ; $CE5D
 Loc_CE60:
   ldy #$02                     ; $CE60
-  lda ($2C),y                  ; $CE62
+  lda (StageMapPtrLo),y        ; $CE62
   and #$0F                     ; $CE64
   cmp z:ScrollPage             ; $CE66
   bne Loc_CE6F                 ; $CE68
   lda #$02                     ; $CE6A
   jmp Loc_CE7B                 ; $CE6C
 Loc_CE6F:
-  lda z:$13                    ; $CE6F
+  lda z:StageViewMode          ; $CE6F
   cmp #$03                     ; $CE71
   bne Loc_CE77                 ; $CE73
   inc z:ScrollX                ; $CE75
@@ -1894,7 +1894,7 @@ Loc_CE77:
 Loc_CE79:
   lda #$00                     ; $CE79
 Loc_CE7B:
-  sta z:$32                    ; $CE7B
+  sta z:PlayerScreenSide       ; $CE7B
 Loc_CE7D:
   rts                          ; $CE7D
 LoadScrollSegmentParams:
@@ -2170,7 +2170,7 @@ Loc_D09D:
 Loc_D0AA:
   rts                          ; $D0AA
 Sub_D0AB:
-  lda z:$32                    ; $D0AB
+  lda z:PlayerScreenSide       ; $D0AB
   beq Loc_D0FA                 ; $D0AD
   cmp #$01                     ; $D0AF
   bne Loc_D0D8                 ; $D0B1
@@ -2251,15 +2251,15 @@ StartLevelScene:
   jsr ApplyScroll              ; $D14A
   jsr Sub_F4B8                 ; $D14D
   lda #$00                     ; $D150
-  sta z:$28                    ; $D152
-  sta z:$29                    ; $D154
+  sta z:TransitionPending      ; $D152
+  sta z:TransitionTarget       ; $D154
   sta z:$2A                    ; $D156
   sta z:$2B                    ; $D158
   sta z:ScrollColumnPending    ; $D15A
   jsr MmcWriteChr0             ; $D15C
   jsr MmcWriteChr1             ; $D15F
   ldy #$02                     ; $D162
-  lda ($2C),y                  ; $D164
+  lda (StageMapPtrLo),y        ; $D164
   jsr LsrA4                    ; $D166
   clc                          ; $D169
   adc #$03                     ; $D16A
@@ -2818,11 +2818,11 @@ SetTransitionFromCode:
   ldx #$00                     ; $D747
   ldy #$72                     ; $D749
 Loc_D74B:
-  sta z:$29                    ; $D74B
+  sta z:TransitionTarget       ; $D74B
   stx z:$2A                    ; $D74D
   sty z:$2B                    ; $D74F
   lda #$01                     ; $D751
-  sta z:$28                    ; $D753
+  sta z:TransitionPending      ; $D753
   rts                          ; $D755
 Loc_D756:
   cpx #$12                     ; $D756
@@ -3310,10 +3310,10 @@ Loc_DB80:
   rts                          ; $DB80
   .incbin "prg_bank_7.bin", $1B81, $54  ; $DB81
 Sub_DBD5:
-  lda z:$28                    ; $DBD5
+  lda z:TransitionPending      ; $DBD5
   cmp #$01                     ; $DBD7
   bne Loc_DBE7                 ; $DBD9
-  lda z:$29                    ; $DBDB
+  lda z:TransitionTarget       ; $DBDB
   cmp #$50                     ; $DBDD
   bcs Loc_DBE8                 ; $DBDF
   sta z:PaletteSetIndex        ; $DBE1
@@ -3439,7 +3439,7 @@ Data_DCC4:
 Data_DCC5:
   .incbin "prg_bank_7.bin", $1CC5, $10B  ; $DCC5
 Sub_DDD0:
-  lda z:$29                    ; $DDD0
+  lda z:TransitionTarget       ; $DDD0
   sta z:PaletteSetIndex        ; $DDD2
   lda #$00                     ; $DDD4
   sta z:PaletteDirty           ; $DDD6
@@ -3579,7 +3579,7 @@ EndGameOverSequence:
   sta z:PaletteDirty           ; $DF08
   sta $0139                    ; $DF0A
   lda #$1F                     ; $DF0D
-  sta z:$29                    ; $DF0F
+  sta z:TransitionTarget       ; $DF0F
   rts                          ; $DF11
 Sub_DF12:
   lda $0139                    ; $DF12
@@ -3608,21 +3608,21 @@ Loc_DF3E:
   sta $0139                    ; $DF40
   rts                          ; $DF43
 Sub_DF44:
-  lda z:$29                    ; $DF44
+  lda z:TransitionTarget       ; $DF44
   bne Loc_DF4B                 ; $DF46
   jsr Sub_E079                 ; $DF48
 Loc_DF4B:
   lda z:FrameCounter           ; $DF4B
   and #$07                     ; $DF4D
   bne Loc_DF5E                 ; $DF4F
-  inc z:$29                    ; $DF51
-  lda z:$29                    ; $DF53
+  inc z:TransitionTarget       ; $DF51
+  lda z:TransitionTarget       ; $DF53
   cmp #$90                     ; $DF55
   bcc Loc_DF5E                 ; $DF57
   ldx #$02                     ; $DF59
   jmp Loc_DF97                 ; $DF5B
 Loc_DF5E:
-  lda z:$29                    ; $DF5E
+  lda z:TransitionTarget       ; $DF5E
   cmp #$18                     ; $DF60
   bcs Loc_DF6B                 ; $DF62
   tax                          ; $DF64
@@ -3674,7 +3674,7 @@ Data_E015:
   .incbin "prg_bank_7.bin", $2015, $3  ; $E015
 Sub_E018:
   ldx #$00                     ; $E018
-  lda z:$29                    ; $E01A
+  lda z:TransitionTarget       ; $E01A
   cmp #$20                     ; $E01C
   bcc Loc_E035                 ; $E01E
   inx                          ; $E020
@@ -3697,7 +3697,7 @@ Loc_E035:
 Data_E03C:
   .incbin "prg_bank_7.bin", $203C, $6  ; $E03C
 Sub_E042:
-  lda z:$29                    ; $E042
+  lda z:TransitionTarget       ; $E042
   cmp #$30                     ; $E044
   bcc Loc_E05D                 ; $E046
   lda z:FrameCounter           ; $E048
@@ -3714,7 +3714,7 @@ Sub_E042:
 Loc_E05D:
   rts                          ; $E05D
 Sub_E05E:
-  lda z:$29                    ; $E05E
+  lda z:TransitionTarget       ; $E05E
   cmp #$50                     ; $E060
   bcc Loc_E078                 ; $E062
   bne Loc_E06E                 ; $E064
@@ -3741,7 +3741,7 @@ Loc_E07D:
   bcc Loc_E07D                 ; $E086
   rts                          ; $E088
 Sub_E089:
-  lda z:$28                    ; $E089
+  lda z:TransitionPending      ; $E089
   beq Loc_E08E                 ; $E08B
   rts                          ; $E08D
 Loc_E08E:
@@ -3815,13 +3815,13 @@ Loc_E0FF:
   lda z:GameState              ; $E100
   cmp #$03                     ; $E102
   bne Loc_E10A                 ; $E104
-  lda z:$13                    ; $E106
+  lda z:StageViewMode          ; $E106
   bne Loc_E123                 ; $E108
 Loc_E10A:
   iny                          ; $E10A
   iny                          ; $E10B
   lda (Tmp00),y                ; $E10C
-  sta z:$29                    ; $E10E
+  sta z:TransitionTarget       ; $E10E
   dey                          ; $E110
   dey                          ; $E111
   lda (Tmp00),y                ; $E112
@@ -3833,7 +3833,7 @@ Loc_E10A:
   iny                          ; $E11F
   jmp Loc_E16E                 ; $E120
 Loc_E123:
-  lda z:$29                    ; $E123
+  lda z:TransitionTarget       ; $E123
   cmp #$50                     ; $E125
   bcc Loc_E155                 ; $E127
   cmp #$78                     ; $E129
@@ -3841,7 +3841,7 @@ Loc_E123:
   lda z:$1B                    ; $E12D
   bne Loc_E154                 ; $E12F
   jsr Sub_E17D                 ; $E131
-  lda z:$29                    ; $E134
+  lda z:TransitionTarget       ; $E134
   cmp #$69                     ; $E136
   beq Loc_E154                 ; $E138
   lda #$01                     ; $E13A
@@ -3880,15 +3880,15 @@ Loc_E16E:
   jmp Loc_E0BD                 ; $E175
 Loc_E178:
   lda #$00                     ; $E178
-  sta z:$28                    ; $E17A
+  sta z:TransitionPending      ; $E17A
   rts                          ; $E17C
 Sub_E17D:
   lda #$01                     ; $E17D
-  sta z:$28                    ; $E17F
+  sta z:TransitionPending      ; $E17F
   iny                          ; $E181
   iny                          ; $E182
   lda (Tmp00),y                ; $E183
-  sta z:$29                    ; $E185
+  sta z:TransitionTarget       ; $E185
   iny                          ; $E187
   lda (Tmp00),y                ; $E188
   sta z:$2A                    ; $E18A
@@ -3990,7 +3990,7 @@ Loc_E693:
 Loc_E6A5:
   iny                          ; $E6A5
   lda ($04),y                  ; $E6A6
-  sta z:$29                    ; $E6A8
+  sta z:TransitionTarget       ; $E6A8
   iny                          ; $E6AA
   lda ($04),y                  ; $E6AB
   and #$F0                     ; $E6AD
@@ -4006,7 +4006,7 @@ Loc_E6A5:
   jmp Loc_E6CC                 ; $E6C1
 Loc_E6C4:
   lda #$00                     ; $E6C4
-  sta z:$29                    ; $E6C6
+  sta z:TransitionTarget       ; $E6C6
   sta z:$2A                    ; $E6C8
   sta z:$2B                    ; $E6CA
 Loc_E6CC:
@@ -4066,7 +4066,7 @@ ResetPlayerForRetry:
   lda z:AmmoLo                 ; $E872
   cmp #$0A                     ; $E874
   bcs Loc_E882                 ; $E876
-  lda z:$29                    ; $E878
+  lda z:TransitionTarget       ; $E878
   cmp #$77                     ; $E87A
   beq Loc_E882                 ; $E87C
   lda #$0A                     ; $E87E
@@ -4223,7 +4223,7 @@ Loc_E97C:
   jmp Loc_E9C6                 ; $E996
 Loc_E999:
   ldx z:MmcChr1Shadow          ; $E999
-  lda z:$3F                    ; $E99B
+  lda z:FloorProbeTile         ; $E99B
   cmp Data_E961,x              ; $E99D
   bcc Loc_E9C6                 ; $E9A0
   lda PlayerSpriteY0           ; $E9A2
@@ -4265,7 +4265,7 @@ Sub_EA02:
   jmp Loc_EA21                 ; $EA13
 Loc_EA16:
   ldx z:MmcChr1Shadow          ; $EA16
-  lda z:$3F                    ; $EA18
+  lda z:FloorProbeTile         ; $EA18
   cmp Data_E961,x              ; $EA1A
   bcs Loc_EA2C                 ; $EA1D
   lda #$20                     ; $EA1F
@@ -4816,8 +4816,8 @@ Loc_F29C:
   rts                          ; $F29C
 Sub_F29D:
   lda #$00                     ; $F29D
-  sta z:$3E                    ; $F29F
-  lda z:$13                    ; $F2A1
+  sta z:FloorProbeValid        ; $F29F
+  lda z:StageViewMode          ; $F2A1
   bne Loc_F2AB                 ; $F2A3
   jsr Sub_F2DA                 ; $F2A5
   jmp Loc_F2D9                 ; $F2A8
@@ -4852,7 +4852,7 @@ Loc_F2D9:
   rts                          ; $F2D9
 Sub_F2DA:
   lda #$01                     ; $F2DA
-  sta z:$3E                    ; $F2DC
+  sta z:FloorProbeValid        ; $F2DC
   lda PlayerSpriteY0           ; $F2DE
   clc                          ; $F2E1
   adc #$2F                     ; $F2E2
@@ -4863,9 +4863,9 @@ Sub_F2DA:
   sta z:Tmp03                  ; $F2EC
   jsr PixelToNametableAddr     ; $F2EE
   lda z:Tmp00                  ; $F2F1
-  sta z:$40                    ; $F2F3
+  sta z:FloorProbeAddrLo       ; $F2F3
   lda z:Tmp01                  ; $F2F5
-  sta z:$41                    ; $F2F7
+  sta z:FloorProbeAddrHi       ; $F2F7
   rts                          ; $F2F9
 Sub_F2FA:
   cpx #$01                     ; $F2FA
@@ -4933,7 +4933,7 @@ Loc_F369:
   ldy #$10                     ; $F36D
   ldx #$F8                     ; $F36F
 Loc_F371:
-  sta z:$3E                    ; $F371
+  sta z:FloorProbeValid        ; $F371
   tya                          ; $F373
   clc                          ; $F374
   adc PlayerSpriteY0           ; $F375
@@ -4944,13 +4944,13 @@ Loc_F371:
   sta z:Tmp03                  ; $F37F
   jsr PixelToNametableAddr     ; $F381
   lda z:Tmp00                  ; $F384
-  sta z:$40                    ; $F386
+  sta z:FloorProbeAddrLo       ; $F386
   lda z:Tmp01                  ; $F388
-  sta z:$41                    ; $F38A
+  sta z:FloorProbeAddrHi       ; $F38A
   jmp Loc_F393                 ; $F38C
 Loc_F38F:
   lda #$00                     ; $F38F
-  sta z:$3E                    ; $F391
+  sta z:FloorProbeValid        ; $F391
 Loc_F393:
   rts                          ; $F393
 UpdatePlayerTopDown:
@@ -5102,9 +5102,9 @@ Sub_F4B8:
   sta z:PlayerActionState      ; $F4BA
   sta z:PlayerActionTimer      ; $F4BC
   ldy #$02                     ; $F4BE
-  lda ($2C),y                  ; $F4C0
+  lda (StageMapPtrLo),y        ; $F4C0
   jsr LsrA4                    ; $F4C2
-  sta z:$13                    ; $F4C5
+  sta z:StageViewMode          ; $F4C5
   bne Loc_F4CC                 ; $F4C7
   jmp Loc_F4E4                 ; $F4C9
 Loc_F4CC:
@@ -5276,7 +5276,7 @@ Loc_F612:
 Loc_F619:
   lda #$02                     ; $F619
 Loc_F61B:
-  sta z:$32                    ; $F61B
+  sta z:PlayerScreenSide       ; $F61B
   rts                          ; $F61D
 UploadPaletteIgnoringPad:
   lda JoyHeld1                 ; $F61E
@@ -5375,23 +5375,23 @@ Loc_F6B3:
   bcc Loc_F69A                 ; $F6B9
   rts                          ; $F6BB
 Sub_F6BC:
-  lda z:$3E                    ; $F6BC
+  lda z:FloorProbeValid        ; $F6BC
   beq Loc_F6EB                 ; $F6BE
   lda PPU_STATUS               ; $F6C0
-  lda z:$41                    ; $F6C3
+  lda z:FloorProbeAddrHi       ; $F6C3
   sta PPU_ADDR                 ; $F6C5
-  lda z:$40                    ; $F6C8
+  lda z:FloorProbeAddrLo       ; $F6C8
   sta PPU_ADDR                 ; $F6CA
   lda PPU_DATA                 ; $F6CD
   lda PPU_DATA                 ; $F6D0
-  sta z:$3F                    ; $F6D3
-  lda z:$13                    ; $F6D5
+  sta z:FloorProbeTile         ; $F6D3
+  lda z:StageViewMode          ; $F6D5
   cmp #$02                     ; $F6D7
   bne Loc_F6EB                 ; $F6D9
-  lda z:$3F                    ; $F6DB
+  lda z:FloorProbeTile         ; $F6DB
   cmp #$60                     ; $F6DD
   bcc Loc_F6EB                 ; $F6DF
-  lda z:$3E                    ; $F6E1
+  lda z:FloorProbeValid        ; $F6E1
   eor #$FF                     ; $F6E3
   and JoyHeld1                 ; $F6E5
   sta JoyHeld1                 ; $F6E8
@@ -6219,7 +6219,7 @@ Loc_FDF1:
   jmp Loc_FE68                 ; $FE35
 Loc_FE38:
   lda $0107                    ; $FE38
-  sta z:$29                    ; $FE3B
+  sta z:TransitionTarget       ; $FE3B
   bne Loc_FE44                 ; $FE3D
   lda #$00                     ; $FE3F
   jmp Loc_FE46                 ; $FE41

@@ -410,8 +410,8 @@ Bank5Tbl8065_28:
 Loc_B5_83EF:
   sta $013E                    ; $83EF
   sta $0106                    ; $83F2
-  sta z:$28                    ; $83F5
-  sta z:$29                    ; $83F7
+  sta z:TransitionPending      ; $83F5
+  sta z:TransitionTarget       ; $83F7
   sta z:$2A                    ; $83F9
   sta z:$2B                    ; $83FB
 Loc_B5_83FD:
@@ -504,10 +504,10 @@ Bank5Tbl8065_3C:
   sty z:PaletteDirty           ; $84A6
   sty z:GameState              ; $84A8
   iny                          ; $84AA
-  sty z:$28                    ; $84AB
+  sty z:TransitionPending      ; $84AB
   sty $0507                    ; $84AD
   ldy #$03                     ; $84B0
-  sty z:$29                    ; $84B2
+  sty z:TransitionTarget       ; $84B2
   ldy #$70                     ; $84B4
   sty z:$2A                    ; $84B6
   ldy #$AA                     ; $84B8
@@ -1634,9 +1634,9 @@ Loc_B5_8FCC:
   lda #$03                     ; $8FE1
   sta $0106                    ; $8FE3
   lda #$01                     ; $8FE6
-  sta z:$28                    ; $8FE8
+  sta z:TransitionPending      ; $8FE8
   lda #$2E                     ; $8FEA
-  sta z:$29                    ; $8FEC
+  sta z:TransitionTarget       ; $8FEC
   lda #$00                     ; $8FEE
   sta z:$2A                    ; $8FF0
   lda #$64                     ; $8FF2

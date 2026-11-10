@@ -1120,13 +1120,13 @@ void Sub_B4_8BD5(void) {  /* $8BD5 bank 4 */
   LDY(0x03);                                                                             /* $8BDA ldy */
   do { BUDGET();
     LDA(rd((uint16_t)(0x8BEC + R.x)));                                                   /* $8BDC lda */
-    STA((uint16_t)(0x0028 + R.y));                                                       /* $8BDF sta */
+    STA((uint16_t)(TransitionPending + R.y));                                            /* $8BDF sta */
     DEX();                                                                               /* $8BE2 dex */
     DEY();                                                                               /* $8BE3 dey */
   } while (R.y != 0);                                                                    /* $8BE4 bne */
   STY(PaletteDirty);                                                                     /* $8BE6 sty */
   INY();                                                                                 /* $8BE8 iny */
-  STY(0x28);                                                                             /* $8BE9 sty */
+  STY(TransitionPending);                                                                /* $8BE9 sty */
   RTS_RET(sp0);                                                                          /* $8BEB rts */
 }
 

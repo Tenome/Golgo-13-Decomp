@@ -263,9 +263,9 @@ L8FCC: BUDGET();
   LDA(0x03);                                                                             /* $8FE1 lda */
   STA(0x0106);                                                                           /* $8FE3 sta */
   LDA(0x01);                                                                             /* $8FE6 lda */
-  STA(0x28);                                                                             /* $8FE8 sta */
+  STA(TransitionPending);                                                                /* $8FE8 sta */
   LDA(0x2E);                                                                             /* $8FEA lda */
-  STA(0x29);                                                                             /* $8FEC sta */
+  STA(TransitionTarget);                                                                 /* $8FEC sta */
   LDA(0x00);                                                                             /* $8FEE lda */
   STA(0x2A);                                                                             /* $8FF0 sta */
   LDA(0x64);                                                                             /* $8FF2 lda */
@@ -904,8 +904,8 @@ void Bank5Tbl8065_28(void) {  /* $83C9 bank 5 */
 L83EF: BUDGET();
   STA(0x013E);                                                                           /* $83EF sta */
   STA(0x0106);                                                                           /* $83F2 sta */
-  STA(0x28);                                                                             /* $83F5 sta */
-  STA(0x29);                                                                             /* $83F7 sta */
+  STA(TransitionPending);                                                                /* $83F5 sta */
+  STA(TransitionTarget);                                                                 /* $83F7 sta */
   STA(0x2A);                                                                             /* $83F9 sta */
   STA(0x2B);                                                                             /* $83FB sta */
 L83FD: BUDGET();
@@ -1055,10 +1055,10 @@ void Bank5Tbl8065_3C(void) {  /* $849D bank 5 */
     STY(PaletteDirty);                                                                   /* $84A6 sty */
     STY(GameState);                                                                      /* $84A8 sty */
     INY();                                                                               /* $84AA iny */
-    STY(0x28);                                                                           /* $84AB sty */
+    STY(TransitionPending);                                                              /* $84AB sty */
     STY(0x0507);                                                                         /* $84AD sty */
     LDY(0x03);                                                                           /* $84B0 ldy */
-    STY(0x29);                                                                           /* $84B2 sty */
+    STY(TransitionTarget);                                                               /* $84B2 sty */
     LDY(0x70);                                                                           /* $84B4 ldy */
     STY(0x2A);                                                                           /* $84B6 sty */
     LDY(0xAA);                                                                           /* $84B8 ldy */

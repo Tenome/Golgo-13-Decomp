@@ -52,5 +52,17 @@
  "30": "PlayerActionState",
  "31": "PlayerActionTimer",
  "0100": "StageIndex",
- "0113": "ContactLock"
+ "0113": "ContactLock",
+ "32": "PlayerScreenSide",
+ "2C": "StageMapPtrLo",
+ "2D": "StageMapPtrHi",
+ "3E": "FloorProbeValid",
+ "3F": "FloorProbeTile",
+ "40": "FloorProbeAddrLo",
+ "41": "FloorProbeAddrHi",
+ "13": "StageViewMode",
+ "28": "TransitionPending",
+ "29": "TransitionTarget",
+ "0102": "SpawnIndexCurrent",
+ "0103": "SpawnIndexNext"
 }

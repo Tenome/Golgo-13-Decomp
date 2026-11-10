@@ -859,13 +859,13 @@ Sub_B4_8BD5:
   ldy #$03                     ; $8BDA
 Loc_B4_8BDC:
   lda Data_B4_8BEC,x           ; $8BDC
-  sta a:$28,y                  ; $8BDF
+  sta a:TransitionPending,y    ; $8BDF
   dex                          ; $8BE2
   dey                          ; $8BE3
   bne Loc_B4_8BDC              ; $8BE4
   sty z:PaletteDirty           ; $8BE6
   iny                          ; $8BE8
-  sty z:$28                    ; $8BE9
+  sty z:TransitionPending      ; $8BE9
   rts                          ; $8BEB
 Data_B4_8BEC:
   .incbin "prg_bank_4.bin", $0BEC, $1B  ; $8BEC

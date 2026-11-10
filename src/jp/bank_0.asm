@@ -39,7 +39,7 @@ Loc_B0_8010:
   and $2E2D                    ; $850B
   .incbin "prg_bank_0.bin", $050E, $5  ; $850E
   bmi Loc_B0_8525              ; $8513
-  and ($32),y                  ; $8515
+  and (PlayerScreenSide),y     ; $8515
   .incbin "prg_bank_0.bin", $0517, $E  ; $8517
 Loc_B0_8525:
   bpl Loc_B0_8560              ; $8525

@@ -7,6 +7,7 @@
 #define FrameCounter 0x0010
 #define FrameInSecond 0x0011
 #define SecondCounter 0x0012
+#define StageViewMode 0x0013
 #define GameState 0x0014
 #define ScrollColumnPending 0x0015
 #define AreaGroup 0x0016
@@ -14,8 +15,13 @@
 #define ScrollPage 0x0018
 #define ScrollX 0x0019
 #define ScrollY 0x001A
+#define TransitionPending 0x0028
+#define TransitionTarget 0x0029
+#define StageMapPtrLo 0x002C
+#define StageMapPtrHi 0x002D
 #define PlayerActionState 0x0030
 #define PlayerActionTimer 0x0031
+#define PlayerScreenSide 0x0032
 #define PaletteDirty 0x0035
 #define PlayerPose 0x0036
 #define PlayerSpriteFrame 0x0037
@@ -23,6 +29,10 @@
 #define PlayerLifeHi 0x0039
 #define AmmoLo 0x003A
 #define AmmoHi 0x003B
+#define FloorProbeValid 0x003E
+#define FloorProbeTile 0x003F
+#define FloorProbeAddrLo 0x0040
+#define FloorProbeAddrHi 0x0041
 #define SndPtrLo 0x00F0
 #define SndPtrHi 0x00F1
 #define MmcControlShadow 0x00F8
@@ -34,6 +44,8 @@
 #define PpuMaskShadow 0x00FE
 #define PpuCtrlShadow 0x00FF
 #define StageIndex 0x0100
+#define SpawnIndexCurrent 0x0102
+#define SpawnIndexNext 0x0103
 #define RandomIndex 0x0108
 #define PpuAddrBufHi 0x0109
 #define PpuAddrBufLo 0x010A

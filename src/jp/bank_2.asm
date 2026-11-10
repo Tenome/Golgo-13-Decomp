@@ -190,9 +190,9 @@ Loc_B2_819B:
   adc z:Tmp00                  ; $81AC
   tay                          ; $81AE
   lda #$01                     ; $81AF
-  sta z:$28                    ; $81B1
+  sta z:TransitionPending      ; $81B1
   lda Data_B2_81C3,y           ; $81B3
-  sta z:$29                    ; $81B6
+  sta z:TransitionTarget       ; $81B6
   lda Data_B2_81C4,y           ; $81B8
   sta z:$2A                    ; $81BB
   lda Data_B2_81C5,y           ; $81BD
@@ -264,9 +264,9 @@ Sub_B2_827E:
   asl a                        ; $8284
   tax                          ; $8285
   lda Data_B2_9150,x           ; $8286
-  sta z:$2C                    ; $8289
+  sta z:StageMapPtrLo          ; $8289
   lda Data_B2_9151,x           ; $828B
-  sta z:$2D                    ; $828E
+  sta z:StageMapPtrHi          ; $828E
   lda Data_B2_9152,x           ; $8290
   jsr LsrA4                    ; $8293
   sta $0111                    ; $8296

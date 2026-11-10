@@ -193,7 +193,7 @@ LC16F: BUDGET();
 void FetchInlineWord(void) {  /* $C170 bank 7 */
   uint8_t sp0 = R.sp;
   TSX();                                                                                 /* $C170 tsx */
-  LDA(rd((uint16_t)(0x0103 + R.x)));                                                     /* $C171 lda */
+  LDA(rd((uint16_t)(SpawnIndexNext + R.x)));                                             /* $C171 lda */
   STA(0x05);                                                                             /* $C174 sta */
   LDA(rd((uint16_t)(0x0104 + R.x)));                                                     /* $C176 lda */
   STA(0x06);                                                                             /* $C179 sta */
@@ -206,7 +206,7 @@ void FetchInlineWord(void) {  /* $C170 bank 7 */
   CLC();                                                                                 /* $C186 clc */
   LDA(0x02);                                                                             /* $C187 lda */
   adc(rd(0x05));                                                                         /* $C189 adc */
-  STA((uint16_t)(0x0103 + R.x));                                                         /* $C18B sta */
+  STA((uint16_t)(SpawnIndexNext + R.x));                                                 /* $C18B sta */
   LDA(0x00);                                                                             /* $C18E lda */
   adc(rd(0x06));                                                                         /* $C190 adc */
   STA((uint16_t)(0x0104 + R.x));                                                         /* $C192 sta */
@@ -1127,10 +1127,10 @@ void Sub_C711(void) {  /* $C711 bank 7 */
   push16(0xC72D); LsrA3(); UNW(); ret_check(0xC72D);                                     /* $C72B jsr */
   ORA(rd(Tmp00));                                                                        /* $C72E ora */
   TAY();                                                                                 /* $C730 tay */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $C731 lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $C731 lda */
   STA(Tmp00);                                                                            /* $C733 sta */
   INY();                                                                                 /* $C735 iny */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $C736 lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $C736 lda */
   STA(Tmp01);                                                                            /* $C738 sta */
   LDA(rd(0x0111));                                                                       /* $C73A lda */
   ASL_A();                                                                               /* $C73D asl */
@@ -1700,7 +1700,7 @@ void InitLevel(void) {  /* $CBA3 bank 7 */
   STA(0x0421);                                                                           /* $CBB0 sta */
   LDA(0x10);                                                                             /* $CBB3 lda */
   STA(0x0F);                                                                             /* $CBB5 sta */
-  LDA(rd(0x29));                                                                         /* $CBB7 lda */
+  LDA(rd(TransitionTarget));                                                             /* $CBB7 lda */
   STA(PaletteSetIndex);                                                                  /* $CBB9 sta */
   push16(0xCBBD); ComputeAreaGroup(); UNW(); ret_check(0xCBBD);                          /* $CBBB jsr */
   LDA(0x01);                                                                             /* $CBBE lda */
@@ -1723,14 +1723,14 @@ void InitLevel(void) {  /* $CBA3 bank 7 */
   LDA(0x09);                                                                             /* $CBDB lda */
   CLC();                                                                                 /* $CBDD clc */
   adc(rd(Tmp00));                                                                        /* $CBDE adc */
-  STA(0x2C);                                                                             /* $CBE0 sta */
+  STA(StageMapPtrLo);                                                                    /* $CBE0 sta */
   if (R.c) {                                                                             /* $CBE2 bcc */
     INC_M(Tmp01);                                                                        /* $CBE4 inc */
   }
   LDA(0x80);                                                                             /* $CBE6 lda */
   CLC();                                                                                 /* $CBE8 clc */
   adc(rd(Tmp01));                                                                        /* $CBE9 adc */
-  STA(0x2D);                                                                             /* $CBEB sta */
+  STA(StageMapPtrHi);                                                                    /* $CBEB sta */
   LDA(rd(0x2A));                                                                         /* $CBED lda */
   push16(0xCBF1); LsrA4(); UNW(); ret_check(0xCBF1);                                     /* $CBEF jsr */
   STA(ScrollPage);                                                                       /* $CBF2 sta */
@@ -1749,7 +1749,7 @@ void InitLevel(void) {  /* $CBA3 bank 7 */
   STA(PaletteDirty);                                                                     /* $CC0A sta */
   STA(0x010E);                                                                           /* $CC0C sta */
   STA(0x010F);                                                                           /* $CC0F sta */
-  STA(0x32);                                                                             /* $CC12 sta */
+  STA(PlayerScreenSide);                                                                 /* $CC12 sta */
   LDA(rd(PpuCtrlShadow));                                                                /* $CC14 lda */
   AND(0xFC);                                                                             /* $CC16 and */
   STA(PpuCtrlShadow);                                                                    /* $CC18 sta */
@@ -1779,30 +1779,30 @@ void InitLevel(void) {  /* $CBA3 bank 7 */
     cmp8(R.x, 0x38);                                                                     /* $CC46 cpx */
   } while (R.x < 0x38);                                                                  /* $CC48 bcc */
   LDY(0x03);                                                                             /* $CC4A ldy */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $CC4C lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $CC4C lda */
   push16(0xCC50); LsrA4(); UNW(); ret_check(0xCC50);                                     /* $CC4E jsr */
   STA(0x0111);                                                                           /* $CC51 sta */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $CC54 lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $CC54 lda */
   AND(0x0F);                                                                             /* $CC56 and */
   STA(0x0112);                                                                           /* $CC58 sta */
   INY();                                                                                 /* $CC5B iny */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $CC5C lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $CC5C lda */
   AND(0x1F);                                                                             /* $CC5E and */
   STA(MmcChr0Shadow);                                                                    /* $CC60 sta */
   INY();                                                                                 /* $CC62 iny */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $CC63 lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $CC63 lda */
   AND(0x1F);                                                                             /* $CC65 and */
   STA(MmcChr1Shadow);                                                                    /* $CC67 sta */
   push16(0xCC6B); MmcWriteChr0(); UNW(); ret_check(0xCC6B);                              /* $CC69 jsr */
   push16(0xCC6E); MmcWriteChr1(); UNW(); ret_check(0xCC6E);                              /* $CC6C jsr */
   LDY(0x00);                                                                             /* $CC6F ldy */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $CC71 lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $CC71 lda */
   STA(Tmp02);                                                                            /* $CC73 sta */
   INY();                                                                                 /* $CC75 iny */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $CC76 lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $CC76 lda */
   STA(Tmp03);                                                                            /* $CC78 sta */
   INY();                                                                                 /* $CC7A iny */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $CC7B lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $CC7B lda */
   AND(0x0F);                                                                             /* $CC7D and */
   ASL_A();                                                                               /* $CC7F asl */
   TAY();                                                                                 /* $CC80 tay */
@@ -1884,7 +1884,7 @@ LCD2A: BUDGET();
   LDA(rd(JoyHeld1));                                                                     /* $CD35 lda */
   AND(0xC0);                                                                             /* $CD38 and */
   if (R.a != 0) {                                                                        /* $CD3A beq */
-    LDA(rd(0x13));                                                                       /* $CD3C lda */
+    LDA(rd(StageViewMode));                                                              /* $CD3C lda */
     if (R.a == 0) {                                                                      /* $CD3E bne */
       LDA(rd(PlayerPose));                                                               /* $CD40 lda */
       AND(0x0F);                                                                         /* $CD42 and */
@@ -1972,7 +1972,7 @@ void UploadNametableColumn(void) {  /* $CD74 bank 7 */
 
 void Sub_CDE0(void) {  /* $CDE0 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x32));                                                                         /* $CDE0 lda */
+  LDA(rd(PlayerScreenSide));                                                             /* $CDE0 lda */
   if (R.a != 0) {                                                                        /* $CDE2 beq */
     LDA(rd(PlayerSpriteX0));                                                             /* $CDE4 lda */
     cmp8(R.a, 0x78);                                                                     /* $CDE7 cmp */
@@ -1982,7 +1982,7 @@ void Sub_CDE0(void) {  /* $CDE0 bank 7 */
     } else {
       LDA(0x02);                                                                         /* $CDF2 lda */
     }
-    STA(0x32);                                                                           /* $CDF4 sta */
+    STA(PlayerScreenSide);                                                               /* $CDF4 sta */
     goto LCE7D;                                                                          /* $CDF6 jmp */
   }
 LCDF9: BUDGET();
@@ -2016,7 +2016,7 @@ LCDF9: BUDGET();
         INC_M(ScrollColumnPending);                                                      /* $CE2D inc */
         INC_M(ScrollColumnPending);                                                      /* $CE2F inc */
       }
-      LDA(rd(0x13));                                                                     /* $CE31 lda */
+      LDA(rd(StageViewMode));                                                            /* $CE31 lda */
       cmp8(R.a, 0x03);                                                                   /* $CE33 cmp */
       if (R.a == 0x03) {                                                                 /* $CE35 bne */
         LDA(rd(ScrollX));                                                                /* $CE37 lda */
@@ -2043,14 +2043,14 @@ LCDF9: BUDGET();
       goto LCE79;                                                                        /* $CE5D jmp */
     }
     LDY(0x02);                                                                           /* $CE60 ldy */
-    LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                             /* $CE62 lda */
+    LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                    /* $CE62 lda */
     AND(0x0F);                                                                           /* $CE64 and */
     cmp8(R.a, rd(ScrollPage));                                                           /* $CE66 cmp */
     if (R.a == rd(ScrollPage)) {                                                         /* $CE68 bne */
       LDA(0x02);                                                                         /* $CE6A lda */
       goto LCE7B;                                                                        /* $CE6C jmp */
     }
-    LDA(rd(0x13));                                                                       /* $CE6F lda */
+    LDA(rd(StageViewMode));                                                              /* $CE6F lda */
     cmp8(R.a, 0x03);                                                                     /* $CE71 cmp */
     if (R.a == 0x03) {                                                                   /* $CE73 bne */
       INC_M(ScrollX);                                                                    /* $CE75 inc */
@@ -2060,7 +2060,7 @@ LCDF9: BUDGET();
 LCE79: BUDGET();
   LDA(0x00);                                                                             /* $CE79 lda */
 LCE7B: BUDGET();
-  STA(0x32);                                                                             /* $CE7B sta */
+  STA(PlayerScreenSide);                                                                 /* $CE7B sta */
 LCE7D: BUDGET();
   RTS_RET(sp0);                                                                          /* $CE7D rts */
 }
@@ -2345,7 +2345,7 @@ LD0AA: BUDGET();
 
 void Sub_D0AB(void) {  /* $D0AB bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x32));                                                                         /* $D0AB lda */
+  LDA(rd(PlayerScreenSide));                                                             /* $D0AB lda */
   if (R.a != 0) {                                                                        /* $D0AD beq */
     cmp8(R.a, 0x01);                                                                     /* $D0AF cmp */
     if (R.a == 0x01) {                                                                   /* $D0B1 bne */
@@ -2434,15 +2434,15 @@ void StartLevelScene(void) {  /* $D13A bank 7 */
   push16(0xD14C); ApplyScroll(); UNW(); ret_check(0xD14C);                               /* $D14A jsr */
   push16(0xD14F); Sub_F4B8(); UNW(); ret_check(0xD14F);                                  /* $D14D jsr */
   LDA(0x00);                                                                             /* $D150 lda */
-  STA(0x28);                                                                             /* $D152 sta */
-  STA(0x29);                                                                             /* $D154 sta */
+  STA(TransitionPending);                                                                /* $D152 sta */
+  STA(TransitionTarget);                                                                 /* $D154 sta */
   STA(0x2A);                                                                             /* $D156 sta */
   STA(0x2B);                                                                             /* $D158 sta */
   STA(ScrollColumnPending);                                                              /* $D15A sta */
   push16(0xD15E); MmcWriteChr0(); UNW(); ret_check(0xD15E);                              /* $D15C jsr */
   push16(0xD161); MmcWriteChr1(); UNW(); ret_check(0xD161);                              /* $D15F jsr */
   LDY(0x02);                                                                             /* $D162 ldy */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $D164 lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $D164 lda */
   push16(0xD168); LsrA4(); UNW(); ret_check(0xD168);                                     /* $D166 jsr */
   CLC();                                                                                 /* $D169 clc */
   adc(0x03);                                                                             /* $D16A adc */
@@ -3054,11 +3054,11 @@ void SetTransitionFromCode(void) {  /* $D740 bank 7 */
   LDX(0x00);                                                                             /* $D747 ldx */
   LDY(0x72);                                                                             /* $D749 ldy */
 LD74B: BUDGET();
-  STA(0x29);                                                                             /* $D74B sta */
+  STA(TransitionTarget);                                                                 /* $D74B sta */
   STX(0x2A);                                                                             /* $D74D stx */
   STY(0x2B);                                                                             /* $D74F sty */
   LDA(0x01);                                                                             /* $D751 lda */
-  STA(0x28);                                                                             /* $D753 sta */
+  STA(TransitionPending);                                                                /* $D753 sta */
   RTS_RET(sp0);                                                                          /* $D755 rts */
 LD756: BUDGET();
   cmp8(R.x, 0x12);                                                                       /* $D756 cpx */
@@ -3551,10 +3551,10 @@ LDB80: BUDGET();
 
 void Sub_DBD5(void) {  /* $DBD5 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x28));                                                                         /* $DBD5 lda */
+  LDA(rd(TransitionPending));                                                            /* $DBD5 lda */
   cmp8(R.a, 0x01);                                                                       /* $DBD7 cmp */
   if (R.a == 0x01) {                                                                     /* $DBD9 bne */
-    LDA(rd(0x29));                                                                       /* $DBDB lda */
+    LDA(rd(TransitionTarget));                                                           /* $DBDB lda */
     cmp8(R.a, 0x50);                                                                     /* $DBDD cmp */
     if (R.a >= 0x50) goto LDBE8;                                                         /* $DBDF bcs */
     STA(PaletteSetIndex);                                                                /* $DBE1 sta */
@@ -3687,7 +3687,7 @@ void Sub_DC87(void) {  /* $DC87 bank 7 */
 
 void Sub_DDD0(void) {  /* $DDD0 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x29));                                                                         /* $DDD0 lda */
+  LDA(rd(TransitionTarget));                                                             /* $DDD0 lda */
   STA(PaletteSetIndex);                                                                  /* $DDD2 sta */
   LDA(0x00);                                                                             /* $DDD4 lda */
   STA(PaletteDirty);                                                                     /* $DDD6 sta */
@@ -3829,7 +3829,7 @@ void EndGameOverSequence(void) {  /* $DF02 bank 7 */
   STA(PaletteDirty);                                                                     /* $DF08 sta */
   STA(0x0139);                                                                           /* $DF0A sta */
   LDA(0x1F);                                                                             /* $DF0D lda */
-  STA(0x29);                                                                             /* $DF0F sta */
+  STA(TransitionTarget);                                                                 /* $DF0F sta */
   RTS_RET(sp0);                                                                          /* $DF11 rts */
 }
 
@@ -3865,22 +3865,22 @@ LDF3E: BUDGET();
 
 void Sub_DF44(void) {  /* $DF44 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x29));                                                                         /* $DF44 lda */
+  LDA(rd(TransitionTarget));                                                             /* $DF44 lda */
   if (R.a == 0) {                                                                        /* $DF46 bne */
     push16(0xDF4A); Sub_E079(); UNW(); ret_check(0xDF4A);                                /* $DF48 jsr */
   }
   LDA(rd(FrameCounter));                                                                 /* $DF4B lda */
   AND(0x07);                                                                             /* $DF4D and */
   if (R.a == 0) {                                                                        /* $DF4F bne */
-    INC_M(0x29);                                                                         /* $DF51 inc */
-    LDA(rd(0x29));                                                                       /* $DF53 lda */
+    INC_M(TransitionTarget);                                                             /* $DF51 inc */
+    LDA(rd(TransitionTarget));                                                           /* $DF53 lda */
     cmp8(R.a, 0x90);                                                                     /* $DF55 cmp */
     if (R.a < 0x90) goto LDF5E;                                                          /* $DF57 bcc */
     LDX(0x02);                                                                           /* $DF59 ldx */
     goto LDF97;                                                                          /* $DF5B jmp */
   }
 LDF5E: BUDGET();
-  LDA(rd(0x29));                                                                         /* $DF5E lda */
+  LDA(rd(TransitionTarget));                                                             /* $DF5E lda */
   cmp8(R.a, 0x18);                                                                       /* $DF60 cmp */
   if (R.a < 0x18) {                                                                      /* $DF62 bcs */
     TAX();                                                                               /* $DF64 tax */
@@ -3922,7 +3922,7 @@ LDF97: BUDGET();
 void Sub_E018(void) {  /* $E018 bank 7 */
   uint8_t sp0 = R.sp;
   LDX(0x00);                                                                             /* $E018 ldx */
-  LDA(rd(0x29));                                                                         /* $E01A lda */
+  LDA(rd(TransitionTarget));                                                             /* $E01A lda */
   cmp8(R.a, 0x20);                                                                       /* $E01C cmp */
   if (R.a >= 0x20) {                                                                     /* $E01E bcc */
     INX();                                                                               /* $E020 inx */
@@ -3947,7 +3947,7 @@ LE035: BUDGET();
 
 void Sub_E042(void) {  /* $E042 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x29));                                                                         /* $E042 lda */
+  LDA(rd(TransitionTarget));                                                             /* $E042 lda */
   cmp8(R.a, 0x30);                                                                       /* $E044 cmp */
   if (R.a >= 0x30) {                                                                     /* $E046 bcc */
     LDA(rd(FrameCounter));                                                               /* $E048 lda */
@@ -3968,7 +3968,7 @@ LE05D: BUDGET();
 
 void Sub_E05E(void) {  /* $E05E bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x29));                                                                         /* $E05E lda */
+  LDA(rd(TransitionTarget));                                                             /* $E05E lda */
   cmp8(R.a, 0x50);                                                                       /* $E060 cmp */
   if (R.a >= 0x50) {                                                                     /* $E062 bcc */
     if (R.a == 0x50) {                                                                   /* $E064 bne */
@@ -4002,7 +4002,7 @@ void Sub_E079(void) {  /* $E079 bank 7 */
 
 void Sub_E089(void) {  /* $E089 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x28));                                                                         /* $E089 lda */
+  LDA(rd(TransitionPending));                                                            /* $E089 lda */
   if (R.a != 0) {                                                                        /* $E08B beq */
     RTS_RET(sp0);                                                                        /* $E08D rts */
   }
@@ -4073,13 +4073,13 @@ LE0E2: BUDGET();
         LDA(rd(GameState));                                                              /* $E100 lda */
         cmp8(R.a, 0x03);                                                                 /* $E102 cmp */
         if (R.a == 0x03) {                                                               /* $E104 bne */
-          LDA(rd(0x13));                                                                 /* $E106 lda */
+          LDA(rd(StageViewMode));                                                        /* $E106 lda */
           if (R.a != 0) goto LE123;                                                      /* $E108 bne */
         }
         INY();                                                                           /* $E10A iny */
         INY();                                                                           /* $E10B iny */
         LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                        /* $E10C lda */
-        STA(0x29);                                                                       /* $E10E sta */
+        STA(TransitionTarget);                                                           /* $E10E sta */
         DEY();                                                                           /* $E110 dey */
         DEY();                                                                           /* $E111 dey */
         LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                        /* $E112 lda */
@@ -4092,7 +4092,7 @@ LE0E2: BUDGET();
           goto LE16E;                                                                    /* $E120 jmp */
         }
 LE123: BUDGET();
-        LDA(rd(0x29));                                                                   /* $E123 lda */
+        LDA(rd(TransitionTarget));                                                       /* $E123 lda */
         cmp8(R.a, 0x50);                                                                 /* $E125 cmp */
         if (R.a >= 0x50) {                                                               /* $E127 bcc */
           cmp8(R.a, 0x78);                                                               /* $E129 cmp */
@@ -4100,7 +4100,7 @@ LE123: BUDGET();
           LDA(rd(0x1B));                                                                 /* $E12D lda */
           if (R.a == 0) {                                                                /* $E12F bne */
             push16(0xE133); Sub_E17D(); UNW(); ret_check(0xE133);                        /* $E131 jsr */
-            LDA(rd(0x29));                                                               /* $E134 lda */
+            LDA(rd(TransitionTarget));                                                   /* $E134 lda */
             cmp8(R.a, 0x69);                                                             /* $E136 cmp */
             if (R.a == 0x69) goto LE154;                                                 /* $E138 beq */
             LDA(0x01);                                                                   /* $E13A lda */
@@ -4143,18 +4143,18 @@ LE16E: BUDGET();
   }
 LE178: BUDGET();
   LDA(0x00);                                                                             /* $E178 lda */
-  STA(0x28);                                                                             /* $E17A sta */
+  STA(TransitionPending);                                                                /* $E17A sta */
   RTS_RET(sp0);                                                                          /* $E17C rts */
 }
 
 void Sub_E17D(void) {  /* $E17D bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x01);                                                                             /* $E17D lda */
-  STA(0x28);                                                                             /* $E17F sta */
+  STA(TransitionPending);                                                                /* $E17F sta */
   INY();                                                                                 /* $E181 iny */
   INY();                                                                                 /* $E182 iny */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $E183 lda */
-  STA(0x29);                                                                             /* $E185 sta */
+  STA(TransitionTarget);                                                                 /* $E185 sta */
   INY();                                                                                 /* $E187 iny */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $E188 lda */
   STA(0x2A);                                                                             /* $E18A sta */
@@ -4256,7 +4256,7 @@ void Sub_E664(void) {  /* $E664 bank 7 */
 LE6A5: BUDGET();
     INY();                                                                               /* $E6A5 iny */
     LDA(rd((uint16_t)(rd16zp(0x04) + R.y)));                                             /* $E6A6 lda */
-    STA(0x29);                                                                           /* $E6A8 sta */
+    STA(TransitionTarget);                                                               /* $E6A8 sta */
     INY();                                                                               /* $E6AA iny */
     LDA(rd((uint16_t)(rd16zp(0x04) + R.y)));                                             /* $E6AB lda */
     AND(0xF0);                                                                           /* $E6AD and */
@@ -4272,7 +4272,7 @@ LE6A5: BUDGET();
     goto LE6CC;                                                                          /* $E6C1 jmp */
 LE6C4: BUDGET();
     LDA(0x00);                                                                           /* $E6C4 lda */
-    STA(0x29);                                                                           /* $E6C6 sta */
+    STA(TransitionTarget);                                                               /* $E6C6 sta */
     STA(0x2A);                                                                           /* $E6C8 sta */
     STA(0x2B);                                                                           /* $E6CA sta */
 LE6CC: BUDGET();
@@ -4331,7 +4331,7 @@ void ResetPlayerForRetry(void) {  /* $E85E bank 7 */
   LDA(rd(AmmoLo));                                                                       /* $E872 lda */
   cmp8(R.a, 0x0A);                                                                       /* $E874 cmp */
   if (R.a < 0x0A) {                                                                      /* $E876 bcs */
-    LDA(rd(0x29));                                                                       /* $E878 lda */
+    LDA(rd(TransitionTarget));                                                           /* $E878 lda */
     cmp8(R.a, 0x77);                                                                     /* $E87A cmp */
     if (R.a == 0x77) goto LE882;                                                         /* $E87C beq */
     LDA(0x0A);                                                                           /* $E87E lda */
@@ -4499,7 +4499,7 @@ void Sub_E971(void) {  /* $E971 bank 7 */
     STA(PlayerActionTimer);                                                              /* $E994 sta */
   } else {
     LDX(rd(MmcChr1Shadow));                                                              /* $E999 ldx */
-    LDA(rd(0x3F));                                                                       /* $E99B lda */
+    LDA(rd(FloorProbeTile));                                                             /* $E99B lda */
     cmp8(R.a, rd((uint16_t)(0xE961 + R.x)));                                             /* $E99D cmp */
     if (R.a < rd((uint16_t)(0xE961 + R.x))) goto LE9C6;                                  /* $E9A0 bcc */
     LDA(rd(PlayerSpriteY0));                                                             /* $E9A2 lda */
@@ -4542,7 +4542,7 @@ void Sub_EA02(void) {  /* $EA02 bank 7 */
       LDA(0x00);                                                                         /* $EA11 lda */
     } else {
       LDX(rd(MmcChr1Shadow));                                                            /* $EA16 ldx */
-      LDA(rd(0x3F));                                                                     /* $EA18 lda */
+      LDA(rd(FloorProbeTile));                                                           /* $EA18 lda */
       cmp8(R.a, rd((uint16_t)(0xE961 + R.x)));                                           /* $EA1A cmp */
       if (R.a >= rd((uint16_t)(0xE961 + R.x))) goto LEA2C;                               /* $EA1D bcs */
       LDA(0x20);                                                                         /* $EA1F lda */
@@ -5140,8 +5140,8 @@ LF29C: BUDGET();
 void Sub_F29D(void) {  /* $F29D bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $F29D lda */
-  STA(0x3E);                                                                             /* $F29F sta */
-  LDA(rd(0x13));                                                                         /* $F2A1 lda */
+  STA(FloorProbeValid);                                                                  /* $F29F sta */
+  LDA(rd(StageViewMode));                                                                /* $F2A1 lda */
   if (R.a == 0) {                                                                        /* $F2A3 bne */
     push16(0xF2A7); Sub_F2DA(); UNW(); ret_check(0xF2A7);                                /* $F2A5 jsr */
   } else {
@@ -5179,7 +5179,7 @@ LF2D9: BUDGET();
 void Sub_F2DA(void) {  /* $F2DA bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x01);                                                                             /* $F2DA lda */
-  STA(0x3E);                                                                             /* $F2DC sta */
+  STA(FloorProbeValid);                                                                  /* $F2DC sta */
   LDA(rd(PlayerSpriteY0));                                                               /* $F2DE lda */
   CLC();                                                                                 /* $F2E1 clc */
   adc(0x2F);                                                                             /* $F2E2 adc */
@@ -5190,9 +5190,9 @@ void Sub_F2DA(void) {  /* $F2DA bank 7 */
   STA(Tmp03);                                                                            /* $F2EC sta */
   push16(0xF2F0); PixelToNametableAddr(); UNW(); ret_check(0xF2F0);                      /* $F2EE jsr */
   LDA(rd(Tmp00));                                                                        /* $F2F1 lda */
-  STA(0x40);                                                                             /* $F2F3 sta */
+  STA(FloorProbeAddrLo);                                                                 /* $F2F3 sta */
   LDA(rd(Tmp01));                                                                        /* $F2F5 lda */
-  STA(0x41);                                                                             /* $F2F7 sta */
+  STA(FloorProbeAddrHi);                                                                 /* $F2F7 sta */
   RTS_RET(sp0);                                                                          /* $F2F9 rts */
 }
 
@@ -5263,7 +5263,7 @@ LF333: BUDGET();
     LDX(0xF8);                                                                           /* $F36F ldx */
   }
 LF371: BUDGET();
-  STA(0x3E);                                                                             /* $F371 sta */
+  STA(FloorProbeValid);                                                                  /* $F371 sta */
   TYA();                                                                                 /* $F373 tya */
   CLC();                                                                                 /* $F374 clc */
   adc(rd(PlayerSpriteY0));                                                               /* $F375 adc */
@@ -5274,13 +5274,13 @@ LF371: BUDGET();
   STA(Tmp03);                                                                            /* $F37F sta */
   push16(0xF383); PixelToNametableAddr(); UNW(); ret_check(0xF383);                      /* $F381 jsr */
   LDA(rd(Tmp00));                                                                        /* $F384 lda */
-  STA(0x40);                                                                             /* $F386 sta */
+  STA(FloorProbeAddrLo);                                                                 /* $F386 sta */
   LDA(rd(Tmp01));                                                                        /* $F388 lda */
-  STA(0x41);                                                                             /* $F38A sta */
+  STA(FloorProbeAddrHi);                                                                 /* $F38A sta */
   goto LF393;                                                                            /* $F38C jmp */
 LF38F: BUDGET();
   LDA(0x00);                                                                             /* $F38F lda */
-  STA(0x3E);                                                                             /* $F391 sta */
+  STA(FloorProbeValid);                                                                  /* $F391 sta */
 LF393: BUDGET();
   RTS_RET(sp0);                                                                          /* $F393 rts */
 }
@@ -5447,9 +5447,9 @@ void Sub_F4B8(void) {  /* $F4B8 bank 7 */
   STA(PlayerActionState);                                                                /* $F4BA sta */
   STA(PlayerActionTimer);                                                                /* $F4BC sta */
   LDY(0x02);                                                                             /* $F4BE ldy */
-  LDA(rd((uint16_t)(rd16zp(0x2C) + R.y)));                                               /* $F4C0 lda */
+  LDA(rd((uint16_t)(rd16zp(StageMapPtrLo) + R.y)));                                      /* $F4C0 lda */
   push16(0xF4C4); LsrA4(); UNW(); ret_check(0xF4C4);                                     /* $F4C2 jsr */
-  STA(0x13);                                                                             /* $F4C5 sta */
+  STA(StageViewMode);                                                                    /* $F4C5 sta */
   if (!R.z) {                                                                            /* $F4C7 bne */
     cmp8(R.a, 0x01);                                                                     /* $F4CC cmp */
     if (R.a == 0x01) {                                                                   /* $F4CE bne */
@@ -5604,7 +5604,7 @@ void SetPlayerScreenSide(void) {  /* $F606 bank 7 */
     LDA(0x02);                                                                           /* $F619 lda */
   }
 LF61B: BUDGET();
-  STA(0x32);                                                                             /* $F61B sta */
+  STA(PlayerScreenSide);                                                                 /* $F61B sta */
   RTS_RET(sp0);                                                                          /* $F61D rts */
 }
 
@@ -5719,23 +5719,23 @@ LF6B3: BUDGET();
 
 void Sub_F6BC(void) {  /* $F6BC bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x3E));                                                                         /* $F6BC lda */
+  LDA(rd(FloorProbeValid));                                                              /* $F6BC lda */
   if (R.a != 0) {                                                                        /* $F6BE beq */
     LDA(rd(PPU_STATUS));                                                                 /* $F6C0 lda */
-    LDA(rd(0x41));                                                                       /* $F6C3 lda */
+    LDA(rd(FloorProbeAddrHi));                                                           /* $F6C3 lda */
     STA(PPU_ADDR);                                                                       /* $F6C5 sta */
-    LDA(rd(0x40));                                                                       /* $F6C8 lda */
+    LDA(rd(FloorProbeAddrLo));                                                           /* $F6C8 lda */
     STA(PPU_ADDR);                                                                       /* $F6CA sta */
     LDA(rd(PPU_DATA));                                                                   /* $F6CD lda */
     LDA(rd(PPU_DATA));                                                                   /* $F6D0 lda */
-    STA(0x3F);                                                                           /* $F6D3 sta */
-    LDA(rd(0x13));                                                                       /* $F6D5 lda */
+    STA(FloorProbeTile);                                                                 /* $F6D3 sta */
+    LDA(rd(StageViewMode));                                                              /* $F6D5 lda */
     cmp8(R.a, 0x02);                                                                     /* $F6D7 cmp */
     if (R.a != 0x02) goto LF6EB;                                                         /* $F6D9 bne */
-    LDA(rd(0x3F));                                                                       /* $F6DB lda */
+    LDA(rd(FloorProbeTile));                                                             /* $F6DB lda */
     cmp8(R.a, 0x60);                                                                     /* $F6DD cmp */
     if (R.a < 0x60) goto LF6EB;                                                          /* $F6DF bcc */
-    LDA(rd(0x3E));                                                                       /* $F6E1 lda */
+    LDA(rd(FloorProbeValid));                                                            /* $F6E1 lda */
     EOR(0xFF);                                                                           /* $F6E3 eor */
     AND(rd(JoyHeld1));                                                                   /* $F6E5 and */
     STA(JoyHeld1);                                                                       /* $F6E8 sta */
@@ -6582,7 +6582,7 @@ LFDF1: BUDGET();
   goto LFE68;                                                                            /* $FE35 jmp */
 LFE38: BUDGET();
   LDA(rd(0x0107));                                                                       /* $FE38 lda */
-  STA(0x29);                                                                             /* $FE3B sta */
+  STA(TransitionTarget);                                                                 /* $FE3B sta */
   if (R.a == 0) {                                                                        /* $FE3D bne */
     LDA(0x00);                                                                           /* $FE3F lda */
   } else {

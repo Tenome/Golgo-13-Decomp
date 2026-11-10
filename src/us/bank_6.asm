@@ -48,7 +48,7 @@ Loc_B6_8054:
 Sub_B6_8055:
   jsr LoadStageSpawnListPtr    ; $8055
   jsr CalcScrollColumnIndex    ; $8058
-  ldy $0102                    ; $805B
+  ldy SpawnIndexCurrent        ; $805B
   lda #$00                     ; $805E
 Loc_B6_8060:
   sta z:$08                    ; $8060
@@ -73,7 +73,7 @@ Loc_B6_807F:
 Sub_B6_8080:
   jsr LoadStageSpawnListPtr    ; $8080
   jsr CalcNextScrollColumnIndex ; $8083
-  ldy $0103                    ; $8086
+  ldy SpawnIndexNext           ; $8086
   lda #$01                     ; $8089
   jmp Loc_B6_8060              ; $808B
 LoadStageSpawnListPtr:
@@ -143,7 +143,7 @@ Loc_B6_80F3:
   tya                          ; $80F3
   sec                          ; $80F4
   sbc #$05                     ; $80F5
-  sta $0102                    ; $80F7
+  sta SpawnIndexCurrent        ; $80F7
   jsr CalcNextScrollColumnIndex ; $80FA
   ldy #$05                     ; $80FD
 Loc_B6_80FF:
@@ -161,7 +161,7 @@ Loc_B6_810B:
   jmp Loc_B6_80FF              ; $810F
 Loc_B6_8112:
   dey                          ; $8112
-  sty $0103                    ; $8113
+  sty SpawnIndexNext           ; $8113
   rts                          ; $8116
 Sub_B6_8117:
   lda ObjectCount              ; $8117
@@ -175,10 +175,10 @@ Sub_B6_8117:
   sta z:$0B                    ; $812B
   lda z:$08                    ; $812D
   bne Loc_B6_8137              ; $812F
-  ldy $0102                    ; $8131
+  ldy SpawnIndexCurrent        ; $8131
   jmp Loc_B6_813A              ; $8134
 Loc_B6_8137:
-  ldy $0103                    ; $8137
+  ldy SpawnIndexNext           ; $8137
 Loc_B6_813A:
   lda (Tmp00),y                ; $813A
   asl a                        ; $813C

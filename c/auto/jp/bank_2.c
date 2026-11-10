@@ -208,9 +208,9 @@ void Sub_B2_818E(void) {  /* $818E bank 2 */
   adc(rd(Tmp00));                                                                        /* $81AC adc */
   TAY();                                                                                 /* $81AE tay */
   LDA(0x01);                                                                             /* $81AF lda */
-  STA(0x28);                                                                             /* $81B1 sta */
+  STA(TransitionPending);                                                                /* $81B1 sta */
   LDA(rd((uint16_t)(0x81C3 + R.y)));                                                     /* $81B3 lda */
-  STA(0x29);                                                                             /* $81B6 sta */
+  STA(TransitionTarget);                                                                 /* $81B6 sta */
   LDA(rd((uint16_t)(0x81C4 + R.y)));                                                     /* $81B8 lda */
   STA(0x2A);                                                                             /* $81BB sta */
   LDA(rd((uint16_t)(0x81C5 + R.y)));                                                     /* $81BD lda */
@@ -281,9 +281,9 @@ void Sub_B2_827E(void) {  /* $827E bank 2 */
   ASL_A();                                                                               /* $8284 asl */
   TAX();                                                                                 /* $8285 tax */
   LDA(rd((uint16_t)(0x9150 + R.x)));                                                     /* $8286 lda */
-  STA(0x2C);                                                                             /* $8289 sta */
+  STA(StageMapPtrLo);                                                                    /* $8289 sta */
   LDA(rd((uint16_t)(0x9151 + R.x)));                                                     /* $828B lda */
-  STA(0x2D);                                                                             /* $828E sta */
+  STA(StageMapPtrHi);                                                                    /* $828E sta */
   LDA(rd((uint16_t)(0x9152 + R.x)));                                                     /* $8290 lda */
   push16(0x8295); LsrA4(); UNW(); ret_check(0x8295);                                     /* $8293 jsr */
   STA(0x0111);                                                                           /* $8296 sta */
