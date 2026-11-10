@@ -10,6 +10,7 @@ import argparse, ctypes, json, multiprocessing, os, random, shutil, subprocess, 
 ap = argparse.ArgumentParser(); ap.add_argument('--version', default=os.environ.get('G13_VERSION', 'us')); ap.add_argument('--runs', type=int, default=80)
 ap.add_argument('--only'); ap.add_argument('--jobs', type=int, default=10); ap.add_argument('--clang'); ap.add_argument('--min-ok', type=int, default=20)
 ap.add_argument('--steps', type=int, default=30000)
+ap.add_argument('--snaps', help='file of 2 KB RAM snapshots from tools/frametest.py --dump-ram (default build/ram_snaps_<ver>.bin when present)')
 a = ap.parse_args()
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..'))
 sys.argv = [sys.argv[0], '--version', a.version]; sys.path.insert(0, HERE)
@@ -46,6 +47,10 @@ def worker(names):
     ctypes.c_void_p.in_dll(lib, 'g_prg').value = ctypes.addressof(prg_buf)
     tr_pc = (ctypes.c_uint16 * 100000).in_dll(lib, 'g_tr_pc'); tr_reg = ((ctypes.c_uint8 * 6) * 100000).in_dll(lib, 'g_tr_reg')
     run_fn = lib.g13_run; run_fn.argtypes = [ctypes.c_void_p, ctypes.c_int]; run_fn.restype = ctypes.c_int
+    snapf = a.snaps or os.path.join(ROOT, 'build', f'ram_snaps_{a.version}.bin')
+    snaps = []
+    if os.path.exists(snapf):
+        raw = open(snapf, 'rb').read(); snaps = [raw[i:i + 0x800] for i in range(0, len(raw) - 0x7FF, 0x800)]
     res = {}
     for name in names:
         info = FUNCS[name]; addr, bank = info['addr'], info['bank']
@@ -53,7 +58,8 @@ def worker(names):
         rnd = random.Random(zlib.crc32(name.encode())); ok = skip = 0; fail = None
         for i in range(a.runs):
             ram = bytearray(rnd.randrange(256) for _ in range(0x800))
-            if i % 3 == 1:                                    # sparser RAM reaches the 'zero' branches
+            if snaps and i % 2 == 1: ram = bytearray(rnd.choice(snaps))        # a RAM image from real play
+            elif i % 3 == 1:                                    # sparser RAM reaches the 'zero' branches
                 for k in range(0x800):
                     if rnd.random() < 0.7: ram[k] = rnd.choice((0, 0, 1, 2, 0x10, 0x80, 0xFF))
             regs = dict(a=rnd.randrange(256), x=rnd.randrange(256), y=rnd.randrange(256), c=rnd.randrange(2), z=rnd.randrange(2), n=rnd.randrange(2), v=rnd.randrange(2))

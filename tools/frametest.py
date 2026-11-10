@@ -11,6 +11,8 @@ ap.add_argument('--clang'); ap.add_argument('--keep', action='store_true')
 ap.add_argument('--seed', type=int, default=7); ap.add_argument('--assist', action='store_true', help='hold life and ammo up in both models (QA assist) so random play survives longer')
 ap.add_argument('--out-exec', help='write the ROM code the simulator executed (PRG offsets) to this JSON file instead of only learning on failures')
 ap.add_argument('--dll', help='use a separate DLL path (parallel runs)')
+ap.add_argument('--dump-ram', help='append a snapshot of CPU RAM to this file every --dump-every frames (realistic starting states for tools/autotest.py --snaps)')
+ap.add_argument('--dump-every', type=int, default=40)
 a = ap.parse_args()
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.abspath(os.path.join(HERE, '..'))
 sys.argv = [sys.argv[0], '--version', a.version]; sys.path.insert(0, HERE)
@@ -109,6 +111,8 @@ for frame in range(a.frames):
     if rc: print(f'frame {frame}: C aborted with code {rc}' + (f' (unknown call target ${ctypes.c_uint16.in_dll(lib, "g_unknown_addr").value:04X} in bank {bank_c.value})' if rc == 4 else '') + (f' (JSR at ${ctypes.c_uint16.in_dll(lib, "g_ret_exp").value - 2:04X} returned to ${ctypes.c_uint16.in_dll(lib, "g_ret_got").value + 1:04X}, bank {bank_c.value})' if rc == 5 else '')); sys.exit(1)
     if not compare(f'frame {frame}'): sys.exit(1)
     seen.add((cpu.ram[0x14], cpu.ram[0x0100], cpu.ram[0xFB]))
+    if a.dump_ram and frame % a.dump_every == 0:
+        with open(a.dump_ram, 'ab') as df: df.write(bytes(cpu.ram))
     cpu.io_writes[:] = cpu.io_writes
 if a.out_exec: json.dump(sorted(cpu.exec_log), open(a.out_exec, 'w'))
 print('states seen (GameState, StageIndex, PRG bank):', sorted(seen)[:40], '...' if len(seen) > 40 else '')
