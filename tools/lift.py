@@ -130,12 +130,39 @@ def lift_function(entry):
         inner = f'{fname(k[1])}();' if k[0] in ('local', 'entry') else f'call_addr(0x{t:04X});'
         return f'push16(0x{ret:04X}); {inner} ret_check(0x{ret:04X});'
 
+    # join points: flag provenance (which value set N/Z/C last) is only trusted inside straight-line code
+    join = set()
+    for k, p in enumerate(order):
+        op, n, m, l, ob = body[p]
+        if m == 'rel': join.add((p + 2 + (ob[0] - 256 if ob[0] > 127 else ob[0]) - 0) if False else None)
+    join.discard(None)
+    for p in order:
+        op, n, m, l, ob = body[p]
+        if m == 'rel':
+            k = target_code(p, (g.addr_of(p) + 2 + (ob[0] - 256 if ob[0] > 127 else ob[0])) & 0xFFFF)
+            if k[0] == 'local': join.add(k[1])
+        elif n == 'jmp' and m == 'abs':
+            k = target_code(p, ob[0] | ob[1] << 8)
+            if k[0] == 'local': join.add(k[1])
+        if n == 'jmp' and pushed_return(p) is not None: join.add(pushed_return(p))
+    for k, p in enumerate(order):
+        nxt = order[k + 1] if k + 1 < len(order) else None
+        ft = p + body[p][3] + inline_skip(p, body[p])
+        if nxt is not None and ft != nxt and ft in body: join.add(ft)
+    prov = None
     stmts = {}
     for p in order:
         op, n, m, l, ob = body[p]; s = ''
+        if p in join or p == entry: prov = None
         if m == 'rel':
             t = (g.addr_of(p) + 2 + (ob[0] - 256 if ob[0] > 127 else ob[0])) & 0xFFFF
             cond = {'bpl': '!R.n', 'bmi': 'R.n', 'bvc': '!R.v', 'bvs': 'R.v', 'bcc': '!R.c', 'bcs': 'R.c', 'bne': '!R.z', 'beq': 'R.z'}[n]
+            if prov and prov[0] == 'nz' and n in ('beq', 'bne', 'bmi', 'bpl'):
+                r_ = prov[1]; cond = {'beq': f'{r_} == 0', 'bne': f'{r_} != 0', 'bmi': f'({r_} & 0x80)', 'bpl': f'!({r_} & 0x80)'}[n]
+            elif prov and prov[0] == 'cmp' and n in ('beq', 'bne', 'bcs', 'bcc', 'bmi', 'bpl'):
+                r_, m_ = prov[1], prov[2]
+                cond = {'beq': f'{r_} == {m_}', 'bne': f'{r_} != {m_}', 'bcs': f'{r_} >= {m_}', 'bcc': f'{r_} < {m_}',
+                        'bmi': f'((uint8_t)({r_} - {m_}) & 0x80)', 'bpl': f'!((uint8_t)({r_} - {m_}) & 0x80)'}[n]
             s = jump_to(p, t, cond)
         elif n == 'jsr' and is_dispatch_call(p, body[p]):      # the callee jumps to a handler whose RTS returns to our caller
             k0 = target_code(p, ob[0] | ob[1] << 8); s = f'push16(0x{g.addr_of(p) + 2:04X}); {fname(k0[1])}(); return;'
@@ -152,27 +179,40 @@ def lift_function(entry):
         elif n in ('rts', 'rti'): s = 'return;'
         elif n == 'brk': s = 'cpu_brk(); return;'
         elif m == 'imp':
-            s = {'nop': '', 'pha': 'push(R.a);', 'php': 'push(getp() | 0x30);', 'pla': 'R.a = pull(); NZ(R.a);', 'plp': 'setp(pull());',
-                 'clc': 'R.c = 0;', 'sec': 'R.c = 1;', 'cli': 'R.i = 0;', 'sei': 'R.i = 1;', 'cld': 'R.d = 0;', 'sed': 'R.d = 1;', 'clv': 'R.v = 0;',
-                 'tax': 'R.x = R.a; NZ(R.x);', 'tay': 'R.y = R.a; NZ(R.y);', 'txa': 'R.a = R.x; NZ(R.a);', 'tya': 'R.a = R.y; NZ(R.a);',
-                 'tsx': 'R.x = R.sp; NZ(R.x);', 'txs': 'R.sp = R.x;', 'inx': 'R.x++; NZ(R.x);', 'iny': 'R.y++; NZ(R.y);',
-                 'dex': 'R.x--; NZ(R.x);', 'dey': 'R.y--; NZ(R.y);'}[n]
-        elif m == 'acc': s = f'R.a = {n}8(R.a);'
+            s = {'nop': '', 'pha': 'PHA();', 'php': 'PHP();', 'pla': 'PLA();', 'plp': 'PLP();',
+                 'clc': 'CLC();', 'sec': 'SEC();', 'cli': 'CLI();', 'sei': 'SEI();', 'cld': 'CLD();', 'sed': 'SED();', 'clv': 'CLV();',
+                 'tax': 'TAX();', 'tay': 'TAY();', 'txa': 'TXA();', 'tya': 'TYA();',
+                 'tsx': 'TSX();', 'txs': 'TXS();', 'inx': 'INX();', 'iny': 'INY();',
+                 'dex': 'DEX();', 'dey': 'DEY();'}[n]
+        elif m == 'acc': s = f'{n.upper()}_A();'
         else:
             if n in ('lda', 'ldx', 'ldy'):
-                reg = 'R.' + n[2]; s = f'{reg} = {val_expr(m, ob)}; NZ({reg});'
-            elif n in ('sta', 'stx', 'sty'): s = f'wr({ea_expr(m, ob)}, R.{n[2]});'
+                reg = 'R.' + n[2]; s = f'LD{n[2].upper()}({val_expr(m, ob)});'
+            elif n in ('sta', 'stx', 'sty'): s = f'ST{n[2].upper()}({ea_expr(m, ob)});'
             elif n == 'adc': s = f'adc({val_expr(m, ob)});'
             elif n == 'sbc': s = f'sbc({val_expr(m, ob)});'
             elif n in ('and', 'ora', 'eor'):
-                s = f'R.a {"&|^"[("and", "ora", "eor").index(n)]}= {val_expr(m, ob)}; NZ(R.a);'
+                s = f'{n.upper()}({val_expr(m, ob)});'
             elif n in ('cmp', 'cpx', 'cpy'): s = f'cmp8(R.{ {"cmp": "a", "cpx": "x", "cpy": "y"}[n] }, {val_expr(m, ob)});'
             elif n == 'bit': s = f'bit8({val_expr(m, ob)});'
             elif n in ('inc', 'dec'):
-                s = f'{{ uint16_t e_ = {ea_expr(m, ob)}; uint8_t v_ = (uint8_t)(rd(e_) {"+" if n == "inc" else "-"} 1); wr(e_, v_); NZ(v_); }}'
+                s = f'{n.upper()}_M({ea_expr(m, ob)});'
             elif n in ('asl', 'lsr', 'rol', 'ror'):
-                s = f'{{ uint16_t e_ = {ea_expr(m, ob)}; wr(e_, {n}8(rd(e_))); }}'
+                s = f'{n.upper()}_M({ea_expr(m, ob)});'
             else: reason = reason or f'opcode {n} {m}'
+        # provenance bookkeeping (branches keep it; stores keep register provenance)
+        if m == 'rel': pass
+        elif n in ('lda', 'ldx', 'ldy'): prov = ('nz', 'R.' + n[2])
+        elif n in ('tax', 'tay', 'txa', 'tya', 'tsx', 'inx', 'iny', 'dex', 'dey', 'pla'):
+            prov = ('nz', 'R.' + {'tax': 'x', 'tay': 'y', 'txa': 'a', 'tya': 'a', 'tsx': 'x', 'inx': 'x', 'iny': 'y', 'dex': 'x', 'dey': 'y', 'pla': 'a'}[n])
+        elif n in ('and', 'ora', 'eor', 'adc', 'sbc') or (m == 'acc' and n in ('asl', 'lsr', 'rol', 'ror')): prov = ('nz', 'R.a')
+        elif n in ('cmp', 'cpx', 'cpy'): prov = ('cmp', 'R.' + {'cmp': 'a', 'cpx': 'x', 'cpy': 'y'}[n], val_expr(m, ob))
+        elif n in ('sta', 'stx', 'sty'):
+            if prov and prov[0] == 'cmp' and not prov[2].startswith('0x'): prov = None
+        elif n in ('nop', 'pha', 'php', 'cli', 'sei', 'cld', 'sed', 'clv', 'txs'): pass
+        elif n in ('clc', 'sec'):
+            if prov and prov[0] == 'cmp': prov = None
+        else: prov = None
         stmts[p] = s
     for k, p in enumerate(order):
         op, n, m, l, ob = body[p]
