@@ -4151,7 +4151,7 @@
      }
     },
     {
-     "name": "Sub_B5_800A",
+     "name": "CallBank5FromBank4A",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4159,7 +4159,7 @@
      }
     },
     {
-     "name": "Sub_B5_800D",
+     "name": "CallBank5FromBank4B",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5255,7 +5255,7 @@
      }
     },
     {
-     "name": "Sub_B5_9092",
+     "name": "BlankScreenAndInitPpu",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {

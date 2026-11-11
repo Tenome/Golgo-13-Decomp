@@ -6024,7 +6024,7 @@
    ]
   ]
  },
- "Sub_B5_800A": {
+ "CallBank5FromBank4A": {
   "addr": 32778,
   "bank": 5,
   "instrs": 9,
@@ -6053,7 +6053,7 @@
    ]
   ]
  },
- "Sub_B5_800D": {
+ "CallBank5FromBank4B": {
   "addr": 32781,
   "bank": 5,
   "instrs": 37,
@@ -7973,7 +7973,7 @@
    ]
   ]
  },
- "Sub_B5_9092": {
+ "BlankScreenAndInitPpu": {
   "addr": 37010,
   "bank": 5,
   "instrs": 2,

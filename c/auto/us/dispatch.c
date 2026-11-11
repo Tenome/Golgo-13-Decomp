@@ -658,8 +658,8 @@ static int bank4(uint16_t a) {
 static int bank5(uint16_t a) {
     switch (a) {
     case 0x8000: Loc_B5_8000(); return 1;
-    case 0x800A: Sub_B5_800A(); return 1;
-    case 0x800D: Sub_B5_800D(); return 1;
+    case 0x800A: CallBank5FromBank4A(); return 1;
+    case 0x800D: CallBank5FromBank4B(); return 1;
     case 0x8010: Bank5Nmi(); return 1;
     case 0x804F: Bank5SceneDispatch(); return 1;
     case 0x8139: Bank5Scene_00(); return 1;
@@ -708,7 +708,7 @@ static int bank5(uint16_t a) {
     case 0x83EC: Bank5Scene_28(); return 1;
     case 0x843C: Bank5Scene_29(); return 1;
     case 0x8457: Bank5Scene_2A(); return 1;
-    case 0x8462: Sub_B5_8462(); return 1;
+    case 0x8462: RewriteChr1Bank(); return 1;
     case 0x8488: Bank5Scene_2B(); return 1;
     case 0x8496: Bank5Scene_2C(); return 1;
     case 0x849F: Bank5Scene_37(); return 1;
@@ -794,10 +794,10 @@ static int bank5(uint16_t a) {
     case 0x906F: Loc_B5_906F(); return 1;
     case 0x9082: RunSoundDriverBank5Timed(); return 1;
     case 0x90A0: InitDmcAndJoypad2(); return 1;
-    case 0x90B3: Sub_B5_90B3(); return 1;
+    case 0x90B3: BlankScreenAndInitPpu(); return 1;
     case 0x90B9: InitScenePpuState(); return 1;
-    case 0x90C8: Sub_B5_90C8(); return 1;
-    case 0x9206: Sub_B5_9206(); return 1;
+    case 0x90C8: DrawStageNumberScreen(); return 1;
+    case 0x9206: InitTextScreenCommon(); return 1;
     case 0x9237: Sub_B5_9237(); return 1;
     case 0x92DB: Sub_B5_92DB(); return 1;
     case 0x9438: Sub_B5_9438(); return 1;

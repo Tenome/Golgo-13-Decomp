@@ -4255,7 +4255,7 @@
      }
     },
     {
-     "name": "Sub_B5_800A",
+     "name": "CallBank5FromBank4A",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4263,7 +4263,7 @@
      }
     },
     {
-     "name": "Sub_B5_800D",
+     "name": "CallBank5FromBank4B",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4647,7 +4647,7 @@
      }
     },
     {
-     "name": "Sub_B5_8462",
+     "name": "RewriteChr1Bank",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5351,7 +5351,7 @@
      }
     },
     {
-     "name": "Sub_B5_90B3",
+     "name": "BlankScreenAndInitPpu",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5367,7 +5367,7 @@
      }
     },
     {
-     "name": "Sub_B5_90C8",
+     "name": "DrawStageNumberScreen",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5383,7 +5383,7 @@
      }
     },
     {
-     "name": "Sub_B5_9206",
+     "name": "InitTextScreenCommon",
      "size": "49",
      "fuzzy_match_percent": 100.0,
      "metadata": {

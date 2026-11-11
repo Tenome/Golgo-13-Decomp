@@ -7,9 +7,9 @@
   sta Data_B5_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_5.bin", $0009, $1  ; $8009
-Sub_B5_800A:
+CallBank5FromBank4A:
   jmp Loc_B5_BD80              ; $800A
-Sub_B5_800D:
+CallBank5FromBank4B:
   jmp Loc_B5_BDF9              ; $800D
 Bank5Nmi:
   lda PPU_STATUS               ; $8010
@@ -55,7 +55,7 @@ Bank5Scene_00:
 Loc_B5_813B:
   sta SceneState               ; $813B
   jsr ClearSceneStateTailB5    ; $813E
-  jsr Sub_B5_90B3              ; $8141
+  jsr BlankScreenAndInitPpu    ; $8141
   jsr InitDmcAndJoypad2        ; $8144
   lda #$00                     ; $8147
   jsr QueueSound               ; $8149
@@ -287,7 +287,7 @@ Bank5Scene_19:
   inc SceneState               ; $82FB
   lda #$03                     ; $82FE
   sta $012A                    ; $8300
-  jmp Sub_B5_9206              ; $8303
+  jmp InitTextScreenCommon     ; $8303
 Bank5Scene_1A:
   inc SceneState               ; $8306
   lda #$05                     ; $8309
@@ -382,7 +382,7 @@ Loc_B5_83B2:
   rts                          ; $83B2
 Bank5Scene_25:
   inc SceneState               ; $83B3
-  jsr Sub_B5_90C8              ; $83B6
+  jsr DrawStageNumberScreen    ; $83B6
   lda $052A                    ; $83B9
   bne Loc_B5_83C1              ; $83BC
   jmp QueueSound               ; $83BE
@@ -406,10 +406,10 @@ Bank5Scene_27:
   bne Loc_B5_83E6              ; $83E1
   inc SceneState               ; $83E3
 Loc_B5_83E6:
-  jsr Sub_B5_8462              ; $83E6
+  jsr RewriteChr1Bank          ; $83E6
   jmp Loc_B5_8467              ; $83E9
 Bank5Scene_28:
-  jsr Sub_B5_8462              ; $83EC
+  jsr RewriteChr1Bank          ; $83EC
   lda JoyNew1                  ; $83EF
   and #$08                     ; $83F2
   beq Loc_B5_8418              ; $83F4
@@ -454,7 +454,7 @@ Bank5Scene_29:
   lda #$00                     ; $844C
   jmp QueueSound               ; $844E
 Loc_B5_8451:
-  jsr Sub_B5_8462              ; $8451
+  jsr RewriteChr1Bank          ; $8451
   jmp Loc_B5_8467              ; $8454
 Bank5Scene_2A:
   dec SceneTimer               ; $8457
@@ -463,7 +463,7 @@ Bank5Scene_2A:
   sta SceneState               ; $845E
 Loc_B5_8461:
   rts                          ; $8461
-Sub_B5_8462:
+RewriteChr1Bank:
   lda z:MmcChr1Shadow          ; $8462
   jmp MmcWriteChr1A            ; $8464
 Loc_B5_8467:
@@ -1668,7 +1668,7 @@ InitDmcAndJoypad2:
   lda #$C0                     ; $90AD
   sta JOYPAD2                  ; $90AF
   rts                          ; $90B2
-Sub_B5_90B3:
+BlankScreenAndInitPpu:
   jsr FillPaletteBufferBlack   ; $90B3
   jsr HideAllSpritesB5         ; $90B6
 InitScenePpuState:
@@ -1680,8 +1680,8 @@ InitScenePpuState:
   sta z:HwScrollX              ; $90C3
   sta z:HwScrollY              ; $90C5
   rts                          ; $90C7
-Sub_B5_90C8:
-  jsr Sub_B5_9206              ; $90C8
+DrawStageNumberScreen:
+  jsr InitTextScreenCommon     ; $90C8
   lda #$08                     ; $90CB
   sta z:HwScrollY              ; $90CD
   lda #$10                     ; $90CF
@@ -1723,7 +1723,7 @@ Data_B5_911A:
   .incbin "prg_bank_5.bin", $111A, $4  ; $911A
 Data_B5_911E:
   .incbin "prg_bank_5.bin", $111E, $E8  ; $911E
-Sub_B5_9206:
+InitTextScreenCommon:
   jsr DisableRendering         ; $9206
   lda #$1C                     ; $9209
   ldx #$0F                     ; $920B

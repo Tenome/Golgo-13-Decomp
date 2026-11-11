@@ -7,9 +7,9 @@
   sta Data_B5_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_5.bin", $0009, $1  ; $8009
-Sub_B5_800A:
+CallBank5FromBank4A:
   jmp Loc_B5_BD80              ; $800A
-Sub_B5_800D:
+CallBank5FromBank4B:
   jmp Loc_B5_BDF9              ; $800D
 Bank5Nmi:
   lda PPU_STATUS               ; $8010
@@ -58,7 +58,7 @@ Bank5Tbl8065_00:
 Loc_B5_813F:
   sta SceneState               ; $813F
   jsr ClearSceneStateTailB5    ; $8142
-  jsr Sub_B5_9092              ; $8145
+  jsr BlankScreenAndInitPpu    ; $8145
   jsr InitDmcAndJoypad2        ; $8148
   lda #$00                     ; $814B
   jsr QueueSound               ; $814D
@@ -1712,7 +1712,7 @@ InitDmcAndJoypad2:
   lda #$C0                     ; $908C
   sta JOYPAD2                  ; $908E
   rts                          ; $9091
-Sub_B5_9092:
+BlankScreenAndInitPpu:
   jsr FillPaletteBufferBlack   ; $9092
   jsr HideAllSpritesB5         ; $9095
 InitScenePpuState:

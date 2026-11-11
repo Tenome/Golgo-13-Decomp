@@ -635,8 +635,8 @@ static int bank4(uint16_t a) {
 static int bank5(uint16_t a) {
     switch (a) {
     case 0x8000: Loc_B5_8000(); return 1;
-    case 0x800A: Sub_B5_800A(); return 1;
-    case 0x800D: Sub_B5_800D(); return 1;
+    case 0x800A: CallBank5FromBank4A(); return 1;
+    case 0x800D: CallBank5FromBank4B(); return 1;
     case 0x8010: Bank5Nmi(); return 1;
     case 0x804F: Sub_B5_804F(); return 1;
     case 0x813D: Bank5Tbl8065_00(); return 1;
@@ -768,7 +768,7 @@ static int bank5(uint16_t a) {
     case 0x904E: Loc_B5_904E(); return 1;
     case 0x9061: RunSoundDriverBank5Timed(); return 1;
     case 0x907F: InitDmcAndJoypad2(); return 1;
-    case 0x9092: Sub_B5_9092(); return 1;
+    case 0x9092: BlankScreenAndInitPpu(); return 1;
     case 0x9098: InitScenePpuState(); return 1;
     case 0x90A7: Sub_B5_90A7(); return 1;
     case 0x90B0: Sub_B5_90B0(); return 1;

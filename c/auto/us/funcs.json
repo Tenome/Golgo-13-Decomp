@@ -6360,7 +6360,7 @@
    ]
   ]
  },
- "Sub_B5_800A": {
+ "CallBank5FromBank4A": {
   "addr": 32778,
   "bank": 5,
   "instrs": 9,
@@ -6389,7 +6389,7 @@
    ]
   ]
  },
- "Sub_B5_800D": {
+ "CallBank5FromBank4B": {
   "addr": 32781,
   "bank": 5,
   "instrs": 37,
@@ -7110,7 +7110,7 @@
    ]
   ]
  },
- "Sub_B5_8462": {
+ "RewriteChr1Bank": {
   "addr": 33890,
   "bank": 5,
   "instrs": 2,
@@ -8332,7 +8332,7 @@
    ]
   ]
  },
- "Sub_B5_90B3": {
+ "BlankScreenAndInitPpu": {
   "addr": 37043,
   "bank": 5,
   "instrs": 2,
@@ -8358,7 +8358,7 @@
    ]
   ]
  },
- "Sub_B5_90C8": {
+ "DrawStageNumberScreen": {
   "addr": 37064,
   "bank": 5,
   "instrs": 35,
@@ -8375,7 +8375,7 @@
    ]
   ]
  },
- "Sub_B5_9206": {
+ "InitTextScreenCommon": {
   "addr": 37382,
   "bank": 5,
   "instrs": 19,

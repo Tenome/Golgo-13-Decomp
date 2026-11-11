@@ -11,7 +11,7 @@ void Loc_B5_8000(void) {  /* $8000 bank 5 */
   { Reset(); return; }                                                                   /* $8006 jmp */
 }
 
-void Sub_B5_800A(void) {  /* $800A bank 5 */
+void CallBank5FromBank4A(void) {  /* $800A bank 5 */
   uint8_t sp0 = R.sp;
   goto LBD80;                                                                            /* $800A jmp */
 LBD80: BUDGET();
@@ -26,7 +26,7 @@ LBD80: BUDGET();
   RTS_RET(sp0);                                                                          /* $BD97 rts */
 }
 
-void Sub_B5_800D(void) {  /* $800D bank 5 */
+void CallBank5FromBank4B(void) {  /* $800D bank 5 */
   uint8_t sp0 = R.sp;
   goto LBDF9;                                                                            /* $800D jmp */
 LBDF9: BUDGET();
@@ -121,7 +121,7 @@ void Bank5Scene_00(void) {  /* $8139 bank 5 */
   LDA(0x04);                                                                             /* $8139 lda */
   STA(SceneState);                                                                       /* $813B sta */
   push16(0x8140); ClearSceneStateTailB5(); UNW(); ret_check(0x8140);                     /* $813E jsr */
-  push16(0x8143); Sub_B5_90B3(); UNW(); ret_check(0x8143);                               /* $8141 jsr */
+  push16(0x8143); BlankScreenAndInitPpu(); UNW(); ret_check(0x8143);                     /* $8141 jsr */
   push16(0x8146); InitDmcAndJoypad2(); UNW(); ret_check(0x8146);                         /* $8144 jsr */
   LDA(0x00);                                                                             /* $8147 lda */
   push16(0x814B); QueueSound(); UNW(); ret_check(0x814B);                                /* $8149 jsr */
@@ -141,7 +141,7 @@ void Bank5Scene_01(void) {  /* $8153 bank 5 */
 L813B: BUDGET();
   STA(SceneState);                                                                       /* $813B sta */
   push16(0x8140); ClearSceneStateTailB5(); UNW(); ret_check(0x8140);                     /* $813E jsr */
-  push16(0x8143); Sub_B5_90B3(); UNW(); ret_check(0x8143);                               /* $8141 jsr */
+  push16(0x8143); BlankScreenAndInitPpu(); UNW(); ret_check(0x8143);                     /* $8141 jsr */
   push16(0x8146); InitDmcAndJoypad2(); UNW(); ret_check(0x8146);                         /* $8144 jsr */
   LDA(0x00);                                                                             /* $8147 lda */
   push16(0x814B); QueueSound(); UNW(); ret_check(0x814B);                                /* $8149 jsr */
@@ -157,7 +157,7 @@ void Bank5Scene_02(void) {  /* $8158 bank 5 */
 L813B: BUDGET();
   STA(SceneState);                                                                       /* $813B sta */
   push16(0x8140); ClearSceneStateTailB5(); UNW(); ret_check(0x8140);                     /* $813E jsr */
-  push16(0x8143); Sub_B5_90B3(); UNW(); ret_check(0x8143);                               /* $8141 jsr */
+  push16(0x8143); BlankScreenAndInitPpu(); UNW(); ret_check(0x8143);                     /* $8141 jsr */
   push16(0x8146); InitDmcAndJoypad2(); UNW(); ret_check(0x8146);                         /* $8144 jsr */
   LDA(0x00);                                                                             /* $8147 lda */
   push16(0x814B); QueueSound(); UNW(); ret_check(0x814B);                                /* $8149 jsr */
@@ -173,7 +173,7 @@ void Bank5Scene_03(void) {  /* $815D bank 5 */
 L813B: BUDGET();
   STA(SceneState);                                                                       /* $813B sta */
   push16(0x8140); ClearSceneStateTailB5(); UNW(); ret_check(0x8140);                     /* $813E jsr */
-  push16(0x8143); Sub_B5_90B3(); UNW(); ret_check(0x8143);                               /* $8141 jsr */
+  push16(0x8143); BlankScreenAndInitPpu(); UNW(); ret_check(0x8143);                     /* $8141 jsr */
   push16(0x8146); InitDmcAndJoypad2(); UNW(); ret_check(0x8146);                         /* $8144 jsr */
   LDA(0x00);                                                                             /* $8147 lda */
   push16(0x814B); QueueSound(); UNW(); ret_check(0x814B);                                /* $8149 jsr */
@@ -732,7 +732,7 @@ void Bank5Scene_19(void) {  /* $82FB bank 5 */
   INC_M(SceneState);                                                                     /* $82FB inc */
   LDA(0x03);                                                                             /* $82FE lda */
   STA(0x012A);                                                                           /* $8300 sta */
-  { Sub_B5_9206(); return; }                                                             /* $8303 jmp */
+  { InitTextScreenCommon(); return; }                                                    /* $8303 jmp */
 }
 
 void Bank5Scene_1A(void) {  /* $8306 bank 5 */
@@ -889,7 +889,7 @@ L83B2: BUDGET();
 void Bank5Scene_25(void) {  /* $83B3 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $83B3 inc */
-  push16(0x83B8); Sub_B5_90C8(); UNW(); ret_check(0x83B8);                               /* $83B6 jsr */
+  push16(0x83B8); DrawStageNumberScreen(); UNW(); ret_check(0x83B8);                     /* $83B6 jsr */
   LDA(rd(0x052A));                                                                       /* $83B9 lda */
   if (R.a == 0) {                                                                        /* $83BC bne */
     { QueueSound(); return; }                                                            /* $83BE jmp */
@@ -929,7 +929,7 @@ void Bank5Scene_27(void) {  /* $83DB bank 5 */
   if (R.a == 0) {                                                                        /* $83E1 bne */
     INC_M(SceneState);                                                                   /* $83E3 inc */
   }
-  push16(0x83E8); Sub_B5_8462(); UNW(); ret_check(0x83E8);                               /* $83E6 jsr */
+  push16(0x83E8); RewriteChr1Bank(); UNW(); ret_check(0x83E8);                           /* $83E6 jsr */
   goto L8467;                                                                            /* $83E9 jmp */
 L8467: BUDGET();
   LDA(rd(MmcPrgShadow));                                                                 /* $8467 lda */
@@ -957,7 +957,7 @@ L8487: BUDGET();
 
 void Bank5Scene_28(void) {  /* $83EC bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x83EE); Sub_B5_8462(); UNW(); ret_check(0x83EE);                               /* $83EC jsr */
+  push16(0x83EE); RewriteChr1Bank(); UNW(); ret_check(0x83EE);                           /* $83EC jsr */
   LDA(rd(JoyNew1));                                                                      /* $83EF lda */
   AND(0x08);                                                                             /* $83F2 and */
   if (R.a != 0) {                                                                        /* $83F4 beq */
@@ -1028,7 +1028,7 @@ void Bank5Scene_29(void) {  /* $843C bank 5 */
     LDA(0x00);                                                                           /* $844C lda */
     { QueueSound(); return; }                                                            /* $844E jmp */
   }
-  push16(0x8453); Sub_B5_8462(); UNW(); ret_check(0x8453);                               /* $8451 jsr */
+  push16(0x8453); RewriteChr1Bank(); UNW(); ret_check(0x8453);                           /* $8451 jsr */
   goto L8467;                                                                            /* $8454 jmp */
 L8467: BUDGET();
   LDA(rd(MmcPrgShadow));                                                                 /* $8467 lda */
@@ -1064,7 +1064,7 @@ void Bank5Scene_2A(void) {  /* $8457 bank 5 */
   RTS_RET(sp0);                                                                          /* $8461 rts */
 }
 
-void Sub_B5_8462(void) {  /* $8462 bank 5 */
+void RewriteChr1Bank(void) {  /* $8462 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(MmcChr1Shadow));                                                                /* $8462 lda */
   { MmcWriteChr1A(); return; }                                                           /* $8464 jmp */
@@ -2617,7 +2617,7 @@ void InitDmcAndJoypad2(void) {  /* $90A0 bank 5 */
   RTS_RET(sp0);                                                                          /* $90B2 rts */
 }
 
-void Sub_B5_90B3(void) {  /* $90B3 bank 5 */
+void BlankScreenAndInitPpu(void) {  /* $90B3 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x90B5); FillPaletteBufferBlack(); UNW(); ret_check(0x90B5);                    /* $90B3 jsr */
   push16(0x90B8); HideAllSpritesB5(); UNW(); ret_check(0x90B8);                          /* $90B6 jsr */
@@ -2636,9 +2636,9 @@ void InitScenePpuState(void) {  /* $90B9 bank 5 */
   RTS_RET(sp0);                                                                          /* $90C7 rts */
 }
 
-void Sub_B5_90C8(void) {  /* $90C8 bank 5 */
+void DrawStageNumberScreen(void) {  /* $90C8 bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x90CA); Sub_B5_9206(); UNW(); ret_check(0x90CA);                               /* $90C8 jsr */
+  push16(0x90CA); InitTextScreenCommon(); UNW(); ret_check(0x90CA);                      /* $90C8 jsr */
   LDA(0x08);                                                                             /* $90CB lda */
   STA(HwScrollY);                                                                        /* $90CD sta */
   LDA(0x10);                                                                             /* $90CF lda */
@@ -2677,7 +2677,7 @@ void Sub_B5_90C8(void) {  /* $90C8 bank 5 */
   { FillPaletteBufferBlack(); return; }                                                  /* $9117 jmp */
 }
 
-void Sub_B5_9206(void) {  /* $9206 bank 5 */
+void InitTextScreenCommon(void) {  /* $9206 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x9208); DisableRendering(); UNW(); ret_check(0x9208);                          /* $9206 jsr */
   LDA(0x1C);                                                                             /* $9209 lda */

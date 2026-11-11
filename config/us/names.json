@@ -661,5 +661,11 @@
  "1:9F53": "LoadEnemyAnimTableJ",
  "1:8F79": "StepObjectAnimTimerA",
  "1:9ABA": "StepObjectAnimTimerB",
- "1:A957": "ApplyAnimTableFlags"
+ "1:A957": "ApplyAnimTableFlags",
+ "5:800A": "CallBank5FromBank4A",
+ "5:800D": "CallBank5FromBank4B",
+ "5:8462": "RewriteChr1Bank",
+ "5:90B3": "BlankScreenAndInitPpu",
+ "5:90C8": "DrawStageNumberScreen",
+ "5:9206": "InitTextScreenCommon"
 }
