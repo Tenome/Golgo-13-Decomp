@@ -109,7 +109,7 @@ void Bank1Tbl8045_03(void) {  /* $80A9 bank 1 */
   push16(0x80AB); Sub_B1_8053(); UNW(); ret_check(0x80AB);                               /* $80A9 jsr */
   push16(0x80AE); FillPaletteBlack(); UNW(); ret_check(0x80AE);                          /* $80AC jsr */
   push16(0x80B1); FillNametable0WithFF(); UNW(); ret_check(0x80B1);                      /* $80AF jsr */
-  push16(0x80B4); Sub_B1_85AF(); UNW(); ret_check(0x80B4);                               /* $80B2 jsr */
+  push16(0x80B4); RestoreMmcShadowRegs(); UNW(); ret_check(0x80B4);                      /* $80B2 jsr */
   push16(0x80B7); ApplyScroll(); UNW(); ret_check(0x80B7);                               /* $80B5 jsr */
   push16(0x80BA); MmcWriteControl(); UNW(); ret_check(0x80BA);                           /* $80B8 jsr */
   push16(0x80BD); MmcWriteChr0(); UNW(); ret_check(0x80BD);                              /* $80BB jsr */
@@ -343,7 +343,7 @@ void SaveMmcShadowRegs(void) {  /* $85A3 bank 1 */
   RTS_RET(sp0);                                                                          /* $85AE rts */
 }
 
-void Sub_B1_85AF(void) {  /* $85AF bank 1 */
+void RestoreMmcShadowRegs(void) {  /* $85AF bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x07);                                                                             /* $85AF ldy */
   do { BUDGET();

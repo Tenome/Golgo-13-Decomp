@@ -547,7 +547,7 @@
      }
     },
     {
-     "name": "Sub_B1_85AF",
+     "name": "RestoreMmcShadowRegs",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1577,7 +1577,7 @@
      }
     },
     {
-     "name": "Sub_B3_819C",
+     "name": "TextBoxRestoreBackgroundTile",
      "size": "84",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1593,7 +1593,7 @@
      }
     },
     {
-     "name": "Sub_B3_820B",
+     "name": "TextBoxClearRow0",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1601,7 +1601,7 @@
      }
     },
     {
-     "name": "Sub_B3_8210",
+     "name": "TextBoxClearRow1",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1609,7 +1609,7 @@
      }
     },
     {
-     "name": "Sub_B3_8215",
+     "name": "TextBoxClearRow2",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1633,7 +1633,7 @@
      }
     },
     {
-     "name": "Sub_B3_826C",
+     "name": "TextBoxRunInitStage",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1729,7 +1729,7 @@
      }
     },
     {
-     "name": "Sub_B3_84DB",
+     "name": "TextBoxWaitForA",
      "size": "117",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1745,7 +1745,7 @@
      }
     },
     {
-     "name": "Sub_B3_8593",
+     "name": "TextBoxWaitForAAdvance",
      "size": "26",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1913,7 +1913,7 @@
      }
     },
     {
-     "name": "Sub_B3_8EC6",
+     "name": "TextBoxInitStage",
      "size": "175",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2448,7 +2448,7 @@
      }
     },
     {
-     "name": "Sub_B4_8ADF",
+     "name": "LoadMazeObjectTables",
      "size": "90",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2488,7 +2488,7 @@
      }
     },
     {
-     "name": "Sub_B4_8C24",
+     "name": "ChangeMazeSection",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2504,7 +2504,7 @@
      }
     },
     {
-     "name": "Sub_B4_8C96",
+     "name": "MazeExit3",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2512,7 +2512,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CA0",
+     "name": "MazeExit4",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2520,7 +2520,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CA5",
+     "name": "MazeExit5",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2528,7 +2528,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CAA",
+     "name": "MazeExit6",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2536,7 +2536,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CAF",
+     "name": "MazeExit7",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2552,7 +2552,7 @@
      }
     },
     {
-     "name": "Sub_B4_8D35",
+     "name": "HandleActionButtonInMaze",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2720,7 +2720,7 @@
      }
     },
     {
-     "name": "Sub_B4_9088",
+     "name": "PpuOpNone",
      "size": "1",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2856,7 +2856,7 @@
      }
     },
     {
-     "name": "Sub_B4_95DA",
+     "name": "RequestPaletteUpdate",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3040,7 +3040,7 @@
      }
     },
     {
-     "name": "Sub_B4_9F94",
+     "name": "CopyThunkToRamAndCall800A",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3208,7 +3208,7 @@
      }
     },
     {
-     "name": "Sub_B4_A177",
+     "name": "CopyThunkToRamAndCall800D",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3240,7 +3240,7 @@
      }
     },
     {
-     "name": "Sub_B4_A2CF",
+     "name": "DoorState1",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3296,7 +3296,7 @@
      }
     },
     {
-     "name": "Sub_B4_A494",
+     "name": "MazeObjType04State0",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3304,7 +3304,7 @@
      }
     },
     {
-     "name": "Sub_B4_A49C",
+     "name": "WaitObjectTimer",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3352,7 +3352,7 @@
      }
     },
     {
-     "name": "Sub_B4_A589",
+     "name": "MazeObjType05State1",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3440,7 +3440,7 @@
      }
     },
     {
-     "name": "Sub_B4_A792",
+     "name": "WarpToNextMaze",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3448,7 +3448,7 @@
      }
     },
     {
-     "name": "Sub_B4_A7BA",
+     "name": "MazeObjType05State9",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3496,7 +3496,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA39",
+     "name": "MazeObjType0A",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3720,7 +3720,7 @@
      }
     },
     {
-     "name": "Sub_B4_AEEA",
+     "name": "MazeObjType11",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3736,7 +3736,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF17",
+     "name": "MazeObjType11State0",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3744,7 +3744,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF3E",
+     "name": "MazeObjType11State1",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3752,7 +3752,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF51",
+     "name": "MazeObjType11State2",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3872,7 +3872,7 @@
      }
     },
     {
-     "name": "Sub_B4_B202",
+     "name": "MazeObjType17State0",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4183,7 +4183,7 @@
      }
     },
     {
-     "name": "Sub_B5_8150",
+     "name": "DisableRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4831,7 +4831,7 @@
      }
     },
     {
-     "name": "Sub_B5_869F",
+     "name": "WaitSceneTimerThenEnableRender",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4839,7 +4839,7 @@
      }
     },
     {
-     "name": "Sub_B5_86AB",
+     "name": "WaitSceneCounterZero",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {

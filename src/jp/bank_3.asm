@@ -202,7 +202,7 @@ Loc_B3_8173:
   inc $0421                    ; $8194
   lda #$00                     ; $8197
   sta $0422                    ; $8199
-Sub_B3_819C:
+TextBoxRestoreBackgroundTile:
   lda $0427                    ; $819C
   bne Loc_B3_81A4              ; $819F
   jmp Loc_B3_826F              ; $81A1
@@ -250,13 +250,13 @@ Loc_B3_81FD:
   sta $0422                    ; $8202
   inc $0421                    ; $8205
   jmp Loc_B3_826F              ; $8208
-Sub_B3_820B:
+TextBoxClearRow0:
   lda #$00                     ; $820B
   jmp Loc_B3_821C              ; $820D
-Sub_B3_8210:
+TextBoxClearRow1:
   lda #$20                     ; $8210
   jmp Loc_B3_821C              ; $8212
-Sub_B3_8215:
+TextBoxClearRow2:
   lda #$40                     ; $8215
   jmp Loc_B3_821C              ; $8217
 TextBoxClearRow3:
@@ -300,8 +300,8 @@ Loc_B3_824D:
 Loc_B3_8266:
   inc $0421                    ; $8266
   jmp Loc_B3_826F              ; $8269
-Sub_B3_826C:
-  jsr Sub_B3_8EC6              ; $826C
+TextBoxRunInitStage:
+  jsr TextBoxInitStage         ; $826C
 Loc_B3_826F:
   rts                          ; $826F
 CalcMenuRowNametableAddr:
@@ -577,7 +577,7 @@ Loc_B3_84D3:
   jsr Sub_B3_85C6              ; $84D3
   lda #$01                     ; $84D6
   sta $0418                    ; $84D8
-Sub_B3_84DB:
+TextBoxWaitForA:
   lda JoyHeld1                 ; $84DB
   and #$01                     ; $84DE
   bne Loc_B3_84E8              ; $84E0
@@ -666,7 +666,7 @@ Loc_B3_858B:
   lda #$02                     ; $858B
   sta $0418                    ; $858D
   jsr Sub_B3_85C6              ; $8590
-Sub_B3_8593:
+TextBoxWaitForAAdvance:
   lda JoyHeld1                 ; $8593
   and #$01                     ; $8596
   bne Loc_B3_85A0              ; $8598
@@ -1763,7 +1763,7 @@ Loc_B3_8EB9:
   sta $0427                    ; $8EC2
 Loc_B3_8EC5:
   rts                          ; $8EC5
-Sub_B3_8EC6:
+TextBoxInitStage:
   lda $0422                    ; $8EC6
   beq Loc_B3_8ECE              ; $8EC9
   jmp Loc_B3_8EF0              ; $8ECB

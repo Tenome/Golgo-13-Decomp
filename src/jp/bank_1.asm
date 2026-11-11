@@ -85,7 +85,7 @@ Bank1Tbl8045_03:
   jsr Sub_B1_8053              ; $80A9
   jsr FillPaletteBlack         ; $80AC
   jsr FillNametable0WithFF     ; $80AF
-  jsr Sub_B1_85AF              ; $80B2
+  jsr RestoreMmcShadowRegs     ; $80B2
   jsr ApplyScroll              ; $80B5
   jsr MmcWriteControl          ; $80B8
   jsr MmcWriteChr0             ; $80BB
@@ -311,7 +311,7 @@ Loc_B1_85A5:
   dey                          ; $85AB
   bpl Loc_B1_85A5              ; $85AC
   rts                          ; $85AE
-Sub_B1_85AF:
+RestoreMmcShadowRegs:
   ldy #$07                     ; $85AF
 Loc_B1_85B1:
   lda $0510,y                  ; $85B1

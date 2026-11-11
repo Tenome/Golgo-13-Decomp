@@ -221,12 +221,12 @@ L816A: BUDGET();
   INC_M(0x0421);                                                                         /* $8194 inc */
   LDA(0x00);                                                                             /* $8197 lda */
   STA(0x0422);                                                                           /* $8199 sta */
-  { Sub_B3_819C(); return; }
+  { TextBoxRestoreBackgroundTile(); return; }
 L826F: BUDGET();
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
-void Sub_B3_819C(void) {  /* $819C bank 3 */
+void TextBoxRestoreBackgroundTile(void) {  /* $819C bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0427));                                                                       /* $819C lda */
   if (R.a != 0) {                                                                        /* $819F bne */
@@ -281,7 +281,7 @@ L826F: BUDGET();
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
-void Sub_B3_820B(void) {  /* $820B bank 3 */
+void TextBoxClearRow0(void) {  /* $820B bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $820B lda */
   goto L821C;                                                                            /* $820D jmp */
@@ -296,7 +296,7 @@ L826F: BUDGET();
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
-void Sub_B3_8210(void) {  /* $8210 bank 3 */
+void TextBoxClearRow1(void) {  /* $8210 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x20);                                                                             /* $8210 lda */
   goto L821C;                                                                            /* $8212 jmp */
@@ -311,7 +311,7 @@ L826F: BUDGET();
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
-void Sub_B3_8215(void) {  /* $8215 bank 3 */
+void TextBoxClearRow2(void) {  /* $8215 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x40);                                                                             /* $8215 lda */
   goto L821C;                                                                            /* $8217 jmp */
@@ -376,9 +376,9 @@ L826F: BUDGET();
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
-void Sub_B3_826C(void) {  /* $826C bank 3 */
+void TextBoxRunInitStage(void) {  /* $826C bank 3 */
   uint8_t sp0 = R.sp;
-  push16(0x826E); Sub_B3_8EC6(); UNW(); ret_check(0x826E);                               /* $826C jsr */
+  push16(0x826E); TextBoxInitStage(); UNW(); ret_check(0x826E);                          /* $826C jsr */
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
@@ -690,7 +690,7 @@ L84D3: BUDGET();
     push16(0x84D5); Sub_B3_85C6(); UNW(); ret_check(0x84D5);                             /* $84D3 jsr */
     LDA(0x01);                                                                           /* $84D6 lda */
     STA(0x0418);                                                                         /* $84D8 sta */
-    { Sub_B3_84DB(); return; }
+    { TextBoxWaitForA(); return; }
 L84F7: BUDGET();
     INC_M(0x041B);                                                                       /* $84F7 inc */
     LDY(rd(0x041B));                                                                     /* $84FA ldy */
@@ -742,7 +742,7 @@ L858B: BUDGET();
     LDA(0x02);                                                                           /* $858B lda */
     STA(0x0418);                                                                         /* $858D sta */
     push16(0x8592); Sub_B3_85C6(); UNW(); ret_check(0x8592);                             /* $8590 jsr */
-    { Sub_B3_8593(); return; }
+    { TextBoxWaitForAAdvance(); return; }
   }
 L85AC: BUDGET();
   RTS_RET(sp0);                                                                          /* $85AC rts */
@@ -787,7 +787,7 @@ L887E: BUDGET();
   goto L85AC;                                                                            /* $88CB jmp */
 }
 
-void Sub_B3_84DB(void) {  /* $84DB bank 3 */
+void TextBoxWaitForA(void) {  /* $84DB bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyHeld1));                                                                     /* $84DB lda */
   AND(0x01);                                                                             /* $84DE and */
@@ -837,7 +837,7 @@ L85AC: BUDGET();
   RTS_RET(sp0);                                                                          /* $85AC rts */
 }
 
-void Sub_B3_8593(void) {  /* $8593 bank 3 */
+void TextBoxWaitForAAdvance(void) {  /* $8593 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyHeld1));                                                                     /* $8593 lda */
   AND(0x01);                                                                             /* $8596 and */
@@ -2033,7 +2033,7 @@ L8EC5: BUDGET();
   RTS_RET(sp0);                                                                          /* $8EC5 rts */
 }
 
-void Sub_B3_8EC6(void) {  /* $8EC6 bank 3 */
+void TextBoxInitStage(void) {  /* $8EC6 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0422));                                                                       /* $8EC6 lda */
   if (R.a == 0) {                                                                        /* $8EC9 beq */

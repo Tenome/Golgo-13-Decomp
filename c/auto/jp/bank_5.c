@@ -128,10 +128,10 @@ void Bank5Tbl8065_00(void) {  /* $813D bank 5 */
   push16(0x814A); InitDmcAndJoypad2(); UNW(); ret_check(0x814A);                         /* $8148 jsr */
   LDA(0x00);                                                                             /* $814B lda */
   push16(0x814F); QueueSound(); UNW(); ret_check(0x814F);                                /* $814D jsr */
-  { Sub_B5_8150(); return; }
+  { DisableRendering(); return; }
 }
 
-void Sub_B5_8150(void) {  /* $8150 bank 5 */
+void DisableRendering(void) {  /* $8150 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuMaskShadow));                                                                /* $8150 lda */
   AND(0xE7);                                                                             /* $8152 and */
@@ -148,7 +148,7 @@ L813F: BUDGET();
   push16(0x814A); InitDmcAndJoypad2(); UNW(); ret_check(0x814A);                         /* $8148 jsr */
   LDA(0x00);                                                                             /* $814B lda */
   push16(0x814F); QueueSound(); UNW(); ret_check(0x814F);                                /* $814D jsr */
-  { Sub_B5_8150(); return; }
+  { DisableRendering(); return; }
 L8157: BUDGET();
   LDA(0x2B);                                                                             /* $8157 lda */
   goto L813F;                                                                            /* $8159 jmp */
@@ -164,7 +164,7 @@ L813F: BUDGET();
   push16(0x814A); InitDmcAndJoypad2(); UNW(); ret_check(0x814A);                         /* $8148 jsr */
   LDA(0x00);                                                                             /* $814B lda */
   push16(0x814F); QueueSound(); UNW(); ret_check(0x814F);                                /* $814D jsr */
-  { Sub_B5_8150(); return; }
+  { DisableRendering(); return; }
 L815C: BUDGET();
   LDA(0x3D);                                                                             /* $815C lda */
   goto L813F;                                                                            /* $815E jmp */
@@ -180,7 +180,7 @@ L813F: BUDGET();
   push16(0x814A); InitDmcAndJoypad2(); UNW(); ret_check(0x814A);                         /* $8148 jsr */
   LDA(0x00);                                                                             /* $814B lda */
   push16(0x814F); QueueSound(); UNW(); ret_check(0x814F);                                /* $814D jsr */
-  { Sub_B5_8150(); return; }
+  { DisableRendering(); return; }
 L8161: BUDGET();
   LDA(0x5F);                                                                             /* $8161 lda */
   LDX(rd(0x050F));                                                                       /* $8163 ldx */
@@ -315,7 +315,7 @@ void Bank5Tbl8065_0C(void) {  /* $81EF bank 5 */
   STA(0x012A);                                                                           /* $81F4 sta */
   goto L8FCC;                                                                            /* $81F7 jmp */
 L8FCC: BUDGET();
-  push16(0x8FCE); Sub_B5_8150(); UNW(); ret_check(0x8FCE);                               /* $8FCC jsr */
+  push16(0x8FCE); DisableRendering(); UNW(); ret_check(0x8FCE);                          /* $8FCC jsr */
   LDA(0x1F);                                                                             /* $8FCF lda */
   LDX(0x1A);                                                                             /* $8FD1 ldx */
   LDY(0x08);                                                                             /* $8FD3 ldy */
@@ -566,7 +566,7 @@ void Bank5Scene_17(void) {  /* $828D bank 5 */
     STA(PpuCtrlShadow);                                                                  /* $8298 sta */
     LDA(0x3C);                                                                           /* $829A lda */
     STA(SceneTimer);                                                                     /* $829C sta */
-    push16(0x82A1); Sub_B5_8150(); UNW(); ret_check(0x82A1);                             /* $829F jsr */
+    push16(0x82A1); DisableRendering(); UNW(); ret_check(0x82A1);                        /* $829F jsr */
   }
   push16(0x82A4); ApplyScroll(); UNW(); ret_check(0x82A4);                               /* $82A2 jsr */
   goto L8725;                                                                            /* $82A5 jmp */
@@ -673,7 +673,7 @@ void Bank5Tbl8065_17(void) {  /* $82B1 bank 5 */
   STA(0x012A);                                                                           /* $82B6 sta */
   goto L91AE;                                                                            /* $82B9 jmp */
 L91AE: BUDGET();
-  push16(0x91B0); Sub_B5_8150(); UNW(); ret_check(0x91B0);                               /* $91AE jsr */
+  push16(0x91B0); DisableRendering(); UNW(); ret_check(0x91B0);                          /* $91AE jsr */
   LDA(0x1C);                                                                             /* $91B1 lda */
   LDX(0x0F);                                                                             /* $91B3 ldx */
   LDY(0x0E);                                                                             /* $91B5 ldy */
@@ -744,7 +744,7 @@ void Bank5Tbl8065_1C(void) {  /* $82FA bank 5 */
   LDA(rd(AnimCounter));                                                                  /* $82FD lda */
   if (R.a == 0) {                                                                        /* $8300 bne */
     INC_M(SceneState);                                                                   /* $8302 inc */
-    push16(0x8307); Sub_B5_8150(); UNW(); ret_check(0x8307);                             /* $8305 jsr */
+    push16(0x8307); DisableRendering(); UNW(); ret_check(0x8307);                        /* $8305 jsr */
     LDA(0x28);                                                                           /* $8308 lda */
     STA(SceneTimer);                                                                     /* $830A sta */
   }
@@ -767,7 +767,7 @@ void Bank5Tbl8065_1E(void) {  /* $8317 bank 5 */
   STA(0x012A);                                                                           /* $831C sta */
   goto L901E;                                                                            /* $831F jmp */
 L901E: BUDGET();
-  push16(0x9020); Sub_B5_8150(); UNW(); ret_check(0x9020);                               /* $901E jsr */
+  push16(0x9020); DisableRendering(); UNW(); ret_check(0x9020);                          /* $901E jsr */
   LDA(0x1F);                                                                             /* $9021 lda */
   LDX(0x0F);                                                                             /* $9023 ldx */
   LDY(0x0D);                                                                             /* $9025 ldy */
@@ -815,7 +815,7 @@ void Bank5Tbl8065_21(void) {  /* $833C bank 5 */
   STA(0x012A);                                                                           /* $8341 sta */
   goto L8EEA;                                                                            /* $8344 jmp */
 L8EEA: BUDGET();
-  push16(0x8EEC); Sub_B5_8150(); UNW(); ret_check(0x8EEC);                               /* $8EEA jsr */
+  push16(0x8EEC); DisableRendering(); UNW(); ret_check(0x8EEC);                          /* $8EEA jsr */
   LDA(0x1C);                                                                             /* $8EED lda */
   LDX(0x03);                                                                             /* $8EEF ldx */
   LDY(0x03);                                                                             /* $8EF1 ldy */
@@ -861,7 +861,7 @@ void Bank5Tbl8065_23(void) {  /* $8353 bank 5 */
     INC_M(SceneState);                                                                   /* $835B inc */
     LDA(0x5A);                                                                           /* $835E lda */
     STA(SceneTimer);                                                                     /* $8360 sta */
-    { Sub_B5_8150(); return; }                                                           /* $8363 jmp */
+    { DisableRendering(); return; }                                                      /* $8363 jmp */
   }
   RTS_RET(sp0);                                                                          /* $8366 rts */
 }
@@ -1020,7 +1020,7 @@ void Bank5Tbl8065_2B(void) {  /* $8432 bank 5 */
   LDA(0x3C);                                                                             /* $8435 lda */
   STA(SceneTimer);                                                                       /* $8437 sta */
   push16(0x843C); FillPaletteBufferBlack(); UNW(); ret_check(0x843C);                    /* $843A jsr */
-  { Sub_B5_8150(); return; }                                                             /* $843D jmp */
+  { DisableRendering(); return; }                                                        /* $843D jmp */
 }
 
 void Bank5Tbl8065_2C(void) {  /* $8440 bank 5 */
@@ -1394,7 +1394,7 @@ L8597: BUDGET();
   AND(0x08);                                                                             /* $85A7 and */
   if (R.a != 0) {                                                                        /* $85A9 beq */
     INC_M(SceneState);                                                                   /* $85AB inc */
-    { Sub_B5_8150(); return; }                                                           /* $85AE jmp */
+    { DisableRendering(); return; }                                                      /* $85AE jmp */
   }
   RTS_RET(sp0);                                                                          /* $85B1 rts */
 }
@@ -1404,7 +1404,7 @@ void Bank5Tbl8065_4E(void) {  /* $85B2 bank 5 */
   INC_M(SceneState);                                                                     /* $85B2 inc */
   goto L9CCF;                                                                            /* $85B5 jmp */
 L9CCF: BUDGET();
-  push16(0x9CD1); Sub_B5_8150(); UNW(); ret_check(0x9CD1);                               /* $9CCF jsr */
+  push16(0x9CD1); DisableRendering(); UNW(); ret_check(0x9CD1);                          /* $9CCF jsr */
   LDA(0x1C);                                                                             /* $9CD2 lda */
   LDX(0x1F);                                                                             /* $9CD4 ldx */
   LDY(0x0D);                                                                             /* $9CD6 ldy */
@@ -1459,7 +1459,7 @@ void Bank5Tbl8065_51(void) {  /* $85D7 bank 5 */
     LDA(0x00);                                                                           /* $85E8 lda */
     STA(0x0512);                                                                         /* $85EA sta */
   }
-  { Sub_B5_8150(); return; }                                                             /* $85ED jmp */
+  { DisableRendering(); return; }                                                        /* $85ED jmp */
 }
 
 void Bank5Tbl8065_52(void) {  /* $85F0 bank 5 */
@@ -1467,7 +1467,7 @@ void Bank5Tbl8065_52(void) {  /* $85F0 bank 5 */
   INC_M(SceneState);                                                                     /* $85F0 inc */
   goto L99B5;                                                                            /* $85F3 jmp */
 L99B5: BUDGET();
-  push16(0x99B7); Sub_B5_8150(); UNW(); ret_check(0x99B7);                               /* $99B5 jsr */
+  push16(0x99B7); DisableRendering(); UNW(); ret_check(0x99B7);                          /* $99B5 jsr */
   push16(0x99BA); FillPaletteBufferBlack(); UNW(); ret_check(0x99BA);                    /* $99B8 jsr */
   push16(0x99BD); HideAllSpritesB5(); UNW(); ret_check(0x99BD);                          /* $99BB jsr */
   push16(0x99C0); CopyRamStub051E(); UNW(); ret_check(0x99C0);                           /* $99BE jsr */
@@ -1587,7 +1587,7 @@ void Bank5Tbl8065_55(void) {  /* $861C bank 5 */
   INC_M(SceneState);                                                                     /* $861C inc */
   goto L9D0D;                                                                            /* $861F jmp */
 L9D0D: BUDGET();
-  push16(0x9D0F); Sub_B5_8150(); UNW(); ret_check(0x9D0F);                               /* $9D0D jsr */
+  push16(0x9D0F); DisableRendering(); UNW(); ret_check(0x9D0F);                          /* $9D0D jsr */
   LDA(0x1C);                                                                             /* $9D10 lda */
   LDX(0x1F);                                                                             /* $9D12 ldx */
   LDY(0x0D);                                                                             /* $9D14 ldy */
@@ -1635,7 +1635,7 @@ void Bank5Tbl8065_58(void) {  /* $8646 bank 5 */
   INC_M(SceneState);                                                                     /* $8646 inc */
   goto L901E;                                                                            /* $8649 jmp */
 L901E: BUDGET();
-  push16(0x9020); Sub_B5_8150(); UNW(); ret_check(0x9020);                               /* $901E jsr */
+  push16(0x9020); DisableRendering(); UNW(); ret_check(0x9020);                          /* $901E jsr */
   LDA(0x1F);                                                                             /* $9021 lda */
   LDX(0x0F);                                                                             /* $9023 ldx */
   LDY(0x0D);                                                                             /* $9025 ldy */
@@ -1690,7 +1690,7 @@ void Bank5Tbl8065_5B(void) {  /* $8676 bank 5 */
   INC_M(SceneState);                                                                     /* $8676 inc */
   goto L9C91;                                                                            /* $8679 jmp */
 L9C91: BUDGET();
-  push16(0x9C93); Sub_B5_8150(); UNW(); ret_check(0x9C93);                               /* $9C91 jsr */
+  push16(0x9C93); DisableRendering(); UNW(); ret_check(0x9C93);                          /* $9C91 jsr */
   LDA(0x1C);                                                                             /* $9C94 lda */
   LDX(0x14);                                                                             /* $9C96 ldx */
   LDY(0x14);                                                                             /* $9C98 ldy */
@@ -1729,7 +1729,7 @@ void Sub_B5_8694(void) {  /* $8694 bank 5 */
   STA(0x012A);                                                                           /* $8699 sta */
   goto L9DB4;                                                                            /* $869C jmp */
 L9DB4: BUDGET();
-  push16(0x9DB6); Sub_B5_8150(); UNW(); ret_check(0x9DB6);                               /* $9DB4 jsr */
+  push16(0x9DB6); DisableRendering(); UNW(); ret_check(0x9DB6);                          /* $9DB4 jsr */
   LDA(0x1C);                                                                             /* $9DB7 lda */
   LDX(0x0B);                                                                             /* $9DB9 ldx */
   LDY(0x0B);                                                                             /* $9DBB ldy */
@@ -1763,7 +1763,7 @@ L9DB4: BUDGET();
   { QueueSound(); return; }                                                              /* $9DFD jmp */
 }
 
-void Sub_B5_869F(void) {  /* $869F bank 5 */
+void WaitSceneTimerThenEnableRender(void) {  /* $869F bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $869F dec */
   if (R.z) {                                                                             /* $86A2 bne */
@@ -1773,7 +1773,7 @@ void Sub_B5_869F(void) {  /* $869F bank 5 */
   RTS_RET(sp0);                                                                          /* $86AA rts */
 }
 
-void Sub_B5_86AB(void) {  /* $86AB bank 5 */
+void WaitSceneCounterZero(void) {  /* $86AB bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0528));                                                                       /* $86AB lda */
   ORA(rd(0x0529));                                                                       /* $86AE ora */
@@ -1790,7 +1790,7 @@ void Sub_B5_86B7(void) {  /* $86B7 bank 5 */
   STA(0x012A);                                                                           /* $86BC sta */
   goto L9E0C;                                                                            /* $86BF jmp */
 L9E0C: BUDGET();
-  push16(0x9E0E); Sub_B5_8150(); UNW(); ret_check(0x9E0E);                               /* $9E0C jsr */
+  push16(0x9E0E); DisableRendering(); UNW(); ret_check(0x9E0E);                          /* $9E0C jsr */
   LDA(0x1C);                                                                             /* $9E0F lda */
   LDX(0x1F);                                                                             /* $9E11 ldx */
   LDY(0x0D);                                                                             /* $9E13 ldy */
@@ -1872,7 +1872,7 @@ void Sub_B5_86DA(void) {  /* $86DA bank 5 */
   STA(0x012A);                                                                           /* $86E2 sta */
   goto L9D40;                                                                            /* $86E5 jmp */
 L9D40: BUDGET();
-  push16(0x9D42); Sub_B5_8150(); UNW(); ret_check(0x9D42);                               /* $9D40 jsr */
+  push16(0x9D42); DisableRendering(); UNW(); ret_check(0x9D42);                          /* $9D40 jsr */
   LDA(0x1C);                                                                             /* $9D43 lda */
   LDX(0x1F);                                                                             /* $9D45 ldx */
   LDY(0x0D);                                                                             /* $9D47 ldy */
@@ -2094,7 +2094,7 @@ void HideSpritesFromX(void) {  /* $8948 bank 5 */
 
 void Sub_B5_8951(void) {  /* $8951 bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x8953); Sub_B5_8150(); UNW(); ret_check(0x8953);                               /* $8951 jsr */
+  push16(0x8953); DisableRendering(); UNW(); ret_check(0x8953);                          /* $8951 jsr */
   LDA(0x1E);                                                                             /* $8954 lda */
   LDX(0x0F);                                                                             /* $8956 ldx */
   LDY(0x0E);                                                                             /* $8958 ldy */
@@ -2675,7 +2675,7 @@ void InitScenePpuState(void) {  /* $9098 bank 5 */
 
 void Sub_B5_90A7(void) {  /* $90A7 bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x90A9); Sub_B5_8150(); UNW(); ret_check(0x90A9);                               /* $90A7 jsr */
+  push16(0x90A9); DisableRendering(); UNW(); ret_check(0x90A9);                          /* $90A7 jsr */
   LDA(0x1C);                                                                             /* $90AA lda */
   LDX(0x0F);                                                                             /* $90AC ldx */
   LDY(0x0E);                                                                             /* $90AE ldy */

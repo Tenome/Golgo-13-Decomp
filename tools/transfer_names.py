@@ -36,4 +36,18 @@ for k, nm in nu.items():
     sh = shape(us, b * 0x4000 + a)
     c = byshape.get((b, sh)) if sh and len(sh) >= 4 else None
     if c and len(c) == 1 and f'{b}:{c[0]:04X}' not in nj: nj[f'{b}:{c[0]:04X}'] = nm; have.add(nm); shape_added += 1
-json.dump(nj, open(nf, 'w'), indent=1); print(added, 'names transferred to jp by bytes,', shape_added, 'by instruction shape')
+# third pass: align the two routine lists of each bank in address order (difflib) and carry names across routines with the same instruction shape
+import difflib
+uf = json.load(open(os.path.join(root, 'c', 'auto', 'us', 'funcs.json')))
+def fshape(rom, v): return shape(rom, v['bank'] * 0x4000 + (v['addr'] & 0x3FFF), 40)
+align_added = 0
+for b in range(1, 7):
+    us_l = sorted([(v['addr'], k) for k, v in uf.items() if v['bank'] == b and v['ok']]); jp_l = sorted([(v['addr'], k) for k, v in jf.items() if v['bank'] == b and v['ok']])
+    us_s = [fshape(us, uf[k]) for _, k in us_l]; jp_s = [fshape(jp, jf[k]) for _, k in jp_l]
+    sm = difflib.SequenceMatcher(None, us_s, jp_s, autojunk=False)
+    for blk in sm.get_matching_blocks():
+        for t in range(blk.size):
+            ua = us_l[blk.a + t][0]; ja = jp_l[blk.b + t][0]
+            nm = nu.get(f'{b}:{ua:04X}'); key = f'{b}:{ja:04X}'
+            if nm and key not in nj and nm not in have and us_s[blk.a + t]: nj[key] = nm; have.add(nm); align_added += 1
+json.dump(nj, open(nf, 'w'), indent=1); print(align_added, 'by routine-order alignment;', added, 'names transferred to jp by bytes,', shape_added, 'by instruction shape')
