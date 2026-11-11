@@ -22,10 +22,10 @@ Bank4Nmi:
   sta PPU_MASK                 ; $802D
   jsr ApplyScroll              ; $8030
   jsr Sub_B4_80B3              ; $8033
-  jsr Sub_B4_8C07              ; $8036
+  jsr CheckLowLifeSound        ; $8036
   inc z:FrameCounter           ; $8039
   jsr DrawHud                  ; $803B
-  jsr Sub_B4_90F1              ; $803E
+  jsr HideSpritesWithTileFE    ; $803E
   lda z:MmcPrgShadow           ; $8041
   pha                          ; $8043
   lda #$04                     ; $8044
@@ -89,8 +89,8 @@ Loc_B4_80B8:
   sta z:$6E                    ; $80C4
   jmp ($006D)                  ; $80C6
 Data_B4_80C9:
-  .addr Bank4Tbl80C9_00, Bank4Tbl80C9_01, Bank4Tbl80C9_02, Bank4Tbl80C9_03, Bank4Tbl80C9_04, Bank4Tbl80C9_05, Bank4Tbl80C9_06, Bank4Tbl80C9_07, Bank4Tbl80C9_08, Bank4Tbl80C9_09, Bank4Tbl80C9_0A, Bank4Tbl80C9_0B, Bank4Tbl80C9_0C, Bank4Tbl80C9_0D, Bank4Tbl80C9_0E, Bank4Tbl80C9_0F, Bank4Tbl80C9_10, Bank4Tbl80C9_11, Bank4Tbl80C9_12, Bank4Tbl80C9_13, Bank4Tbl80C9_14, Bank4Tbl80C9_15, Bank4Tbl80C9_16, Bank4Tbl80C9_17, Bank4Tbl80C9_18, Bank4Tbl80C9_19, Bank4Tbl80C9_1A, Bank4Tbl80C9_1B, Bank4Tbl80C9_1C, Bank4Tbl80C9_1D, Bank4Tbl80C9_1E, Bank4Tbl80C9_1F, Bank4Tbl80C9_20  ; $80C9 pointer table
-Bank4Tbl80C9_00:
+  .addr Bank4State_00, Bank4Tbl80C9_01, Bank4Tbl80C9_02, Bank4Tbl80C9_03, Bank4Tbl80C9_04, Bank4Tbl80C9_05, Bank4Tbl80C9_06, Bank4Tbl80C9_07, Bank4Tbl80C9_08, Bank4Tbl80C9_09, Bank4Tbl80C9_0A, Bank4Tbl80C9_0B, Bank4Tbl80C9_0C, Bank4Tbl80C9_0D, Bank4Tbl80C9_0E, Bank4Tbl80C9_0F, Bank4State_10, Bank4Tbl80C9_11, Bank4Tbl80C9_12, Bank4Tbl80C9_13, Bank4Tbl80C9_14, Bank4State_15, Bank4State_16, Bank4Tbl80C9_17, Bank4Tbl80C9_18, Bank4Tbl80C9_19, Bank4Tbl80C9_1A, Bank4Tbl80C9_1B, Bank4Tbl80C9_1C, Bank4Tbl80C9_1D, Bank4Tbl80C9_1E, Bank4State_1F, Bank4State_20  ; $80C9 pointer table
+Bank4State_00:
   lda #$00                     ; $810B
   sta $050A                    ; $810D
   sta $050B                    ; $8110
@@ -98,30 +98,30 @@ Bank4Tbl80C9_00:
 Bank4Tbl80C9_03:
   lda #$04                     ; $8116
   sta SceneState               ; $8118
-  jsr Sub_B4_84FD              ; $811B
+  jsr ClearSceneStateTail      ; $811B
   jmp Loc_B4_849E              ; $811E
 Bank4Tbl80C9_01:
   lda #$1C                     ; $8121
   sta SceneState               ; $8123
-  jsr Sub_B4_8507              ; $8126
+  jsr ClearWorkVars60          ; $8126
   jmp Loc_B4_849E              ; $8129
 Bank4Tbl80C9_02:
   lda #$1E                     ; $812C
   sta SceneState               ; $812E
-  jsr Sub_B4_8507              ; $8131
+  jsr ClearWorkVars60          ; $8131
   jmp Loc_B4_849E              ; $8134
 Bank4Tbl80C9_04:
   inc SceneState               ; $8137
-  jmp Sub_B4_90D6              ; $813A
+  jmp DisableSpriteBgRendering ; $813A
 Bank4Tbl80C9_05:
   inc SceneState               ; $813D
   jsr FillPaletteBlack         ; $8140
-  jsr Sub_B4_8476              ; $8143
+  jsr HideSpritesFromStart     ; $8143
   lda #$03                     ; $8146
   sta $051F                    ; $8148
   jsr Sub_B4_90B6              ; $814B
-  jsr Sub_B4_9173              ; $814E
-  jsr Sub_B4_854E              ; $8151
+  jsr InitMazePosition         ; $814E
+  jsr DrawCompassSprites       ; $8151
   jsr Sub_B4_9880              ; $8154
   jsr Sub_B4_997B              ; $8157
   jsr Sub_B4_9FAC              ; $815A
@@ -143,7 +143,7 @@ Bank4Tbl80C9_07:
   sta z:$7C                    ; $8183
   lda #$11                     ; $8185
   sta z:$8A                    ; $8187
-  jmp Sub_B4_90CF              ; $8189
+  jmp EnableSpriteBgRendering  ; $8189
 Bank4Tbl80C9_08:
   lda PPU_STATUS               ; $818C
   jsr ReadJoypads              ; $818F
@@ -176,7 +176,7 @@ Bank4Tbl80C9_09:
   jmp Loc_B4_8511              ; $81CD
 Bank4Tbl80C9_0A:
   inc SceneState               ; $81D0
-  jsr Sub_B4_90D6              ; $81D3
+  jsr DisableSpriteBgRendering ; $81D3
   lda MazeIndex                ; $81D6
   cmp #$0C                     ; $81D9
   bne Loc_B4_81EB              ; $81DB
@@ -198,7 +198,7 @@ Bank4Tbl80C9_0B:
   lda #$06                     ; $81F9
   sta SceneState               ; $81FB
   jsr FillPaletteBlack         ; $81FE
-  jsr Sub_B4_8476              ; $8201
+  jsr HideSpritesFromStart     ; $8201
   jsr Sub_B4_95A1              ; $8204
   lda z:PpuCtrlShadow          ; $8207
   and #$FC                     ; $8209
@@ -210,7 +210,7 @@ Bank4Tbl80C9_0B:
   sta z:$88                    ; $8215
   sta z:$89                    ; $8217
   jsr Sub_B4_8B39              ; $8219
-  jsr Sub_B4_854E              ; $821C
+  jsr DrawCompassSprites       ; $821C
   jsr Sub_B4_9880              ; $821F
   jsr Sub_B4_997B              ; $8222
   jsr Sub_B4_9FAC              ; $8225
@@ -221,12 +221,12 @@ Bank4Tbl80C9_0B:
   jmp Sub_B4_8ADF              ; $8234
 Bank4Tbl80C9_0C:
   inc SceneState               ; $8237
-  jmp Sub_B4_90D6              ; $823A
+  jmp DisableSpriteBgRendering ; $823A
 Bank4Tbl80C9_0D:
   inc SceneState               ; $823D
   jsr FillPaletteBlack         ; $8240
-  jsr Sub_B4_8476              ; $8243
-  jsr Sub_B4_854E              ; $8246
+  jsr HideSpritesFromStart     ; $8243
+  jsr DrawCompassSprites       ; $8246
   jsr Sub_B4_9F94              ; $8249
   lda #$00                     ; $824C
   sta z:HwScrollX              ; $824E
@@ -244,8 +244,8 @@ Bank4Tbl80C9_0E:
 Bank4Tbl80C9_0F:
   inc SceneState               ; $8268
   jsr Sub_B4_95DA              ; $826B
-  jmp Sub_B4_90CF              ; $826E
-Bank4Tbl80C9_10:
+  jmp EnableSpriteBgRendering  ; $826E
+Bank4State_10:
   jsr ReadJoypads              ; $8271
   lda JoyNew1                  ; $8274
   lsr a                        ; $8277
@@ -261,7 +261,7 @@ Loc_B4_8287:
   rts                          ; $8287
 Bank4Tbl80C9_11:
   inc SceneState               ; $8288
-  jmp Sub_B4_90D6              ; $828B
+  jmp DisableSpriteBgRendering ; $828B
 Bank4Tbl80C9_12:
   lda z:PpuCtrlShadow          ; $828E
   and #$FD                     ; $8290
@@ -285,7 +285,7 @@ Sub_B4_82BC:
   lda #$06                     ; $82BC
   sta SceneState               ; $82BE
   jsr FillPaletteBlack         ; $82C1
-  jsr Sub_B4_8476              ; $82C4
+  jsr HideSpritesFromStart     ; $82C4
   lda PlayerCellX              ; $82C7
   clc                          ; $82CA
   adc z:$7E                    ; $82CB
@@ -294,7 +294,7 @@ Sub_B4_82BC:
   clc                          ; $82D3
   adc z:$7F                    ; $82D4
   sta PlayerCellY              ; $82D6
-  jsr Sub_B4_854E              ; $82D9
+  jsr DrawCompassSprites       ; $82D9
   jsr Sub_B4_9880              ; $82DC
   jsr Sub_B4_997B              ; $82DF
   jsr Sub_B4_9FAC              ; $82E2
@@ -319,15 +319,15 @@ Loc_B4_8306:
   .incbin "prg_bank_4.bin", $030D, $9  ; $830D
 Bank4Tbl80C9_13:
   inc SceneState               ; $8316
-  jmp Sub_B4_90D6              ; $8319
+  jmp DisableSpriteBgRendering ; $8319
 Bank4Tbl80C9_14:
   inc SceneState               ; $831C
   jsr FillPaletteBlack         ; $831F
-  jsr Sub_B4_8476              ; $8322
+  jsr HideSpritesFromStart     ; $8322
   jsr Sub_B4_A177              ; $8325
   jsr ApplyScroll              ; $8328
   jmp Sub_B4_86DD              ; $832B
-Bank4Tbl80C9_15:
+Bank4State_15:
   inc SceneState               ; $832E
   lda $052E                    ; $8331
   ldx z:$81                    ; $8334
@@ -337,8 +337,8 @@ Bank4Tbl80C9_15:
 Loc_B4_833C:
   sta $052A                    ; $833C
   jsr Sub_B4_95DA              ; $833F
-  jmp Sub_B4_90CF              ; $8342
-Bank4Tbl80C9_16:
+  jmp EnableSpriteBgRendering  ; $8342
+Bank4State_16:
   jsr ReadJoypads              ; $8345
   lda JoyNew1                  ; $8348
   lsr a                        ; $834B
@@ -362,14 +362,14 @@ Data_B4_8367:
   .incbin "prg_bank_4.bin", $0367, $2  ; $8367
 Bank4Tbl80C9_17:
   inc SceneState               ; $8369
-  jmp Sub_B4_90D6              ; $836C
+  jmp DisableSpriteBgRendering ; $836C
 Bank4Tbl80C9_18:
   lda #$06                     ; $836F
   sta SceneState               ; $8371
   jsr FillPaletteBlack         ; $8374
-  jsr Sub_B4_8476              ; $8377
+  jsr HideSpritesFromStart     ; $8377
   jsr Sub_B4_8C24              ; $837A
-  jsr Sub_B4_854E              ; $837D
+  jsr DrawCompassSprites       ; $837D
   jsr Sub_B4_9880              ; $8380
   jsr Sub_B4_997B              ; $8383
   jsr Sub_B4_9FAC              ; $8386
@@ -379,18 +379,18 @@ Bank4Tbl80C9_18:
   jmp ApplyScroll              ; $8392
 Bank4Tbl80C9_19:
   inc SceneState               ; $8395
-  jmp Sub_B4_90D6              ; $8398
+  jmp DisableSpriteBgRendering ; $8398
 Bank4Tbl80C9_1A:
   jsr Sub_B4_8C24              ; $839B
   jmp Loc_B4_8306              ; $839E
 Bank4Tbl80C9_1B:
   lda #$06                     ; $83A1
   sta SceneState               ; $83A3
-  jsr Sub_B4_90D6              ; $83A6
+  jsr DisableSpriteBgRendering ; $83A6
   lda #$0F                     ; $83A9
   sta $052A                    ; $83AB
-  jsr Sub_B4_8476              ; $83AE
-  jsr Sub_B4_854E              ; $83B1
+  jsr HideSpritesFromStart     ; $83AE
+  jsr DrawCompassSprites       ; $83B1
   jsr Sub_B4_A0F1              ; $83B4
   lda z:PpuCtrlShadow          ; $83B7
   and #$FD                     ; $83B9
@@ -398,13 +398,13 @@ Bank4Tbl80C9_1B:
   rts                          ; $83BD
 Bank4Tbl80C9_1C:
   inc SceneState               ; $83BE  [heuristic code]
-  jmp Sub_B4_90D6              ; $83C1
+  jmp DisableSpriteBgRendering ; $83C1
 Bank4Tbl80C9_1D:
   lda #$06                     ; $83C4
   sta SceneState               ; $83C6
   jsr FillPaletteBlack         ; $83C9
-  jsr Sub_B4_8476              ; $83CC
-  jsr Sub_B4_854E              ; $83CF
+  jsr HideSpritesFromStart     ; $83CC
+  jsr DrawCompassSprites       ; $83CF
   jsr Sub_B4_9880              ; $83D2
   jsr Sub_B4_997B              ; $83D5
   jsr Sub_B4_9FAC              ; $83D8
@@ -416,8 +416,8 @@ Bank4Tbl80C9_1E:
   lda #$06                     ; $83E7
   sta SceneState               ; $83E9
   jsr FillPaletteBlack         ; $83EC
-  jsr Sub_B4_8476              ; $83EF
-  jsr Sub_B4_854E              ; $83F2
+  jsr HideSpritesFromStart     ; $83EF
+  jsr DrawCompassSprites       ; $83F2
   lda $0510                    ; $83F5
   sta MazeIndex                ; $83F8
   lda $0511                    ; $83FB
@@ -434,7 +434,7 @@ Bank4Tbl80C9_1E:
   jsr Sub_B4_A0F1              ; $841C
   jsr Sub_B4_901A              ; $841F
   jmp ApplyScroll              ; $8422
-Bank4Tbl80C9_1F:
+Bank4State_1F:
   inc SceneState               ; $8425
   lda #$78                     ; $8428
   sta $058F                    ; $842A
@@ -450,7 +450,7 @@ Loc_B4_8434:
   jmp QueueSound               ; $843F
 Data_B4_8442:
   .incbin "prg_bank_4.bin", $0442, $7  ; $8442
-Bank4Tbl80C9_20:
+Bank4State_20:
   dec $058F                    ; $8449
   bne Loc_B4_8463              ; $844C
   lda #$05                     ; $844E
@@ -460,15 +460,15 @@ Bank4Tbl80C9_20:
   ldy MazeIndex                ; $8457
   lda Data_B4_8464,y           ; $845A
   sta $013F                    ; $845D
-  jmp Sub_B4_90D6              ; $8460
+  jmp DisableSpriteBgRendering ; $8460
 Loc_B4_8463:
   rts                          ; $8463
 Data_B4_8464:
   .incbin "prg_bank_4.bin", $0464, $12  ; $8464
-Sub_B4_8476:
+HideSpritesFromStart:
   ldx Data_C34D                ; $8476
   bne Loc_B4_847D              ; $8479
-Sub_B4_847B:
+HideAllSprites:
   ldx #$00                     ; $847B
 Loc_B4_847D:
   lda #$F0                     ; $847D
@@ -480,7 +480,7 @@ Loc_B4_847F:
   inx                          ; $8485
   bne Loc_B4_847F              ; $8486
   rts                          ; $8488
-Sub_B4_8489:
+SetSprite0Marker:
   lda #$BE                     ; $8489
   sta OamBuffer                ; $848B
   lda #$FE                     ; $848E
@@ -514,8 +514,8 @@ Loc_B4_849E:
   lda #$08                     ; $84CE
   jsr QueueSound               ; $84D0
   jsr Sub_B4_86DD              ; $84D3
-  jsr Sub_B4_847B              ; $84D6
-  jsr Sub_B4_8489              ; $84D9
+  jsr HideAllSprites           ; $84D6
+  jsr SetSprite0Marker         ; $84D9
   ldx #$1F                     ; $84DC
   stx z:MmcControlShadow       ; $84DE
   jsr MmcWriteControl          ; $84E0
@@ -530,14 +530,14 @@ Loc_B4_849E:
   lda #$30                     ; $84F6
   sta z:PpuCtrlShadow          ; $84F8
   jmp ApplyScroll              ; $84FA
-Sub_B4_84FD:
+ClearSceneStateTail:
   lda #$00                     ; $84FD
   ldx #$10                     ; $84FF
 Loc_B4_8501:
   sta SceneState,x             ; $8501
   inx                          ; $8504
   bne Loc_B4_8501              ; $8505
-Sub_B4_8507:
+ClearWorkVars60:
   lda #$00                     ; $8507
   ldx #$7F                     ; $8509
 Loc_B4_850B:
@@ -582,7 +582,7 @@ Loc_B4_8549:
   rts                          ; $8549
 Data_B4_854A:
   .incbin "prg_bank_4.bin", $054A, $4  ; $854A
-Sub_B4_854E:
+DrawCompassSprites:
   lda #$00                     ; $854E
   sta $0211                    ; $8550
   lda #$02                     ; $8553
@@ -647,12 +647,12 @@ Loc_B4_85B2:
   sta z:$6E                    ; $85BE
   jmp ($006D)                  ; $85C0
 Data_B4_85C3:
-  .addr Bank4Tbl85C3_00, Bank4Tbl85C3_01, Bank4Tbl85C3_02, Bank4Tbl85C3_03, Bank4Tbl85C3_04, Bank4Tbl85C3_05, Bank4Tbl85C3_06, Bank4Tbl85C3_07, Bank4Tbl85C3_08, Bank4Tbl85C3_09, Bank4Tbl85C3_0A, Bank4Tbl85C3_0B, Bank4Tbl85C3_0C, Bank4Tbl85C3_0D  ; $85C3 pointer table
-Bank4Tbl85C3_00:
+  .addr Bank4StateB_00, Bank4StateB_01, Bank4Tbl85C3_02, Bank4StateB_03, Bank4StateB_04, Bank4Tbl85C3_05, Bank4Tbl85C3_06, Bank4Tbl85C3_07, Bank4Tbl85C3_08, Bank4Tbl85C3_09, Bank4Tbl85C3_0A, Bank4Tbl85C3_0B, Bank4Tbl85C3_0C, Bank4StateB_0D  ; $85C3 pointer table
+Bank4StateB_00:
   lda #$00                     ; $85DF
   sta z:$7C                    ; $85E1
   rts                          ; $85E3
-Bank4Tbl85C3_01:
+Bank4StateB_01:
   dec z:$7F                    ; $85E4
   lda #$02                     ; $85E6
   sta z:$7C                    ; $85E8
@@ -662,12 +662,12 @@ Bank4Tbl85C3_02:
   lda #$02                     ; $85ED
   sta z:$7C                    ; $85EF
   rts                          ; $85F1
-Bank4Tbl85C3_03:
+Bank4StateB_03:
   inc z:$7F                    ; $85F2
   lda #$02                     ; $85F4
   sta z:$7C                    ; $85F6
   rts                          ; $85F8
-Bank4Tbl85C3_04:
+Bank4StateB_04:
   dec z:$7E                    ; $85F9
   lda #$02                     ; $85FB
   sta z:$7C                    ; $85FD
@@ -677,8 +677,8 @@ Bank4Tbl85C3_05:
   ora $050B                    ; $8603
   bne Loc_B4_8610              ; $8606
   ldy #$EA                     ; $8608
-  jsr Sub_B4_B43F              ; $860A
-  jmp Bank4Tbl85C3_00          ; $860D
+  jsr AddObjectOfType          ; $860A
+  jmp Bank4StateB_00           ; $860D
 Loc_B4_8610:
   lda #$00                     ; $8610
   ldx #$08                     ; $8612
@@ -687,10 +687,10 @@ Loc_B4_8610:
 Bank4Tbl85C3_06:
   lda $0508                    ; $8619
   ora $050C                    ; $861C
-  bne Bank4Tbl85C3_04          ; $861F
+  bne Bank4StateB_04           ; $861F
   ldy #$E9                     ; $8621
-  jsr Sub_B4_B43F              ; $8623
-  jmp Bank4Tbl85C3_00          ; $8626
+  jsr AddObjectOfType          ; $8623
+  jmp Bank4StateB_00           ; $8626
 Bank4Tbl85C3_07:
   lda #$01                     ; $8629
   sta $050C                    ; $862B
@@ -702,8 +702,8 @@ Bank4Tbl85C3_08:
   ora $050C                    ; $8638
   bne Loc_B4_8645              ; $863B
   ldy #$E9                     ; $863D
-  jsr Sub_B4_B43F              ; $863F
-  jmp Bank4Tbl85C3_00          ; $8642
+  jsr AddObjectOfType          ; $863F
+  jmp Bank4StateB_00           ; $8642
 Loc_B4_8645:
   lda #$06                     ; $8645
   sta $0510                    ; $8647
@@ -723,17 +723,17 @@ Bank4Tbl85C3_09:
   lda $0508                    ; $8663
   ora $050C                    ; $8666
   beq Loc_B4_866E              ; $8669
-  jmp Bank4Tbl85C3_04          ; $866B
+  jmp Bank4StateB_04           ; $866B
 Loc_B4_866E:
   ldy #$E9                     ; $866E
-  jsr Sub_B4_B43F              ; $8670
-  jmp Bank4Tbl85C3_00          ; $8673
+  jsr AddObjectOfType          ; $8670
+  jmp Bank4StateB_00           ; $8673
 Bank4Tbl85C3_0A:
   lda $0508                    ; $8676
   bne Loc_B4_8683              ; $8679
   ldy #$EB                     ; $867B
-  jsr Sub_B4_B43F              ; $867D
-  jmp Bank4Tbl85C3_00          ; $8680
+  jsr AddObjectOfType          ; $867D
+  jmp Bank4StateB_00           ; $8680
 Loc_B4_8683:
   lda #$00                     ; $8683
   ldx #$0B                     ; $8685
@@ -744,8 +744,8 @@ Bank4Tbl85C3_0B:
   ora $050C                    ; $868F
   bne Loc_B4_869C              ; $8692
   ldy #$E9                     ; $8694
-  jsr Sub_B4_B43F              ; $8696
-  jmp Bank4Tbl85C3_00          ; $8699
+  jsr AddObjectOfType          ; $8696
+  jmp Bank4StateB_00           ; $8699
 Loc_B4_869C:
   lda #$04                     ; $869C
   sta $0510                    ; $869E
@@ -763,7 +763,7 @@ Bank4Tbl85C3_0C:
   ldx #$11                     ; $86B9
   ldy #$03                     ; $86BB
   jmp Sub_B4_8BD5              ; $86BD
-Bank4Tbl85C3_0D:
+Bank4StateB_0D:
   lda #$0B                     ; $86C0
   sta $0510                    ; $86C2
   lda #$07                     ; $86C5
@@ -839,7 +839,7 @@ Loc_B4_8B22:
   iny                          ; $8B2B
   jmp Loc_B4_8B15              ; $8B2C
 Loc_B4_8B2F:
-  jsr Sub_B4_8FBF              ; $8B2F
+  jsr AllocObjectSlot          ; $8B2F
   lda ($64),y                  ; $8B32
   ldy #$00                     ; $8B34
   sta (Tmp00),y                ; $8B36
@@ -899,7 +899,7 @@ Loc_B4_8BDC:
   rts                          ; $8BEB
 Data_B4_8BEC:
   .incbin "prg_bank_4.bin", $0BEC, $1B  ; $8BEC
-Sub_B4_8C07:
+CheckLowLifeSound:
   lda z:PlayerLifeLo           ; $8C07
   cmp #$32                     ; $8C09
   ldx z:$8B                    ; $8C0B
@@ -1113,13 +1113,13 @@ Sub_B4_8E16:
   sta $0208                    ; $8E1F
   rts                          ; $8E22
   tya                          ; $8E23
-  beq Bank4Tbl8E4A_00          ; $8E24
+  beq Bank4StateC_00           ; $8E24
   jsr AslA4                    ; $8E26
   tax                          ; $8E29
   stx z:$6B                    ; $8E2A
   lda $0309,x                  ; $8E2C
   asl a                        ; $8E2F
-  bpl Bank4Tbl8E4A_00          ; $8E30
+  bpl Bank4StateC_00           ; $8E30
   lda $0300,x                  ; $8E32
   and #$3F                     ; $8E35
   cmp #$2D                     ; $8E37
@@ -1140,25 +1140,25 @@ Data_B4_8E4A:
   bcs *-112                    ; $8E52
   ldy z:$8E                    ; $8E54
   ldy Data_B4_A48E,x           ; $8E56
-  stx Bank4Tbl8E4A_00          ; $8E59
+  stx Bank4StateC_00           ; $8E59
   ldy z:$8E                    ; $8E5C
   iny                          ; $8E5E
-  stx Bank4Tbl8E4A_00          ; $8E5F
+  stx Bank4StateC_00           ; $8E5F
   ldy z:$8E                    ; $8E62
   ldy z:$8E                    ; $8E64
   ldy z:$8E                    ; $8E66
   ldy z:$8E                    ; $8E68
   ldy z:$8E                    ; $8E6A
   .incbin "prg_bank_4.bin", $0E6C, $38  ; $8E6C
-Bank4Tbl8E4A_00:
+Bank4StateC_00:
   clc                          ; $8EA4
   rts                          ; $8EA5
-Bank4Tbl8E4A_01:
+Bank4StateC_01:
   ldx z:$6B                    ; $8EA6
   lda $0302,x                  ; $8EA8
   cmp $0207                    ; $8EAB
-  bne Bank4Tbl8E4A_00          ; $8EAE
-Bank4Tbl8E4A_02:
+  bne Bank4StateC_00           ; $8EAE
+Bank4StateC_02:
   ldx z:$6B                    ; $8EB0
   lda $0309,x                  ; $8EB2
   ora #$80                     ; $8EB5
@@ -1169,19 +1169,19 @@ Bank4Tbl8E4A_06:
   ldx z:$6B                    ; $8EBC
   lda ObjectCount,x            ; $8EBE
   cmp #$44                     ; $8EC1
-  bcc Bank4Tbl8E4A_00          ; $8EC3
-  jmp Bank4Tbl8E4A_01          ; $8EC5
+  bcc Bank4StateC_00           ; $8EC3
+  jmp Bank4StateC_01           ; $8EC5
 Bank4Tbl8E4A_0A:
   ldx z:$6B                    ; $8EC8
   lda $0305,x                  ; $8ECA
-  beq Bank4Tbl8E4A_01          ; $8ECD
-  jmp Bank4Tbl8E4A_00          ; $8ECF
+  beq Bank4StateC_01           ; $8ECD
+  jmp Bank4StateC_00           ; $8ECF
 Bank4Tbl8E4A_11:
   ldx z:$6B                    ; $8ED2
   lda $0302,x                  ; $8ED4
   cmp $0207                    ; $8ED7
-  bne Bank4Tbl8E4A_00          ; $8EDA
-  jmp Bank4Tbl8E4A_02          ; $8EDC
+  bne Bank4StateC_00           ; $8EDA
+  jmp Bank4StateC_02           ; $8EDC
 Sub_B4_8EDF:
   sta z:$60                    ; $8EDF
   asl a                        ; $8EE1
@@ -1208,7 +1208,7 @@ Data_B4_8F06:
   .incbin "prg_bank_4.bin", $0F06, $61  ; $8F06
 Data_B4_8F67:
   .incbin "prg_bank_4.bin", $0F67, $1E  ; $8F67
-Sub_B4_8F85:
+SetObjectFrame:
   ldy #$05                     ; $8F85
   sta (Tmp00),y                ; $8F87
   asl a                        ; $8F89
@@ -1244,7 +1244,7 @@ Sub_B4_8F85:
   ldx #$10                     ; $8FBC
 Loc_B4_8FBE:
   rts                          ; $8FBE
-Sub_B4_8FBF:
+AllocObjectSlot:
   inc ObjectCount              ; $8FBF
   lda ObjectCount              ; $8FC2
   jsr AslA4                    ; $8FC5
@@ -1252,15 +1252,15 @@ Sub_B4_8FBF:
   lda #$03                     ; $8FCA
   sta z:Tmp01                  ; $8FCC
   rts                          ; $8FCE
-Sub_B4_8FCF:
+AdvanceObjectState:
   ldy #$08                     ; $8FCF
-Sub_B4_8FD1:
+IncObjectField:
   lda (Tmp00),y                ; $8FD1
   clc                          ; $8FD3
   adc #$01                     ; $8FD4
   sta (Tmp00),y                ; $8FD6
   rts                          ; $8FD8
-Sub_B4_8FD9:
+DecObjectField:
   lda (Tmp00),y                ; $8FD9
   sec                          ; $8FDB
   sbc #$01                     ; $8FDC
@@ -1362,11 +1362,11 @@ Sub_B4_90C2:
   rts                          ; $90C7
   .incbin "prg_bank_4.bin", $10C8, $6  ; $90C8
   rts                          ; $90CE
-Sub_B4_90CF:
+EnableSpriteBgRendering:
   lda z:PpuMaskShadow          ; $90CF
   ora #$18                     ; $90D1
   jmp SetPpuMask               ; $90D3
-Sub_B4_90D6:
+DisableSpriteBgRendering:
   lda z:PpuMaskShadow          ; $90D6
   and #$E7                     ; $90D8
   jmp SetPpuMask               ; $90DA
@@ -1382,7 +1382,7 @@ Sub_B4_90E7:
   ldx z:$86                    ; $90EC
   adc z:$0A                    ; $90EE
   rts                          ; $90F0
-Sub_B4_90F1:
+HideSpritesWithTileFE:
   ldx #$1C                     ; $90F1
 Loc_B4_90F3:
   lda $02E1,x                  ; $90F3
@@ -1413,7 +1413,7 @@ Data_B4_911A:
   .incbin "prg_bank_4.bin", $111B, $2B  ; $911B
 Data_B4_9146:
   .incbin "prg_bank_4.bin", $1146, $2D  ; $9146
-Sub_B4_9173:
+InitMazePosition:
   ldx MazeIndex                ; $9173
   cpx #$12                     ; $9176
   bcc Loc_B4_9184              ; $9178
@@ -1451,7 +1451,7 @@ Data_B4_91D1:
   .incbin "prg_bank_4.bin", $11D1, $12  ; $91D1
 Data_B4_91E3:
   .incbin "prg_bank_4.bin", $11E3, $3A0  ; $91E3
-Sub_B4_9583:
+InitPaletteBuffer:
   lda #$3F                     ; $9583
   sta SceneTimer               ; $9585
   ldx #$00                     ; $9588
@@ -1468,7 +1468,7 @@ Loc_B4_959A:
   bne Loc_B4_959A              ; $959E
   rts                          ; $95A0
 Sub_B4_95A1:
-  jsr Sub_B4_9583              ; $95A1
+  jsr InitPaletteBuffer        ; $95A1
   ldx #$02                     ; $95A4
 Loc_B4_95A6:
   lda Data_B4_9615,x           ; $95A6
@@ -1721,23 +1721,23 @@ Data_B4_97CE:
 Data_B4_97CF:
   .incbin "prg_bank_4.bin", $17CF, $B1  ; $97CF
 Sub_B4_9880:
-  jsr Sub_B4_98A6              ; $9880
-  jsr Sub_B4_98BB              ; $9883
+  jsr CalcPlayerCellIndex      ; $9880
+  jsr CalcFacingCellOffsets    ; $9883
   lda z:$8F                    ; $9886
   ldx #$00                     ; $9888
-  jsr Sub_B4_990E              ; $988A
+  jsr StoreCellRow             ; $988A
   lda z:$8F                    ; $988D
   clc                          ; $988F
   adc z:Tmp01                  ; $9890
-  jsr Sub_B4_990E              ; $9892
+  jsr StoreCellRow             ; $9892
   lda z:$8F                    ; $9895
   sec                          ; $9897
   sbc z:Tmp01                  ; $9898
-  jsr Sub_B4_990E              ; $989A
-  jsr Sub_B4_9924              ; $989D
+  jsr StoreCellRow             ; $989A
+  jsr LoadCellWalls            ; $989D
   jsr Sub_B4_993A              ; $98A0
   jmp Loc_B4_996C              ; $98A3
-Sub_B4_98A6:
+CalcPlayerCellIndex:
   lda #$00                     ; $98A6
   ldx PlayerCellY              ; $98A8
   beq Loc_B4_98B4              ; $98AB
@@ -1751,7 +1751,7 @@ Loc_B4_98B4:
   adc PlayerCellX              ; $98B5
   sta z:$8F                    ; $98B8
   rts                          ; $98BA
-Sub_B4_98BB:
+CalcFacingCellOffsets:
   lda MazeWidth                ; $98BB
   ldx PlayerFacing             ; $98BE
   beq Loc_B4_98D3              ; $98C1
@@ -1798,7 +1798,7 @@ Loc_B4_98F6:
   rts                          ; $9907
 Data_B4_9908:
   .incbin "prg_bank_4.bin", $1908, $6  ; $9908
-Sub_B4_990E:
+StoreCellRow:
   sta z:$8F,x                  ; $990E
   inx                          ; $9910
   clc                          ; $9911
@@ -1814,7 +1814,7 @@ Sub_B4_990E:
   sta z:$8F,x                  ; $9920
   inx                          ; $9922
   rts                          ; $9923
-Sub_B4_9924:
+LoadCellWalls:
   ldx #$0B                     ; $9924
   lda MazeMapPtrLo             ; $9926
   sta z:$60                    ; $9929
@@ -1832,20 +1832,20 @@ Sub_B4_993A:
 Loc_B4_993C:
   lda z:$8F,x                  ; $993C
   ldy z:$8D                    ; $993E
-  jsr Sub_B4_995B              ; $9940
+  jsr ExtractBitPair           ; $9940
   sta z:$9B,x                  ; $9943
   lda z:$8F,x                  ; $9945
   ldy z:$8C                    ; $9947
-  jsr Sub_B4_995B              ; $9949
+  jsr ExtractBitPair           ; $9949
   sta z:$9F,x                  ; $994C
   lda z:$8F,x                  ; $994E
   ldy z:$8E                    ; $9950
-  jsr Sub_B4_995B              ; $9952
+  jsr ExtractBitPair           ; $9952
   sta z:$A3,x                  ; $9955
   dex                          ; $9957
   bpl Loc_B4_993C              ; $9958
   rts                          ; $995A
-Sub_B4_995B:
+ExtractBitPair:
   beq Loc_B4_9969              ; $995B
   dey                          ; $995D
   beq Loc_B4_9967              ; $995E
@@ -1867,7 +1867,7 @@ Loc_B4_996C:
 Loc_B4_996E:
   lda z:$93,x                  ; $996E
   ldy z:$8D                    ; $9970
-  jsr Sub_B4_995B              ; $9972
+  jsr ExtractBitPair           ; $9972
   sta z:$A7,x                  ; $9975
   dex                          ; $9977
   bpl Loc_B4_996E              ; $9978
@@ -2212,7 +2212,7 @@ Data_B4_A116:
 Sub_B4_A12C:
   jsr ProcessPpuUpdateList     ; $A12C
   .addr Data_B4_A13B  ; $A12F inline pointer (data after a JSR)
-  jsr Sub_B4_8FBF              ; $A131
+  jsr AllocObjectSlot          ; $A131
   lda #$D4                     ; $A134
   ldy #$00                     ; $A136
   sta (Tmp00),y                ; $A138
@@ -2222,7 +2222,7 @@ Data_B4_A13B:
 Loc_B4_A15C:
   jsr ProcessPpuUpdateList     ; $A15C
   .addr Data_B4_A16B  ; $A15F inline pointer (data after a JSR)
-  jsr Sub_B4_8FBF              ; $A161
+  jsr AllocObjectSlot          ; $A161
   lda #$D5                     ; $A164
   ldy #$00                     ; $A166
   sta (Tmp00),y                ; $A168
@@ -2242,7 +2242,7 @@ Data_B4_A184:
 Sub_B4_A226:
   jsr Sub_B4_B404              ; $A226
   ldy #$0B                     ; $A229
-  jsr Sub_B4_8FD1              ; $A22B
+  jsr IncObjectField           ; $A22B
   cmp #$10                     ; $A22E
   beq Loc_B4_A237              ; $A230
   cmp #$1F                     ; $A232
@@ -2250,8 +2250,8 @@ Sub_B4_A226:
   rts                          ; $A236
 Loc_B4_A237:
   ldy #$05                     ; $A237
-  jsr Sub_B4_8FD1              ; $A239
-  jmp Sub_B4_8F85              ; $A23C
+  jsr IncObjectField           ; $A239
+  jmp SetObjectFrame           ; $A23C
 Loc_B4_A23F:
   jmp RemoveObject             ; $A23F
   ldx MazeIndex                ; $A242  [heuristic code]
@@ -2275,7 +2275,7 @@ Loc_B4_A293:
   sta z:$6E                    ; $A29F
   jmp ($006D)                  ; $A2A1
 Data_B4_A2A4:
-  .addr Sub_B4_A2B4, Sub_B4_A2CF, Sub_B4_A2DF, Sub_B4_A331, Sub_B4_A348, Sub_B4_A3BC, Sub_B4_A3D8  ; $A2A4 pointer table
+  .addr Sub_B4_A2B4, Sub_B4_A2CF, Sub_B4_A2DF, Sub_B4_A331, Sub_B4_A348, Sub_B4_A3BC, DoorState6  ; $A2A4 pointer table
   .incbin "prg_bank_4.bin", $22B2, $2  ; $A2B2
 Sub_B4_A2B4:
   lda z:PpuCtrlShadow          ; $A2B4
@@ -2292,16 +2292,16 @@ Sub_B4_A2B4:
   jmp Loc_B4_B3C6              ; $A2CC
 Sub_B4_A2CF:
   ldy #$0B                     ; $A2CF
-  jsr Sub_B4_8FD9              ; $A2D1
+  jsr DecObjectField           ; $A2D1
   beq Loc_B4_A2D7              ; $A2D4
   rts                          ; $A2D6
 Loc_B4_A2D7:
   lda #$18                     ; $A2D7
   jsr QueueSound               ; $A2D9
-  jmp Sub_B4_8FCF              ; $A2DC
+  jmp AdvanceObjectState       ; $A2DC
 Sub_B4_A2DF:
   ldy #$0B                     ; $A2DF
-  jsr Sub_B4_8FD1              ; $A2E1
+  jsr IncObjectField           ; $A2E1
   cmp #$11                     ; $A2E4
   bcs Loc_B4_A31A              ; $A2E6
   ldx #$00                     ; $A2E8
@@ -2336,7 +2336,7 @@ Loc_B4_A31A:
   lda (Tmp00),y                ; $A328
   ora #$20                     ; $A32A
   sta (Tmp00),y                ; $A32C
-  jmp Sub_B4_8FCF              ; $A32E
+  jmp AdvanceObjectState       ; $A32E
 Sub_B4_A331:
   ldy #$09                     ; $A331
   lda (Tmp00),y                ; $A333
@@ -2346,12 +2346,12 @@ Sub_B4_A331:
   jsr Sub_B4_B438              ; $A33C
   lda #$24                     ; $A33F
   jsr QueueSound               ; $A341
-  jmp Sub_B4_8FCF              ; $A344
+  jmp AdvanceObjectState       ; $A344
 Loc_B4_A347:
   rts                          ; $A347
 Sub_B4_A348:
   ldy #$0B                     ; $A348
-  jsr Sub_B4_8FD1              ; $A34A
+  jsr IncObjectField           ; $A34A
   cmp #$50                     ; $A34D
   bcs Loc_B4_A378              ; $A34F
   tax                          ; $A351
@@ -2361,7 +2361,7 @@ Sub_B4_A348:
   bcs Loc_B4_A35E              ; $A357
 Loc_B4_A359:
   ldy #$02                     ; $A359
-  jsr Sub_B4_8FD9              ; $A35B
+  jsr DecObjectField           ; $A35B
 Loc_B4_A35E:
   txa                          ; $A35E
   lsr a                        ; $A35F
@@ -2378,7 +2378,7 @@ Loc_B4_A36A:
   lsr a                        ; $A370
   tax                          ; $A371
   lda Data_B4_A389,x           ; $A372
-  jmp Sub_B4_8F85              ; $A375
+  jmp SetObjectFrame           ; $A375
 Loc_B4_A378:
   lda #$40                     ; $A378
   sta (Tmp00),y                ; $A37A
@@ -2386,7 +2386,7 @@ Loc_B4_A378:
   sta $054C                    ; $A37E
   lda #$45                     ; $A381
   jsr QueueSound               ; $A383
-  jmp Sub_B4_8FCF              ; $A386
+  jmp AdvanceObjectState       ; $A386
 Data_B4_A389:
   .incbin "prg_bank_4.bin", $2389, $A  ; $A389
 Data_B4_A393:
@@ -2395,19 +2395,19 @@ Data_B4_A394:
   .incbin "prg_bank_4.bin", $2394, $28  ; $A394
 Sub_B4_A3BC:
   ldy #$0B                     ; $A3BC
-  jsr Sub_B4_8FD9              ; $A3BE
+  jsr DecObjectField           ; $A3BE
   bne Loc_B4_A3D7              ; $A3C1
   lda #$2F                     ; $A3C3
   ldx #$40                     ; $A3C5
   jsr Sub_B4_B3F9              ; $A3C7
   lda #$03                     ; $A3CA
-  jsr Sub_B4_8F85              ; $A3CC
+  jsr SetObjectFrame           ; $A3CC
   lda #$25                     ; $A3CF
   jsr QueueSound               ; $A3D1
-  jmp Sub_B4_8FCF              ; $A3D4
+  jmp AdvanceObjectState       ; $A3D4
 Loc_B4_A3D7:
   rts                          ; $A3D7
-Sub_B4_A3D8:
+DoorState6:
   ldy #$0B                     ; $A3D8
   lda (Tmp00),y                ; $A3DA
   cmp #$FF                     ; $A3DC
@@ -2417,8 +2417,8 @@ Sub_B4_A3D8:
   and #$1F                     ; $A3E4
   sta (Tmp00),y                ; $A3E6
   lda #$0B                     ; $A3E8
-  jsr Sub_B4_8F85              ; $A3EA
-  jmp Sub_B4_8FCF              ; $A3ED
+  jsr SetObjectFrame           ; $A3EA
+  jmp AdvanceObjectState       ; $A3ED
 Loc_B4_A3F0:
   asl a                        ; $A3F0
   asl a                        ; $A3F1
@@ -2434,10 +2434,10 @@ Loc_B4_A3F0:
   lda #$02                     ; $A40A
   sta PpuOpRequest             ; $A40C
   ldy #$0C                     ; $A40F
-  jsr Sub_B4_8FD1              ; $A411
+  jsr IncObjectField           ; $A411
   tay                          ; $A414
   lda Data_B4_A41B,y           ; $A415
-  jmp Sub_B4_8F85              ; $A418
+  jmp SetObjectFrame           ; $A418
 Data_B4_A41B:
   .incbin "prg_bank_4.bin", $241B, $14  ; $A41B
 Data_B4_A42F:
@@ -2474,7 +2474,7 @@ Sub_B4_A57D:
   jsr QueueSound               ; $A583
   jsr Sub_B4_9106              ; $A586
 Sub_B4_A589:
-  jmp Sub_B4_8FCF              ; $A589
+  jmp AdvanceObjectState       ; $A589
 Sub_B4_A58C:
   ldy #$0B                     ; $A58C
   lda (Tmp00),y                ; $A58E
@@ -2482,7 +2482,7 @@ Sub_B4_A58C:
   beq Loc_B4_A5AB              ; $A592
   asl a                        ; $A594
   tax                          ; $A595
-  jsr Sub_B4_8FD1              ; $A596
+  jsr IncObjectField           ; $A596
   lda Data_B4_A5B2,x           ; $A599
   sta $0523                    ; $A59C
   lda Data_B4_A5B3,x           ; $A59F
@@ -2493,7 +2493,7 @@ Sub_B4_A58C:
 Loc_B4_A5AB:
   lda #$00                     ; $A5AB
   sta (Tmp00),y                ; $A5AD
-  jmp Sub_B4_8FCF              ; $A5AF
+  jmp AdvanceObjectState       ; $A5AF
 Data_B4_A5B2:
   .incbin "prg_bank_4.bin", $25B2, $1  ; $A5B2
 Data_B4_A5B3:
@@ -2511,10 +2511,10 @@ Sub_B4_A5EA:
   sta $054E                    ; $A600
   lda #$01                     ; $A603
   sta PpuOpRequest             ; $A605
-  jmp Sub_B4_8FCF              ; $A608
+  jmp AdvanceObjectState       ; $A608
 Sub_B4_A60B:
   ldy #$0B                     ; $A60B
-  jsr Sub_B4_8FD1              ; $A60D
+  jsr IncObjectField           ; $A60D
   cmp #$18                     ; $A610
   bcs Loc_B4_A62B              ; $A612
   lda $054B                    ; $A614
@@ -2530,10 +2530,10 @@ Sub_B4_A60B:
 Loc_B4_A62B:
   lda #$00                     ; $A62B
   sta (Tmp00),y                ; $A62D
-  jmp Sub_B4_8FCF              ; $A62F
+  jmp AdvanceObjectState       ; $A62F
 Sub_B4_A632:
   ldy #$0B                     ; $A632
-  jsr Sub_B4_8FD1              ; $A634
+  jsr IncObjectField           ; $A634
   cmp #$09                     ; $A637
   beq Loc_B4_A652              ; $A639
   sec                          ; $A63B
@@ -2553,7 +2553,7 @@ Loc_B4_A652:
   lda z:PpuCtrlShadow          ; $A656
   and #$FB                     ; $A658
   sta z:PpuCtrlShadow          ; $A65A
-  jmp Sub_B4_8FCF              ; $A65C
+  jmp AdvanceObjectState       ; $A65C
 Data_B4_A65F:
   .incbin "prg_bank_4.bin", $265F, $1  ; $A65F
 Data_B4_A660:
@@ -2590,16 +2590,16 @@ Loc_B4_A6E8:
   lda #$00                     ; $A6F6
   ldy #$0B                     ; $A6F8
   sta (Tmp00),y                ; $A6FA
-  jmp Sub_B4_8FCF              ; $A6FC
+  jmp AdvanceObjectState       ; $A6FC
 Sub_B4_A6FF:
-  jsr Sub_B4_90D6              ; $A6FF
+  jsr DisableSpriteBgRendering ; $A6FF
   lda #$05                     ; $A702
   sta PpuOpRequest             ; $A704
-  jsr Sub_B4_9583              ; $A707
-  jsr Sub_B4_854E              ; $A70A
-  jmp Sub_B4_8FCF              ; $A70D
+  jsr InitPaletteBuffer        ; $A707
+  jsr DrawCompassSprites       ; $A70A
+  jmp AdvanceObjectState       ; $A70D
 Sub_B4_A710:
-  jsr Sub_B4_8FCF              ; $A710
+  jsr AdvanceObjectState       ; $A710
   jsr Sub_B4_A73B              ; $A713
   jsr Sub_B4_9880              ; $A716
   jsr Sub_B4_997B              ; $A719
@@ -2643,7 +2643,7 @@ Sub_B4_A792:
 Sub_B4_A7BA:
   lda #$06                     ; $A7BA
   sta PpuOpRequest             ; $A7BC
-  jmp Sub_B4_8FCF              ; $A7BF
+  jmp AdvanceObjectState       ; $A7BF
 Sub_B4_A7C2:
   lda z:HwScrollY              ; $A7C2
   clc                          ; $A7C4
@@ -2655,10 +2655,10 @@ Sub_B4_A7C2:
 Loc_B4_A7CE:
   lda #$EF                     ; $A7CE
   sta z:HwScrollY              ; $A7D0
-  jmp Sub_B4_8FCF              ; $A7D2
+  jmp AdvanceObjectState       ; $A7D2
 Sub_B4_A7D5:
   ldy #$0B                     ; $A7D5
-  jsr Sub_B4_8FD1              ; $A7D7
+  jsr IncObjectField           ; $A7D7
   cmp #$17                     ; $A7DA
   beq Loc_B4_A7E6              ; $A7DC
   tax                          ; $A7DE
@@ -2678,9 +2678,9 @@ Data_B4_A7F3:
   sta (Tmp00),y                ; $A9CC
   lda #$14                     ; $A9CE
   ldx #$05                     ; $A9D0
-  jsr Sub_B4_B488              ; $A9D2
+  jsr AddLifeAndAmmo           ; $A9D2
   lda #$04                     ; $A9D5
-  jmp Sub_B4_8F85              ; $A9D7
+  jmp SetObjectFrame           ; $A9D7
   .incbin "prg_bank_4.bin", $29DA, $9  ; $A9DA
 Sub_B4_A9E3:
   ldy #$08                     ; $A9E3
@@ -2694,17 +2694,17 @@ Sub_B4_A9E3:
   cmp #$03                     ; $A9F4
   bne Loc_B4_A9F8              ; $A9F6
 Loc_B4_A9F8:
-  jmp Sub_B4_8FCF              ; $A9F8
+  jmp AdvanceObjectState       ; $A9F8
 Loc_B4_A9FB:
   ldy #$0B                     ; $A9FB
-  jsr Sub_B4_8FD1              ; $A9FD
+  jsr IncObjectField           ; $A9FD
   bne Loc_B4_AA10              ; $AA00
   lda #$80                     ; $AA02
   sta (Tmp00),y                ; $AA04
   lda #$0F                     ; $AA06
-  jsr Sub_B4_B47A              ; $AA08
+  jsr DamagePlayer             ; $AA08
   ldy #$53                     ; $AA0B
-  jmp Sub_B4_B43F              ; $AA0D
+  jmp AddObjectOfType          ; $AA0D
 Loc_B4_AA10:
   rts                          ; $AA10
   ldy #$08                     ; $AA11
@@ -2715,13 +2715,13 @@ Loc_B4_AA19:
   cmp z:$72                    ; $AA19
   beq Loc_B4_AA24              ; $AA1B
   lda #$0A                     ; $AA1D
-  jsr Sub_B4_B47A              ; $AA1F
+  jsr DamagePlayer             ; $AA1F
   lda #$FF                     ; $AA22
 Loc_B4_AA24:
   ldy #$0B                     ; $AA24
   sta (Tmp00),y                ; $AA26
   jsr Sub_B4_9106              ; $AA28
-  jmp Sub_B4_8FCF              ; $AA2B
+  jmp AdvanceObjectState       ; $AA2B
 Sub_B4_AA2E:
   ldy #$08                     ; $AA2E
   lda (Tmp00),y                ; $AA30
@@ -2758,7 +2758,7 @@ Sub_B4_AA84:
   lda (Tmp00),y                ; $AA8C
   ldy #$0B                     ; $AA8E
   sta (Tmp00),y                ; $AA90
-  jsr Sub_B4_8FCF              ; $AA92
+  jsr AdvanceObjectState       ; $AA92
   lda #$00                     ; $AA95
   beq Loc_B4_AAA7              ; $AA97
 Loc_B4_AA99:
@@ -2770,7 +2770,7 @@ Loc_B4_AA99:
   sta (Tmp00),y                ; $AAA3
   lda #$01                     ; $AAA5
 Loc_B4_AAA7:
-  jsr Sub_B4_8F85              ; $AAA7
+  jsr SetObjectFrame           ; $AAA7
   ldx #$07                     ; $AAAA
   lda $051C                    ; $AAAC
   beq Loc_B4_AAB2              ; $AAAF
@@ -2789,30 +2789,30 @@ Sub_B4_AAC4:
   ldx #$0D                     ; $AAC4
 Loc_B4_AAC6:
   ldy #$0B                     ; $AAC6
-  jsr Sub_B4_8FD9              ; $AAC8
+  jsr DecObjectField           ; $AAC8
   beq Loc_B4_AACE              ; $AACB
   rts                          ; $AACD
 Loc_B4_AACE:
-  jsr Sub_B4_8FCF              ; $AACE
+  jsr AdvanceObjectState       ; $AACE
   txa                          ; $AAD1
   jmp QueueSound               ; $AAD2
 Sub_B4_AAD5:
   ldy #$0B                     ; $AAD5
-  jsr Sub_B4_8FD1              ; $AAD7
+  jsr IncObjectField           ; $AAD7
   bmi Loc_B4_AAFA              ; $AADA
   lsr a                        ; $AADC
   and #$03                     ; $AADD
   tax                          ; $AADF
   lda Data_B4_AB13,x           ; $AAE0
-  jsr Sub_B4_8F85              ; $AAE3
-  jsr Sub_B4_AFDA              ; $AAE6
+  jsr SetObjectFrame           ; $AAE3
+  jsr DamageFlashStep          ; $AAE6
   jsr Sub_B4_B04B              ; $AAE9
   ldy #$0B                     ; $AAEC
   lda (Tmp00),y                ; $AAEE
   and #$0F                     ; $AAF0
   bne Loc_B4_AAF9              ; $AAF2
   lda #$02                     ; $AAF4
-  jsr Sub_B4_B47A              ; $AAF6
+  jsr DamagePlayer             ; $AAF6
 Loc_B4_AAF9:
   rts                          ; $AAF9
 Loc_B4_AAFA:
@@ -2824,7 +2824,7 @@ Loc_B4_AAFA:
   sta z:HwScrollX              ; $AB04
   sta z:HwScrollX              ; $AB06
   jsr Sub_B4_B011              ; $AB08
-  jsr Sub_B4_8FCF              ; $AB0B
+  jsr AdvanceObjectState       ; $AB0B
   lda #$45                     ; $AB0E
   jmp QueueSound               ; $AB10
 Data_B4_AB13:
@@ -2834,30 +2834,30 @@ Sub_B4_AB17:
   lda #$02                     ; $AB19
   jsr Sub_B4_AC61              ; $AB1B
   ldy #$0B                     ; $AB1E
-  jsr Sub_B4_8FD1              ; $AB20
+  jsr IncObjectField           ; $AB20
   cmp #$10                     ; $AB23
   beq Loc_B4_AB2C              ; $AB25
   lda #$04                     ; $AB27
-  jmp Sub_B4_8F85              ; $AB29
+  jmp SetObjectFrame           ; $AB29
 Loc_B4_AB2C:
   lda #$00                     ; $AB2C
   sta (Tmp00),y                ; $AB2E
   lda #$05                     ; $AB30
-  jsr Sub_B4_8F85              ; $AB32
-  jmp Sub_B4_8FCF              ; $AB35
+  jsr SetObjectFrame           ; $AB32
+  jmp AdvanceObjectState       ; $AB35
 Sub_B4_AB38:
   ldx #$FF                     ; $AB38
   lda #$02                     ; $AB3A
   jsr Sub_B4_AC61              ; $AB3C
   ldy #$0B                     ; $AB3F
-  jsr Sub_B4_8FD1              ; $AB41
+  jsr IncObjectField           ; $AB41
   cmp #$0C                     ; $AB44
   beq Loc_B4_AB49              ; $AB46
   rts                          ; $AB48
 Loc_B4_AB49:
   lda #$00                     ; $AB49
   sta (Tmp00),y                ; $AB4B
-  jmp Sub_B4_8FCF              ; $AB4D
+  jmp AdvanceObjectState       ; $AB4D
 Sub_B4_AB50:
   lda #$4B                     ; $AB50
   ldy #$00                     ; $AB52
@@ -2871,23 +2871,23 @@ Sub_B4_AB5C:
   lda #$02                     ; $AB5E
   jsr Sub_B4_AC61              ; $AB60
   ldy #$0B                     ; $AB63
-  jsr Sub_B4_8FD1              ; $AB65
+  jsr IncObjectField           ; $AB65
   cmp #$0C                     ; $AB68
   beq Loc_B4_AB71              ; $AB6A
   lda #$05                     ; $AB6C
-  jmp Sub_B4_8F85              ; $AB6E
+  jmp SetObjectFrame           ; $AB6E
 Loc_B4_AB71:
   lda #$00                     ; $AB71
   sta (Tmp00),y                ; $AB73
   lda #$04                     ; $AB75
-  jsr Sub_B4_8F85              ; $AB77
-  jmp Sub_B4_8FCF              ; $AB7A
+  jsr SetObjectFrame           ; $AB77
+  jmp AdvanceObjectState       ; $AB7A
 Sub_B4_AB7D:
   ldx #$05                     ; $AB7D
   lda #$02                     ; $AB7F
   jsr Sub_B4_AC61              ; $AB81
   ldy #$0B                     ; $AB84
-  jsr Sub_B4_8FD1              ; $AB86
+  jsr IncObjectField           ; $AB86
   cmp #$10                     ; $AB89
   beq Loc_B4_AB8E              ; $AB8B
   rts                          ; $AB8D
@@ -2895,35 +2895,35 @@ Loc_B4_AB8E:
   lda #$09                     ; $AB8E
   sta (Tmp00),y                ; $AB90
   lda #$00                     ; $AB92
-  jsr Sub_B4_8F85              ; $AB94
-  jmp Sub_B4_8FCF              ; $AB97
+  jsr SetObjectFrame           ; $AB94
+  jmp AdvanceObjectState       ; $AB97
 Sub_B4_AB9A:
   lda #$FA                     ; $AB9A
-  jsr Sub_B4_AC67              ; $AB9C
+  jsr AddToObjectY             ; $AB9C
   ldy #$0B                     ; $AB9F
-  jsr Sub_B4_8FD1              ; $ABA1
+  jsr IncObjectField           ; $ABA1
   cmp #$10                     ; $ABA4
   beq Loc_B4_ABAD              ; $ABA6
   lda #$04                     ; $ABA8
-  jmp Sub_B4_8F85              ; $ABAA
+  jmp SetObjectFrame           ; $ABAA
 Loc_B4_ABAD:
   lda #$00                     ; $ABAD
   sta (Tmp00),y                ; $ABAF
   lda #$05                     ; $ABB1
-  jsr Sub_B4_8F85              ; $ABB3
-  jmp Sub_B4_8FCF              ; $ABB6
+  jsr SetObjectFrame           ; $ABB3
+  jmp AdvanceObjectState       ; $ABB6
 Sub_B4_ABB9:
   lda #$FF                     ; $ABB9
-  jsr Sub_B4_AC67              ; $ABBB
+  jsr AddToObjectY             ; $ABBB
   ldy #$0B                     ; $ABBE
-  jsr Sub_B4_8FD1              ; $ABC0
+  jsr IncObjectField           ; $ABC0
   cmp #$0C                     ; $ABC3
   beq Loc_B4_ABC8              ; $ABC5
   rts                          ; $ABC7
 Loc_B4_ABC8:
   lda #$00                     ; $ABC8
   sta (Tmp00),y                ; $ABCA
-  jmp Sub_B4_8FCF              ; $ABCC
+  jmp AdvanceObjectState       ; $ABCC
 Sub_B4_ABCF:
   lda $051C                    ; $ABCF
   sta $0509                    ; $ABD2
@@ -2939,11 +2939,11 @@ Sub_B4_ABCF:
   lda #$32                     ; $ABEC
   ldx #$0A                     ; $ABEE
 Loc_B4_ABF0:
-  jsr Sub_B4_B488              ; $ABF0
-  jmp Sub_B4_8FCF              ; $ABF3
+  jsr AddLifeAndAmmo           ; $ABF0
+  jmp AdvanceObjectState       ; $ABF3
 Sub_B4_ABF6:
   ldy #$0B                     ; $ABF6
-  jsr Sub_B4_8FD9              ; $ABF8
+  jsr DecObjectField           ; $ABF8
   bne Loc_B4_AC08              ; $ABFB
   lda #$11                     ; $ABFD
   ldy #$08                     ; $ABFF
@@ -2968,7 +2968,7 @@ Loc_B4_AC24:
   and #$7F                     ; $AC24
   sta (Tmp00),y                ; $AC26
   ldy #$0E                     ; $AC28
-  jsr Sub_B4_8FD9              ; $AC2A
+  jsr DecObjectField           ; $AC2A
   beq Loc_B4_AC40              ; $AC2D
   lda #$16                     ; $AC2F
   ldy #$08                     ; $AC31
@@ -2977,7 +2977,7 @@ Loc_B4_AC24:
   ldy #$0B                     ; $AC37
   sta (Tmp00),y                ; $AC39
   lda #$01                     ; $AC3B
-  jmp Sub_B4_8F85              ; $AC3D
+  jmp SetObjectFrame           ; $AC3D
 Loc_B4_AC40:
   ldy #$0B                     ; $AC40
   sta (Tmp00),y                ; $AC42
@@ -2993,14 +2993,14 @@ Loc_B4_AC40:
   sta z:HwScrollX              ; $AC57
   jsr Sub_B4_B011              ; $AC59
   lda #$06                     ; $AC5C
-  jmp Sub_B4_8F85              ; $AC5E
+  jmp SetObjectFrame           ; $AC5E
 Sub_B4_AC61:
   ldy #$02                     ; $AC61
-  jsr Sub_B4_AC69              ; $AC63
+  jsr AddToObjectField         ; $AC63
   txa                          ; $AC66
-Sub_B4_AC67:
+AddToObjectY:
   ldy #$01                     ; $AC67
-Sub_B4_AC69:
+AddToObjectField:
   clc                          ; $AC69
   adc (Tmp00),y                ; $AC6A
   sta (Tmp00),y                ; $AC6C
@@ -3061,26 +3061,26 @@ Data_B4_AF2D:
   .incbin "prg_bank_4.bin", $2F2D, $11  ; $AF2D
 Sub_B4_AF3E:
   ldy #$0B                     ; $AF3E
-  jsr Sub_B4_8FD9              ; $AF40
+  jsr DecObjectField           ; $AF40
   beq Loc_B4_AF46              ; $AF43
   rts                          ; $AF45
 Loc_B4_AF46:
   jsr Sub_B4_B02C              ; $AF46
   lda #$01                     ; $AF49
-  jsr Sub_B4_8F85              ; $AF4B
-  jmp Sub_B4_8FCF              ; $AF4E
+  jsr SetObjectFrame           ; $AF4B
+  jmp AdvanceObjectState       ; $AF4E
 Sub_B4_AF51:
   ldy #$0B                     ; $AF51
-  jsr Sub_B4_8FD9              ; $AF53
+  jsr DecObjectField           ; $AF53
   beq Loc_B4_AF59              ; $AF56
   rts                          ; $AF58
 Loc_B4_AF59:
   lda #$40                     ; $AF59
   jsr QueueSound               ; $AF5B
-  jmp Sub_B4_8FCF              ; $AF5E
+  jmp AdvanceObjectState       ; $AF5E
 Sub_B4_AF61:
   ldy #$0B                     ; $AF61
-  jsr Sub_B4_8FD1              ; $AF63
+  jsr IncObjectField           ; $AF63
   bpl Loc_B4_AF7C              ; $AF66
   lda #$45                     ; $AF68
   jsr QueueSound               ; $AF6A
@@ -3099,13 +3099,13 @@ Loc_B4_AF7C:
   tax                          ; $AF83
 Loc_B4_AF84:
   lda Data_B4_AFA3,x           ; $AF84
-  jsr Sub_B4_8F85              ; $AF87
+  jsr SetObjectFrame           ; $AF87
 Loc_B4_AF8A:
-  jsr Sub_B4_AFDA              ; $AF8A
+  jsr DamageFlashStep          ; $AF8A
   jmp Sub_B4_B04B              ; $AF8D
 Loc_B4_AF90:
   ldy #$D2                     ; $AF90
-  jsr Sub_B4_B43F              ; $AF92
+  jsr AddObjectOfType          ; $AF92
   bcs Loc_B4_AF9E              ; $AF95
   ldy #$02                     ; $AF97
   lda (Tmp00),y                ; $AF99
@@ -3123,23 +3123,23 @@ Sub_B4_AFA7:
   stx $051F                    ; $AFAF
   jsr Sub_B4_9FD6              ; $AFB2
 Loc_B4_AFB5:
-  jmp Sub_B4_8FCF              ; $AFB5
+  jmp AdvanceObjectState       ; $AFB5
 Sub_B4_AFB8:
   jsr Sub_B4_B467              ; $AFB8
   jsr Sub_B4_B011              ; $AFBB
   lda #$45                     ; $AFBE
   jsr QueueSound               ; $AFC0
-  jmp Sub_B4_8FCF              ; $AFC3
+  jmp AdvanceObjectState       ; $AFC3
 Sub_B4_AFC6:
   lda #$05                     ; $AFC6
   ldx #$05                     ; $AFC8
-  jsr Sub_B4_B488              ; $AFCA
+  jsr AddLifeAndAmmo           ; $AFCA
   lda #$04                     ; $AFCD
-  jsr Sub_B4_8F85              ; $AFCF
+  jsr SetObjectFrame           ; $AFCF
   lda #$0E                     ; $AFD2
   jsr QueueSound               ; $AFD4
-  jmp Sub_B4_8FCF              ; $AFD7
-Sub_B4_AFDA:
+  jmp AdvanceObjectState       ; $AFD7
+DamageFlashStep:
   inc z:$88                    ; $AFDA
   lda z:$88                    ; $AFDC
   lsr a                        ; $AFDE
@@ -3256,11 +3256,11 @@ Sub_B4_B123:
   lda z:$87                    ; $B138
   jsr Sub_B4_8EDF              ; $B13A
   jsr Sub_B4_9106              ; $B13D
-  jmp Sub_B4_8FCF              ; $B140
+  jmp AdvanceObjectState       ; $B140
   .incbin "prg_bank_4.bin", $3143, $1C  ; $B143
 Sub_B4_B15F:
   ldy #$0B                     ; $B15F
-  jsr Sub_B4_8FD9              ; $B161
+  jsr DecObjectField           ; $B161
   beq Loc_B4_B169              ; $B164
   jmp Sub_B4_B174              ; $B166
 Loc_B4_B169:
@@ -3268,7 +3268,7 @@ Loc_B4_B169:
   lda (Tmp00),y                ; $B16B
   and #$1F                     ; $B16D
   sta (Tmp00),y                ; $B16F
-  jsr Sub_B4_8FCF              ; $B171
+  jsr AdvanceObjectState       ; $B171
 Sub_B4_B174:
   jsr Sub_B4_90DD              ; $B174
   cmp #$20                     ; $B177
@@ -3341,7 +3341,7 @@ Data_B4_B1FA:
   .addr Sub_B4_B202, Sub_B4_B222, Sub_B4_B25A, Sub_B4_B285  ; $B1FA pointer table
 Sub_B4_B202:
   ldy #$0B                     ; $B202
-  jsr Sub_B4_8FD9              ; $B204
+  jsr DecObjectField           ; $B204
   beq Loc_B4_B20A              ; $B207
   rts                          ; $B209
 Loc_B4_B20A:
@@ -3358,10 +3358,10 @@ Loc_B4_B21A:
   jmp Loc_B4_B3C9              ; $B21F
 Sub_B4_B222:
   ldy #$0B                     ; $B222
-  jsr Sub_B4_8FD1              ; $B224
+  jsr IncObjectField           ; $B224
   cmp #$08                     ; $B227
   bcs Loc_B4_B22E              ; $B229
-  jmp Sub_B4_8F85              ; $B22B
+  jmp SetObjectFrame           ; $B22B
 Loc_B4_B22E:
   ldy #$0C                     ; $B22E
   lda (Tmp00),y                ; $B230
@@ -3382,7 +3382,7 @@ Loc_B4_B22E:
   lda (Tmp00),y                ; $B252
   sta $0312,x                  ; $B254
 Loc_B4_B257:
-  jmp Sub_B4_8FCF              ; $B257
+  jmp AdvanceObjectState       ; $B257
 Sub_B4_B25A:
   ldy #$00                     ; $B25A
   lda (Tmp00),y                ; $B25C
@@ -3390,7 +3390,7 @@ Sub_B4_B25A:
   rts                          ; $B260
 Loc_B4_B261:
   ldy #$0B                     ; $B261
-  jsr Sub_B4_8FD9              ; $B263
+  jsr DecObjectField           ; $B263
   beq Loc_B4_B279              ; $B266
   ldx #$07                     ; $B268
   ldy #$05                     ; $B26A
@@ -3401,23 +3401,23 @@ Loc_B4_B261:
 Loc_B4_B273:
   txa                          ; $B273
   sta (Tmp00),y                ; $B274
-  jmp Sub_B4_8F85              ; $B276
+  jmp SetObjectFrame           ; $B276
 Loc_B4_B279:
   lda #$08                     ; $B279
   sta (Tmp00),y                ; $B27B
-  jsr Sub_B4_8FCF              ; $B27D
+  jsr AdvanceObjectState       ; $B27D
   lda #$27                     ; $B280
   jmp QueueSound               ; $B282
 Sub_B4_B285:
   ldy #$0B                     ; $B285
-  jsr Sub_B4_8FD9              ; $B287
+  jsr DecObjectField           ; $B287
   tax                          ; $B28A
   lda Data_B4_B29B,x           ; $B28B
   ldy #$01                     ; $B28E
   sta (Tmp00),y                ; $B290
   txa                          ; $B292
   beq Loc_B4_B298              ; $B293
-  jmp Sub_B4_8F85              ; $B295
+  jmp SetObjectFrame           ; $B295
 Loc_B4_B298:
   jmp RemoveObject             ; $B298
 Data_B4_B29B:
@@ -3444,12 +3444,12 @@ Sub_B4_B2C0:
   ldy #$0B                     ; $B2C2
   sta (Tmp00),y                ; $B2C4
   lda #$0D                     ; $B2C6
-  jsr Sub_B4_B47A              ; $B2C8
+  jsr DamagePlayer             ; $B2C8
   jsr Sub_B4_9106              ; $B2CB
-  jmp Sub_B4_8FCF              ; $B2CE
+  jmp AdvanceObjectState       ; $B2CE
 Sub_B4_B2D1:
   ldy #$0B                     ; $B2D1
-  jsr Sub_B4_8FD1              ; $B2D3
+  jsr IncObjectField           ; $B2D3
   bne Loc_B4_B2D9              ; $B2D6
   rts                          ; $B2D8
 Loc_B4_B2D9:
@@ -3458,16 +3458,16 @@ Loc_B4_B2D9:
   lda #$00                     ; $B2DD
   ldy #$0A                     ; $B2DF
   sta (Tmp00),y                ; $B2E1
-  jsr Sub_B4_8FCF              ; $B2E3
+  jsr AdvanceObjectState       ; $B2E3
 Sub_B4_B2E6:
   ldy #$0B                     ; $B2E6
-  jsr Sub_B4_8FD1              ; $B2E8
+  jsr IncObjectField           ; $B2E8
   and #$0F                     ; $B2EB
   bne Loc_B4_B2F4              ; $B2ED
   lda #$07                     ; $B2EF
-  jsr Sub_B4_B47A              ; $B2F1
+  jsr DamagePlayer             ; $B2F1
 Loc_B4_B2F4:
-  jmp Sub_B4_AFDA              ; $B2F4
+  jmp DamageFlashStep          ; $B2F4
 Sub_B4_B2F7:
   ldy #$08                     ; $B2F7
   lda (Tmp00),y                ; $B2F9
@@ -3486,13 +3486,13 @@ Loc_B4_B311:
   ldy #$01                     ; $B313
   sta (Tmp00),y                ; $B315
   lda #$01                     ; $B317
-  jmp Sub_B4_8F85              ; $B319
+  jmp SetObjectFrame           ; $B319
 Loc_B4_B31C:
   ldy #$0B                     ; $B31C
-  jsr Sub_B4_8FD9              ; $B31E
+  jsr DecObjectField           ; $B31E
   beq Loc_B4_B328              ; $B321
   and #$01                     ; $B323
-  jmp Sub_B4_8F85              ; $B325
+  jmp SetObjectFrame           ; $B325
 Loc_B4_B328:
   jmp RemoveObject             ; $B328
   .incbin "prg_bank_4.bin", $332B, $9B  ; $B32B
@@ -3500,9 +3500,9 @@ Loc_B4_B3C6:
   jsr Sub_B4_8EDF              ; $B3C6
 Loc_B4_B3C9:
   lda #$00                     ; $B3C9
-  jsr Sub_B4_8F85              ; $B3CB
+  jsr SetObjectFrame           ; $B3CB
   jsr Sub_B4_9106              ; $B3CE
-  jmp Sub_B4_8FCF              ; $B3D1
+  jmp AdvanceObjectState       ; $B3D1
 Data_B4_B3D4:
   .incbin "prg_bank_4.bin", $33D4, $8  ; $B3D4
 Sub_B4_B3DC:
@@ -3557,7 +3557,7 @@ Sub_B4_B438:
   ora #$C0                     ; $B43A
   sta (Tmp00),y                ; $B43C
   rts                          ; $B43E
-Sub_B4_B43F:
+AddObjectOfType:
   lda ObjectCount              ; $B43F
   cmp #$0F                     ; $B442
   bcs Loc_B4_B451              ; $B444
@@ -3580,7 +3580,7 @@ Sub_B4_B467:
   sta (Tmp00),y                ; $B475
   inc z:$84                    ; $B477
   rts                          ; $B479
-Sub_B4_B47A:
+DamagePlayer:
   sta z:$6A                    ; $B47A
   lda z:PlayerLifeLo           ; $B47C
   sec                          ; $B47E
@@ -3590,7 +3590,7 @@ Sub_B4_B47A:
   dec z:PlayerLifeHi           ; $B485
 Loc_B4_B487:
   rts                          ; $B487
-Sub_B4_B488:
+AddLifeAndAmmo:
   clc                          ; $B488
   adc z:PlayerLifeLo           ; $B489
   bcs Loc_B4_B491              ; $B48B
@@ -3620,16 +3620,16 @@ Loc_B4_B4AC:
   sta z:AmmoLo                 ; $B4AE
   rts                          ; $B4B0
 Sub_B4_B4B1:
-  jsr Sub_B4_B4EF              ; $B4B1
+  jsr LoadObjectCountIndex     ; $B4B1
   beq Loc_B4_B4EE              ; $B4B4
 Loc_B4_B4B6:
-  jsr Sub_B4_B4F8              ; $B4B6
+  jsr DispatchObjectHandler    ; $B4B6
   dec $0302                    ; $B4B9
   bne Loc_B4_B4B6              ; $B4BC
   ldy #$06                     ; $B4BE
   lda Data_C347,y              ; $B4C0
   sta z:Tmp02                  ; $B4C3
-  jsr Sub_B4_B4EF              ; $B4C5
+  jsr LoadObjectCountIndex     ; $B4C5
   beq Loc_B4_B4EE              ; $B4C8
 Loc_B4_B4CA:
   ldx #$00                     ; $B4CA
@@ -3652,12 +3652,12 @@ Loc_B4_B4E5:
   bne Loc_B4_B4CA              ; $B4EC
 Loc_B4_B4EE:
   rts                          ; $B4EE
-Sub_B4_B4EF:
+LoadObjectCountIndex:
   lda ObjectCount              ; $B4EF
   and #$0F                     ; $B4F2
   sta $0302                    ; $B4F4
   rts                          ; $B4F7
-Sub_B4_B4F8:
+DispatchObjectHandler:
   lda $0302                    ; $B4F8
   jsr AslA4                    ; $B4FB
   tay                          ; $B4FE

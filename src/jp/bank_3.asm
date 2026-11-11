@@ -78,7 +78,7 @@ Bank3Dispatch_0421:
   sta z:Tmp01                  ; $808F
   jmp ($0000)                  ; $8091
 Sub_B3_8094:
-  jsr Sub_B3_8270              ; $8094
+  jsr CalcMenuRowNametableAddr ; $8094
   lda #$00                     ; $8097
   sta $0422                    ; $8099
   inc $0421                    ; $809C
@@ -175,7 +175,7 @@ Loc_B3_8153:
 Loc_B3_815D:
   lda #$00                     ; $815D
   sta z:$05                    ; $815F
-  jsr Sub_B3_828B              ; $8161
+  jsr TextBoxClearRow          ; $8161
   inc $0422                    ; $8164
   jmp Loc_B3_826F              ; $8167
 Loc_B3_816A:
@@ -265,10 +265,10 @@ Loc_B3_821C:
   sta z:Tmp00                  ; $821C
   lda #$FF                     ; $821E
   sta z:$05                    ; $8220
-  jsr Sub_B3_828B              ; $8222
+  jsr TextBoxClearRow          ; $8222
   inc $0421                    ; $8225
   jmp Loc_B3_826F              ; $8228
-Sub_B3_822B:
+TextBoxSetAttributes:
   lda z:PpuCtrlShadow          ; $822B
   and #$FB                     ; $822D
   sta z:PpuCtrlShadow          ; $822F
@@ -304,7 +304,7 @@ Sub_B3_826C:
   jsr Sub_B3_8EC6              ; $826C
 Loc_B3_826F:
   rts                          ; $826F
-Sub_B3_8270:
+CalcMenuRowNametableAddr:
   lda z:ScrollX                ; $8270
   and #$E0                     ; $8272
   lsr a                        ; $8274
@@ -321,7 +321,7 @@ Sub_B3_8270:
   lsr a                        ; $8286
   sta $042E                    ; $8287
   rts                          ; $828A
-Sub_B3_828B:
+TextBoxClearRow:
   lda z:PpuCtrlShadow          ; $828B
   and #$FB                     ; $828D
   sta z:PpuCtrlShadow          ; $828F
@@ -477,7 +477,7 @@ Loc_B3_83F7:
   lda Data_B3_883F,x           ; $8409
   and #$3F                     ; $840C
   bne Loc_B3_8416              ; $840E
-  jsr Sub_B3_8813              ; $8410
+  jsr HideMenuSpritesAndRestoreScroll ; $8410
   jmp Loc_B3_85AC              ; $8413
 Loc_B3_8416:
   lda z:Tmp00                  ; $8416
@@ -624,7 +624,7 @@ Loc_B3_850A:
   bpl Loc_B3_854B              ; $8532
   and #$40                     ; $8534
   bne Loc_B3_853E              ; $8536
-  jsr Sub_B3_8813              ; $8538
+  jsr HideMenuSpritesAndRestoreScroll ; $8538
   jmp Loc_B3_85AC              ; $853B
 Loc_B3_853E:
   lda #$04                     ; $853E
@@ -644,7 +644,7 @@ Sub_B3_8550:
 Loc_B3_855D:
   cmp #$01                     ; $855D
   beq Loc_B3_8567              ; $855F
-  jsr Sub_B3_8813              ; $8561
+  jsr HideMenuSpritesAndRestoreScroll ; $8561
   jmp Loc_B3_85AC              ; $8564
 Loc_B3_8567:
   inc $040C                    ; $8567
@@ -757,9 +757,9 @@ Loc_B3_8623:
   lda z:Tmp01                  ; $8627
   sta z:$71                    ; $8629
   ldy #$00                     ; $862B
-  jsr Sub_B3_8666              ; $862D
+  jsr LoadFourBytesFromPtr70   ; $862D
   ldy #$01                     ; $8630
-  jsr Sub_B3_867A              ; $8632
+  jsr StoreSpriteYTileX        ; $8632
   lda z:Tmp03                  ; $8635
   sta z:Tmp02                  ; $8637
   lda z:Tmp00                  ; $8639
@@ -769,11 +769,11 @@ Loc_B3_8623:
   inc z:Tmp00                  ; $8641
 Loc_B3_8643:
   ldy #$05                     ; $8643
-  jsr Sub_B3_867A              ; $8645
+  jsr StoreSpriteYTileX        ; $8645
   ldy #$04                     ; $8648
-  jsr Sub_B3_8666              ; $864A
+  jsr LoadFourBytesFromPtr70   ; $864A
   ldy #$09                     ; $864D
-  jsr Sub_B3_867A              ; $864F
+  jsr StoreSpriteYTileX        ; $864F
   lda #$00                     ; $8652
   sta $0408                    ; $8654
   sta $0409                    ; $8657
@@ -783,7 +783,7 @@ Loc_B3_8660:
   lda #$00                     ; $8660
   sta $041B                    ; $8662
   rts                          ; $8665
-Sub_B3_8666:
+LoadFourBytesFromPtr70:
   lda ($70),y                  ; $8666
   sta z:Tmp00                  ; $8668
   iny                          ; $866A
@@ -796,7 +796,7 @@ Sub_B3_8666:
   lda ($70),y                  ; $8675
   sta z:Tmp03                  ; $8677
   rts                          ; $8679
-Sub_B3_867A:
+StoreSpriteYTileX:
   lda z:Tmp00                  ; $867A
   sta ($5C),y                  ; $867C
   iny                          ; $867E
@@ -1005,7 +1005,7 @@ Loc_B3_87C6:
 Loc_B3_87EF:
   rts                          ; $87EF
   .incbin "prg_bank_3.bin", $07F0, $23  ; $87F0
-Sub_B3_8813:
+HideMenuSpritesAndRestoreScroll:
   ldy #$00                     ; $8813
   lda #$F0                     ; $8815
 Loc_B3_8817:
@@ -1128,7 +1128,7 @@ Loc_B3_892F:
   and #$CF                     ; $893B
   sta $0418                    ; $893D
   bmi Loc_B3_8948              ; $8940
-  jsr Sub_B3_8813              ; $8942
+  jsr HideMenuSpritesAndRestoreScroll ; $8942
   jmp Loc_B3_85AC              ; $8945
 Loc_B3_8948:
   inc $0418                    ; $8948
@@ -1223,7 +1223,7 @@ Loc_B3_8A97:
   sta z:Tmp00                  ; $8AA3
   lda #$2B                     ; $8AA5
   sta z:Tmp01                  ; $8AA7
-  jsr Sub_B3_8BD2              ; $8AA9
+  jsr WriteSixPaletteEntries   ; $8AA9
   jsr ProcessPpuUpdateList     ; $8AAC
   .addr Data_B3_8BFD  ; $8AAF inline pointer (data after a JSR)
   lda #$84                     ; $8AB1
@@ -1366,7 +1366,7 @@ Loc_B3_8BBC:
   sta $0410                    ; $8BCE
 Loc_B3_8BD1:
   rts                          ; $8BD1
-Sub_B3_8BD2:
+WriteSixPaletteEntries:
   lda z:PpuCtrlShadow          ; $8BD2
   and #$FB                     ; $8BD4
   sta z:PpuCtrlShadow          ; $8BD6

@@ -89,7 +89,7 @@ void Bank3Dispatch_0421(void) {  /* $8081 bank 3 */
 
 void Sub_B3_8094(void) {  /* $8094 bank 3 */
   uint8_t sp0 = R.sp;
-  push16(0x8096); Sub_B3_8270(); UNW(); ret_check(0x8096);                               /* $8094 jsr */
+  push16(0x8096); CalcMenuRowNametableAddr(); UNW(); ret_check(0x8096);                  /* $8094 jsr */
   LDA(0x00);                                                                             /* $8097 lda */
   STA(0x0422);                                                                           /* $8099 sta */
   INC_M(0x0421);                                                                         /* $809C inc */
@@ -194,7 +194,7 @@ void Sub_B3_812B(void) {  /* $812B bank 3 */
 L815D: BUDGET();
   LDA(0x00);                                                                             /* $815D lda */
   STA(0x05);                                                                             /* $815F sta */
-  push16(0x8163); Sub_B3_828B(); UNW(); ret_check(0x8163);                               /* $8161 jsr */
+  push16(0x8163); TextBoxClearRow(); UNW(); ret_check(0x8163);                           /* $8161 jsr */
   INC_M(0x0422);                                                                         /* $8164 inc */
   goto L826F;                                                                            /* $8167 jmp */
 L816A: BUDGET();
@@ -289,7 +289,7 @@ L821C: BUDGET();
   STA(Tmp00);                                                                            /* $821C sta */
   LDA(0xFF);                                                                             /* $821E lda */
   STA(0x05);                                                                             /* $8220 sta */
-  push16(0x8224); Sub_B3_828B(); UNW(); ret_check(0x8224);                               /* $8222 jsr */
+  push16(0x8224); TextBoxClearRow(); UNW(); ret_check(0x8224);                           /* $8222 jsr */
   INC_M(0x0421);                                                                         /* $8225 inc */
   goto L826F;                                                                            /* $8228 jmp */
 L826F: BUDGET();
@@ -304,7 +304,7 @@ L821C: BUDGET();
   STA(Tmp00);                                                                            /* $821C sta */
   LDA(0xFF);                                                                             /* $821E lda */
   STA(0x05);                                                                             /* $8220 sta */
-  push16(0x8224); Sub_B3_828B(); UNW(); ret_check(0x8224);                               /* $8222 jsr */
+  push16(0x8224); TextBoxClearRow(); UNW(); ret_check(0x8224);                           /* $8222 jsr */
   INC_M(0x0421);                                                                         /* $8225 inc */
   goto L826F;                                                                            /* $8228 jmp */
 L826F: BUDGET();
@@ -319,7 +319,7 @@ L821C: BUDGET();
   STA(Tmp00);                                                                            /* $821C sta */
   LDA(0xFF);                                                                             /* $821E lda */
   STA(0x05);                                                                             /* $8220 sta */
-  push16(0x8224); Sub_B3_828B(); UNW(); ret_check(0x8224);                               /* $8222 jsr */
+  push16(0x8224); TextBoxClearRow(); UNW(); ret_check(0x8224);                           /* $8222 jsr */
   INC_M(0x0421);                                                                         /* $8225 inc */
   goto L826F;                                                                            /* $8228 jmp */
 L826F: BUDGET();
@@ -332,14 +332,14 @@ void Sub_B3_821A(void) {  /* $821A bank 3 */
   STA(Tmp00);                                                                            /* $821C sta */
   LDA(0xFF);                                                                             /* $821E lda */
   STA(0x05);                                                                             /* $8220 sta */
-  push16(0x8224); Sub_B3_828B(); UNW(); ret_check(0x8224);                               /* $8222 jsr */
+  push16(0x8224); TextBoxClearRow(); UNW(); ret_check(0x8224);                           /* $8222 jsr */
   INC_M(0x0421);                                                                         /* $8225 inc */
   goto L826F;                                                                            /* $8228 jmp */
 L826F: BUDGET();
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
-void Sub_B3_822B(void) {  /* $822B bank 3 */
+void TextBoxSetAttributes(void) {  /* $822B bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuCtrlShadow));                                                                /* $822B lda */
   AND(0xFB);                                                                             /* $822D and */
@@ -382,7 +382,7 @@ void Sub_B3_826C(void) {  /* $826C bank 3 */
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
-void Sub_B3_8270(void) {  /* $8270 bank 3 */
+void CalcMenuRowNametableAddr(void) {  /* $8270 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(ScrollX));                                                                      /* $8270 lda */
   AND(0xE0);                                                                             /* $8272 and */
@@ -402,7 +402,7 @@ void Sub_B3_8270(void) {  /* $8270 bank 3 */
   RTS_RET(sp0);                                                                          /* $828A rts */
 }
 
-void Sub_B3_828B(void) {  /* $828B bank 3 */
+void TextBoxClearRow(void) {  /* $828B bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuCtrlShadow));                                                                /* $828B lda */
   AND(0xFB);                                                                             /* $828D and */
@@ -588,7 +588,7 @@ void Sub_B3_83D8(void) {  /* $83D8 bank 3 */
         LDA(rd((uint16_t)(0x883F + R.x)));                                               /* $8409 lda */
         AND(0x3F);                                                                       /* $840C and */
         if (R.a != 0) goto L8416;                                                        /* $840E bne */
-        push16(0x8412); Sub_B3_8813(); UNW(); ret_check(0x8412);                         /* $8410 jsr */
+        push16(0x8412); HideMenuSpritesAndRestoreScroll(); UNW(); ret_check(0x8412);     /* $8410 jsr */
         goto L85AC;                                                                      /* $8413 jmp */
       }
 L8416: BUDGET();
@@ -725,7 +725,7 @@ L850A: BUDGET();
       if ((R.a & 0x80)) {                                                                /* $8532 bpl */
         AND(0x40);                                                                       /* $8534 and */
         if (R.a == 0) {                                                                  /* $8536 bne */
-          push16(0x853A); Sub_B3_8813(); UNW(); ret_check(0x853A);                       /* $8538 jsr */
+          push16(0x853A); HideMenuSpritesAndRestoreScroll(); UNW(); ret_check(0x853A);   /* $8538 jsr */
           goto L85AC;                                                                    /* $853B jmp */
         }
         LDA(0x04);                                                                       /* $853E lda */
@@ -814,7 +814,7 @@ void Sub_B3_8550(void) {  /* $8550 bank 3 */
   } else {
     cmp8(R.a, 0x01);                                                                     /* $855D cmp */
     if (R.a != 0x01) {                                                                   /* $855F beq */
-      push16(0x8563); Sub_B3_8813(); UNW(); ret_check(0x8563);                           /* $8561 jsr */
+      push16(0x8563); HideMenuSpritesAndRestoreScroll(); UNW(); ret_check(0x8563);       /* $8561 jsr */
       goto L85AC;                                                                        /* $8564 jmp */
     }
     INC_M(0x040C);                                                                       /* $8567 inc */
@@ -937,9 +937,9 @@ void Sub_B3_85DB(void) {  /* $85DB bank 3 */
   LDA(rd(Tmp01));                                                                        /* $8627 lda */
   STA(0x71);                                                                             /* $8629 sta */
   LDY(0x00);                                                                             /* $862B ldy */
-  push16(0x862F); Sub_B3_8666(); UNW(); ret_check(0x862F);                               /* $862D jsr */
+  push16(0x862F); LoadFourBytesFromPtr70(); UNW(); ret_check(0x862F);                    /* $862D jsr */
   LDY(0x01);                                                                             /* $8630 ldy */
-  push16(0x8634); Sub_B3_867A(); UNW(); ret_check(0x8634);                               /* $8632 jsr */
+  push16(0x8634); StoreSpriteYTileX(); UNW(); ret_check(0x8634);                         /* $8632 jsr */
   LDA(rd(Tmp03));                                                                        /* $8635 lda */
   STA(Tmp02);                                                                            /* $8637 sta */
   LDA(rd(Tmp00));                                                                        /* $8639 lda */
@@ -949,11 +949,11 @@ void Sub_B3_85DB(void) {  /* $85DB bank 3 */
     INC_M(Tmp00);                                                                        /* $8641 inc */
   }
   LDY(0x05);                                                                             /* $8643 ldy */
-  push16(0x8647); Sub_B3_867A(); UNW(); ret_check(0x8647);                               /* $8645 jsr */
+  push16(0x8647); StoreSpriteYTileX(); UNW(); ret_check(0x8647);                         /* $8645 jsr */
   LDY(0x04);                                                                             /* $8648 ldy */
-  push16(0x864C); Sub_B3_8666(); UNW(); ret_check(0x864C);                               /* $864A jsr */
+  push16(0x864C); LoadFourBytesFromPtr70(); UNW(); ret_check(0x864C);                    /* $864A jsr */
   LDY(0x09);                                                                             /* $864D ldy */
-  push16(0x8651); Sub_B3_867A(); UNW(); ret_check(0x8651);                               /* $864F jsr */
+  push16(0x8651); StoreSpriteYTileX(); UNW(); ret_check(0x8651);                         /* $864F jsr */
   LDA(0x00);                                                                             /* $8652 lda */
   STA(0x0408);                                                                           /* $8654 sta */
   STA(0x0409);                                                                           /* $8657 sta */
@@ -965,7 +965,7 @@ L8660: BUDGET();
   RTS_RET(sp0);                                                                          /* $8665 rts */
 }
 
-void Sub_B3_8666(void) {  /* $8666 bank 3 */
+void LoadFourBytesFromPtr70(void) {  /* $8666 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd((uint16_t)(rd16zp(0x70) + R.y)));                                               /* $8666 lda */
   STA(Tmp00);                                                                            /* $8668 sta */
@@ -981,7 +981,7 @@ void Sub_B3_8666(void) {  /* $8666 bank 3 */
   RTS_RET(sp0);                                                                          /* $8679 rts */
 }
 
-void Sub_B3_867A(void) {  /* $867A bank 3 */
+void StoreSpriteYTileX(void) {  /* $867A bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(Tmp00));                                                                        /* $867A lda */
   STA((uint16_t)(rd16zp(0x5C) + R.y));                                                   /* $867C sta */
@@ -1223,11 +1223,11 @@ L87F0: BUDGET();
   }
   LDA(0x00);                                                                             /* $8808 lda */
   STA(0x041D);                                                                           /* $880A sta */
-  push16(0x880F); Sub_B3_8813(); UNW(); ret_check(0x880F);                               /* $880D jsr */
+  push16(0x880F); HideMenuSpritesAndRestoreScroll(); UNW(); ret_check(0x880F);           /* $880D jsr */
   goto L85AC;                                                                            /* $8810 jmp */
 }
 
-void Sub_B3_8813(void) {  /* $8813 bank 3 */
+void HideMenuSpritesAndRestoreScroll(void) {  /* $8813 bank 3 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $8813 ldy */
   LDA(0xF0);                                                                             /* $8815 lda */
@@ -1314,7 +1314,7 @@ L892F: BUDGET();
     AND(0xCF);                                                                           /* $893B and */
     STA(0x0418);                                                                         /* $893D sta */
     if (!(R.a & 0x80)) {                                                                 /* $8940 bmi */
-      push16(0x8944); Sub_B3_8813(); UNW(); ret_check(0x8944);                           /* $8942 jsr */
+      push16(0x8944); HideMenuSpritesAndRestoreScroll(); UNW(); ret_check(0x8944);       /* $8942 jsr */
       goto L85AC;                                                                        /* $8945 jmp */
     }
     INC_M(0x0418);                                                                       /* $8948 inc */
@@ -1412,7 +1412,7 @@ L89A5: BUDGET();
     LDA(rd(0x0409));                                                                     /* $89F5 lda */
     cmp8(R.a, 0x03);                                                                     /* $89F8 cmp */
     if (R.a < 0x03) goto L89FF;                                                          /* $89FA bcc */
-    push16(0x89FE); Sub_B3_8813(); UNW(); ret_check(0x89FE);                             /* $89FC jsr */
+    push16(0x89FE); HideMenuSpritesAndRestoreScroll(); UNW(); ret_check(0x89FE);         /* $89FC jsr */
   }
 L89FF: BUDGET();
   goto L85AC;                                                                            /* $89FF jmp */
@@ -1491,7 +1491,7 @@ void Sub_B3_8A5B(void) {  /* $8A5B bank 3 */
     STA(Tmp00);                                                                          /* $8AA3 sta */
     LDA(0x2B);                                                                           /* $8AA5 lda */
     STA(Tmp01);                                                                          /* $8AA7 sta */
-    push16(0x8AAB); Sub_B3_8BD2(); UNW(); ret_check(0x8AAB);                             /* $8AA9 jsr */
+    push16(0x8AAB); WriteSixPaletteEntries(); UNW(); ret_check(0x8AAB);                  /* $8AA9 jsr */
     push16(0x8AAE); ProcessPpuUpdateList(); UNW(); ret_check(0x8AB0);                    /* $8AAC jsr */
     LDA(0x84);                                                                           /* $8AB1 lda */
     STA(0x60);                                                                           /* $8AB3 sta */
@@ -1631,7 +1631,7 @@ L8BD1: BUDGET();
   RTS_RET(sp0);                                                                          /* $8BD1 rts */
 }
 
-void Sub_B3_8BD2(void) {  /* $8BD2 bank 3 */
+void WriteSixPaletteEntries(void) {  /* $8BD2 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuCtrlShadow));                                                                /* $8BD2 lda */
   AND(0xFB);                                                                             /* $8BD4 and */

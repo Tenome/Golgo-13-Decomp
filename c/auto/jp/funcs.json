@@ -116,7 +116,7 @@
    ]
   ]
  },
- "Sub_B1_80D5": {
+ "AdvanceSceneOnStart": {
   "addr": 32981,
   "bank": 1,
   "instrs": 5,
@@ -142,7 +142,7 @@
    ]
   ]
  },
- "Sub_B1_8101": {
+ "CountSelectPresses": {
   "addr": 33025,
   "bank": 1,
   "instrs": 20,
@@ -155,7 +155,7 @@
    ]
   ]
  },
- "Sub_B1_812F": {
+ "FillNametable0WithFF": {
   "addr": 33071,
   "bank": 1,
   "instrs": 13,
@@ -206,7 +206,7 @@
    ]
   ]
  },
- "Sub_B1_85A3": {
+ "SaveMmcShadowRegs": {
   "addr": 34211,
   "bank": 1,
   "instrs": 6,
@@ -1881,7 +1881,7 @@
    ]
   ]
  },
- "Sub_B3_822B": {
+ "TextBoxSetAttributes": {
   "addr": 33323,
   "bank": 3,
   "instrs": 29,
@@ -1911,7 +1911,7 @@
    ]
   ]
  },
- "Sub_B3_8270": {
+ "CalcMenuRowNametableAddr": {
   "addr": 33392,
   "bank": 3,
   "instrs": 16,
@@ -1924,7 +1924,7 @@
    ]
   ]
  },
- "Sub_B3_828B": {
+ "TextBoxClearRow": {
   "addr": 33419,
   "bank": 3,
   "instrs": 35,
@@ -2137,7 +2137,7 @@
    ]
   ]
  },
- "Sub_B3_8666": {
+ "LoadFourBytesFromPtr70": {
   "addr": 34406,
   "bank": 3,
   "instrs": 12,
@@ -2150,7 +2150,7 @@
    ]
   ]
  },
- "Sub_B3_867A": {
+ "StoreSpriteYTileX": {
   "addr": 34426,
   "bank": 3,
   "instrs": 11,
@@ -2219,7 +2219,7 @@
    ]
   ]
  },
- "Sub_B3_8813": {
+ "HideMenuSpritesAndRestoreScroll": {
   "addr": 34835,
   "bank": 3,
   "instrs": 20,
@@ -2313,7 +2313,7 @@
    ]
   ]
  },
- "Sub_B3_8BD2": {
+ "WriteSixPaletteEntries": {
   "addr": 35794,
   "bank": 3,
   "instrs": 17,
@@ -2430,7 +2430,7 @@
    ]
   ]
  },
- "Bank4Tbl80C9_00": {
+ "Bank4State_00": {
   "addr": 33035,
   "bank": 4,
   "instrs": 4,
@@ -2662,7 +2662,7 @@
    ]
   ]
  },
- "Bank4Tbl80C9_10": {
+ "Bank4State_10": {
   "addr": 33393,
   "bank": 4,
   "instrs": 11,
@@ -2740,7 +2740,7 @@
    ]
   ]
  },
- "Bank4Tbl80C9_15": {
+ "Bank4State_15": {
   "addr": 33582,
   "bank": 4,
   "instrs": 9,
@@ -2753,7 +2753,7 @@
    ]
   ]
  },
- "Bank4Tbl80C9_16": {
+ "Bank4State_16": {
   "addr": 33605,
   "bank": 4,
   "instrs": 17,
@@ -2874,7 +2874,7 @@
    ]
   ]
  },
- "Bank4Tbl80C9_1F": {
+ "Bank4State_1F": {
   "addr": 33829,
   "bank": 4,
   "instrs": 12,
@@ -2887,7 +2887,7 @@
    ]
   ]
  },
- "Bank4Tbl80C9_20": {
+ "Bank4State_20": {
   "addr": 33865,
   "bank": 4,
   "instrs": 11,
@@ -2900,7 +2900,7 @@
    ]
   ]
  },
- "Sub_B4_8476": {
+ "HideSpritesFromStart": {
   "addr": 33910,
   "bank": 4,
   "instrs": 10,
@@ -2917,7 +2917,7 @@
    ]
   ]
  },
- "Sub_B4_847B": {
+ "HideAllSprites": {
   "addr": 33915,
   "bank": 4,
   "instrs": 9,
@@ -2930,7 +2930,7 @@
    ]
   ]
  },
- "Sub_B4_8489": {
+ "SetSprite0Marker": {
   "addr": 33929,
   "bank": 4,
   "instrs": 9,
@@ -2943,7 +2943,7 @@
    ]
   ]
  },
- "Sub_B4_84FD": {
+ "ClearSceneStateTail": {
   "addr": 34045,
   "bank": 4,
   "instrs": 5,
@@ -2956,7 +2956,7 @@
    ]
   ]
  },
- "Sub_B4_8507": {
+ "ClearWorkVars60": {
   "addr": 34055,
   "bank": 4,
   "instrs": 6,
@@ -2969,7 +2969,7 @@
    ]
   ]
  },
- "Sub_B4_854E": {
+ "DrawCompassSprites": {
   "addr": 34126,
   "bank": 4,
   "instrs": 22,
@@ -2995,7 +2995,7 @@
    ]
   ]
  },
- "Bank4Tbl85C3_00": {
+ "Bank4StateB_00": {
   "addr": 34271,
   "bank": 4,
   "instrs": 3,
@@ -3008,7 +3008,7 @@
    ]
   ]
  },
- "Bank4Tbl85C3_01": {
+ "Bank4StateB_01": {
   "addr": 34276,
   "bank": 4,
   "instrs": 4,
@@ -3034,7 +3034,7 @@
    ]
   ]
  },
- "Bank4Tbl85C3_03": {
+ "Bank4StateB_03": {
   "addr": 34290,
   "bank": 4,
   "instrs": 4,
@@ -3047,7 +3047,7 @@
    ]
   ]
  },
- "Bank4Tbl85C3_04": {
+ "Bank4StateB_04": {
   "addr": 34297,
   "bank": 4,
   "instrs": 4,
@@ -3168,7 +3168,7 @@
    ]
   ]
  },
- "Bank4Tbl85C3_0D": {
+ "Bank4StateB_0D": {
   "addr": 34496,
   "bank": 4,
   "instrs": 12,
@@ -3246,7 +3246,7 @@
    ]
   ]
  },
- "Sub_B4_8C07": {
+ "CheckLowLifeSound": {
   "addr": 35847,
   "bank": 4,
   "instrs": 14,
@@ -3417,7 +3417,7 @@
    ]
   ]
  },
- "Bank4Tbl8E4A_00": {
+ "Bank4StateC_00": {
   "addr": 36516,
   "bank": 4,
   "instrs": 2,
@@ -3430,7 +3430,7 @@
    ]
   ]
  },
- "Bank4Tbl8E4A_01": {
+ "Bank4StateC_01": {
   "addr": 36518,
   "bank": 4,
   "instrs": 4,
@@ -3443,7 +3443,7 @@
    ]
   ]
  },
- "Bank4Tbl8E4A_02": {
+ "Bank4StateC_02": {
   "addr": 36528,
   "bank": 4,
   "instrs": 6,
@@ -3521,7 +3521,7 @@
    ]
   ]
  },
- "Sub_B4_8F85": {
+ "SetObjectFrame": {
   "addr": 36741,
   "bank": 4,
   "instrs": 34,
@@ -3534,7 +3534,7 @@
    ]
   ]
  },
- "Sub_B4_8FBF": {
+ "AllocObjectSlot": {
   "addr": 36799,
   "bank": 4,
   "instrs": 7,
@@ -3547,7 +3547,7 @@
    ]
   ]
  },
- "Sub_B4_8FCF": {
+ "AdvanceObjectState": {
   "addr": 36815,
   "bank": 4,
   "instrs": 1,
@@ -3560,7 +3560,7 @@
    ]
   ]
  },
- "Sub_B4_8FD1": {
+ "IncObjectField": {
   "addr": 36817,
   "bank": 4,
   "instrs": 5,
@@ -3573,7 +3573,7 @@
    ]
   ]
  },
- "Sub_B4_8FD9": {
+ "DecObjectField": {
   "addr": 36825,
   "bank": 4,
   "instrs": 5,
@@ -3689,7 +3689,7 @@
    ]
   ]
  },
- "Sub_B4_90CF": {
+ "EnableSpriteBgRendering": {
   "addr": 37071,
   "bank": 4,
   "instrs": 3,
@@ -3702,7 +3702,7 @@
    ]
   ]
  },
- "Sub_B4_90D6": {
+ "DisableSpriteBgRendering": {
   "addr": 37078,
   "bank": 4,
   "instrs": 3,
@@ -3741,7 +3741,7 @@
    ]
   ]
  },
- "Sub_B4_90F1": {
+ "HideSpritesWithTileFE": {
   "addr": 37105,
   "bank": 4,
   "instrs": 12,
@@ -3767,7 +3767,7 @@
    ]
   ]
  },
- "Sub_B4_9173": {
+ "InitMazePosition": {
   "addr": 37235,
   "bank": 4,
   "instrs": 14,
@@ -3793,7 +3793,7 @@
    ]
   ]
  },
- "Sub_B4_9583": {
+ "InitPaletteBuffer": {
   "addr": 38275,
   "bank": 4,
   "instrs": 14,
@@ -3896,7 +3896,7 @@
    ]
   ]
  },
- "Sub_B4_98A6": {
+ "CalcPlayerCellIndex": {
   "addr": 39078,
   "bank": 4,
   "instrs": 11,
@@ -3909,7 +3909,7 @@
    ]
   ]
  },
- "Sub_B4_98BB": {
+ "CalcFacingCellOffsets": {
   "addr": 39099,
   "bank": 4,
   "instrs": 40,
@@ -3922,7 +3922,7 @@
    ]
   ]
  },
- "Sub_B4_990E": {
+ "StoreCellRow": {
   "addr": 39182,
   "bank": 4,
   "instrs": 15,
@@ -3935,7 +3935,7 @@
    ]
   ]
  },
- "Sub_B4_9924": {
+ "LoadCellWalls": {
   "addr": 39204,
   "bank": 4,
   "instrs": 11,
@@ -3961,7 +3961,7 @@
    ]
   ]
  },
- "Sub_B4_995B": {
+ "ExtractBitPair": {
   "addr": 39259,
   "bank": 4,
   "instrs": 13,
@@ -4421,7 +4421,7 @@
    ]
   ]
  },
- "Sub_B4_A3D8": {
+ "DoorState6": {
   "addr": 41944,
   "bank": 4,
   "instrs": 29,
@@ -4464,7 +4464,7 @@
    ]
   ]
  },
- "Sub_B4_A4A7": {
+ "CollectAmmoItem": {
   "addr": 42151,
   "bank": 4,
   "instrs": 13,
@@ -4524,7 +4524,7 @@
    ]
   ]
  },
- "Sub_B4_A50F": {
+ "CollectLifeItem": {
   "addr": 42255,
   "bank": 4,
   "instrs": 11,
@@ -5034,7 +5034,7 @@
    ]
   ]
  },
- "Sub_B4_AC67": {
+ "AddToObjectY": {
   "addr": 44135,
   "bank": 4,
   "instrs": 1,
@@ -5047,7 +5047,7 @@
    ]
   ]
  },
- "Sub_B4_AC69": {
+ "AddToObjectField": {
   "addr": 44137,
   "bank": 4,
   "instrs": 4,
@@ -5352,7 +5352,7 @@
    ]
   ]
  },
- "Sub_B4_AFDA": {
+ "DamageFlashStep": {
   "addr": 45018,
   "bank": 4,
   "instrs": 25,
@@ -5793,7 +5793,7 @@
    ]
   ]
  },
- "Sub_B4_B43F": {
+ "AddObjectOfType": {
   "addr": 46143,
   "bank": 4,
   "instrs": 9,
@@ -5832,7 +5832,7 @@
    ]
   ]
  },
- "Sub_B4_B47A": {
+ "DamagePlayer": {
   "addr": 46202,
   "bank": 4,
   "instrs": 8,
@@ -5845,7 +5845,7 @@
    ]
   ]
  },
- "Sub_B4_B488": {
+ "AddLifeAndAmmo": {
   "addr": 46216,
   "bank": 4,
   "instrs": 23,
@@ -5871,7 +5871,7 @@
    ]
   ]
  },
- "Sub_B4_B4EF": {
+ "LoadObjectCountIndex": {
   "addr": 46319,
   "bank": 4,
   "instrs": 4,
@@ -5884,7 +5884,7 @@
    ]
   ]
  },
- "Sub_B4_B4F8": {
+ "DispatchObjectHandler": {
   "addr": 46328,
   "bank": 4,
   "instrs": 17,
@@ -6088,7 +6088,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_05": {
+ "Bank5Scene_05": {
   "addr": 33146,
   "bank": 5,
   "instrs": 6,
@@ -6183,7 +6183,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_0B": {
+ "Bank5Scene_0B": {
   "addr": 33254,
   "bank": 5,
   "instrs": 4,
@@ -6213,7 +6213,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_0D": {
+ "Bank5Scene_0D": {
   "addr": 33274,
   "bank": 5,
   "instrs": 26,
@@ -6325,7 +6325,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_15": {
+ "Bank5Scene_17": {
   "addr": 33421,
   "bank": 5,
   "instrs": 75,
@@ -6437,7 +6437,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_1D": {
+ "Bank5Scene_1F": {
   "addr": 33550,
   "bank": 5,
   "instrs": 4,
@@ -6543,17 +6543,34 @@
  "Bank5Tbl8065_24": {
   "addr": 33639,
   "bank": 5,
-  "instrs": 4,
+  "instrs": 3,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     82791,
+    82796
+   ],
+   [
+    82799,
     82800
    ]
   ]
  },
- "Sub_B5_8370": {
+ "Bank5Scene_24": {
+  "addr": 33644,
+  "bank": 5,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    82796,
+    82800
+   ]
+  ]
+ },
+ "SkipSceneOnStart": {
   "addr": 33648,
   "bank": 5,
   "instrs": 17,
@@ -6747,7 +6764,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_3C": {
+ "Bank5Scene_3C": {
   "addr": 33949,
   "bank": 5,
   "instrs": 16,
@@ -6858,7 +6875,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_4C": {
+ "Bank5Scene_4C": {
   "addr": 34107,
   "bank": 5,
   "instrs": 20,
@@ -6917,7 +6934,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_2E": {
+ "Bank5Scene_2E": {
   "addr": 34156,
   "bank": 5,
   "instrs": 6,
@@ -6977,7 +6994,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_50": {
+ "Bank5Scene_50": {
   "addr": 34249,
   "bank": 5,
   "instrs": 6,
@@ -7037,7 +7054,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_54": {
+ "Bank5Scene_54": {
   "addr": 34311,
   "bank": 5,
   "instrs": 9,
@@ -7084,7 +7101,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_57": {
+ "Bank5Scene_57": {
   "addr": 34360,
   "bank": 5,
   "instrs": 6,
@@ -7114,7 +7131,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_59": {
+ "Bank5Scene_59": {
   "addr": 34380,
   "bank": 5,
   "instrs": 10,
@@ -7127,7 +7144,7 @@
    ]
   ]
  },
- "Bank5Tbl8065_5A": {
+ "Bank5Scene_5A": {
   "addr": 34405,
   "bank": 5,
   "instrs": 7,
@@ -7389,7 +7406,7 @@
    ]
   ]
  },
- "Sub_B5_8919": {
+ "FillNametableWithA": {
   "addr": 35097,
   "bank": 5,
   "instrs": 11,
@@ -7402,7 +7419,7 @@
    ]
   ]
  },
- "Sub_B5_8930": {
+ "FillPaletteBufferBlack": {
   "addr": 35120,
   "bank": 5,
   "instrs": 1,
@@ -7415,7 +7432,7 @@
    ]
   ]
  },
- "Sub_B5_8932": {
+ "FillPaletteBufferWithA": {
   "addr": 35122,
   "bank": 5,
   "instrs": 1,
@@ -7441,7 +7458,7 @@
    ]
   ]
  },
- "Sub_B5_893B": {
+ "ClearSceneStateTailB5": {
   "addr": 35131,
   "bank": 5,
   "instrs": 6,
@@ -7773,7 +7790,7 @@
    ]
   ]
  },
- "Sub_B5_8FBD": {
+ "SetMmcControlChr0Chr1": {
   "addr": 36797,
   "bank": 5,
   "instrs": 6,
@@ -7799,7 +7816,7 @@
    ]
   ]
  },
- "Sub_B5_9061": {
+ "RunSoundDriverBank5Timed": {
   "addr": 36961,
   "bank": 5,
   "instrs": 14,
@@ -7812,7 +7829,7 @@
    ]
   ]
  },
- "Sub_B5_907F": {
+ "InitDmcAndJoypad2": {
   "addr": 36991,
   "bank": 5,
   "instrs": 8,
@@ -7838,7 +7855,7 @@
    ]
   ]
  },
- "Sub_B5_9098": {
+ "InitScenePpuState": {
   "addr": 37016,
   "bank": 5,
   "instrs": 8,
@@ -8019,7 +8036,7 @@
    ]
   ]
  },
- "Sub_B5_9A6C": {
+ "OrSpriteAttributes": {
   "addr": 39532,
   "bank": 5,
   "instrs": 10,

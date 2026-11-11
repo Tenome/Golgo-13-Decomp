@@ -47,7 +47,7 @@ void Sub_B1_802F(void) {  /* $802F bank 1 */
 void Bank1Tbl8045_00(void) {  /* $804D bank 1 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $804D inc */
-  push16(0x8052); Sub_B1_85A3(); UNW(); ret_check(0x8052);                               /* $8050 jsr */
+  push16(0x8052); SaveMmcShadowRegs(); UNW(); ret_check(0x8052);                         /* $8050 jsr */
   { Sub_B1_8053(); return; }
 }
 
@@ -72,9 +72,9 @@ void Bank1Tbl8045_02(void) {  /* $8061 bank 1 */
   LDY(0x03);                                                                             /* $8069 ldy */
   STY(MmcChr1Shadow);                                                                    /* $806B sty */
   push16(0x806F); MmcWriteChr1(); UNW(); ret_check(0x806F);                              /* $806D jsr */
-  push16(0x8072); Sub_B1_80D5(); UNW(); ret_check(0x8072);                               /* $8070 jsr */
+  push16(0x8072); AdvanceSceneOnStart(); UNW(); ret_check(0x8072);                       /* $8070 jsr */
   push16(0x8075); ReadJoypads(); UNW(); ret_check(0x8075);                               /* $8073 jsr */
-  push16(0x8078); Sub_B1_8101(); UNW(); ret_check(0x8078);                               /* $8076 jsr */
+  push16(0x8078); CountSelectPresses(); UNW(); ret_check(0x8078);                        /* $8076 jsr */
   LDA(rd(0x0551));                                                                       /* $8079 lda */
   if (R.a != 0) goto L8087;                                                              /* $807C bne */
   LDX(rd(0x0550));                                                                       /* $807E ldx */
@@ -108,7 +108,7 @@ void Bank1Tbl8045_03(void) {  /* $80A9 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x80AB); Sub_B1_8053(); UNW(); ret_check(0x80AB);                               /* $80A9 jsr */
   push16(0x80AE); FillPaletteBlack(); UNW(); ret_check(0x80AE);                          /* $80AC jsr */
-  push16(0x80B1); Sub_B1_812F(); UNW(); ret_check(0x80B1);                               /* $80AF jsr */
+  push16(0x80B1); FillNametable0WithFF(); UNW(); ret_check(0x80B1);                      /* $80AF jsr */
   push16(0x80B4); Sub_B1_85AF(); UNW(); ret_check(0x80B4);                               /* $80B2 jsr */
   push16(0x80B7); ApplyScroll(); UNW(); ret_check(0x80B7);                               /* $80B5 jsr */
   push16(0x80BA); MmcWriteControl(); UNW(); ret_check(0x80BA);                           /* $80B8 jsr */
@@ -124,7 +124,7 @@ void Bank1Tbl8045_03(void) {  /* $80A9 bank 1 */
   { QueueSound(); return; }                                                              /* $80D2 jmp */
 }
 
-void Sub_B1_80D5(void) {  /* $80D5 bank 1 */
+void AdvanceSceneOnStart(void) {  /* $80D5 bank 1 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyNew1));                                                                      /* $80D5 lda */
   AND(0x08);                                                                             /* $80D8 and */
@@ -155,7 +155,7 @@ void Sub_B1_80E0(void) {  /* $80E0 bank 1 */
   RTS_RET(sp0);                                                                          /* $8100 rts */
 }
 
-void Sub_B1_8101(void) {  /* $8101 bank 1 */
+void CountSelectPresses(void) {  /* $8101 bank 1 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0552));                                                                       /* $8101 lda */
   cmp8(R.a, 0xC8);                                                                       /* $8104 cmp */
@@ -181,7 +181,7 @@ L812E: BUDGET();
   RTS_RET(sp0);                                                                          /* $812E rts */
 }
 
-void Sub_B1_812F(void) {  /* $812F bank 1 */
+void FillNametable0WithFF(void) {  /* $812F bank 1 */
   uint8_t sp0 = R.sp;
   LDY(rd(PPU_STATUS));                                                                   /* $812F ldy */
   LDY(0x20);                                                                             /* $8132 ldy */
@@ -300,7 +300,7 @@ void Sub_B1_83D8(void) {  /* $83D8 bank 1 */
   STY(MmcChr0Shadow);                                                                    /* $83FA sty */
   push16(0x83FE); MmcWriteControl(); UNW(); ret_check(0x83FE);                           /* $83FC jsr */
   push16(0x8401); MmcWriteChr0(); UNW(); ret_check(0x8401);                              /* $83FF jsr */
-  push16(0x8404); Sub_B1_812F(); UNW(); ret_check(0x8404);                               /* $8402 jsr */
+  push16(0x8404); FillNametable0WithFF(); UNW(); ret_check(0x8404);                      /* $8402 jsr */
   push16(0x8407); ProcessPpuUpdateList(); UNW(); ret_check(0x8409);                      /* $8405 jsr */
   push16(0x840C); ProcessPpuUpdateList(); UNW(); ret_check(0x840E);                      /* $840A jsr */
   LDY(0x03);                                                                             /* $840F ldy */
@@ -332,7 +332,7 @@ void Sub_B1_83D8(void) {  /* $83D8 bank 1 */
   { QueueSound(); return; }                                                              /* $8448 jmp */
 }
 
-void Sub_B1_85A3(void) {  /* $85A3 bank 1 */
+void SaveMmcShadowRegs(void) {  /* $85A3 bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x07);                                                                             /* $85A3 ldy */
   do { BUDGET();

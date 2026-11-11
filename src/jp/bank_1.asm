@@ -38,7 +38,7 @@ Data_B1_8045:
   .addr Bank1Tbl8045_00, Bank1Tbl8045_01, Bank1Tbl8045_02, Bank1Tbl8045_03  ; $8045 pointer table
 Bank1Tbl8045_00:
   inc SceneState               ; $804D
-  jsr Sub_B1_85A3              ; $8050
+  jsr SaveMmcShadowRegs        ; $8050
 Sub_B1_8053:
   lda #$00                     ; $8053
   jmp SetPpuMask               ; $8055
@@ -53,9 +53,9 @@ Bank1Tbl8045_02:
   ldy #$03                     ; $8069
   sty z:MmcChr1Shadow          ; $806B
   jsr MmcWriteChr1             ; $806D
-  jsr Sub_B1_80D5              ; $8070
+  jsr AdvanceSceneOnStart      ; $8070
   jsr ReadJoypads              ; $8073
-  jsr Sub_B1_8101              ; $8076
+  jsr CountSelectPresses       ; $8076
   lda $0551                    ; $8079
   bne Loc_B1_8087              ; $807C
   ldx $0550                    ; $807E
@@ -84,7 +84,7 @@ Loc_B1_809C:
 Bank1Tbl8045_03:
   jsr Sub_B1_8053              ; $80A9
   jsr FillPaletteBlack         ; $80AC
-  jsr Sub_B1_812F              ; $80AF
+  jsr FillNametable0WithFF     ; $80AF
   jsr Sub_B1_85AF              ; $80B2
   jsr ApplyScroll              ; $80B5
   jsr MmcWriteControl          ; $80B8
@@ -98,7 +98,7 @@ Bank1Tbl8045_03:
   sta JoyNew1                  ; $80CD
   lda #$00                     ; $80D0
   jmp QueueSound               ; $80D2
-Sub_B1_80D5:
+AdvanceSceneOnStart:
   lda JoyNew1                  ; $80D5
   and #$08                     ; $80D8
   beq Loc_B1_80DF              ; $80DA
@@ -123,7 +123,7 @@ Loc_B1_80F3:
   pla                          ; $80FD
   sta z:MmcPrgShadow           ; $80FE
   rts                          ; $8100
-Sub_B1_8101:
+CountSelectPresses:
   lda $0552                    ; $8101
   cmp #$C8                     ; $8104
   bcs Loc_B1_812E              ; $8106
@@ -145,7 +145,7 @@ Sub_B1_8101:
   inc $0552                    ; $812B
 Loc_B1_812E:
   rts                          ; $812E
-Sub_B1_812F:
+FillNametable0WithFF:
   ldy PPU_STATUS               ; $812F
   ldy #$20                     ; $8132
   sty PPU_ADDR                 ; $8134
@@ -263,7 +263,7 @@ Sub_B1_83D8:
   sty z:MmcChr0Shadow          ; $83FA
   jsr MmcWriteControl          ; $83FC
   jsr MmcWriteChr0             ; $83FF
-  jsr Sub_B1_812F              ; $8402
+  jsr FillNametable0WithFF     ; $8402
   jsr ProcessPpuUpdateList     ; $8405
   .addr Data_B1_8463  ; $8408 inline pointer (data after a JSR)
   jsr ProcessPpuUpdateList     ; $840A
@@ -303,7 +303,7 @@ Data_B1_84D5:
   .incbin "prg_bank_1.bin", $04D5, $CA  ; $84D5
 Data_B1_859F:
   .incbin "prg_bank_1.bin", $059F, $4  ; $859F
-Sub_B1_85A3:
+SaveMmcShadowRegs:
   ldy #$07                     ; $85A3
 Loc_B1_85A5:
   lda a:MmcControlShadow,y     ; $85A5
