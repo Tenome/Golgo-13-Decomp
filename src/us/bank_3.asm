@@ -570,7 +570,7 @@ Sub_B3_8969:
   lda JoyHeld1                 ; $8969
   and #$01                     ; $896C
   bne Loc_B3_8976              ; $896E
-  jsr Sub_B3_8B77              ; $8970
+  jsr BlinkTextCursorStep      ; $8970
   jmp Loc_B3_8A3A              ; $8973
 Loc_B3_8976:
   inc $041B                    ; $8976
@@ -628,7 +628,7 @@ Sub_B3_89DE:
   lda JoyNew1                  ; $89DE
   and #$03                     ; $89E1
   bne Loc_B3_89EB              ; $89E3
-  jsr Sub_B3_8B77              ; $89E5
+  jsr BlinkTextCursorStep      ; $89E5
   jmp Loc_B3_8A3A              ; $89E8
 Loc_B3_89EB:
   cmp #$01                     ; $89EB
@@ -659,7 +659,7 @@ Sub_B3_8A21:
   lda JoyHeld1                 ; $8A21
   and #$01                     ; $8A24
   bne Loc_B3_8A2E              ; $8A26
-  jsr Sub_B3_8B77              ; $8A28
+  jsr BlinkTextCursorStep      ; $8A28
   jmp Loc_B3_8A3A              ; $8A2B
 Loc_B3_8A2E:
   lda #$00                     ; $8A2E
@@ -851,7 +851,7 @@ Loc_B3_8B65:
   ldy #$04                     ; $8B72
   sta ($5C),y                  ; $8B74
   rts                          ; $8B76
-Sub_B3_8B77:
+BlinkTextCursorStep:
   lda $041E                    ; $8B77
   cmp #$14                     ; $8B7A
   bcs Loc_B3_8B84              ; $8B7C

@@ -13,8 +13,8 @@ void Loc_B6_8000(void) {  /* $8000 bank 6 */
 
 void Bank6Nmi(void) {  /* $8010 bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x8012); Sub_B6_82F5(); UNW(); ret_check(0x8012);                               /* $8010 jsr */
-  push16(0x8015); Sub_B6_81E3(); UNW(); ret_check(0x8015);                               /* $8013 jsr */
+  push16(0x8012); ProcessCollectedObjects(); UNW(); ret_check(0x8012);                   /* $8010 jsr */
+  push16(0x8015); ResetObjectTableAndSpawn(); UNW(); ret_check(0x8015);                  /* $8013 jsr */
   push16(0x8018); DrawObjects(); UNW(); ret_check(0x8018);                               /* $8016 jsr */
   push16(0x801B); Sub_B6_801F(); UNW(); ret_check(0x801B);                               /* $8019 jsr */
   goto LC0E0;                                                                            /* $801C jmp */
@@ -97,11 +97,11 @@ void Sub_B6_801F(void) {  /* $801F bank 6 */
     if (R.a == 0) goto L8054;                                                            /* $803B beq */
     cmp8(R.a, 0x40);                                                                     /* $803D cmp */
     if (R.a == 0x40) {                                                                   /* $803F bne */
-      push16(0x8043); Sub_B6_8055(); UNW(); ret_check(0x8043);                           /* $8041 jsr */
+      push16(0x8043); SpawnObjectsAtCurrentColumn(); UNW(); ret_check(0x8043);           /* $8041 jsr */
       RTS_RET(sp0);                                                                      /* $8044 rts */
     }
 L8045: BUDGET();
-    push16(0x8047); Sub_B6_8080(); UNW(); ret_check(0x8047);                             /* $8045 jsr */
+    push16(0x8047); SpawnObjectsAtNextColumn(); UNW(); ret_check(0x8047);                /* $8045 jsr */
     RTS_RET(sp0);                                                                        /* $8048 rts */
   }
   cmp8(R.a, 0x03);                                                                       /* $8049 cmp */
@@ -109,12 +109,12 @@ L8045: BUDGET();
     cmp8(R.a, 0x0E);                                                                     /* $804D cmp */
     if (R.a < 0x0E) goto L8054;                                                          /* $804F bcc */
   }
-  push16(0x8053); Sub_B6_80D8(); UNW(); ret_check(0x8053);                               /* $8051 jsr */
+  push16(0x8053); InitSpawnIndexForScroll(); UNW(); ret_check(0x8053);                   /* $8051 jsr */
 L8054: BUDGET();
   RTS_RET(sp0);                                                                          /* $8054 rts */
 }
 
-void Sub_B6_8055(void) {  /* $8055 bank 6 */
+void SpawnObjectsAtCurrentColumn(void) {  /* $8055 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x8057); LoadStageSpawnListPtr(); UNW(); ret_check(0x8057);                     /* $8055 jsr */
   push16(0x805A); CalcScrollColumnIndex(); UNW(); ret_check(0x805A);                     /* $8058 jsr */
@@ -136,13 +136,13 @@ void Sub_B6_8055(void) {  /* $8055 bank 6 */
       cmp8(R.x, 0x00);                                                                   /* $8078 cpx */
       if (R.x != 0x00) goto L807F;                                                       /* $807A bne */
     }
-    push16(0x807E); Sub_B6_8117(); UNW(); ret_check(0x807E);                             /* $807C jsr */
+    push16(0x807E); SpawnObjectFromList(); UNW(); ret_check(0x807E);                     /* $807C jsr */
   }
 L807F: BUDGET();
   RTS_RET(sp0);                                                                          /* $807F rts */
 }
 
-void Sub_B6_8080(void) {  /* $8080 bank 6 */
+void SpawnObjectsAtNextColumn(void) {  /* $8080 bank 6 */
   uint8_t sp0 = R.sp;
   goto L8080;
 L8060: BUDGET();
@@ -162,7 +162,7 @@ L8060: BUDGET();
       cmp8(R.x, 0x00);                                                                   /* $8078 cpx */
       if (R.x != 0x00) goto L807F;                                                       /* $807A bne */
     }
-    push16(0x807E); Sub_B6_8117(); UNW(); ret_check(0x807E);                             /* $807C jsr */
+    push16(0x807E); SpawnObjectFromList(); UNW(); ret_check(0x807E);                     /* $807C jsr */
   }
 L807F: BUDGET();
   RTS_RET(sp0);                                                                          /* $807F rts */
@@ -242,7 +242,7 @@ void FindObjectByType(void) {  /* $80B5 bank 6 */
   RTS_RET(sp0);                                                                          /* $80D7 rts */
 }
 
-void Sub_B6_80D8(void) {  /* $80D8 bank 6 */
+void InitSpawnIndexForScroll(void) {  /* $80D8 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x80DA); LoadStageSpawnListPtr(); UNW(); ret_check(0x80DA);                     /* $80D8 jsr */
   push16(0x80DD); CalcScrollColumnIndex(); UNW(); ret_check(0x80DD);                     /* $80DB jsr */
@@ -285,7 +285,7 @@ L8112: BUDGET();
   RTS_RET(sp0);                                                                          /* $8116 rts */
 }
 
-void Sub_B6_8117(void) {  /* $8117 bank 6 */
+void SpawnObjectFromList(void) {  /* $8117 bank 6 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $8117 lda */
   cmp8(R.a, 0x09);                                                                       /* $811A cmp */
@@ -315,12 +315,12 @@ void Sub_B6_8117(void) {  /* $8117 bank 6 */
     PHA();                                                                               /* $814F pha */
     call_addr(rd16bug(0x0304)); UNW(); R.sp += 2; goto L8154;                            /* $8150 jmp */
 L8154: BUDGET();
-    push16(0x8156); Sub_B6_81AA(); UNW(); ret_check(0x8156);                             /* $8154 jsr */
+    push16(0x8156); SetObjectTimerFromType(); UNW(); ret_check(0x8156);                  /* $8154 jsr */
   }
   RTS_RET(sp0);                                                                          /* $8157 rts */
 }
 
-void Sub_B6_81AA(void) {  /* $81AA bank 6 */
+void SetObjectTimerFromType(void) {  /* $81AA bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $81AA ldy */
   LDA(rd((uint16_t)(rd16zp(0x0A) + R.y)));                                               /* $81AC lda */
@@ -332,7 +332,7 @@ void Sub_B6_81AA(void) {  /* $81AA bank 6 */
   RTS_RET(sp0);                                                                          /* $81B8 rts */
 }
 
-void Sub_B6_81E3(void) {  /* $81E3 bank 6 */
+void ResetObjectTableAndSpawn(void) {  /* $81E3 bank 6 */
   uint8_t sp0 = R.sp;
   LDX(0x0F);                                                                             /* $81E3 ldx */
   LDY(0x03);                                                                             /* $81E5 ldy */
@@ -444,7 +444,7 @@ L8290: BUDGET();
   RTS_RET(sp0);                                                                          /* $82A2 rts */
 }
 
-void Sub_B6_82F5(void) {  /* $82F5 bank 6 */
+void ProcessCollectedObjects(void) {  /* $82F5 bank 6 */
   uint8_t sp0 = R.sp;
   LDX(rd(ObjectCount));                                                                  /* $82F5 ldx */
   if (R.x == 0) {                                                                        /* $82F8 bne */
@@ -510,7 +510,7 @@ L8353: BUDGET();
 
 void Sub_B6_83A8(void) {  /* $83A8 bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x83AA); Sub_B6_83F4(); UNW(); ret_check(0x83AA);                               /* $83A8 jsr */
+  push16(0x83AA); InitSpawnedObject(); UNW(); ret_check(0x83AA);                         /* $83A8 jsr */
   push16(0x83AD); SetRandomSpawnPhase(); UNW(); ret_check(0x83AD);                       /* $83AB jsr */
   push16(0x83B0); SetSpawnFacingBits(); UNW(); ret_check(0x83B0);                        /* $83AE jsr */
   LDY(0x00);                                                                             /* $83B1 ldy */
@@ -564,7 +564,7 @@ void SetSpawnXFromScroll(void) {  /* $83D3 bank 6 */
   RTS_RET(sp0);                                                                          /* $83F3 rts */
 }
 
-void Sub_B6_83F4(void) {  /* $83F4 bank 6 */
+void InitSpawnedObject(void) {  /* $83F4 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x83F6); StoreSpawnStats(); UNW(); ret_check(0x83F6);                           /* $83F4 jsr */
   push16(0x83F9); SetSpawnXFromScroll(); UNW(); ret_check(0x83F9);                       /* $83F7 jsr */
@@ -595,7 +595,7 @@ void SetRandomSpawnPhase(void) {  /* $840D bank 6 */
 
 void Loc_B6_8417(void) {  /* $8417 bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x8419); Sub_B6_83F4(); UNW(); ret_check(0x8419);                               /* $8417 jsr */
+  push16(0x8419); InitSpawnedObject(); UNW(); ret_check(0x8419);                         /* $8417 jsr */
   push16(0x841C); SetSpawnFacingBits(); UNW(); ret_check(0x841C);                        /* $841A jsr */
   LDY(0x00);                                                                             /* $841D ldy */
   LDA(0xC2);                                                                             /* $841F lda */
@@ -608,7 +608,7 @@ void Loc_B6_8417(void) {  /* $8417 bank 6 */
 
 void Loc_B6_842A(void) {  /* $842A bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x842C); Sub_B6_83F4(); UNW(); ret_check(0x842C);                               /* $842A jsr */
+  push16(0x842C); InitSpawnedObject(); UNW(); ret_check(0x842C);                         /* $842A jsr */
   push16(0x842F); SetSpawnFacingBits(); UNW(); ret_check(0x842F);                        /* $842D jsr */
   LDY(0x00);                                                                             /* $8430 ldy */
   LDA(0xC3);                                                                             /* $8432 lda */
@@ -621,7 +621,7 @@ void Loc_B6_842A(void) {  /* $842A bank 6 */
 
 void Sub_B6_85FD(void) {  /* $85FD bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x85FF); Sub_B6_83F4(); UNW(); ret_check(0x85FF);                               /* $85FD jsr */
+  push16(0x85FF); InitSpawnedObject(); UNW(); ret_check(0x85FF);                         /* $85FD jsr */
   LDA(rd(0x08));                                                                         /* $8600 lda */
   push16(0x8604); AslA6(); UNW(); ret_check(0x8604);                                     /* $8602 jsr */
   STA(0x08);                                                                             /* $8605 sta */
@@ -988,7 +988,7 @@ void Sub_B6_8822(void) {  /* $8822 bank 6 */
 
 void Loc_B6_8837(void) {  /* $8837 bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x8839); Sub_B6_83F4(); UNW(); ret_check(0x8839);                               /* $8837 jsr */
+  push16(0x8839); InitSpawnedObject(); UNW(); ret_check(0x8839);                         /* $8837 jsr */
   LDY(0x09);                                                                             /* $883A ldy */
   LDA(rd(0x08));                                                                         /* $883C lda */
   if (R.a == 0) {                                                                        /* $883E bne */
@@ -1009,7 +1009,7 @@ void Loc_B6_8837(void) {  /* $8837 bank 6 */
 
 void Loc_B6_8858(void) {  /* $8858 bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x885A); Sub_B6_83F4(); UNW(); ret_check(0x885A);                               /* $8858 jsr */
+  push16(0x885A); InitSpawnedObject(); UNW(); ret_check(0x885A);                         /* $8858 jsr */
   push16(0x885D); Sub_B6_886B(); UNW(); ret_check(0x885D);                               /* $885B jsr */
   LDY(0x00);                                                                             /* $885E ldy */
   LDA(0xDB);                                                                             /* $8860 lda */
@@ -1036,7 +1036,7 @@ void Sub_B6_886B(void) {  /* $886B bank 6 */
 
 void Loc_B6_8880(void) {  /* $8880 bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x8882); Sub_B6_83F4(); UNW(); ret_check(0x8882);                               /* $8880 jsr */
+  push16(0x8882); InitSpawnedObject(); UNW(); ret_check(0x8882);                         /* $8880 jsr */
   LDY(0x09);                                                                             /* $8883 ldy */
   LDA(rd(0x08));                                                                         /* $8885 lda */
   push16(0x8889); AslA4(); UNW(); ret_check(0x8889);                                     /* $8887 jsr */
@@ -1053,7 +1053,7 @@ void Loc_B6_8880(void) {  /* $8880 bank 6 */
 
 void Loc_B6_889B(void) {  /* $889B bank 6 */
   uint8_t sp0 = R.sp;
-  push16(0x889D); Sub_B6_83F4(); UNW(); ret_check(0x889D);                               /* $889B jsr */
+  push16(0x889D); InitSpawnedObject(); UNW(); ret_check(0x889D);                         /* $889B jsr */
   LDY(0x09);                                                                             /* $889E ldy */
   LDA(rd(0x08));                                                                         /* $88A0 lda */
   push16(0x88A4); AslA4(); UNW(); ret_check(0x88A4);                                     /* $88A2 jsr */
@@ -1070,7 +1070,7 @@ void Loc_B6_889B(void) {  /* $889B bank 6 */
   RTS_RET(sp0);                                                                          /* $88BA rts */
 }
 
-void Sub_B6_890F(void) {  /* $890F bank 6 */
+void UpdateEnemyTypeA(void) {  /* $890F bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x8911); LoadBehaviorTableA(); UNW(); ret_check(0x8911);                        /* $890F jsr */
   LDY(0x08);                                                                             /* $8912 ldy */
@@ -1084,13 +1084,13 @@ void Sub_B6_890F(void) {  /* $890F bank 6 */
     }
     push16(0x8927); LoadObjectAnimFrame(); UNW(); ret_check(0x8927);                     /* $8925 jsr */
   }
-  push16(0x892A); Sub_B6_8932(); UNW(); ret_check(0x892A);                               /* $8928 jsr */
+  push16(0x892A); ApplyAnimFlagEffects(); UNW(); ret_check(0x892A);                      /* $8928 jsr */
   push16(0x892D); UpdateObjectScreenX(); UNW(); ret_check(0x892D);                       /* $892B jsr */
   push16(0x8930); RemoveObjectIfOffscreen(); UNW(); ret_check(0x8930);                   /* $892E jsr */
   RTS_RET(sp0);                                                                          /* $8931 rts */
 }
 
-void Sub_B6_8932(void) {  /* $8932 bank 6 */
+void ApplyAnimFlagEffects(void) {  /* $8932 bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x0E);                                                                             /* $8932 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8934 lda */
@@ -1104,7 +1104,7 @@ void Sub_B6_8932(void) {  /* $8932 bank 6 */
   LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $893F lda */
   AND(0xE0);                                                                             /* $8941 and */
   if (R.a != 0) {                                                                        /* $8943 beq */
-    push16(0x8947); Sub_B6_8AD9(); UNW(); ret_check(0x8947);                             /* $8945 jsr */
+    push16(0x8947); StepAnimFrameByFrameCounter(); UNW(); ret_check(0x8947);             /* $8945 jsr */
   }
   LDY(rd(0x06));                                                                         /* $8948 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $894A lda */
@@ -1367,7 +1367,7 @@ L8AB2: BUDGET();
   RTS_RET(sp0);                                                                          /* $8AD8 rts */
 }
 
-void Sub_B6_8AD9(void) {  /* $8AD9 bank 6 */
+void StepAnimFrameByFrameCounter(void) {  /* $8AD9 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x8ADB); LsrA5(); UNW(); ret_check(0x8ADB);                                     /* $8AD9 jsr */
   TAX();                                                                                 /* $8ADC tax */
@@ -1489,7 +1489,7 @@ L8BE1: BUDGET();
   goto L8A53;                                                                            /* $8BE3 jmp */
 }
 
-void Sub_B6_8BE6(void) {  /* $8BE6 bank 6 */
+void ClampObjectYMin24(void) {  /* $8BE6 bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x0B);                                                                             /* $8BE6 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8BE8 lda */
@@ -1501,7 +1501,7 @@ void Sub_B6_8BE6(void) {  /* $8BE6 bank 6 */
   RTS_RET(sp0);                                                                          /* $8BF2 rts */
 }
 
-void Sub_B6_945A(void) {  /* $945A bank 6 */
+void UpdateEnemyTypeB(void) {  /* $945A bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x945C); LoadBehaviorTableB(); UNW(); ret_check(0x945C);                        /* $945A jsr */
   LDY(0x08);                                                                             /* $945D ldy */
@@ -1517,8 +1517,8 @@ void Sub_B6_945A(void) {  /* $945A bank 6 */
     push16(0x9475); LoadObjectAnimFrame(); UNW(); ret_check(0x9475);                     /* $9473 jsr */
     push16(0x9478); Sub_B6_95EE(); UNW(); ret_check(0x9478);                             /* $9476 jsr */
   }
-  push16(0x947B); Sub_B6_8932(); UNW(); ret_check(0x947B);                               /* $9479 jsr */
-  push16(0x947E); Sub_B6_8BE6(); UNW(); ret_check(0x947E);                               /* $947C jsr */
+  push16(0x947B); ApplyAnimFlagEffects(); UNW(); ret_check(0x947B);                      /* $9479 jsr */
+  push16(0x947E); ClampObjectYMin24(); UNW(); ret_check(0x947E);                         /* $947C jsr */
   push16(0x9481); UpdateObjectScreenX(); UNW(); ret_check(0x9481);                       /* $947F jsr */
   push16(0x9484); RemoveObjectIfOffscreen(); UNW(); ret_check(0x9484);                   /* $9482 jsr */
   push16(0x9487); Sub_B6_9621(); UNW(); ret_check(0x9487);                               /* $9485 jsr */
@@ -1690,7 +1690,7 @@ void Loc_B6_96B8(void) {  /* $96B8 bank 6 */
     push16(0x96C3); AdvanceObjectAnimStep(); UNW(); ret_check(0x96C3);                   /* $96C1 jsr */
     push16(0x96C6); LoadObjectAnimFrame(); UNW(); ret_check(0x96C6);                     /* $96C4 jsr */
   }
-  push16(0x96C9); Sub_B6_8932(); UNW(); ret_check(0x96C9);                               /* $96C7 jsr */
+  push16(0x96C9); ApplyAnimFlagEffects(); UNW(); ret_check(0x96C9);                      /* $96C7 jsr */
   push16(0x96CC); UpdateObjectScreenX(); UNW(); ret_check(0x96CC);                       /* $96CA jsr */
   push16(0x96CF); RemoveObjectIfOffscreen(); UNW(); ret_check(0x96CF);                   /* $96CD jsr */
   push16(0x96D2); Sub_B6_975A(); UNW(); ret_check(0x96D2);                               /* $96D0 jsr */
@@ -1805,6 +1805,27 @@ L97A0: BUDGET();
   RTS_RET(sp0);                                                                          /* $981D rts */
 }
 
+void UpdateEnemyTypeD(void) {  /* $9A14 bank 6 */
+  uint8_t sp0 = R.sp;
+  push16(0x9A16); LoadBehaviorTableD(); UNW(); ret_check(0x9A16);                        /* $9A14 jsr */
+  LDY(0x08);                                                                             /* $9A17 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9A19 lda */
+  if (R.a == 0) {                                                                        /* $9A1B bne */
+    push16(0x9A1F); AdvanceObjectAnimStep(); UNW(); ret_check(0x9A1F);                   /* $9A1D jsr */
+    cmp8(R.a, rd(0x04));                                                                 /* $9A20 cmp */
+    if (R.a >= rd(0x04)) {                                                               /* $9A22 bcc */
+      push16(0x9A26); RemoveObject(); UNW(); ret_check(0x9A26);                          /* $9A24 jsr */
+      RTS_RET(sp0);                                                                      /* $9A27 rts */
+    }
+    push16(0x9A2A); LoadObjectAnimFrame(); UNW(); ret_check(0x9A2A);                     /* $9A28 jsr */
+    push16(0x9A2D); LoadBehaviorTableD(); UNW(); ret_check(0x9A2D);                      /* $9A2B jsr */
+  }
+  push16(0x9A30); ApplyAnimFlagEffects(); UNW(); ret_check(0x9A30);                      /* $9A2E jsr */
+  push16(0x9A33); UpdateObjectScreenX(); UNW(); ret_check(0x9A33);                       /* $9A31 jsr */
+  push16(0x9A36); RemoveObjectIfOffscreen(); UNW(); ret_check(0x9A36);                   /* $9A34 jsr */
+  RTS_RET(sp0);                                                                          /* $9A37 rts */
+}
+
 void LoadBehaviorTableD(void) {  /* $9A38 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x9A3A); GetObjectBehaviorIndex(); UNW(); ret_check(0x9A3A);                    /* $9A38 jsr */
@@ -1815,10 +1836,10 @@ void LoadBehaviorTableD(void) {  /* $9A38 bank 6 */
   RTS_RET(sp0);                                                                          /* $9A45 rts */
 }
 
-void Sub_B6_A099(void) {  /* $A099 bank 6 */
+void UpdateEnemyTypeE(void) {  /* $A099 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0xA09B); LoadBehaviorTableE(); UNW(); ret_check(0xA09B);                        /* $A099 jsr */
-  push16(0xA09E); Sub_B6_8932(); UNW(); ret_check(0xA09E);                               /* $A09C jsr */
+  push16(0xA09E); ApplyAnimFlagEffects(); UNW(); ret_check(0xA09E);                      /* $A09C jsr */
   push16(0xA0A1); UpdateObjectScreenX(); UNW(); ret_check(0xA0A1);                       /* $A09F jsr */
   push16(0xA0A4); RemoveObjectIfOffscreen(); UNW(); ret_check(0xA0A4);                   /* $A0A2 jsr */
   RTS_RET(sp0);                                                                          /* $A0A5 rts */

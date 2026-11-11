@@ -49,9 +49,9 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
       STA(0x049D);                                                                       /* $8062 sta */
       LDA(0x01);                                                                         /* $8065 lda */
       STA(0x04AA);                                                                       /* $8067 sta */
-      push16(0x806C); Sub_B2_8211(); UNW(); ret_check(0x806C);                           /* $806A jsr */
+      push16(0x806C); InitScopeScene(); UNW(); ret_check(0x806C);                        /* $806A jsr */
       push16(0x806F); ClearObjectTableAndLoadList(); UNW(); ret_check(0x806F);           /* $806D jsr */
-      push16(0x8072); Sub_B2_8609(); UNW(); ret_check(0x8072);                           /* $8070 jsr */
+      push16(0x8072); InitScopeEnemies(); UNW(); ret_check(0x8072);                      /* $8070 jsr */
       LDA(0x00);                                                                         /* $8073 lda */
       push16(0x8077); QueueSound(); UNW(); ret_check(0x8077);                            /* $8075 jsr */
       INC_M(GameState);                                                                  /* $8078 inc */
@@ -77,7 +77,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
     cmp8(R.a, 0x69);                                                                     /* $80AB cmp */
     if (R.a == 0x69) {                                                                   /* $80AD bne */
       push16(0x80B1); Sub_B2_8488(); UNW(); ret_check(0x80B1);                           /* $80AF jsr */
-      push16(0x80B4); Sub_B2_8938(); UNW(); ret_check(0x80B4);                           /* $80B2 jsr */
+      push16(0x80B4); TickScopeSecondTimer(); UNW(); ret_check(0x80B4);                  /* $80B2 jsr */
     }
     push16(0x80B7); Sub_B2_87AC(); UNW(); ret_check(0x80B7);                             /* $80B5 jsr */
     push16(0x80BA); CheckLowLifeSoundB2(); UNW(); ret_check(0x80BA);                     /* $80B8 jsr */
@@ -114,7 +114,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
       STA(0x0495);                                                                       /* $80FD sta */
       push16(0x8102); QueueSound(); UNW(); ret_check(0x8102);                            /* $8100 jsr */
       push16(0x8105); RunSoundDriver(); UNW(); ret_check(0x8105);                        /* $8103 jsr */
-      push16(0x8108); Sub_B2_818E(); UNW(); ret_check(0x8108);                           /* $8106 jsr */
+      push16(0x8108); EndScopeScene(); UNW(); ret_check(0x8108);                         /* $8106 jsr */
       goto L815F;                                                                        /* $8109 jmp */
     }
     LDA(0x00);                                                                           /* $810C lda */
@@ -165,7 +165,7 @@ L815F: BUDGET();
 
 void Sub_B2_8081(void) {  /* $8081 bank 2 */
   uint8_t sp0 = R.sp;
-  push16(0x8083); Sub_B2_837A(); UNW(); ret_check(0x8083);                               /* $8081 jsr */
+  push16(0x8083); CheckScopeScrollEnd(); UNW(); ret_check(0x8083);                       /* $8081 jsr */
   goto L815C;                                                                            /* $8084 jmp */
 L815C: BUDGET();
   push16(0x815E); RunSoundDriver(); UNW(); ret_check(0x815E);                            /* $815C jsr */
@@ -186,7 +186,7 @@ void PlayStageIntroSound(void) {  /* $8167 bank 2 */
   RTS_RET(sp0);                                                                          /* $8173 rts */
 }
 
-void Sub_B2_818E(void) {  /* $818E bank 2 */
+void EndScopeScene(void) {  /* $818E bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteSetIndex));                                                              /* $818E lda */
   cmp8(R.a, 0x69);                                                                       /* $8190 cmp */
@@ -218,7 +218,7 @@ void Sub_B2_818E(void) {  /* $818E bank 2 */
   RTS_RET(sp0);                                                                          /* $81C2 rts */
 }
 
-void Sub_B2_8211(void) {  /* $8211 bank 2 */
+void InitScopeScene(void) {  /* $8211 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuMaskShadow));                                                                /* $8211 lda */
   AND(0xE7);                                                                             /* $8213 and */
@@ -233,7 +233,7 @@ void Sub_B2_8211(void) {  /* $8211 bank 2 */
   LDX(0x00);                                                                             /* $8226 ldx */
   STX(ScrollColumnPending);                                                              /* $8228 stx */
   STX(0x0101);                                                                           /* $822A stx */
-  push16(0x822F); Sub_B2_827E(); UNW(); ret_check(0x822F);                               /* $822D jsr */
+  push16(0x822F); LoadScopeStageParams(); UNW(); ret_check(0x822F);                      /* $822D jsr */
   LDA(0x01);                                                                             /* $8230 lda */
   STA(ScrollPage);                                                                       /* $8232 sta */
   push16(0x8236); LoadPaletteSet(); UNW(); ret_check(0x8236);                            /* $8234 jsr */
@@ -272,7 +272,7 @@ void Sub_B2_8211(void) {  /* $8211 bank 2 */
   RTS_RET(sp0);                                                                          /* $827D rts */
 }
 
-void Sub_B2_827E(void) {  /* $827E bank 2 */
+void LoadScopeStageParams(void) {  /* $827E bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteSetIndex));                                                              /* $827E lda */
   SEC();                                                                                 /* $8280 sec */
@@ -303,7 +303,7 @@ void Sub_B2_827E(void) {  /* $827E bank 2 */
   RTS_RET(sp0);                                                                          /* $82BA rts */
 }
 
-void Sub_B2_837A(void) {  /* $837A bank 2 */
+void CheckScopeScrollEnd(void) {  /* $837A bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(ScrollPage));                                                                   /* $837A lda */
   cmp8(R.a, 0x02);                                                                       /* $837C cmp */
@@ -456,7 +456,7 @@ L84A3: BUDGET();
     STA(Tmp02);                                                                          /* $84C7 sta */
     LDA(0x03);                                                                           /* $84C9 lda */
     STA(Tmp03);                                                                          /* $84CB sta */
-    push16(0x84CF); Sub_B2_8A0F(); UNW(); ret_check(0x84CF);                             /* $84CD jsr */
+    push16(0x84CF); LoadScopeObjectList(); UNW(); ret_check(0x84CF);                     /* $84CD jsr */
     INC_M(ObjectCount);                                                                  /* $84D0 inc */
     LDA(rd(0x04AA));                                                                     /* $84D3 lda */
     cmp8(R.a, 0x03);                                                                     /* $84D6 cmp */
@@ -535,7 +535,7 @@ L8570: BUDGET();
   RTS_RET(sp0);                                                                          /* $8570 rts */
 }
 
-void Sub_B2_8609(void) {  /* $8609 bank 2 */
+void InitScopeEnemies(void) {  /* $8609 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteSetIndex));                                                              /* $8609 lda */
   cmp8(R.a, 0x69);                                                                       /* $860B cmp */
@@ -798,7 +798,7 @@ L88D4: BUDGET();
   LDA(rd(PaletteSetIndex));                                                              /* $88E2 lda */
   cmp8(R.a, 0x69);                                                                       /* $88E4 cmp */
   if (R.a == 0x69) {                                                                     /* $88E6 bne */
-    push16(0x88EA); Sub_B2_8938(); UNW(); ret_check(0x88EA);                             /* $88E8 jsr */
+    push16(0x88EA); TickScopeSecondTimer(); UNW(); ret_check(0x88EA);                    /* $88E8 jsr */
   }
   INC_M(0x0498);                                                                         /* $88EB inc */
   LDA(rd(0x0498));                                                                       /* $88EE lda */
@@ -838,7 +838,7 @@ L8937: BUDGET();
   RTS_RET(sp0);                                                                          /* $8937 rts */
 }
 
-void Sub_B2_8938(void) {  /* $8938 bank 2 */
+void TickScopeSecondTimer(void) {  /* $8938 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0497));                                                                       /* $8938 lda */
   if (R.a == 0) {                                                                        /* $893B bne */
@@ -939,10 +939,10 @@ void ClearObjectTableAndLoadList(void) {  /* $89E2 bank 2 */
   STA(Tmp02);                                                                            /* $8A09 sta */
   LDA(0x03);                                                                             /* $8A0B lda */
   STA(Tmp03);                                                                            /* $8A0D sta */
-  { Sub_B2_8A0F(); return; }
+  { LoadScopeObjectList(); return; }
 }
 
-void Sub_B2_8A0F(void) {  /* $8A0F bank 2 */
+void LoadScopeObjectList(void) {  /* $8A0F bank 2 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $8A0F ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8A11 lda */
@@ -973,21 +973,21 @@ L8A21: BUDGET();
     goto L8ACB;                                                                          /* $8A3F jmp */
   }
   DEY();                                                                                 /* $8A42 dey */
-  push16(0x8A45); Sub_B2_8AB0(); UNW(); ret_check(0x8A45);                               /* $8A43 jsr */
+  push16(0x8A45); CopyObjectByteToList(); UNW(); ret_check(0x8A45);                      /* $8A43 jsr */
   INC_M(Tmp02);                                                                          /* $8A46 inc */
   INC_M(Tmp02);                                                                          /* $8A48 inc */
   INC_M(Tmp02);                                                                          /* $8A4A inc */
-  push16(0x8A4E); Sub_B2_8AB0(); UNW(); ret_check(0x8A4E);                               /* $8A4C jsr */
-  push16(0x8A51); Sub_B2_8AB0(); UNW(); ret_check(0x8A51);                               /* $8A4F jsr */
-  push16(0x8A54); Sub_B2_8AB0(); UNW(); ret_check(0x8A54);                               /* $8A52 jsr */
-  push16(0x8A57); Sub_B2_8AB0(); UNW(); ret_check(0x8A57);                               /* $8A55 jsr */
-  push16(0x8A5A); Sub_B2_8AB0(); UNW(); ret_check(0x8A5A);                               /* $8A58 jsr */
+  push16(0x8A4E); CopyObjectByteToList(); UNW(); ret_check(0x8A4E);                      /* $8A4C jsr */
+  push16(0x8A51); CopyObjectByteToList(); UNW(); ret_check(0x8A51);                      /* $8A4F jsr */
+  push16(0x8A54); CopyObjectByteToList(); UNW(); ret_check(0x8A54);                      /* $8A52 jsr */
+  push16(0x8A57); CopyObjectByteToList(); UNW(); ret_check(0x8A57);                      /* $8A55 jsr */
+  push16(0x8A5A); CopyObjectByteToList(); UNW(); ret_check(0x8A5A);                      /* $8A58 jsr */
   INY();                                                                                 /* $8A5B iny */
   INC_M(Tmp02);                                                                          /* $8A5C inc */
-  push16(0x8A60); Sub_B2_8AB8(); UNW(); ret_check(0x8A60);                               /* $8A5E jsr */
-  push16(0x8A63); Sub_B2_8AB0(); UNW(); ret_check(0x8A63);                               /* $8A61 jsr */
-  push16(0x8A66); Sub_B2_8AB0(); UNW(); ret_check(0x8A66);                               /* $8A64 jsr */
-  push16(0x8A69); Sub_B2_8AB0(); UNW(); ret_check(0x8A69);                               /* $8A67 jsr */
+  push16(0x8A60); CopyObjectNibblePair(); UNW(); ret_check(0x8A60);                      /* $8A5E jsr */
+  push16(0x8A63); CopyObjectByteToList(); UNW(); ret_check(0x8A63);                      /* $8A61 jsr */
+  push16(0x8A66); CopyObjectByteToList(); UNW(); ret_check(0x8A66);                      /* $8A64 jsr */
+  push16(0x8A69); CopyObjectByteToList(); UNW(); ret_check(0x8A69);                      /* $8A67 jsr */
 L8A6A: BUDGET();
   INC_M(Tmp02);                                                                          /* $8A6A inc */
   INC_M(Tmp02);                                                                          /* $8A6C inc */
@@ -1033,8 +1033,8 @@ L8ACB: BUDGET();
   adc(0x03);                                                                             /* $8AD6 adc */
   STA(Tmp02);                                                                            /* $8AD8 sta */
   LDY(0xFF);                                                                             /* $8ADA ldy */
-  push16(0x8ADE); Sub_B2_8B06(); UNW(); ret_check(0x8ADE);                               /* $8ADC jsr */
-  push16(0x8AE1); Sub_B2_8B06(); UNW(); ret_check(0x8AE1);                               /* $8ADF jsr */
+  push16(0x8ADE); CopyObjectByteFromPtr06(); UNW(); ret_check(0x8ADE);                   /* $8ADC jsr */
+  push16(0x8AE1); CopyObjectByteFromPtr06(); UNW(); ret_check(0x8AE1);                   /* $8ADF jsr */
   INC_M(Tmp02);                                                                          /* $8AE2 inc */
   PLA();                                                                                 /* $8AE4 pla */
   TAY();                                                                                 /* $8AE5 tay */
@@ -1044,20 +1044,20 @@ L8ACB: BUDGET();
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8AE9 lda */
   STA(rd16zp((uint8_t)(Tmp02 + R.x)));                                                   /* $8AEB sta */
   LDY(0x01);                                                                             /* $8AED ldy */
-  push16(0x8AF1); Sub_B2_8B06(); UNW(); ret_check(0x8AF1);                               /* $8AEF jsr */
-  push16(0x8AF4); Sub_B2_8B06(); UNW(); ret_check(0x8AF4);                               /* $8AF2 jsr */
+  push16(0x8AF1); CopyObjectByteFromPtr06(); UNW(); ret_check(0x8AF1);                   /* $8AEF jsr */
+  push16(0x8AF4); CopyObjectByteFromPtr06(); UNW(); ret_check(0x8AF4);                   /* $8AF2 jsr */
   PLA();                                                                                 /* $8AF5 pla */
   TAY();                                                                                 /* $8AF6 tay */
   INY();                                                                                 /* $8AF7 iny */
   INC_M(Tmp02);                                                                          /* $8AF8 inc */
-  push16(0x8AFC); Sub_B2_8AB8(); UNW(); ret_check(0x8AFC);                               /* $8AFA jsr */
+  push16(0x8AFC); CopyObjectNibblePair(); UNW(); ret_check(0x8AFC);                      /* $8AFA jsr */
   INC_M(Tmp02);                                                                          /* $8AFD inc */
   INC_M(Tmp02);                                                                          /* $8AFF inc */
   INC_M(Tmp02);                                                                          /* $8B01 inc */
   goto L8A6A;                                                                            /* $8B03 jmp */
 }
 
-void Sub_B2_8AB0(void) {  /* $8AB0 bank 2 */
+void CopyObjectByteToList(void) {  /* $8AB0 bank 2 */
   uint8_t sp0 = R.sp;
   INY();                                                                                 /* $8AB0 iny */
   INC_M(Tmp02);                                                                          /* $8AB1 inc */
@@ -1066,7 +1066,7 @@ void Sub_B2_8AB0(void) {  /* $8AB0 bank 2 */
   RTS_RET(sp0);                                                                          /* $8AB7 rts */
 }
 
-void Sub_B2_8AB8(void) {  /* $8AB8 bank 2 */
+void CopyObjectNibblePair(void) {  /* $8AB8 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8AB8 lda */
   STA(0x05);                                                                             /* $8ABA sta */
@@ -1079,7 +1079,7 @@ void Sub_B2_8AB8(void) {  /* $8AB8 bank 2 */
   RTS_RET(sp0);                                                                          /* $8ACA rts */
 }
 
-void Sub_B2_8B06(void) {  /* $8B06 bank 2 */
+void CopyObjectByteFromPtr06(void) {  /* $8B06 bank 2 */
   uint8_t sp0 = R.sp;
   INY();                                                                                 /* $8B06 iny */
   INC_M(Tmp02);                                                                          /* $8B07 inc */

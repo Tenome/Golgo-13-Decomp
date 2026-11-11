@@ -8,8 +8,8 @@
   jmp Reset                    ; $8006
   .incbin "prg_bank_6.bin", $0009, $7  ; $8009
 Bank6Nmi:
-  jsr Sub_B6_82F5              ; $8010
-  jsr Sub_B6_81E3              ; $8013
+  jsr ProcessCollectedObjects  ; $8010
+  jsr ResetObjectTableAndSpawn ; $8013
   jsr DrawObjects              ; $8016
   jsr Sub_B6_801F              ; $8019
   jmp Loc_C0E0                 ; $801C
@@ -31,10 +31,10 @@ Loc_B6_8036:
   beq Loc_B6_8054              ; $803B
   cmp #$40                     ; $803D
   bne Loc_B6_8045              ; $803F
-  jsr Sub_B6_8055              ; $8041
+  jsr SpawnObjectsAtCurrentColumn ; $8041
   rts                          ; $8044
 Loc_B6_8045:
-  jsr Sub_B6_8080              ; $8045
+  jsr SpawnObjectsAtNextColumn ; $8045
   rts                          ; $8048
 Loc_B6_8049:
   cmp #$03                     ; $8049
@@ -42,10 +42,10 @@ Loc_B6_8049:
   cmp #$0E                     ; $804D
   bcc Loc_B6_8054              ; $804F
 Loc_B6_8051:
-  jsr Sub_B6_80D8              ; $8051
+  jsr InitSpawnIndexForScroll  ; $8051
 Loc_B6_8054:
   rts                          ; $8054
-Sub_B6_8055:
+SpawnObjectsAtCurrentColumn:
   jsr LoadStageSpawnListPtr    ; $8055
   jsr CalcScrollColumnIndex    ; $8058
   ldy SpawnIndexCurrent        ; $805B
@@ -67,10 +67,10 @@ Loc_B6_8060:
   cpx #$00                     ; $8078
   bne Loc_B6_807F              ; $807A
 Loc_B6_807C:
-  jsr Sub_B6_8117              ; $807C
+  jsr SpawnObjectFromList      ; $807C
 Loc_B6_807F:
   rts                          ; $807F
-Sub_B6_8080:
+SpawnObjectsAtNextColumn:
   jsr LoadStageSpawnListPtr    ; $8080
   jsr CalcNextScrollColumnIndex ; $8083
   ldy SpawnIndexNext           ; $8086
@@ -123,7 +123,7 @@ Loc_B6_80CD:
   bne Loc_B6_80C4              ; $80D5
 Loc_B6_80D7:
   rts                          ; $80D7
-Sub_B6_80D8:
+InitSpawnIndexForScroll:
   jsr LoadStageSpawnListPtr    ; $80D8
   jsr CalcScrollColumnIndex    ; $80DB
   inc z:Tmp02                  ; $80DE
@@ -163,7 +163,7 @@ Loc_B6_8112:
   dey                          ; $8112
   sty SpawnIndexNext           ; $8113
   rts                          ; $8116
-Sub_B6_8117:
+SpawnObjectFromList:
   lda ObjectCount              ; $8117
   cmp #$09                     ; $811A
   bcs Loc_B6_8157              ; $811C
@@ -193,14 +193,14 @@ Loc_B6_813A:
   pha                          ; $814F
   jmp ($0304)                  ; $8150
   .incbin "prg_bank_6.bin", $0153, $1  ; $8153
-  jsr Sub_B6_81AA              ; $8154
+  jsr SetObjectTimerFromType   ; $8154
 Loc_B6_8157:
   rts                          ; $8157
 Data_B6_8158:
   .incbin "prg_bank_6.bin", $0158, $1  ; $8158
 Data_B6_8159:
   .incbin "prg_bank_6.bin", $0159, $51  ; $8159
-Sub_B6_81AA:
+SetObjectTimerFromType:
   ldy #$00                     ; $81AA
   lda ($0A),y                  ; $81AC
   and #$3F                     ; $81AE
@@ -211,7 +211,7 @@ Sub_B6_81AA:
   rts                          ; $81B8
 Data_B6_81B9:
   .incbin "prg_bank_6.bin", $01B9, $2A  ; $81B9
-Sub_B6_81E3:
+ResetObjectTableAndSpawn:
   ldx #$0F                     ; $81E3
   ldy #$03                     ; $81E5
 Loc_B6_81E7:
@@ -325,7 +325,7 @@ Data_B6_82A3:
   .incbin "prg_bank_6.bin", $02A3, $1  ; $82A3
 Data_B6_82A4:
   .incbin "prg_bank_6.bin", $02A4, $51  ; $82A4
-Sub_B6_82F5:
+ProcessCollectedObjects:
   ldx ObjectCount              ; $82F5
   bne Loc_B6_82FB              ; $82F8
   rts                          ; $82FA
@@ -387,7 +387,7 @@ Data_B6_8354:
 Data_B6_837E:
   .incbin "prg_bank_6.bin", $037E, $2A  ; $837E
 Sub_B6_83A8:
-  jsr Sub_B6_83F4              ; $83A8
+  jsr InitSpawnedObject        ; $83A8
   jsr SetRandomSpawnPhase      ; $83AB
   jsr SetSpawnFacingBits       ; $83AE
   ldy #$00                     ; $83B1
@@ -433,7 +433,7 @@ Loc_B6_83E3:
   adc #$00                     ; $83EF
   sta ($0A),y                  ; $83F1
   rts                          ; $83F3
-Sub_B6_83F4:
+InitSpawnedObject:
   jsr StoreSpawnStats          ; $83F4
   jsr SetSpawnXFromScroll      ; $83F7
   ldy #$0E                     ; $83FA
@@ -453,7 +453,7 @@ SetRandomSpawnPhase:
   ldy #$0E                     ; $8412
   sta ($0A),y                  ; $8414
   rts                          ; $8416
-  jsr Sub_B6_83F4              ; $8417  [heuristic code]
+  jsr InitSpawnedObject        ; $8417  [heuristic code]
   jsr SetSpawnFacingBits       ; $841A
   ldy #$00                     ; $841D
   lda #$C2                     ; $841F
@@ -462,7 +462,7 @@ SetRandomSpawnPhase:
   lda #$30                     ; $8425
   sta ($0A),y                  ; $8427
   rts                          ; $8429
-  jsr Sub_B6_83F4              ; $842A  [heuristic code]
+  jsr InitSpawnedObject        ; $842A  [heuristic code]
   jsr SetSpawnFacingBits       ; $842D
   ldy #$00                     ; $8430
   lda #$C3                     ; $8432
@@ -473,7 +473,7 @@ SetRandomSpawnPhase:
   rts                          ; $843C
   .incbin "prg_bank_6.bin", $043D, $1C0  ; $843D
 Sub_B6_85FD:
-  jsr Sub_B6_83F4              ; $85FD
+  jsr InitSpawnedObject        ; $85FD
   lda z:$08                    ; $8600
   jsr AslA6                    ; $8602
   sta z:$08                    ; $8605
@@ -778,7 +778,7 @@ Sub_B6_8822:
   ora ($04),y                  ; $8832
   sta ($04),y                  ; $8834
   rts                          ; $8836
-  jsr Sub_B6_83F4              ; $8837  [heuristic code]
+  jsr InitSpawnedObject        ; $8837  [heuristic code]
   ldy #$09                     ; $883A
   lda z:$08                    ; $883C
   bne Loc_B6_8845              ; $883E
@@ -796,7 +796,7 @@ Loc_B6_8847:
   lda #$0C                     ; $8853
   sta ($0A),y                  ; $8855
   rts                          ; $8857
-  jsr Sub_B6_83F4              ; $8858  [heuristic code]
+  jsr InitSpawnedObject        ; $8858  [heuristic code]
   jsr Sub_B6_886B              ; $885B
   ldy #$00                     ; $885E
   lda #$DB                     ; $8860
@@ -816,7 +816,7 @@ Sub_B6_886B:
   ora ($0A),y                  ; $887B
   sta ($0A),y                  ; $887D
   rts                          ; $887F
-  jsr Sub_B6_83F4              ; $8880  [heuristic code]
+  jsr InitSpawnedObject        ; $8880  [heuristic code]
   ldy #$09                     ; $8883
   lda z:$08                    ; $8885
   jsr AslA4                    ; $8887
@@ -829,7 +829,7 @@ Sub_B6_886B:
   lda #$20                     ; $8896
   sta ($0A),y                  ; $8898
   rts                          ; $889A
-  jsr Sub_B6_83F4              ; $889B  [heuristic code]
+  jsr InitSpawnedObject        ; $889B  [heuristic code]
   ldy #$09                     ; $889E
   lda z:$08                    ; $88A0
   jsr AslA4                    ; $88A2
@@ -845,7 +845,7 @@ Sub_B6_886B:
   jsr QueueSound               ; $88B7
   rts                          ; $88BA
   .incbin "prg_bank_6.bin", $08BB, $54  ; $88BB
-Sub_B6_890F:
+UpdateEnemyTypeA:
   jsr LoadBehaviorTableA       ; $890F
   ldy #$08                     ; $8912
   lda (Tmp00),y                ; $8914
@@ -858,11 +858,11 @@ Sub_B6_890F:
 Loc_B6_8925:
   jsr LoadObjectAnimFrame      ; $8925
 Loc_B6_8928:
-  jsr Sub_B6_8932              ; $8928
+  jsr ApplyAnimFlagEffects     ; $8928
   jsr UpdateObjectScreenX      ; $892B
   jsr RemoveObjectIfOffscreen  ; $892E
   rts                          ; $8931
-Sub_B6_8932:
+ApplyAnimFlagEffects:
   ldy #$0E                     ; $8932
   lda (Tmp00),y                ; $8934
   asl a                        ; $8936
@@ -875,7 +875,7 @@ Sub_B6_8932:
   lda (Tmp02),y                ; $893F
   and #$E0                     ; $8941
   beq Loc_B6_8948              ; $8943
-  jsr Sub_B6_8AD9              ; $8945
+  jsr StepAnimFrameByFrameCounter ; $8945
 Loc_B6_8948:
   ldy z:$06                    ; $8948
   lda (Tmp02),y                ; $894A
@@ -1116,7 +1116,7 @@ Loc_B6_8AB2:
   sta (Tmp00),y                ; $8AD6
 Loc_B6_8AD8:
   rts                          ; $8AD8
-Sub_B6_8AD9:
+StepAnimFrameByFrameCounter:
   jsr LsrA5                    ; $8AD9
   tax                          ; $8ADC
   lda #$00                     ; $8ADD
@@ -1199,7 +1199,7 @@ Loc_B6_8BDB:
 Loc_B6_8BE1:
   ora z:$07                    ; $8BE1
   jmp Loc_B6_8A53              ; $8BE3
-Sub_B6_8BE6:
+ClampObjectYMin24:
   ldy #$0B                     ; $8BE6
   lda (Tmp00),y                ; $8BE8
   cmp #$24                     ; $8BEA
@@ -1211,7 +1211,7 @@ Loc_B6_8BF2:
   .incbin "prg_bank_6.bin", $0BF3, $400  ; $8BF3
   .incbin "prg_bank_6.bin", $0FF3, $400  ; $8FF3
   .incbin "prg_bank_6.bin", $13F3, $67  ; $93F3
-Sub_B6_945A:
+UpdateEnemyTypeB:
   jsr LoadBehaviorTableB       ; $945A
   ldy #$08                     ; $945D
   lda (Tmp00),y                ; $945F
@@ -1226,8 +1226,8 @@ Loc_B6_9473:
   jsr LoadObjectAnimFrame      ; $9473
   jsr Sub_B6_95EE              ; $9476
 Loc_B6_9479:
-  jsr Sub_B6_8932              ; $9479
-  jsr Sub_B6_8BE6              ; $947C
+  jsr ApplyAnimFlagEffects     ; $9479
+  jsr ClampObjectYMin24        ; $947C
   jsr UpdateObjectScreenX      ; $947F
   jsr RemoveObjectIfOffscreen  ; $9482
   jsr Sub_B6_9621              ; $9485
@@ -1387,7 +1387,7 @@ Loc_B6_9699:
   jsr AdvanceObjectAnimStep    ; $96C1
   jsr LoadObjectAnimFrame      ; $96C4
 Loc_B6_96C7:
-  jsr Sub_B6_8932              ; $96C7
+  jsr ApplyAnimFlagEffects     ; $96C7
   jsr UpdateObjectScreenX      ; $96CA
   jsr RemoveObjectIfOffscreen  ; $96CD
   jsr Sub_B6_975A              ; $96D0
@@ -1498,7 +1498,7 @@ Loc_B6_97A0:
   sta $0336,x                  ; $981A
   rts                          ; $981D
   .incbin "prg_bank_6.bin", $181E, $1F6  ; $981E
-Sub_B6_9A14:
+UpdateEnemyTypeD:
   jsr LoadBehaviorTableD       ; $9A14
   ldy #$08                     ; $9A17
   lda (Tmp00),y                ; $9A19
@@ -1512,7 +1512,7 @@ Loc_B6_9A28:
   jsr LoadObjectAnimFrame      ; $9A28
   jsr LoadBehaviorTableD       ; $9A2B
 Loc_B6_9A2E:
-  jsr Sub_B6_8932              ; $9A2E
+  jsr ApplyAnimFlagEffects     ; $9A2E
   jsr UpdateObjectScreenX      ; $9A31
   jsr RemoveObjectIfOffscreen  ; $9A34
   rts                          ; $9A37
@@ -1528,9 +1528,9 @@ Data_B6_9A46:
 Data_B6_9A47:
   .incbin "prg_bank_6.bin", $1A47, $400  ; $9A47
   .incbin "prg_bank_6.bin", $1E47, $252  ; $9E47
-Sub_B6_A099:
+UpdateEnemyTypeE:
   jsr LoadBehaviorTableE       ; $A099
-  jsr Sub_B6_8932              ; $A09C
+  jsr ApplyAnimFlagEffects     ; $A09C
   jsr UpdateObjectScreenX      ; $A09F
   jsr RemoveObjectIfOffscreen  ; $A0A2
   rts                          ; $A0A5

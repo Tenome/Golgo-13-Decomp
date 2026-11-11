@@ -44,9 +44,9 @@ Bank2Nmi:
   sta $049D                    ; $8062
   lda #$01                     ; $8065
   sta $04AA                    ; $8067
-  jsr Sub_B2_8211              ; $806A
+  jsr InitScopeScene           ; $806A
   jsr ClearObjectTableAndLoadList ; $806D
-  jsr Sub_B2_8609              ; $8070
+  jsr InitScopeEnemies         ; $8070
   lda #$00                     ; $8073
   jsr QueueSound               ; $8075
   inc z:GameState              ; $8078
@@ -55,7 +55,7 @@ Loc_B2_807D:
   cmp #$11                     ; $807D
   bne Loc_B2_8087              ; $807F
 Sub_B2_8081:
-  jsr Sub_B2_837A              ; $8081
+  jsr CheckScopeScrollEnd      ; $8081
   jmp Loc_B2_815C              ; $8084
 Loc_B2_8087:
   lda #$18                     ; $8087
@@ -75,7 +75,7 @@ Loc_B2_8094:
   cmp #$69                     ; $80AB
   bne Loc_B2_80B5              ; $80AD
   jsr Sub_B2_8488              ; $80AF
-  jsr Sub_B2_8938              ; $80B2
+  jsr TickScopeSecondTimer     ; $80B2
 Loc_B2_80B5:
   jsr Sub_B2_87AC              ; $80B5
   jsr CheckLowLifeSoundB2      ; $80B8
@@ -112,7 +112,7 @@ Loc_B2_80F7:
   sta $0495                    ; $80FD
   jsr QueueSound               ; $8100
   jsr RunSoundDriver           ; $8103
-  jsr Sub_B2_818E              ; $8106
+  jsr EndScopeScene            ; $8106
   jmp Loc_B2_815F              ; $8109
 Loc_B2_810C:
   lda #$00                     ; $810C
@@ -168,7 +168,7 @@ PlayStageIntroSound:
   rts                          ; $8173
 Data_B2_8174:
   .incbin "prg_bank_2.bin", $0174, $1A  ; $8174
-Sub_B2_818E:
+EndScopeScene:
   lda z:PaletteSetIndex        ; $818E
   cmp #$69                     ; $8190
   bne Loc_B2_8199              ; $8192
@@ -204,7 +204,7 @@ Data_B2_81C4:
   .incbin "prg_bank_2.bin", $01C4, $1  ; $81C4
 Data_B2_81C5:
   .incbin "prg_bank_2.bin", $01C5, $4C  ; $81C5
-Sub_B2_8211:
+InitScopeScene:
   lda z:PpuMaskShadow          ; $8211
   and #$E7                     ; $8213
   jsr SetPpuMask               ; $8215
@@ -218,7 +218,7 @@ Sub_B2_8211:
   ldx #$00                     ; $8226
   stx z:ScrollColumnPending    ; $8228
   stx $0101                    ; $822A
-  jsr Sub_B2_827E              ; $822D
+  jsr LoadScopeStageParams     ; $822D
   lda #$01                     ; $8230
   sta z:ScrollPage             ; $8232
   jsr LoadPaletteSet           ; $8234
@@ -256,7 +256,7 @@ Loc_B2_8256:
   jsr ProcessPpuUpdateList     ; $8278
   .addr Data_B2_82FF  ; $827B inline pointer (data after a JSR)
   rts                          ; $827D
-Sub_B2_827E:
+LoadScopeStageParams:
   lda z:PaletteSetIndex        ; $827E
   sec                          ; $8280
   sbc #$50                     ; $8281
@@ -288,7 +288,7 @@ Data_B2_82BB:
   .incbin "prg_bank_2.bin", $02BB, $44  ; $82BB
 Data_B2_82FF:
   .incbin "prg_bank_2.bin", $02FF, $7B  ; $82FF
-Sub_B2_837A:
+CheckScopeScrollEnd:
   lda z:ScrollPage             ; $837A
   cmp #$02                     ; $837C
   bne Loc_B2_83A9              ; $837E
@@ -435,7 +435,7 @@ Loc_B2_84A3:
   sta z:Tmp02                  ; $84C7
   lda #$03                     ; $84C9
   sta z:Tmp03                  ; $84CB
-  jsr Sub_B2_8A0F              ; $84CD
+  jsr LoadScopeObjectList      ; $84CD
   inc ObjectCount              ; $84D0
   lda $04AA                    ; $84D3
   cmp #$03                     ; $84D6
@@ -516,7 +516,7 @@ Data_B2_8571:
   .incbin "prg_bank_2.bin", $0571, $1  ; $8571
 Data_B2_8572:
   .incbin "prg_bank_2.bin", $0572, $97  ; $8572
-Sub_B2_8609:
+InitScopeEnemies:
   lda z:PaletteSetIndex        ; $8609
   cmp #$69                     ; $860B
   bne Loc_B2_8612              ; $860D
@@ -779,7 +779,7 @@ Loc_B2_88DF:
   lda z:PaletteSetIndex        ; $88E2
   cmp #$69                     ; $88E4
   bne Loc_B2_88EB              ; $88E6
-  jsr Sub_B2_8938              ; $88E8
+  jsr TickScopeSecondTimer     ; $88E8
 Loc_B2_88EB:
   inc $0498                    ; $88EB
   lda $0498                    ; $88EE
@@ -817,7 +817,7 @@ Loc_B2_8911:
   sta z:AmmoHi                 ; $8935
 Loc_B2_8937:
   rts                          ; $8937
-Sub_B2_8938:
+TickScopeSecondTimer:
   lda $0497                    ; $8938
   bne Loc_B2_899A              ; $893B
   lda $049E                    ; $893D
@@ -914,7 +914,7 @@ Loc_B2_89E6:
   sta z:Tmp02                  ; $8A09
   lda #$03                     ; $8A0B
   sta z:Tmp03                  ; $8A0D
-Sub_B2_8A0F:
+LoadScopeObjectList:
   ldy #$00                     ; $8A0F
   lda (Tmp00),y                ; $8A11
   sta ObjectCount              ; $8A13
@@ -944,21 +944,21 @@ Loc_B2_8A33:
   jmp Loc_B2_8ACB              ; $8A3F
 Loc_B2_8A42:
   dey                          ; $8A42
-  jsr Sub_B2_8AB0              ; $8A43
+  jsr CopyObjectByteToList     ; $8A43
   inc z:Tmp02                  ; $8A46
   inc z:Tmp02                  ; $8A48
   inc z:Tmp02                  ; $8A4A
-  jsr Sub_B2_8AB0              ; $8A4C
-  jsr Sub_B2_8AB0              ; $8A4F
-  jsr Sub_B2_8AB0              ; $8A52
-  jsr Sub_B2_8AB0              ; $8A55
-  jsr Sub_B2_8AB0              ; $8A58
+  jsr CopyObjectByteToList     ; $8A4C
+  jsr CopyObjectByteToList     ; $8A4F
+  jsr CopyObjectByteToList     ; $8A52
+  jsr CopyObjectByteToList     ; $8A55
+  jsr CopyObjectByteToList     ; $8A58
   iny                          ; $8A5B
   inc z:Tmp02                  ; $8A5C
-  jsr Sub_B2_8AB8              ; $8A5E
-  jsr Sub_B2_8AB0              ; $8A61
-  jsr Sub_B2_8AB0              ; $8A64
-  jsr Sub_B2_8AB0              ; $8A67
+  jsr CopyObjectNibblePair     ; $8A5E
+  jsr CopyObjectByteToList     ; $8A61
+  jsr CopyObjectByteToList     ; $8A64
+  jsr CopyObjectByteToList     ; $8A67
 Loc_B2_8A6A:
   inc z:Tmp02                  ; $8A6A
   inc z:Tmp02                  ; $8A6C
@@ -993,13 +993,13 @@ Loc_B2_8A8D:
   sta $04AB                    ; $8AAC
 Loc_B2_8AAF:
   rts                          ; $8AAF
-Sub_B2_8AB0:
+CopyObjectByteToList:
   iny                          ; $8AB0
   inc z:Tmp02                  ; $8AB1
   lda (Tmp00),y                ; $8AB3
   sta (Tmp02,x)                ; $8AB5
   rts                          ; $8AB7
-Sub_B2_8AB8:
+CopyObjectNibblePair:
   lda (Tmp00),y                ; $8AB8
   sta z:$05                    ; $8ABA
   jsr LsrA4                    ; $8ABC
@@ -1020,8 +1020,8 @@ Loc_B2_8ACB:
   adc #$03                     ; $8AD6
   sta z:Tmp02                  ; $8AD8
   ldy #$FF                     ; $8ADA
-  jsr Sub_B2_8B06              ; $8ADC
-  jsr Sub_B2_8B06              ; $8ADF
+  jsr CopyObjectByteFromPtr06  ; $8ADC
+  jsr CopyObjectByteFromPtr06  ; $8ADF
   inc z:Tmp02                  ; $8AE2
   pla                          ; $8AE4
   tay                          ; $8AE5
@@ -1031,18 +1031,18 @@ Loc_B2_8ACB:
   lda (Tmp00),y                ; $8AE9
   sta (Tmp02,x)                ; $8AEB
   ldy #$01                     ; $8AED
-  jsr Sub_B2_8B06              ; $8AEF
-  jsr Sub_B2_8B06              ; $8AF2
+  jsr CopyObjectByteFromPtr06  ; $8AEF
+  jsr CopyObjectByteFromPtr06  ; $8AF2
   pla                          ; $8AF5
   tay                          ; $8AF6
   iny                          ; $8AF7
   inc z:Tmp02                  ; $8AF8
-  jsr Sub_B2_8AB8              ; $8AFA
+  jsr CopyObjectNibblePair     ; $8AFA
   inc z:Tmp02                  ; $8AFD
   inc z:Tmp02                  ; $8AFF
   inc z:Tmp02                  ; $8B01
   jmp Loc_B2_8A6A              ; $8B03
-Sub_B2_8B06:
+CopyObjectByteFromPtr06:
   iny                          ; $8B06
   inc z:Tmp02                  ; $8B07
   lda ($06),y                  ; $8B09

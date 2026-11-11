@@ -767,7 +767,7 @@ Loc_B1_8F51:
   sta z:PaletteDirty           ; $8F56
   rts                          ; $8F58
 Bank1State_02:
-  jsr Sub_B1_8F8C              ; $8F59
+  jsr LoadEnemyAnimTableA      ; $8F59
   ldy #$08                     ; $8F5C
   lda (Tmp00),y                ; $8F5E
   and #$3F                     ; $8F60
@@ -775,7 +775,7 @@ Bank1State_02:
   jsr AdvanceObjectAnimStepB1  ; $8F64
   bcc Loc_B1_8F6F              ; $8F67
   jsr Sub_B1_8F9F              ; $8F69
-  jsr Sub_B1_8F8C              ; $8F6C
+  jsr LoadEnemyAnimTableA      ; $8F6C
 Loc_B1_8F6F:
   jsr LoadObjectAnimFrameB1    ; $8F6F
 Loc_B1_8F72:
@@ -794,7 +794,7 @@ Sub_B1_8F79:
   sta (Tmp00),y                ; $8F89
 Loc_B1_8F8B:
   rts                          ; $8F8B
-Sub_B1_8F8C:
+LoadEnemyAnimTableA:
   ldy #$07                     ; $8F8C
   lda (Tmp00),y                ; $8F8E
   and #$0F                     ; $8F90
@@ -834,13 +834,13 @@ Loc_B1_8FBC:
   jsr SpawnObjectAtScreenRight ; $8FCE
   jmp Loc_B1_8FD7              ; $8FD1
 Loc_B1_8FD4:
-  jsr Sub_B1_8FDE              ; $8FD4
+  jsr SpawnChildObject         ; $8FD4
 Loc_B1_8FD7:
   ldy #$0E                     ; $8FD7
   lda #$00                     ; $8FD9
   sta (Tmp00),y                ; $8FDB
   rts                          ; $8FDD
-Sub_B1_8FDE:
+SpawnChildObject:
   lda #$00                     ; $8FDE
   sta z:$06                    ; $8FE0
   sta z:$07                    ; $8FE2
@@ -871,7 +871,7 @@ Data_B1_900A:
 Data_B1_900B:
   .incbin "prg_bank_1.bin", $100B, $9B  ; $900B
 Bank1State_03:
-  jsr Sub_B1_90C6              ; $90A6
+  jsr LoadEnemyAnimTableB      ; $90A6
   ldy #$08                     ; $90A9
   lda (Tmp00),y                ; $90AB
   and #$3F                     ; $90AD
@@ -887,7 +887,7 @@ Loc_B1_90BF:
   jsr UpdateObjectScreenXB1    ; $90C2
 Loc_B1_90C5:
   rts                          ; $90C5
-Sub_B1_90C6:
+LoadEnemyAnimTableB:
   ldy #$07                     ; $90C6
   lda (Tmp00),y                ; $90C8
   and #$0F                     ; $90CA
@@ -903,7 +903,7 @@ Data_B1_90D9:
 Data_B1_90DA:
   .incbin "prg_bank_1.bin", $10DA, $157  ; $90DA
 Bank1State_00:
-  jsr Sub_B1_9260              ; $9231
+  jsr LoadEnemyAnimTableC      ; $9231
   ldy #$08                     ; $9234
   lda (Tmp00),y                ; $9236
   bne Loc_B1_9259              ; $9238
@@ -918,7 +918,7 @@ Bank1State_00:
   cmp z:$04                    ; $9249
   bcc Loc_B1_9253              ; $924B
   jsr Sub_B1_926E              ; $924D
-  jsr Sub_B1_9260              ; $9250
+  jsr LoadEnemyAnimTableC      ; $9250
 Loc_B1_9253:
   jsr LoadObjectAnimFrameB1    ; $9253
   jsr Sub_B1_929F              ; $9256
@@ -926,7 +926,7 @@ Loc_B1_9259:
   jsr Sub_B1_9ABA              ; $9259
   jsr UpdateObjectScreenXB1    ; $925C
   rts                          ; $925F
-Sub_B1_9260:
+LoadEnemyAnimTableC:
   jsr GetObjectStateIndex      ; $9260
   lda Data_B1_9307,y           ; $9263
   sta z:Tmp02                  ; $9266
@@ -1003,7 +1003,7 @@ Loc_B1_92E5:
   sta z:$06                    ; $92E5
   lda #$00                     ; $92E7
   sta z:$07                    ; $92E9
-  jsr Sub_B1_96F0              ; $92EB
+  jsr SpawnShotObjectFromArgs  ; $92EB
   lda z:$05                    ; $92EE
   beq Loc_B1_92FE              ; $92F0
   lda z:$06                    ; $92F2
@@ -1021,7 +1021,7 @@ Data_B1_9307:
 Data_B1_9308:
   .incbin "prg_bank_1.bin", $1308, $58  ; $9308
 Bank1State_04:
-  jsr Sub_B1_93B8              ; $9360
+  jsr LoadEnemyAnimTableD      ; $9360
   ldy #$07                     ; $9363
   lda (Tmp00),y                ; $9365
   cmp #$04                     ; $9367
@@ -1037,7 +1037,7 @@ Loc_B1_9373:
   bcc Loc_B1_9384              ; $937C
   jsr Sub_B1_93FA              ; $937E
 Loc_B1_9381:
-  jsr Sub_B1_93B8              ; $9381
+  jsr LoadEnemyAnimTableD      ; $9381
 Loc_B1_9384:
   jsr LoadObjectAnimFrameB1    ; $9384
   jsr Sub_B1_942E              ; $9387
@@ -1066,7 +1066,7 @@ Loc_B1_938A:
 Loc_B1_93B4:
   jsr UpdateObjectScreenXB1    ; $93B4
   rts                          ; $93B7
-Sub_B1_93B8:
+LoadEnemyAnimTableD:
   jsr GetObjectStateIndex      ; $93B8
   lda Data_B1_94E8,y           ; $93BB
   sta z:Tmp02                  ; $93BE
@@ -1084,7 +1084,7 @@ Sub_B1_93C6:
   lda #$80                     ; $93D5
   sta z:$04                    ; $93D7
   jsr CalcViewEdgeColumn       ; $93D9
-  jsr Sub_B1_960A              ; $93DC
+  jsr CheckObjectInViewWindow  ; $93DC
   bne Loc_B1_93F9              ; $93DF
   jsr GetRandomByte            ; $93E1
   and #$3F                     ; $93E4
@@ -1153,7 +1153,7 @@ Loc_B1_944E:
   cmp #$03                     ; $9454
   bne Loc_B1_94BC              ; $9456
 Loc_B1_9458:
-  jsr Sub_B1_96E8              ; $9458
+  jsr SpawnShotObjectDefault   ; $9458
   jmp Loc_B1_94BC              ; $945B
 Loc_B1_945E:
   ldy #$00                     ; $945E
@@ -1229,7 +1229,7 @@ Data_B1_94E8:
 Data_B1_94E9:
   .incbin "prg_bank_1.bin", $14E9, $9A  ; $94E9
 Bank1State_05:
-  jsr Sub_B1_95E6              ; $9583
+  jsr LoadEnemyAnimTableE      ; $9583
   ldy #$07                     ; $9586
   lda (Tmp00),y                ; $9588
   cmp #$08                     ; $958A
@@ -1245,7 +1245,7 @@ Loc_B1_9596:
   bcc Loc_B1_95A7              ; $959F
   jsr Sub_B1_96BE              ; $95A1
 Loc_B1_95A4:
-  jsr Sub_B1_95E6              ; $95A4
+  jsr LoadEnemyAnimTableE      ; $95A4
 Loc_B1_95A7:
   jsr LoadObjectAnimFrameB1    ; $95A7
   ldy #$07                     ; $95AA
@@ -1280,7 +1280,7 @@ Loc_B1_95C0:
 Loc_B1_95E2:
   jsr UpdateObjectScreenXB1    ; $95E2
   rts                          ; $95E5
-Sub_B1_95E6:
+LoadEnemyAnimTableE:
   jsr GetObjectStateIndex      ; $95E6
   lda Data_B1_970C,y           ; $95E9
   sta z:Tmp02                  ; $95EC
@@ -1298,7 +1298,7 @@ Sub_B1_95F4:
   lda #$30                     ; $9603
   sta z:$04                    ; $9605
   jsr CalcViewEdgeColumn       ; $9607
-Sub_B1_960A:
+CheckObjectInViewWindow:
   lda z:$05                    ; $960A
   cmp z:$07                    ; $960C
   bne Loc_B1_9626              ; $960E
@@ -1400,7 +1400,7 @@ Sub_B1_96A4:
   lda (Tmp00),y                ; $96B4
   and #$80                     ; $96B6
   beq Loc_B1_96BD              ; $96B8
-  jsr Sub_B1_96E8              ; $96BA
+  jsr SpawnShotObjectDefault   ; $96BA
 Loc_B1_96BD:
   rts                          ; $96BD
 Sub_B1_96BE:
@@ -1428,12 +1428,12 @@ Loc_B1_96E1:
   lda #$00                     ; $96E3
   sta (Tmp00),y                ; $96E5
   rts                          ; $96E7
-Sub_B1_96E8:
+SpawnShotObjectDefault:
   lda #$00                     ; $96E8
   sta z:$06                    ; $96EA
   lda #$04                     ; $96EC
   sta z:$07                    ; $96EE
-Sub_B1_96F0:
+SpawnShotObjectFromArgs:
   jsr AllocObjectB1            ; $96F0
   lda z:$05                    ; $96F3
   beq Loc_B1_970B              ; $96F5
@@ -1455,7 +1455,7 @@ Data_B1_970C:
 Data_B1_970D:
   .incbin "prg_bank_1.bin", $170D, $AA  ; $970D
 Bank1State_06:
-  jsr Sub_B1_9816              ; $97B7
+  jsr LoadEnemyAnimTableF      ; $97B7
   ldy #$07                     ; $97BA
   lda (Tmp00),y                ; $97BC
   and #$1F                     ; $97BE
@@ -1472,7 +1472,7 @@ Loc_B1_97CC:
   bcc Loc_B1_97DD              ; $97D5
   jsr Sub_B1_98A3              ; $97D7
 Loc_B1_97DA:
-  jsr Sub_B1_9816              ; $97DA
+  jsr LoadEnemyAnimTableF      ; $97DA
 Loc_B1_97DD:
   jsr LoadObjectAnimFrameB1    ; $97DD
   jsr Sub_B1_98E7              ; $97E0
@@ -1500,7 +1500,7 @@ Loc_B1_97E3:
 Loc_B1_9812:
   jsr UpdateObjectScreenXB1    ; $9812
   rts                          ; $9815
-Sub_B1_9816:
+LoadEnemyAnimTableF:
   jsr GetObjectStateIndex      ; $9816
   lda Data_B1_990A,y           ; $9819
   sta z:Tmp02                  ; $981C
@@ -1628,7 +1628,7 @@ Sub_B1_98E7:
   lda (Tmp00),y                ; $98F3
   cmp #$04                     ; $98F5
   bne Loc_B1_9909              ; $98F7
-  jsr Sub_B1_96E8              ; $98F9
+  jsr SpawnShotObjectDefault   ; $98F9
   lda z:$05                    ; $98FC
   beq Loc_B1_9909              ; $98FE
   ldy #$07                     ; $9900
@@ -1660,7 +1660,7 @@ Loc_B1_99F4:
   beq Loc_B1_9A0E              ; $99FA
   cmp #$90                     ; $99FC
   beq Loc_B1_9A0E              ; $99FE
-  jsr Sub_B1_9A2D              ; $9A00
+  jsr LoadEnemyAnimTableG      ; $9A00
   ldy #$08                     ; $9A03
   lda (Tmp00),y                ; $9A05
   bne Loc_B1_9A26              ; $9A07
@@ -1675,7 +1675,7 @@ Loc_B1_9A0E:
 Loc_B1_9A1A:
   jsr Sub_B1_9B20              ; $9A1A
 Loc_B1_9A1D:
-  jsr Sub_B1_9A2D              ; $9A1D
+  jsr LoadEnemyAnimTableG      ; $9A1D
 Loc_B1_9A20:
   jsr LoadObjectAnimFrameB1    ; $9A20
   jsr Sub_B1_9ACB              ; $9A23
@@ -1684,7 +1684,7 @@ Loc_B1_9A26:
 Loc_B1_9A29:
   jsr UpdateObjectScreenXB1    ; $9A29
   rts                          ; $9A2C
-Sub_B1_9A2D:
+LoadEnemyAnimTableG:
   jsr GetObjectStateIndex      ; $9A2D
   lda Data_B1_9B81,y           ; $9A30
   sta z:Tmp02                  ; $9A33
@@ -1809,7 +1809,7 @@ Loc_B1_9B02:
   sta z:$07                    ; $9B02
   lda #$00                     ; $9B04
   sta z:$06                    ; $9B06
-  jsr Sub_B1_96F0              ; $9B08
+  jsr SpawnShotObjectFromArgs  ; $9B08
   lda z:$05                    ; $9B0B
   beq Loc_B1_9B1F              ; $9B0D
   lda z:$06                    ; $9B0F
@@ -2052,7 +2052,7 @@ Loc_B1_9E5D:
   lda #$04                     ; $9E5D
 Loc_B1_9E5F:
   sta z:$07                    ; $9E5F
-  jsr Sub_B1_96F0              ; $9E61
+  jsr SpawnShotObjectFromArgs  ; $9E61
   lda z:$05                    ; $9E64
   beq Loc_B1_9E73              ; $9E66
   lda z:$06                    ; $9E68
@@ -2158,7 +2158,7 @@ Loc_B1_9F84:
   cmp #$06                     ; $9F8C
   bne Loc_B1_9FCC              ; $9F8E
 Loc_B1_9F90:
-  jsr Sub_B1_8FDE              ; $9F90
+  jsr SpawnChildObject         ; $9F90
   lda z:$05                    ; $9F93
   beq Loc_B1_9FCC              ; $9F95
   ldy #$07                     ; $9F97

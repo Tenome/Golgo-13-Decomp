@@ -366,7 +366,7 @@
    ]
   ]
  },
- "Sub_B1_8F8C": {
+ "LoadEnemyAnimTableA": {
   "addr": 36748,
   "bank": 1,
   "instrs": 10,
@@ -392,7 +392,7 @@
    ]
   ]
  },
- "Sub_B1_8FDE": {
+ "SpawnChildObject": {
   "addr": 36830,
   "bank": 1,
   "instrs": 22,
@@ -418,7 +418,7 @@
    ]
   ]
  },
- "Sub_B1_90C6": {
+ "LoadEnemyAnimTableB": {
   "addr": 37062,
   "bank": 1,
   "instrs": 10,
@@ -444,7 +444,7 @@
    ]
   ]
  },
- "Sub_B1_9260": {
+ "LoadEnemyAnimTableC": {
   "addr": 37472,
   "bank": 1,
   "instrs": 6,
@@ -496,7 +496,7 @@
    ]
   ]
  },
- "Sub_B1_93B8": {
+ "LoadEnemyAnimTableD": {
   "addr": 37816,
   "bank": 1,
   "instrs": 6,
@@ -591,7 +591,7 @@
    ]
   ]
  },
- "Sub_B1_95E6": {
+ "LoadEnemyAnimTableE": {
   "addr": 38374,
   "bank": 1,
   "instrs": 6,
@@ -617,7 +617,7 @@
    ]
   ]
  },
- "Sub_B1_960A": {
+ "CheckObjectInViewWindow": {
   "addr": 38410,
   "bank": 1,
   "instrs": 31,
@@ -690,7 +690,7 @@
    ]
   ]
  },
- "Sub_B1_96E8": {
+ "SpawnShotObjectDefault": {
   "addr": 38632,
   "bank": 1,
   "instrs": 4,
@@ -703,7 +703,7 @@
    ]
   ]
  },
- "Sub_B1_96F0": {
+ "SpawnShotObjectFromArgs": {
   "addr": 38640,
   "bank": 1,
   "instrs": 15,
@@ -729,7 +729,7 @@
    ]
   ]
  },
- "Sub_B1_9816": {
+ "LoadEnemyAnimTableF": {
   "addr": 38934,
   "bank": 1,
   "instrs": 6,
@@ -794,7 +794,7 @@
    ]
   ]
  },
- "Sub_B1_9A2D": {
+ "LoadEnemyAnimTableG": {
   "addr": 39469,
   "bank": 1,
   "instrs": 6,
@@ -1491,7 +1491,7 @@
    ]
   ]
  },
- "Sub_B2_818E": {
+ "EndScopeScene": {
   "addr": 33166,
   "bank": 2,
   "instrs": 27,
@@ -1504,7 +1504,7 @@
    ]
   ]
  },
- "Sub_B2_8211": {
+ "InitScopeScene": {
   "addr": 33297,
   "bank": 2,
   "instrs": 47,
@@ -1521,7 +1521,7 @@
    ]
   ]
  },
- "Sub_B2_827E": {
+ "LoadScopeStageParams": {
   "addr": 33406,
   "bank": 2,
   "instrs": 27,
@@ -1534,7 +1534,7 @@
    ]
   ]
  },
- "Sub_B2_837A": {
+ "CheckScopeScrollEnd": {
   "addr": 33658,
   "bank": 2,
   "instrs": 39,
@@ -1573,7 +1573,7 @@
    ]
   ]
  },
- "Sub_B2_8609": {
+ "InitScopeEnemies": {
   "addr": 34313,
   "bank": 2,
   "instrs": 80,
@@ -1638,7 +1638,7 @@
    ]
   ]
  },
- "Sub_B2_8938": {
+ "TickScopeSecondTimer": {
   "addr": 35128,
   "bank": 2,
   "instrs": 63,
@@ -1664,7 +1664,7 @@
    ]
   ]
  },
- "Sub_B2_8A0F": {
+ "LoadScopeObjectList": {
   "addr": 35343,
   "bank": 2,
   "instrs": 102,
@@ -1681,7 +1681,7 @@
    ]
   ]
  },
- "Sub_B2_8AB0": {
+ "CopyObjectByteToList": {
   "addr": 35504,
   "bank": 2,
   "instrs": 5,
@@ -1694,7 +1694,7 @@
    ]
   ]
  },
- "Sub_B2_8AB8": {
+ "CopyObjectNibblePair": {
   "addr": 35512,
   "bank": 2,
   "instrs": 9,
@@ -1707,7 +1707,7 @@
    ]
   ]
  },
- "Sub_B2_8B06": {
+ "CopyObjectByteFromPtr06": {
   "addr": 35590,
   "bank": 2,
   "instrs": 5,
@@ -2228,7 +2228,7 @@
    ]
   ]
  },
- "Sub_B3_8B77": {
+ "BlinkTextCursorStep": {
   "addr": 35703,
   "bank": 3,
   "instrs": 32,
@@ -8795,7 +8795,7 @@
    ]
   ]
  },
- "Sub_B6_8055": {
+ "SpawnObjectsAtCurrentColumn": {
   "addr": 32853,
   "bank": 6,
   "instrs": 21,
@@ -8808,7 +8808,7 @@
    ]
   ]
  },
- "Sub_B6_8080": {
+ "SpawnObjectsAtNextColumn": {
   "addr": 32896,
   "bank": 6,
   "instrs": 22,
@@ -8873,7 +8873,7 @@
    ]
   ]
  },
- "Sub_B6_80D8": {
+ "InitSpawnIndexForScroll": {
   "addr": 32984,
   "bank": 6,
   "instrs": 34,
@@ -8886,7 +8886,7 @@
    ]
   ]
  },
- "Sub_B6_8117": {
+ "SpawnObjectFromList": {
   "addr": 33047,
   "bank": 6,
   "instrs": 28,
@@ -8903,7 +8903,7 @@
    ]
   ]
  },
- "Sub_B6_81AA": {
+ "SetObjectTimerFromType": {
   "addr": 33194,
   "bank": 6,
   "instrs": 8,
@@ -8916,7 +8916,7 @@
    ]
   ]
  },
- "Sub_B6_81E3": {
+ "ResetObjectTableAndSpawn": {
   "addr": 33251,
   "bank": 6,
   "instrs": 97,
@@ -8933,7 +8933,7 @@
    ]
   ]
  },
- "Sub_B6_82F5": {
+ "ProcessCollectedObjects": {
   "addr": 33525,
   "bank": 6,
   "instrs": 20,
@@ -8998,7 +8998,7 @@
    ]
   ]
  },
- "Sub_B6_83F4": {
+ "InitSpawnedObject": {
   "addr": 33780,
   "bank": 6,
   "instrs": 6,
@@ -9375,7 +9375,7 @@
    ]
   ]
  },
- "Sub_B6_890F": {
+ "UpdateEnemyTypeA": {
   "addr": 35087,
   "bank": 6,
   "instrs": 14,
@@ -9388,7 +9388,7 @@
    ]
   ]
  },
- "Sub_B6_8932": {
+ "ApplyAnimFlagEffects": {
   "addr": 35122,
   "bank": 6,
   "instrs": 65,
@@ -9479,7 +9479,7 @@
    ]
   ]
  },
- "Sub_B6_8AD9": {
+ "StepAnimFrameByFrameCounter": {
   "addr": 35545,
   "bank": 6,
   "instrs": 16,
@@ -9539,7 +9539,7 @@
    ]
   ]
  },
- "Sub_B6_8BE6": {
+ "ClampObjectYMin24": {
   "addr": 35814,
   "bank": 6,
   "instrs": 7,
@@ -9552,7 +9552,7 @@
    ]
   ]
  },
- "Sub_B6_945A": {
+ "UpdateEnemyTypeB": {
   "addr": 37978,
   "bank": 6,
   "instrs": 18,
@@ -9656,7 +9656,7 @@
    ]
   ]
  },
- "Sub_B6_9A14": {
+ "UpdateEnemyTypeD": {
   "addr": 39444,
   "bank": 6,
   "instrs": 15,
@@ -9682,7 +9682,7 @@
    ]
   ]
  },
- "Sub_B6_A099": {
+ "UpdateEnemyTypeE": {
   "addr": 41113,
   "bank": 6,
   "instrs": 5,

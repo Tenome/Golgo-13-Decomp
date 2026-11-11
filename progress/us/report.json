@@ -627,7 +627,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F8C",
+     "name": "LoadEnemyAnimTableA",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -643,7 +643,7 @@
      }
     },
     {
-     "name": "Sub_B1_8FDE",
+     "name": "SpawnChildObject",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -659,7 +659,7 @@
      }
     },
     {
-     "name": "Sub_B1_90C6",
+     "name": "LoadEnemyAnimTableB",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -675,7 +675,7 @@
      }
     },
     {
-     "name": "Sub_B1_9260",
+     "name": "LoadEnemyAnimTableC",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -707,7 +707,7 @@
      }
     },
     {
-     "name": "Sub_B1_93B8",
+     "name": "LoadEnemyAnimTableD",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -763,7 +763,7 @@
      }
     },
     {
-     "name": "Sub_B1_95E6",
+     "name": "LoadEnemyAnimTableE",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -779,7 +779,7 @@
      }
     },
     {
-     "name": "Sub_B1_960A",
+     "name": "CheckObjectInViewWindow",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -819,7 +819,7 @@
      }
     },
     {
-     "name": "Sub_B1_96E8",
+     "name": "SpawnShotObjectDefault",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -827,7 +827,7 @@
      }
     },
     {
-     "name": "Sub_B1_96F0",
+     "name": "SpawnShotObjectFromArgs",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -843,7 +843,7 @@
      }
     },
     {
-     "name": "Sub_B1_9816",
+     "name": "LoadEnemyAnimTableF",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -883,7 +883,7 @@
      }
     },
     {
-     "name": "Sub_B1_9A2D",
+     "name": "LoadEnemyAnimTableG",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1338,7 +1338,7 @@
      }
     },
     {
-     "name": "Sub_B2_818E",
+     "name": "EndScopeScene",
      "size": "53",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1346,7 +1346,7 @@
      }
     },
     {
-     "name": "Sub_B2_8211",
+     "name": "InitScopeScene",
      "size": "106",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1362,7 +1362,7 @@
      }
     },
     {
-     "name": "Sub_B2_827E",
+     "name": "LoadScopeStageParams",
      "size": "61",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1370,7 +1370,7 @@
      }
     },
     {
-     "name": "Sub_B2_837A",
+     "name": "CheckScopeScrollEnd",
      "size": "77",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1394,7 +1394,7 @@
      }
     },
     {
-     "name": "Sub_B2_8609",
+     "name": "InitScopeEnemies",
      "size": "163",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1434,7 +1434,7 @@
      }
     },
     {
-     "name": "Sub_B2_8938",
+     "name": "TickScopeSecondTimer",
      "size": "154",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1450,7 +1450,7 @@
      }
     },
     {
-     "name": "Sub_B2_8A0F",
+     "name": "LoadScopeObjectList",
      "size": "161",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1458,7 +1458,7 @@
      }
     },
     {
-     "name": "Sub_B2_8AB0",
+     "name": "CopyObjectByteToList",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1466,7 +1466,7 @@
      }
     },
     {
-     "name": "Sub_B2_8AB8",
+     "name": "CopyObjectNibblePair",
      "size": "78",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1474,7 +1474,7 @@
      }
     },
     {
-     "name": "Sub_B2_8B06",
+     "name": "CopyObjectByteFromPtr06",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1801,7 +1801,7 @@
      }
     },
     {
-     "name": "Sub_B3_8B77",
+     "name": "BlinkTextCursorStep",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5894,7 +5894,7 @@
      }
     },
     {
-     "name": "Sub_B6_8055",
+     "name": "SpawnObjectsAtCurrentColumn",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5902,7 +5902,7 @@
      }
     },
     {
-     "name": "Sub_B6_8080",
+     "name": "SpawnObjectsAtNextColumn",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5942,7 +5942,7 @@
      }
     },
     {
-     "name": "Sub_B6_80D8",
+     "name": "InitSpawnIndexForScroll",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5950,7 +5950,7 @@
      }
     },
     {
-     "name": "Sub_B6_8117",
+     "name": "SpawnObjectFromList",
      "size": "60",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5966,7 +5966,7 @@
      }
     },
     {
-     "name": "Sub_B6_81AA",
+     "name": "SetObjectTimerFromType",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5974,7 +5974,7 @@
      }
     },
     {
-     "name": "Sub_B6_81E3",
+     "name": "ResetObjectTableAndSpawn",
      "size": "172",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5990,7 +5990,7 @@
      }
     },
     {
-     "name": "Sub_B6_82F5",
+     "name": "ProcessCollectedObjects",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6030,7 +6030,7 @@
      }
     },
     {
-     "name": "Sub_B6_83F4",
+     "name": "InitSpawnedObject",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6182,7 +6182,7 @@
      }
     },
     {
-     "name": "Sub_B6_890F",
+     "name": "UpdateEnemyTypeA",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6190,7 +6190,7 @@
      }
     },
     {
-     "name": "Sub_B6_8932",
+     "name": "ApplyAnimFlagEffects",
      "size": "117",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6246,7 +6246,7 @@
      }
     },
     {
-     "name": "Sub_B6_8AD9",
+     "name": "StepAnimFrameByFrameCounter",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6278,7 +6278,7 @@
      }
     },
     {
-     "name": "Sub_B6_8BE6",
+     "name": "ClampObjectYMin24",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6286,7 +6286,7 @@
      }
     },
     {
-     "name": "Sub_B6_945A",
+     "name": "UpdateEnemyTypeB",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6342,7 +6342,7 @@
      }
     },
     {
-     "name": "Sub_B6_9A14",
+     "name": "UpdateEnemyTypeD",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6358,7 +6358,7 @@
      }
     },
     {
-     "name": "Sub_B6_A099",
+     "name": "UpdateEnemyTypeE",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
