@@ -466,5 +466,20 @@
  "2:818E": "EndScopeScene",
  "2:8AB0": "CopyObjectByteToList",
  "2:8AB8": "CopyObjectNibblePair",
- "2:8B06": "CopyObjectByteFromPtr06"
+ "2:8B06": "CopyObjectByteFromPtr06",
+ "4:B2F7": "MazeObjType19",
+ "4:A4C8": "MazeObjType1D",
+ "4:A4CC": "MazeObjType1E",
+ "4:A4D0": "MazeObjType1F",
+ "4:A4D3": "MazeObjType20",
+ "4:A52C": "MazeObjType22",
+ "4:A530": "MazeObjType23",
+ "4:A534": "MazeObjType24",
+ "4:AC6F": "MazeObjType27",
+ "4:AE97": "MazeObjType29",
+ "4:AEC9": "MazeObjType2B",
+ "4:A5EA": "MazeObjType05State3",
+ "4:A6C4": "MazeObjType05State6",
+ "4:A7C2": "MazeObjType05StateA",
+ "4:AB50": "MazeObjEnemy0AState6"
 }

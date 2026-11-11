@@ -617,7 +617,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F8C",
+     "name": "LoadEnemyAnimTableA",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -633,7 +633,7 @@
      }
     },
     {
-     "name": "Sub_B1_8FDE",
+     "name": "SpawnChildObject",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -649,7 +649,7 @@
      }
     },
     {
-     "name": "Sub_B1_90C6",
+     "name": "LoadEnemyAnimTableB",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -665,7 +665,7 @@
      }
     },
     {
-     "name": "Sub_B1_9260",
+     "name": "LoadEnemyAnimTableC",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -697,7 +697,7 @@
      }
     },
     {
-     "name": "Sub_B1_93B8",
+     "name": "LoadEnemyAnimTableD",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -753,7 +753,7 @@
      }
     },
     {
-     "name": "Sub_B1_95E6",
+     "name": "LoadEnemyAnimTableE",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -769,7 +769,7 @@
      }
     },
     {
-     "name": "Sub_B1_960A",
+     "name": "CheckObjectInViewWindow",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -809,7 +809,7 @@
      }
     },
     {
-     "name": "Sub_B1_96E8",
+     "name": "SpawnShotObjectDefault",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -817,7 +817,7 @@
      }
     },
     {
-     "name": "Sub_B1_96F0",
+     "name": "SpawnShotObjectFromArgs",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -833,7 +833,7 @@
      }
     },
     {
-     "name": "Sub_B1_9816",
+     "name": "LoadEnemyAnimTableF",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -873,7 +873,7 @@
      }
     },
     {
-     "name": "Sub_B1_9A2D",
+     "name": "LoadEnemyAnimTableG",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1065,7 +1065,7 @@
      }
     },
     {
-     "name": "Sub_B1_AA7A",
+     "name": "LoadObjectFrameFromTable",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1081,7 +1081,7 @@
      }
     },
     {
-     "name": "Sub_B1_AAC3",
+     "name": "AdvanceObjectAnimStepB1",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1089,7 +1089,7 @@
      }
     },
     {
-     "name": "Sub_B1_AAD5",
+     "name": "SpawnObjectAtScreenRight",
      "size": "73",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1193,7 +1193,7 @@
      }
     },
     {
-     "name": "Sub_B1_AE43",
+     "name": "ApplyPickupEffect",
      "size": "51",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1217,7 +1217,7 @@
      }
     },
     {
-     "name": "Sub_B1_AFC6",
+     "name": "InitProjectileA",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1225,7 +1225,7 @@
      }
     },
     {
-     "name": "Sub_B1_AFE3",
+     "name": "InitProjectileB",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1323,7 +1323,7 @@
      }
     },
     {
-     "name": "Sub_B2_818E",
+     "name": "EndScopeScene",
      "size": "53",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1331,7 +1331,7 @@
      }
     },
     {
-     "name": "Sub_B2_8211",
+     "name": "InitScopeScene",
      "size": "106",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1347,7 +1347,7 @@
      }
     },
     {
-     "name": "Sub_B2_827E",
+     "name": "LoadScopeStageParams",
      "size": "61",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1355,7 +1355,7 @@
      }
     },
     {
-     "name": "Sub_B2_837A",
+     "name": "CheckScopeScrollEnd",
      "size": "77",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1379,7 +1379,7 @@
      }
     },
     {
-     "name": "Sub_B2_8609",
+     "name": "InitScopeEnemies",
      "size": "163",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1419,7 +1419,7 @@
      }
     },
     {
-     "name": "Sub_B2_8938",
+     "name": "TickScopeSecondTimer",
      "size": "154",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1435,7 +1435,7 @@
      }
     },
     {
-     "name": "Sub_B2_8A0F",
+     "name": "LoadScopeObjectList",
      "size": "161",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1443,7 +1443,7 @@
      }
     },
     {
-     "name": "Sub_B2_8AB0",
+     "name": "CopyObjectByteToList",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1451,7 +1451,7 @@
      }
     },
     {
-     "name": "Sub_B2_8AB8",
+     "name": "CopyObjectNibblePair",
      "size": "78",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1459,7 +1459,7 @@
      }
     },
     {
-     "name": "Sub_B2_8B06",
+     "name": "CopyObjectByteFromPtr06",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1781,7 +1781,7 @@
      }
     },
     {
-     "name": "Sub_B3_8B77",
+     "name": "BlinkTextCursorStep",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2119,7 +2119,7 @@
      }
     },
     {
-     "name": "Sub_B4_82B4",
+     "name": "ReloadMazeAfterMove",
      "size": "58",
      "fuzzy_match_percent": 50.0,
      "metadata": {
@@ -2263,7 +2263,7 @@
      }
     },
     {
-     "name": "Sub_B4_8481",
+     "name": "SetSprite0Marker",
      "size": "116",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2431,7 +2431,7 @@
      }
     },
     {
-     "name": "Sub_B4_8AD3",
+     "name": "LoadMazeObjectTables",
      "size": "90",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2455,7 +2455,7 @@
      }
     },
     {
-     "name": "Sub_B4_8BC9",
+     "name": "RequestTransitionFromTable",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2471,7 +2471,7 @@
      }
     },
     {
-     "name": "Sub_B4_8C18",
+     "name": "ChangeMazeSection",
      "size": "6",
      "fuzzy_match_percent": 50.0,
      "metadata": {
@@ -2479,7 +2479,7 @@
      }
     },
     {
-     "name": "Sub_B4_8C1E",
+     "name": "DispatchMazeExit",
      "size": "17",
      "fuzzy_match_percent": 50.0,
      "metadata": {
@@ -2671,7 +2671,7 @@
      }
     },
     {
-     "name": "Sub_B4_8F71",
+     "name": "SetObjectFrame",
      "size": "58",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2735,7 +2735,7 @@
      }
     },
     {
-     "name": "Sub_B4_9049",
+     "name": "DispatchPpuOpRequest",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2799,7 +2799,7 @@
      }
     },
     {
-     "name": "Sub_B4_90B7",
+     "name": "EnableSpriteBgRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2839,7 +2839,7 @@
      }
     },
     {
-     "name": "Sub_B4_90EE",
+     "name": "LoadObjectSpeedFromType",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2967,7 +2967,7 @@
      }
     },
     {
-     "name": "Sub_B4_9963",
+     "name": "DrawMazeScreen",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2999,7 +2999,7 @@
      }
     },
     {
-     "name": "Sub_B4_9A73",
+     "name": "DrawWallSegments",
      "size": "115",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3111,7 +3111,7 @@
      }
     },
     {
-     "name": "Sub_B4_A01B",
+     "name": "DrawCollectedItemIcons",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3191,7 +3191,7 @@
      }
     },
     {
-     "name": "Sub_B4_A0D9",
+     "name": "SpawnDoorObjectsIfAhead",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3239,7 +3239,7 @@
      }
     },
     {
-     "name": "Sub_B4_A20A",
+     "name": "MazeObjType11State7",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3247,7 +3247,7 @@
      }
     },
     {
-     "name": "Sub_B4_A271",
+     "name": "UpdateDoorObject",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3255,7 +3255,7 @@
      }
     },
     {
-     "name": "Sub_B4_A294",
+     "name": "DoorState0",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3263,7 +3263,7 @@
      }
     },
     {
-     "name": "Sub_B4_A2AF",
+     "name": "DoorState1",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3271,7 +3271,7 @@
      }
     },
     {
-     "name": "Sub_B4_A2BF",
+     "name": "DoorState2",
      "size": "82",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3279,7 +3279,7 @@
      }
     },
     {
-     "name": "Sub_B4_A311",
+     "name": "DoorState3",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3287,7 +3287,7 @@
      }
     },
     {
-     "name": "Sub_B4_A328",
+     "name": "DoorState4",
      "size": "65",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3295,7 +3295,7 @@
      }
     },
     {
-     "name": "Sub_B4_A39C",
+     "name": "DoorState5",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3303,7 +3303,7 @@
      }
     },
     {
-     "name": "Sub_B4_A3B8",
+     "name": "DoorState6",
      "size": "67",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3319,7 +3319,7 @@
      }
     },
     {
-     "name": "Loc_B4_A457",
+     "name": "MazeObjType04",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3327,7 +3327,7 @@
      }
     },
     {
-     "name": "Sub_B4_A470",
+     "name": "MazeObjType04State0",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3335,7 +3335,7 @@
      }
     },
     {
-     "name": "Sub_B4_A478",
+     "name": "WaitObjectTimer",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3367,7 +3367,7 @@
      }
     },
     {
-     "name": "Sub_B4_A526",
+     "name": "MazeObjType05",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3375,7 +3375,7 @@
      }
     },
     {
-     "name": "Sub_B4_A551",
+     "name": "MazeObjType05State0",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3383,7 +3383,7 @@
      }
     },
     {
-     "name": "Sub_B4_A55D",
+     "name": "MazeObjType05State1",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3391,7 +3391,7 @@
      }
     },
     {
-     "name": "Sub_B4_A560",
+     "name": "MazeObjType05State2",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3399,7 +3399,7 @@
      }
     },
     {
-     "name": "Sub_B4_A5BE",
+     "name": "MazeObjType05State3",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3407,7 +3407,7 @@
      }
     },
     {
-     "name": "Sub_B4_A5DF",
+     "name": "MazeObjType05State4",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3415,7 +3415,7 @@
      }
     },
     {
-     "name": "Sub_B4_A606",
+     "name": "MazeObjType05State5",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3423,7 +3423,7 @@
      }
     },
     {
-     "name": "Sub_B4_A698",
+     "name": "MazeObjType05State6",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3431,7 +3431,7 @@
      }
     },
     {
-     "name": "Sub_B4_A6D3",
+     "name": "MazeObjType05State7",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3439,7 +3439,7 @@
      }
     },
     {
-     "name": "Sub_B4_A6E4",
+     "name": "MazeObjType05State8",
      "size": "21",
      "fuzzy_match_percent": 50.0,
      "metadata": {
@@ -3479,7 +3479,7 @@
      }
     },
     {
-     "name": "Sub_B4_A78A",
+     "name": "MazeObjType05State9",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3487,7 +3487,7 @@
      }
     },
     {
-     "name": "Sub_B4_A792",
+     "name": "MazeObjType05StateA",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3495,7 +3495,7 @@
      }
     },
     {
-     "name": "Sub_B4_A7A5",
+     "name": "MazeObjType05StateB",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3503,7 +3503,7 @@
      }
     },
     {
-     "name": "Sub_B4_A9AB",
+     "name": "MazeObjType07",
      "size": "46",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3511,7 +3511,7 @@
      }
     },
     {
-     "name": "Sub_B4_A9D9",
+     "name": "MazeObjType08",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3519,7 +3519,7 @@
      }
     },
     {
-     "name": "Sub_B4_A9F6",
+     "name": "MazeObjType09",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3527,7 +3527,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA01",
+     "name": "MazeObjType0A",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3535,7 +3535,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA07",
+     "name": "UpdateEnemyObject",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3543,7 +3543,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA48",
+     "name": "MazeObjEnemy0AState0",
      "size": "60",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3551,7 +3551,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA84",
+     "name": "MazeObjEnemy0AState1",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3559,7 +3559,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA88",
+     "name": "MazeObjEnemy0AState3",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3567,7 +3567,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA99",
+     "name": "MazeObjEnemy0AState2",
      "size": "62",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3575,7 +3575,7 @@
      }
     },
     {
-     "name": "Sub_B4_AADB",
+     "name": "MazeObjEnemy0AState4",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3583,7 +3583,7 @@
      }
     },
     {
-     "name": "Sub_B4_AAFC",
+     "name": "MazeObjEnemy0AState5",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3591,7 +3591,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB14",
+     "name": "MazeObjEnemy0AState6",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3599,7 +3599,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB20",
+     "name": "MazeObjEnemy0AStateC",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3607,7 +3607,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB41",
+     "name": "MazeObjEnemy0AStateD",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3655,7 +3655,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC25",
+     "name": "MoveObjectXY",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3663,7 +3663,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC2B",
+     "name": "AddToObjectY",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3671,7 +3671,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC2D",
+     "name": "AddToObjectField",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3679,7 +3679,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC33",
+     "name": "MazeObjType27",
      "size": "34",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3687,7 +3687,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC55",
+     "name": "MazeObjType28",
      "size": "124",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3751,7 +3751,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE72",
+     "name": "MazeObjType29",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3759,7 +3759,7 @@
      }
     },
     {
-     "name": "Sub_B4_AEC5",
+     "name": "MazeObjType11",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3775,7 +3775,7 @@
      }
     },
     {
-     "name": "Sub_B4_AEEE",
+     "name": "MazeObjType11State0",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3783,7 +3783,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF15",
+     "name": "MazeObjType11State1",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3791,7 +3791,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF28",
+     "name": "MazeObjType11State2",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3799,7 +3799,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF38",
+     "name": "MazeObjType11State3",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3807,7 +3807,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF7E",
+     "name": "MazeObjType11State4",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3815,7 +3815,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF8F",
+     "name": "MazeObjType11State5",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3823,7 +3823,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF9D",
+     "name": "MazeObjType11State6",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3831,7 +3831,7 @@
      }
     },
     {
-     "name": "Sub_B4_AFB1",
+     "name": "DamageFlashStep",
      "size": "55",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3839,7 +3839,7 @@
      }
     },
     {
-     "name": "Sub_B4_AFE8",
+     "name": "ResetDamageFlash",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3855,7 +3855,7 @@
      }
     },
     {
-     "name": "Sub_B4_B022",
+     "name": "ShakeScreenStep",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3863,7 +3863,7 @@
      }
     },
     {
-     "name": "Sub_B4_B03F",
+     "name": "MazeObjType12",
      "size": "78",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3871,7 +3871,7 @@
      }
     },
     {
-     "name": "Sub_B4_B08D",
+     "name": "MazeObjType13",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3879,7 +3879,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0A6",
+     "name": "MazeObjType13State0",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3887,7 +3887,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0AF",
+     "name": "MazeObjType13State1",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3895,7 +3895,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0B2",
+     "name": "MazeObjType13State2",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3903,7 +3903,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0C9",
+     "name": "MazeObjType14",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3911,7 +3911,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0D9",
+     "name": "MazeObjType16",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3919,7 +3919,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0F2",
+     "name": "MazeObjType16State0",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3927,7 +3927,7 @@
      }
     },
     {
-     "name": "Sub_B4_B12E",
+     "name": "MazeObjType16State1",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3935,7 +3935,7 @@
      }
     },
     {
-     "name": "Sub_B4_B143",
+     "name": "MazeObjType16State2",
      "size": "107",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3943,7 +3943,7 @@
      }
     },
     {
-     "name": "Sub_B4_B1B2",
+     "name": "MazeObjType17",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3951,7 +3951,7 @@
      }
     },
     {
-     "name": "Sub_B4_B1CD",
+     "name": "MazeObjType17State0",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3959,7 +3959,7 @@
      }
     },
     {
-     "name": "Sub_B4_B1ED",
+     "name": "MazeObjType17State1",
      "size": "56",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3967,7 +3967,7 @@
      }
     },
     {
-     "name": "Sub_B4_B225",
+     "name": "MazeObjType17State2",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3975,7 +3975,7 @@
      }
     },
     {
-     "name": "Sub_B4_B250",
+     "name": "MazeObjType17State3",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3983,7 +3983,7 @@
      }
     },
     {
-     "name": "Sub_B4_B26E",
+     "name": "MazeObjType18",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3991,7 +3991,7 @@
      }
     },
     {
-     "name": "Sub_B4_B287",
+     "name": "MazeObjType18State0",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3999,7 +3999,7 @@
      }
     },
     {
-     "name": "Sub_B4_B298",
+     "name": "MazeObjType18State1",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4007,7 +4007,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2AD",
+     "name": "MazeObjType18State2",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4015,7 +4015,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2BE",
+     "name": "MazeObjType19",
      "size": "71",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4167,7 +4167,7 @@
      }
     },
     {
-     "name": "Sub_B4_B4B2",
+     "name": "LoadObjectCountIndex",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4913,7 +4913,7 @@
      }
     },
     {
-     "name": "Sub_B5_86F5",
+     "name": "WaitSceneTimerThenEnableRender",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4921,7 +4921,7 @@
      }
     },
     {
-     "name": "Sub_B5_8701",
+     "name": "WaitSceneCounterZero",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4929,7 +4929,7 @@
      }
     },
     {
-     "name": "Sub_B5_870D",
+     "name": "AdvanceSceneDisableRender",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4937,7 +4937,7 @@
      }
     },
     {
-     "name": "Sub_B5_8713",
+     "name": "AdvanceSceneStateA",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4945,7 +4945,7 @@
      }
     },
     {
-     "name": "Sub_B5_8717",
+     "name": "AdvanceSceneStateB",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4953,7 +4953,7 @@
      }
     },
     {
-     "name": "Sub_B5_871B",
+     "name": "AdvanceSceneDisableRenderB",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4961,7 +4961,7 @@
      }
     },
     {
-     "name": "Sub_B5_8721",
+     "name": "AdvanceSceneStateC",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4969,7 +4969,7 @@
      }
     },
     {
-     "name": "Sub_B5_8725",
+     "name": "SetSceneState25",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5401,7 +5401,7 @@
      }
     },
     {
-     "name": "Sub_B5_976B",
+     "name": "AnimateIntroTile",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5561,7 +5561,7 @@
      }
     },
     {
-     "name": "Sub_B5_A044",
+     "name": "ClearSoundChannelFlags",
      "size": "133",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5593,7 +5593,7 @@
      }
     },
     {
-     "name": "Sub_B5_A1A3",
+     "name": "DispatchSoundCommand",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5705,7 +5705,7 @@
      }
     },
     {
-     "name": "Sub_B5_A357",
+     "name": "TickSoundChannelDelay",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5713,7 +5713,7 @@
      }
     },
     {
-     "name": "Sub_B5_A363",
+     "name": "FetchSoundChannelStep",
      "size": "100",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5729,7 +5729,7 @@
      }
     },
     {
-     "name": "Sub_B5_A402",
+     "name": "IsSoundChannelActive",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5859,7 +5859,7 @@
      }
     },
     {
-     "name": "Sub_B6_8055",
+     "name": "SpawnObjectsAtCurrentColumn",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5867,7 +5867,7 @@
      }
     },
     {
-     "name": "Sub_B6_8080",
+     "name": "SpawnObjectsAtNextColumn",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5907,7 +5907,7 @@
      }
     },
     {
-     "name": "Sub_B6_80D8",
+     "name": "InitSpawnIndexForScroll",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5915,7 +5915,7 @@
      }
     },
     {
-     "name": "Sub_B6_8117",
+     "name": "SpawnObjectFromList",
      "size": "60",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5931,7 +5931,7 @@
      }
     },
     {
-     "name": "Sub_B6_81AA",
+     "name": "SetObjectTimerFromType",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5939,7 +5939,7 @@
      }
     },
     {
-     "name": "Sub_B6_81E3",
+     "name": "ResetObjectTableAndSpawn",
      "size": "172",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5955,7 +5955,7 @@
      }
     },
     {
-     "name": "Sub_B6_82F5",
+     "name": "ProcessCollectedObjects",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5995,7 +5995,7 @@
      }
     },
     {
-     "name": "Sub_B6_83F4",
+     "name": "InitSpawnedObject",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6147,7 +6147,7 @@
      }
     },
     {
-     "name": "Sub_B6_890F",
+     "name": "UpdateEnemyTypeA",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6155,7 +6155,7 @@
      }
     },
     {
-     "name": "Sub_B6_8932",
+     "name": "ApplyAnimFlagEffects",
      "size": "117",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6211,7 +6211,7 @@
      }
     },
     {
-     "name": "Sub_B6_8AD9",
+     "name": "StepAnimFrameByFrameCounter",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6243,7 +6243,7 @@
      }
     },
     {
-     "name": "Sub_B6_8BE6",
+     "name": "ClampObjectYMin24",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6251,7 +6251,7 @@
      }
     },
     {
-     "name": "Sub_B6_945A",
+     "name": "UpdateEnemyTypeB",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6307,7 +6307,7 @@
      }
     },
     {
-     "name": "Sub_B6_9A14",
+     "name": "UpdateEnemyTypeD",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6323,7 +6323,7 @@
      }
     },
     {
-     "name": "Sub_B6_A099",
+     "name": "UpdateEnemyTypeE",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6733,7 +6733,7 @@
      }
     },
     {
-     "name": "Sub_C711",
+     "name": "FetchMapMetatile",
      "size": "74",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6741,7 +6741,7 @@
      }
     },
     {
-     "name": "Sub_C761",
+     "name": "AddTileOffsetToPtr20",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6749,7 +6749,7 @@
      }
     },
     {
-     "name": "Sub_C77C",
+     "name": "BuildColumnTilePtrs",
      "size": "96",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6757,7 +6757,7 @@
      }
     },
     {
-     "name": "Sub_C7F6",
+     "name": "UnpackAttributeBits",
      "size": "105",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6765,7 +6765,7 @@
      }
     },
     {
-     "name": "Sub_C85F",
+     "name": "UpdateScrollSprites",
      "size": "172",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6853,7 +6853,7 @@
      }
     },
     {
-     "name": "Sub_CDE0",
+     "name": "UpdateScreenSideScroll",
      "size": "158",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6877,7 +6877,7 @@
      }
     },
     {
-     "name": "Sub_CF13",
+     "name": "SetupColumnSourcePtrs",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6885,7 +6885,7 @@
      }
     },
     {
-     "name": "Sub_CF84",
+     "name": "AddNibbleOffsetToPtr",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6893,7 +6893,7 @@
      }
     },
     {
-     "name": "Sub_CFA3",
+     "name": "AddPackedOffsetToPtr20",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6901,7 +6901,7 @@
      }
     },
     {
-     "name": "Sub_CFC2",
+     "name": "BuildColumnTilePtrsMasked",
      "size": "102",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6909,7 +6909,7 @@
      }
     },
     {
-     "name": "Sub_D042",
+     "name": "UnpackAttributeBitsB",
      "size": "105",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6917,7 +6917,7 @@
      }
     },
     {
-     "name": "Sub_D0AB",
+     "name": "MovePlayerOnScreenSide",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7109,7 +7109,7 @@
      }
     },
     {
-     "name": "Sub_DA4B",
+     "name": "SetBlinkOverlaySprites",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7141,7 +7141,7 @@
      }
     },
     {
-     "name": "Sub_DC48",
+     "name": "RunTransitionAnimationShort",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7181,7 +7181,7 @@
      }
     },
     {
-     "name": "Sub_DE15",
+     "name": "RunTransitionAnimationLong",
      "size": "115",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7189,7 +7189,7 @@
      }
     },
     {
-     "name": "Sub_DED0",
+     "name": "RunGameOverAnimation",
      "size": "50",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7229,7 +7229,7 @@
      }
     },
     {
-     "name": "Sub_E042",
+     "name": "HealPlayerDuringTransition",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7253,7 +7253,7 @@
      }
     },
     {
-     "name": "Sub_E089",
+     "name": "CheckExitTriggers",
      "size": "244",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7301,7 +7301,7 @@
      }
     },
     {
-     "name": "Sub_E8D3",
+     "name": "FadePaletteStep",
      "size": "67",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7325,7 +7325,7 @@
      }
     },
     {
-     "name": "Sub_E971",
+     "name": "UpdatePlayerJumpArc",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7381,7 +7381,7 @@
      }
     },
     {
-     "name": "Sub_EAD9",
+     "name": "UpdatePlayerShootPose",
      "size": "86",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7389,7 +7389,7 @@
      }
     },
     {
-     "name": "Sub_EB2F",
+     "name": "SelectPlayerWalkFrame",
      "size": "181",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7397,7 +7397,7 @@
      }
     },
     {
-     "name": "Sub_EBE4",
+     "name": "CopyPlayerSpriteLayout",
      "size": "75",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7413,7 +7413,7 @@
      }
     },
     {
-     "name": "Sub_EEC9",
+     "name": "SpawnBulletSprite",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7429,7 +7429,7 @@
      }
     },
     {
-     "name": "Sub_EF2D",
+     "name": "UpdatePlayerWalkInput",
      "size": "78",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7453,7 +7453,7 @@
      }
     },
     {
-     "name": "Sub_EFAA",
+     "name": "CalcPlayerSpriteDataPtr",
      "size": "83",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7525,7 +7525,7 @@
      }
     },
     {
-     "name": "Sub_F4B8",
+     "name": "InitPlayerForAreaType",
      "size": "134",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7565,7 +7565,7 @@
      }
     },
     {
-     "name": "Sub_F634",
+     "name": "MoveBulletsSide6",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7573,7 +7573,7 @@
      }
     },
     {
-     "name": "Sub_F664",
+     "name": "MoveBulletsSide4",
      "size": "52",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7581,7 +7581,7 @@
      }
     },
     {
-     "name": "Sub_F698",
+     "name": "MoveBulletsRight8",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7589,7 +7589,7 @@
      }
     },
     {
-     "name": "Sub_F6BC",
+     "name": "ReadFloorProbeTile",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7629,7 +7629,7 @@
      }
     },
     {
-     "name": "Sub_FB00",
+     "name": "UpdatePlayerHitboxA",
      "size": "224",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7653,7 +7653,7 @@
      }
     },
     {
-     "name": "Sub_FC1A",
+     "name": "UpdatePlayerHitboxB",
      "size": "72",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7661,7 +7661,7 @@
      }
     },
     {
-     "name": "Sub_FC62",
+     "name": "SetBulletHitbox1",
      "size": "91",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7669,7 +7669,7 @@
      }
     },
     {
-     "name": "Sub_FCBD",
+     "name": "SetBulletHitbox2",
      "size": "91",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7677,7 +7677,7 @@
      }
     },
     {
-     "name": "Sub_FD18",
+     "name": "UpdatePlayerHitboxC",
      "size": "73",
      "fuzzy_match_percent": 100.0,
      "metadata": {

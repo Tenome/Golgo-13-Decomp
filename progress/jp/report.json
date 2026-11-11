@@ -3368,7 +3368,7 @@
      }
     },
     {
-     "name": "Sub_B4_A5EA",
+     "name": "MazeObjType05State3",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3392,7 +3392,7 @@
      }
     },
     {
-     "name": "Sub_B4_A6C4",
+     "name": "MazeObjType05State6",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3456,7 +3456,7 @@
      }
     },
     {
-     "name": "Sub_B4_A7C2",
+     "name": "MazeObjType05StateA",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3560,7 +3560,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB50",
+     "name": "MazeObjEnemy0AState6",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3944,7 +3944,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2F7",
+     "name": "MazeObjType19",
      "size": "75",
      "fuzzy_match_percent": 100.0,
      "metadata": {

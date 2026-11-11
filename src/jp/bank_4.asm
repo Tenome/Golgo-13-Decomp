@@ -2498,7 +2498,7 @@ Data_B4_A5B2:
   .incbin "prg_bank_4.bin", $25B2, $1  ; $A5B2
 Data_B4_A5B3:
   .incbin "prg_bank_4.bin", $25B3, $37  ; $A5B3
-Sub_B4_A5EA:
+MazeObjType05State3:
   lda #$28                     ; $A5EA
   sta $054A                    ; $A5EC
   lda #$00                     ; $A5EF
@@ -2558,7 +2558,7 @@ Data_B4_A65F:
   .incbin "prg_bank_4.bin", $265F, $1  ; $A65F
 Data_B4_A660:
   .incbin "prg_bank_4.bin", $2660, $64  ; $A660
-Sub_B4_A6C4:
+MazeObjType05State6:
   ldy #$0E                     ; $A6C4
   lda (Tmp00),y                ; $A6C6
   clc                          ; $A6C8
@@ -2644,7 +2644,7 @@ Sub_B4_A7BA:
   lda #$06                     ; $A7BA
   sta PpuOpRequest             ; $A7BC
   jmp AdvanceObjectState       ; $A7BF
-Sub_B4_A7C2:
+MazeObjType05StateA:
   lda z:HwScrollY              ; $A7C2
   clc                          ; $A7C4
   adc #$08                     ; $A7C5
@@ -2858,7 +2858,7 @@ Loc_B4_AB49:
   lda #$00                     ; $AB49
   sta (Tmp00),y                ; $AB4B
   jmp AdvanceObjectState       ; $AB4D
-Sub_B4_AB50:
+MazeObjEnemy0AState6:
   lda #$4B                     ; $AB50
   ldy #$00                     ; $AB52
   sta (Tmp00),y                ; $AB54
@@ -3468,7 +3468,7 @@ Sub_B4_B2E6:
   jsr DamagePlayer             ; $B2F1
 Loc_B4_B2F4:
   jmp DamageFlashStep          ; $B2F4
-Sub_B4_B2F7:
+MazeObjType19:
   ldy #$08                     ; $B2F7
   lda (Tmp00),y                ; $B2F9
   bne Loc_B4_B31C              ; $B2FB

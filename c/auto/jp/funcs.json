@@ -4480,7 +4480,7 @@
  "Loc_B4_A4C4": {
   "addr": 42180,
   "bank": 4,
-  "instrs": 28,
+  "instrs": 22,
   "ok": true,
   "reason": null,
   "ranges": [
@@ -4490,6 +4490,69 @@
    ],
    [
     74948,
+    74952
+   ],
+   [
+    74965,
+    74986
+   ]
+  ]
+ },
+ "MazeObjType1D": {
+  "addr": 42184,
+  "bank": 4,
+  "instrs": 22,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74871,
+    74894
+   ],
+   [
+    74952,
+    74956
+   ],
+   [
+    74965,
+    74986
+   ]
+  ]
+ },
+ "MazeObjType1E": {
+  "addr": 42188,
+  "bank": 4,
+  "instrs": 22,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74871,
+    74894
+   ],
+   [
+    74956,
+    74960
+   ],
+   [
+    74965,
+    74986
+   ]
+  ]
+ },
+ "MazeObjType1F": {
+  "addr": 42192,
+  "bank": 4,
+  "instrs": 22,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74871,
+    74894
+   ],
+   [
+    74960,
     74986
    ]
   ]
@@ -4540,12 +4603,63 @@
  "Loc_B4_A528": {
   "addr": 42280,
   "bank": 4,
-  "instrs": 17,
+  "instrs": 11,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     75048,
+    75052
+   ],
+   [
+    75065,
+    75086
+   ]
+  ]
+ },
+ "MazeObjType22": {
+  "addr": 42284,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75052,
+    75056
+   ],
+   [
+    75065,
+    75086
+   ]
+  ]
+ },
+ "MazeObjType23": {
+  "addr": 42288,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75056,
+    75060
+   ],
+   [
+    75065,
+    75086
+   ]
+  ]
+ },
+ "MazeObjType24": {
+  "addr": 42292,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75060,
     75086
    ]
   ]
@@ -4602,7 +4716,7 @@
    ]
   ]
  },
- "Sub_B4_A5EA": {
+ "MazeObjType05State3": {
   "addr": 42474,
   "bank": 4,
   "instrs": 13,
@@ -4641,7 +4755,7 @@
    ]
   ]
  },
- "Sub_B4_A6C4": {
+ "MazeObjType05State6": {
   "addr": 42692,
   "bank": 4,
   "instrs": 30,
@@ -4762,7 +4876,7 @@
    ]
   ]
  },
- "Sub_B4_A7C2": {
+ "MazeObjType05StateA": {
   "addr": 42946,
   "bank": 4,
   "instrs": 10,
@@ -4930,7 +5044,7 @@
    ]
   ]
  },
- "Sub_B4_AB50": {
+ "MazeObjEnemy0AState6": {
   "addr": 43856,
   "bank": 4,
   "instrs": 7,
@@ -5206,7 +5320,7 @@
    ]
   ]
  },
- "Loc_B4_AE97": {
+ "MazeObjType29": {
   "addr": 44695,
   "bank": 4,
   "instrs": 24,
@@ -5594,7 +5708,7 @@
    ]
   ]
  },
- "Sub_B4_B2F7": {
+ "MazeObjType19": {
   "addr": 45815,
   "bank": 4,
   "instrs": 23,

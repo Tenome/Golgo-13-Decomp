@@ -2923,14 +2923,105 @@ LA477: BUDGET();
 LA4C4: BUDGET();
   LDA(0x01);                                                                             /* $A4C4 lda */
   if (R.a == 0) {                                                                        /* $A4C6 bne */
-    LDA(0x02);                                                                           /* $A4C8 lda */
-    if (R.a != 0) goto LA4D5;                                                            /* $A4CA bne */
-    LDA(0x04);                                                                           /* $A4CC lda */
-    if (R.a != 0) goto LA4D5;                                                            /* $A4CE bne */
-    LDA(0x08);                                                                           /* $A4D0 lda */
-    bit8(rd(0x10A9));                                                                    /* $A4D2 bit */
+    { MazeObjType1D(); return; }
   }
-LA4D5: BUDGET();
+  bit8(rd(0x051B));                                                                      /* $A4D5 bit */
+  if (!R.z) {                                                                            /* $A4D8 beq */
+    { RemoveObject(); return; }                                                          /* $A4DA jmp */
+  }
+  LDY(0x0C);                                                                             /* $A4DD ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4DF sta */
+  LDA(0xC4);                                                                             /* $A4E1 lda */
+  LDY(0x00);                                                                             /* $A4E3 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4E5 sta */
+  goto LA477;                                                                            /* $A4E7 jmp */
+}
+
+void MazeObjType1D(void) {  /* $A4C8 bank 4 */
+  uint8_t sp0 = R.sp;
+  goto LA4C8;
+LA477: BUDGET();
+  LDY(0x08);                                                                             /* $A477 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A479 lda */
+  cmp8(R.a, 0x03);                                                                       /* $A47B cmp */
+  do { BUDGET();
+  } while (R.c);                                                                         /* $A47D bcs */
+  ASL_A();                                                                               /* $A47F asl */
+  TAX();                                                                                 /* $A480 tax */
+  LDA(rd((uint16_t)(0xA48E + R.x)));                                                     /* $A481 lda */
+  STA(0x6D);                                                                             /* $A484 sta */
+  LDA(rd((uint16_t)(0xA48F + R.x)));                                                     /* $A486 lda */
+  STA(0x6E);                                                                             /* $A489 sta */
+  call_addr(rd16bug(0x006D)); return;                                                    /* $A48B jmp */
+LA4C8: BUDGET();
+  LDA(0x02);                                                                             /* $A4C8 lda */
+  if (R.a == 0) {                                                                        /* $A4CA bne */
+    { MazeObjType1E(); return; }
+  }
+  bit8(rd(0x051B));                                                                      /* $A4D5 bit */
+  if (!R.z) {                                                                            /* $A4D8 beq */
+    { RemoveObject(); return; }                                                          /* $A4DA jmp */
+  }
+  LDY(0x0C);                                                                             /* $A4DD ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4DF sta */
+  LDA(0xC4);                                                                             /* $A4E1 lda */
+  LDY(0x00);                                                                             /* $A4E3 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4E5 sta */
+  goto LA477;                                                                            /* $A4E7 jmp */
+}
+
+void MazeObjType1E(void) {  /* $A4CC bank 4 */
+  uint8_t sp0 = R.sp;
+  goto LA4CC;
+LA477: BUDGET();
+  LDY(0x08);                                                                             /* $A477 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A479 lda */
+  cmp8(R.a, 0x03);                                                                       /* $A47B cmp */
+  do { BUDGET();
+  } while (R.c);                                                                         /* $A47D bcs */
+  ASL_A();                                                                               /* $A47F asl */
+  TAX();                                                                                 /* $A480 tax */
+  LDA(rd((uint16_t)(0xA48E + R.x)));                                                     /* $A481 lda */
+  STA(0x6D);                                                                             /* $A484 sta */
+  LDA(rd((uint16_t)(0xA48F + R.x)));                                                     /* $A486 lda */
+  STA(0x6E);                                                                             /* $A489 sta */
+  call_addr(rd16bug(0x006D)); return;                                                    /* $A48B jmp */
+LA4CC: BUDGET();
+  LDA(0x04);                                                                             /* $A4CC lda */
+  if (R.a == 0) {                                                                        /* $A4CE bne */
+    { MazeObjType1F(); return; }
+  }
+  bit8(rd(0x051B));                                                                      /* $A4D5 bit */
+  if (!R.z) {                                                                            /* $A4D8 beq */
+    { RemoveObject(); return; }                                                          /* $A4DA jmp */
+  }
+  LDY(0x0C);                                                                             /* $A4DD ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4DF sta */
+  LDA(0xC4);                                                                             /* $A4E1 lda */
+  LDY(0x00);                                                                             /* $A4E3 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4E5 sta */
+  goto LA477;                                                                            /* $A4E7 jmp */
+}
+
+void MazeObjType1F(void) {  /* $A4D0 bank 4 */
+  uint8_t sp0 = R.sp;
+  goto LA4D0;
+LA477: BUDGET();
+  LDY(0x08);                                                                             /* $A477 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A479 lda */
+  cmp8(R.a, 0x03);                                                                       /* $A47B cmp */
+  do { BUDGET();
+  } while (R.c);                                                                         /* $A47D bcs */
+  ASL_A();                                                                               /* $A47F asl */
+  TAX();                                                                                 /* $A480 tax */
+  LDA(rd((uint16_t)(0xA48E + R.x)));                                                     /* $A481 lda */
+  STA(0x6D);                                                                             /* $A484 sta */
+  LDA(rd((uint16_t)(0xA48F + R.x)));                                                     /* $A486 lda */
+  STA(0x6E);                                                                             /* $A489 sta */
+  call_addr(rd16bug(0x006D)); return;                                                    /* $A48B jmp */
+LA4D0: BUDGET();
+  LDA(0x08);                                                                             /* $A4D0 lda */
+  bit8(rd(0x10A9));                                                                      /* $A4D2 bit */
   bit8(rd(0x051B));                                                                      /* $A4D5 bit */
   if (!R.z) {                                                                            /* $A4D8 beq */
     { RemoveObject(); return; }                                                          /* $A4DA jmp */
@@ -2992,14 +3083,60 @@ void Loc_B4_A528(void) {  /* $A528 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x01);                                                                             /* $A528 lda */
   if (R.a == 0) {                                                                        /* $A52A bne */
-    LDA(0x02);                                                                           /* $A52C lda */
-    if (R.a != 0) goto LA539;                                                            /* $A52E bne */
-    LDA(0x04);                                                                           /* $A530 lda */
-    if (R.a != 0) goto LA539;                                                            /* $A532 bne */
-    LDA(0x08);                                                                           /* $A534 lda */
-    bit8(rd(0x10A9));                                                                    /* $A536 bit */
+    { MazeObjType22(); return; }
   }
-LA539: BUDGET();
+  bit8(rd(0x051D));                                                                      /* $A539 bit */
+  if (!R.z) {                                                                            /* $A53C beq */
+    { RemoveObject(); return; }                                                          /* $A53E jmp */
+  }
+  LDY(0x0C);                                                                             /* $A541 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A543 sta */
+  LDA(0xCE);                                                                             /* $A545 lda */
+  LDY(0x00);                                                                             /* $A547 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A549 sta */
+  { Loc_B4_A4EA(); return; }                                                             /* $A54B jmp */
+}
+
+void MazeObjType22(void) {  /* $A52C bank 4 */
+  uint8_t sp0 = R.sp;
+  LDA(0x02);                                                                             /* $A52C lda */
+  if (R.a == 0) {                                                                        /* $A52E bne */
+    { MazeObjType23(); return; }
+  }
+  bit8(rd(0x051D));                                                                      /* $A539 bit */
+  if (!R.z) {                                                                            /* $A53C beq */
+    { RemoveObject(); return; }                                                          /* $A53E jmp */
+  }
+  LDY(0x0C);                                                                             /* $A541 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A543 sta */
+  LDA(0xCE);                                                                             /* $A545 lda */
+  LDY(0x00);                                                                             /* $A547 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A549 sta */
+  { Loc_B4_A4EA(); return; }                                                             /* $A54B jmp */
+}
+
+void MazeObjType23(void) {  /* $A530 bank 4 */
+  uint8_t sp0 = R.sp;
+  LDA(0x04);                                                                             /* $A530 lda */
+  if (R.a == 0) {                                                                        /* $A532 bne */
+    { MazeObjType24(); return; }
+  }
+  bit8(rd(0x051D));                                                                      /* $A539 bit */
+  if (!R.z) {                                                                            /* $A53C beq */
+    { RemoveObject(); return; }                                                          /* $A53E jmp */
+  }
+  LDY(0x0C);                                                                             /* $A541 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A543 sta */
+  LDA(0xCE);                                                                             /* $A545 lda */
+  LDY(0x00);                                                                             /* $A547 ldy */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A549 sta */
+  { Loc_B4_A4EA(); return; }                                                             /* $A54B jmp */
+}
+
+void MazeObjType24(void) {  /* $A534 bank 4 */
+  uint8_t sp0 = R.sp;
+  LDA(0x08);                                                                             /* $A534 lda */
+  bit8(rd(0x10A9));                                                                      /* $A536 bit */
   bit8(rd(0x051D));                                                                      /* $A539 bit */
   if (!R.z) {                                                                            /* $A53C beq */
     { RemoveObject(); return; }                                                          /* $A53E jmp */
@@ -3065,7 +3202,7 @@ void Sub_B4_A58C(void) {  /* $A58C bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $A5AF jmp */
 }
 
-void Sub_B4_A5EA(void) {  /* $A5EA bank 4 */
+void MazeObjType05State3(void) {  /* $A5EA bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x28);                                                                             /* $A5EA lda */
   STA(0x054A);                                                                           /* $A5EC sta */
@@ -3130,7 +3267,7 @@ void Sub_B4_A632(void) {  /* $A632 bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $A65C jmp */
 }
 
-void Sub_B4_A6C4(void) {  /* $A6C4 bank 4 */
+void MazeObjType05State6(void) {  /* $A6C4 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x0E);                                                                             /* $A6C4 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A6C6 lda */
@@ -3249,7 +3386,7 @@ void Sub_B4_A7BA(void) {  /* $A7BA bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $A7BF jmp */
 }
 
-void Sub_B4_A7C2(void) {  /* $A7C2 bank 4 */
+void MazeObjType05StateA(void) {  /* $A7C2 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(HwScrollY));                                                                    /* $A7C2 lda */
   CLC();                                                                                 /* $A7C4 clc */
@@ -3534,7 +3671,7 @@ void Sub_B4_AB38(void) {  /* $AB38 bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $AB4D jmp */
 }
 
-void Sub_B4_AB50(void) {  /* $AB50 bank 4 */
+void MazeObjEnemy0AState6(void) {  /* $AB50 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x4B);                                                                             /* $AB50 lda */
   LDY(0x00);                                                                             /* $AB52 ldy */
@@ -3884,7 +4021,7 @@ void Sub_B4_AE8F(void) {  /* $AE8F bank 4 */
   { RemoveObject(); return; }                                                            /* $AE94 jmp */
 }
 
-void Loc_B4_AE97(void) {  /* $AE97 bank 4 */
+void MazeObjType29(void) {  /* $AE97 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $AE97 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $AE99 lda */
@@ -4426,7 +4563,7 @@ void Sub_B4_B2E6(void) {  /* $B2E6 bank 4 */
   { DamageFlashStep(); return; }                                                         /* $B2F4 jmp */
 }
 
-void Sub_B4_B2F7(void) {  /* $B2F7 bank 4 */
+void MazeObjType19(void) {  /* $B2F7 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $B2F7 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B2F9 lda */

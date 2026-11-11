@@ -3264,7 +3264,7 @@
      }
     },
     {
-     "name": "Sub_B4_A20A",
+     "name": "MazeObjType11State7",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3344,7 +3344,7 @@
      }
     },
     {
-     "name": "Loc_B4_A457",
+     "name": "MazeObjType04",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3352,7 +3352,7 @@
      }
     },
     {
-     "name": "Sub_B4_A470",
+     "name": "MazeObjType04State0",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3392,7 +3392,7 @@
      }
     },
     {
-     "name": "Sub_B4_A526",
+     "name": "MazeObjType05",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3400,7 +3400,7 @@
      }
     },
     {
-     "name": "Sub_B4_A551",
+     "name": "MazeObjType05State0",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3408,7 +3408,7 @@
      }
     },
     {
-     "name": "Sub_B4_A55D",
+     "name": "MazeObjType05State1",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3416,7 +3416,7 @@
      }
     },
     {
-     "name": "Sub_B4_A560",
+     "name": "MazeObjType05State2",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3424,7 +3424,7 @@
      }
     },
     {
-     "name": "Sub_B4_A5BE",
+     "name": "MazeObjType05State3",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3432,7 +3432,7 @@
      }
     },
     {
-     "name": "Sub_B4_A5DF",
+     "name": "MazeObjType05State4",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3440,7 +3440,7 @@
      }
     },
     {
-     "name": "Sub_B4_A606",
+     "name": "MazeObjType05State5",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3448,7 +3448,7 @@
      }
     },
     {
-     "name": "Sub_B4_A698",
+     "name": "MazeObjType05State6",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3456,7 +3456,7 @@
      }
     },
     {
-     "name": "Sub_B4_A6D3",
+     "name": "MazeObjType05State7",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3464,7 +3464,7 @@
      }
     },
     {
-     "name": "Sub_B4_A6E4",
+     "name": "MazeObjType05State8",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3504,7 +3504,7 @@
      }
     },
     {
-     "name": "Sub_B4_A78A",
+     "name": "MazeObjType05State9",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3512,7 +3512,7 @@
      }
     },
     {
-     "name": "Sub_B4_A792",
+     "name": "MazeObjType05StateA",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3520,7 +3520,7 @@
      }
     },
     {
-     "name": "Sub_B4_A7A5",
+     "name": "MazeObjType05StateB",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3528,7 +3528,7 @@
      }
     },
     {
-     "name": "Sub_B4_A9AB",
+     "name": "MazeObjType07",
      "size": "46",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3536,7 +3536,7 @@
      }
     },
     {
-     "name": "Sub_B4_A9D9",
+     "name": "MazeObjType08",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3544,7 +3544,7 @@
      }
     },
     {
-     "name": "Sub_B4_A9F6",
+     "name": "MazeObjType09",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3552,7 +3552,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA01",
+     "name": "MazeObjType0A",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3568,7 +3568,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA48",
+     "name": "MazeObjEnemy0AState0",
      "size": "60",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3576,7 +3576,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA84",
+     "name": "MazeObjEnemy0AState1",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3584,7 +3584,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA88",
+     "name": "MazeObjEnemy0AState3",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3592,7 +3592,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA99",
+     "name": "MazeObjEnemy0AState2",
      "size": "62",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3600,7 +3600,7 @@
      }
     },
     {
-     "name": "Sub_B4_AADB",
+     "name": "MazeObjEnemy0AState4",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3608,7 +3608,7 @@
      }
     },
     {
-     "name": "Sub_B4_AAFC",
+     "name": "MazeObjEnemy0AState5",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3616,7 +3616,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB14",
+     "name": "MazeObjEnemy0AState6",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3624,7 +3624,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB20",
+     "name": "MazeObjEnemy0AStateC",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3632,7 +3632,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB41",
+     "name": "MazeObjEnemy0AStateD",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3704,7 +3704,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC33",
+     "name": "MazeObjType27",
      "size": "34",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3712,7 +3712,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC55",
+     "name": "MazeObjType28",
      "size": "124",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3776,7 +3776,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE72",
+     "name": "MazeObjType29",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3784,7 +3784,7 @@
      }
     },
     {
-     "name": "Sub_B4_AEC5",
+     "name": "MazeObjType11",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3800,7 +3800,7 @@
      }
     },
     {
-     "name": "Sub_B4_AEEE",
+     "name": "MazeObjType11State0",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3808,7 +3808,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF15",
+     "name": "MazeObjType11State1",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3816,7 +3816,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF28",
+     "name": "MazeObjType11State2",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3824,7 +3824,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF38",
+     "name": "MazeObjType11State3",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3832,7 +3832,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF7E",
+     "name": "MazeObjType11State4",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3840,7 +3840,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF8F",
+     "name": "MazeObjType11State5",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3848,7 +3848,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF9D",
+     "name": "MazeObjType11State6",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3888,7 +3888,7 @@
      }
     },
     {
-     "name": "Sub_B4_B03F",
+     "name": "MazeObjType12",
      "size": "78",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3896,7 +3896,7 @@
      }
     },
     {
-     "name": "Sub_B4_B08D",
+     "name": "MazeObjType13",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3904,7 +3904,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0A6",
+     "name": "MazeObjType13State0",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3912,7 +3912,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0AF",
+     "name": "MazeObjType13State1",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3920,7 +3920,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0B2",
+     "name": "MazeObjType13State2",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3928,7 +3928,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0C9",
+     "name": "MazeObjType14",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3936,7 +3936,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0D9",
+     "name": "MazeObjType16",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3944,7 +3944,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0F2",
+     "name": "MazeObjType16State0",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3952,7 +3952,7 @@
      }
     },
     {
-     "name": "Sub_B4_B12E",
+     "name": "MazeObjType16State1",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3960,7 +3960,7 @@
      }
     },
     {
-     "name": "Sub_B4_B143",
+     "name": "MazeObjType16State2",
      "size": "107",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3968,7 +3968,7 @@
      }
     },
     {
-     "name": "Sub_B4_B1B2",
+     "name": "MazeObjType17",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3976,7 +3976,7 @@
      }
     },
     {
-     "name": "Sub_B4_B1CD",
+     "name": "MazeObjType17State0",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3984,7 +3984,7 @@
      }
     },
     {
-     "name": "Sub_B4_B1ED",
+     "name": "MazeObjType17State1",
      "size": "56",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3992,7 +3992,7 @@
      }
     },
     {
-     "name": "Sub_B4_B225",
+     "name": "MazeObjType17State2",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4000,7 +4000,7 @@
      }
     },
     {
-     "name": "Sub_B4_B250",
+     "name": "MazeObjType17State3",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4008,7 +4008,7 @@
      }
     },
     {
-     "name": "Sub_B4_B26E",
+     "name": "MazeObjType18",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4016,7 +4016,7 @@
      }
     },
     {
-     "name": "Sub_B4_B287",
+     "name": "MazeObjType18State0",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4024,7 +4024,7 @@
      }
     },
     {
-     "name": "Sub_B4_B298",
+     "name": "MazeObjType18State1",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4032,7 +4032,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2AD",
+     "name": "MazeObjType18State2",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4040,7 +4040,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2BE",
+     "name": "MazeObjType19",
      "size": "71",
      "fuzzy_match_percent": 100.0,
      "metadata": {
