@@ -5998,7 +5998,7 @@
      }
     },
     {
-     "name": "Sub_B6_85FD",
+     "name": "SpawnObjectTypeCB",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6014,7 +6014,7 @@
      }
     },
     {
-     "name": "Sub_B6_865C",
+     "name": "RandomizeSpawnFlags70",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6022,7 +6022,7 @@
      }
     },
     {
-     "name": "Sub_B6_868C",
+     "name": "SetSpawnYWithRandomOffset",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6030,7 +6030,7 @@
      }
     },
     {
-     "name": "Sub_B6_869A",
+     "name": "SetSpawnSideFromPlayerY",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6038,7 +6038,7 @@
      }
     },
     {
-     "name": "Sub_B6_86BA",
+     "name": "ShiftSpawnXLeft4",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6054,7 +6054,7 @@
      }
     },
     {
-     "name": "Sub_B6_8703",
+     "name": "TurnObjectIntoPickupEffect",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6070,7 +6070,7 @@
      }
     },
     {
-     "name": "Sub_B6_8746",
+     "name": "ShiftSpawnXRight18",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6078,7 +6078,7 @@
      }
     },
     {
-     "name": "Sub_B6_8756",
+     "name": "SetChildObjectTypes52",
      "size": "125",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6086,7 +6086,7 @@
      }
     },
     {
-     "name": "Sub_B6_87D3",
+     "name": "SetSpawnYFixed10",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6094,7 +6094,7 @@
      }
     },
     {
-     "name": "Sub_B6_87DA",
+     "name": "OffsetSpawnXByInput",
      "size": "41",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6110,7 +6110,7 @@
      }
     },
     {
-     "name": "Sub_B6_8822",
+     "name": "RandomizeSpawnFlagsPair",
      "size": "73",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6118,7 +6118,7 @@
      }
     },
     {
-     "name": "Sub_B6_886B",
+     "name": "RandomizeSpawnFlag10",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {

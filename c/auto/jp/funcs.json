@@ -8836,7 +8836,7 @@
    ]
   ]
  },
- "Sub_B6_85FD": {
+ "SpawnObjectTypeCB": {
   "addr": 34301,
   "bank": 6,
   "instrs": 17,
@@ -8849,7 +8849,7 @@
    ]
   ]
  },
- "Loc_B6_8621": {
+ "SpawnObjectTypeCC": {
   "addr": 34337,
   "bank": 6,
   "instrs": 12,
@@ -8875,7 +8875,7 @@
    ]
   ]
  },
- "Sub_B6_865C": {
+ "RandomizeSpawnFlags70": {
   "addr": 34396,
   "bank": 6,
   "instrs": 6,
@@ -8888,7 +8888,7 @@
    ]
   ]
  },
- "Loc_B6_8668": {
+ "SpawnObjectTypeCE": {
   "addr": 34408,
   "bank": 6,
   "instrs": 16,
@@ -8901,7 +8901,7 @@
    ]
   ]
  },
- "Sub_B6_868C": {
+ "SetSpawnYWithRandomOffset": {
   "addr": 34444,
   "bank": 6,
   "instrs": 7,
@@ -8914,7 +8914,7 @@
    ]
   ]
  },
- "Sub_B6_869A": {
+ "SetSpawnSideFromPlayerY": {
   "addr": 34458,
   "bank": 6,
   "instrs": 15,
@@ -8927,7 +8927,7 @@
    ]
   ]
  },
- "Sub_B6_86BA": {
+ "ShiftSpawnXLeft4": {
   "addr": 34490,
   "bank": 6,
   "instrs": 10,
@@ -8940,7 +8940,7 @@
    ]
   ]
  },
- "Sub_B6_8703": {
+ "TurnObjectIntoPickupEffect": {
   "addr": 34563,
   "bank": 6,
   "instrs": 30,
@@ -8953,7 +8953,7 @@
    ]
   ]
  },
- "Loc_B6_8708": {
+ "SpawnObjectType51": {
   "addr": 34568,
   "bank": 6,
   "instrs": 23,
@@ -8979,7 +8979,7 @@
    ]
   ]
  },
- "Sub_B6_8746": {
+ "ShiftSpawnXRight18": {
   "addr": 34630,
   "bank": 6,
   "instrs": 9,
@@ -8992,7 +8992,7 @@
    ]
   ]
  },
- "Sub_B6_8756": {
+ "SetChildObjectTypes52": {
   "addr": 34646,
   "bank": 6,
   "instrs": 19,
@@ -9005,7 +9005,7 @@
    ]
   ]
  },
- "Loc_B6_877B": {
+ "SpawnObjectTypeD6": {
   "addr": 34683,
   "bank": 6,
   "instrs": 14,
@@ -9018,7 +9018,7 @@
    ]
   ]
  },
- "Loc_B6_8797": {
+ "SpawnObjectTypeD8": {
   "addr": 34711,
   "bank": 6,
   "instrs": 26,
@@ -9031,7 +9031,7 @@
    ]
   ]
  },
- "Sub_B6_87D3": {
+ "SetSpawnYFixed10": {
   "addr": 34771,
   "bank": 6,
   "instrs": 4,
@@ -9044,7 +9044,7 @@
    ]
   ]
  },
- "Sub_B6_87DA": {
+ "OffsetSpawnXByInput": {
   "addr": 34778,
   "bank": 6,
   "instrs": 22,
@@ -9070,7 +9070,7 @@
    ]
   ]
  },
- "Sub_B6_8822": {
+ "RandomizeSpawnFlagsPair": {
   "addr": 34850,
   "bank": 6,
   "instrs": 10,
@@ -9083,7 +9083,7 @@
    ]
   ]
  },
- "Loc_B6_8837": {
+ "SpawnObjectTypeD9": {
   "addr": 34871,
   "bank": 6,
   "instrs": 16,
@@ -9096,7 +9096,7 @@
    ]
   ]
  },
- "Loc_B6_8858": {
+ "SpawnObjectTypeDB": {
   "addr": 34904,
   "bank": 6,
   "instrs": 9,
@@ -9109,7 +9109,7 @@
    ]
   ]
  },
- "Sub_B6_886B": {
+ "RandomizeSpawnFlag10": {
   "addr": 34923,
   "bank": 6,
   "instrs": 10,
@@ -9122,7 +9122,7 @@
    ]
   ]
  },
- "Loc_B6_8880": {
+ "SpawnObjectTypeDD": {
   "addr": 34944,
   "bank": 6,
   "instrs": 13,
@@ -9135,7 +9135,7 @@
    ]
   ]
  },
- "Loc_B6_889B": {
+ "SpawnObjectTypeDF": {
   "addr": 34971,
   "bank": 6,
   "instrs": 15,

@@ -340,7 +340,7 @@ Loc_B6_8303:
   and #$0F                     ; $8307
   bne Loc_B6_8311              ; $8309
   jsr CollectPickup            ; $830B
-  jsr Sub_B6_8703              ; $830E
+  jsr TurnObjectIntoPickupEffect ; $830E
 Loc_B6_8311:
   lda z:Tmp00                  ; $8311
   clc                          ; $8313
@@ -472,7 +472,7 @@ SetRandomSpawnPhase:
   sta ($0A),y                  ; $843A
   rts                          ; $843C
   .incbin "prg_bank_6.bin", $043D, $1C0  ; $843D
-Sub_B6_85FD:
+SpawnObjectTypeCB:
   jsr InitSpawnedObject        ; $85FD
   lda z:$08                    ; $8600
   jsr AslA6                    ; $8602
@@ -490,9 +490,10 @@ Sub_B6_85FD:
   lda #$01                     ; $861C
   sta ($0A),y                  ; $861E
   rts                          ; $8620
+SpawnObjectTypeCC:
   jsr SetRandomSpawnYNearPlayer ; $8621  [heuristic code]
   jsr SetSpawnXFromScroll      ; $8624
-  jsr Sub_B6_865C              ; $8627
+  jsr RandomizeSpawnFlags70    ; $8627
   ldy #$00                     ; $862A
   lda #$CC                     ; $862C
   sta ($0A),y                  ; $862E
@@ -521,20 +522,21 @@ Loc_B6_8657:
   ldy #$0B                     ; $8657
   sta ($0A),y                  ; $8659
   rts                          ; $865B
-Sub_B6_865C:
+RandomizeSpawnFlags70:
   jsr GetRandomByte            ; $865C
   and #$70                     ; $865F
   ldy #$09                     ; $8661
   ora ($0A),y                  ; $8663
   sta ($0A),y                  ; $8665
   rts                          ; $8667
+SpawnObjectTypeCE:
   lda z:FrameCounter           ; $8668  [heuristic code]
   and #$01                     ; $866A
   bne Loc_B6_868B              ; $866C
   jsr SetSpawnXFromScroll      ; $866E
-  jsr Sub_B6_86BA              ; $8671
-  jsr Sub_B6_869A              ; $8674
-  jsr Sub_B6_868C              ; $8677
+  jsr ShiftSpawnXLeft4         ; $8671
+  jsr SetSpawnSideFromPlayerY  ; $8674
+  jsr SetSpawnYWithRandomOffset ; $8677
   ldy #$00                     ; $867A
   lda #$CE                     ; $867C
   sta ($0A),y                  ; $867E
@@ -545,7 +547,7 @@ Sub_B6_865C:
   jsr QueueSound               ; $8688
 Loc_B6_868B:
   rts                          ; $868B
-Sub_B6_868C:
+SetSpawnYWithRandomOffset:
   stx z:$06                    ; $868C
   jsr GetRandomByte            ; $868E
   and #$30                     ; $8691
@@ -553,7 +555,7 @@ Sub_B6_868C:
   ldy #$0B                     ; $8695
   sta ($0A),y                  ; $8697
   rts                          ; $8699
-Sub_B6_869A:
+SetSpawnSideFromPlayerY:
   lda PlayerSpriteY0           ; $869A
   cmp #$70                     ; $869D
   bcs Loc_B6_86A8              ; $869F
@@ -571,7 +573,7 @@ Loc_B6_86AC:
   jsr LsrA4                    ; $86B4
   sta ($0A),y                  ; $86B7
   rts                          ; $86B9
-Sub_B6_86BA:
+ShiftSpawnXLeft4:
   ldy #$0A                     ; $86BA
   lda ($0A),y                  ; $86BC
   sec                          ; $86BE
@@ -612,9 +614,10 @@ Loc_B6_86CD:
   lda #$10                     ; $86FD
   jsr QueueSound               ; $86FF
   rts                          ; $8702
-Sub_B6_8703:
+TurnObjectIntoPickupEffect:
   lda #$10                     ; $8703
   jmp Loc_B6_86CD              ; $8705
+SpawnObjectType51:
   lda z:FrameCounter           ; $8708  [heuristic code]
   and #$01                     ; $870A
   beq Loc_B6_8715              ; $870C
@@ -626,9 +629,9 @@ Loc_B6_8715:
   rts                          ; $8718
 Loc_B6_8719:
   jsr SetSpawnXFromScroll      ; $8719
-  jsr Sub_B6_8746              ; $871C
+  jsr ShiftSpawnXRight18       ; $871C
   jsr SetSpawnYToPlayerY       ; $871F
-  jsr Sub_B6_8756              ; $8722
+  jsr SetChildObjectTypes52    ; $8722
   inc ObjectCount              ; $8725
   inc ObjectCount              ; $8728
   inc ObjectCount              ; $872B
@@ -645,7 +648,7 @@ SetSpawnYToPlayerY:
   lda PlayerSpriteY0           ; $8740
   sta ($0A),y                  ; $8743
   rts                          ; $8745
-Sub_B6_8746:
+ShiftSpawnXRight18:
   ldy #$0A                     ; $8746
   lda ($0A),y                  ; $8748
   adc #$18                     ; $874A
@@ -655,7 +658,7 @@ Sub_B6_8746:
   adc #$00                     ; $8751
   sta ($0A),y                  ; $8753
   rts                          ; $8755
-Sub_B6_8756:
+SetChildObjectTypes52:
   lda #$52                     ; $8756
   ldy #$10                     ; $8758
   sta ($0A),y                  ; $875A
@@ -675,6 +678,7 @@ Sub_B6_8756:
   ldy #$46                     ; $8776
   sta ($0A),y                  ; $8778
   rts                          ; $877A
+SpawnObjectTypeD6:
   lda z:FrameCounter           ; $877B  [heuristic code]
   and #$01                     ; $877D
   bne Loc_B6_8796              ; $877F
@@ -690,6 +694,7 @@ Sub_B6_8756:
   sta ($0A),y                  ; $8794
 Loc_B6_8796:
   rts                          ; $8796
+SpawnObjectTypeD8:
   lda ObjectCount              ; $8797  [heuristic code]
   cmp #$0D                     ; $879A
   bcs Loc_B6_87A5              ; $879C
@@ -701,8 +706,8 @@ Loc_B6_87A5:
   rts                          ; $87A8
 Loc_B6_87A9:
   jsr SetSpawnXFromScroll      ; $87A9
-  jsr Sub_B6_87DA              ; $87AC
-  jsr Sub_B6_87D3              ; $87AF
+  jsr OffsetSpawnXByInput      ; $87AC
+  jsr SetSpawnYFixed10         ; $87AF
   ldy #$00                     ; $87B2
   lda #$D8                     ; $87B4
   sta ($0A),y                  ; $87B6
@@ -714,16 +719,16 @@ Loc_B6_87A9:
   sta ($0A),y                  ; $87C2
   inc ObjectCount              ; $87C4
   jsr DuplicateObjectEntry     ; $87C7
-  jsr Sub_B6_8822              ; $87CA
+  jsr RandomizeSpawnFlagsPair  ; $87CA
   lda #$3D                     ; $87CD
   jsr QueueSound               ; $87CF
   rts                          ; $87D2
-Sub_B6_87D3:
+SetSpawnYFixed10:
   ldy #$0B                     ; $87D3
   lda #$10                     ; $87D5
   sta ($0A),y                  ; $87D7
   rts                          ; $87D9
-Sub_B6_87DA:
+OffsetSpawnXByInput:
   ldy #$0A                     ; $87DA
   lda JoyHeld1                 ; $87DC
   and #$C0                     ; $87DF
@@ -767,7 +772,7 @@ Loc_B6_8810:
   adc #$1C                     ; $881D
   sta ($04),y                  ; $881F
   rts                          ; $8821
-Sub_B6_8822:
+RandomizeSpawnFlagsPair:
   ldy #$09                     ; $8822
   jsr GetRandomByte            ; $8824
   and #$70                     ; $8827
@@ -778,6 +783,7 @@ Sub_B6_8822:
   ora ($04),y                  ; $8832
   sta ($04),y                  ; $8834
   rts                          ; $8836
+SpawnObjectTypeD9:
   jsr InitSpawnedObject        ; $8837  [heuristic code]
   ldy #$09                     ; $883A
   lda z:$08                    ; $883C
@@ -796,8 +802,9 @@ Loc_B6_8847:
   lda #$0C                     ; $8853
   sta ($0A),y                  ; $8855
   rts                          ; $8857
+SpawnObjectTypeDB:
   jsr InitSpawnedObject        ; $8858  [heuristic code]
-  jsr Sub_B6_886B              ; $885B
+  jsr RandomizeSpawnFlag10     ; $885B
   ldy #$00                     ; $885E
   lda #$DB                     ; $8860
   sta ($0A),y                  ; $8862
@@ -805,7 +812,7 @@ Loc_B6_8847:
   lda #$20                     ; $8866
   sta ($0A),y                  ; $8868
   rts                          ; $886A
-Sub_B6_886B:
+RandomizeSpawnFlag10:
   lda z:$08                    ; $886B
   jsr AslA5                    ; $886D
   sta z:$08                    ; $8870
@@ -816,6 +823,7 @@ Sub_B6_886B:
   ora ($0A),y                  ; $887B
   sta ($0A),y                  ; $887D
   rts                          ; $887F
+SpawnObjectTypeDD:
   jsr InitSpawnedObject        ; $8880  [heuristic code]
   ldy #$09                     ; $8883
   lda z:$08                    ; $8885
@@ -829,6 +837,7 @@ Sub_B6_886B:
   lda #$20                     ; $8896
   sta ($0A),y                  ; $8898
   rts                          ; $889A
+SpawnObjectTypeDF:
   jsr InitSpawnedObject        ; $889B  [heuristic code]
   ldy #$09                     ; $889E
   lda z:$08                    ; $88A0
