@@ -6773,7 +6773,7 @@
      }
     },
     {
-     "name": "Sub_C711",
+     "name": "FetchMapMetatile",
      "size": "74",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6781,7 +6781,7 @@
      }
     },
     {
-     "name": "Sub_C761",
+     "name": "AddTileOffsetToPtr20",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6789,7 +6789,7 @@
      }
     },
     {
-     "name": "Sub_C77C",
+     "name": "BuildColumnTilePtrs",
      "size": "96",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6797,7 +6797,7 @@
      }
     },
     {
-     "name": "Sub_C7F6",
+     "name": "UnpackAttributeBits",
      "size": "105",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6805,7 +6805,7 @@
      }
     },
     {
-     "name": "Sub_C85F",
+     "name": "UpdateScrollSprites",
      "size": "172",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6893,7 +6893,7 @@
      }
     },
     {
-     "name": "Sub_CDE0",
+     "name": "UpdateScreenSideScroll",
      "size": "158",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6917,7 +6917,7 @@
      }
     },
     {
-     "name": "Sub_CF13",
+     "name": "SetupColumnSourcePtrs",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6925,7 +6925,7 @@
      }
     },
     {
-     "name": "Sub_CF84",
+     "name": "AddNibbleOffsetToPtr",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6933,7 +6933,7 @@
      }
     },
     {
-     "name": "Sub_CFA3",
+     "name": "AddPackedOffsetToPtr20",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6941,7 +6941,7 @@
      }
     },
     {
-     "name": "Sub_CFC2",
+     "name": "BuildColumnTilePtrsMasked",
      "size": "102",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6949,7 +6949,7 @@
      }
     },
     {
-     "name": "Sub_D042",
+     "name": "UnpackAttributeBitsB",
      "size": "105",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6957,7 +6957,7 @@
      }
     },
     {
-     "name": "Sub_D0AB",
+     "name": "MovePlayerOnScreenSide",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7149,7 +7149,7 @@
      }
     },
     {
-     "name": "Sub_DA4B",
+     "name": "SetBlinkOverlaySprites",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7181,7 +7181,7 @@
      }
     },
     {
-     "name": "Sub_DC48",
+     "name": "RunTransitionAnimationShort",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7221,7 +7221,7 @@
      }
     },
     {
-     "name": "Sub_DE15",
+     "name": "RunTransitionAnimationLong",
      "size": "115",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7229,7 +7229,7 @@
      }
     },
     {
-     "name": "Sub_DED0",
+     "name": "RunGameOverAnimation",
      "size": "50",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7269,7 +7269,7 @@
      }
     },
     {
-     "name": "Sub_E042",
+     "name": "HealPlayerDuringTransition",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7293,7 +7293,7 @@
      }
     },
     {
-     "name": "Sub_E089",
+     "name": "CheckExitTriggers",
      "size": "244",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7341,7 +7341,7 @@
      }
     },
     {
-     "name": "Sub_E8D3",
+     "name": "FadePaletteStep",
      "size": "67",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7365,7 +7365,7 @@
      }
     },
     {
-     "name": "Sub_E971",
+     "name": "UpdatePlayerJumpArc",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7421,7 +7421,7 @@
      }
     },
     {
-     "name": "Sub_EAD9",
+     "name": "UpdatePlayerShootPose",
      "size": "86",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7429,7 +7429,7 @@
      }
     },
     {
-     "name": "Sub_EB2F",
+     "name": "SelectPlayerWalkFrame",
      "size": "181",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7437,7 +7437,7 @@
      }
     },
     {
-     "name": "Sub_EBE4",
+     "name": "CopyPlayerSpriteLayout",
      "size": "75",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7453,7 +7453,7 @@
      }
     },
     {
-     "name": "Sub_EEC9",
+     "name": "SpawnBulletSprite",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7469,7 +7469,7 @@
      }
     },
     {
-     "name": "Sub_EF2D",
+     "name": "UpdatePlayerWalkInput",
      "size": "78",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7493,7 +7493,7 @@
      }
     },
     {
-     "name": "Sub_EFAA",
+     "name": "CalcPlayerSpriteDataPtr",
      "size": "83",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7565,7 +7565,7 @@
      }
     },
     {
-     "name": "Sub_F4B8",
+     "name": "InitPlayerForAreaType",
      "size": "134",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7605,7 +7605,7 @@
      }
     },
     {
-     "name": "Sub_F634",
+     "name": "MoveBulletsSide6",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7613,7 +7613,7 @@
      }
     },
     {
-     "name": "Sub_F664",
+     "name": "MoveBulletsSide4",
      "size": "52",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7621,7 +7621,7 @@
      }
     },
     {
-     "name": "Sub_F698",
+     "name": "MoveBulletsRight8",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7629,7 +7629,7 @@
      }
     },
     {
-     "name": "Sub_F6BC",
+     "name": "ReadFloorProbeTile",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7669,7 +7669,7 @@
      }
     },
     {
-     "name": "Sub_FB00",
+     "name": "UpdatePlayerHitboxA",
      "size": "224",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7693,7 +7693,7 @@
      }
     },
     {
-     "name": "Sub_FC1A",
+     "name": "UpdatePlayerHitboxB",
      "size": "72",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7701,7 +7701,7 @@
      }
     },
     {
-     "name": "Sub_FC62",
+     "name": "SetBulletHitbox1",
      "size": "91",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7709,7 +7709,7 @@
      }
     },
     {
-     "name": "Sub_FCBD",
+     "name": "SetBulletHitbox2",
      "size": "91",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7717,7 +7717,7 @@
      }
     },
     {
-     "name": "Sub_FD18",
+     "name": "UpdatePlayerHitboxC",
      "size": "73",
      "fuzzy_match_percent": 100.0,
      "metadata": {

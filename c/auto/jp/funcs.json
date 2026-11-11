@@ -9935,7 +9935,7 @@
    ]
   ]
  },
- "Sub_C711": {
+ "FetchMapMetatile": {
   "addr": 50961,
   "bank": 7,
   "instrs": 37,
@@ -9948,7 +9948,7 @@
    ]
   ]
  },
- "Sub_C761": {
+ "AddTileOffsetToPtr20": {
   "addr": 51041,
   "bank": 7,
   "instrs": 13,
@@ -9961,7 +9961,7 @@
    ]
   ]
  },
- "Sub_C77C": {
+ "BuildColumnTilePtrs": {
   "addr": 51068,
   "bank": 7,
   "instrs": 54,
@@ -9974,7 +9974,7 @@
    ]
   ]
  },
- "Sub_C7F6": {
+ "UnpackAttributeBits": {
   "addr": 51190,
   "bank": 7,
   "instrs": 62,
@@ -9987,7 +9987,7 @@
    ]
   ]
  },
- "Sub_C85F": {
+ "UpdateScrollSprites": {
   "addr": 51295,
   "bank": 7,
   "instrs": 83,
@@ -10134,7 +10134,7 @@
    ]
   ]
  },
- "Sub_CDE0": {
+ "UpdateScreenSideScroll": {
   "addr": 52704,
   "bank": 7,
   "instrs": 74,
@@ -10173,7 +10173,7 @@
    ]
   ]
  },
- "Sub_CF13": {
+ "SetupColumnSourcePtrs": {
   "addr": 53011,
   "bank": 7,
   "instrs": 49,
@@ -10186,7 +10186,7 @@
    ]
   ]
  },
- "Sub_CF84": {
+ "AddNibbleOffsetToPtr": {
   "addr": 53124,
   "bank": 7,
   "instrs": 15,
@@ -10199,7 +10199,7 @@
    ]
   ]
  },
- "Sub_CFA3": {
+ "AddPackedOffsetToPtr20": {
   "addr": 53155,
   "bank": 7,
   "instrs": 15,
@@ -10212,7 +10212,7 @@
    ]
   ]
  },
- "Sub_CFC2": {
+ "BuildColumnTilePtrsMasked": {
   "addr": 53186,
   "bank": 7,
   "instrs": 58,
@@ -10225,7 +10225,7 @@
    ]
   ]
  },
- "Sub_D042": {
+ "UnpackAttributeBitsB": {
   "addr": 53314,
   "bank": 7,
   "instrs": 62,
@@ -10238,7 +10238,7 @@
    ]
   ]
  },
- "Sub_D0AB": {
+ "MovePlayerOnScreenSide": {
   "addr": 53419,
   "bank": 7,
   "instrs": 34,
@@ -10549,7 +10549,7 @@
    ]
   ]
  },
- "Sub_DA4B": {
+ "SetBlinkOverlaySprites": {
   "addr": 55883,
   "bank": 7,
   "instrs": 21,
@@ -10601,7 +10601,7 @@
    ]
   ]
  },
- "Sub_DC48": {
+ "RunTransitionAnimationShort": {
   "addr": 56392,
   "bank": 7,
   "instrs": 22,
@@ -10666,7 +10666,7 @@
    ]
   ]
  },
- "Sub_DE15": {
+ "RunTransitionAnimationLong": {
   "addr": 56853,
   "bank": 7,
   "instrs": 55,
@@ -10679,7 +10679,7 @@
    ]
   ]
  },
- "Sub_DED0": {
+ "RunGameOverAnimation": {
   "addr": 57040,
   "bank": 7,
   "instrs": 23,
@@ -10744,7 +10744,7 @@
    ]
   ]
  },
- "Sub_E042": {
+ "HealPlayerDuringTransition": {
   "addr": 57410,
   "bank": 7,
   "instrs": 15,
@@ -10783,7 +10783,7 @@
    ]
   ]
  },
- "Sub_E089": {
+ "CheckExitTriggers": {
   "addr": 57481,
   "bank": 7,
   "instrs": 129,
@@ -10861,7 +10861,7 @@
    ]
   ]
  },
- "Sub_E8D3": {
+ "FadePaletteStep": {
   "addr": 59603,
   "bank": 7,
   "instrs": 33,
@@ -10900,7 +10900,7 @@
    ]
   ]
  },
- "Sub_E971": {
+ "UpdatePlayerJumpArc": {
   "addr": 59761,
   "bank": 7,
   "instrs": 44,
@@ -10991,7 +10991,7 @@
    ]
   ]
  },
- "Sub_EAD9": {
+ "UpdatePlayerShootPose": {
   "addr": 60121,
   "bank": 7,
   "instrs": 38,
@@ -11004,7 +11004,7 @@
    ]
   ]
  },
- "Sub_EB2F": {
+ "SelectPlayerWalkFrame": {
   "addr": 60207,
   "bank": 7,
   "instrs": 82,
@@ -11017,7 +11017,7 @@
    ]
   ]
  },
- "Sub_EBE4": {
+ "CopyPlayerSpriteLayout": {
   "addr": 60388,
   "bank": 7,
   "instrs": 37,
@@ -11043,7 +11043,7 @@
    ]
   ]
  },
- "Sub_EEC9": {
+ "SpawnBulletSprite": {
   "addr": 61129,
   "bank": 7,
   "instrs": 40,
@@ -11086,7 +11086,7 @@
    ]
   ]
  },
- "Sub_EF2D": {
+ "UpdatePlayerWalkInput": {
   "addr": 61229,
   "bank": 7,
   "instrs": 35,
@@ -11125,7 +11125,7 @@
    ]
   ]
  },
- "Sub_EFAA": {
+ "CalcPlayerSpriteDataPtr": {
   "addr": 61354,
   "bank": 7,
   "instrs": 46,
@@ -11242,7 +11242,7 @@
    ]
   ]
  },
- "Sub_F4B8": {
+ "InitPlayerForAreaType": {
   "addr": 62648,
   "bank": 7,
   "instrs": 132,
@@ -11289,7 +11289,7 @@
    ]
   ]
  },
- "Sub_F634": {
+ "MoveBulletsSide6": {
   "addr": 63028,
   "bank": 7,
   "instrs": 24,
@@ -11302,7 +11302,7 @@
    ]
   ]
  },
- "Sub_F664": {
+ "MoveBulletsSide4": {
   "addr": 63076,
   "bank": 7,
   "instrs": 26,
@@ -11315,7 +11315,7 @@
    ]
   ]
  },
- "Sub_F698": {
+ "MoveBulletsRight8": {
   "addr": 63128,
   "bank": 7,
   "instrs": 19,
@@ -11328,7 +11328,7 @@
    ]
   ]
  },
- "Sub_F6BC": {
+ "ReadFloorProbeTile": {
   "addr": 63164,
   "bank": 7,
   "instrs": 21,
@@ -11393,7 +11393,7 @@
    ]
   ]
  },
- "Sub_FB00": {
+ "UpdatePlayerHitboxA": {
   "addr": 64256,
   "bank": 7,
   "instrs": 92,
@@ -11432,7 +11432,7 @@
    ]
   ]
  },
- "Sub_FC1A": {
+ "UpdatePlayerHitboxB": {
   "addr": 64538,
   "bank": 7,
   "instrs": 28,
@@ -11445,7 +11445,7 @@
    ]
   ]
  },
- "Sub_FC62": {
+ "SetBulletHitbox1": {
   "addr": 64610,
   "bank": 7,
   "instrs": 37,
@@ -11458,7 +11458,7 @@
    ]
   ]
  },
- "Sub_FCBD": {
+ "SetBulletHitbox2": {
   "addr": 64701,
   "bank": 7,
   "instrs": 37,
@@ -11471,7 +11471,7 @@
    ]
   ]
  },
- "Sub_FD18": {
+ "UpdatePlayerHitboxC": {
   "addr": 64792,
   "bank": 7,
   "instrs": 29,

@@ -825,11 +825,11 @@ Loc_C5CA:
   jsr LoadScrollSegmentParams  ; $C5E9
   jsr ReadColumnFromPpu        ; $C5EC
   jsr ApplyScroll              ; $C5EF
-  jsr Sub_C711                 ; $C5F2
-  jsr Sub_C77C                 ; $C5F5
-  jsr Sub_C7F6                 ; $C5F8
+  jsr FetchMapMetatile         ; $C5F2
+  jsr BuildColumnTilePtrs      ; $C5F5
+  jsr UnpackAttributeBits      ; $C5F8
 Loc_C5FB:
-  jsr Sub_C85F                 ; $C5FB
+  jsr UpdateScrollSprites      ; $C5FB
   rts                          ; $C5FE
 ScrollByInput:
   lda #$00                     ; $C5FF
@@ -964,7 +964,7 @@ Loc_C70B:
   dec $0493                    ; $C70D
 Loc_C710:
   rts                          ; $C710
-Sub_C711:
+FetchMapMetatile:
   lda z:ScrollColumnPending    ; $C711
   cmp #$01                     ; $C713
   bne Loc_C71C                 ; $C715
@@ -999,16 +999,16 @@ Loc_C720:
   sta z:$23                    ; $C74B
   ldx #$00                     ; $C74D
   ldy #$00                     ; $C74F
-  jsr Sub_C761                 ; $C751
+  jsr AddTileOffsetToPtr20     ; $C751
   ldx #$02                     ; $C754
   iny                          ; $C756
-  jsr Sub_C761                 ; $C757
+  jsr AddTileOffsetToPtr20     ; $C757
   rts                          ; $C75A
 Data_C75B:
   .incbin "prg_bank_7.bin", $075B, $1  ; $C75B
 Data_C75C:
   .incbin "prg_bank_7.bin", $075C, $5  ; $C75C
-Sub_C761:
+AddTileOffsetToPtr20:
   lda a:Tmp00,y                ; $C761
   jsr LsrA5                    ; $C764
   clc                          ; $C767
@@ -1023,7 +1023,7 @@ Sub_C761:
   inc z:$21,x                  ; $C779
 Loc_C77B:
   rts                          ; $C77B
-Sub_C77C:
+BuildColumnTilePtrs:
   ldy #$00                     ; $C77C
 Loc_C77E:
   lda ($20),y                  ; $C77E
@@ -1085,7 +1085,7 @@ Data_C7DC:
   .incbin "prg_bank_7.bin", $07DC, $1  ; $C7DC
 Data_C7DD:
   .incbin "prg_bank_7.bin", $07DD, $19  ; $C7DD
-Sub_C7F6:
+UnpackAttributeBits:
   ldy #$00                     ; $C7F6
   ldx #$00                     ; $C7F8
 Loc_C7FA:
@@ -1154,7 +1154,7 @@ Loc_C851:
   bcc Loc_C851                 ; $C85C
 Loc_C85E:
   rts                          ; $C85E
-Sub_C85F:
+UpdateScrollSprites:
   lda z:ScrollX                ; $C85F
   ldx #$00                     ; $C861
   cmp #$12                     ; $C863
@@ -1407,12 +1407,12 @@ Loc_CA79:
   cmp #$03                     ; $CA79
   bne Loc_CA97                 ; $CA7B
   jsr DoOamDma                 ; $CA7D
-  jsr Sub_F6BC                 ; $CA80
+  jsr ReadFloorProbeTile       ; $CA80
   jsr UploadPaletteIfDirty     ; $CA83
   jsr ApplyScroll              ; $CA86
   jsr UpdatePlayerActions      ; $CA89
-  jsr Sub_F634                 ; $CA8C
-  jsr Sub_FB00                 ; $CA8F
+  jsr MoveBulletsSide6         ; $CA8C
+  jsr UpdatePlayerHitboxA      ; $CA8F
   lda #$00                     ; $CA92
   jmp Loc_CB1F                 ; $CA94
 Loc_CA97:
@@ -1422,20 +1422,20 @@ Loc_CA97:
   jsr UploadPaletteIgnoringPad ; $CA9E
   jsr ApplyScroll              ; $CAA1
   jsr UpdatePlayerTopDown      ; $CAA4
-  jsr Sub_F698                 ; $CAA7
-  jsr Sub_FC1A                 ; $CAAA
+  jsr MoveBulletsRight8        ; $CAA7
+  jsr UpdatePlayerHitboxB      ; $CAAA
   lda #$01                     ; $CAAD
   jmp Loc_CB1F                 ; $CAAF
 Loc_CAB2:
   cmp #$05                     ; $CAB2
   bne Loc_CAD0                 ; $CAB4
   jsr DoOamDma                 ; $CAB6
-  jsr Sub_F6BC                 ; $CAB9
+  jsr ReadFloorProbeTile       ; $CAB9
   jsr UploadPaletteIfDirty     ; $CABC
   jsr ApplyScroll              ; $CABF
   jsr UpdatePlayerSideView     ; $CAC2
-  jsr Sub_F664                 ; $CAC5
-  jsr Sub_FD18                 ; $CAC8
+  jsr MoveBulletsSide4         ; $CAC5
+  jsr UpdatePlayerHitboxC      ; $CAC8
   lda #$04                     ; $CACB
   jmp Loc_CB1F                 ; $CACD
 Loc_CAD0:
@@ -1504,7 +1504,7 @@ Loc_CB39:
   lda #$03                     ; $CB5E
   sta z:MmcPrgShadow           ; $CB60
 Loc_CB62:
-  jsr Sub_E089                 ; $CB62
+  jsr CheckExitTriggers        ; $CB62
   lda $0600                    ; $CB65
   cmp #$60                     ; $CB68
   bne Loc_CB75                 ; $CB6A
@@ -1739,16 +1739,16 @@ Loc_CD2A:
 Loc_CD50:
   lda #$00                     ; $CD50
   sta z:ScrollColumnPending    ; $CD52
-  jsr Sub_CDE0                 ; $CD54
-  jsr Sub_D0AB                 ; $CD57
+  jsr UpdateScreenSideScroll   ; $CD54
+  jsr MovePlayerOnScreenSide   ; $CD57
   lda z:ScrollColumnPending    ; $CD5A
   beq Loc_CD73                 ; $CD5C
   jsr LoadScrollSegmentParams  ; $CD5E
   jsr ReadColumnFromPpu        ; $CD61
   jsr ApplyScroll              ; $CD64
-  jsr Sub_CF13                 ; $CD67
-  jsr Sub_CFC2                 ; $CD6A
-  jsr Sub_D042                 ; $CD6D
+  jsr SetupColumnSourcePtrs    ; $CD67
+  jsr BuildColumnTilePtrsMasked ; $CD6A
+  jsr UnpackAttributeBitsB     ; $CD6D
   jsr ApplyScroll              ; $CD70
 Loc_CD73:
   rts                          ; $CD73
@@ -1805,7 +1805,7 @@ Loc_CDBC:
   lda z:PpuMaskShadow          ; $CDDA
   sta PPU_MASK                 ; $CDDC
   rts                          ; $CDDF
-Sub_CDE0:
+UpdateScreenSideScroll:
   lda z:PlayerScreenSide       ; $CDE0
   beq Loc_CDF9                 ; $CDE2
   lda PlayerSpriteX0           ; $CDE4
@@ -1945,7 +1945,7 @@ Loc_CEF3:
   cpx #$08                     ; $CF0E
   bcc Loc_CEF3                 ; $CF10
   rts                          ; $CF12
-Sub_CF13:
+SetupColumnSourcePtrs:
   lda z:ScrollPage             ; $CF13
   asl a                        ; $CF15
   tax                          ; $CF16
@@ -1967,10 +1967,10 @@ Loc_CF1F:
   sta z:$05                    ; $CF33
   ldx #$00                     ; $CF35
   ldy #$00                     ; $CF37
-  jsr Sub_CF84                 ; $CF39
+  jsr AddNibbleOffsetToPtr     ; $CF39
   ldx #$02                     ; $CF3C
   iny                          ; $CF3E
-  jsr Sub_CF84                 ; $CF3F
+  jsr AddNibbleOffsetToPtr     ; $CF3F
   lda z:ScrollX                ; $CF42
   and #$F0                     ; $CF44
   jsr LsrA4                    ; $CF46
@@ -1991,16 +1991,16 @@ Loc_CF1F:
   sta z:$23                    ; $CF64
   ldx #$00                     ; $CF66
   ldy #$00                     ; $CF68
-  jsr Sub_CFA3                 ; $CF6A
+  jsr AddPackedOffsetToPtr20   ; $CF6A
   ldx #$02                     ; $CF6D
   iny                          ; $CF6F
-  jsr Sub_CFA3                 ; $CF70
+  jsr AddPackedOffsetToPtr20   ; $CF70
   rts                          ; $CF73
 Data_CF74:
   .incbin "prg_bank_7.bin", $0F74, $1  ; $CF74
 Data_CF75:
   .incbin "prg_bank_7.bin", $0F75, $F  ; $CF75
-Sub_CF84:
+AddNibbleOffsetToPtr:
   lda a:Tmp00,y                ; $CF84
   and #$F0                     ; $CF87
   jsr LsrA4                    ; $CF89
@@ -2017,7 +2017,7 @@ Sub_CF84:
   inc z:Tmp03,x                ; $CFA0
 Loc_CFA2:
   rts                          ; $CFA2
-Sub_CFA3:
+AddPackedOffsetToPtr20:
   lda a:$06,y                  ; $CFA3
   and #$E0                     ; $CFA6
   jsr LsrA5                    ; $CFA8
@@ -2034,7 +2034,7 @@ Sub_CFA3:
   inc z:$21,x                  ; $CFBF
 Loc_CFC1:
   rts                          ; $CFC1
-Sub_CFC2:
+BuildColumnTilePtrsMasked:
   ldy #$00                     ; $CFC2
 Loc_CFC4:
   lda ($20),y                  ; $CFC4
@@ -2100,7 +2100,7 @@ Data_D028:
   .incbin "prg_bank_7.bin", $1028, $1  ; $D028
 Data_D029:
   .incbin "prg_bank_7.bin", $1029, $19  ; $D029
-Sub_D042:
+UnpackAttributeBitsB:
   ldy #$00                     ; $D042
   ldx #$00                     ; $D044
 Loc_D046:
@@ -2169,7 +2169,7 @@ Loc_D09D:
   bcc Loc_D09D                 ; $D0A8
 Loc_D0AA:
   rts                          ; $D0AA
-Sub_D0AB:
+MovePlayerOnScreenSide:
   lda z:PlayerScreenSide       ; $D0AB
   beq Loc_D0FA                 ; $D0AD
   cmp #$01                     ; $D0AF
@@ -2249,7 +2249,7 @@ StartLevelScene:
   lda z:ScrollX                ; $D146
   sta z:HwScrollX              ; $D148
   jsr ApplyScroll              ; $D14A
-  jsr Sub_F4B8                 ; $D14D
+  jsr InitPlayerForAreaType    ; $D14D
   lda #$00                     ; $D150
   sta z:TransitionPending      ; $D152
   sta z:TransitionTarget       ; $D154
@@ -3022,7 +3022,7 @@ Loc_D8E6:
   jsr a:$05                    ; $D8F8
   jsr ProcessPpuUpdateList     ; $D8FB
   .addr Data_DAAF  ; $D8FE inline pointer (data after a JSR)
-  jsr Sub_DA4B                 ; $D900
+  jsr SetBlinkOverlaySprites   ; $D900
   lda #$0F                     ; $D903
   sta $014F                    ; $D905
   ldy #$24                     ; $D908
@@ -3175,7 +3175,7 @@ Loc_DA24:
   rts                          ; $DA44
 Data_DA45:
   .incbin "prg_bank_7.bin", $1A45, $6  ; $DA45
-Sub_DA4B:
+SetBlinkOverlaySprites:
   lda #$0F                     ; $DA4B
   sta $0150                    ; $DA4D
   sta $0151                    ; $DA50
@@ -3331,16 +3331,16 @@ Loc_DBE8:
   tax                          ; $DBF4
   lda Data_DBDE,x              ; $DBF5
   bne Loc_DBFE                 ; $DBF8
-  jsr Sub_DC48                 ; $DBFA
+  jsr RunTransitionAnimationShort ; $DBFA
   rts                          ; $DBFD
 Loc_DBFE:
-  jsr Sub_DE15                 ; $DBFE
+  jsr RunTransitionAnimationLong ; $DBFE
   rts                          ; $DC01
 Loc_DC02:
   jsr FinishTransition         ; $DC02
   rts                          ; $DC05
 Loc_DC06:
-  jsr Sub_DED0                 ; $DC06
+  jsr RunGameOverAnimation     ; $DC06
   rts                          ; $DC09
 Loc_DC0A:
   cmp #$90                     ; $DC0A
@@ -3363,7 +3363,7 @@ Loc_DC23:
   sta z:MmcPrgShadow           ; $DC2B
   rts                          ; $DC2D
   .incbin "prg_bank_7.bin", $1C2E, $1A  ; $DC2E
-Sub_DC48:
+RunTransitionAnimationShort:
   jsr HideEnemySprites         ; $DC48
   inc z:PaletteDirty           ; $DC4B
   lda z:PaletteDirty           ; $DC4D
@@ -3480,7 +3480,7 @@ Data_DE0F:
   .incbin "prg_bank_7.bin", $1E0F, $1  ; $DE0F
 Data_DE10:
   .incbin "prg_bank_7.bin", $1E10, $5  ; $DE10
-Sub_DE15:
+RunTransitionAnimationLong:
   jsr HideEnemySprites         ; $DE15
   ldy #$0C                     ; $DE18
   inc z:PaletteDirty           ; $DE1A
@@ -3545,7 +3545,7 @@ Loc_DE87:
   rts                          ; $DE87
 Data_DE88:
   .incbin "prg_bank_7.bin", $1E88, $48  ; $DE88
-Sub_DED0:
+RunGameOverAnimation:
   jsr HideEnemySprites         ; $DED0
   inc z:PaletteDirty           ; $DED3
   lda z:PaletteDirty           ; $DED5
@@ -3651,7 +3651,7 @@ Loc_DF81:
   cpx #$08                     ; $DF88
   bcc Loc_DF81                 ; $DF8A
   jsr Sub_E018                 ; $DF8C
-  jsr Sub_E042                 ; $DF8F
+  jsr HealPlayerDuringTransition ; $DF8F
   jsr Sub_E05E                 ; $DF92
   ldx #$00                     ; $DF95
 Loc_DF97:
@@ -3696,7 +3696,7 @@ Loc_E035:
   rts                          ; $E03B
 Data_E03C:
   .incbin "prg_bank_7.bin", $203C, $6  ; $E03C
-Sub_E042:
+HealPlayerDuringTransition:
   lda z:TransitionTarget       ; $E042
   cmp #$30                     ; $E044
   bcc Loc_E05D                 ; $E046
@@ -3725,7 +3725,7 @@ Loc_E06E:
   cmp #$70                     ; $E06E
   bcs Loc_E078                 ; $E070
   inc $013D                    ; $E072
-  jsr Sub_E8D3                 ; $E075
+  jsr FadePaletteStep          ; $E075
 Loc_E078:
   rts                          ; $E078
 Sub_E079:
@@ -3740,7 +3740,7 @@ Loc_E07D:
   cpx #$3C                     ; $E084
   bcc Loc_E07D                 ; $E086
   rts                          ; $E088
-Sub_E089:
+CheckExitTriggers:
   lda z:TransitionPending      ; $E089
   beq Loc_E08E                 ; $E08B
   rts                          ; $E08D
@@ -4077,7 +4077,7 @@ UpdateGameOverSequence:
   jsr UpdateLowLifeAlarm       ; $E883
   lda $013D                    ; $E886
   beq Loc_E899                 ; $E889
-  jsr Sub_E8D3                 ; $E88B
+  jsr FadePaletteStep          ; $E88B
   inc $013D                    ; $E88E
   lda $013D                    ; $E891
   cmp #$80                     ; $E894
@@ -4115,7 +4115,7 @@ Loc_E8BE:
   dec z:PlayerLifeHi           ; $E8D0
 Loc_E8D2:
   rts                          ; $E8D2
-Sub_E8D3:
+FadePaletteStep:
   lda $013D                    ; $E8D3
   cmp #$40                     ; $E8D6
   bne Loc_E8DF                 ; $E8D8
@@ -4182,7 +4182,7 @@ UpdatePlayerActions:
   bne Loc_E960                 ; $E93B
   lda z:PlayerActionState      ; $E93D
   beq Loc_E947                 ; $E93F
-  jsr Sub_E971                 ; $E941
+  jsr UpdatePlayerJumpArc      ; $E941
   jmp Loc_E94A                 ; $E944
 Loc_E947:
   jsr Sub_EA02                 ; $E947
@@ -4194,14 +4194,14 @@ Loc_E94A:
 Loc_E954:
   jsr HandleFireButton         ; $E954
 Loc_E957:
-  jsr Sub_EAD9                 ; $E957
-  jsr Sub_EB2F                 ; $E95A
-  jsr Sub_EBE4                 ; $E95D
+  jsr UpdatePlayerShootPose    ; $E957
+  jsr SelectPlayerWalkFrame    ; $E95A
+  jsr CopyPlayerSpriteLayout   ; $E95D
 Loc_E960:
   rts                          ; $E960
 Data_E961:
   .incbin "prg_bank_7.bin", $2961, $10  ; $E961
-Sub_E971:
+UpdatePlayerJumpArc:
   ldx z:PlayerActionTimer      ; $E971
   lda Data_E9D2,x              ; $E973
   cpx #$30                     ; $E976
@@ -4378,7 +4378,7 @@ UseAmmo:
   jsr AdjustAmmo               ; $EAD5
 Loc_EAD8:
   rts                          ; $EAD8
-Sub_EAD9:
+UpdatePlayerShootPose:
   lda z:PlayerPose             ; $EAD9
   and #$0F                     ; $EADB
   cmp #$01                     ; $EADD
@@ -4424,7 +4424,7 @@ Loc_EB28:
   jsr UseAmmo                  ; $EB2B
 Loc_EB2E:
   rts                          ; $EB2E
-Sub_EB2F:
+SelectPlayerWalkFrame:
   lda z:PlayerPose             ; $EB2F
   and #$0F                     ; $EB31
   bne Loc_EB38                 ; $EB33
@@ -4472,7 +4472,7 @@ Loc_EB7B:
   lda z:$34                    ; $EB7F
   cmp #$08                     ; $EB81
   bne Loc_EB8B                 ; $EB83
-  jsr Sub_EEC9                 ; $EB85
+  jsr SpawnBulletSprite        ; $EB85
   jmp Loc_EB91                 ; $EB88
 Loc_EB8B:
   bcc Loc_EBD7                 ; $EB8B
@@ -4526,7 +4526,7 @@ Loc_EBD9:
   ora z:Tmp02                  ; $EBDF
   sta z:PlayerSpriteFrame      ; $EBE1
   rts                          ; $EBE3
-Sub_EBE4:
+CopyPlayerSpriteLayout:
   lda #$F0                     ; $EBE4
   sta $0248                    ; $EBE6
   sta $024C                    ; $EBE9
@@ -4581,7 +4581,7 @@ AdjustAmmo:
   sta z:AmmoHi                 ; $EEC6
 Loc_EEC8:
   rts                          ; $EEC8
-Sub_EEC9:
+SpawnBulletSprite:
   lda z:AmmoLo                 ; $EEC9
   bne Loc_EED2                 ; $EECB
   lda z:AmmoHi                 ; $EECD
@@ -4630,14 +4630,14 @@ Loc_EF03:
 UpdatePlayerSideView:
   lda z:PaletteDirty           ; $EF19
   bne Loc_EF2C                 ; $EF1B
-  jsr Sub_EF2D                 ; $EF1D
+  jsr UpdatePlayerWalkInput    ; $EF1D
   jsr SelectPlayerSpriteFrame  ; $EF20
   jsr Sub_EFA9                 ; $EF23
-  jsr Sub_EFAA                 ; $EF26
+  jsr CalcPlayerSpriteDataPtr  ; $EF26
   jsr FireBulletSideView       ; $EF29
 Loc_EF2C:
   rts                          ; $EF2C
-Sub_EF2D:
+UpdatePlayerWalkInput:
   lda z:PlayerPose             ; $EF2D
   and #$0F                     ; $EF2F
   bne Loc_EF36                 ; $EF31
@@ -4709,7 +4709,7 @@ Data_EFA5:
   .incbin "prg_bank_7.bin", $2FA5, $4  ; $EFA5
 Sub_EFA9:
   rts                          ; $EFA9
-Sub_EFAA:
+CalcPlayerSpriteDataPtr:
   lda #$00                     ; $EFAA
   sta z:Tmp01                  ; $EFAC
   lda z:PlayerSpriteFrame      ; $EFAE
@@ -5097,7 +5097,7 @@ Loc_F494:
   jsr QueueSound               ; $F4B4
 Loc_F4B7:
   rts                          ; $F4B7
-Sub_F4B8:
+InitPlayerForAreaType:
   lda #$00                     ; $F4B8
   sta z:PlayerActionState      ; $F4BA
   sta z:PlayerActionTimer      ; $F4BC
@@ -5291,7 +5291,7 @@ UploadPaletteIgnoringPad:
   pla                          ; $F62F
   sta JoyHeld1                 ; $F630
   rts                          ; $F633
-Sub_F634:
+MoveBulletsSide6:
   ldx #$58                     ; $F634
 Loc_F636:
   lda OamBuffer,x              ; $F636
@@ -5320,7 +5320,7 @@ Loc_F65B:
   cpx #$68                     ; $F65F
   bcc Loc_F636                 ; $F661
   rts                          ; $F663
-Sub_F664:
+MoveBulletsSide4:
   ldx #$54                     ; $F664
 Loc_F666:
   lda OamBuffer,x              ; $F666
@@ -5352,7 +5352,7 @@ Loc_F68F:
   cpx #$5C                     ; $F693
   bcc Loc_F666                 ; $F695
   rts                          ; $F697
-Sub_F698:
+MoveBulletsRight8:
   ldx #$4C                     ; $F698
 Loc_F69A:
   lda OamBuffer,x              ; $F69A
@@ -5374,7 +5374,7 @@ Loc_F6B3:
   cpx #$5C                     ; $F6B7
   bcc Loc_F69A                 ; $F6B9
   rts                          ; $F6BB
-Sub_F6BC:
+ReadFloorProbeTile:
   lda z:FloorProbeValid        ; $F6BC
   beq Loc_F6EB                 ; $F6BE
   lda PPU_STATUS               ; $F6C0
@@ -5821,7 +5821,7 @@ Loc_FAED:
   bne Loc_FA9B                 ; $FAFD
 Loc_FAFF:
   rts                          ; $FAFF
-Sub_FB00:
+UpdatePlayerHitboxA:
   lda HurtTimer                ; $FB00
   beq Loc_FB13                 ; $FB03
   lda z:FrameCounter           ; $FB05
@@ -5964,7 +5964,7 @@ Loc_FC14:
 Loc_FC16:
   sta $0153                    ; $FC16
   rts                          ; $FC19
-Sub_FC1A:
+UpdatePlayerHitboxB:
   lda HurtTimer                ; $FC1A
   beq Loc_FC2D                 ; $FC1D
   lda z:FrameCounter           ; $FC1F
@@ -5987,10 +5987,10 @@ Loc_FC40:
   lda z:FrameCounter           ; $FC43
   and #$01                     ; $FC45
   bne Loc_FC4F                 ; $FC47
-  jsr Sub_FC62                 ; $FC49
+  jsr SetBulletHitbox1         ; $FC49
   jmp Loc_FC52                 ; $FC4C
 Loc_FC4F:
-  jsr Sub_FCBD                 ; $FC4F
+  jsr SetBulletHitbox2         ; $FC4F
 Loc_FC52:
   jsr ClearObjectStatusBits    ; $FC52
   jsr Sub_F804                 ; $FC55
@@ -5998,7 +5998,7 @@ Loc_FC52:
   jsr TickObjectStates         ; $FC5B
   jsr UpdateLifeBlink          ; $FC5E
   rts                          ; $FC61
-Sub_FC62:
+SetBulletHitbox1:
   lda $024C                    ; $FC62
   cmp #$E8                     ; $FC65
   bcc Loc_FC6E                 ; $FC67
@@ -6042,7 +6042,7 @@ Loc_FCAD:
 Loc_FCB9:
   sta $0123                    ; $FCB9
   rts                          ; $FCBC
-Sub_FCBD:
+SetBulletHitbox2:
   lda $0254                    ; $FCBD
   cmp #$E8                     ; $FCC0
   bcc Loc_FCC9                 ; $FCC2
@@ -6086,7 +6086,7 @@ Loc_FD08:
 Loc_FD14:
   sta $0123                    ; $FD14
   rts                          ; $FD17
-Sub_FD18:
+UpdatePlayerHitboxC:
   lda HurtTimer                ; $FD18
   beq Loc_FD2B                 ; $FD1B
   lda z:FrameCounter           ; $FD1D
@@ -6114,7 +6114,7 @@ Loc_FD46:
   lda #$80                     ; $FD49
 Loc_FD4B:
   sta $0119                    ; $FD4B
-  jsr Sub_FCBD                 ; $FD4E
+  jsr SetBulletHitbox2         ; $FD4E
   jsr ClearObjectStatusBits    ; $FD51
   jsr Sub_F804                 ; $FD54
   jsr CheckPlayerHitByObjects  ; $FD57

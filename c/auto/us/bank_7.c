@@ -965,12 +965,12 @@ void UploadColumnOrPalette(void) {  /* $C5AC bank 7 */
     push16(0xC5EB); LoadScrollSegmentParams(); UNW(); ret_check(0xC5EB);                 /* $C5E9 jsr */
     push16(0xC5EE); ReadColumnFromPpu(); UNW(); ret_check(0xC5EE);                       /* $C5EC jsr */
     push16(0xC5F1); ApplyScroll(); UNW(); ret_check(0xC5F1);                             /* $C5EF jsr */
-    push16(0xC5F4); Sub_C711(); UNW(); ret_check(0xC5F4);                                /* $C5F2 jsr */
-    push16(0xC5F7); Sub_C77C(); UNW(); ret_check(0xC5F7);                                /* $C5F5 jsr */
-    push16(0xC5FA); Sub_C7F6(); UNW(); ret_check(0xC5FA);                                /* $C5F8 jsr */
+    push16(0xC5F4); FetchMapMetatile(); UNW(); ret_check(0xC5F4);                        /* $C5F2 jsr */
+    push16(0xC5F7); BuildColumnTilePtrs(); UNW(); ret_check(0xC5F7);                     /* $C5F5 jsr */
+    push16(0xC5FA); UnpackAttributeBits(); UNW(); ret_check(0xC5FA);                     /* $C5F8 jsr */
   }
 LC5FB: BUDGET();
-  push16(0xC5FD); Sub_C85F(); UNW(); ret_check(0xC5FD);                                  /* $C5FB jsr */
+  push16(0xC5FD); UpdateScrollSprites(); UNW(); ret_check(0xC5FD);                       /* $C5FB jsr */
   RTS_RET(sp0);                                                                          /* $C5FE rts */
 }
 
@@ -1108,7 +1108,7 @@ LC710: BUDGET();
   RTS_RET(sp0);                                                                          /* $C710 rts */
 }
 
-void Sub_C711(void) {  /* $C711 bank 7 */
+void FetchMapMetatile(void) {  /* $C711 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(ScrollColumnPending));                                                          /* $C711 lda */
   cmp8(R.a, 0x01);                                                                       /* $C713 cmp */
@@ -1143,14 +1143,14 @@ void Sub_C711(void) {  /* $C711 bank 7 */
   STA(0x23);                                                                             /* $C74B sta */
   LDX(0x00);                                                                             /* $C74D ldx */
   LDY(0x00);                                                                             /* $C74F ldy */
-  push16(0xC753); Sub_C761(); UNW(); ret_check(0xC753);                                  /* $C751 jsr */
+  push16(0xC753); AddTileOffsetToPtr20(); UNW(); ret_check(0xC753);                      /* $C751 jsr */
   LDX(0x02);                                                                             /* $C754 ldx */
   INY();                                                                                 /* $C756 iny */
-  push16(0xC759); Sub_C761(); UNW(); ret_check(0xC759);                                  /* $C757 jsr */
+  push16(0xC759); AddTileOffsetToPtr20(); UNW(); ret_check(0xC759);                      /* $C757 jsr */
   RTS_RET(sp0);                                                                          /* $C75A rts */
 }
 
-void Sub_C761(void) {  /* $C761 bank 7 */
+void AddTileOffsetToPtr20(void) {  /* $C761 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd((uint16_t)(Tmp00 + R.y)));                                                      /* $C761 lda */
   push16(0xC766); LsrA5(); UNW(); ret_check(0xC766);                                     /* $C764 jsr */
@@ -1168,7 +1168,7 @@ void Sub_C761(void) {  /* $C761 bank 7 */
   RTS_RET(sp0);                                                                          /* $C77B rts */
 }
 
-void Sub_C77C(void) {  /* $C77C bank 7 */
+void BuildColumnTilePtrs(void) {  /* $C77C bank 7 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $C77C ldy */
   do { BUDGET();
@@ -1229,7 +1229,7 @@ void Sub_C77C(void) {  /* $C77C bank 7 */
   RTS_RET(sp0);                                                                          /* $C7DB rts */
 }
 
-void Sub_C7F6(void) {  /* $C7F6 bank 7 */
+void UnpackAttributeBits(void) {  /* $C7F6 bank 7 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $C7F6 ldy */
   LDX(0x00);                                                                             /* $C7F8 ldx */
@@ -1302,7 +1302,7 @@ LC85E: BUDGET();
   RTS_RET(sp0);                                                                          /* $C85E rts */
 }
 
-void Sub_C85F(void) {  /* $C85F bank 7 */
+void UpdateScrollSprites(void) {  /* $C85F bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(ScrollX));                                                                      /* $C85F lda */
   LDX(0x00);                                                                             /* $C861 ldx */
@@ -1562,12 +1562,12 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
     cmp8(R.a, 0x03);                                                                     /* $CA79 cmp */
     if (R.a == 0x03) {                                                                   /* $CA7B bne */
       push16(0xCA7F); DoOamDma(); UNW(); ret_check(0xCA7F);                              /* $CA7D jsr */
-      push16(0xCA82); Sub_F6BC(); UNW(); ret_check(0xCA82);                              /* $CA80 jsr */
+      push16(0xCA82); ReadFloorProbeTile(); UNW(); ret_check(0xCA82);                    /* $CA80 jsr */
       push16(0xCA85); UploadPaletteIfDirty(); UNW(); ret_check(0xCA85);                  /* $CA83 jsr */
       push16(0xCA88); ApplyScroll(); UNW(); ret_check(0xCA88);                           /* $CA86 jsr */
       push16(0xCA8B); UpdatePlayerActions(); UNW(); ret_check(0xCA8B);                   /* $CA89 jsr */
-      push16(0xCA8E); Sub_F634(); UNW(); ret_check(0xCA8E);                              /* $CA8C jsr */
-      push16(0xCA91); Sub_FB00(); UNW(); ret_check(0xCA91);                              /* $CA8F jsr */
+      push16(0xCA8E); MoveBulletsSide6(); UNW(); ret_check(0xCA8E);                      /* $CA8C jsr */
+      push16(0xCA91); UpdatePlayerHitboxA(); UNW(); ret_check(0xCA91);                   /* $CA8F jsr */
       LDA(0x00);                                                                         /* $CA92 lda */
     } else {
       cmp8(R.a, 0x04);                                                                   /* $CA97 cmp */
@@ -1576,20 +1576,20 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
         push16(0xCAA0); UploadPaletteIgnoringPad(); UNW(); ret_check(0xCAA0);            /* $CA9E jsr */
         push16(0xCAA3); ApplyScroll(); UNW(); ret_check(0xCAA3);                         /* $CAA1 jsr */
         push16(0xCAA6); UpdatePlayerTopDown(); UNW(); ret_check(0xCAA6);                 /* $CAA4 jsr */
-        push16(0xCAA9); Sub_F698(); UNW(); ret_check(0xCAA9);                            /* $CAA7 jsr */
-        push16(0xCAAC); Sub_FC1A(); UNW(); ret_check(0xCAAC);                            /* $CAAA jsr */
+        push16(0xCAA9); MoveBulletsRight8(); UNW(); ret_check(0xCAA9);                   /* $CAA7 jsr */
+        push16(0xCAAC); UpdatePlayerHitboxB(); UNW(); ret_check(0xCAAC);                 /* $CAAA jsr */
         LDA(0x01);                                                                       /* $CAAD lda */
         goto LCB1F;                                                                      /* $CAAF jmp */
       }
       cmp8(R.a, 0x05);                                                                   /* $CAB2 cmp */
       if (R.a == 0x05) {                                                                 /* $CAB4 bne */
         push16(0xCAB8); DoOamDma(); UNW(); ret_check(0xCAB8);                            /* $CAB6 jsr */
-        push16(0xCABB); Sub_F6BC(); UNW(); ret_check(0xCABB);                            /* $CAB9 jsr */
+        push16(0xCABB); ReadFloorProbeTile(); UNW(); ret_check(0xCABB);                  /* $CAB9 jsr */
         push16(0xCABE); UploadPaletteIfDirty(); UNW(); ret_check(0xCABE);                /* $CABC jsr */
         push16(0xCAC1); ApplyScroll(); UNW(); ret_check(0xCAC1);                         /* $CABF jsr */
         push16(0xCAC4); UpdatePlayerSideView(); UNW(); ret_check(0xCAC4);                /* $CAC2 jsr */
-        push16(0xCAC7); Sub_F664(); UNW(); ret_check(0xCAC7);                            /* $CAC5 jsr */
-        push16(0xCACA); Sub_FD18(); UNW(); ret_check(0xCACA);                            /* $CAC8 jsr */
+        push16(0xCAC7); MoveBulletsSide4(); UNW(); ret_check(0xCAC7);                    /* $CAC5 jsr */
+        push16(0xCACA); UpdatePlayerHitboxC(); UNW(); ret_check(0xCACA);                 /* $CAC8 jsr */
         LDA(0x04);                                                                       /* $CACB lda */
         goto LCB1F;                                                                      /* $CACD jmp */
       }
@@ -1654,7 +1654,7 @@ LCB39: BUDGET();
       STA(MmcPrgShadow);                                                                 /* $CB60 sta */
     }
 LCB62: BUDGET();
-    push16(0xCB64); Sub_E089(); UNW(); ret_check(0xCB64);                                /* $CB62 jsr */
+    push16(0xCB64); CheckExitTriggers(); UNW(); ret_check(0xCB64);                       /* $CB62 jsr */
     LDA(rd(0x0600));                                                                     /* $CB65 lda */
     cmp8(R.a, 0x60);                                                                     /* $CB68 cmp */
     if (R.a != 0x60) goto LCB75;                                                         /* $CB6A bne */
@@ -1898,16 +1898,16 @@ LCD2A: BUDGET();
 LCD50: BUDGET();
     LDA(0x00);                                                                           /* $CD50 lda */
     STA(ScrollColumnPending);                                                            /* $CD52 sta */
-    push16(0xCD56); Sub_CDE0(); UNW(); ret_check(0xCD56);                                /* $CD54 jsr */
-    push16(0xCD59); Sub_D0AB(); UNW(); ret_check(0xCD59);                                /* $CD57 jsr */
+    push16(0xCD56); UpdateScreenSideScroll(); UNW(); ret_check(0xCD56);                  /* $CD54 jsr */
+    push16(0xCD59); MovePlayerOnScreenSide(); UNW(); ret_check(0xCD59);                  /* $CD57 jsr */
     LDA(rd(ScrollColumnPending));                                                        /* $CD5A lda */
     if (R.a == 0) goto LCD73;                                                            /* $CD5C beq */
     push16(0xCD60); LoadScrollSegmentParams(); UNW(); ret_check(0xCD60);                 /* $CD5E jsr */
     push16(0xCD63); ReadColumnFromPpu(); UNW(); ret_check(0xCD63);                       /* $CD61 jsr */
     push16(0xCD66); ApplyScroll(); UNW(); ret_check(0xCD66);                             /* $CD64 jsr */
-    push16(0xCD69); Sub_CF13(); UNW(); ret_check(0xCD69);                                /* $CD67 jsr */
-    push16(0xCD6C); Sub_CFC2(); UNW(); ret_check(0xCD6C);                                /* $CD6A jsr */
-    push16(0xCD6F); Sub_D042(); UNW(); ret_check(0xCD6F);                                /* $CD6D jsr */
+    push16(0xCD69); SetupColumnSourcePtrs(); UNW(); ret_check(0xCD69);                   /* $CD67 jsr */
+    push16(0xCD6C); BuildColumnTilePtrsMasked(); UNW(); ret_check(0xCD6C);               /* $CD6A jsr */
+    push16(0xCD6F); UnpackAttributeBitsB(); UNW(); ret_check(0xCD6F);                    /* $CD6D jsr */
     push16(0xCD72); ApplyScroll(); UNW(); ret_check(0xCD72);                             /* $CD70 jsr */
   }
 LCD73: BUDGET();
@@ -1970,7 +1970,7 @@ void UploadNametableColumn(void) {  /* $CD74 bank 7 */
   RTS_RET(sp0);                                                                          /* $CDDF rts */
 }
 
-void Sub_CDE0(void) {  /* $CDE0 bank 7 */
+void UpdateScreenSideScroll(void) {  /* $CDE0 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerScreenSide));                                                             /* $CDE0 lda */
   if (R.a != 0) {                                                                        /* $CDE2 beq */
@@ -2111,7 +2111,7 @@ void ReadColumnFromPpu(void) {  /* $CEDA bank 7 */
   RTS_RET(sp0);                                                                          /* $CF12 rts */
 }
 
-void Sub_CF13(void) {  /* $CF13 bank 7 */
+void SetupColumnSourcePtrs(void) {  /* $CF13 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(ScrollPage));                                                                   /* $CF13 lda */
   ASL_A();                                                                               /* $CF15 asl */
@@ -2134,10 +2134,10 @@ void Sub_CF13(void) {  /* $CF13 bank 7 */
   STA(0x05);                                                                             /* $CF33 sta */
   LDX(0x00);                                                                             /* $CF35 ldx */
   LDY(0x00);                                                                             /* $CF37 ldy */
-  push16(0xCF3B); Sub_CF84(); UNW(); ret_check(0xCF3B);                                  /* $CF39 jsr */
+  push16(0xCF3B); AddNibbleOffsetToPtr(); UNW(); ret_check(0xCF3B);                      /* $CF39 jsr */
   LDX(0x02);                                                                             /* $CF3C ldx */
   INY();                                                                                 /* $CF3E iny */
-  push16(0xCF41); Sub_CF84(); UNW(); ret_check(0xCF41);                                  /* $CF3F jsr */
+  push16(0xCF41); AddNibbleOffsetToPtr(); UNW(); ret_check(0xCF41);                      /* $CF3F jsr */
   LDA(rd(ScrollX));                                                                      /* $CF42 lda */
   AND(0xF0);                                                                             /* $CF44 and */
   push16(0xCF48); LsrA4(); UNW(); ret_check(0xCF48);                                     /* $CF46 jsr */
@@ -2158,14 +2158,14 @@ void Sub_CF13(void) {  /* $CF13 bank 7 */
   STA(0x23);                                                                             /* $CF64 sta */
   LDX(0x00);                                                                             /* $CF66 ldx */
   LDY(0x00);                                                                             /* $CF68 ldy */
-  push16(0xCF6C); Sub_CFA3(); UNW(); ret_check(0xCF6C);                                  /* $CF6A jsr */
+  push16(0xCF6C); AddPackedOffsetToPtr20(); UNW(); ret_check(0xCF6C);                    /* $CF6A jsr */
   LDX(0x02);                                                                             /* $CF6D ldx */
   INY();                                                                                 /* $CF6F iny */
-  push16(0xCF72); Sub_CFA3(); UNW(); ret_check(0xCF72);                                  /* $CF70 jsr */
+  push16(0xCF72); AddPackedOffsetToPtr20(); UNW(); ret_check(0xCF72);                    /* $CF70 jsr */
   RTS_RET(sp0);                                                                          /* $CF73 rts */
 }
 
-void Sub_CF84(void) {  /* $CF84 bank 7 */
+void AddNibbleOffsetToPtr(void) {  /* $CF84 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd((uint16_t)(Tmp00 + R.y)));                                                      /* $CF84 lda */
   AND(0xF0);                                                                             /* $CF87 and */
@@ -2185,7 +2185,7 @@ void Sub_CF84(void) {  /* $CF84 bank 7 */
   RTS_RET(sp0);                                                                          /* $CFA2 rts */
 }
 
-void Sub_CFA3(void) {  /* $CFA3 bank 7 */
+void AddPackedOffsetToPtr20(void) {  /* $CFA3 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd((uint16_t)(0x0006 + R.y)));                                                     /* $CFA3 lda */
   AND(0xE0);                                                                             /* $CFA6 and */
@@ -2205,7 +2205,7 @@ void Sub_CFA3(void) {  /* $CFA3 bank 7 */
   RTS_RET(sp0);                                                                          /* $CFC1 rts */
 }
 
-void Sub_CFC2(void) {  /* $CFC2 bank 7 */
+void BuildColumnTilePtrsMasked(void) {  /* $CFC2 bank 7 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $CFC2 ldy */
   do { BUDGET();
@@ -2270,7 +2270,7 @@ void Sub_CFC2(void) {  /* $CFC2 bank 7 */
   RTS_RET(sp0);                                                                          /* $D027 rts */
 }
 
-void Sub_D042(void) {  /* $D042 bank 7 */
+void UnpackAttributeBitsB(void) {  /* $D042 bank 7 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $D042 ldy */
   LDX(0x00);                                                                             /* $D044 ldx */
@@ -2343,7 +2343,7 @@ LD0AA: BUDGET();
   RTS_RET(sp0);                                                                          /* $D0AA rts */
 }
 
-void Sub_D0AB(void) {  /* $D0AB bank 7 */
+void MovePlayerOnScreenSide(void) {  /* $D0AB bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerScreenSide));                                                             /* $D0AB lda */
   if (R.a != 0) {                                                                        /* $D0AD beq */
@@ -2432,7 +2432,7 @@ void StartLevelScene(void) {  /* $D13A bank 7 */
   LDA(rd(ScrollX));                                                                      /* $D146 lda */
   STA(HwScrollX);                                                                        /* $D148 sta */
   push16(0xD14C); ApplyScroll(); UNW(); ret_check(0xD14C);                               /* $D14A jsr */
-  push16(0xD14F); Sub_F4B8(); UNW(); ret_check(0xD14F);                                  /* $D14D jsr */
+  push16(0xD14F); InitPlayerForAreaType(); UNW(); ret_check(0xD14F);                     /* $D14D jsr */
   LDA(0x00);                                                                             /* $D150 lda */
   STA(TransitionPending);                                                                /* $D152 sta */
   STA(TransitionTarget);                                                                 /* $D154 sta */
@@ -3257,7 +3257,7 @@ void Sub_D8CB(void) {  /* $D8CB bank 7 */
     STA(0x09);                                                                           /* $D8F6 sta */
     push16(0xD8FA); call_addr(0x0005); UNW(); ret_check(0xD8FA);                         /* $D8F8 jsr */
     push16(0xD8FD); ProcessPpuUpdateList(); UNW(); ret_check(0xD8FF);                    /* $D8FB jsr */
-    push16(0xD902); Sub_DA4B(); UNW(); ret_check(0xD902);                                /* $D900 jsr */
+    push16(0xD902); SetBlinkOverlaySprites(); UNW(); ret_check(0xD902);                  /* $D900 jsr */
     LDA(0x0F);                                                                           /* $D903 lda */
     STA(0x014F);                                                                         /* $D905 sta */
     LDY(0x24);                                                                           /* $D908 ldy */
@@ -3414,7 +3414,7 @@ void Sub_DA0A(void) {  /* $DA0A bank 7 */
   RTS_RET(sp0);                                                                          /* $DA44 rts */
 }
 
-void Sub_DA4B(void) {  /* $DA4B bank 7 */
+void SetBlinkOverlaySprites(void) {  /* $DA4B bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x0F);                                                                             /* $DA4B lda */
   STA(0x0150);                                                                           /* $DA4D sta */
@@ -3572,16 +3572,16 @@ LDBE8: BUDGET();
     TAX();                                                                               /* $DBF4 tax */
     LDA(rd((uint16_t)(0xDBDE + R.x)));                                                   /* $DBF5 lda */
     if (R.a == 0) {                                                                      /* $DBF8 bne */
-      push16(0xDBFC); Sub_DC48(); UNW(); ret_check(0xDBFC);                              /* $DBFA jsr */
+      push16(0xDBFC); RunTransitionAnimationShort(); UNW(); ret_check(0xDBFC);           /* $DBFA jsr */
       RTS_RET(sp0);                                                                      /* $DBFD rts */
     }
-    push16(0xDC00); Sub_DE15(); UNW(); ret_check(0xDC00);                                /* $DBFE jsr */
+    push16(0xDC00); RunTransitionAnimationLong(); UNW(); ret_check(0xDC00);              /* $DBFE jsr */
     RTS_RET(sp0);                                                                        /* $DC01 rts */
   }
   push16(0xDC04); FinishTransition(); UNW(); ret_check(0xDC04);                          /* $DC02 jsr */
   RTS_RET(sp0);                                                                          /* $DC05 rts */
 LDC06: BUDGET();
-  push16(0xDC08); Sub_DED0(); UNW(); ret_check(0xDC08);                                  /* $DC06 jsr */
+  push16(0xDC08); RunGameOverAnimation(); UNW(); ret_check(0xDC08);                      /* $DC06 jsr */
   RTS_RET(sp0);                                                                          /* $DC09 rts */
 LDC0A: BUDGET();
   cmp8(R.a, 0x90);                                                                       /* $DC0A cmp */
@@ -3605,7 +3605,7 @@ LDC0A: BUDGET();
   RTS_RET(sp0);                                                                          /* $DC2D rts */
 }
 
-void Sub_DC48(void) {  /* $DC48 bank 7 */
+void RunTransitionAnimationShort(void) {  /* $DC48 bank 7 */
   uint8_t sp0 = R.sp;
   push16(0xDC4A); HideEnemySprites(); UNW(); ret_check(0xDC4A);                          /* $DC48 jsr */
   INC_M(PaletteDirty);                                                                   /* $DC4B inc */
@@ -3725,7 +3725,7 @@ void AnimatePalette(void) {  /* $DDE1 bank 7 */
   RTS_RET(sp0);                                                                          /* $DE0C rts */
 }
 
-void Sub_DE15(void) {  /* $DE15 bank 7 */
+void RunTransitionAnimationLong(void) {  /* $DE15 bank 7 */
   uint8_t sp0 = R.sp;
   push16(0xDE17); HideEnemySprites(); UNW(); ret_check(0xDE17);                          /* $DE15 jsr */
   LDY(0x0C);                                                                             /* $DE18 ldy */
@@ -3791,7 +3791,7 @@ LDE3D: BUDGET();
   RTS_RET(sp0);                                                                          /* $DE87 rts */
 }
 
-void Sub_DED0(void) {  /* $DED0 bank 7 */
+void RunGameOverAnimation(void) {  /* $DED0 bank 7 */
   uint8_t sp0 = R.sp;
   push16(0xDED2); HideEnemySprites(); UNW(); ret_check(0xDED2);                          /* $DED0 jsr */
   INC_M(PaletteDirty);                                                                   /* $DED3 inc */
@@ -3908,7 +3908,7 @@ LDF5E: BUDGET();
     cmp8(R.x, 0x08);                                                                     /* $DF88 cpx */
   } while (R.x < 0x08);                                                                  /* $DF8A bcc */
   push16(0xDF8E); Sub_E018(); UNW(); ret_check(0xDF8E);                                  /* $DF8C jsr */
-  push16(0xDF91); Sub_E042(); UNW(); ret_check(0xDF91);                                  /* $DF8F jsr */
+  push16(0xDF91); HealPlayerDuringTransition(); UNW(); ret_check(0xDF91);                /* $DF8F jsr */
   push16(0xDF94); Sub_E05E(); UNW(); ret_check(0xDF94);                                  /* $DF92 jsr */
   LDX(0x00);                                                                             /* $DF95 ldx */
 LDF97: BUDGET();
@@ -3945,7 +3945,7 @@ LE035: BUDGET();
   RTS_RET(sp0);                                                                          /* $E03B rts */
 }
 
-void Sub_E042(void) {  /* $E042 bank 7 */
+void HealPlayerDuringTransition(void) {  /* $E042 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(TransitionTarget));                                                             /* $E042 lda */
   cmp8(R.a, 0x30);                                                                       /* $E044 cmp */
@@ -3979,7 +3979,7 @@ void Sub_E05E(void) {  /* $E05E bank 7 */
     cmp8(R.a, 0x70);                                                                     /* $E06E cmp */
     if (R.a >= 0x70) goto LE078;                                                         /* $E070 bcs */
     INC_M(0x013D);                                                                       /* $E072 inc */
-    push16(0xE077); Sub_E8D3(); UNW(); ret_check(0xE077);                                /* $E075 jsr */
+    push16(0xE077); FadePaletteStep(); UNW(); ret_check(0xE077);                         /* $E075 jsr */
   }
 LE078: BUDGET();
   RTS_RET(sp0);                                                                          /* $E078 rts */
@@ -4000,7 +4000,7 @@ void Sub_E079(void) {  /* $E079 bank 7 */
   RTS_RET(sp0);                                                                          /* $E088 rts */
 }
 
-void Sub_E089(void) {  /* $E089 bank 7 */
+void CheckExitTriggers(void) {  /* $E089 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(TransitionPending));                                                            /* $E089 lda */
   if (R.a != 0) {                                                                        /* $E08B beq */
@@ -4346,7 +4346,7 @@ void UpdateGameOverSequence(void) {  /* $E883 bank 7 */
   push16(0xE885); UpdateLowLifeAlarm(); UNW(); ret_check(0xE885);                        /* $E883 jsr */
   LDA(rd(0x013D));                                                                       /* $E886 lda */
   if (R.a != 0) {                                                                        /* $E889 beq */
-    push16(0xE88D); Sub_E8D3(); UNW(); ret_check(0xE88D);                                /* $E88B jsr */
+    push16(0xE88D); FadePaletteStep(); UNW(); ret_check(0xE88D);                         /* $E88B jsr */
     INC_M(0x013D);                                                                       /* $E88E inc */
     LDA(rd(0x013D));                                                                     /* $E891 lda */
     cmp8(R.a, 0x80);                                                                     /* $E894 cmp */
@@ -4387,7 +4387,7 @@ LE8D2: BUDGET();
   RTS_RET(sp0);                                                                          /* $E8D2 rts */
 }
 
-void Sub_E8D3(void) {  /* $E8D3 bank 7 */
+void FadePaletteStep(void) {  /* $E8D3 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x013D));                                                                       /* $E8D3 lda */
   cmp8(R.a, 0x40);                                                                       /* $E8D6 cmp */
@@ -4460,7 +4460,7 @@ void UpdatePlayerActions(void) {  /* $E939 bank 7 */
   if (R.a == 0) {                                                                        /* $E93B bne */
     LDA(rd(PlayerActionState));                                                          /* $E93D lda */
     if (R.a != 0) {                                                                      /* $E93F beq */
-      push16(0xE943); Sub_E971(); UNW(); ret_check(0xE943);                              /* $E941 jsr */
+      push16(0xE943); UpdatePlayerJumpArc(); UNW(); ret_check(0xE943);                   /* $E941 jsr */
     } else {
       push16(0xE949); Sub_EA02(); UNW(); ret_check(0xE949);                              /* $E947 jsr */
     }
@@ -4470,14 +4470,14 @@ void UpdatePlayerActions(void) {  /* $E939 bank 7 */
     } else {
       push16(0xE956); HandleFireButton(); UNW(); ret_check(0xE956);                      /* $E954 jsr */
     }
-    push16(0xE959); Sub_EAD9(); UNW(); ret_check(0xE959);                                /* $E957 jsr */
-    push16(0xE95C); Sub_EB2F(); UNW(); ret_check(0xE95C);                                /* $E95A jsr */
-    push16(0xE95F); Sub_EBE4(); UNW(); ret_check(0xE95F);                                /* $E95D jsr */
+    push16(0xE959); UpdatePlayerShootPose(); UNW(); ret_check(0xE959);                   /* $E957 jsr */
+    push16(0xE95C); SelectPlayerWalkFrame(); UNW(); ret_check(0xE95C);                   /* $E95A jsr */
+    push16(0xE95F); CopyPlayerSpriteLayout(); UNW(); ret_check(0xE95F);                  /* $E95D jsr */
   }
   RTS_RET(sp0);                                                                          /* $E960 rts */
 }
 
-void Sub_E971(void) {  /* $E971 bank 7 */
+void UpdatePlayerJumpArc(void) {  /* $E971 bank 7 */
   uint8_t sp0 = R.sp;
   LDX(rd(PlayerActionTimer));                                                            /* $E971 ldx */
   LDA(rd((uint16_t)(0xE9D2 + R.x)));                                                     /* $E973 lda */
@@ -4675,7 +4675,7 @@ void UseAmmo(void) {  /* $EACF bank 7 */
   RTS_RET(sp0);                                                                          /* $EAD8 rts */
 }
 
-void Sub_EAD9(void) {  /* $EAD9 bank 7 */
+void UpdatePlayerShootPose(void) {  /* $EAD9 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerPose));                                                                   /* $EAD9 lda */
   AND(0x0F);                                                                             /* $EADB and */
@@ -4723,7 +4723,7 @@ LEB2E: BUDGET();
   RTS_RET(sp0);                                                                          /* $EB2E rts */
 }
 
-void Sub_EB2F(void) {  /* $EB2F bank 7 */
+void SelectPlayerWalkFrame(void) {  /* $EB2F bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerPose));                                                                   /* $EB2F lda */
   AND(0x0F);                                                                             /* $EB31 and */
@@ -4770,7 +4770,7 @@ void Sub_EB2F(void) {  /* $EB2F bank 7 */
       LDA(rd(0x34));                                                                     /* $EB7F lda */
       cmp8(R.a, 0x08);                                                                   /* $EB81 cmp */
       if (R.a == 0x08) {                                                                 /* $EB83 bne */
-        push16(0xEB87); Sub_EEC9(); UNW(); ret_check(0xEB87);                            /* $EB85 jsr */
+        push16(0xEB87); SpawnBulletSprite(); UNW(); ret_check(0xEB87);                   /* $EB85 jsr */
       } else {
         if (!R.c) goto LEBD7;                                                            /* $EB8B bcc */
         cmp8(R.a, 0x10);                                                                 /* $EB8D cmp */
@@ -4826,7 +4826,7 @@ LEBD9: BUDGET();
   RTS_RET(sp0);                                                                          /* $EBE3 rts */
 }
 
-void Sub_EBE4(void) {  /* $EBE4 bank 7 */
+void CopyPlayerSpriteLayout(void) {  /* $EBE4 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0xF0);                                                                             /* $EBE4 lda */
   STA(0x0248);                                                                           /* $EBE6 sta */
@@ -4885,7 +4885,7 @@ LEEC8: BUDGET();
   RTS_RET(sp0);                                                                          /* $EEC8 rts */
 }
 
-void Sub_EEC9(void) {  /* $EEC9 bank 7 */
+void SpawnBulletSprite(void) {  /* $EEC9 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(AmmoLo));                                                                       /* $EEC9 lda */
   if (R.a == 0) {                                                                        /* $EECB bne */
@@ -4938,16 +4938,16 @@ void UpdatePlayerSideView(void) {  /* $EF19 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteDirty));                                                                 /* $EF19 lda */
   if (R.a == 0) {                                                                        /* $EF1B bne */
-    push16(0xEF1F); Sub_EF2D(); UNW(); ret_check(0xEF1F);                                /* $EF1D jsr */
+    push16(0xEF1F); UpdatePlayerWalkInput(); UNW(); ret_check(0xEF1F);                   /* $EF1D jsr */
     push16(0xEF22); SelectPlayerSpriteFrame(); UNW(); ret_check(0xEF22);                 /* $EF20 jsr */
     push16(0xEF25); Sub_EFA9(); UNW(); ret_check(0xEF25);                                /* $EF23 jsr */
-    push16(0xEF28); Sub_EFAA(); UNW(); ret_check(0xEF28);                                /* $EF26 jsr */
+    push16(0xEF28); CalcPlayerSpriteDataPtr(); UNW(); ret_check(0xEF28);                 /* $EF26 jsr */
     push16(0xEF2B); FireBulletSideView(); UNW(); ret_check(0xEF2B);                      /* $EF29 jsr */
   }
   RTS_RET(sp0);                                                                          /* $EF2C rts */
 }
 
-void Sub_EF2D(void) {  /* $EF2D bank 7 */
+void UpdatePlayerWalkInput(void) {  /* $EF2D bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerPose));                                                                   /* $EF2D lda */
   AND(0x0F);                                                                             /* $EF2F and */
@@ -5027,7 +5027,7 @@ void Sub_EFA9(void) {  /* $EFA9 bank 7 */
   RTS_RET(sp0);                                                                          /* $EFA9 rts */
 }
 
-void Sub_EFAA(void) {  /* $EFAA bank 7 */
+void CalcPlayerSpriteDataPtr(void) {  /* $EFAA bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $EFAA lda */
   STA(Tmp01);                                                                            /* $EFAC sta */
@@ -5441,7 +5441,7 @@ LF4B7: BUDGET();
   RTS_RET(sp0);                                                                          /* $F4B7 rts */
 }
 
-void Sub_F4B8(void) {  /* $F4B8 bank 7 */
+void InitPlayerForAreaType(void) {  /* $F4B8 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $F4B8 lda */
   STA(PlayerActionState);                                                                /* $F4BA sta */
@@ -5624,7 +5624,7 @@ void UploadPaletteIgnoringPad(void) {  /* $F61E bank 7 */
   RTS_RET(sp0);                                                                          /* $F633 rts */
 }
 
-void Sub_F634(void) {  /* $F634 bank 7 */
+void MoveBulletsSide6(void) {  /* $F634 bank 7 */
   uint8_t sp0 = R.sp;
   LDX(0x58);                                                                             /* $F634 ldx */
   do { BUDGET();
@@ -5656,7 +5656,7 @@ LF65B: BUDGET();
   RTS_RET(sp0);                                                                          /* $F663 rts */
 }
 
-void Sub_F664(void) {  /* $F664 bank 7 */
+void MoveBulletsSide4(void) {  /* $F664 bank 7 */
   uint8_t sp0 = R.sp;
   LDX(0x54);                                                                             /* $F664 ldx */
   do { BUDGET();
@@ -5691,7 +5691,7 @@ LF68F: BUDGET();
   RTS_RET(sp0);                                                                          /* $F697 rts */
 }
 
-void Sub_F698(void) {  /* $F698 bank 7 */
+void MoveBulletsRight8(void) {  /* $F698 bank 7 */
   uint8_t sp0 = R.sp;
   LDX(0x4C);                                                                             /* $F698 ldx */
   do { BUDGET();
@@ -5717,7 +5717,7 @@ LF6B3: BUDGET();
   RTS_RET(sp0);                                                                          /* $F6BB rts */
 }
 
-void Sub_F6BC(void) {  /* $F6BC bank 7 */
+void ReadFloorProbeTile(void) {  /* $F6BC bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(FloorProbeValid));                                                              /* $F6BC lda */
   if (R.a != 0) {                                                                        /* $F6BE beq */
@@ -6168,7 +6168,7 @@ LFAED: BUDGET();
   RTS_RET(sp0);                                                                          /* $FAFF rts */
 }
 
-void Sub_FB00(void) {  /* $FB00 bank 7 */
+void UpdatePlayerHitboxA(void) {  /* $FB00 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(HurtTimer));                                                                    /* $FB00 lda */
   if (R.a != 0) {                                                                        /* $FB03 beq */
@@ -6316,7 +6316,7 @@ LFC16: BUDGET();
   RTS_RET(sp0);                                                                          /* $FC19 rts */
 }
 
-void Sub_FC1A(void) {  /* $FC1A bank 7 */
+void UpdatePlayerHitboxB(void) {  /* $FC1A bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(HurtTimer));                                                                    /* $FC1A lda */
   if (R.a != 0) {                                                                        /* $FC1D beq */
@@ -6339,9 +6339,9 @@ void Sub_FC1A(void) {  /* $FC1A bank 7 */
   LDA(rd(FrameCounter));                                                                 /* $FC43 lda */
   AND(0x01);                                                                             /* $FC45 and */
   if (R.a == 0) {                                                                        /* $FC47 bne */
-    push16(0xFC4B); Sub_FC62(); UNW(); ret_check(0xFC4B);                                /* $FC49 jsr */
+    push16(0xFC4B); SetBulletHitbox1(); UNW(); ret_check(0xFC4B);                        /* $FC49 jsr */
   } else {
-    push16(0xFC51); Sub_FCBD(); UNW(); ret_check(0xFC51);                                /* $FC4F jsr */
+    push16(0xFC51); SetBulletHitbox2(); UNW(); ret_check(0xFC51);                        /* $FC4F jsr */
   }
   push16(0xFC54); ClearObjectStatusBits(); UNW(); ret_check(0xFC54);                     /* $FC52 jsr */
   push16(0xFC57); Sub_F804(); UNW(); ret_check(0xFC57);                                  /* $FC55 jsr */
@@ -6351,7 +6351,7 @@ void Sub_FC1A(void) {  /* $FC1A bank 7 */
   RTS_RET(sp0);                                                                          /* $FC61 rts */
 }
 
-void Sub_FC62(void) {  /* $FC62 bank 7 */
+void SetBulletHitbox1(void) {  /* $FC62 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x024C));                                                                       /* $FC62 lda */
   cmp8(R.a, 0xE8);                                                                       /* $FC65 cmp */
@@ -6398,7 +6398,7 @@ LFCB9: BUDGET();
   RTS_RET(sp0);                                                                          /* $FCBC rts */
 }
 
-void Sub_FCBD(void) {  /* $FCBD bank 7 */
+void SetBulletHitbox2(void) {  /* $FCBD bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0254));                                                                       /* $FCBD lda */
   cmp8(R.a, 0xE8);                                                                       /* $FCC0 cmp */
@@ -6445,7 +6445,7 @@ LFD14: BUDGET();
   RTS_RET(sp0);                                                                          /* $FD17 rts */
 }
 
-void Sub_FD18(void) {  /* $FD18 bank 7 */
+void UpdatePlayerHitboxC(void) {  /* $FD18 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(HurtTimer));                                                                    /* $FD18 lda */
   if (R.a != 0) {                                                                        /* $FD1B beq */
@@ -6472,7 +6472,7 @@ void Sub_FD18(void) {  /* $FD18 bank 7 */
     LDA(0x80);                                                                           /* $FD49 lda */
   }
   STA(0x0119);                                                                           /* $FD4B sta */
-  push16(0xFD50); Sub_FCBD(); UNW(); ret_check(0xFD50);                                  /* $FD4E jsr */
+  push16(0xFD50); SetBulletHitbox2(); UNW(); ret_check(0xFD50);                          /* $FD4E jsr */
   push16(0xFD53); ClearObjectStatusBits(); UNW(); ret_check(0xFD53);                     /* $FD51 jsr */
   push16(0xFD56); Sub_F804(); UNW(); ret_check(0xFD56);                                  /* $FD54 jsr */
   push16(0xFD59); CheckPlayerHitByObjects(); UNW(); ret_check(0xFD59);                   /* $FD57 jsr */

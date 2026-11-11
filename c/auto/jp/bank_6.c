@@ -45,7 +45,7 @@ LCB2C: BUDGET();
     STA(MmcPrgShadow);                                                                   /* $CB60 sta */
   }
 LCB62: BUDGET();
-  push16(0xCB64); Sub_E089(); UNW(); ret_check(0xCB64);                                  /* $CB62 jsr */
+  push16(0xCB64); CheckExitTriggers(); UNW(); ret_check(0xCB64);                         /* $CB62 jsr */
   LDA(rd(0x0600));                                                                       /* $CB65 lda */
   cmp8(R.a, 0x60);                                                                       /* $CB68 cmp */
   if (R.a != 0x60) goto LCB75;                                                           /* $CB6A bne */
