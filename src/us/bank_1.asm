@@ -341,7 +341,7 @@ Loc_B1_85D4:
   lda #$92                     ; $85E4
   sta $0549                    ; $85E6
   lda #$AB                     ; $85E9
-  sta $054B                    ; $85EB
+  sta PpuBufAddrLo             ; $85EB
   inc $0556                    ; $85EE
 Loc_B1_85F1:
   rts                          ; $85F1
@@ -536,7 +536,7 @@ Loc_B1_8D81:
   lda ObjectCount              ; $8D81
   beq Loc_B1_8DBB              ; $8D84
   lda #$00                     ; $8D86
-  sta $0302                    ; $8D88
+  sta ObjectLoopIndex          ; $8D88
 Loc_B1_8D8B:
   ldy #$00                     ; $8D8B
   lda (Tmp00),y                ; $8D8D
@@ -557,8 +557,8 @@ Loc_B1_8D8B:
   clc                          ; $8DAB
   adc #$10                     ; $8DAC
   sta z:Tmp00                  ; $8DAE
-  inc $0302                    ; $8DB0
-  lda $0302                    ; $8DB3
+  inc ObjectLoopIndex          ; $8DB0
+  lda ObjectLoopIndex          ; $8DB3
   cmp ObjectCount              ; $8DB6
   bcc Loc_B1_8D8B              ; $8DB9
 Loc_B1_8DBB:
@@ -714,7 +714,7 @@ Loc_B1_8ECF:
   sta $030D,y                  ; $8EF7
   lda #$41                     ; $8EFA
   jsr QueueSound               ; $8EFC
-  lda $0302,y                  ; $8EFF
+  lda ObjectLoopIndex,y        ; $8EFF
   cmp #$60                     ; $8F02
   bcc Loc_B1_8F0F              ; $8F04
   cmp #$A0                     ; $8F06
@@ -1186,8 +1186,8 @@ EnemyTypeDSpawnTwin:
   sta $0300,y                  ; $949E
   lda ObjectCount,x            ; $94A1
   sta ObjectCount,y            ; $94A4
-  lda $0302,x                  ; $94A7
-  sta $0302,y                  ; $94AA
+  lda ObjectLoopIndex,x        ; $94A7
+  sta ObjectLoopIndex,y        ; $94AA
   lda z:$04                    ; $94AD
   pha                          ; $94AF
   lda z:$05                    ; $94B0
@@ -2491,7 +2491,7 @@ SpawnObjectAtScreenRight:
   lda #$18                     ; $AB08
   sta ObjectCount,y            ; $AB0A
   lda #$B0                     ; $AB0D
-  sta $0302,y                  ; $AB0F
+  sta ObjectLoopIndex,y        ; $AB0F
   lda #$80                     ; $AB12
   sta $030E,y                  ; $AB14
   jsr Sub_B1_8EA2              ; $AB17
@@ -2524,7 +2524,7 @@ Loc_B1_AB36:
   and #$1F                     ; $AB42
   cmp #$11                     ; $AB44
   bne Loc_B1_AB50              ; $AB46
-  lda $04AA                    ; $AB48
+  lda BossPhase                ; $AB48
   bmi Loc_B1_AB5C              ; $AB4B
   jmp Loc_B1_AB9C              ; $AB4D
 Loc_B1_AB50:
@@ -2578,8 +2578,8 @@ Data_B1_AB9D:
 Bank1ObjAnim_00:
   ldy #$0D                     ; $ABAB
   lda (Tmp00),y                ; $ABAD
-  and $04AB                    ; $ABAF
-  sta $04AB                    ; $ABB2
+  and BossSubPhase             ; $ABAF
+  sta BossSubPhase             ; $ABB2
   jsr InitProjectileA          ; $ABB5
   rts                          ; $ABB8
 Bank1ObjAnim_01:
@@ -2590,7 +2590,7 @@ Bank1ObjAnim_02:
   rts                          ; $ABC0
 Bank1ObjAnim_03:
   jsr InitProjectileA          ; $ABC1
-  lda $04AB                    ; $ABC4
+  lda BossSubPhase             ; $ABC4
   beq Loc_B1_ABCC              ; $ABC7
   jsr Sub_B1_AC8A              ; $ABC9
 Loc_B1_ABCC:
@@ -2603,7 +2603,7 @@ Bank1ObjAnim_04:
   beq Loc_B1_ABDF              ; $ABD5
   jsr InitProjectileA          ; $ABD7
   lda #$06                     ; $ABDA
-  sta $04AA                    ; $ABDC
+  sta BossPhase                ; $ABDC
 Loc_B1_ABDF:
   rts                          ; $ABDF
 SpawnTemplatePair:
@@ -2693,13 +2693,13 @@ Loc_B1_AC80:
 Data_B1_AC81:
   .incbin "prg_bank_1.bin", $2C81, $9  ; $AC81
 Sub_B1_AC8A:
-  lda $04AA                    ; $AC8A
+  lda BossPhase                ; $AC8A
   and #$7F                     ; $AC8D
   cmp #$03                     ; $AC8F
   bne Loc_B1_AC96              ; $AC91
   jmp Loc_B1_ACAE              ; $AC93
 Loc_B1_AC96:
-  lda $04AB                    ; $AC96
+  lda BossSubPhase             ; $AC96
   cmp #$03                     ; $AC99
   beq Loc_B1_ACA4              ; $AC9B
   tay                          ; $AC9D
@@ -2713,7 +2713,7 @@ Loc_B1_ACA4:
   sta z:Tmp03                  ; $ACA9
   jmp Loc_B1_ACE6              ; $ACAB
 Loc_B1_ACAE:
-  lda $04AB                    ; $ACAE
+  lda BossSubPhase             ; $ACAE
   cmp #$07                     ; $ACB1
   beq Loc_B1_ACD2              ; $ACB3
   tay                          ; $ACB5
@@ -2745,7 +2745,7 @@ Loc_B1_ACE6:
   jsr MultiplyBy12             ; $ACE6
   sta z:Tmp03                  ; $ACE9
   tax                          ; $ACEB
-  lda $04AA                    ; $ACEC
+  lda BossPhase                ; $ACEC
   and #$7F                     ; $ACEF
   cmp #$02                     ; $ACF1
   bne Loc_B1_ACFB              ; $ACF3
@@ -3071,7 +3071,7 @@ Sub_B1_B013:
   lda z:PaletteSetIndex        ; $B018
   cmp #$69                     ; $B01A
   bne Loc_B1_B02A              ; $B01C
-  lda $04AA                    ; $B01E
+  lda BossPhase                ; $B01E
   and #$7F                     ; $B021
   cmp #$06                     ; $B023
   beq Loc_B1_B09B              ; $B025

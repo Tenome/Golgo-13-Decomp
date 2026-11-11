@@ -263,7 +263,7 @@ void Bank4Tbl80C9_05(void) {  /* $813D bank 4 */
   push16(0x8142); FillPaletteBlack(); UNW(); ret_check(0x8142);                          /* $8140 jsr */
   push16(0x8145); HideSpritesFromStart(); UNW(); ret_check(0x8145);                      /* $8143 jsr */
   LDA(0x03);                                                                             /* $8146 lda */
-  STA(0x051F);                                                                           /* $8148 sta */
+  STA(CollectedCount);                                                                   /* $8148 sta */
   push16(0x814D); CopyPpuListStubToRam(); UNW(); ret_check(0x814D);                      /* $814B jsr */
   push16(0x8150); InitMazePosition(); UNW(); ret_check(0x8150);                          /* $814E jsr */
   push16(0x8153); DrawCompassSprites(); UNW(); ret_check(0x8153);                        /* $8151 jsr */
@@ -887,7 +887,7 @@ void Bank4StateB_04(void) {  /* $85F9 bank 4 */
 
 void Bank4Tbl85C3_05(void) {  /* $8600 bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0508));                                                                       /* $8600 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $8600 lda */
   ORA(rd(0x050B));                                                                       /* $8603 ora */
   if (R.a == 0) {                                                                        /* $8606 bne */
     LDY(0xEA);                                                                           /* $8608 ldy */
@@ -902,7 +902,7 @@ void Bank4Tbl85C3_05(void) {  /* $8600 bank 4 */
 
 void Bank4Tbl85C3_06(void) {  /* $8619 bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0508));                                                                       /* $8619 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $8619 lda */
   ORA(rd(0x050C));                                                                       /* $861C ora */
   if (R.a != 0) { Bank4StateB_04(); return; }                                            /* $861F bne */
   LDY(0xE9);                                                                             /* $8621 ldy */
@@ -921,7 +921,7 @@ void Bank4Tbl85C3_07(void) {  /* $8629 bank 4 */
 
 void Bank4Tbl85C3_08(void) {  /* $8635 bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0508));                                                                       /* $8635 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $8635 lda */
   ORA(rd(0x050C));                                                                       /* $8638 ora */
   if (R.a == 0) {                                                                        /* $863B bne */
     LDY(0xE9);                                                                           /* $863D ldy */
@@ -945,7 +945,7 @@ void Bank4Tbl85C3_08(void) {  /* $8635 bank 4 */
 
 void Bank4Tbl85C3_09(void) {  /* $8663 bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0508));                                                                       /* $8663 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $8663 lda */
   ORA(rd(0x050C));                                                                       /* $8666 ora */
   if (R.a != 0) {                                                                        /* $8669 beq */
     { Bank4StateB_04(); return; }                                                        /* $866B jmp */
@@ -957,7 +957,7 @@ void Bank4Tbl85C3_09(void) {  /* $8663 bank 4 */
 
 void Bank4Tbl85C3_0A(void) {  /* $8676 bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0508));                                                                       /* $8676 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $8676 lda */
   if (R.a == 0) {                                                                        /* $8679 bne */
     LDY(0xEB);                                                                           /* $867B ldy */
     push16(0x867F); AddObjectOfType(); UNW(); ret_check(0x867F);                         /* $867D jsr */
@@ -979,7 +979,7 @@ L8659: BUDGET();
   STA(0x7C);                                                                             /* $8660 sta */
   RTS_RET(sp0);                                                                          /* $8662 rts */
 L868C: BUDGET();
-  LDA(rd(0x0508));                                                                       /* $868C lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $868C lda */
   ORA(rd(0x050C));                                                                       /* $868F ora */
   if (R.a == 0) {                                                                        /* $8692 bne */
     LDY(0xE9);                                                                           /* $8694 ldy */
@@ -1323,7 +1323,7 @@ L8D82: BUDGET();
     }
     RTS_RET(sp0);                                                                        /* $8D95 rts */
 L8D9E: BUDGET();
-    LDA(rd(0x051F));                                                                     /* $8D9E lda */
+    LDA(rd(CollectedCount));                                                             /* $8D9E lda */
     if (R.a != 0) {                                                                      /* $8DA1 beq */
       LDA(rd(ObjectCount));                                                              /* $8DA3 lda */
       push16(0x8DA8); AslA4(); UNW(); ret_check(0x8DA8);                                 /* $8DA6 jsr */
@@ -1343,7 +1343,7 @@ L8DB9: BUDGET();
     TYA();                                                                               /* $8DB9 tya */
     ORA(0x80);                                                                           /* $8DBA ora */
     STA((uint16_t)(0x0309 + R.x));                                                       /* $8DBC sta */
-    DEC_M(0x051F);                                                                       /* $8DBF dec */
+    DEC_M(CollectedCount);                                                               /* $8DBF dec */
     goto LA00F;                                                                          /* $8DC2 jmp */
   }
   LDA(rd(JoyNew1));                                                                      /* $8DC5 lda */
@@ -1395,7 +1395,7 @@ L8E0A: BUDGET();
   sbc(0x38);                                                                             /* $8E11 sbc */
   goto L8E00;                                                                            /* $8E13 jmp */
 LA00F: BUDGET();
-  LDA(rd(0x051F));                                                                       /* $A00F lda */
+  LDA(rd(CollectedCount));                                                               /* $A00F lda */
   AND(0x03);                                                                             /* $A012 and */
   cmp8(R.a, 0x03);                                                                       /* $A014 cmp */
   if (R.a != 0x03) {                                                                     /* $A016 beq */
@@ -1456,7 +1456,7 @@ void Bank4StateC_00(void) {  /* $8EA4 bank 4 */
 void Bank4StateC_01(void) {  /* $8EA6 bank 4 */
   uint8_t sp0 = R.sp;
   LDX(rd(0x6B));                                                                         /* $8EA6 ldx */
-  LDA(rd((uint16_t)(0x0302 + R.x)));                                                     /* $8EA8 lda */
+  LDA(rd((uint16_t)(ObjectLoopIndex + R.x)));                                            /* $8EA8 lda */
   cmp8(R.a, rd(0x0207));                                                                 /* $8EAB cmp */
   if (R.a != rd(0x0207)) { Bank4StateC_00(); return; }                                   /* $8EAE bne */
   { Bank4StateC_02(); return; }
@@ -1492,7 +1492,7 @@ void Bank4Tbl8E4A_0A(void) {  /* $8EC8 bank 4 */
 void Bank4Tbl8E4A_11(void) {  /* $8ED2 bank 4 */
   uint8_t sp0 = R.sp;
   LDX(rd(0x6B));                                                                         /* $8ED2 ldx */
-  LDA(rd((uint16_t)(0x0302 + R.x)));                                                     /* $8ED4 lda */
+  LDA(rd((uint16_t)(ObjectLoopIndex + R.x)));                                            /* $8ED4 lda */
   cmp8(R.a, rd(0x0207));                                                                 /* $8ED7 cmp */
   if (R.a != rd(0x0207)) { Bank4StateC_00(); return; }                                   /* $8EDA bne */
   { Bank4StateC_02(); return; }                                                          /* $8EDC jmp */
@@ -1611,10 +1611,10 @@ void ClearNametableRowAt054A(void) {  /* $8FE1 bank 4 */
   }
   TAY();                                                                                 /* $8FF3 tay */
   LDA(rd(PPU_STATUS));                                                                   /* $8FF4 lda */
-  LDA(rd(0x054A));                                                                       /* $8FF7 lda */
+  LDA(rd(PpuBufAddrHi));                                                                 /* $8FF7 lda */
   AND(0x23);                                                                             /* $8FFA and */
   STA(PPU_ADDR);                                                                         /* $8FFC sta */
-  LDA(rd(0x054B));                                                                       /* $8FFF lda */
+  LDA(rd(PpuBufAddrLo));                                                                 /* $8FFF lda */
   STA(PPU_ADDR);                                                                         /* $9002 sta */
   LDA(rd(PPU_DATA));                                                                     /* $9005 lda */
   LDX(0x00);                                                                             /* $9008 ldx */
@@ -1635,23 +1635,23 @@ void ClearNametable2Rows(void) {  /* $901A bank 4 */
   AND(0xFD);                                                                             /* $901C and */
   push16(0x9020); SetPpuCtrl(); UNW(); ret_check(0x9020);                                /* $901E jsr */
   LDA(0x28);                                                                             /* $9021 lda */
-  STA(0x054A);                                                                           /* $9023 sta */
+  STA(PpuBufAddrHi);                                                                     /* $9023 sta */
   LDA(0x10);                                                                             /* $9026 lda */
   STA(0x058E);                                                                           /* $9028 sta */
   LDA(0x00);                                                                             /* $902B lda */
-  STA(0x054B);                                                                           /* $902D sta */
+  STA(PpuBufAddrLo);                                                                     /* $902D sta */
   STA(0x054C);                                                                           /* $9030 sta */
   do { BUDGET();
     LDY(0x40);                                                                           /* $9033 ldy */
     push16(0x9037); ClearNametableRowAt054A(); UNW(); ret_check(0x9037);                 /* $9035 jsr */
     push16(0x903A); ProcessPpuUpdateList(); UNW(); ret_check(0x903C);                    /* $9038 jsr */
-    LDA(rd(0x054B));                                                                     /* $903D lda */
+    LDA(rd(PpuBufAddrLo));                                                               /* $903D lda */
     CLC();                                                                               /* $9040 clc */
     adc(0x40);                                                                           /* $9041 adc */
-    STA(0x054B);                                                                         /* $9043 sta */
-    LDA(rd(0x054A));                                                                     /* $9046 lda */
+    STA(PpuBufAddrLo);                                                                   /* $9043 sta */
+    LDA(rd(PpuBufAddrHi));                                                               /* $9046 lda */
     adc(0x00);                                                                           /* $9049 adc */
-    STA(0x054A);                                                                         /* $904B sta */
+    STA(PpuBufAddrHi);                                                                   /* $904B sta */
     DEC_M(0x058E);                                                                       /* $904E dec */
   } while (!R.z);                                                                        /* $9051 bne */
   RTS_RET(sp0);                                                                          /* $9053 rts */
@@ -1841,7 +1841,7 @@ void InitMazePalette(void) {  /* $95A1 bank 4 */
   LDX(rd((uint16_t)(0x95F8 + R.y)));                                                     /* $95BE ldx */
   STX(0x87);                                                                             /* $95C1 stx */
   push16(0x95C5); SetFadeParamsFromTable(); UNW(); ret_check(0x95C5);                    /* $95C3 jsr */
-  LDA(rd(0x0508));                                                                       /* $95C6 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $95C6 lda */
   if (R.a == 0) { RequestPaletteUpdate(); return; }                                      /* $95C9 beq */
   LDA(0x0F);                                                                             /* $95CB lda */
   STA(0x0532);                                                                           /* $95CD sta */
@@ -2329,9 +2329,9 @@ void DrawWallSegments(void) {  /* $9A8B bank 4 */
       ASL_A();                                                                           /* $9A9B asl */
       TAX();                                                                             /* $9A9C tax */
       LDA(rd((uint16_t)(0x9B25 + R.x)));                                                 /* $9A9D lda */
-      STA(0x0523);                                                                       /* $9AA0 sta */
+      STA(PpuStubTargetLo);                                                              /* $9AA0 sta */
       LDA(rd((uint16_t)(0x9B26 + R.x)));                                                 /* $9AA3 lda */
-      STA(0x0524);                                                                       /* $9AA6 sta */
+      STA(PpuStubTargetHi);                                                              /* $9AA6 sta */
       push16(0x9AAB); call_addr(0x0520); UNW(); ret_check(0x9AAB);                       /* $9AA9 jsr */
       LDA(rd(0x6A));                                                                     /* $9AAC lda */
       cmp8(R.a, 0x03);                                                                   /* $9AAE cmp */
@@ -2340,9 +2340,9 @@ void DrawWallSegments(void) {  /* $9A8B bank 4 */
       ASL_A();                                                                           /* $9AB4 asl */
       TAX();                                                                             /* $9AB5 tax */
       LDA(rd((uint16_t)(0x9B4D + R.x)));                                                 /* $9AB6 lda */
-      STA(0x0523);                                                                       /* $9AB9 sta */
+      STA(PpuStubTargetLo);                                                              /* $9AB9 sta */
       LDA(rd((uint16_t)(0x9B4E + R.x)));                                                 /* $9ABC lda */
-      STA(0x0524);                                                                       /* $9ABF sta */
+      STA(PpuStubTargetHi);                                                              /* $9ABF sta */
       push16(0x9AC4); call_addr(0x0520); UNW(); ret_check(0x9AC4);                       /* $9AC2 jsr */
       LDY(rd(0x6C));                                                                     /* $9AC5 ldy */
       LDA(rd((uint16_t)(0x9B75 + R.y)));                                                 /* $9AC7 lda */
@@ -2354,9 +2354,9 @@ void DrawWallSegments(void) {  /* $9A8B bank 4 */
       adc(rd(0x60));                                                                     /* $9AD4 adc */
       TAX();                                                                             /* $9AD6 tax */
       LDA(rd((uint16_t)(0x9B89 + R.x)));                                                 /* $9AD7 lda */
-      STA(0x0523);                                                                       /* $9ADA sta */
+      STA(PpuStubTargetLo);                                                              /* $9ADA sta */
       LDA(rd((uint16_t)(0x9B8A + R.x)));                                                 /* $9ADD lda */
-      STA(0x0524);                                                                       /* $9AE0 sta */
+      STA(PpuStubTargetHi);                                                              /* $9AE0 sta */
       push16(0x9AE5); call_addr(0x0520); UNW(); ret_check(0x9AE5);                       /* $9AE3 jsr */
     }
 L9AE6: BUDGET();
@@ -2436,9 +2436,9 @@ void CopyThunkToRamAndCall800A(void) {  /* $9F94 bank 4 */
 
 void DrawCollectedCountIcons(void) {  /* $9FAC bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x051F));                                                                       /* $9FAC lda */
+  LDA(rd(CollectedCount));                                                               /* $9FAC lda */
   AND(0x03);                                                                             /* $9FAF and */
-  STA(0x051F);                                                                           /* $9FB1 sta */
+  STA(CollectedCount);                                                                   /* $9FB1 sta */
   if (R.a == 0) {                                                                        /* $9FB4 bne */
     RTS_RET(sp0);                                                                        /* $9FB6 rts */
   }
@@ -2462,7 +2462,7 @@ void DrawCollectedCountIcons(void) {  /* $9FAC bank 4 */
 
 void AddCollectedCountIcon(void) {  /* $9FD6 bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x051F));                                                                       /* $9FD6 lda */
+  LDA(rd(CollectedCount));                                                               /* $9FD6 lda */
   AND(0x03);                                                                             /* $9FD9 and */
   if (R.a != 0) {                                                                        /* $9FDB beq */
     TAX();                                                                               /* $9FDD tax */
@@ -2480,11 +2480,11 @@ void SetupIconPpuBuffer(void) {  /* $9FEB bank 4 */
   LDX(0x0A);                                                                             /* $9FEB ldx */
   do { BUDGET();
     LDA(rd((uint16_t)(0xA004 + R.x)));                                                   /* $9FED lda */
-    STA((uint16_t)(0x054A + R.x));                                                       /* $9FF0 sta */
+    STA((uint16_t)(PpuBufAddrHi + R.x));                                                 /* $9FF0 sta */
     DEX();                                                                               /* $9FF3 dex */
   } while (!(R.x & 0x80));                                                               /* $9FF4 bpl */
   TYA();                                                                                 /* $9FF6 tya */
-  STA(0x054B);                                                                           /* $9FF7 sta */
+  STA(PpuBufAddrLo);                                                                     /* $9FF7 sta */
   CLC();                                                                                 /* $9FFA clc */
   adc(0x20);                                                                             /* $9FFB adc */
   STA(0x0550);                                                                           /* $9FFD sta */
@@ -2513,7 +2513,7 @@ void DrawCollectedItemIcons(void) {  /* $A033 bank 4 */
     push16(0xA050); Sub_B4_A09B(); UNW(); ret_check(0xA050);                             /* $A04E jsr */
     push16(0xA053); call_addr(0x0520); UNW(); ret_check(0xA053);                         /* $A051 jsr */
   }
-  LDA(rd(0x0508));                                                                       /* $A054 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $A054 lda */
   if (R.a != 0) {                                                                        /* $A057 beq */
     push16(0xA05B); Sub_B4_A0B6(); UNW(); ret_check(0xA05B);                             /* $A059 jsr */
     push16(0xA05E); call_addr(0x0520); UNW(); ret_check(0xA05E);                         /* $A05C jsr */
@@ -2531,9 +2531,9 @@ void Sub_B4_A060(void) {  /* $A060 bank 4 */
 void Sub_B4_A065(void) {  /* $A065 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x70);                                                                             /* $A065 lda */
-  STA(0x0523);                                                                           /* $A067 sta */
+  STA(PpuStubTargetLo);                                                                  /* $A067 sta */
   LDA(0xA0);                                                                             /* $A06A lda */
-  STA(0x0524);                                                                           /* $A06C sta */
+  STA(PpuStubTargetHi);                                                                  /* $A06C sta */
   RTS_RET(sp0);                                                                          /* $A06F rts */
 }
 
@@ -2547,9 +2547,9 @@ void Sub_B4_A07B(void) {  /* $A07B bank 4 */
 void Sub_B4_A080(void) {  /* $A080 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x8B);                                                                             /* $A080 lda */
-  STA(0x0523);                                                                           /* $A082 sta */
+  STA(PpuStubTargetLo);                                                                  /* $A082 sta */
   LDA(0xA0);                                                                             /* $A085 lda */
-  STA(0x0524);                                                                           /* $A087 sta */
+  STA(PpuStubTargetHi);                                                                  /* $A087 sta */
   RTS_RET(sp0);                                                                          /* $A08A rts */
 }
 
@@ -2563,9 +2563,9 @@ void Sub_B4_A096(void) {  /* $A096 bank 4 */
 void Sub_B4_A09B(void) {  /* $A09B bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0xA6);                                                                             /* $A09B lda */
-  STA(0x0523);                                                                           /* $A09D sta */
+  STA(PpuStubTargetLo);                                                                  /* $A09D sta */
   LDA(0xA0);                                                                             /* $A0A0 lda */
-  STA(0x0524);                                                                           /* $A0A2 sta */
+  STA(PpuStubTargetHi);                                                                  /* $A0A2 sta */
   RTS_RET(sp0);                                                                          /* $A0A5 rts */
 }
 
@@ -2579,9 +2579,9 @@ void Sub_B4_A0B1(void) {  /* $A0B1 bank 4 */
 void Sub_B4_A0B6(void) {  /* $A0B6 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0xC1);                                                                             /* $A0B6 lda */
-  STA(0x0523);                                                                           /* $A0B8 sta */
+  STA(PpuStubTargetLo);                                                                  /* $A0B8 sta */
   LDA(0xA0);                                                                             /* $A0BB lda */
-  STA(0x0524);                                                                           /* $A0BD sta */
+  STA(PpuStubTargetHi);                                                                  /* $A0BD sta */
   RTS_RET(sp0);                                                                          /* $A0C0 rts */
 }
 
@@ -2590,9 +2590,9 @@ void Sub_B4_A0D8(void) {  /* $A0D8 bank 4 */
   LDA(0x04);                                                                             /* $A0D8 lda */
   STA(PpuOpRequest);                                                                     /* $A0DA sta */
   LDA(0xE8);                                                                             /* $A0DD lda */
-  STA(0x0523);                                                                           /* $A0DF sta */
+  STA(PpuStubTargetLo);                                                                  /* $A0DF sta */
   LDA(0xA0);                                                                             /* $A0E2 lda */
-  STA(0x0524);                                                                           /* $A0E4 sta */
+  STA(PpuStubTargetHi);                                                                  /* $A0E4 sta */
   RTS_RET(sp0);                                                                          /* $A0E7 rts */
 }
 
@@ -2722,17 +2722,17 @@ void DoorState2(void) {  /* $A2DF bank 4 */
   cmp8(R.a, 0x11);                                                                       /* $A2E4 cmp */
   if (R.a < 0x11) {                                                                      /* $A2E6 bcs */
     LDX(0x00);                                                                           /* $A2E8 ldx */
-    STX(0x054A);                                                                         /* $A2EA stx */
+    STX(PpuBufAddrHi);                                                                   /* $A2EA stx */
     push16(0xA2EF); AslA4(); UNW(); ret_check(0xA2EF);                                   /* $A2ED jsr */
-    ROL_M(0x054A);                                                                       /* $A2F0 rol */
+    ROL_M(PpuBufAddrHi);                                                                 /* $A2F0 rol */
     ASL_A();                                                                             /* $A2F3 asl */
-    ROL_M(0x054A);                                                                       /* $A2F4 rol */
+    ROL_M(PpuBufAddrHi);                                                                 /* $A2F4 rol */
     CLC();                                                                               /* $A2F7 clc */
     adc(0xA4);                                                                           /* $A2F8 adc */
-    STA(0x054B);                                                                         /* $A2FA sta */
-    LDA(rd(0x054A));                                                                     /* $A2FD lda */
+    STA(PpuBufAddrLo);                                                                   /* $A2FA sta */
+    LDA(rd(PpuBufAddrHi));                                                               /* $A2FD lda */
     adc(0x28);                                                                           /* $A300 adc */
-    STA(0x054A);                                                                         /* $A302 sta */
+    STA(PpuBufAddrHi);                                                                   /* $A302 sta */
     LDA(0x58);                                                                           /* $A305 lda */
     STA(0x054C);                                                                         /* $A307 sta */
     LDA(0x03);                                                                           /* $A30A lda */
@@ -2847,9 +2847,9 @@ void DoorState6(void) {  /* $A3D8 bank 4 */
   ASL_A();                                                                               /* $A3F1 asl */
   TAX();                                                                                 /* $A3F2 tax */
   LDA(rd((uint16_t)(0xA42F + R.x)));                                                     /* $A3F3 lda */
-  STA(0x054B);                                                                           /* $A3F6 sta */
+  STA(PpuBufAddrLo);                                                                     /* $A3F6 sta */
   LDA(rd((uint16_t)(0xA430 + R.x)));                                                     /* $A3F9 lda */
-  STA(0x054A);                                                                           /* $A3FC sta */
+  STA(PpuBufAddrHi);                                                                     /* $A3FC sta */
   LDA(rd((uint16_t)(0xA431 + R.x)));                                                     /* $A3FF lda */
   STA(0x054C);                                                                           /* $A402 sta */
   LDA(rd((uint16_t)(0xA432 + R.x)));                                                     /* $A405 lda */
@@ -3190,9 +3190,9 @@ void MazeObjType05State2(void) {  /* $A58C bank 4 */
     TAX();                                                                               /* $A595 tax */
     push16(0xA598); IncObjectField(); UNW(); ret_check(0xA598);                          /* $A596 jsr */
     LDA(rd((uint16_t)(0xA5B2 + R.x)));                                                   /* $A599 lda */
-    STA(0x0523);                                                                         /* $A59C sta */
+    STA(PpuStubTargetLo);                                                                /* $A59C sta */
     LDA(rd((uint16_t)(0xA5B3 + R.x)));                                                   /* $A59F lda */
-    STA(0x0524);                                                                         /* $A5A2 sta */
+    STA(PpuStubTargetHi);                                                                /* $A5A2 sta */
     LDA(0x04);                                                                           /* $A5A5 lda */
     STA(PpuOpRequest);                                                                   /* $A5A7 sta */
     RTS_RET(sp0);                                                                        /* $A5AA rts */
@@ -3205,9 +3205,9 @@ void MazeObjType05State2(void) {  /* $A58C bank 4 */
 void MazeObjType05State3(void) {  /* $A5EA bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x28);                                                                             /* $A5EA lda */
-  STA(0x054A);                                                                           /* $A5EC sta */
+  STA(PpuBufAddrHi);                                                                     /* $A5EC sta */
   LDA(0x00);                                                                             /* $A5EF lda */
-  STA(0x054B);                                                                           /* $A5F1 sta */
+  STA(PpuBufAddrLo);                                                                     /* $A5F1 sta */
   LDA(0x60);                                                                             /* $A5F4 lda */
   STA(0x054C);                                                                           /* $A5F6 sta */
   LDA(0x01);                                                                             /* $A5F9 lda */
@@ -3225,13 +3225,13 @@ void MazeObjType05State4(void) {  /* $A60B bank 4 */
   push16(0xA60F); IncObjectField(); UNW(); ret_check(0xA60F);                            /* $A60D jsr */
   cmp8(R.a, 0x18);                                                                       /* $A610 cmp */
   if (R.a < 0x18) {                                                                      /* $A612 bcs */
-    LDA(rd(0x054B));                                                                     /* $A614 lda */
+    LDA(rd(PpuBufAddrLo));                                                               /* $A614 lda */
     CLC();                                                                               /* $A617 clc */
     adc(0x20);                                                                           /* $A618 adc */
-    STA(0x054B);                                                                         /* $A61A sta */
-    LDA(rd(0x054A));                                                                     /* $A61D lda */
+    STA(PpuBufAddrLo);                                                                   /* $A61A sta */
+    LDA(rd(PpuBufAddrHi));                                                               /* $A61D lda */
     adc(0x00);                                                                           /* $A620 adc */
-    STA(0x054A);                                                                         /* $A622 sta */
+    STA(PpuBufAddrHi);                                                                   /* $A622 sta */
     LDA(0x01);                                                                           /* $A625 lda */
     STA(PpuOpRequest);                                                                   /* $A627 sta */
     RTS_RET(sp0);                                                                        /* $A62A rts */
@@ -3252,9 +3252,9 @@ void MazeObjType05State5(void) {  /* $A632 bank 4 */
     ASL_A();                                                                             /* $A63E asl */
     TAX();                                                                               /* $A63F tax */
     LDA(rd((uint16_t)(0xA65F + R.x)));                                                   /* $A640 lda */
-    STA(0x0523);                                                                         /* $A643 sta */
+    STA(PpuStubTargetLo);                                                                /* $A643 sta */
     LDA(rd((uint16_t)(0xA660 + R.x)));                                                   /* $A646 lda */
-    STA(0x0524);                                                                         /* $A649 sta */
+    STA(PpuStubTargetHi);                                                                /* $A649 sta */
     LDA(0x04);                                                                           /* $A64C lda */
     STA(PpuOpRequest);                                                                   /* $A64E sta */
     RTS_RET(sp0);                                                                        /* $A651 rts */
@@ -3763,7 +3763,7 @@ void CollectBonusItem(void) {  /* $ABCF bank 4 */
   LDY(rd(0x051E));                                                                       /* $ABDF ldy */
   if (R.y == 0) {                                                                        /* $ABE2 bne */
     LDA(0x01);                                                                           /* $ABE4 lda */
-    STA(0x0508);                                                                         /* $ABE6 sta */
+    STA(MazeItemFullRestore);                                                            /* $ABE6 sta */
     push16(0xABEB); QueueSound(); UNW(); ret_check(0xABEB);                              /* $ABE9 jsr */
     LDA(0x32);                                                                           /* $ABEC lda */
     LDX(0x0A);                                                                           /* $ABEE ldx */
@@ -3849,7 +3849,7 @@ void MazeObjType0F(void) {  /* $ACA6 bank 4 */
     if (R.a != 0) goto LACC0;                                                            /* $ACAD bne */
     { WaitObjectTimer(); return; }                                                       /* $ACAF jmp */
   }
-  LDA(rd(0x0508));                                                                       /* $ACB2 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $ACB2 lda */
   ORA(rd(0x050A));                                                                       /* $ACB5 ora */
   if (R.a != 0) goto LACCC;                                                              /* $ACB8 bne */
   push16(0xACBC); Sub_B4_B3EF(); UNW(); ret_check(0xACBC);                               /* $ACBA jsr */
@@ -3880,7 +3880,7 @@ void MazeObjType10(void) {  /* $ACD0 bank 4 */
     if (R.a != 0) goto LACEA;                                                            /* $ACD7 bne */
     { WaitObjectTimer(); return; }                                                       /* $ACD9 jmp */
   }
-  LDA(rd(0x0508));                                                                       /* $ACDC lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $ACDC lda */
   ORA(rd(0x050C));                                                                       /* $ACDF ora */
   if (R.a != 0) goto LACF6;                                                              /* $ACE2 bne */
   push16(0xACE6); Sub_B4_B3EF(); UNW(); ret_check(0xACE6);                               /* $ACE4 jsr */
@@ -3987,7 +3987,7 @@ void FullScreenMessageWait(void) {  /* $AE4A bank 4 */
   LDX(0x04);                                                                             /* $AE57 ldx */
   do { BUDGET();
     LDA(rd((uint16_t)(0xAE75 + R.x)));                                                   /* $AE59 lda */
-    STA((uint16_t)(0x054A + R.x));                                                       /* $AE5C sta */
+    STA((uint16_t)(PpuBufAddrHi + R.x));                                                 /* $AE5C sta */
     DEX();                                                                               /* $AE5F dex */
   } while (!(R.x & 0x80));                                                               /* $AE60 bpl */
   LDY(0x0B);                                                                             /* $AE62 ldy */
@@ -4168,11 +4168,11 @@ LAF90: BUDGET();
 
 void MazeObjType11State4(void) {  /* $AFA7 bank 4 */
   uint8_t sp0 = R.sp;
-  LDX(rd(0x051F));                                                                       /* $AFA7 ldx */
+  LDX(rd(CollectedCount));                                                               /* $AFA7 ldx */
   cmp8(R.x, 0x03);                                                                       /* $AFAA cpx */
   if (R.x < 0x03) {                                                                      /* $AFAC bcs */
     INX();                                                                               /* $AFAE inx */
-    STX(0x051F);                                                                         /* $AFAF stx */
+    STX(CollectedCount);                                                                 /* $AFAF stx */
     push16(0xAFB4); AddCollectedCountIcon(); UNW(); ret_check(0xAFB4);                   /* $AFB2 jsr */
   }
   { AdvanceObjectState(); return; }                                                      /* $AFB5 jmp */
@@ -4309,9 +4309,9 @@ void Sub_B4_B123(void) {  /* $B123 bank 4 */
   LDY(0x0B);                                                                             /* $B125 ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $B127 sta */
   LDA(0x43);                                                                             /* $B129 lda */
-  STA(0x0523);                                                                           /* $B12B sta */
+  STA(PpuStubTargetLo);                                                                  /* $B12B sta */
   LDA(0xB1);                                                                             /* $B12E lda */
-  STA(0x0524);                                                                           /* $B130 sta */
+  STA(PpuStubTargetHi);                                                                  /* $B130 sta */
   LDA(0x04);                                                                             /* $B133 lda */
   STA(PpuOpRequest);                                                                     /* $B135 sta */
   LDA(rd(0x87));                                                                         /* $B138 lda */
@@ -4355,7 +4355,7 @@ LB191: BUDGET();
     STA(0x60);                                                                           /* $B191 sta */
     LDA(0x01);                                                                           /* $B193 lda */
     STA(0x61);                                                                           /* $B195 sta */
-    LDA(rd(0x0508));                                                                     /* $B197 lda */
+    LDA(rd(MazeItemFullRestore));                                                        /* $B197 lda */
     ORA(rd(0x050A));                                                                     /* $B19A ora */
     if (R.a != 0) {                                                                      /* $B19D beq */
       push16(0xB1A1); RandomByteMixed(); UNW(); ret_check(0xB1A1);                       /* $B19F jsr */
@@ -4379,7 +4379,7 @@ LB1B7: BUDGET();
       if (R.a >= 0xE0) goto LB1B7;                                                       /* $B1C0 bcs */
       AND(0xF0);                                                                         /* $B1C2 and */
       ORA(0x04);                                                                         /* $B1C4 ora */
-      STA((uint16_t)(0x0302 + R.x));                                                     /* $B1C6 sta */
+      STA((uint16_t)(ObjectLoopIndex + R.x));                                            /* $B1C6 sta */
       LDA(rd(0x61));                                                                     /* $B1C9 lda */
       STA((uint16_t)(0x030B + R.x));                                                     /* $B1CB sta */
       INC_M(0x61);                                                                       /* $B1CE inc */
@@ -4417,7 +4417,7 @@ void MazeObjType17State0(void) {  /* $B202 bank 4 */
   if (!R.z) {                                                                            /* $B207 beq */
     RTS_RET(sp0);                                                                        /* $B209 rts */
   }
-  LDA(rd(0x0508));                                                                       /* $B20A lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $B20A lda */
   ORA(rd(0x050A));                                                                       /* $B20D ora */
   if (R.a == 0) {                                                                        /* $B210 bne */
     LDY(0x00);                                                                           /* $B212 ldy */
@@ -4570,7 +4570,7 @@ void MazeObjType19(void) {  /* $B2F7 bank 4 */
   if (R.a == 0) {                                                                        /* $B2FB bne */
     LDA(0x01);                                                                           /* $B2FD lda */
     STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $B2FF sta */
-    LDA(rd(0x0508));                                                                     /* $B301 lda */
+    LDA(rd(MazeItemFullRestore));                                                        /* $B301 lda */
     ORA(rd(0x050A));                                                                     /* $B304 ora */
     if (R.a == 0) {                                                                      /* $B307 bne */
       LDY(0x00);                                                                         /* $B309 ldy */
@@ -4611,7 +4611,7 @@ void MazeObjType1B(void) {  /* $B32B bank 4 */
 
 void Sub_B4_B352(void) {  /* $B352 bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0508));                                                                       /* $B352 lda */
+  LDA(rd(MazeItemFullRestore));                                                          /* $B352 lda */
   if (R.a != 0) {                                                                        /* $B355 beq */
     { RemoveObject(); return; }                                                          /* $B357 jmp */
   }
@@ -4632,7 +4632,7 @@ void CollectFullRestoreItem(void) {  /* $B362 bank 4 */
   AND(0x01);                                                                             /* $B365 and */
   if (R.a != 0) {                                                                        /* $B367 beq */
     LDA(0x01);                                                                           /* $B369 lda */
-    STA(0x0508);                                                                         /* $B36B sta */
+    STA(MazeItemFullRestore);                                                            /* $B36B sta */
     STA(AmmoHi);                                                                         /* $B36E sta */
     push16(0xB372); QueueSound(); UNW(); ret_check(0xB372);                              /* $B370 jsr */
     LDA(0x90);                                                                           /* $B373 lda */
@@ -4879,7 +4879,7 @@ void UpdateAllObjectHandlers(void) {  /* $B4B1 bank 4 */
   if (!R.z) {                                                                            /* $B4B4 beq */
     do { BUDGET();
       push16(0xB4B8); DispatchObjectHandler(); UNW(); ret_check(0xB4B8);                 /* $B4B6 jsr */
-      DEC_M(0x0302);                                                                     /* $B4B9 dec */
+      DEC_M(ObjectLoopIndex);                                                            /* $B4B9 dec */
     } while (!R.z);                                                                      /* $B4BC bne */
     LDY(0x06);                                                                           /* $B4BE ldy */
     LDA(rd((uint16_t)(0xC347 + R.y)));                                                   /* $B4C0 lda */
@@ -4888,7 +4888,7 @@ void UpdateAllObjectHandlers(void) {  /* $B4B1 bank 4 */
     if (R.z) goto LB4EE;                                                                 /* $B4C8 beq */
     do { BUDGET();
       LDX(0x00);                                                                         /* $B4CA ldx */
-      LDA(rd(0x0302));                                                                   /* $B4CC lda */
+      LDA(rd(ObjectLoopIndex));                                                          /* $B4CC lda */
       push16(0xB4D1); AslA4(); UNW(); ret_check(0xB4D1);                                 /* $B4CF jsr */
       TAY();                                                                             /* $B4D2 tay */
       LDA(rd((uint16_t)(0x0300 + R.y)));                                                 /* $B4D3 lda */
@@ -4904,7 +4904,7 @@ void UpdateAllObjectHandlers(void) {  /* $B4B1 bank 4 */
 LB4E5: BUDGET();
       TXA();                                                                             /* $B4E5 txa */
       STA((uint16_t)(0x0303 + R.y));                                                     /* $B4E6 sta */
-      DEC_M(0x0302);                                                                     /* $B4E9 dec */
+      DEC_M(ObjectLoopIndex);                                                            /* $B4E9 dec */
     } while (!R.z);                                                                      /* $B4EC bne */
   }
 LB4EE: BUDGET();
@@ -4915,13 +4915,13 @@ void LoadObjectCountIndex(void) {  /* $B4EF bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $B4EF lda */
   AND(0x0F);                                                                             /* $B4F2 and */
-  STA(0x0302);                                                                           /* $B4F4 sta */
+  STA(ObjectLoopIndex);                                                                  /* $B4F4 sta */
   RTS_RET(sp0);                                                                          /* $B4F7 rts */
 }
 
 void DispatchObjectHandler(void) {  /* $B4F8 bank 4 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0302));                                                                       /* $B4F8 lda */
+  LDA(rd(ObjectLoopIndex));                                                              /* $B4F8 lda */
   push16(0xB4FD); AslA4(); UNW(); ret_check(0xB4FD);                                     /* $B4FB jsr */
   TAY();                                                                                 /* $B4FE tay */
   STA(Tmp00);                                                                            /* $B4FF sta */

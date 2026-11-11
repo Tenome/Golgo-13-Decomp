@@ -48,7 +48,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
       LDA(0x03);                                                                         /* $8060 lda */
       STA(0x049D);                                                                       /* $8062 sta */
       LDA(0x01);                                                                         /* $8065 lda */
-      STA(0x04AA);                                                                       /* $8067 sta */
+      STA(BossPhase);                                                                    /* $8067 sta */
       push16(0x806C); InitScopeScene(); UNW(); ret_check(0x806C);                        /* $806A jsr */
       push16(0x806F); ClearObjectTableAndLoadList(); UNW(); ret_check(0x806F);           /* $806D jsr */
       push16(0x8072); InitScopeEnemies(); UNW(); ret_check(0x8072);                      /* $8070 jsr */
@@ -424,25 +424,25 @@ L842E: BUDGET();
 
 void Sub_B2_8488(void) {  /* $8488 bank 2 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x04AA));                                                                       /* $8488 lda */
+  LDA(rd(BossPhase));                                                                    /* $8488 lda */
   AND(0x7F);                                                                             /* $848B and */
   cmp8(R.a, 0x06);                                                                       /* $848D cmp */
   if (R.a != 0x06) {                                                                     /* $848F bne */
     LDA(rd(ObjectCount));                                                                /* $8494 lda */
     cmp8(R.a, 0x01);                                                                     /* $8497 cmp */
     if (R.a == 0x01) {                                                                   /* $8499 bne */
-      LDA(rd(0x04AB));                                                                   /* $849B lda */
+      LDA(rd(BossSubPhase));                                                             /* $849B lda */
       if (R.a == 0) goto L84A3;                                                          /* $849E beq */
     }
     goto L8570;                                                                          /* $84A0 jmp */
 L84A3: BUDGET();
     LDA(0x00);                                                                           /* $84A3 lda */
     STA(0x04AC);                                                                         /* $84A5 sta */
-    INC_M(0x04AA);                                                                       /* $84A8 inc */
-    LDA(rd(0x04AA));                                                                     /* $84AB lda */
+    INC_M(BossPhase);                                                                    /* $84A8 inc */
+    LDA(rd(BossPhase));                                                                  /* $84AB lda */
     AND(0x7F);                                                                           /* $84AE and */
-    STA(0x04AA);                                                                         /* $84B0 sta */
-    LDX(rd(0x04AA));                                                                     /* $84B3 ldx */
+    STA(BossPhase);                                                                      /* $84B0 sta */
+    LDX(rd(BossPhase));                                                                  /* $84B3 ldx */
     DEX();                                                                               /* $84B6 dex */
     DEX();                                                                               /* $84B7 dex */
     TXA();                                                                               /* $84B8 txa */
@@ -458,7 +458,7 @@ L84A3: BUDGET();
     STA(Tmp03);                                                                          /* $84CB sta */
     push16(0x84CF); LoadScopeObjectList(); UNW(); ret_check(0x84CF);                     /* $84CD jsr */
     INC_M(ObjectCount);                                                                  /* $84D0 inc */
-    LDA(rd(0x04AA));                                                                     /* $84D3 lda */
+    LDA(rd(BossPhase));                                                                  /* $84D3 lda */
     cmp8(R.a, 0x03);                                                                     /* $84D6 cmp */
     if (R.a == 0x03) {                                                                   /* $84D8 bne */
       LDA(rd(0x032A));                                                                   /* $84DA lda */
@@ -482,7 +482,7 @@ L84A3: BUDGET();
       ORA(0x40);                                                                         /* $8503 ora */
       STA((uint16_t)(ObjectTable + R.y));                                                /* $8505 sta */
       LDA(0x07);                                                                         /* $8508 lda */
-      STA(0x04AB);                                                                       /* $850A sta */
+      STA(BossSubPhase);                                                                 /* $850A sta */
       goto L8570;                                                                        /* $850D jmp */
     }
     cmp8(R.a, 0x05);                                                                     /* $8510 cmp */
@@ -491,14 +491,14 @@ L84A3: BUDGET();
     STA(0x032A);                                                                         /* $8516 sta */
     goto L8570;                                                                          /* $8519 jmp */
   }
-  LDA(rd(0x04AA));                                                                       /* $851C lda */
+  LDA(rd(BossPhase));                                                                    /* $851C lda */
   if (!(R.a & 0x80)) {                                                                   /* $851F bmi */
     LDA(rd(ObjectCount));                                                                /* $8521 lda */
     cmp8(R.a, 0x01);                                                                     /* $8524 cmp */
     if (R.a != 0x01) goto L8570;                                                         /* $8526 bne */
     LDA(0x80);                                                                           /* $8528 lda */
-    ORA(rd(0x04AA));                                                                     /* $852A ora */
-    STA(0x04AA);                                                                         /* $852D sta */
+    ORA(rd(BossPhase));                                                                  /* $852A ora */
+    STA(BossPhase);                                                                      /* $852D sta */
     LDA(0x00);                                                                           /* $8530 lda */
     push16(0x8534); QueueSound(); UNW(); ret_check(0x8534);                              /* $8532 jsr */
     LDA(0x1D);                                                                           /* $8535 lda */
@@ -773,7 +773,7 @@ void Sub_B2_88AA(void) {  /* $88AA bank 2 */
     if (R.a == 0x69) {                                                                   /* $88B3 bne */
       LDA(rd(0x049E));                                                                   /* $88B5 lda */
       if (R.a != 0) goto L88C1;                                                          /* $88B8 bne */
-      LDA(rd(0x04AA));                                                                   /* $88BA lda */
+      LDA(rd(BossPhase));                                                                /* $88BA lda */
       cmp8(R.a, 0x06);                                                                   /* $88BD cmp */
       if (R.a != 0x06) goto L88D4;                                                       /* $88BF bne */
     }
@@ -824,7 +824,7 @@ L8911: BUDGET();
   LDA(0x03);                                                                             /* $891A lda */
   STA(SceneState);                                                                       /* $891C sta */
   LDA(0x00);                                                                             /* $891F lda */
-  STA(0x013D);                                                                           /* $8921 sta */
+  STA(PaletteFadeLevel);                                                                 /* $8921 sta */
   LDA(rd(PaletteSetIndex));                                                              /* $8924 lda */
   STA(0x013F);                                                                           /* $8926 sta */
   cmp8(R.a, 0x69);                                                                       /* $8929 cmp */
@@ -844,7 +844,7 @@ void TickScopeSecondTimer(void) {  /* $8938 bank 2 */
   if (R.a == 0) {                                                                        /* $893B bne */
     LDA(rd(0x049E));                                                                     /* $893D lda */
     if (R.a == 0) goto L899A;                                                            /* $8940 beq */
-    LDA(rd(0x04AA));                                                                     /* $8942 lda */
+    LDA(rd(BossPhase));                                                                  /* $8942 lda */
     AND(0x7F);                                                                           /* $8945 and */
     cmp8(R.a, 0x06);                                                                     /* $8947 cmp */
     if (R.a == 0x06) goto L899A;                                                         /* $8949 beq */
@@ -996,7 +996,7 @@ L8A6A: BUDGET();
   LDA(rd(PaletteSetIndex));                                                              /* $8A72 lda */
   cmp8(R.a, 0x69);                                                                       /* $8A74 cmp */
   if (R.a == 0x69) {                                                                     /* $8A76 bne */
-    LDA(rd(0x04AA));                                                                     /* $8A78 lda */
+    LDA(rd(BossPhase));                                                                  /* $8A78 lda */
     cmp8(R.a, 0x03);                                                                     /* $8A7B cmp */
     if (R.a >= 0x03) goto L8AAF;                                                         /* $8A7D bcs */
     push16(0x8A81); GetRandomByte(); UNW(); ret_check(0x8A81);                           /* $8A7F jsr */
@@ -1018,7 +1018,7 @@ L8A6A: BUDGET();
     LDA(0x00);                                                                           /* $8AA5 lda */
     STA(0x04AC);                                                                         /* $8AA7 sta */
     LDA(0x03);                                                                           /* $8AAA lda */
-    STA(0x04AB);                                                                         /* $8AAC sta */
+    STA(BossSubPhase);                                                                   /* $8AAC sta */
   }
 L8AAF: BUDGET();
   RTS_RET(sp0);                                                                          /* $8AAF rts */

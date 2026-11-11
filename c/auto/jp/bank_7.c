@@ -1603,7 +1603,7 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
         goto LCB39;                                                                      /* $CAE3 jmp */
       }
       push16(0xCAE8); DoOamDma(); UNW(); ret_check(0xCAE8);                              /* $CAE6 jsr */
-      LDA(rd(0x0421));                                                                   /* $CAE9 lda */
+      LDA(rd(DialogueStage));                                                            /* $CAE9 lda */
       cmp8(R.a, 0x04);                                                                   /* $CAEC cmp */
       if (R.a < 0x04) {                                                                  /* $CAEE bcs */
         LDA(rd(PlayerActionState));                                                      /* $CAF0 lda */
@@ -1643,7 +1643,7 @@ LCB39: BUDGET();
       cmp8(R.a, 0xFF);                                                                   /* $CB46 cmp */
       if (R.a == 0xFF) goto LCB62;                                                       /* $CB48 beq */
       LDA(0x00);                                                                         /* $CB4A lda */
-      STA(0x0421);                                                                       /* $CB4C sta */
+      STA(DialogueStage);                                                                /* $CB4C sta */
       STA(0x0403);                                                                       /* $CB4F sta */
       LDA(0x01);                                                                         /* $CB52 lda */
       STA(0x0402);                                                                       /* $CB54 sta */
@@ -1694,10 +1694,10 @@ void InitLevel(void) {  /* $CBA3 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $CBA3 lda */
   STA(PlayerActionState);                                                                /* $CBA5 sta */
-  STA(0x013D);                                                                           /* $CBA7 sta */
+  STA(PaletteFadeLevel);                                                                 /* $CBA7 sta */
   STA(HurtTimer);                                                                        /* $CBAA sta */
   STA(0x0117);                                                                           /* $CBAD sta */
-  STA(0x0421);                                                                           /* $CBB0 sta */
+  STA(DialogueStage);                                                                    /* $CBB0 sta */
   LDA(0x10);                                                                             /* $CBB3 lda */
   STA(0x0F);                                                                             /* $CBB5 sta */
   LDA(rd(TransitionTarget));                                                             /* $CBB7 lda */
@@ -1856,7 +1856,7 @@ void UploadPaletteIfDirty(void) {  /* $CCE9 bank 7 */
     LDA(0x00);                                                                           /* $CCF8 lda */
     STA(ScrollColumnPending);                                                            /* $CCFA sta */
   } else {
-    LDA(rd(0x0421));                                                                     /* $CCFF lda */
+    LDA(rd(DialogueStage));                                                              /* $CCFF lda */
     cmp8(R.a, 0x04);                                                                     /* $CD02 cmp */
     if (R.a < 0x04) {                                                                    /* $CD04 bcs */
       LDA(0x00);                                                                         /* $CD06 lda */
@@ -3115,7 +3115,7 @@ LD756: BUDGET();
 
 void CheckDialogueTrigger(void) {  /* $D7B2 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0438));                                                                       /* $D7B2 lda */
+  LDA(rd(DialogueFlags));                                                                /* $D7B2 lda */
   if (R.a == 0) {                                                                        /* $D7B5 bne */
     goto LD824;                                                                          /* $D7B7 jmp */
   }
@@ -3151,14 +3151,14 @@ LD7E2: BUDGET();
     }
 LD7EF: BUDGET();
     LDA(0x00);                                                                           /* $D7EF lda */
-    STA(0x0405);                                                                         /* $D7F1 sta */
-    STA(0x0438);                                                                         /* $D7F4 sta */
+    STA(DialogueIndex);                                                                  /* $D7F1 sta */
+    STA(DialogueFlags);                                                                  /* $D7F4 sta */
     push16(0xD7F9); StartLevelScene(); UNW(); ret_check(0xD7F9);                         /* $D7F7 jsr */
     goto LD823;                                                                          /* $D7FA jmp */
 LD7FD: BUDGET();
     LDA(rd(Tmp02));                                                                      /* $D7FD lda */
     push16(0xD801); LsrA4(); UNW(); ret_check(0xD801);                                   /* $D7FF jsr */
-    STA(0x0405);                                                                         /* $D802 sta */
+    STA(DialogueIndex);                                                                  /* $D802 sta */
     STA(0x050E);                                                                         /* $D805 sta */
     DEC_M(0x050E);                                                                       /* $D808 dec */
     push16(0xD80D); SelectChr1Bank0D(); UNW(); ret_check(0xD80D);                        /* $D80B jsr */
@@ -3206,15 +3206,15 @@ LD845: BUDGET();
   }
 LD852: BUDGET();
   LDA(0x00);                                                                             /* $D852 lda */
-  STA(0x0405);                                                                           /* $D854 sta */
+  STA(DialogueIndex);                                                                    /* $D854 sta */
   LDA(0x80);                                                                             /* $D857 lda */
-  STA(0x0438);                                                                           /* $D859 sta */
+  STA(DialogueFlags);                                                                    /* $D859 sta */
   goto LD823;                                                                            /* $D85C jmp */
 LD85F: BUDGET();
   push16(0xD861); SelectChr1Bank0D(); UNW(); ret_check(0xD861);                          /* $D85F jsr */
   LDA(rd(Tmp02));                                                                        /* $D862 lda */
   push16(0xD866); LsrA4(); UNW(); ret_check(0xD866);                                     /* $D864 jsr */
-  STA(0x0405);                                                                           /* $D867 sta */
+  STA(DialogueIndex);                                                                    /* $D867 sta */
   goto LD823;                                                                            /* $D86A jmp */
 }
 
@@ -3235,9 +3235,9 @@ void SelectChr1Bank0D(void) {  /* $D86D bank 7 */
 
 void RunDialogueState(void) {  /* $D8CB bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0405));                                                                       /* $D8CB lda */
+  LDA(rd(DialogueIndex));                                                                /* $D8CB lda */
   if (R.a != 0) {                                                                        /* $D8CE bne */
-    LDA(rd(0x0438));                                                                     /* $D8D3 lda */
+    LDA(rd(DialogueFlags));                                                              /* $D8D3 lda */
     if (!(R.a & 0x80)) {                                                                 /* $D8D6 bmi */
       goto LD99D;                                                                        /* $D8D8 jmp */
     }
@@ -3248,7 +3248,7 @@ void RunDialogueState(void) {  /* $D8CB bank 7 */
       goto LD92D;                                                                        /* $D8E3 jmp */
     }
     push16(0xD8E8); PrepareDialogueScreen(); UNW(); ret_check(0xD8E8);                   /* $D8E6 jsr */
-    LDA(rd(0x0405));                                                                     /* $D8E9 lda */
+    LDA(rd(DialogueIndex));                                                              /* $D8E9 lda */
     ASL_A();                                                                             /* $D8EC asl */
     TAY();                                                                               /* $D8ED tay */
     LDA(rd((uint16_t)(0x9800 + R.y)));                                                   /* $D8EE lda */
@@ -3264,7 +3264,7 @@ void RunDialogueState(void) {  /* $D8CB bank 7 */
     STY(0x0439);                                                                         /* $D90A sty */
     LDA(0x28);                                                                           /* $D90D lda */
     STA(0x043A);                                                                         /* $D90F sta */
-    INC_M(0x0438);                                                                       /* $D912 inc */
+    INC_M(DialogueFlags);                                                                /* $D912 inc */
     goto LD99C;                                                                          /* $D915 jmp */
 LD918: BUDGET();
     push16(0xD91A); UploadPalette(); UNW(); ret_check(0xD91A);                           /* $D918 jsr */
@@ -3273,7 +3273,7 @@ LD918: BUDGET();
     ORA(0x18);                                                                           /* $D920 ora */
     STA(PpuMaskShadow);                                                                  /* $D922 sta */
     STA(PPU_MASK);                                                                       /* $D924 sta */
-    INC_M(0x0438);                                                                       /* $D927 inc */
+    INC_M(DialogueFlags);                                                                /* $D927 inc */
     goto LD99C;                                                                          /* $D92A jmp */
 LD92D: BUDGET();
     DEC_M(0x043A);                                                                       /* $D92D dec */
@@ -3326,20 +3326,20 @@ LD92D: BUDGET();
       cmp8(R.y, 0x30);                                                                   /* $D990 cpy */
     } while (R.y < 0x30);                                                                /* $D992 bcc */
     LDA(0x00);                                                                           /* $D994 lda */
-    STA(0x0438);                                                                         /* $D996 sta */
+    STA(DialogueFlags);                                                                  /* $D996 sta */
     push16(0xD99B); StartLevelScene(); UNW(); ret_check(0xD99B);                         /* $D999 jsr */
   }
 LD99C: BUDGET();
   RTS_RET(sp0);                                                                          /* $D99C rts */
 LD99D: BUDGET();
-  LDA(rd(0x0438));                                                                       /* $D99D lda */
+  LDA(rd(DialogueFlags));                                                                /* $D99D lda */
   if (R.a != 0) {                                                                        /* $D9A0 beq */
     cmp8(R.a, 0x01);                                                                     /* $D9A2 cmp */
     if (R.a == 0x01) goto LD9CE;                                                         /* $D9A4 beq */
     goto LD9E1;                                                                          /* $D9A6 jmp */
   }
   push16(0xD9AB); PrepareDialogueScreen(); UNW(); ret_check(0xD9AB);                     /* $D9A9 jsr */
-  LDA(rd(0x0405));                                                                       /* $D9AC lda */
+  LDA(rd(DialogueIndex));                                                                /* $D9AC lda */
   ASL_A();                                                                               /* $D9AF asl */
   TAY();                                                                                 /* $D9B0 tay */
   LDA(rd((uint16_t)(0x981C + R.y)));                                                     /* $D9B1 lda */
@@ -3351,7 +3351,7 @@ LD99D: BUDGET();
   STA(0x014F);                                                                           /* $D9C0 sta */
   LDA(0x96);                                                                             /* $D9C3 lda */
   STA(0x043A);                                                                           /* $D9C5 sta */
-  INC_M(0x0438);                                                                         /* $D9C8 inc */
+  INC_M(DialogueFlags);                                                                  /* $D9C8 inc */
   goto LD99C;                                                                            /* $D9CB jmp */
 LD9CE: BUDGET();
   push16(0xD9D0); UploadPalette(); UNW(); ret_check(0xD9D0);                             /* $D9CE jsr */
@@ -3359,7 +3359,7 @@ LD9CE: BUDGET();
   LDA(rd(PpuMaskShadow));                                                                /* $D9D4 lda */
   ORA(0x08);                                                                             /* $D9D6 ora */
   push16(0xD9DA); SetPpuMask(); UNW(); ret_check(0xD9DA);                                /* $D9D8 jsr */
-  INC_M(0x0438);                                                                         /* $D9DB inc */
+  INC_M(DialogueFlags);                                                                  /* $D9DB inc */
   goto LD99C;                                                                            /* $D9DE jmp */
 LD9E1: BUDGET();
   LDA(rd(FrameCounter));                                                                 /* $D9E1 lda */
@@ -3376,9 +3376,9 @@ LD9E1: BUDGET();
   AND(0xFD);                                                                             /* $D9F8 and */
   push16(0xD9FC); SetPpuCtrl(); UNW(); ret_check(0xD9FC);                                /* $D9FA jsr */
   LDA(0x80);                                                                             /* $D9FD lda */
-  STA(0x0438);                                                                           /* $D9FF sta */
+  STA(DialogueFlags);                                                                    /* $D9FF sta */
   LDA(0x00);                                                                             /* $DA02 lda */
-  STA(0x0405);                                                                           /* $DA04 sta */
+  STA(DialogueIndex);                                                                    /* $DA04 sta */
   goto LD99C;                                                                            /* $DA07 jmp */
 }
 
@@ -3476,7 +3476,7 @@ void FillNametable2Blank(void) {  /* $DA77 bank 7 */
 
 void DialogueLoadAreaScript(void) {  /* $DB07 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x0421));                                                                       /* $DB07 lda */
+  LDA(rd(DialogueStage));                                                                /* $DB07 lda */
   if (R.a == 0) {                                                                        /* $DB0A beq */
     LDA(rd(AreaGroup));                                                                  /* $DB0F lda */
     ASL_A();                                                                             /* $DB11 asl */
@@ -3973,12 +3973,12 @@ void FadeEndScreen(void) {  /* $E05E bank 7 */
   if (R.a >= 0x50) {                                                                     /* $E062 bcc */
     if (R.a == 0x50) {                                                                   /* $E064 bne */
       LDA(0x40);                                                                         /* $E066 lda */
-      STA(0x013D);                                                                       /* $E068 sta */
+      STA(PaletteFadeLevel);                                                             /* $E068 sta */
       goto LE078;                                                                        /* $E06B jmp */
     }
     cmp8(R.a, 0x70);                                                                     /* $E06E cmp */
     if (R.a >= 0x70) goto LE078;                                                         /* $E070 bcs */
-    INC_M(0x013D);                                                                       /* $E072 inc */
+    INC_M(PaletteFadeLevel);                                                             /* $E072 inc */
     push16(0xE077); FadePaletteStep(); UNW(); ret_check(0xE077);                         /* $E075 jsr */
   }
 LE078: BUDGET();
@@ -4344,11 +4344,11 @@ LE882: BUDGET();
 void UpdateGameOverSequence(void) {  /* $E883 bank 7 */
   uint8_t sp0 = R.sp;
   push16(0xE885); UpdateLowLifeAlarm(); UNW(); ret_check(0xE885);                        /* $E883 jsr */
-  LDA(rd(0x013D));                                                                       /* $E886 lda */
+  LDA(rd(PaletteFadeLevel));                                                             /* $E886 lda */
   if (R.a != 0) {                                                                        /* $E889 beq */
     push16(0xE88D); FadePaletteStep(); UNW(); ret_check(0xE88D);                         /* $E88B jsr */
-    INC_M(0x013D);                                                                       /* $E88E inc */
-    LDA(rd(0x013D));                                                                     /* $E891 lda */
+    INC_M(PaletteFadeLevel);                                                             /* $E88E inc */
+    LDA(rd(PaletteFadeLevel));                                                           /* $E891 lda */
     cmp8(R.a, 0x80);                                                                     /* $E894 cmp */
     if (R.a >= 0x80) goto LE8A5;                                                         /* $E896 bcs */
     RTS_RET(sp0);                                                                        /* $E898 rts */
@@ -4357,11 +4357,11 @@ void UpdateGameOverSequence(void) {  /* $E883 bank 7 */
   ORA(rd(PlayerLifeHi));                                                                 /* $E89B ora */
   if (R.a != 0) goto LE8BE;                                                              /* $E89D bne */
   LDA(0x01);                                                                             /* $E89F lda */
-  STA(0x013D);                                                                           /* $E8A1 sta */
+  STA(PaletteFadeLevel);                                                                 /* $E8A1 sta */
   RTS_RET(sp0);                                                                          /* $E8A4 rts */
 LE8A5: BUDGET();
   LDA(0x00);                                                                             /* $E8A5 lda */
-  STA(0x013D);                                                                           /* $E8A7 sta */
+  STA(PaletteFadeLevel);                                                                 /* $E8A7 sta */
   LDA(0x05);                                                                             /* $E8AA lda */
   STA(MmcPrgShadow);                                                                     /* $E8AC sta */
   LDA(0x03);                                                                             /* $E8AE lda */
@@ -4389,7 +4389,7 @@ LE8D2: BUDGET();
 
 void FadePaletteStep(void) {  /* $E8D3 bank 7 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x013D));                                                                       /* $E8D3 lda */
+  LDA(rd(PaletteFadeLevel));                                                             /* $E8D3 lda */
   cmp8(R.a, 0x40);                                                                       /* $E8D6 cmp */
   if (R.a == 0x40) {                                                                     /* $E8D8 bne */
     LDA(0x30);                                                                           /* $E8DA lda */

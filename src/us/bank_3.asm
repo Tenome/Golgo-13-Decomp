@@ -19,7 +19,7 @@ Bank3Nmi:
   bne Loc_B3_8032              ; $801D
   jsr Bank3Dispatch_0421       ; $801F
   jsr ApplyScroll              ; $8022
-  lda $0421                    ; $8025
+  lda DialogueStage            ; $8025
   cmp #$03                     ; $8028
   bne Loc_B3_802F              ; $802A
   jsr Sub_B3_92B7              ; $802C
@@ -68,7 +68,7 @@ Loc_B3_807B:
   pla                          ; $807F
   rti                          ; $8080
 Bank3Dispatch_0421:
-  lda $0421                    ; $8081
+  lda DialogueStage            ; $8081
   asl a                        ; $8084
   tay                          ; $8085
   lda Data_B3_82C8,y           ; $8086
@@ -80,8 +80,8 @@ Bank3Dispatch_0421:
 TextBoxBeginStage:
   jsr CalcMenuRowNametableAddr ; $8094
   lda #$00                     ; $8097
-  sta $0422                    ; $8099
-  inc $0421                    ; $809C
+  sta TextBoxStage             ; $8099
+  inc DialogueStage            ; $809C
 TextBoxSaveBackgroundRow:
   lda z:PpuCtrlShadow          ; $809F
   and #$FB                     ; $80A1
@@ -89,11 +89,11 @@ TextBoxSaveBackgroundRow:
   sta PPU_CTRL                 ; $80A5
   lda #$10                     ; $80A8
   sta z:Tmp00                  ; $80AA
-  ldy $0422                    ; $80AC
+  ldy TextBoxStage             ; $80AC
   lda PPU_STATUS               ; $80AF
   lda #$20                     ; $80B2
   sta PPU_ADDR                 ; $80B4
-  lda $0425                    ; $80B7
+  lda TextBoxRowAddrLo         ; $80B7
   sta PPU_ADDR                 ; $80BA
   and #$1F                     ; $80BD
   sta z:Tmp02                  ; $80BF
@@ -111,7 +111,7 @@ Loc_B3_80C4:
   lda #$20                     ; $80D7
   sta PPU_ADDR                 ; $80D9
   lda #$E0                     ; $80DC
-  and $0425                    ; $80DE
+  and TextBoxRowAddrLo         ; $80DE
   sta PPU_ADDR                 ; $80E1
   lda PPU_DATA                 ; $80E4
 Loc_B3_80E7:
@@ -119,12 +119,12 @@ Loc_B3_80E7:
   bne Loc_B3_80C4              ; $80E9
   lda #$20                     ; $80EB
   clc                          ; $80ED
-  adc $0425                    ; $80EE
-  sta $0425                    ; $80F1
+  adc TextBoxRowAddrLo         ; $80EE
+  sta TextBoxRowAddrLo         ; $80F1
   lda #$00                     ; $80F4
   adc $0426                    ; $80F6
   sta $0426                    ; $80F9
-  sty $0422                    ; $80FC
+  sty TextBoxStage             ; $80FC
   cpy #$40                     ; $80FF
   beq Loc_B3_8106              ; $8101
   jmp Loc_B3_8260              ; $8103
@@ -142,11 +142,11 @@ Loc_B3_8118:
   iny                          ; $811E
   cpy #$08                     ; $811F
   bne Loc_B3_8118              ; $8121
-  inc $0421                    ; $8123
+  inc DialogueStage            ; $8123
   lda #$00                     ; $8126
-  sta $0422                    ; $8128
+  sta TextBoxStage             ; $8128
 TextBoxPickRowOffset:
-  lda $0422                    ; $812B
+  lda TextBoxStage             ; $812B
   bne Loc_B3_8139              ; $812E
   lda #$00                     ; $8130
   sta z:Tmp00                  ; $8132
@@ -176,7 +176,7 @@ Loc_B3_815D:
   lda #$00                     ; $815D
   sta z:$05                    ; $815F
   jsr TextBoxClearRow          ; $8161
-  inc $0422                    ; $8164
+  inc TextBoxStage             ; $8164
   jmp Loc_B3_8260              ; $8167
 Loc_B3_816A:
   lda $042E                    ; $816A
@@ -199,9 +199,9 @@ Loc_B3_8173:
   sta z:Tmp00                  ; $818E
   dec z:Tmp01                  ; $8190
   bne Loc_B3_8173              ; $8192
-  inc $0421                    ; $8194
+  inc DialogueStage            ; $8194
   lda #$00                     ; $8197
-  sta $0422                    ; $8199
+  sta TextBoxStage             ; $8199
 TextBoxRestoreBackgroundTile:
   lda $0427                    ; $819C
   bne Loc_B3_81A4              ; $819F
@@ -212,20 +212,20 @@ Loc_B3_81A4:
   lda PPU_STATUS               ; $81A9
   lda #$20                     ; $81AC
   sta PPU_ADDR                 ; $81AE
-  lda $0425                    ; $81B1
+  lda TextBoxRowAddrLo         ; $81B1
   sta PPU_ADDR                 ; $81B4
   lda $0423                    ; $81B7
   sta PPU_DATA                 ; $81BA
-  lda $0425                    ; $81BD
+  lda TextBoxRowAddrLo         ; $81BD
   and #$1F                     ; $81C0
   cmp #$1F                     ; $81C2
   bne Loc_B3_81D1              ; $81C4
-  lda $0425                    ; $81C6
+  lda TextBoxRowAddrLo         ; $81C6
   and #$E0                     ; $81C9
-  sta $0425                    ; $81CB
+  sta TextBoxRowAddrLo         ; $81CB
   jmp Loc_B3_81D4              ; $81CE
 Loc_B3_81D1:
-  inc $0425                    ; $81D1
+  inc TextBoxRowAddrLo         ; $81D1
 Loc_B3_81D4:
   lda #$00                     ; $81D4
   sta $0427                    ; $81D6
@@ -241,8 +241,8 @@ TextBoxStageDelay:
 Loc_B3_81EE:
   lda #$00                     ; $81EE
   sta $041F                    ; $81F0
-  sta $0422                    ; $81F3
-  inc $0421                    ; $81F6
+  sta TextBoxStage             ; $81F3
+  inc DialogueStage            ; $81F6
   jmp Loc_B3_8260              ; $81F9
 TextBoxClearRow0:
   lda #$00                     ; $81FC
@@ -260,7 +260,7 @@ Loc_B3_820D:
   lda #$FF                     ; $820F
   sta z:$05                    ; $8211
   jsr TextBoxClearRow          ; $8213
-  inc $0421                    ; $8216
+  inc DialogueStage            ; $8216
   jmp Loc_B3_8260              ; $8219
 TextBoxSetAttributes:
   lda z:PpuCtrlShadow          ; $821C
@@ -292,7 +292,7 @@ Loc_B3_823E:
   beq Loc_B3_822E              ; $8252
   jmp Loc_B3_823E              ; $8254
 Loc_B3_8257:
-  inc $0421                    ; $8257
+  inc DialogueStage            ; $8257
   jmp Loc_B3_8260              ; $825A
 TextBoxRunInitStage:
   jsr TextBoxInitStage         ; $825D
@@ -309,7 +309,7 @@ CalcMenuRowNametableAddr:
   and #$DF                     ; $826B
   clc                          ; $826D
   sta $042D                    ; $826E
-  sta $0425                    ; $8271
+  sta TextBoxRowAddrLo         ; $8271
   and #$1F                     ; $8274
   lsr a                        ; $8276
   lsr a                        ; $8277
@@ -363,7 +363,7 @@ Data_B3_82DE:
 TextBoxDispatchSubState:
   lda $0412                    ; $87BA
   bne Loc_B3_87CA              ; $87BD
-  lda $041C                    ; $87BF
+  lda TextBoxDispatchIndex     ; $87BF
   beq Loc_B3_87C7              ; $87C2
   jsr Bank3Dispatch_041C       ; $87C4
 Loc_B3_87C7:
@@ -395,13 +395,13 @@ Loc_B3_87CA:
 Loc_B3_87FE:
   rts                          ; $87FE
 Bank3Dispatch_041C:
-  dec $041C                    ; $87FF
-  lda $041C                    ; $8802
+  dec TextBoxDispatchIndex     ; $87FF
+  lda TextBoxDispatchIndex     ; $8802
   asl a                        ; $8805
   asl a                        ; $8806
   asl a                        ; $8807
   sta z:Tmp00                  ; $8808
-  inc $041C                    ; $880A
+  inc TextBoxDispatchIndex     ; $880A
   lda #$1D                     ; $880D
   clc                          ; $880F
   adc z:Tmp00                  ; $8810
@@ -425,13 +425,13 @@ Loc_B3_8832:
   ldy #$2D                     ; $8832
   lda #$FF                     ; $8834
   sta ($5C),y                  ; $8836
-  inc $041C                    ; $8838
-  lda $041C                    ; $883B
+  inc TextBoxDispatchIndex     ; $8838
+  lda TextBoxDispatchIndex     ; $883B
   cmp #$04                     ; $883E
   bne Loc_B3_884A              ; $8840
   lda #$00                     ; $8842
-  sta $041C                    ; $8844
-  sta $0418                    ; $8847
+  sta TextBoxDispatchIndex     ; $8844
+  sta TextBoxState             ; $8847
 Loc_B3_884A:
   rts                          ; $884A
 Data_B3_884B:
@@ -441,17 +441,17 @@ Data_B3_8854:
 Data_B3_885D:
   .incbin "prg_bank_3.bin", $085D, $9  ; $885D
 TextBoxMainStep:
-  lda $0411                    ; $8866
+  lda TextBoxMode              ; $8866
   beq Loc_B3_88B5              ; $8869
-  lda $041C                    ; $886B
+  lda TextBoxDispatchIndex     ; $886B
   beq Loc_B3_8873              ; $886E
   jmp Loc_B3_8A3A              ; $8870
 Loc_B3_8873:
   jsr Sub_B3_8BB9              ; $8873
-  lda $0411                    ; $8876
+  lda TextBoxMode              ; $8876
   cmp #$02                     ; $8879
   beq Loc_B3_88D4              ; $887B
-  lda $0418                    ; $887D
+  lda TextBoxState             ; $887D
   bne Loc_B3_8885              ; $8880
   jmp Loc_B3_88F9              ; $8882
 Loc_B3_8885:
@@ -503,11 +503,11 @@ Loc_B3_88D4:
   jsr Sub_B3_8A69              ; $88DF
   lda #$00                     ; $88E2
   sta z:$72                    ; $88E4
-  sta $0418                    ; $88E6
-  sta $041C                    ; $88E9
+  sta TextBoxState             ; $88E6
+  sta TextBoxDispatchIndex     ; $88E9
   sta $041E                    ; $88EC
   lda #$01                     ; $88EF
-  sta $0411                    ; $88F1
+  sta TextBoxMode              ; $88F1
   lda #$FF                     ; $88F4
   sta $0419                    ; $88F6
 Loc_B3_88F9:
@@ -520,13 +520,13 @@ Loc_B3_8906:
   lda #$00                     ; $8906
   sta $041D                    ; $8908
 Loc_B3_890B:
-  ldy $041B                    ; $890B
+  ldy TextBoxScriptOffset      ; $890B
   lda ($6E),y                  ; $890E
   bpl Loc_B3_8920              ; $8910
   sta $0419                    ; $8912
   lda #$01                     ; $8915
   sta $0412                    ; $8917
-  inc $041B                    ; $891A
+  inc TextBoxScriptOffset      ; $891A
   jmp Loc_B3_8A3A              ; $891D
 Loc_B3_8920:
   sta z:Tmp00                  ; $8920
@@ -541,7 +541,7 @@ Loc_B3_8920:
 Loc_B3_8932:
   ora #$80                     ; $8932
   sta $0419                    ; $8934
-  inc $041B                    ; $8937
+  inc TextBoxScriptOffset      ; $8937
   jmp Loc_B3_890B              ; $893A
 Loc_B3_893D:
   lda z:Tmp00                  ; $893D
@@ -555,7 +555,7 @@ Loc_B3_893D:
   beq Loc_B3_8998              ; $894D
   jmp Loc_B3_8D0C              ; $894F
 Loc_B3_8952:
-  inc $041B                    ; $8952
+  inc TextBoxScriptOffset      ; $8952
   lda z:$72                    ; $8955
   and #$F0                     ; $8957
   clc                          ; $8959
@@ -565,7 +565,7 @@ Loc_B3_8952:
 Loc_B3_8961:
   jsr Sub_B3_8A54              ; $8961
   lda #$01                     ; $8964
-  sta $0418                    ; $8966
+  sta TextBoxState             ; $8966
 TextBoxWaitForA:
   lda JoyHeld1                 ; $8969
   and #$01                     ; $896C
@@ -573,15 +573,15 @@ TextBoxWaitForA:
   jsr BlinkTextCursorStep      ; $8970
   jmp Loc_B3_8A3A              ; $8973
 Loc_B3_8976:
-  inc $041B                    ; $8976
+  inc TextBoxScriptOffset      ; $8976
   lda #$01                     ; $8979
-  sta $041C                    ; $897B
+  sta TextBoxDispatchIndex     ; $897B
   lda #$00                     ; $897E
   sta z:$72                    ; $8980
   jmp Loc_B3_8A3A              ; $8982
 Loc_B3_8985:
-  inc $041B                    ; $8985
-  ldy $041B                    ; $8988
+  inc TextBoxScriptOffset      ; $8985
+  ldy TextBoxScriptOffset      ; $8988
   lda ($6E),y                  ; $898B
   ldy #$01                     ; $898D
   sta ($5C),y                  ; $898F
@@ -617,13 +617,13 @@ Loc_B3_8998:
   jmp Loc_B3_8A3A              ; $89C9
 Loc_B3_89CC:
   lda #$04                     ; $89CC
-  sta $0418                    ; $89CE
+  sta TextBoxState             ; $89CE
   lda #$00                     ; $89D1
   sta $041D                    ; $89D3
   jmp Loc_B3_8A3A              ; $89D6
 Loc_B3_89D9:
   lda #$03                     ; $89D9
-  sta $0418                    ; $89DB
+  sta TextBoxState             ; $89DB
 TextBoxWaitForChoice:
   lda JoyNew1                  ; $89DE
   and #$03                     ; $89E1
@@ -647,13 +647,13 @@ Loc_B3_89F5:
   lda z:$6B                    ; $8A08
   sta z:$6D                    ; $8A0A
   lda #$01                     ; $8A0C
-  sta $041C                    ; $8A0E
+  sta TextBoxDispatchIndex     ; $8A0E
   lda #$02                     ; $8A11
-  sta $0411                    ; $8A13
+  sta TextBoxMode              ; $8A13
   jmp Loc_B3_8A3A              ; $8A16
 Loc_B3_8A19:
   lda #$02                     ; $8A19
-  sta $0418                    ; $8A1B
+  sta TextBoxState             ; $8A1B
   jsr Sub_B3_8A54              ; $8A1E
 TextBoxWaitForAAdvance:
   lda JoyHeld1                 ; $8A21
@@ -665,7 +665,7 @@ Loc_B3_8A2E:
   lda #$00                     ; $8A2E
   sta z:$72                    ; $8A30
   lda #$01                     ; $8A32
-  sta $041C                    ; $8A34
+  sta TextBoxDispatchIndex     ; $8A34
   jsr Sub_B3_8A69              ; $8A37
 Loc_B3_8A3A:
   rts                          ; $8A3A
@@ -770,7 +770,7 @@ Loc_B3_8AD1:
   sta $040B                    ; $8AEB
 Loc_B3_8AEE:
   lda #$00                     ; $8AEE
-  sta $041B                    ; $8AF0
+  sta TextBoxScriptOffset      ; $8AF0
   rts                          ; $8AF3
 LoadFourBytesFromPtr70:
   lda ($70),y                  ; $8AF4
@@ -868,7 +868,7 @@ Loc_B3_8B84:
   sta ($5C),y                  ; $8B93
   jmp Loc_B3_8BB8              ; $8B95
 Loc_B3_8B98:
-  lda $0418                    ; $8B98
+  lda TextBoxState             ; $8B98
   and #$0F                     ; $8B9B
   cmp #$03                     ; $8B9D
   bcc Loc_B3_8BA9              ; $8B9F
@@ -895,7 +895,7 @@ Sub_B3_8BB9:
   beq Loc_B3_8BC2              ; $8BBD
   jmp Loc_B3_8C7D              ; $8BBF
 Loc_B3_8BC2:
-  lda $0418                    ; $8BC2
+  lda TextBoxState             ; $8BC2
   and #$0F                     ; $8BC5
   cmp #$05                     ; $8BC7
   bcc Loc_B3_8BCE              ; $8BC9
@@ -955,7 +955,7 @@ Loc_B3_8C2C:
   lda ($70),y                  ; $8C2E
   cmp #$FF                     ; $8C30
   beq Loc_B3_8C7D              ; $8C32
-  lda $0418                    ; $8C34
+  lda TextBoxState             ; $8C34
   beq Loc_B3_8C40              ; $8C37
   lda $040B                    ; $8C39
   cmp #$00                     ; $8C3C
@@ -1038,7 +1038,7 @@ Data_B3_8CFE:
 Data_B3_8CFF:
   .incbin "prg_bank_3.bin", $0CFF, $D  ; $8CFF
 Loc_B3_8D0C:
-  ldy $041B                    ; $8D0C
+  ldy TextBoxScriptOffset      ; $8D0C
   iny                          ; $8D0F
   lda ($6E),y                  ; $8D10
   sta z:$56                    ; $8D12
@@ -1053,7 +1053,7 @@ Loc_B3_8D0C:
 Loc_B3_8D24:
   lda #$05                     ; $8D24
 Loc_B3_8D26:
-  sta $0418                    ; $8D26
+  sta TextBoxState             ; $8D26
   ldy #$2D                     ; $8D29
   lda #$FF                     ; $8D2B
   sta ($5C),y                  ; $8D2D
@@ -1077,7 +1077,7 @@ Loc_B3_8D26:
   jsr Sub_B3_8E90              ; $8D53
   jsr Sub_B3_8EAB              ; $8D56
   jmp Loc_B3_8A3A              ; $8D59
-  lda $0418                    ; $8D5C  [heuristic code]
+  lda TextBoxState             ; $8D5C  [heuristic code]
   and #$10                     ; $8D5F
   bne Loc_B3_8D8B              ; $8D61
   inc $0408                    ; $8D63
@@ -1094,13 +1094,13 @@ Loc_B3_8D26:
   cmp #$FF                     ; $8D79
   bne Loc_B3_8D88              ; $8D7B
   lda #$10                     ; $8D7D
-  ora $0418                    ; $8D7F
-  sta $0418                    ; $8D82
+  ora TextBoxState             ; $8D7F
+  sta TextBoxState             ; $8D82
   jmp Loc_B3_8DBD              ; $8D85
 Loc_B3_8D88:
   jsr Sub_B3_8E90              ; $8D88
 Loc_B3_8D8B:
-  lda $0418                    ; $8D8B
+  lda TextBoxState             ; $8D8B
   and #$20                     ; $8D8E
   bne Loc_B3_8DF0              ; $8D90
   inc $040A                    ; $8D92
@@ -1117,25 +1117,25 @@ Loc_B3_8D8B:
   cmp #$FF                     ; $8DA8
   bne Loc_B3_8DB7              ; $8DAA
   lda #$20                     ; $8DAC
-  ora $0418                    ; $8DAE
-  sta $0418                    ; $8DB1
+  ora TextBoxState             ; $8DAE
+  sta TextBoxState             ; $8DB1
   jmp Loc_B3_8DBD              ; $8DB4
 Loc_B3_8DB7:
   jsr Sub_B3_8EAB              ; $8DB7
   jmp Loc_B3_8A3A              ; $8DBA
 Loc_B3_8DBD:
-  lda $0418                    ; $8DBD
+  lda TextBoxState             ; $8DBD
   and #$30                     ; $8DC0
   cmp #$30                     ; $8DC2
   bne Loc_B3_8DF0              ; $8DC4
-  lda $0418                    ; $8DC6
+  lda TextBoxState             ; $8DC6
   and #$CF                     ; $8DC9
-  sta $0418                    ; $8DCB
+  sta TextBoxState             ; $8DCB
   bmi Loc_B3_8DD6              ; $8DCE
   jsr HideMenuSpritesAndRestoreScroll ; $8DD0
   jmp Loc_B3_8A3A              ; $8DD3
 Loc_B3_8DD6:
-  inc $0418                    ; $8DD6
+  inc TextBoxState             ; $8DD6
   lda #$00                     ; $8DD9
   sta $0409                    ; $8DDB
   lda #$30                     ; $8DDE
@@ -1260,7 +1260,7 @@ Data_B3_8EC1:
 Data_B3_8EC2:
   .incbin "prg_bank_3.bin", $0EC2, $27  ; $8EC2
 Sub_B3_8EE9:
-  lda $0411                    ; $8EE9
+  lda TextBoxMode              ; $8EE9
   and #$7F                     ; $8EEC
   cmp #$01                     ; $8EEE
   bne Loc_B3_8EF5              ; $8EF0
@@ -1289,13 +1289,13 @@ Loc_B3_8F0D:
   sta z:$64                    ; $8F18
   jsr ProcessPpuUpdateList     ; $8F1A
   .incbin "prg_bank_3.bin", $0F1D, $2  ; $8F1D
-  dec $0411                    ; $8F1F
+  dec TextBoxMode              ; $8F1F
   jmp Loc_B3_905F              ; $8F22
 Loc_B3_8F25:
-  lda $0411                    ; $8F25
+  lda TextBoxMode              ; $8F25
   bmi Loc_B3_8F73              ; $8F28
   ora #$80                     ; $8F2A
-  sta $0411                    ; $8F2C
+  sta TextBoxMode              ; $8F2C
   lda #$D9                     ; $8F2F
   sta z:Tmp00                  ; $8F31
   lda #$2B                     ; $8F33
@@ -1437,8 +1437,8 @@ Loc_B3_904A:
   sta PPU_DATA                 ; $904C
   lda #$00                     ; $904F
   sta $0412                    ; $9051
-  sta $041C                    ; $9054
-  sta $0411                    ; $9057
+  sta TextBoxDispatchIndex     ; $9054
+  sta TextBoxMode              ; $9057
   lda #$04                     ; $905A
   sta $0410                    ; $905C
 Loc_B3_905F:
@@ -1466,7 +1466,7 @@ Loc_B3_9078:
 Data_B3_908B:
   .incbin "prg_bank_3.bin", $108B, $9  ; $908B
 Sub_B3_9094:
-  lda $0411                    ; $9094
+  lda TextBoxMode              ; $9094
   beq Loc_B3_909C              ; $9097
   jmp Loc_B3_9142              ; $9099
 Loc_B3_909C:
@@ -1567,7 +1567,7 @@ Loc_B3_90F7:
   dec z:Tmp01                  ; $9138
   bne Loc_B3_90F1              ; $913A
 Loc_B3_913C:
-  inc $0411                    ; $913C
+  inc TextBoxMode              ; $913C
   jmp Loc_B3_91B0              ; $913F
 Loc_B3_9142:
   lda $0414                    ; $9142
@@ -1624,7 +1624,7 @@ Loc_B3_9193:
   sta PPU_CTRL                 ; $91A1
   sta z:PpuCtrlShadow          ; $91A4
   lda #$0B                     ; $91A6
-  sta $0411                    ; $91A8
+  sta TextBoxMode              ; $91A8
   lda #$03                     ; $91AB
   sta $0410                    ; $91AD
 Loc_B3_91B0:
@@ -1666,7 +1666,7 @@ Loc_B3_91D8:
   sta $040C                    ; $91F0
   sta $0415                    ; $91F3
   lda #$10                     ; $91F6
-  sta $0411                    ; $91F8
+  sta TextBoxMode              ; $91F8
   inc $0410                    ; $91FB
   rts                          ; $91FE
 TextBoxSaveBackgroundRows:
@@ -1715,7 +1715,7 @@ Loc_B3_9240:
   jmp Loc_B3_92B6              ; $9251
 Loc_B3_9254:
   jsr DoOamDma                 ; $9254
-  lda $0411                    ; $9257
+  lda TextBoxMode              ; $9257
   cmp #$01                     ; $925A
   beq Loc_B3_92AC              ; $925C
   ldx #$40                     ; $925E
@@ -1745,11 +1745,11 @@ Loc_B3_926F:
   lda #$00                     ; $928D
   adc z:$5B                    ; $928F
   sta z:$5B                    ; $9291
-  dec $0411                    ; $9293
+  dec TextBoxMode              ; $9293
   beq Loc_B3_92AC              ; $9296
   lda #$00                     ; $9298
   sta $0415                    ; $929A
-  lda $0411                    ; $929D
+  lda TextBoxMode              ; $929D
   cmp #$01                     ; $92A0
   bne Loc_B3_92B6              ; $92A2
   lda #$00                     ; $92A4
@@ -1757,13 +1757,13 @@ Loc_B3_926F:
   jmp Loc_B3_92B6              ; $92A9
 Loc_B3_92AC:
   lda #$00                     ; $92AC
-  sta $0411                    ; $92AE
+  sta TextBoxMode              ; $92AE
   lda #$02                     ; $92B1
   sta $0410                    ; $92B3
 Loc_B3_92B6:
   rts                          ; $92B6
 Sub_B3_92B7:
-  lda $0422                    ; $92B7
+  lda TextBoxStage             ; $92B7
   bne Loc_B3_92DE              ; $92BA
   lda $0404                    ; $92BC
   asl a                        ; $92BF
@@ -1775,7 +1775,7 @@ Sub_B3_92B7:
   lda $042D                    ; $92CB
   clc                          ; $92CE
   adc #$21                     ; $92CF
-  sta $0425                    ; $92D1
+  sta TextBoxRowAddrLo         ; $92D1
   lda #$20                     ; $92D4
   sta $0426                    ; $92D6
   lda #$FF                     ; $92D9
@@ -1789,21 +1789,21 @@ Loc_B3_92DE:
 Loc_B3_92EB:
   lda #$00                     ; $92EB
   sta $041F                    ; $92ED
-  ldy $0422                    ; $92F0
+  ldy TextBoxStage             ; $92F0
 Loc_B3_92F3:
   lda ($56),y                  ; $92F3
   cmp #$FF                     ; $92F5
   bne Loc_B3_9314              ; $92F7
-  lda $0425                    ; $92F9
+  lda TextBoxRowAddrLo         ; $92F9
   and #$1F                     ; $92FC
   cmp #$1F                     ; $92FE
   bne Loc_B3_930D              ; $9300
-  lda $0425                    ; $9302
+  lda TextBoxRowAddrLo         ; $9302
   and #$E0                     ; $9305
-  sta $0425                    ; $9307
+  sta TextBoxRowAddrLo         ; $9307
   jmp Loc_B3_9310              ; $930A
 Loc_B3_930D:
-  inc $0425                    ; $930D
+  inc TextBoxRowAddrLo         ; $930D
 Loc_B3_9310:
   iny                          ; $9310
   jmp Loc_B3_92F3              ; $9311
@@ -1813,7 +1813,7 @@ Loc_B3_9314:
   lda $042D                    ; $9318
   clc                          ; $931B
   adc #$41                     ; $931C
-  sta $0425                    ; $931E
+  sta TextBoxRowAddrLo         ; $931E
   iny                          ; $9321
   jmp Loc_B3_92F3              ; $9322
 Loc_B3_9325:
@@ -1821,12 +1821,12 @@ Loc_B3_9325:
   bne Loc_B3_9342              ; $9327
   lda #$00                     ; $9329
   sta $041F                    ; $932B
-  sta $0422                    ; $932E
+  sta TextBoxStage             ; $932E
   sta $0402                    ; $9331
   sta JoyHeld1                 ; $9334
   lda $0403                    ; $9337
   sta z:MmcPrgShadow           ; $933A
-  inc $0421                    ; $933C
+  inc DialogueStage            ; $933C
   jmp Loc_B3_9361              ; $933F
 Loc_B3_9342:
   lda ($56),y                  ; $9342
@@ -1843,13 +1843,13 @@ Loc_B3_9350:
 Loc_B3_9355:
   sta $0423                    ; $9355
   iny                          ; $9358
-  sty $0422                    ; $9359
+  sty TextBoxStage             ; $9359
   lda #$01                     ; $935C
   sta $0427                    ; $935E
 Loc_B3_9361:
   rts                          ; $9361
 TextBoxInitStage:
-  lda $0422                    ; $9362
+  lda TextBoxStage             ; $9362
   beq Loc_B3_936A              ; $9365
   jmp Loc_B3_938C              ; $9367
 Loc_B3_936A:
@@ -1866,7 +1866,7 @@ Loc_B3_936A:
   lda Data_B3_9411,y           ; $9382
   sta $042B                    ; $9385
   iny                          ; $9388
-  sty $0422                    ; $9389
+  sty TextBoxStage             ; $9389
 Loc_B3_938C:
   lda #$02                     ; $938C
   sta z:Tmp00                  ; $938E
@@ -1911,7 +1911,7 @@ Loc_B3_93CB:
   bne Loc_B3_9390              ; $93E1
   jmp Loc_B3_9410              ; $93E3
 Loc_B3_93E6:
-  ldy $0422                    ; $93E6
+  ldy TextBoxStage             ; $93E6
   lda Data_B3_9411,y           ; $93E9
   cmp #$FF                     ; $93EC
   beq Loc_B3_9408              ; $93EE
@@ -1923,12 +1923,12 @@ Loc_B3_93E6:
   lda Data_B3_9411,y           ; $93FB
   sta $042B                    ; $93FE
   iny                          ; $9401
-  sty $0422                    ; $9402
+  sty TextBoxStage             ; $9402
   jmp Loc_B3_93CB              ; $9405
 Loc_B3_9408:
   lda #$00                     ; $9408
   sta $0402                    ; $940A
-  sta $0421                    ; $940D
+  sta DialogueStage            ; $940D
 Loc_B3_9410:
   rts                          ; $9410
 Data_B3_9411:

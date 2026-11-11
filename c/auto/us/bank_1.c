@@ -385,7 +385,7 @@ void Loc_B1_85B9(void) {  /* $85B9 bank 1 */
     LDA(0x92);                                                                           /* $85E4 lda */
     STA(0x0549);                                                                         /* $85E6 sta */
     LDA(0xAB);                                                                           /* $85E9 lda */
-    STA(0x054B);                                                                         /* $85EB sta */
+    STA(PpuBufAddrLo);                                                                   /* $85EB sta */
     INC_M(0x0556);                                                                       /* $85EE inc */
   }
   RTS_RET(sp0);                                                                          /* $85F1 rts */
@@ -574,7 +574,7 @@ L8D81: BUDGET();
   LDA(rd(ObjectCount));                                                                  /* $8D81 lda */
   if (R.a != 0) {                                                                        /* $8D84 beq */
     LDA(0x00);                                                                           /* $8D86 lda */
-    STA(0x0302);                                                                         /* $8D88 sta */
+    STA(ObjectLoopIndex);                                                                /* $8D88 sta */
     do { BUDGET();
       LDY(0x00);                                                                         /* $8D8B ldy */
       LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $8D8D lda */
@@ -595,8 +595,8 @@ L8DA9: BUDGET();
       CLC();                                                                             /* $8DAB clc */
       adc(0x10);                                                                         /* $8DAC adc */
       STA(Tmp00);                                                                        /* $8DAE sta */
-      INC_M(0x0302);                                                                     /* $8DB0 inc */
-      LDA(rd(0x0302));                                                                   /* $8DB3 lda */
+      INC_M(ObjectLoopIndex);                                                            /* $8DB0 inc */
+      LDA(rd(ObjectLoopIndex));                                                          /* $8DB3 lda */
       cmp8(R.a, rd(ObjectCount));                                                        /* $8DB6 cmp */
     } while (R.a < rd(ObjectCount));                                                     /* $8DB9 bcc */
   }
@@ -741,7 +741,7 @@ void Sub_B1_8EA2(void) {  /* $8EA2 bank 1 */
     STA((uint16_t)(0x030D + R.y));                                                       /* $8EF7 sta */
     LDA(0x41);                                                                           /* $8EFA lda */
     push16(0x8EFE); QueueSound(); UNW(); ret_check(0x8EFE);                              /* $8EFC jsr */
-    LDA(rd((uint16_t)(0x0302 + R.y)));                                                   /* $8EFF lda */
+    LDA(rd((uint16_t)(ObjectLoopIndex + R.y)));                                          /* $8EFF lda */
     cmp8(R.a, 0x60);                                                                     /* $8F02 cmp */
     if (R.a >= 0x60) {                                                                   /* $8F04 bcc */
       cmp8(R.a, 0xA0);                                                                   /* $8F06 cmp */
@@ -1259,8 +1259,8 @@ void EnemyTypeDSpawnTwin(void) {  /* $946C bank 1 */
     STA((uint16_t)(0x0300 + R.y));                                                       /* $949E sta */
     LDA(rd((uint16_t)(ObjectCount + R.x)));                                              /* $94A1 lda */
     STA((uint16_t)(ObjectCount + R.y));                                                  /* $94A4 sta */
-    LDA(rd((uint16_t)(0x0302 + R.x)));                                                   /* $94A7 lda */
-    STA((uint16_t)(0x0302 + R.y));                                                       /* $94AA sta */
+    LDA(rd((uint16_t)(ObjectLoopIndex + R.x)));                                          /* $94A7 lda */
+    STA((uint16_t)(ObjectLoopIndex + R.y));                                              /* $94AA sta */
     LDA(rd(0x04));                                                                       /* $94AD lda */
     PHA();                                                                               /* $94AF pha */
     LDA(rd(0x05));                                                                       /* $94B0 lda */
@@ -2677,7 +2677,7 @@ void SpawnObjectAtScreenRight(void) {  /* $AAD5 bank 1 */
     LDA(0x18);                                                                           /* $AB08 lda */
     STA((uint16_t)(ObjectCount + R.y));                                                  /* $AB0A sta */
     LDA(0xB0);                                                                           /* $AB0D lda */
-    STA((uint16_t)(0x0302 + R.y));                                                       /* $AB0F sta */
+    STA((uint16_t)(ObjectLoopIndex + R.y));                                              /* $AB0F sta */
     LDA(0x80);                                                                           /* $AB12 lda */
     STA((uint16_t)(0x030E + R.y));                                                       /* $AB14 sta */
     push16(0xAB19); Sub_B1_8EA2(); UNW(); ret_check(0xAB19);                             /* $AB17 jsr */
@@ -2716,7 +2716,7 @@ void ProcessItemObjectTimers(void) {  /* $AB27 bank 1 */
         AND(0x1F);                                                                       /* $AB42 and */
         cmp8(R.a, 0x11);                                                                 /* $AB44 cmp */
         if (R.a == 0x11) {                                                               /* $AB46 bne */
-          LDA(rd(0x04AA));                                                               /* $AB48 lda */
+          LDA(rd(BossPhase));                                                            /* $AB48 lda */
           if ((R.a & 0x80)) goto LAB5C;                                                  /* $AB4B bmi */
           goto LAB9C;                                                                    /* $AB4D jmp */
         }
@@ -2772,8 +2772,8 @@ void Bank1ObjAnim_00(void) {  /* $ABAB bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x0D);                                                                             /* $ABAB ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $ABAD lda */
-  AND(rd(0x04AB));                                                                       /* $ABAF and */
-  STA(0x04AB);                                                                           /* $ABB2 sta */
+  AND(rd(BossSubPhase));                                                                 /* $ABAF and */
+  STA(BossSubPhase);                                                                     /* $ABB2 sta */
   push16(0xABB7); InitProjectileA(); UNW(); ret_check(0xABB7);                           /* $ABB5 jsr */
   RTS_RET(sp0);                                                                          /* $ABB8 rts */
 }
@@ -2793,7 +2793,7 @@ void Bank1ObjAnim_02(void) {  /* $ABBD bank 1 */
 void Bank1ObjAnim_03(void) {  /* $ABC1 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0xABC3); InitProjectileA(); UNW(); ret_check(0xABC3);                           /* $ABC1 jsr */
-  LDA(rd(0x04AB));                                                                       /* $ABC4 lda */
+  LDA(rd(BossSubPhase));                                                                 /* $ABC4 lda */
   if (R.a != 0) {                                                                        /* $ABC7 beq */
     push16(0xABCB); Sub_B1_AC8A(); UNW(); ret_check(0xABCB);                             /* $ABC9 jsr */
   }
@@ -2813,7 +2813,7 @@ void Loc_B1_ABD1(void) {  /* $ABD1 bank 1 */
   if (R.a != 0) {                                                                        /* $ABD5 beq */
     push16(0xABD9); InitProjectileA(); UNW(); ret_check(0xABD9);                         /* $ABD7 jsr */
     LDA(0x06);                                                                           /* $ABDA lda */
-    STA(0x04AA);                                                                         /* $ABDC sta */
+    STA(BossPhase);                                                                      /* $ABDC sta */
   }
   RTS_RET(sp0);                                                                          /* $ABDF rts */
 }
@@ -2906,11 +2906,11 @@ void InitObjectFromTemplate(void) {  /* $AC5B bank 1 */
 
 void Sub_B1_AC8A(void) {  /* $AC8A bank 1 */
   uint8_t sp0 = R.sp;
-  LDA(rd(0x04AA));                                                                       /* $AC8A lda */
+  LDA(rd(BossPhase));                                                                    /* $AC8A lda */
   AND(0x7F);                                                                             /* $AC8D and */
   cmp8(R.a, 0x03);                                                                       /* $AC8F cmp */
   if (R.a != 0x03) {                                                                     /* $AC91 bne */
-    LDA(rd(0x04AB));                                                                     /* $AC96 lda */
+    LDA(rd(BossSubPhase));                                                               /* $AC96 lda */
     cmp8(R.a, 0x03);                                                                     /* $AC99 cmp */
     if (R.a != 0x03) {                                                                   /* $AC9B beq */
       TAY();                                                                             /* $AC9D tay */
@@ -2924,7 +2924,7 @@ void Sub_B1_AC8A(void) {  /* $AC8A bank 1 */
     STA(Tmp03);                                                                          /* $ACA9 sta */
     goto LACE6;                                                                          /* $ACAB jmp */
   }
-  LDA(rd(0x04AB));                                                                       /* $ACAE lda */
+  LDA(rd(BossSubPhase));                                                                 /* $ACAE lda */
   cmp8(R.a, 0x07);                                                                       /* $ACB1 cmp */
   if (R.a != 0x07) {                                                                     /* $ACB3 beq */
     TAY();                                                                               /* $ACB5 tay */
@@ -2956,7 +2956,7 @@ LACE6: BUDGET();
   push16(0xACE8); MultiplyBy12(); UNW(); ret_check(0xACE8);                              /* $ACE6 jsr */
   STA(Tmp03);                                                                            /* $ACE9 sta */
   TAX();                                                                                 /* $ACEB tax */
-  LDA(rd(0x04AA));                                                                       /* $ACEC lda */
+  LDA(rd(BossPhase));                                                                    /* $ACEC lda */
   AND(0x7F);                                                                             /* $ACEF and */
   cmp8(R.a, 0x02);                                                                       /* $ACF1 cmp */
   if (R.a == 0x02) {                                                                     /* $ACF3 bne */
@@ -3300,7 +3300,7 @@ void Sub_B1_B013(void) {  /* $B013 bank 1 */
     LDA(rd(PaletteSetIndex));                                                            /* $B018 lda */
     cmp8(R.a, 0x69);                                                                     /* $B01A cmp */
     if (R.a == 0x69) {                                                                   /* $B01C bne */
-      LDA(rd(0x04AA));                                                                   /* $B01E lda */
+      LDA(rd(BossPhase));                                                                /* $B01E lda */
       AND(0x7F);                                                                         /* $B021 and */
       cmp8(R.a, 0x06);                                                                   /* $B023 cmp */
       if (R.a == 0x06) goto LB09B;                                                       /* $B025 beq */

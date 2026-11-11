@@ -43,7 +43,7 @@ Bank2Nmi:
   lda #$03                     ; $8060
   sta $049D                    ; $8062
   lda #$01                     ; $8065
-  sta $04AA                    ; $8067
+  sta BossPhase                ; $8067
   jsr InitScopeScene           ; $806A
   jsr ClearObjectTableAndLoadList ; $806D
   jsr InitScopeEnemies         ; $8070
@@ -401,7 +401,7 @@ Loc_B2_8439:
 Data_B2_843A:
   .incbin "prg_bank_2.bin", $043A, $4E  ; $843A
 Sub_B2_8488:
-  lda $04AA                    ; $8488
+  lda BossPhase                ; $8488
   and #$7F                     ; $848B
   cmp #$06                     ; $848D
   bne Loc_B2_8494              ; $848F
@@ -410,18 +410,18 @@ Loc_B2_8494:
   lda ObjectCount              ; $8494
   cmp #$01                     ; $8497
   bne Loc_B2_84A0              ; $8499
-  lda $04AB                    ; $849B
+  lda BossSubPhase             ; $849B
   beq Loc_B2_84A3              ; $849E
 Loc_B2_84A0:
   jmp Loc_B2_8570              ; $84A0
 Loc_B2_84A3:
   lda #$00                     ; $84A3
   sta $04AC                    ; $84A5
-  inc $04AA                    ; $84A8
-  lda $04AA                    ; $84AB
+  inc BossPhase                ; $84A8
+  lda BossPhase                ; $84AB
   and #$7F                     ; $84AE
-  sta $04AA                    ; $84B0
-  ldx $04AA                    ; $84B3
+  sta BossPhase                ; $84B0
+  ldx BossPhase                ; $84B3
   dex                          ; $84B6
   dex                          ; $84B7
   txa                          ; $84B8
@@ -437,7 +437,7 @@ Loc_B2_84A3:
   sta z:Tmp03                  ; $84CB
   jsr LoadScopeObjectList      ; $84CD
   inc ObjectCount              ; $84D0
-  lda $04AA                    ; $84D3
+  lda BossPhase                ; $84D3
   cmp #$03                     ; $84D6
   bne Loc_B2_8510              ; $84D8
   lda $032A                    ; $84DA
@@ -462,7 +462,7 @@ Loc_B2_8500:
   ora #$40                     ; $8503
   sta ObjectTable,y            ; $8505
   lda #$07                     ; $8508
-  sta $04AB                    ; $850A
+  sta BossSubPhase             ; $850A
   jmp Loc_B2_8570              ; $850D
 Loc_B2_8510:
   cmp #$05                     ; $8510
@@ -471,14 +471,14 @@ Loc_B2_8510:
   sta $032A                    ; $8516
   jmp Loc_B2_8570              ; $8519
 Loc_B2_851C:
-  lda $04AA                    ; $851C
+  lda BossPhase                ; $851C
   bmi Loc_B2_853A              ; $851F
   lda ObjectCount              ; $8521
   cmp #$01                     ; $8524
   bne Loc_B2_8570              ; $8526
   lda #$80                     ; $8528
-  ora $04AA                    ; $852A
-  sta $04AA                    ; $852D
+  ora BossPhase                ; $852A
+  sta BossPhase                ; $852D
   lda #$00                     ; $8530
   jsr QueueSound               ; $8532
   lda #$1D                     ; $8535
@@ -755,7 +755,7 @@ Sub_B2_88AA:
   bne Loc_B2_88C1              ; $88B3
   lda $049E                    ; $88B5
   bne Loc_B2_88C1              ; $88B8
-  lda $04AA                    ; $88BA
+  lda BossPhase                ; $88BA
   cmp #$06                     ; $88BD
   bne Loc_B2_88D4              ; $88BF
 Loc_B2_88C1:
@@ -806,7 +806,7 @@ Loc_B2_8911:
   lda #$03                     ; $891A
   sta SceneState               ; $891C
   lda #$00                     ; $891F
-  sta $013D                    ; $8921
+  sta PaletteFadeLevel         ; $8921
   lda z:PaletteSetIndex        ; $8924
   sta $013F                    ; $8926
   cmp #$69                     ; $8929
@@ -822,7 +822,7 @@ TickScopeSecondTimer:
   bne Loc_B2_899A              ; $893B
   lda $049E                    ; $893D
   beq Loc_B2_899A              ; $8940
-  lda $04AA                    ; $8942
+  lda BossPhase                ; $8942
   and #$7F                     ; $8945
   cmp #$06                     ; $8947
   beq Loc_B2_899A              ; $8949
@@ -967,7 +967,7 @@ Loc_B2_8A6A:
   lda z:PaletteSetIndex        ; $8A72
   cmp #$69                     ; $8A74
   bne Loc_B2_8AAF              ; $8A76
-  lda $04AA                    ; $8A78
+  lda BossPhase                ; $8A78
   cmp #$03                     ; $8A7B
   bcs Loc_B2_8AAF              ; $8A7D
   jsr GetRandomByte            ; $8A7F
@@ -990,7 +990,7 @@ Loc_B2_8A8D:
   lda #$00                     ; $8AA5
   sta $04AC                    ; $8AA7
   lda #$03                     ; $8AAA
-  sta $04AB                    ; $8AAC
+  sta BossSubPhase             ; $8AAC
 Loc_B2_8AAF:
   rts                          ; $8AAF
 CopyObjectByteToList:

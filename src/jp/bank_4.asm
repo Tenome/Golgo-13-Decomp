@@ -118,7 +118,7 @@ Bank4Tbl80C9_05:
   jsr FillPaletteBlack         ; $8140
   jsr HideSpritesFromStart     ; $8143
   lda #$03                     ; $8146
-  sta $051F                    ; $8148
+  sta CollectedCount           ; $8148
   jsr CopyPpuListStubToRam     ; $814B
   jsr InitMazePosition         ; $814E
   jsr DrawCompassSprites       ; $8151
@@ -673,7 +673,7 @@ Bank4StateB_04:
   sta z:$7C                    ; $85FD
   rts                          ; $85FF
 Bank4Tbl85C3_05:
-  lda $0508                    ; $8600
+  lda MazeItemFullRestore      ; $8600
   ora $050B                    ; $8603
   bne Loc_B4_8610              ; $8606
   ldy #$EA                     ; $8608
@@ -685,7 +685,7 @@ Loc_B4_8610:
   ldy #$03                     ; $8614
   jmp RequestTransitionFromTable ; $8616
 Bank4Tbl85C3_06:
-  lda $0508                    ; $8619
+  lda MazeItemFullRestore      ; $8619
   ora $050C                    ; $861C
   bne Bank4StateB_04           ; $861F
   ldy #$E9                     ; $8621
@@ -698,7 +698,7 @@ Bank4Tbl85C3_07:
   ldy #$04                     ; $8630
   jmp RequestTransitionFromTable ; $8632
 Bank4Tbl85C3_08:
-  lda $0508                    ; $8635
+  lda MazeItemFullRestore      ; $8635
   ora $050C                    ; $8638
   bne Loc_B4_8645              ; $863B
   ldy #$E9                     ; $863D
@@ -720,7 +720,7 @@ Loc_B4_8659:
   sta z:$7C                    ; $8660
   rts                          ; $8662
 Bank4Tbl85C3_09:
-  lda $0508                    ; $8663
+  lda MazeItemFullRestore      ; $8663
   ora $050C                    ; $8666
   beq Loc_B4_866E              ; $8669
   jmp Bank4StateB_04           ; $866B
@@ -729,7 +729,7 @@ Loc_B4_866E:
   jsr AddObjectOfType          ; $8670
   jmp Bank4StateB_00           ; $8673
 Bank4Tbl85C3_0A:
-  lda $0508                    ; $8676
+  lda MazeItemFullRestore      ; $8676
   bne Loc_B4_8683              ; $8679
   ldy #$EB                     ; $867B
   jsr AddObjectOfType          ; $867D
@@ -740,7 +740,7 @@ Loc_B4_8683:
   ldy #$03                     ; $8687
   jmp RequestTransitionFromTable ; $8689
 Bank4Tbl85C3_0B:
-  lda $0508                    ; $868C
+  lda MazeItemFullRestore      ; $868C
   ora $050C                    ; $868F
   bne Loc_B4_869C              ; $8692
   ldy #$E9                     ; $8694
@@ -1034,7 +1034,7 @@ Loc_B4_8D95:
 Data_B4_8D96:
   .incbin "prg_bank_4.bin", $0D96, $8  ; $8D96
 Loc_B4_8D9E:
-  lda $051F                    ; $8D9E
+  lda CollectedCount           ; $8D9E
   beq Loc_B4_8DB8              ; $8DA1
   lda ObjectCount              ; $8DA3
   jsr AslA4                    ; $8DA6
@@ -1054,7 +1054,7 @@ Loc_B4_8DB9:
   tya                          ; $8DB9
   ora #$80                     ; $8DBA
   sta $0309,x                  ; $8DBC
-  dec $051F                    ; $8DBF
+  dec CollectedCount           ; $8DBF
   jmp Loc_B4_A00F              ; $8DC2
 Loc_B4_8DC5:
   lda JoyNew1                  ; $8DC5
@@ -1156,7 +1156,7 @@ Bank4StateC_00:
   rts                          ; $8EA5
 Bank4StateC_01:
   ldx z:$6B                    ; $8EA6
-  lda $0302,x                  ; $8EA8
+  lda ObjectLoopIndex,x        ; $8EA8
   cmp $0207                    ; $8EAB
   bne Bank4StateC_00           ; $8EAE
 Bank4StateC_02:
@@ -1179,7 +1179,7 @@ Bank4Tbl8E4A_0A:
   jmp Bank4StateC_00           ; $8ECF
 Bank4Tbl8E4A_11:
   ldx z:$6B                    ; $8ED2
-  lda $0302,x                  ; $8ED4
+  lda ObjectLoopIndex,x        ; $8ED4
   cmp $0207                    ; $8ED7
   bne Bank4StateC_00           ; $8EDA
   jmp Bank4StateC_02           ; $8EDC
@@ -1280,10 +1280,10 @@ Loc_B4_8FEA:
 Loc_B4_8FF3:
   tay                          ; $8FF3
   lda PPU_STATUS               ; $8FF4
-  lda $054A                    ; $8FF7
+  lda PpuBufAddrHi             ; $8FF7
   and #$23                     ; $8FFA
   sta PPU_ADDR                 ; $8FFC
-  lda $054B                    ; $8FFF
+  lda PpuBufAddrLo             ; $8FFF
   sta PPU_ADDR                 ; $9002
   lda PPU_DATA                 ; $9005
   ldx #$00                     ; $9008
@@ -1301,24 +1301,24 @@ ClearNametable2Rows:
   and #$FD                     ; $901C
   jsr SetPpuCtrl               ; $901E
   lda #$28                     ; $9021
-  sta $054A                    ; $9023
+  sta PpuBufAddrHi             ; $9023
   lda #$10                     ; $9026
   sta $058E                    ; $9028
   lda #$00                     ; $902B
-  sta $054B                    ; $902D
+  sta PpuBufAddrLo             ; $902D
   sta $054C                    ; $9030
 Loc_B4_9033:
   ldy #$40                     ; $9033
   jsr ClearNametableRowAt054A  ; $9035
   jsr ProcessPpuUpdateList     ; $9038
   .incbin "prg_bank_4.bin", $103B, $2  ; $903B
-  lda $054B                    ; $903D
+  lda PpuBufAddrLo             ; $903D
   clc                          ; $9040
   adc #$40                     ; $9041
-  sta $054B                    ; $9043
-  lda $054A                    ; $9046
+  sta PpuBufAddrLo             ; $9043
+  lda PpuBufAddrHi             ; $9046
   adc #$00                     ; $9049
-  sta $054A                    ; $904B
+  sta PpuBufAddrHi             ; $904B
   dec $058E                    ; $904E
   bne Loc_B4_9033              ; $9051
   rts                          ; $9053
@@ -1484,7 +1484,7 @@ Loc_B4_95A6:
   ldx Data_B4_95F8,y           ; $95BE
   stx z:$87                    ; $95C1
   jsr SetFadeParamsFromTable   ; $95C3
-  lda $0508                    ; $95C6
+  lda MazeItemFullRestore      ; $95C6
   beq RequestPaletteUpdate     ; $95C9
   lda #$0F                     ; $95CB
   sta $0532                    ; $95CD
@@ -1937,9 +1937,9 @@ Loc_B4_9A8F:
   asl a                        ; $9A9B
   tax                          ; $9A9C
   lda Data_B4_9B25,x           ; $9A9D
-  sta $0523                    ; $9AA0
+  sta PpuStubTargetLo          ; $9AA0
   lda Data_B4_9B26,x           ; $9AA3
-  sta $0524                    ; $9AA6
+  sta PpuStubTargetHi          ; $9AA6
   jsr $0520                    ; $9AA9
   lda z:$6A                    ; $9AAC
   cmp #$03                     ; $9AAE
@@ -1948,9 +1948,9 @@ Loc_B4_9A8F:
   asl a                        ; $9AB4
   tax                          ; $9AB5
   lda Data_B4_9B4D,x           ; $9AB6
-  sta $0523                    ; $9AB9
+  sta PpuStubTargetLo          ; $9AB9
   lda Data_B4_9B4E,x           ; $9ABC
-  sta $0524                    ; $9ABF
+  sta PpuStubTargetHi          ; $9ABF
   jsr $0520                    ; $9AC2
   ldy z:$6C                    ; $9AC5
   lda Data_B4_9B75,y           ; $9AC7
@@ -1962,9 +1962,9 @@ Loc_B4_9A8F:
   adc z:$60                    ; $9AD4
   tax                          ; $9AD6
   lda Data_B4_9B89,x           ; $9AD7
-  sta $0523                    ; $9ADA
+  sta PpuStubTargetLo          ; $9ADA
   lda Data_B4_9B8A,x           ; $9ADD
-  sta $0524                    ; $9AE0
+  sta PpuStubTargetHi          ; $9AE0
   jsr $0520                    ; $9AE3
 Loc_B4_9AE6:
   inc z:$6C                    ; $9AE6
@@ -2066,9 +2066,9 @@ Loc_B4_9F96:
 Data_B4_9FA1:
   .incbin "prg_bank_4.bin", $1FA1, $B  ; $9FA1
 DrawCollectedCountIcons:
-  lda $051F                    ; $9FAC
+  lda CollectedCount           ; $9FAC
   and #$03                     ; $9FAF
-  sta $051F                    ; $9FB1
+  sta CollectedCount           ; $9FB1
   bne Loc_B4_9FB7              ; $9FB4
   rts                          ; $9FB6
 Loc_B4_9FB7:
@@ -2089,7 +2089,7 @@ Loc_B4_9FCE:
   jsr SetupIconPpuBuffer       ; $9FD0
   jmp PpuListThunkSource       ; $9FD3
 AddCollectedCountIcon:
-  lda $051F                    ; $9FD6
+  lda CollectedCount           ; $9FD6
   and #$03                     ; $9FD9
   beq Loc_B4_9FEA              ; $9FDB
   tax                          ; $9FDD
@@ -2104,11 +2104,11 @@ SetupIconPpuBuffer:
   ldx #$0A                     ; $9FEB
 Loc_B4_9FED:
   lda Data_B4_A004,x           ; $9FED
-  sta $054A,x                  ; $9FF0
+  sta PpuBufAddrHi,x           ; $9FF0
   dex                          ; $9FF3
   bpl Loc_B4_9FED              ; $9FF4
   tya                          ; $9FF6
-  sta $054B                    ; $9FF7
+  sta PpuBufAddrLo             ; $9FF7
   clc                          ; $9FFA
   adc #$20                     ; $9FFB
   sta $0550                    ; $9FFD
@@ -2119,7 +2119,7 @@ Data_B4_A001:
 Data_B4_A004:
   .incbin "prg_bank_4.bin", $2004, $B  ; $A004
 Loc_B4_A00F:
-  lda $051F                    ; $A00F
+  lda CollectedCount           ; $A00F
   and #$03                     ; $A012
   cmp #$03                     ; $A014
   beq Loc_B4_A032              ; $A016
@@ -2151,7 +2151,7 @@ Loc_B4_A049:
   jsr Sub_B4_A09B              ; $A04E
   jsr $0520                    ; $A051
 Loc_B4_A054:
-  lda $0508                    ; $A054
+  lda MazeItemFullRestore      ; $A054
   beq Loc_B4_A05F              ; $A057
   jsr Sub_B4_A0B6              ; $A059
   jsr $0520                    ; $A05C
@@ -2160,30 +2160,30 @@ Loc_B4_A05F:
   .incbin "prg_bank_4.bin", $2060, $5  ; $A060
 Sub_B4_A065:
   lda #$70                     ; $A065
-  sta $0523                    ; $A067
+  sta PpuStubTargetLo          ; $A067
   lda #$A0                     ; $A06A
-  sta $0524                    ; $A06C
+  sta PpuStubTargetHi          ; $A06C
   rts                          ; $A06F
   .incbin "prg_bank_4.bin", $2070, $10  ; $A070
 Sub_B4_A080:
   lda #$8B                     ; $A080
-  sta $0523                    ; $A082
+  sta PpuStubTargetLo          ; $A082
   lda #$A0                     ; $A085
-  sta $0524                    ; $A087
+  sta PpuStubTargetHi          ; $A087
   rts                          ; $A08A
   .incbin "prg_bank_4.bin", $208B, $10  ; $A08B
 Sub_B4_A09B:
   lda #$A6                     ; $A09B
-  sta $0523                    ; $A09D
+  sta PpuStubTargetLo          ; $A09D
   lda #$A0                     ; $A0A0
-  sta $0524                    ; $A0A2
+  sta PpuStubTargetHi          ; $A0A2
   rts                          ; $A0A5
   .incbin "prg_bank_4.bin", $20A6, $10  ; $A0A6
 Sub_B4_A0B6:
   lda #$C1                     ; $A0B6
-  sta $0523                    ; $A0B8
+  sta PpuStubTargetLo          ; $A0B8
   lda #$A0                     ; $A0BB
-  sta $0524                    ; $A0BD
+  sta PpuStubTargetHi          ; $A0BD
   rts                          ; $A0C0
   .incbin "prg_bank_4.bin", $20C1, $30  ; $A0C1
 SpawnDoorObjectsIfAhead:
@@ -2306,17 +2306,17 @@ DoorState2:
   cmp #$11                     ; $A2E4
   bcs Loc_B4_A31A              ; $A2E6
   ldx #$00                     ; $A2E8
-  stx $054A                    ; $A2EA
+  stx PpuBufAddrHi             ; $A2EA
   jsr AslA4                    ; $A2ED
-  rol $054A                    ; $A2F0
+  rol PpuBufAddrHi             ; $A2F0
   asl a                        ; $A2F3
-  rol $054A                    ; $A2F4
+  rol PpuBufAddrHi             ; $A2F4
   clc                          ; $A2F7
   adc #$A4                     ; $A2F8
-  sta $054B                    ; $A2FA
-  lda $054A                    ; $A2FD
+  sta PpuBufAddrLo             ; $A2FA
+  lda PpuBufAddrHi             ; $A2FD
   adc #$28                     ; $A300
-  sta $054A                    ; $A302
+  sta PpuBufAddrHi             ; $A302
   lda #$58                     ; $A305
   sta $054C                    ; $A307
   lda #$03                     ; $A30A
@@ -2425,9 +2425,9 @@ Loc_B4_A3F0:
   asl a                        ; $A3F1
   tax                          ; $A3F2
   lda Data_B4_A42F,x           ; $A3F3
-  sta $054B                    ; $A3F6
+  sta PpuBufAddrLo             ; $A3F6
   lda Data_B4_A430,x           ; $A3F9
-  sta $054A                    ; $A3FC
+  sta PpuBufAddrHi             ; $A3FC
   lda Data_B4_A431,x           ; $A3FF
   sta $054C                    ; $A402
   lda Data_B4_A432,x           ; $A405
@@ -2485,9 +2485,9 @@ MazeObjType05State2:
   tax                          ; $A595
   jsr IncObjectField           ; $A596
   lda Data_B4_A5B2,x           ; $A599
-  sta $0523                    ; $A59C
+  sta PpuStubTargetLo          ; $A59C
   lda Data_B4_A5B3,x           ; $A59F
-  sta $0524                    ; $A5A2
+  sta PpuStubTargetHi          ; $A5A2
   lda #$04                     ; $A5A5
   sta PpuOpRequest             ; $A5A7
   rts                          ; $A5AA
@@ -2501,9 +2501,9 @@ Data_B4_A5B3:
   .incbin "prg_bank_4.bin", $25B3, $37  ; $A5B3
 MazeObjType05State3:
   lda #$28                     ; $A5EA
-  sta $054A                    ; $A5EC
+  sta PpuBufAddrHi             ; $A5EC
   lda #$00                     ; $A5EF
-  sta $054B                    ; $A5F1
+  sta PpuBufAddrLo             ; $A5F1
   lda #$60                     ; $A5F4
   sta $054C                    ; $A5F6
   lda #$01                     ; $A5F9
@@ -2518,13 +2518,13 @@ MazeObjType05State4:
   jsr IncObjectField           ; $A60D
   cmp #$18                     ; $A610
   bcs Loc_B4_A62B              ; $A612
-  lda $054B                    ; $A614
+  lda PpuBufAddrLo             ; $A614
   clc                          ; $A617
   adc #$20                     ; $A618
-  sta $054B                    ; $A61A
-  lda $054A                    ; $A61D
+  sta PpuBufAddrLo             ; $A61A
+  lda PpuBufAddrHi             ; $A61D
   adc #$00                     ; $A620
-  sta $054A                    ; $A622
+  sta PpuBufAddrHi             ; $A622
   lda #$01                     ; $A625
   sta PpuOpRequest             ; $A627
   rts                          ; $A62A
@@ -2542,9 +2542,9 @@ MazeObjType05State5:
   asl a                        ; $A63E
   tax                          ; $A63F
   lda Data_B4_A65F,x           ; $A640
-  sta $0523                    ; $A643
+  sta PpuStubTargetLo          ; $A643
   lda Data_B4_A660,x           ; $A646
-  sta $0524                    ; $A649
+  sta PpuStubTargetHi          ; $A649
   lda #$04                     ; $A64C
   sta PpuOpRequest             ; $A64E
   rts                          ; $A651
@@ -2935,7 +2935,7 @@ CollectBonusItem:
   ldy $051E                    ; $ABDF
   bne Loc_B4_ABF0              ; $ABE2
   lda #$01                     ; $ABE4
-  sta $0508                    ; $ABE6
+  sta MazeItemFullRestore      ; $ABE6
   jsr QueueSound               ; $ABE9
   lda #$32                     ; $ABEC
   ldx #$0A                     ; $ABEE
@@ -3117,11 +3117,11 @@ Loc_B4_AF9E:
 Data_B4_AFA3:
   .incbin "prg_bank_4.bin", $2FA3, $4  ; $AFA3
 MazeObjType11State4:
-  ldx $051F                    ; $AFA7
+  ldx CollectedCount           ; $AFA7
   cpx #$03                     ; $AFAA
   bcs Loc_B4_AFB5              ; $AFAC
   inx                          ; $AFAE
-  stx $051F                    ; $AFAF
+  stx CollectedCount           ; $AFAF
   jsr AddCollectedCountIcon    ; $AFB2
 Loc_B4_AFB5:
   jmp AdvanceObjectState       ; $AFB5
@@ -3249,9 +3249,9 @@ Sub_B4_B123:
   ldy #$0B                     ; $B125
   sta (Tmp00),y                ; $B127
   lda #$43                     ; $B129
-  sta $0523                    ; $B12B
+  sta PpuStubTargetLo          ; $B12B
   lda #$B1                     ; $B12E
-  sta $0524                    ; $B130
+  sta PpuStubTargetHi          ; $B130
   lda #$04                     ; $B133
   sta PpuOpRequest             ; $B135
   lda z:$87                    ; $B138
@@ -3289,7 +3289,7 @@ Loc_B4_B191:
   sta z:$60                    ; $B191
   lda #$01                     ; $B193
   sta z:$61                    ; $B195
-  lda $0508                    ; $B197
+  lda MazeItemFullRestore      ; $B197
   ora $050A                    ; $B19A
   beq Loc_B4_B1A6              ; $B19D
   jsr RandomByteMixed          ; $B19F
@@ -3312,7 +3312,7 @@ Loc_B4_B1B7:
   bcs Loc_B4_B1B7              ; $B1C0
   and #$F0                     ; $B1C2
   ora #$04                     ; $B1C4
-  sta $0302,x                  ; $B1C6
+  sta ObjectLoopIndex,x        ; $B1C6
   lda z:$61                    ; $B1C9
   sta $030B,x                  ; $B1CB
   inc z:$61                    ; $B1CE
@@ -3346,7 +3346,7 @@ MazeObjType17State0:
   beq Loc_B4_B20A              ; $B207
   rts                          ; $B209
 Loc_B4_B20A:
-  lda $0508                    ; $B20A
+  lda MazeItemFullRestore      ; $B20A
   ora $050A                    ; $B20D
   bne Loc_B4_B21A              ; $B210
   ldy #$00                     ; $B212
@@ -3475,7 +3475,7 @@ MazeObjType19:
   bne Loc_B4_B31C              ; $B2FB
   lda #$01                     ; $B2FD
   sta (Tmp00),y                ; $B2FF
-  lda $0508                    ; $B301
+  lda MazeItemFullRestore      ; $B301
   ora $050A                    ; $B304
   bne Loc_B4_B311              ; $B307
   ldy #$00                     ; $B309
@@ -3626,7 +3626,7 @@ UpdateAllObjectHandlers:
   beq Loc_B4_B4EE              ; $B4B4
 Loc_B4_B4B6:
   jsr DispatchObjectHandler    ; $B4B6
-  dec $0302                    ; $B4B9
+  dec ObjectLoopIndex          ; $B4B9
   bne Loc_B4_B4B6              ; $B4BC
   ldy #$06                     ; $B4BE
   lda Data_C347,y              ; $B4C0
@@ -3635,7 +3635,7 @@ Loc_B4_B4B6:
   beq Loc_B4_B4EE              ; $B4C8
 Loc_B4_B4CA:
   ldx #$00                     ; $B4CA
-  lda $0302                    ; $B4CC
+  lda ObjectLoopIndex          ; $B4CC
   jsr AslA4                    ; $B4CF
   tay                          ; $B4D2
   lda $0300,y                  ; $B4D3
@@ -3650,17 +3650,17 @@ Loc_B4_B4CA:
 Loc_B4_B4E5:
   txa                          ; $B4E5
   sta $0303,y                  ; $B4E6
-  dec $0302                    ; $B4E9
+  dec ObjectLoopIndex          ; $B4E9
   bne Loc_B4_B4CA              ; $B4EC
 Loc_B4_B4EE:
   rts                          ; $B4EE
 LoadObjectCountIndex:
   lda ObjectCount              ; $B4EF
   and #$0F                     ; $B4F2
-  sta $0302                    ; $B4F4
+  sta ObjectLoopIndex          ; $B4F4
   rts                          ; $B4F7
 DispatchObjectHandler:
-  lda $0302                    ; $B4F8
+  lda ObjectLoopIndex          ; $B4F8
   jsr AslA4                    ; $B4FB
   tay                          ; $B4FE
   sta z:Tmp00                  ; $B4FF

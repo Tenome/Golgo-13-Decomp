@@ -291,7 +291,7 @@ Loc_B6_8264:
   lda ObjectCount              ; $8264
   beq Loc_B6_82A2              ; $8267
   lda #$00                     ; $8269
-  sta $0302                    ; $826B
+  sta ObjectLoopIndex          ; $826B
 Loc_B6_826E:
   ldy #$00                     ; $826E
   lda (Tmp00),y                ; $8270
@@ -315,8 +315,8 @@ Loc_B6_8290:
   clc                          ; $8292
   adc #$10                     ; $8293
   sta z:Tmp00                  ; $8295
-  inc $0302                    ; $8297
-  lda $0302                    ; $829A
+  inc ObjectLoopIndex          ; $8297
+  lda ObjectLoopIndex          ; $829A
   cmp ObjectCount              ; $829D
   bcc Loc_B6_826E              ; $82A0
 Loc_B6_82A2:

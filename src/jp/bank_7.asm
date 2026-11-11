@@ -1449,7 +1449,7 @@ Loc_CAD0:
   jmp Loc_CB39                 ; $CAE3
 Loc_CAE6:
   jsr DoOamDma                 ; $CAE6
-  lda $0421                    ; $CAE9
+  lda DialogueStage            ; $CAE9
   cmp #$04                     ; $CAEC
   bcs Loc_CB00                 ; $CAEE
   lda z:PlayerActionState      ; $CAF0
@@ -1494,7 +1494,7 @@ Loc_CB39:
   cmp #$FF                     ; $CB46
   beq Loc_CB62                 ; $CB48
   lda #$00                     ; $CB4A
-  sta $0421                    ; $CB4C
+  sta DialogueStage            ; $CB4C
   sta $0403                    ; $CB4F
   lda #$01                     ; $CB52
   sta $0402                    ; $CB54
@@ -1541,10 +1541,10 @@ Loc_CB9B:
 InitLevel:
   lda #$00                     ; $CBA3
   sta z:PlayerActionState      ; $CBA5
-  sta $013D                    ; $CBA7
+  sta PaletteFadeLevel         ; $CBA7
   sta HurtTimer                ; $CBAA
   sta $0117                    ; $CBAD
-  sta $0421                    ; $CBB0
+  sta DialogueStage            ; $CBB0
   lda #$10                     ; $CBB3
   sta z:$0F                    ; $CBB5
   lda z:TransitionTarget       ; $CBB7
@@ -1699,7 +1699,7 @@ Loc_CCF1:
   sta z:ScrollColumnPending    ; $CCFA
   jmp Loc_CD2A                 ; $CCFC
 Loc_CCFF:
-  lda $0421                    ; $CCFF
+  lda DialogueStage            ; $CCFF
   cmp #$04                     ; $CD02
   bcs Loc_CD16                 ; $CD04
   lda #$00                     ; $CD06
@@ -2876,7 +2876,7 @@ Loc_D7A4:
 Loc_D7B1:
   rts                          ; $D7B1
 CheckDialogueTrigger:
-  lda $0438                    ; $D7B2
+  lda DialogueFlags            ; $D7B2
   bne Loc_D7BA                 ; $D7B5
   jmp Loc_D824                 ; $D7B7
 Loc_D7BA:
@@ -2913,14 +2913,14 @@ Loc_D7E2:
   bcc Loc_D7DE                 ; $D7ED
 Loc_D7EF:
   lda #$00                     ; $D7EF
-  sta $0405                    ; $D7F1
-  sta $0438                    ; $D7F4
+  sta DialogueIndex            ; $D7F1
+  sta DialogueFlags            ; $D7F4
   jsr StartLevelScene          ; $D7F7
   jmp Loc_D823                 ; $D7FA
 Loc_D7FD:
   lda z:Tmp02                  ; $D7FD
   jsr LsrA4                    ; $D7FF
-  sta $0405                    ; $D802
+  sta DialogueIndex            ; $D802
   sta $050E                    ; $D805
   dec $050E                    ; $D808
   jsr SelectChr1Bank0D         ; $D80B
@@ -2966,15 +2966,15 @@ Loc_D845:
   bcc Loc_D841                 ; $D850
 Loc_D852:
   lda #$00                     ; $D852
-  sta $0405                    ; $D854
+  sta DialogueIndex            ; $D854
   lda #$80                     ; $D857
-  sta $0438                    ; $D859
+  sta DialogueFlags            ; $D859
   jmp Loc_D823                 ; $D85C
 Loc_D85F:
   jsr SelectChr1Bank0D         ; $D85F
   lda z:Tmp02                  ; $D862
   jsr LsrA4                    ; $D864
-  sta $0405                    ; $D867
+  sta DialogueIndex            ; $D867
   jmp Loc_D823                 ; $D86A
 SelectChr1Bank0D:
   lda #$0D                     ; $D86D
@@ -2997,11 +2997,11 @@ Data_D88B:
 Data_D88C:
   .incbin "prg_bank_7.bin", $188C, $3F  ; $D88C
 RunDialogueState:
-  lda $0405                    ; $D8CB
+  lda DialogueIndex            ; $D8CB
   bne Loc_D8D3                 ; $D8CE
   jmp Loc_D99C                 ; $D8D0
 Loc_D8D3:
-  lda $0438                    ; $D8D3
+  lda DialogueFlags            ; $D8D3
   bmi Loc_D8DB                 ; $D8D6
   jmp Loc_D99D                 ; $D8D8
 Loc_D8DB:
@@ -3012,7 +3012,7 @@ Loc_D8DB:
   jmp Loc_D92D                 ; $D8E3
 Loc_D8E6:
   jsr PrepareDialogueScreen    ; $D8E6
-  lda $0405                    ; $D8E9
+  lda DialogueIndex            ; $D8E9
   asl a                        ; $D8EC
   tay                          ; $D8ED
   lda $9800,y                  ; $D8EE
@@ -3029,7 +3029,7 @@ Loc_D8E6:
   sty $0439                    ; $D90A
   lda #$28                     ; $D90D
   sta $043A                    ; $D90F
-  inc $0438                    ; $D912
+  inc DialogueFlags            ; $D912
   jmp Loc_D99C                 ; $D915
 Loc_D918:
   jsr UploadPalette            ; $D918
@@ -3038,7 +3038,7 @@ Loc_D918:
   ora #$18                     ; $D920
   sta z:PpuMaskShadow          ; $D922
   sta PPU_MASK                 ; $D924
-  inc $0438                    ; $D927
+  inc DialogueFlags            ; $D927
   jmp Loc_D99C                 ; $D92A
 Loc_D92D:
   dec $043A                    ; $D92D
@@ -3091,19 +3091,19 @@ Loc_D989:
   cpy #$30                     ; $D990
   bcc Loc_D989                 ; $D992
   lda #$00                     ; $D994
-  sta $0438                    ; $D996
+  sta DialogueFlags            ; $D996
   jsr StartLevelScene          ; $D999
 Loc_D99C:
   rts                          ; $D99C
 Loc_D99D:
-  lda $0438                    ; $D99D
+  lda DialogueFlags            ; $D99D
   beq Loc_D9A9                 ; $D9A0
   cmp #$01                     ; $D9A2
   beq Loc_D9CE                 ; $D9A4
   jmp Loc_D9E1                 ; $D9A6
 Loc_D9A9:
   jsr PrepareDialogueScreen    ; $D9A9
-  lda $0405                    ; $D9AC
+  lda DialogueIndex            ; $D9AC
   asl a                        ; $D9AF
   tay                          ; $D9B0
   lda $981C,y                  ; $D9B1
@@ -3115,7 +3115,7 @@ Loc_D9A9:
   sta $014F                    ; $D9C0
   lda #$96                     ; $D9C3
   sta $043A                    ; $D9C5
-  inc $0438                    ; $D9C8
+  inc DialogueFlags            ; $D9C8
   jmp Loc_D99C                 ; $D9CB
 Loc_D9CE:
   jsr UploadPalette            ; $D9CE
@@ -3123,7 +3123,7 @@ Loc_D9CE:
   lda z:PpuMaskShadow          ; $D9D4
   ora #$08                     ; $D9D6
   jsr SetPpuMask               ; $D9D8
-  inc $0438                    ; $D9DB
+  inc DialogueFlags            ; $D9DB
   jmp Loc_D99C                 ; $D9DE
 Loc_D9E1:
   lda z:FrameCounter           ; $D9E1
@@ -3140,9 +3140,9 @@ Loc_D9EF:
   and #$FD                     ; $D9F8
   jsr SetPpuCtrl               ; $D9FA
   lda #$80                     ; $D9FD
-  sta $0438                    ; $D9FF
+  sta DialogueFlags            ; $D9FF
   lda #$00                     ; $DA02
-  sta $0405                    ; $DA04
+  sta DialogueIndex            ; $DA04
   jmp Loc_D99C                 ; $DA07
 PrepareDialogueScreen:
   lda z:PpuMaskShadow          ; $DA0A
@@ -3236,7 +3236,7 @@ Data_DAB6:
 Data_DAD7:
   .incbin "prg_bank_7.bin", $1AD7, $30  ; $DAD7
 DialogueLoadAreaScript:
-  lda $0421                    ; $DB07
+  lda DialogueStage            ; $DB07
   beq Loc_DB0F                 ; $DB0A
   jmp Loc_DB57                 ; $DB0C
 Loc_DB0F:
@@ -3719,12 +3719,12 @@ FadeEndScreen:
   bcc Loc_E078                 ; $E062
   bne Loc_E06E                 ; $E064
   lda #$40                     ; $E066
-  sta $013D                    ; $E068
+  sta PaletteFadeLevel         ; $E068
   jmp Loc_E078                 ; $E06B
 Loc_E06E:
   cmp #$70                     ; $E06E
   bcs Loc_E078                 ; $E070
-  inc $013D                    ; $E072
+  inc PaletteFadeLevel         ; $E072
   jsr FadePaletteStep          ; $E075
 Loc_E078:
   rts                          ; $E078
@@ -4075,11 +4075,11 @@ Loc_E882:
   rts                          ; $E882
 UpdateGameOverSequence:
   jsr UpdateLowLifeAlarm       ; $E883
-  lda $013D                    ; $E886
+  lda PaletteFadeLevel         ; $E886
   beq Loc_E899                 ; $E889
   jsr FadePaletteStep          ; $E88B
-  inc $013D                    ; $E88E
-  lda $013D                    ; $E891
+  inc PaletteFadeLevel         ; $E88E
+  lda PaletteFadeLevel         ; $E891
   cmp #$80                     ; $E894
   bcs Loc_E8A5                 ; $E896
   rts                          ; $E898
@@ -4088,11 +4088,11 @@ Loc_E899:
   ora z:PlayerLifeHi           ; $E89B
   bne Loc_E8BE                 ; $E89D
   lda #$01                     ; $E89F
-  sta $013D                    ; $E8A1
+  sta PaletteFadeLevel         ; $E8A1
   rts                          ; $E8A4
 Loc_E8A5:
   lda #$00                     ; $E8A5
-  sta $013D                    ; $E8A7
+  sta PaletteFadeLevel         ; $E8A7
   lda #$05                     ; $E8AA
   sta z:MmcPrgShadow           ; $E8AC
   lda #$03                     ; $E8AE
@@ -4116,7 +4116,7 @@ Loc_E8BE:
 Loc_E8D2:
   rts                          ; $E8D2
 FadePaletteStep:
-  lda $013D                    ; $E8D3
+  lda PaletteFadeLevel         ; $E8D3
   cmp #$40                     ; $E8D6
   bne Loc_E8DF                 ; $E8D8
   lda #$30                     ; $E8DA

@@ -34,7 +34,7 @@ LCB2C: BUDGET();
     cmp8(R.a, 0xFF);                                                                     /* $CB46 cmp */
     if (R.a == 0xFF) goto LCB62;                                                         /* $CB48 beq */
     LDA(0x00);                                                                           /* $CB4A lda */
-    STA(0x0421);                                                                         /* $CB4C sta */
+    STA(DialogueStage);                                                                  /* $CB4C sta */
     STA(0x0403);                                                                         /* $CB4F sta */
     LDA(0x01);                                                                           /* $CB52 lda */
     STA(0x0402);                                                                         /* $CB54 sta */
@@ -412,7 +412,7 @@ L8264: BUDGET();
   LDA(rd(ObjectCount));                                                                  /* $8264 lda */
   if (R.a != 0) {                                                                        /* $8267 beq */
     LDA(0x00);                                                                           /* $8269 lda */
-    STA(0x0302);                                                                         /* $826B sta */
+    STA(ObjectLoopIndex);                                                                /* $826B sta */
     do { BUDGET();
       LDY(0x00);                                                                         /* $826E ldy */
       LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $8270 lda */
@@ -436,8 +436,8 @@ L8290: BUDGET();
       CLC();                                                                             /* $8292 clc */
       adc(0x10);                                                                         /* $8293 adc */
       STA(Tmp00);                                                                        /* $8295 sta */
-      INC_M(0x0302);                                                                     /* $8297 inc */
-      LDA(rd(0x0302));                                                                   /* $829A lda */
+      INC_M(ObjectLoopIndex);                                                            /* $8297 inc */
+      LDA(rd(ObjectLoopIndex));                                                          /* $829A lda */
       cmp8(R.a, rd(ObjectCount));                                                        /* $829D cmp */
     } while (R.a < rd(ObjectCount));                                                     /* $82A0 bcc */
   }
