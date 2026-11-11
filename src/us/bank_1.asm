@@ -774,7 +774,7 @@ Bank1State_02:
   bne Loc_B1_8F72              ; $8F62
   jsr AdvanceObjectAnimStepB1  ; $8F64
   bcc Loc_B1_8F6F              ; $8F67
-  jsr Sub_B1_8F9F              ; $8F69
+  jsr Bank1State02_ChooseAction ; $8F69
   jsr LoadEnemyAnimTableA      ; $8F6C
 Loc_B1_8F6F:
   jsr LoadObjectAnimFrameB1    ; $8F6F
@@ -805,7 +805,7 @@ LoadEnemyAnimTableA:
   lda Data_B1_900B,y           ; $8F99
   sta z:Tmp03                  ; $8F9C
   rts                          ; $8F9E
-Sub_B1_8F9F:
+Bank1State02_ChooseAction:
   ldy #$07                     ; $8F9F
   lda (Tmp00),y                ; $8FA1
   cmp #$02                     ; $8FA3
@@ -1461,7 +1461,7 @@ Bank1State_06:
   and #$1F                     ; $97BE
   cmp #$10                     ; $97C0
   bne Loc_B1_97CC              ; $97C2
-  jsr Sub_B1_9824              ; $97C4
+  jsr Bank1State06_Respawn     ; $97C4
   beq Loc_B1_97DA              ; $97C7
   jmp Loc_B1_9812              ; $97C9
 Loc_B1_97CC:
@@ -1470,12 +1470,12 @@ Loc_B1_97CC:
   bne Loc_B1_97E3              ; $97D0
   jsr AdvanceObjectAnimStepB1  ; $97D2
   bcc Loc_B1_97DD              ; $97D5
-  jsr Sub_B1_98A3              ; $97D7
+  jsr Bank1State06_ChooseAction ; $97D7
 Loc_B1_97DA:
   jsr LoadEnemyAnimTableF      ; $97DA
 Loc_B1_97DD:
   jsr LoadObjectAnimFrameB1    ; $97DD
-  jsr Sub_B1_98E7              ; $97E0
+  jsr Bank1State06_Shoot       ; $97E0
 Loc_B1_97E3:
   jsr StepObjectAnimTimerB     ; $97E3
   ldy z:Tmp00                  ; $97E6
@@ -1507,7 +1507,7 @@ LoadEnemyAnimTableF:
   lda Data_B1_990B,y           ; $981E
   sta z:Tmp03                  ; $9821
   rts                          ; $9823
-Sub_B1_9824:
+Bank1State06_Respawn:
   ldy #$0D                     ; $9824
   lda (Tmp00),y                ; $9826
   beq Loc_B1_9832              ; $9828
@@ -1578,7 +1578,7 @@ Loc_B1_9897:
 Loc_B1_98A0:
   lda #$FF                     ; $98A0
   rts                          ; $98A2
-Sub_B1_98A3:
+Bank1State06_ChooseAction:
   ldy #$07                     ; $98A3
   lda (Tmp00),y                ; $98A5
   and #$07                     ; $98A7
@@ -1618,7 +1618,7 @@ Loc_B1_98DC:
   lda #$00                     ; $98E2
   sta (Tmp00),y                ; $98E4
   rts                          ; $98E6
-Sub_B1_98E7:
+Bank1State06_Shoot:
   ldy #$07                     ; $98E7
   lda (Tmp00),y                ; $98E9
   and #$07                     ; $98EB
@@ -1670,15 +1670,15 @@ Loc_B1_9A0E:
   ldy #$07                     ; $9A0E
   lda (Tmp00),y                ; $9A10
   bmi Loc_B1_9A1A              ; $9A12
-  jsr Sub_B1_9A3B              ; $9A14
+  jsr Bank1State07_ChooseAction ; $9A14
   jmp Loc_B1_9A1D              ; $9A17
 Loc_B1_9A1A:
-  jsr Sub_B1_9B20              ; $9A1A
+  jsr Bank1State07_ChooseActionFlipped ; $9A1A
 Loc_B1_9A1D:
   jsr LoadEnemyAnimTableG      ; $9A1D
 Loc_B1_9A20:
   jsr LoadObjectAnimFrameB1    ; $9A20
-  jsr Sub_B1_9ACB              ; $9A23
+  jsr Bank1State07_Shoot       ; $9A23
 Loc_B1_9A26:
   jsr StepObjectAnimTimerB     ; $9A26
 Loc_B1_9A29:
@@ -1691,7 +1691,7 @@ LoadEnemyAnimTableG:
   lda Data_B1_9B82,y           ; $9A35
   sta z:Tmp03                  ; $9A38
   rts                          ; $9A3A
-Sub_B1_9A3B:
+Bank1State07_ChooseAction:
   ldy #$07                     ; $9A3B
   lda (Tmp00),y                ; $9A3D
   and #$7E                     ; $9A3F
@@ -1775,7 +1775,7 @@ StepObjectAnimTimerB:
   sta (Tmp00),y                ; $9AC8
 Loc_B1_9ACA:
   rts                          ; $9ACA
-Sub_B1_9ACB:
+Bank1State07_Shoot:
   ldy #$07                     ; $9ACB  [heuristic code]
   lda (Tmp00),y                ; $9ACD
   and #$07                     ; $9ACF
@@ -1822,7 +1822,7 @@ Loc_B1_9B02:
   jsr QueueSound               ; $9B1C
 Loc_B1_9B1F:
   rts                          ; $9B1F
-Sub_B1_9B20:
+Bank1State07_ChooseActionFlipped:
   ldy #$07                     ; $9B20
   lda (Tmp00),y                ; $9B22
   and #$7F                     ; $9B24
@@ -1972,7 +1972,7 @@ Bank1State_09:
   bne Loc_B1_9DDA              ; $9DCA
   jsr AdvanceObjectAnimStepB1  ; $9DCC
   bcc Loc_B1_9DD7              ; $9DCF
-  jsr Sub_B1_9DFC              ; $9DD1
+  jsr Bank1State09_ChooseAction ; $9DD1
   jsr LoadEnemyAnimTableI      ; $9DD4
 Loc_B1_9DD7:
   jsr LoadObjectAnimFrameB1    ; $9DD7
@@ -1980,7 +1980,7 @@ Loc_B1_9DDA:
   jsr StepObjectAnimTimerB     ; $9DDA
   lda z:$04                    ; $9DDD
   beq Loc_B1_9DE4              ; $9DDF
-  jsr Sub_B1_9E20              ; $9DE1
+  jsr Bank1State09_Shoot       ; $9DE1
 Loc_B1_9DE4:
   jsr UpdateObjectScreenXB1    ; $9DE4
   rts                          ; $9DE7
@@ -1994,7 +1994,7 @@ LoadEnemyAnimTableI:
   lda Data_B1_9E75,y           ; $9DF6
   sta z:Tmp03                  ; $9DF9
   rts                          ; $9DFB
-Sub_B1_9DFC:
+Bank1State09_ChooseAction:
   ldy #$07                     ; $9DFC
   lda (Tmp00),y                ; $9DFE
   bne Loc_B1_9E07              ; $9E00
@@ -2016,7 +2016,7 @@ Loc_B1_9E19:
   lda #$00                     ; $9E1B
   sta (Tmp00),y                ; $9E1D
   rts                          ; $9E1F
-Sub_B1_9E20:
+Bank1State09_Shoot:
   ldy #$07                     ; $9E20
   lda (Tmp00),y                ; $9E22
   beq Loc_B1_9E73              ; $9E24
@@ -2067,7 +2067,7 @@ Data_B1_9E74:
   .incbin "prg_bank_1.bin", $1E74, $1  ; $9E74
 Data_B1_9E75:
   .incbin "prg_bank_1.bin", $1E75, $73  ; $9E75
-Sub_B1_9EE8:
+UpdateEnemyTypeJ:
   jsr LoadEnemyAnimTableJ      ; $9EE8
   ldy #$07                     ; $9EEB
   lda (Tmp00),y                ; $9EED
@@ -2095,12 +2095,12 @@ Loc_B1_9F12:
   bne Loc_B1_9F29              ; $9F16
   jsr AdvanceObjectAnimStepB1  ; $9F18
   bcc Loc_B1_9F23              ; $9F1B
-  jsr Sub_B1_9F61              ; $9F1D
+  jsr SetEnemyAnim9            ; $9F1D
 Loc_B1_9F20:
   jsr LoadEnemyAnimTableJ      ; $9F20
 Loc_B1_9F23:
   jsr LoadObjectAnimFrameB1    ; $9F23
-  jsr Sub_B1_9F68              ; $9F26
+  jsr EnemyTypeJShoot          ; $9F26
 Loc_B1_9F29:
   jsr StepObjectAnimTimerB     ; $9F29
   ldy #$0B                     ; $9F2C
@@ -2131,12 +2131,12 @@ LoadEnemyAnimTableJ:
   lda Data_B1_9FCE,y           ; $9F5B
   sta z:Tmp03                  ; $9F5E
   rts                          ; $9F60
-Sub_B1_9F61:
+SetEnemyAnim9:
   ldy #$0E                     ; $9F61
   lda #$09                     ; $9F63
   sta (Tmp00),y                ; $9F65
   rts                          ; $9F67
-Sub_B1_9F68:
+EnemyTypeJShoot:
   ldy #$00                     ; $9F68
   lda (Tmp00),y                ; $9F6A
   and #$80                     ; $9F6C

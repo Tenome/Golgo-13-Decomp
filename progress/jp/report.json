@@ -635,7 +635,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F9F",
+     "name": "Bank1State02_ChooseAction",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -851,7 +851,7 @@
      }
     },
     {
-     "name": "Sub_B1_9824",
+     "name": "Bank1State06_Respawn",
      "size": "127",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -859,7 +859,7 @@
      }
     },
     {
-     "name": "Sub_B1_98A3",
+     "name": "Bank1State06_ChooseAction",
      "size": "68",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -867,7 +867,7 @@
      }
     },
     {
-     "name": "Sub_B1_98E7",
+     "name": "Bank1State06_Shoot",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -891,7 +891,7 @@
      }
     },
     {
-     "name": "Sub_B1_9A3B",
+     "name": "Bank1State07_ChooseAction",
      "size": "127",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -907,7 +907,7 @@
      }
     },
     {
-     "name": "Sub_B1_9ACB",
+     "name": "Bank1State07_Shoot",
      "size": "85",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -915,7 +915,7 @@
      }
     },
     {
-     "name": "Sub_B1_9B20",
+     "name": "Bank1State07_ChooseActionFlipped",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -971,7 +971,7 @@
      }
     },
     {
-     "name": "Sub_B1_9DFC",
+     "name": "Bank1State09_ChooseAction",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -979,7 +979,7 @@
      }
     },
     {
-     "name": "Sub_B1_9E20",
+     "name": "Bank1State09_Shoot",
      "size": "84",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -987,7 +987,7 @@
      }
     },
     {
-     "name": "Loc_B1_9EE8",
+     "name": "UpdateEnemyTypeJ",
      "size": "107",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1003,7 +1003,7 @@
      }
     },
     {
-     "name": "Sub_B1_9F61",
+     "name": "SetEnemyAnim9",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1011,7 +1011,7 @@
      }
     },
     {
-     "name": "Sub_B1_9F68",
+     "name": "EnemyTypeJShoot",
      "size": "101",
      "fuzzy_match_percent": 100.0,
      "metadata": {

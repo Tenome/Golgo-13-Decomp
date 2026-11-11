@@ -3029,60 +3029,6 @@ void CollectAmmoItem(void) {  /* $A483 bank 4 */
   RTS_RET(sp0);                                                                          /* $A49F rts */
 }
 
-void MazeObjType1C(void) {  /* $A4A0 bank 4 */
-  uint8_t sp0 = R.sp;
-  LDA(0x01);                                                                             /* $A4A0 lda */
-  if (R.a == 0) {                                                                        /* $A4A2 bne */
-    { MazeObjType1D(); return; }
-  }
-  bit8(rd(0x051B));                                                                      /* $A4B1 bit */
-  if (!R.z) {                                                                            /* $A4B4 beq */
-    { RemoveObject(); return; }                                                          /* $A4B6 jmp */
-  }
-  LDY(0x0C);                                                                             /* $A4B9 ldy */
-  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4BB sta */
-  LDA(0xC4);                                                                             /* $A4BD lda */
-  LDY(0x00);                                                                             /* $A4BF ldy */
-  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4C1 sta */
-  { MazeObjType04(); return; }                                                           /* $A4C3 jmp */
-}
-
-void MazeObjType1D(void) {  /* $A4A4 bank 4 */
-  uint8_t sp0 = R.sp;
-  LDA(0x02);                                                                             /* $A4A4 lda */
-  if (R.a == 0) {                                                                        /* $A4A6 bne */
-    { MazeObjType1E(); return; }
-  }
-  bit8(rd(0x051B));                                                                      /* $A4B1 bit */
-  if (!R.z) {                                                                            /* $A4B4 beq */
-    { RemoveObject(); return; }                                                          /* $A4B6 jmp */
-  }
-  LDY(0x0C);                                                                             /* $A4B9 ldy */
-  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4BB sta */
-  LDA(0xC4);                                                                             /* $A4BD lda */
-  LDY(0x00);                                                                             /* $A4BF ldy */
-  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4C1 sta */
-  { MazeObjType04(); return; }                                                           /* $A4C3 jmp */
-}
-
-void MazeObjType1E(void) {  /* $A4A8 bank 4 */
-  uint8_t sp0 = R.sp;
-  LDA(0x04);                                                                             /* $A4A8 lda */
-  if (R.a == 0) {                                                                        /* $A4AA bne */
-    { MazeObjType1F(); return; }
-  }
-  bit8(rd(0x051B));                                                                      /* $A4B1 bit */
-  if (!R.z) {                                                                            /* $A4B4 beq */
-    { RemoveObject(); return; }                                                          /* $A4B6 jmp */
-  }
-  LDY(0x0C);                                                                             /* $A4B9 ldy */
-  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4BB sta */
-  LDA(0xC4);                                                                             /* $A4BD lda */
-  LDY(0x00);                                                                             /* $A4BF ldy */
-  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A4C1 sta */
-  { MazeObjType04(); return; }                                                           /* $A4C3 jmp */
-}
-
 void MazeObjType1F(void) {  /* $A4AC bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x08);                                                                             /* $A4AC lda */
@@ -5115,5 +5061,10 @@ void DispatchObjectHandler(void) {  /* $B4BB bank 4 */
   LDA(rd((uint16_t)(0xB4DD + R.x)));                                                     /* $B4D4 lda */
   STA(Tmp03);                                                                            /* $B4D7 sta */
   call_addr(rd16bug(0x0002)); return;                                                    /* $B4D9 jmp */
+}
+
+void MazeObjType00(void) {  /* $B536 bank 4 */
+  uint8_t sp0 = R.sp;
+  RTS_RET(sp0);                                                                          /* $B536 rts */
 }
 

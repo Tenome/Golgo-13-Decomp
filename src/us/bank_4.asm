@@ -2507,19 +2507,10 @@ CollectAmmoItem:
   sta z:AmmoHi                 ; $A49D
 Loc_B4_A49F:
   rts                          ; $A49F
-MazeObjType1C:
-  lda #$01                     ; $A4A0  [heuristic code]
-  bne Loc_B4_A4B1              ; $A4A2
-MazeObjType1D:
-  lda #$02                     ; $A4A4
-  bne Loc_B4_A4B1              ; $A4A6
-MazeObjType1E:
-  lda #$04                     ; $A4A8
-  bne Loc_B4_A4B1              ; $A4AA
+  .incbin "prg_bank_4.bin", $24A0, $C  ; $A4A0
 MazeObjType1F:
   lda #$08                     ; $A4AC
   bit $10A9                    ; $A4AE
-Loc_B4_A4B1:
   bit $051B                    ; $A4B1
   beq Loc_B4_A4B9              ; $A4B4
   jmp RemoveObject             ; $A4B6
@@ -2531,7 +2522,7 @@ Loc_B4_A4B9:
   sta (Tmp00),y                ; $A4C1
   jmp MazeObjType04            ; $A4C3
 MazeObjType0E:
-  ldy #$08                     ; $A4C6  [heuristic code]
+  ldy #$08                     ; $A4C6
   lda (Tmp00),y                ; $A4C8
   asl a                        ; $A4CA
   tax                          ; $A4CB
@@ -2547,7 +2538,7 @@ Sub_B4_A4DF:
   lda #$00                     ; $A4E2
   jmp Loc_B4_B389              ; $A4E4
 CollectLifeItem:
-  lda JoyNew1                  ; $A4E7
+  lda JoyNew1                  ; $A4E7  [heuristic code]
   and #$01                     ; $A4EA
   beq Loc_B4_A4FF              ; $A4EC
   ldy #$0C                     ; $A4EE
@@ -2560,7 +2551,7 @@ CollectLifeItem:
 Loc_B4_A4FF:
   rts                          ; $A4FF
 MazeObjType21:
-  lda #$01                     ; $A500  [heuristic code]
+  lda #$01                     ; $A500
   bne Loc_B4_A511              ; $A502
 MazeObjType22:
   lda #$02                     ; $A504
@@ -3183,7 +3174,7 @@ Loc_B4_AC90:
 Loc_B4_AC93:
   rts                          ; $AC93
 MazeObjType10:
-  ldy #$08                     ; $AC94  [heuristic code]
+  ldy #$08                     ; $AC94
   lda (Tmp00),y                ; $AC96
   beq Loc_B4_ACA0              ; $AC98
   lsr a                        ; $AC9A
@@ -3206,7 +3197,7 @@ Loc_B4_ACBA:
 Loc_B4_ACBD:
   rts                          ; $ACBD
 MazeObjType26:
-  ldy #$08                     ; $ACBE  [heuristic code]
+  ldy #$08                     ; $ACBE
   lda (Tmp00),y                ; $ACC0
   asl a                        ; $ACC2
   tax                          ; $ACC3
@@ -3225,7 +3216,7 @@ Sub_B4_ACDF:
 Loc_B4_ACEA:
   jmp RemoveObject             ; $ACEA
 Sub_B4_ACED:
-  lda JoyNew1                  ; $ACED
+  lda JoyNew1                  ; $ACED  [heuristic code]
   lsr a                        ; $ACF0
   bcc Loc_B4_AD04              ; $ACF1
   ldy #$00                     ; $ACF3
@@ -3851,7 +3842,7 @@ Loc_B4_B2E3:
 Loc_B4_B2EF:
   jmp RemoveObject             ; $B2EF
 MazeObjType1B:
-  ldy #$08                     ; $B2F2  [heuristic code]
+  ldy #$08                     ; $B2F2
   lda (Tmp00),y                ; $B2F4
   asl a                        ; $B2F6
   tax                          ; $B2F7
@@ -3871,7 +3862,7 @@ Loc_B4_B31D:
   lda #$05                     ; $B320
   jmp Loc_B4_B389              ; $B322
 CollectFullRestoreItem:
-  lda JoyNew1                  ; $B325
+  lda JoyNew1                  ; $B325  [heuristic code]
   and #$01                     ; $B328
   beq Loc_B4_B34C              ; $B32A
   lda #$01                     ; $B32C
@@ -3904,7 +3895,7 @@ Sub_B4_B364:
   jsr RequestPpuListD          ; $B364
   jmp RemoveObject             ; $B367
 MazeObjType2C:
-  ldx #$06                     ; $B36A  [heuristic code]
+  ldx #$06                     ; $B36A
 Loc_B4_B36C:
   lda z:$73,x                  ; $B36C
   cmp Data_B4_B382,x           ; $B36E
@@ -4119,7 +4110,10 @@ DispatchObjectHandler:
 Data_B4_B4DC:
   .incbin "prg_bank_4.bin", $34DC, $1  ; $B4DC
 Data_B4_B4DD:
-  .incbin "prg_bank_4.bin", $34DD, $A3  ; $B4DD
+  .incbin "prg_bank_4.bin", $34DD, $59  ; $B4DD
+MazeObjType00:
+  rts                          ; $B536
+  .incbin "prg_bank_4.bin", $3537, $49  ; $B537
 Data_B4_B580:
   .incbin "prg_bank_4.bin", $3580, $1  ; $B580
 Data_B4_B581:

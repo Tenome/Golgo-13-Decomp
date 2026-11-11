@@ -667,5 +667,17 @@
  "5:8462": "RewriteChr1Bank",
  "5:90B3": "BlankScreenAndInitPpu",
  "5:90C8": "DrawStageNumberScreen",
- "5:9206": "InitTextScreenCommon"
+ "5:9206": "InitTextScreenCommon",
+ "1:8F9F": "Bank1State02_ChooseAction",
+ "1:9824": "Bank1State06_Respawn",
+ "1:98A3": "Bank1State06_ChooseAction",
+ "1:98E7": "Bank1State06_Shoot",
+ "1:9A3B": "Bank1State07_ChooseAction",
+ "1:9B20": "Bank1State07_ChooseActionFlipped",
+ "1:9ACB": "Bank1State07_Shoot",
+ "1:9DFC": "Bank1State09_ChooseAction",
+ "1:9E20": "Bank1State09_Shoot",
+ "1:9EE8": "UpdateEnemyTypeJ",
+ "1:9F61": "SetEnemyAnim9",
+ "1:9F68": "EnemyTypeJShoot"
 }

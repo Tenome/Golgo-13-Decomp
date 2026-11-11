@@ -353,7 +353,7 @@
    ]
   ]
  },
- "Sub_B1_8F9F": {
+ "Bank1State02_ChooseAction": {
   "addr": 36767,
   "bank": 1,
   "instrs": 30,
@@ -716,7 +716,7 @@
    ]
   ]
  },
- "Sub_B1_9824": {
+ "Bank1State06_Respawn": {
   "addr": 38948,
   "bank": 1,
   "instrs": 65,
@@ -729,7 +729,7 @@
    ]
   ]
  },
- "Sub_B1_98A3": {
+ "Bank1State06_ChooseAction": {
   "addr": 39075,
   "bank": 1,
   "instrs": 33,
@@ -742,7 +742,7 @@
    ]
   ]
  },
- "Sub_B1_98E7": {
+ "Bank1State06_Shoot": {
   "addr": 39143,
   "bank": 1,
   "instrs": 18,
@@ -781,7 +781,7 @@
    ]
   ]
  },
- "Sub_B1_9A3B": {
+ "Bank1State07_ChooseAction": {
   "addr": 39483,
   "bank": 1,
   "instrs": 63,
@@ -807,7 +807,7 @@
    ]
   ]
  },
- "Sub_B1_9ACB": {
+ "Bank1State07_Shoot": {
   "addr": 39627,
   "bank": 1,
   "instrs": 41,
@@ -820,7 +820,7 @@
    ]
   ]
  },
- "Sub_B1_9B20": {
+ "Bank1State07_ChooseActionFlipped": {
   "addr": 39712,
   "bank": 1,
   "instrs": 48,
@@ -911,7 +911,7 @@
    ]
   ]
  },
- "Sub_B1_9DFC": {
+ "Bank1State09_ChooseAction": {
   "addr": 40444,
   "bank": 1,
   "instrs": 18,
@@ -924,7 +924,7 @@
    ]
   ]
  },
- "Sub_B1_9E20": {
+ "Bank1State09_Shoot": {
   "addr": 40480,
   "bank": 1,
   "instrs": 41,
@@ -934,6 +934,19 @@
    [
     24096,
     24180
+   ]
+  ]
+ },
+ "UpdateEnemyTypeJ": {
+  "addr": 40680,
+  "bank": 1,
+  "instrs": 50,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24296,
+    24403
    ]
   ]
  },
@@ -950,7 +963,7 @@
    ]
   ]
  },
- "Sub_B1_9F61": {
+ "SetEnemyAnim9": {
   "addr": 40801,
   "bank": 1,
   "instrs": 4,
@@ -963,7 +976,7 @@
    ]
   ]
  },
- "Sub_B1_9F68": {
+ "EnemyTypeJShoot": {
   "addr": 40808,
   "bank": 1,
   "instrs": 50,

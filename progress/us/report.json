@@ -1,18 +1,18 @@
 {
  "measures": {
   "fuzzy_match_percent": 100.0,
-  "total_code": "38145",
-  "matched_code": "38145",
+  "total_code": "38134",
+  "matched_code": "38134",
   "matched_code_percent": 100.0,
-  "total_data": "223999",
-  "matched_data": "223999",
+  "total_data": "224010",
+  "matched_data": "224010",
   "matched_data_percent": 100.0,
-  "total_functions": 928,
-  "matched_functions": 928,
+  "total_functions": 931,
+  "matched_functions": 931,
   "matched_functions_percent": 100.0,
-  "complete_code": "38145",
+  "complete_code": "38134",
   "complete_code_percent": 100.0,
-  "complete_data": "223999",
+  "complete_data": "224010",
   "complete_data_percent": 100.0,
   "total_units": 9,
   "complete_units": 9
@@ -635,7 +635,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F9F",
+     "name": "Bank1State02_ChooseAction",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -851,7 +851,7 @@
      }
     },
     {
-     "name": "Sub_B1_9824",
+     "name": "Bank1State06_Respawn",
      "size": "127",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -859,7 +859,7 @@
      }
     },
     {
-     "name": "Sub_B1_98A3",
+     "name": "Bank1State06_ChooseAction",
      "size": "68",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -867,7 +867,7 @@
      }
     },
     {
-     "name": "Sub_B1_98E7",
+     "name": "Bank1State06_Shoot",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -891,7 +891,7 @@
      }
     },
     {
-     "name": "Sub_B1_9A3B",
+     "name": "Bank1State07_ChooseAction",
      "size": "127",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -907,7 +907,7 @@
      }
     },
     {
-     "name": "Sub_B1_9ACB",
+     "name": "Bank1State07_Shoot",
      "size": "85",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -915,7 +915,7 @@
      }
     },
     {
-     "name": "Sub_B1_9B20",
+     "name": "Bank1State07_ChooseActionFlipped",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -971,7 +971,7 @@
      }
     },
     {
-     "name": "Sub_B1_9DFC",
+     "name": "Bank1State09_ChooseAction",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -979,7 +979,7 @@
      }
     },
     {
-     "name": "Sub_B1_9E20",
+     "name": "Bank1State09_Shoot",
      "size": "84",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -987,7 +987,7 @@
      }
     },
     {
-     "name": "Sub_B1_9EE8",
+     "name": "UpdateEnemyTypeJ",
      "size": "107",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1003,7 +1003,7 @@
      }
     },
     {
-     "name": "Sub_B1_9F61",
+     "name": "SetEnemyAnim9",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1011,7 +1011,7 @@
      }
     },
     {
-     "name": "Sub_B1_9F68",
+     "name": "EnemyTypeJShoot",
      "size": "101",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1938,18 +1938,18 @@
    "name": "main/bank_4",
    "measures": {
     "fuzzy_match_percent": 100.0,
-    "total_code": "7300",
-    "matched_code": "7300",
+    "total_code": "7289",
+    "matched_code": "7289",
     "matched_code_percent": 100.0,
-    "total_data": "9084",
-    "matched_data": "9084",
+    "total_data": "9095",
+    "matched_data": "9095",
     "matched_data_percent": 100.0,
-    "total_functions": 280,
-    "matched_functions": 280,
+    "total_functions": 283,
+    "matched_functions": 283,
     "matched_functions_percent": 100.0,
-    "complete_code": "7300",
+    "complete_code": "7289",
     "complete_code_percent": 100.0,
-    "complete_data": "9084",
+    "complete_data": "9095",
     "complete_data_percent": 100.0,
     "total_units": 1,
     "complete_units": 1
@@ -1957,12 +1957,12 @@
    "sections": [
     {
      "name": ".text",
-     "size": "7300",
+     "size": "7289",
      "fuzzy_match_percent": 100.0
     },
     {
      "name": ".data",
-     "size": "9084",
+     "size": "9095",
      "fuzzy_match_percent": 100.0
     }
    ],
@@ -3369,10 +3369,18 @@
     },
     {
      "name": "CollectAmmoItem",
-     "size": "86",
+     "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "74899"
+     }
+    },
+    {
+     "name": "MazeObjType1F",
+     "size": "45",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74940"
      }
     },
     {
@@ -3385,10 +3393,18 @@
     },
     {
      "name": "CollectLifeItem",
-     "size": "63",
+     "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "74999"
+     }
+    },
+    {
+     "name": "MazeObjType21",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75024"
      }
     },
     {
@@ -4205,6 +4221,14 @@
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "79051"
+     }
+    },
+    {
+     "name": "MazeObjType00",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "79174"
      }
     }
    ],

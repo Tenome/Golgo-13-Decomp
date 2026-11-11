@@ -15,6 +15,8 @@ ap.add_argument('--dump-ram', help='append a snapshot of CPU RAM to this file ev
 ap.add_argument('--dump-every', type=int, default=40)
 ap.add_argument('--dump-from', type=int, default=0, help='with --dump-ram: only frames >= this')
 ap.add_argument('--fuzz-state', type=int, default=0, help='every N frames (after frame 1500) overwrite scene variables (PaletteSetIndex, StageIndex, GameState, SceneState, transition request) on both sides to reach code the random route never gets to')
+ap.add_argument('--fuzz-objects', type=int, default=0, help='every N frames in street gameplay replace the object table with 1-3 random objects (random types and states) to reach enemy code the route never spawns')
+ap.add_argument('--sweep-range', nargs=2, help='with --sweep: only targets LO..HI (hex)')
 ap.add_argument('--sweep', action='store_true', help='with --fuzz-state: walk through every scene-change target ($50-$A8) in order, from any state')
 ap.add_argument('--out-first', help='write {prg offset: [frame, GameState, PaletteSetIndex, StageIndex, bank]} for every ROM instruction the first time it ran')
 a = ap.parse_args()
@@ -85,7 +87,9 @@ def learn():
 if not compare('after reset'): sys.exit(1)
 seen = set()
 import random
-SCENE_ADDR = next((int(k, 16) for k, v in json.load(open(os.path.join(ROOT, 'config', a.version, 'ram.json'))).items() if v == 'SceneState'), 0x10); SWEEP = list(range(0x78, 0xA9)) + list(range(0x50, 0x78)); sweep_i = 0; first = {}; known = set(); next_fz = 1500; fz = random.Random(a.seed * 7919 + 1)
+SCENE_ADDR = next((int(k, 16) for k, v in json.load(open(os.path.join(ROOT, 'config', a.version, 'ram.json'))).items() if v == 'SceneState'), 0x10); SWEEP = list(range(0x78, 0xA9)) + list(range(0x50, 0x78))
+if a.sweep_range: SWEEP = list(range(int(a.sweep_range[0], 16), int(a.sweep_range[1], 16) + 1))
+sweep_i = 0; first = {}; known = set(); next_fz = 1500; fz = random.Random(a.seed * 7919 + 1)
 rnd = random.Random(a.seed); style = rnd.choice([(0.2, 0.5), (0.4, 0.3), (0.6, 0.2)]);  pad_c = ctypes.c_uint8.in_dll(lib, 'g_pad'); pad = 0
 nmi_c = fn('Nmi')
 for frame in range(a.frames):
@@ -101,6 +105,14 @@ for frame in range(a.frames):
         pk = [(0x28, 1), (0x29, tgt), (0x2A, 0), (0x14, 0x0C), (0x0100, fz.randrange(0, 8))]       # ask for a scene change the way the street code does
         if a.sweep: pk.append((0xFB, 0))
         for ad, vl in pk: cpu.ram[ad] = vl; ram_c[ad] = vl
+    if a.fuzz_objects and frame >= 1500 and frame % a.fuzz_objects == 0 and ((cpu.ram[0xFB] == 0 and cpu.ram[0x14] >= 7) or cpu.ram[0xFB] == 4):
+        k = fz.randrange(1, 4); bytes_ = {0x0301: k}
+        for i in range(1, k + 1):
+            b = 0x300 + 16 * i; ty = fz.randrange(0, 0x30)
+            vals = [ty | fz.choice((0x80, 0x80, 0)), fz.randrange(0x60, 0xB0), fz.randrange(0x30, 0xC0), 0, fz.choice((0, 0x40, 0x80, 0xC0)), fz.randrange(0, 8), 0, fz.randrange(0, 10), 0,
+                    cpu.ram[0x18], cpu.ram[0x19] + fz.randrange(0x40, 0x90) & 0xFF, fz.randrange(0x60, 0xB0), 0, 0, 0, 0]
+            for j, v_ in enumerate(vals): bytes_[b + j] = v_
+        for ad, vl in bytes_.items(): cpu.ram[ad] = vl; ram_c[ad] = vl
     cpu.pad = pad; pad_c.value = pad
     if a.assist:                                         # same data-only help on both sides: life >= 200, ammo >= 32
         for addr_, mn_ in ((0x38, 0xC8), (0x3A, 0x20)):
