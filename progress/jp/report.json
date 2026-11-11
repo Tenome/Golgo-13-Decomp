@@ -419,7 +419,7 @@
      }
     },
     {
-     "name": "Sub_B1_802F",
+     "name": "Bank1Dispatch_SceneState",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1976,7 +1976,7 @@
      }
     },
     {
-     "name": "Sub_B4_80B3",
+     "name": "DispatchSceneStateBank4",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2496,7 +2496,7 @@
      }
     },
     {
-     "name": "Sub_B4_8C2A",
+     "name": "DispatchMazeExit",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2576,7 +2576,7 @@
      }
     },
     {
-     "name": "Sub_B4_8E23",
+     "name": "DispatchPickupHandler",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2688,7 +2688,7 @@
      }
     },
     {
-     "name": "Sub_B4_8FE1",
+     "name": "ClearNametableRowAt054A",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2712,7 +2712,7 @@
      }
     },
     {
-     "name": "Sub_B4_905D",
+     "name": "DispatchPpuOpRequest",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2728,7 +2728,7 @@
      }
     },
     {
-     "name": "Sub_B4_908C",
+     "name": "PpuListThunkSource",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3048,7 +3048,7 @@
      }
     },
     {
-     "name": "Sub_B4_9FAC",
+     "name": "DrawCollectedCountIcons",
      "size": "42",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3056,7 +3056,7 @@
      }
     },
     {
-     "name": "Sub_B4_9FD6",
+     "name": "AddCollectedCountIcon",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3064,7 +3064,7 @@
      }
     },
     {
-     "name": "Sub_B4_9FEB",
+     "name": "SetupIconPpuBuffer",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3224,7 +3224,7 @@
      }
     },
     {
-     "name": "Sub_B4_A28D",
+     "name": "UpdateDoorObject",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3336,7 +3336,7 @@
      }
     },
     {
-     "name": "Sub_B4_A54E",
+     "name": "MazeObjType05",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3424,7 +3424,7 @@
      }
     },
     {
-     "name": "Sub_B4_A73B",
+     "name": "DispatchMazeSpecificEvent",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3504,7 +3504,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA3F",
+     "name": "UpdateEnemyObject",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3712,7 +3712,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE8F",
+     "name": "RequestPpuOp6AndRemove",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3728,7 +3728,7 @@
      }
     },
     {
-     "name": "Sub_B4_AEF0",
+     "name": "UpdateMazeObjType11",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3832,7 +3832,7 @@
      }
     },
     {
-     "name": "Sub_B4_B106",
+     "name": "MazeObjType16",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3864,7 +3864,7 @@
      }
     },
     {
-     "name": "Sub_B4_B1E3",
+     "name": "MazeObjType17",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3912,7 +3912,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2A3",
+     "name": "MazeObjType18",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3976,7 +3976,7 @@
      }
     },
     {
-     "name": "Sub_B4_B3A1",
+     "name": "RemoveObjectWithPpuListD",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4167,7 +4167,7 @@
      }
     },
     {
-     "name": "Sub_B5_804F",
+     "name": "Bank5SceneDispatch",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5031,7 +5031,7 @@
      }
     },
     {
-     "name": "Sub_B5_8A50",
+     "name": "Bank5SubStateDispatch",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {

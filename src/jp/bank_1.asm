@@ -12,7 +12,7 @@ Bank1Nmi:
   lda #$10                     ; $8013
   jsr SetPpuCtrl               ; $8015
   jsr DoOamDma                 ; $8018
-  jsr Sub_B1_802F              ; $801B
+  jsr Bank1Dispatch_SceneState ; $801B
   jsr RunTitleSoundDriver      ; $801E
   ldy #$00                     ; $8021
 Loc_B1_8023:
@@ -22,7 +22,7 @@ Loc_B1_8023:
   lda #$B0                     ; $8029
   jsr SetPpuCtrl               ; $802B
   rti                          ; $802E
-Sub_B1_802F:
+Bank1Dispatch_SceneState:
   lda SceneState               ; $802F
   cmp #$04                     ; $8032
 Loc_B1_8034:

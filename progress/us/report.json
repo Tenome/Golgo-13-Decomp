@@ -2736,7 +2736,7 @@
      }
     },
     {
-     "name": "Sub_B4_8FCD",
+     "name": "ClearNametableRowAt054A",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2784,7 +2784,7 @@
      }
     },
     {
-     "name": "Sub_B4_9074",
+     "name": "PpuListThunkSource",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3096,7 +3096,7 @@
      }
     },
     {
-     "name": "Sub_B4_9F94",
+     "name": "DrawCollectedCountIcons",
      "size": "42",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3104,7 +3104,7 @@
      }
     },
     {
-     "name": "Sub_B4_9FBE",
+     "name": "AddCollectedCountIcon",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3112,7 +3112,7 @@
      }
     },
     {
-     "name": "Sub_B4_9FD3",
+     "name": "SetupIconPpuBuffer",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3128,7 +3128,7 @@
      }
     },
     {
-     "name": "Sub_B4_A000",
+     "name": "SetupIconPpuBufferForIndex",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3496,7 +3496,7 @@
      }
     },
     {
-     "name": "Sub_B4_A70F",
+     "name": "DispatchMazeSpecificEvent",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3784,7 +3784,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE6A",
+     "name": "RequestPpuOp6AndRemove",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4088,7 +4088,7 @@
      }
     },
     {
-     "name": "Sub_B4_B364",
+     "name": "RemoveObjectWithPpuListD",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4136,7 +4136,7 @@
      }
     },
     {
-     "name": "Sub_B4_B3DA",
+     "name": "AddObjectXVelocity",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {

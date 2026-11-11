@@ -3787,7 +3787,7 @@
    ]
   ]
  },
- "Sub_B4_8FCD": {
+ "ClearNametableRowAt054A": {
   "addr": 36813,
   "bank": 4,
   "instrs": 25,
@@ -3856,7 +3856,7 @@
    ]
   ]
  },
- "Sub_B4_9074": {
+ "PpuListThunkSource": {
   "addr": 36980,
   "bank": 4,
   "instrs": 2,
@@ -4294,7 +4294,7 @@
    ]
   ]
  },
- "Sub_B4_9F94": {
+ "DrawCollectedCountIcons": {
   "addr": 40852,
   "bank": 4,
   "instrs": 19,
@@ -4307,7 +4307,7 @@
    ]
   ]
  },
- "Sub_B4_9FBE": {
+ "AddCollectedCountIcon": {
   "addr": 40894,
   "bank": 4,
   "instrs": 10,
@@ -4320,7 +4320,7 @@
    ]
   ]
  },
- "Sub_B4_9FD3": {
+ "SetupIconPpuBuffer": {
   "addr": 40915,
   "bank": 4,
   "instrs": 11,
@@ -4333,7 +4333,7 @@
    ]
   ]
  },
- "Sub_B4_A000": {
+ "SetupIconPpuBufferForIndex": {
   "addr": 40960,
   "bank": 4,
   "instrs": 11,
@@ -4971,7 +4971,7 @@
    ]
   ]
  },
- "Sub_B4_A70F": {
+ "DispatchMazeSpecificEvent": {
   "addr": 42767,
   "bank": 4,
   "instrs": 8,
@@ -5506,7 +5506,7 @@
    ]
   ]
  },
- "Sub_B4_AE6A": {
+ "RequestPpuOp6AndRemove": {
   "addr": 44650,
   "bank": 4,
   "instrs": 3,
@@ -6045,7 +6045,7 @@
    ]
   ]
  },
- "Sub_B4_B364": {
+ "RemoveObjectWithPpuListD": {
   "addr": 45924,
   "bank": 4,
   "instrs": 2,
@@ -6140,7 +6140,7 @@
    ]
   ]
  },
- "Sub_B4_B3DA": {
+ "AddObjectXVelocity": {
   "addr": 46042,
   "bank": 4,
   "instrs": 7,

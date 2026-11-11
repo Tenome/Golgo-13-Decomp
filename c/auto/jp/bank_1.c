@@ -17,7 +17,7 @@ void Bank1Nmi(void) {  /* $8010 bank 1 */
   LDA(0x10);                                                                             /* $8013 lda */
   push16(0x8017); SetPpuCtrl(); UNW(); ret_check(0x8017);                                /* $8015 jsr */
   push16(0x801A); DoOamDma(); UNW(); ret_check(0x801A);                                  /* $8018 jsr */
-  push16(0x801D); Sub_B1_802F(); UNW(); ret_check(0x801D);                               /* $801B jsr */
+  push16(0x801D); Bank1Dispatch_SceneState(); UNW(); ret_check(0x801D);                  /* $801B jsr */
   push16(0x8020); RunTitleSoundDriver(); UNW(); ret_check(0x8020);                       /* $801E jsr */
   LDY(0x00);                                                                             /* $8021 ldy */
   do { BUDGET();
@@ -29,7 +29,7 @@ void Bank1Nmi(void) {  /* $8010 bank 1 */
   return;                                                                                /* $802E rti */
 }
 
-void Sub_B1_802F(void) {  /* $802F bank 1 */
+void Bank1Dispatch_SceneState(void) {  /* $802F bank 1 */
   uint8_t sp0 = R.sp;
   LDA(rd(SceneState));                                                                   /* $802F lda */
   cmp8(R.a, 0x04);                                                                       /* $8032 cmp */

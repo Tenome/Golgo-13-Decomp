@@ -38,7 +38,7 @@
    ]
   ]
  },
- "Sub_B1_802F": {
+ "Bank1Dispatch_SceneState": {
   "addr": 32815,
   "bank": 1,
   "instrs": 10,
@@ -2443,7 +2443,7 @@
    ]
   ]
  },
- "Sub_B4_80B3": {
+ "DispatchSceneStateBank4": {
   "addr": 32947,
   "bank": 4,
   "instrs": 10,
@@ -3298,7 +3298,7 @@
    ]
   ]
  },
- "Sub_B4_8C2A": {
+ "DispatchMazeExit": {
   "addr": 35882,
   "bank": 4,
   "instrs": 10,
@@ -3430,7 +3430,7 @@
    ]
   ]
  },
- "Sub_B4_8E23": {
+ "DispatchPickupHandler": {
   "addr": 36387,
   "bank": 4,
   "instrs": 19,
@@ -3612,7 +3612,7 @@
    ]
   ]
  },
- "Sub_B4_8FE1": {
+ "ClearNametableRowAt054A": {
   "addr": 36833,
   "bank": 4,
   "instrs": 25,
@@ -3642,7 +3642,7 @@
    ]
   ]
  },
- "Sub_B4_905D": {
+ "DispatchPpuOpRequest": {
   "addr": 36957,
   "bank": 4,
   "instrs": 12,
@@ -3668,7 +3668,7 @@
    ]
   ]
  },
- "Sub_B4_908C": {
+ "PpuListThunkSource": {
   "addr": 37004,
   "bank": 4,
   "instrs": 2,
@@ -4106,7 +4106,7 @@
    ]
   ]
  },
- "Sub_B4_9FAC": {
+ "DrawCollectedCountIcons": {
   "addr": 40876,
   "bank": 4,
   "instrs": 19,
@@ -4119,7 +4119,7 @@
    ]
   ]
  },
- "Sub_B4_9FD6": {
+ "AddCollectedCountIcon": {
   "addr": 40918,
   "bank": 4,
   "instrs": 10,
@@ -4132,7 +4132,7 @@
    ]
   ]
  },
- "Sub_B4_9FEB": {
+ "SetupIconPpuBuffer": {
   "addr": 40939,
   "bank": 4,
   "instrs": 10,
@@ -4352,7 +4352,7 @@
    ]
   ]
  },
- "Sub_B4_A28D": {
+ "UpdateDoorObject": {
   "addr": 41613,
   "bank": 4,
   "instrs": 11,
@@ -4583,7 +4583,7 @@
    ]
   ]
  },
- "Loc_B4_A4EA": {
+ "MazeObjType0E": {
   "addr": 42218,
   "bank": 4,
   "instrs": 11,
@@ -4690,7 +4690,7 @@
    ]
   ]
  },
- "Sub_B4_A54E": {
+ "MazeObjType05": {
   "addr": 42318,
   "bank": 4,
   "instrs": 11,
@@ -4824,7 +4824,7 @@
    ]
   ]
  },
- "Sub_B4_A73B": {
+ "DispatchMazeSpecificEvent": {
   "addr": 42811,
   "bank": 4,
   "instrs": 10,
@@ -4975,7 +4975,7 @@
    ]
   ]
  },
- "Sub_B4_AA3F": {
+ "UpdateEnemyObject": {
   "addr": 43583,
   "bank": 4,
   "instrs": 11,
@@ -5247,7 +5247,7 @@
    ]
   ]
  },
- "Loc_B4_ACFA": {
+ "MazeObjType26": {
   "addr": 44282,
   "bank": 4,
   "instrs": 11,
@@ -5333,7 +5333,7 @@
    ]
   ]
  },
- "Sub_B4_AE8F": {
+ "RequestPpuOp6AndRemove": {
   "addr": 44687,
   "bank": 4,
   "instrs": 3,
@@ -5384,7 +5384,7 @@
    ]
   ]
  },
- "Sub_B4_AEF0": {
+ "UpdateMazeObjType11": {
   "addr": 44784,
   "bank": 4,
   "instrs": 11,
@@ -5561,7 +5561,7 @@
    ]
   ]
  },
- "Sub_B4_B106": {
+ "MazeObjType16": {
   "addr": 45318,
   "bank": 4,
   "instrs": 11,
@@ -5613,7 +5613,7 @@
    ]
   ]
  },
- "Sub_B4_B1E3": {
+ "MazeObjType17": {
   "addr": 45539,
   "bank": 4,
   "instrs": 11,
@@ -5682,7 +5682,7 @@
    ]
   ]
  },
- "Sub_B4_B2A3": {
+ "MazeObjType18": {
   "addr": 45731,
   "bank": 4,
   "instrs": 11,
@@ -5747,7 +5747,7 @@
    ]
   ]
  },
- "Loc_B4_B32B": {
+ "MazeObjType1B": {
   "addr": 45867,
   "bank": 4,
   "instrs": 11,
@@ -5803,7 +5803,7 @@
    ]
   ]
  },
- "Sub_B4_B3A1": {
+ "RemoveObjectWithPpuListD": {
   "addr": 45985,
   "bank": 4,
   "instrs": 2,
@@ -5884,12 +5884,29 @@
  "Sub_B4_B404": {
   "addr": 46084,
   "bank": 4,
-  "instrs": 17,
+  "instrs": 14,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     78852,
+    78871
+   ],
+   [
+    78877,
+    78883
+   ]
+  ]
+ },
+ "AddObjectXVelocity": {
+  "addr": 46103,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78871,
     78883
    ]
   ]
@@ -6117,7 +6134,7 @@
    ]
   ]
  },
- "Sub_B5_804F": {
+ "Bank5SceneDispatch": {
   "addr": 32847,
   "bank": 5,
   "instrs": 10,
@@ -7671,7 +7688,7 @@
    ]
   ]
  },
- "Sub_B5_8A50": {
+ "Bank5SubStateDispatch": {
   "addr": 35408,
   "bank": 5,
   "instrs": 10,

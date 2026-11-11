@@ -28,7 +28,7 @@ Bank5Nmi:
 Loc_B5_8032:
   jsr $0568                    ; $8032
 Loc_B5_8035:
-  jsr Sub_B5_804F              ; $8035
+  jsr Bank5SceneDispatch       ; $8035
   jsr ApplyScroll              ; $8038
   jsr ReadJoypads              ; $803B
   jsr SkipSceneOnStart         ; $803E
@@ -38,7 +38,7 @@ Loc_B5_8035:
   ora #$80                     ; $8049
   jsr SetPpuCtrl               ; $804B
   rti                          ; $804E
-Sub_B5_804F:
+Bank5SceneDispatch:
   lda SceneState               ; $804F
   cmp #$6C                     ; $8052
 Loc_B5_8054:
@@ -116,7 +116,7 @@ Bank5Tbl8065_07:
 Loc_B5_81AF:
   rts                          ; $81AF
 Bank5Tbl8065_08:
-  jsr Sub_B5_8A50              ; $81B0
+  jsr Bank5SubStateDispatch    ; $81B0
   lda AnimCounter              ; $81B3
   bne Loc_B5_81C0              ; $81B6
   inc SceneState               ; $81B8
@@ -133,7 +133,7 @@ Bank5Tbl8065_09:
 Loc_B5_81CE:
   rts                          ; $81CE
 Bank5Tbl8065_0A:
-  jsr Sub_B5_8A50              ; $81CF
+  jsr Bank5SubStateDispatch    ; $81CF
   lda AnimCounter              ; $81D2
   bne Loc_B5_81E5              ; $81D5
   inc SceneState               ; $81D7
@@ -182,7 +182,7 @@ Bank5Tbl8065_0F:
 Loc_B5_822D:
   rts                          ; $822D
 Bank5Tbl8065_10:
-  jsr Sub_B5_8A50              ; $822E
+  jsr Bank5SubStateDispatch    ; $822E
   lda AnimCounter              ; $8231
   bne Loc_B5_8239              ; $8234
   inc SceneState               ; $8236
@@ -259,7 +259,7 @@ Bank5Tbl8065_18:
   sta SceneSubState            ; $82C1
   jmp EnableRendering          ; $82C4
 Bank5Tbl8065_19:
-  jsr Sub_B5_8A50              ; $82C7
+  jsr Bank5SubStateDispatch    ; $82C7
   lda AnimCounter              ; $82CA
   bne Loc_B5_82D7              ; $82CD
   inc SceneState               ; $82CF
@@ -286,7 +286,7 @@ Bank5Tbl8065_1B:
 Loc_B5_82F9:
   rts                          ; $82F9
 Bank5Tbl8065_1C:
-  jsr Sub_B5_8A50              ; $82FA
+  jsr Bank5SubStateDispatch    ; $82FA
   lda AnimCounter              ; $82FD
   bne Loc_B5_830D              ; $8300
   inc SceneState               ; $8302
@@ -389,7 +389,7 @@ Bank5Tbl8065_26:
 Loc_B5_83BC:
   rts                          ; $83BC
 Bank5Tbl8065_27:
-  jsr Sub_B5_8A50              ; $83BD
+  jsr Bank5SubStateDispatch    ; $83BD
   lda AnimCounter              ; $83C0
   bne Loc_B5_83C8              ; $83C3
   inc SceneState               ; $83C5
@@ -430,7 +430,7 @@ Loc_B5_83FD:
 Loc_B5_8410:
   rts                          ; $8410
 Bank5Tbl8065_29:
-  jsr Sub_B5_8A50              ; $8411
+  jsr Bank5SubStateDispatch    ; $8411
   lda AnimCounter              ; $8414
   bne Loc_B5_8426              ; $8417
   inc SceneState               ; $8419
@@ -754,7 +754,7 @@ Bank5Tbl8065_5C:
   sta SceneSubState            ; $8681
   jmp EnableRendering          ; $8684
 Bank5Tbl8065_5D:
-  jsr Sub_B5_8A50              ; $8687
+  jsr Bank5SubStateDispatch    ; $8687
   lda AnimCounter              ; $868A
   bne Loc_B5_8692              ; $868D
   inc SceneState               ; $868F
@@ -1116,7 +1116,7 @@ Data_B5_8A43:
   .incbin "prg_bank_5.bin", $0A43, $8  ; $8A43
 Data_B5_8A4B:
   .incbin "prg_bank_5.bin", $0A4B, $5  ; $8A4B
-Sub_B5_8A50:
+Bank5SubStateDispatch:
   lda SceneSubState            ; $8A50
   cmp #$09                     ; $8A53
 Loc_B5_8A55:

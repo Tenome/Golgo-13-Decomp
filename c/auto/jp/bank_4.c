@@ -22,11 +22,11 @@ void Bank4Nmi(void) {  /* $8010 bank 4 */
   LDA(rd(PPU_STATUS));                                                                   /* $801F lda */
   push16(0x8024); DoOamDma(); UNW(); ret_check(0x8024);                                  /* $8022 jsr */
   LDA(rd(PPU_STATUS));                                                                   /* $8025 lda */
-  push16(0x802A); Sub_B4_905D(); UNW(); ret_check(0x802A);                               /* $8028 jsr */
+  push16(0x802A); DispatchPpuOpRequest(); UNW(); ret_check(0x802A);                      /* $8028 jsr */
   LDA(rd(PpuMaskShadow));                                                                /* $802B lda */
   STA(PPU_MASK);                                                                         /* $802D sta */
   push16(0x8032); ApplyScroll(); UNW(); ret_check(0x8032);                               /* $8030 jsr */
-  push16(0x8035); Sub_B4_80B3(); UNW(); ret_check(0x8035);                               /* $8033 jsr */
+  push16(0x8035); DispatchSceneStateBank4(); UNW(); ret_check(0x8035);                   /* $8033 jsr */
   push16(0x8038); CheckLowLifeSound(); UNW(); ret_check(0x8038);                         /* $8036 jsr */
   INC_M(FrameCounter);                                                                   /* $8039 inc */
   push16(0x803D); DrawHud(); UNW(); ret_check(0x803D);                                   /* $803B jsr */
@@ -83,7 +83,7 @@ L8079: BUDGET();
   return;                                                                                /* $80A2 rti */
 }
 
-void Sub_B4_80B3(void) {  /* $80B3 bank 4 */
+void DispatchSceneStateBank4(void) {  /* $80B3 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(SceneState));                                                                   /* $80B3 lda */
   cmp8(R.a, 0x21);                                                                       /* $80B6 cmp */
@@ -269,7 +269,7 @@ void Bank4Tbl80C9_05(void) {  /* $813D bank 4 */
   push16(0x8153); DrawCompassSprites(); UNW(); ret_check(0x8153);                        /* $8151 jsr */
   push16(0x8156); DrawCorridorView(); UNW(); ret_check(0x8156);                          /* $8154 jsr */
   push16(0x8159); DrawMazeScreen(); UNW(); ret_check(0x8159);                            /* $8157 jsr */
-  push16(0x815C); Sub_B4_9FAC(); UNW(); ret_check(0x815C);                               /* $815A jsr */
+  push16(0x815C); DrawCollectedCountIcons(); UNW(); ret_check(0x815C);                   /* $815A jsr */
   push16(0x815F); DrawCollectedItemIcons(); UNW(); ret_check(0x815F);                    /* $815D jsr */
   push16(0x8162); SpawnDoorObjectsIfAhead(); UNW(); ret_check(0x8162);                   /* $8160 jsr */
   push16(0x8165); ClearNametable2Rows(); UNW(); ret_check(0x8165);                       /* $8163 jsr */
@@ -282,7 +282,7 @@ void Bank4Tbl80C9_06(void) {  /* $8169 bank 4 */
   push16(0x816E); UpdateAllObjectHandlers(); UNW(); ret_check(0x816E);                   /* $816C jsr */
   push16(0x8171); UpdateAllObjectHandlers(); UNW(); ret_check(0x8171);                   /* $816F jsr */
   push16(0x8174); DrawObjects(); UNW(); ret_check(0x8174);                               /* $8172 jsr */
-  push16(0x8177); Sub_B4_905D(); UNW(); ret_check(0x8177);                               /* $8175 jsr */
+  push16(0x8177); DispatchPpuOpRequest(); UNW(); ret_check(0x8177);                      /* $8175 jsr */
   { ApplyScroll(); return; }                                                             /* $8178 jmp */
 }
 
@@ -424,7 +424,7 @@ void Bank4Tbl80C9_0B(void) {  /* $81F9 bank 4 */
   push16(0x821E); DrawCompassSprites(); UNW(); ret_check(0x821E);                        /* $821C jsr */
   push16(0x8221); DrawCorridorView(); UNW(); ret_check(0x8221);                          /* $821F jsr */
   push16(0x8224); DrawMazeScreen(); UNW(); ret_check(0x8224);                            /* $8222 jsr */
-  push16(0x8227); Sub_B4_9FAC(); UNW(); ret_check(0x8227);                               /* $8225 jsr */
+  push16(0x8227); DrawCollectedCountIcons(); UNW(); ret_check(0x8227);                   /* $8225 jsr */
   push16(0x822A); DrawCollectedItemIcons(); UNW(); ret_check(0x822A);                    /* $8228 jsr */
   push16(0x822D); SpawnDoorObjectsIfAhead(); UNW(); ret_check(0x822D);                   /* $822B jsr */
   push16(0x8230); ClearNametable2Rows(); UNW(); ret_check(0x8230);                       /* $822E jsr */
@@ -528,7 +528,7 @@ void ReloadMazeAfterMove(void) {  /* $82BC bank 4 */
   push16(0x82DB); DrawCompassSprites(); UNW(); ret_check(0x82DB);                        /* $82D9 jsr */
   push16(0x82DE); DrawCorridorView(); UNW(); ret_check(0x82DE);                          /* $82DC jsr */
   push16(0x82E1); DrawMazeScreen(); UNW(); ret_check(0x82E1);                            /* $82DF jsr */
-  push16(0x82E4); Sub_B4_9FAC(); UNW(); ret_check(0x82E4);                               /* $82E2 jsr */
+  push16(0x82E4); DrawCollectedCountIcons(); UNW(); ret_check(0x82E4);                   /* $82E2 jsr */
   push16(0x82E7); DrawCollectedItemIcons(); UNW(); ret_check(0x82E7);                    /* $82E5 jsr */
   push16(0x82EA); SpawnDoorObjectsIfAhead(); UNW(); ret_check(0x82EA);                   /* $82E8 jsr */
   push16(0x82ED); ClearNametable2Rows(); UNW(); ret_check(0x82ED);                       /* $82EB jsr */
@@ -606,7 +606,7 @@ void Bank4Tbl80C9_18(void) {  /* $836F bank 4 */
   push16(0x837F); DrawCompassSprites(); UNW(); ret_check(0x837F);                        /* $837D jsr */
   push16(0x8382); DrawCorridorView(); UNW(); ret_check(0x8382);                          /* $8380 jsr */
   push16(0x8385); DrawMazeScreen(); UNW(); ret_check(0x8385);                            /* $8383 jsr */
-  push16(0x8388); Sub_B4_9FAC(); UNW(); ret_check(0x8388);                               /* $8386 jsr */
+  push16(0x8388); DrawCollectedCountIcons(); UNW(); ret_check(0x8388);                   /* $8386 jsr */
   push16(0x838B); DrawCollectedItemIcons(); UNW(); ret_check(0x838B);                    /* $8389 jsr */
   push16(0x838E); SpawnDoorObjectsIfAhead(); UNW(); ret_check(0x838E);                   /* $838C jsr */
   push16(0x8391); ClearNametable2Rows(); UNW(); ret_check(0x8391);                       /* $838F jsr */
@@ -663,7 +663,7 @@ void Bank4Tbl80C9_1D(void) {  /* $83C4 bank 4 */
   push16(0x83D1); DrawCompassSprites(); UNW(); ret_check(0x83D1);                        /* $83CF jsr */
   push16(0x83D4); DrawCorridorView(); UNW(); ret_check(0x83D4);                          /* $83D2 jsr */
   push16(0x83D7); DrawMazeScreen(); UNW(); ret_check(0x83D7);                            /* $83D5 jsr */
-  push16(0x83DA); Sub_B4_9FAC(); UNW(); ret_check(0x83DA);                               /* $83D8 jsr */
+  push16(0x83DA); DrawCollectedCountIcons(); UNW(); ret_check(0x83DA);                   /* $83D8 jsr */
   push16(0x83DD); DrawCollectedItemIcons(); UNW(); ret_check(0x83DD);                    /* $83DB jsr */
   push16(0x83E0); SpawnDoorObjectsIfAhead(); UNW(); ret_check(0x83E0);                   /* $83DE jsr */
   push16(0x83E3); ClearNametable2Rows(); UNW(); ret_check(0x83E3);                       /* $83E1 jsr */
@@ -688,7 +688,7 @@ void Bank4Tbl80C9_1E(void) {  /* $83E7 bank 4 */
   push16(0x840F); LoadMazeData(); UNW(); ret_check(0x840F);                              /* $840D jsr */
   push16(0x8412); DrawCorridorView(); UNW(); ret_check(0x8412);                          /* $8410 jsr */
   push16(0x8415); DrawMazeScreen(); UNW(); ret_check(0x8415);                            /* $8413 jsr */
-  push16(0x8418); Sub_B4_9FAC(); UNW(); ret_check(0x8418);                               /* $8416 jsr */
+  push16(0x8418); DrawCollectedCountIcons(); UNW(); ret_check(0x8418);                   /* $8416 jsr */
   push16(0x841B); DrawCollectedItemIcons(); UNW(); ret_check(0x841B);                    /* $8419 jsr */
   push16(0x841E); SpawnDoorObjectsIfAhead(); UNW(); ret_check(0x841E);                   /* $841C jsr */
   push16(0x8421); ClearNametable2Rows(); UNW(); ret_check(0x8421);                       /* $841F jsr */
@@ -1170,11 +1170,11 @@ L8C23: BUDGET();
 
 void ChangeMazeSection(void) {  /* $8C24 bank 4 */
   uint8_t sp0 = R.sp;
-  push16(0x8C26); Sub_B4_8C2A(); UNW(); ret_check(0x8C26);                               /* $8C24 jsr */
+  push16(0x8C26); DispatchMazeExit(); UNW(); ret_check(0x8C26);                          /* $8C24 jsr */
   { LoadMazeData(); return; }                                                            /* $8C27 jmp */
 }
 
-void Sub_B4_8C2A(void) {  /* $8C2A bank 4 */
+void DispatchMazeExit(void) {  /* $8C2A bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x82));                                                                         /* $8C2A lda */
   cmp8(R.a, 0x16);                                                                       /* $8C2C cmp */
@@ -1359,7 +1359,7 @@ L8DB9: BUDGET();
   LDY(rd(ObjectCount));                                                                  /* $8DD9 ldy */
   if (R.y != 0) {                                                                        /* $8DDC beq */
     do { BUDGET();
-      push16(0x8DE0); Sub_B4_8E23(); UNW(); ret_check(0x8DE0);                           /* $8DDE jsr */
+      push16(0x8DE0); DispatchPickupHandler(); UNW(); ret_check(0x8DE0);                 /* $8DDE jsr */
       if (R.c) goto L8DE6;                                                               /* $8DE1 bcs */
       DEY();                                                                             /* $8DE3 dey */
     } while (R.y != 0);                                                                  /* $8DE4 bne */
@@ -1401,7 +1401,7 @@ LA00F: BUDGET();
   if (R.a != 0x03) {                                                                     /* $A016 beq */
     TAX();                                                                               /* $A018 tax */
     LDY(rd((uint16_t)(0xA001 + R.x)));                                                   /* $A019 ldy */
-    push16(0xA01E); Sub_B4_9FEB(); UNW(); ret_check(0xA01E);                             /* $A01C jsr */
+    push16(0xA01E); SetupIconPpuBuffer(); UNW(); ret_check(0xA01E);                      /* $A01C jsr */
     LDA(0x01);                                                                           /* $A01F lda */
     STA(PpuOpRequest);                                                                   /* $A021 sta */
     LDA(0x00);                                                                           /* $A024 lda */
@@ -1423,7 +1423,7 @@ void HideCursorSprites(void) {  /* $8E16 bank 4 */
   RTS_RET(sp0);                                                                          /* $8E22 rts */
 }
 
-void Sub_B4_8E23(void) {  /* $8E23 bank 4 */
+void DispatchPickupHandler(void) {  /* $8E23 bank 4 */
   uint8_t sp0 = R.sp;
   TYA();                                                                                 /* $8E23 tya */
   if (R.a == 0) { Bank4StateC_00(); return; }                                            /* $8E24 beq */
@@ -1597,7 +1597,7 @@ void DecObjectField(void) {  /* $8FD9 bank 4 */
   RTS_RET(sp0);                                                                          /* $8FE0 rts */
 }
 
-void Sub_B4_8FE1(void) {  /* $8FE1 bank 4 */
+void ClearNametableRowAt054A(void) {  /* $8FE1 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $8FE1 ldy */
   LDA(rd(0x054C));                                                                       /* $8FE3 lda */
@@ -1643,7 +1643,7 @@ void ClearNametable2Rows(void) {  /* $901A bank 4 */
   STA(0x054C);                                                                           /* $9030 sta */
   do { BUDGET();
     LDY(0x40);                                                                           /* $9033 ldy */
-    push16(0x9037); Sub_B4_8FE1(); UNW(); ret_check(0x9037);                             /* $9035 jsr */
+    push16(0x9037); ClearNametableRowAt054A(); UNW(); ret_check(0x9037);                 /* $9035 jsr */
     push16(0x903A); ProcessPpuUpdateList(); UNW(); ret_check(0x903C);                    /* $9038 jsr */
     LDA(rd(0x054B));                                                                     /* $903D lda */
     CLC();                                                                               /* $9040 clc */
@@ -1657,7 +1657,7 @@ void ClearNametable2Rows(void) {  /* $901A bank 4 */
   RTS_RET(sp0);                                                                          /* $9053 rts */
 }
 
-void Sub_B4_905D(void) {  /* $905D bank 4 */
+void DispatchPpuOpRequest(void) {  /* $905D bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuOpRequest));                                                                 /* $905D lda */
   LDX(0x00);                                                                             /* $9060 ldx */
@@ -1679,7 +1679,7 @@ void PpuOpNone(void) {  /* $9088 bank 4 */
   RTS_RET(sp0);                                                                          /* $9088 rts */
 }
 
-void Sub_B4_908C(void) {  /* $908C bank 4 */
+void PpuListThunkSource(void) {  /* $908C bank 4 */
   uint8_t sp0 = R.sp;
   push16(0x908E); ProcessPpuUpdateList(); UNW(); ret_check(0x9090);                      /* $908C jsr */
   RTS_RET(sp0);                                                                          /* $9091 rts */
@@ -2434,7 +2434,7 @@ void CopyThunkToRamAndCall800A(void) {  /* $9F94 bank 4 */
   { call_addr(0x0000); return; }                                                         /* $9F9E jmp */
 }
 
-void Sub_B4_9FAC(void) {  /* $9FAC bank 4 */
+void DrawCollectedCountIcons(void) {  /* $9FAC bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x051F));                                                                       /* $9FAC lda */
   AND(0x03);                                                                             /* $9FAF and */
@@ -2448,19 +2448,19 @@ void Sub_B4_9FAC(void) {  /* $9FAC bank 4 */
     DEX();                                                                               /* $9FBB dex */
     if (R.x != 0) {                                                                      /* $9FBC beq */
       LDY(0x46);                                                                         /* $9FBE ldy */
-      push16(0x9FC2); Sub_B4_9FEB(); UNW(); ret_check(0x9FC2);                           /* $9FC0 jsr */
-      push16(0x9FC5); Sub_B4_908C(); UNW(); ret_check(0x9FC5);                           /* $9FC3 jsr */
+      push16(0x9FC2); SetupIconPpuBuffer(); UNW(); ret_check(0x9FC2);                    /* $9FC0 jsr */
+      push16(0x9FC5); PpuListThunkSource(); UNW(); ret_check(0x9FC5);                    /* $9FC3 jsr */
     }
     LDY(0x44);                                                                           /* $9FC6 ldy */
-    push16(0x9FCA); Sub_B4_9FEB(); UNW(); ret_check(0x9FCA);                             /* $9FC8 jsr */
-    push16(0x9FCD); Sub_B4_908C(); UNW(); ret_check(0x9FCD);                             /* $9FCB jsr */
+    push16(0x9FCA); SetupIconPpuBuffer(); UNW(); ret_check(0x9FCA);                      /* $9FC8 jsr */
+    push16(0x9FCD); PpuListThunkSource(); UNW(); ret_check(0x9FCD);                      /* $9FCB jsr */
   }
   LDY(0x42);                                                                             /* $9FCE ldy */
-  push16(0x9FD2); Sub_B4_9FEB(); UNW(); ret_check(0x9FD2);                               /* $9FD0 jsr */
-  { Sub_B4_908C(); return; }                                                             /* $9FD3 jmp */
+  push16(0x9FD2); SetupIconPpuBuffer(); UNW(); ret_check(0x9FD2);                        /* $9FD0 jsr */
+  { PpuListThunkSource(); return; }                                                      /* $9FD3 jmp */
 }
 
-void Sub_B4_9FD6(void) {  /* $9FD6 bank 4 */
+void AddCollectedCountIcon(void) {  /* $9FD6 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x051F));                                                                       /* $9FD6 lda */
   AND(0x03);                                                                             /* $9FD9 and */
@@ -2468,14 +2468,14 @@ void Sub_B4_9FD6(void) {  /* $9FD6 bank 4 */
     TAX();                                                                               /* $9FDD tax */
     DEX();                                                                               /* $9FDE dex */
     LDY(rd((uint16_t)(0xA001 + R.x)));                                                   /* $9FDF ldy */
-    push16(0x9FE4); Sub_B4_9FEB(); UNW(); ret_check(0x9FE4);                             /* $9FE2 jsr */
+    push16(0x9FE4); SetupIconPpuBuffer(); UNW(); ret_check(0x9FE4);                      /* $9FE2 jsr */
     LDA(0x01);                                                                           /* $9FE5 lda */
     STA(PpuOpRequest);                                                                   /* $9FE7 sta */
   }
   RTS_RET(sp0);                                                                          /* $9FEA rts */
 }
 
-void Sub_B4_9FEB(void) {  /* $9FEB bank 4 */
+void SetupIconPpuBuffer(void) {  /* $9FEB bank 4 */
   uint8_t sp0 = R.sp;
   LDX(0x0A);                                                                             /* $9FEB ldx */
   do { BUDGET();
@@ -2665,7 +2665,7 @@ LA23F: BUDGET();
   { RemoveObject(); return; }                                                            /* $A23F jmp */
 }
 
-void Sub_B4_A28D(void) {  /* $A28D bank 4 */
+void UpdateDoorObject(void) {  /* $A28D bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $A28D ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A28F lda */
@@ -3034,7 +3034,7 @@ LA4D0: BUDGET();
   goto LA477;                                                                            /* $A4E7 jmp */
 }
 
-void Loc_B4_A4EA(void) {  /* $A4EA bank 4 */
+void MazeObjType0E(void) {  /* $A4EA bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $A4EA ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A4EC lda */
@@ -3094,7 +3094,7 @@ void MazeObjType21(void) {  /* $A528 bank 4 */
   LDA(0xCE);                                                                             /* $A545 lda */
   LDY(0x00);                                                                             /* $A547 ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A549 sta */
-  { Loc_B4_A4EA(); return; }                                                             /* $A54B jmp */
+  { MazeObjType0E(); return; }                                                           /* $A54B jmp */
 }
 
 void MazeObjType22(void) {  /* $A52C bank 4 */
@@ -3112,7 +3112,7 @@ void MazeObjType22(void) {  /* $A52C bank 4 */
   LDA(0xCE);                                                                             /* $A545 lda */
   LDY(0x00);                                                                             /* $A547 ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A549 sta */
-  { Loc_B4_A4EA(); return; }                                                             /* $A54B jmp */
+  { MazeObjType0E(); return; }                                                           /* $A54B jmp */
 }
 
 void MazeObjType23(void) {  /* $A530 bank 4 */
@@ -3130,7 +3130,7 @@ void MazeObjType23(void) {  /* $A530 bank 4 */
   LDA(0xCE);                                                                             /* $A545 lda */
   LDY(0x00);                                                                             /* $A547 ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A549 sta */
-  { Loc_B4_A4EA(); return; }                                                             /* $A54B jmp */
+  { MazeObjType0E(); return; }                                                           /* $A54B jmp */
 }
 
 void MazeObjType24(void) {  /* $A534 bank 4 */
@@ -3146,10 +3146,10 @@ void MazeObjType24(void) {  /* $A534 bank 4 */
   LDA(0xCE);                                                                             /* $A545 lda */
   LDY(0x00);                                                                             /* $A547 ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $A549 sta */
-  { Loc_B4_A4EA(); return; }                                                             /* $A54B jmp */
+  { MazeObjType0E(); return; }                                                           /* $A54B jmp */
 }
 
-void Sub_B4_A54E(void) {  /* $A54E bank 4 */
+void MazeObjType05(void) {  /* $A54E bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $A54E ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A550 lda */
@@ -3316,16 +3316,16 @@ void MazeObjType05State7(void) {  /* $A6FF bank 4 */
 void Sub_B4_A710(void) {  /* $A710 bank 4 */
   uint8_t sp0 = R.sp;
   push16(0xA712); AdvanceObjectState(); UNW(); ret_check(0xA712);                        /* $A710 jsr */
-  push16(0xA715); Sub_B4_A73B(); UNW(); ret_check(0xA715);                               /* $A713 jsr */
+  push16(0xA715); DispatchMazeSpecificEvent(); UNW(); ret_check(0xA715);                 /* $A713 jsr */
   push16(0xA718); DrawCorridorView(); UNW(); ret_check(0xA718);                          /* $A716 jsr */
   push16(0xA71B); DrawMazeScreen(); UNW(); ret_check(0xA71B);                            /* $A719 jsr */
-  push16(0xA71E); Sub_B4_9FAC(); UNW(); ret_check(0xA71E);                               /* $A71C jsr */
+  push16(0xA71E); DrawCollectedCountIcons(); UNW(); ret_check(0xA71E);                   /* $A71C jsr */
   push16(0xA721); DrawCollectedItemIcons(); UNW(); ret_check(0xA721);                    /* $A71F jsr */
   push16(0xA724); ProcessPpuUpdateList(); UNW(); ret_check(0xA726);                      /* $A722 jsr */
   { ApplyScroll(); return; }                                                             /* $A727 jmp */
 }
 
-void Sub_B4_A73B(void) {  /* $A73B bank 4 */
+void DispatchMazeSpecificEvent(void) {  /* $A73B bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(MazeIndex));                                                                    /* $A73B lda */
   cmp8(R.a, 0x12);                                                                       /* $A73E cmp */
@@ -3483,7 +3483,7 @@ LAA2E: BUDGET();
 
 void MazeObjType0A(void) {  /* $AA39 bank 4 */
   uint8_t sp0 = R.sp;
-  push16(0xAA3B); Sub_B4_AA3F(); UNW(); ret_check(0xAA3B);                               /* $AA39 jsr */
+  push16(0xAA3B); UpdateEnemyObject(); UNW(); ret_check(0xAA3B);                         /* $AA39 jsr */
   goto LAC1D;                                                                            /* $AA3C jmp */
 LAC1D: BUDGET();
   LDY(0x09);                                                                             /* $AC1D ldy */
@@ -3522,7 +3522,7 @@ LAC1D: BUDGET();
   { SetObjectFrame(); return; }                                                          /* $AC5E jmp */
 }
 
-void Sub_B4_AA3F(void) {  /* $AA3F bank 4 */
+void UpdateEnemyObject(void) {  /* $AA3F bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $AA3F ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $AA41 lda */
@@ -3902,7 +3902,7 @@ LB3C9: BUDGET();
   { AdvanceObjectState(); return; }                                                      /* $B3D1 jmp */
 }
 
-void Loc_B4_ACFA(void) {  /* $ACFA bank 4 */
+void MazeObjType26(void) {  /* $ACFA bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $ACFA ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $ACFC lda */
@@ -4014,7 +4014,7 @@ void ReturnFromFullScreenMessage(void) {  /* $AE7A bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $AE8C jmp */
 }
 
-void Sub_B4_AE8F(void) {  /* $AE8F bank 4 */
+void RequestPpuOp6AndRemove(void) {  /* $AE8F bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x06);                                                                             /* $AE8F lda */
   STA(PpuOpRequest);                                                                     /* $AE91 sta */
@@ -4054,7 +4054,7 @@ void MazeObjType29(void) {  /* $AE97 bank 4 */
 
 void MazeObjType11(void) {  /* $AEEA bank 4 */
   uint8_t sp0 = R.sp;
-  push16(0xAEEC); Sub_B4_AEF0(); UNW(); ret_check(0xAEEC);                               /* $AEEA jsr */
+  push16(0xAEEC); UpdateMazeObjType11(); UNW(); ret_check(0xAEEC);                       /* $AEEA jsr */
   goto LB03B;                                                                            /* $AEED jmp */
 LB03B: BUDGET();
   LDY(0x09);                                                                             /* $B03B ldy */
@@ -4068,7 +4068,7 @@ LB03B: BUDGET();
   RTS_RET(sp0);                                                                          /* $B04A rts */
 }
 
-void Sub_B4_AEF0(void) {  /* $AEF0 bank 4 */
+void UpdateMazeObjType11(void) {  /* $AEF0 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $AEF0 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $AEF2 lda */
@@ -4173,7 +4173,7 @@ void MazeObjType11State4(void) {  /* $AFA7 bank 4 */
   if (R.x < 0x03) {                                                                      /* $AFAC bcs */
     INX();                                                                               /* $AFAE inx */
     STX(0x051F);                                                                         /* $AFAF stx */
-    push16(0xAFB4); Sub_B4_9FD6(); UNW(); ret_check(0xAFB4);                             /* $AFB2 jsr */
+    push16(0xAFB4); AddCollectedCountIcon(); UNW(); ret_check(0xAFB4);                   /* $AFB2 jsr */
   }
   { AdvanceObjectState(); return; }                                                      /* $AFB5 jmp */
 }
@@ -4287,7 +4287,7 @@ LB3C9: BUDGET();
   { AdvanceObjectState(); return; }                                                      /* $B3D1 jmp */
 }
 
-void Sub_B4_B106(void) {  /* $B106 bank 4 */
+void MazeObjType16(void) {  /* $B106 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $B106 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B108 lda */
@@ -4394,7 +4394,7 @@ LB1DE: BUDGET();
   RTS_RET(sp0);                                                                          /* $B1DE rts */
 }
 
-void Sub_B4_B1E3(void) {  /* $B1E3 bank 4 */
+void MazeObjType17(void) {  /* $B1E3 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $B1E3 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B1E5 lda */
@@ -4508,7 +4508,7 @@ void MazeObjType17State3(void) {  /* $B285 bank 4 */
   { RemoveObject(); return; }                                                            /* $B298 jmp */
 }
 
-void Sub_B4_B2A3(void) {  /* $B2A3 bank 4 */
+void MazeObjType18(void) {  /* $B2A3 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $B2A3 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B2A5 lda */
@@ -4593,7 +4593,7 @@ void MazeObjType19(void) {  /* $B2F7 bank 4 */
   { RemoveObject(); return; }                                                            /* $B328 jmp */
 }
 
-void Loc_B4_B32B(void) {  /* $B32B bank 4 */
+void MazeObjType1B(void) {  /* $B32B bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x08);                                                                             /* $B32B ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B32D lda */
@@ -4662,7 +4662,7 @@ void Sub_B4_B38A(void) {  /* $B38A bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $B39E jmp */
 }
 
-void Sub_B4_B3A1(void) {  /* $B3A1 bank 4 */
+void RemoveObjectWithPpuListD(void) {  /* $B3A1 bank 4 */
   uint8_t sp0 = R.sp;
   push16(0xB3A3); Sub_B4_A0B1(); UNW(); ret_check(0xB3A3);                               /* $B3A1 jsr */
   { RemoveObject(); return; }                                                            /* $B3A4 jmp */
@@ -4680,7 +4680,7 @@ void MazeObjType2C(void) {  /* $B3A7 bank 4 */
   LDA(0x45);                                                                             /* $B3B3 lda */
   LDY(0x00);                                                                             /* $B3B5 ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $B3B7 sta */
-  { Sub_B4_A54E(); return; }                                                             /* $B3B9 jmp */
+  { MazeObjType05(); return; }                                                           /* $B3B9 jmp */
 LB3BC: BUDGET();
   { RemoveObject(); return; }                                                            /* $B3BC jmp */
 }
@@ -4737,10 +4737,19 @@ void Sub_B4_B404(void) {  /* $B404 bank 4 */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $B411 sta */
   LDY(0x01);                                                                             /* $B413 ldy */
   if (R.y == 0) {                                                                        /* $B415 bne */
-    LDY(0x0C);                                                                           /* $B417 ldy */
-    LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $B419 lda */
-    LDY(0x02);                                                                           /* $B41B ldy */
+    { AddObjectXVelocity(); return; }
   }
+  CLC();                                                                                 /* $B41D clc */
+  adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B41E adc */
+  STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $B420 sta */
+  RTS_RET(sp0);                                                                          /* $B422 rts */
+}
+
+void AddObjectXVelocity(void) {  /* $B417 bank 4 */
+  uint8_t sp0 = R.sp;
+  LDY(0x0C);                                                                             /* $B417 ldy */
+  LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B419 lda */
+  LDY(0x02);                                                                             /* $B41B ldy */
   CLC();                                                                                 /* $B41D clc */
   adc(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B41E adc */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $B420 sta */

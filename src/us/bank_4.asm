@@ -121,7 +121,7 @@ Bank4State_05:
   jsr DrawCompassSprites       ; $814D
   jsr DrawCorridorView         ; $8150
   jsr DrawMazeScreen           ; $8153
-  jsr Sub_B4_9F94              ; $8156
+  jsr DrawCollectedCountIcons  ; $8156
   jsr DrawCollectedItemIcons   ; $8159
   jsr SpawnDoorObjectsIfAhead  ; $815C
   jsr ClearNametable2Rows      ; $815F
@@ -210,7 +210,7 @@ Bank4State_0B:
   jsr DrawCompassSprites       ; $8218
   jsr DrawCorridorView         ; $821B
   jsr DrawMazeScreen           ; $821E
-  jsr Sub_B4_9F94              ; $8221
+  jsr DrawCollectedCountIcons  ; $8221
   jsr DrawCollectedItemIcons   ; $8224
   jsr SpawnDoorObjectsIfAhead  ; $8227
   jsr ClearNametable2Rows      ; $822A
@@ -291,7 +291,7 @@ ReloadMazeAfterMove:
   jsr DrawCompassSprites       ; $82D1
   jsr DrawCorridorView         ; $82D4
   jsr DrawMazeScreen           ; $82D7
-  jsr Sub_B4_9F94              ; $82DA
+  jsr DrawCollectedCountIcons  ; $82DA
   jsr DrawCollectedItemIcons   ; $82DD
   jsr SpawnDoorObjectsIfAhead  ; $82E0
   jsr ClearNametable2Rows      ; $82E3
@@ -360,7 +360,7 @@ Bank4State_18:
   jsr DrawCompassSprites       ; $8375
   jsr DrawCorridorView         ; $8378
   jsr DrawMazeScreen           ; $837B
-  jsr Sub_B4_9F94              ; $837E
+  jsr DrawCollectedCountIcons  ; $837E
   jsr DrawCollectedItemIcons   ; $8381
   jsr SpawnDoorObjectsIfAhead  ; $8384
   jsr ClearNametable2Rows      ; $8387
@@ -395,7 +395,7 @@ Bank4State_1D:
   jsr DrawCompassSprites       ; $83C7
   jsr DrawCorridorView         ; $83CA
   jsr DrawMazeScreen           ; $83CD
-  jsr Sub_B4_9F94              ; $83D0
+  jsr DrawCollectedCountIcons  ; $83D0
   jsr DrawCollectedItemIcons   ; $83D3
   jsr SpawnDoorObjectsIfAhead  ; $83D6
   jsr ClearNametable2Rows      ; $83D9
@@ -417,7 +417,7 @@ Bank4State_1E:
   jsr LoadMazeData             ; $8405
   jsr DrawCorridorView         ; $8408
   jsr DrawMazeScreen           ; $840B
-  jsr Sub_B4_9F94              ; $840E
+  jsr DrawCollectedCountIcons  ; $840E
   jsr DrawCollectedItemIcons   ; $8411
   jsr SpawnDoorObjectsIfAhead  ; $8414
   jsr ClearNametable2Rows      ; $8417
@@ -1277,7 +1277,7 @@ DecObjectField:
   sbc #$01                     ; $8FC8
   sta (Tmp00),y                ; $8FCA
   rts                          ; $8FCC
-Sub_B4_8FCD:
+ClearNametableRowAt054A:
   ldy #$00                     ; $8FCD
   lda $054C                    ; $8FCF
   bpl Loc_B4_8FD6              ; $8FD2
@@ -1319,7 +1319,7 @@ ClearNametable2Rows:
   sta $054C                    ; $901C
 Loc_B4_901F:
   ldy #$40                     ; $901F
-  jsr Sub_B4_8FCD              ; $9021
+  jsr ClearNametableRowAt054A  ; $9021
   jsr ProcessPpuUpdateList     ; $9024
   .incbin "prg_bank_4.bin", $1027, $2  ; $9027
   lda $054B                    ; $9029
@@ -1351,8 +1351,8 @@ Data_B4_9061:
 PpuOpNone:
   rts                          ; $9070
 PpuOpClearRow:
-  jsr Sub_B4_8FCD              ; $9071
-Sub_B4_9074:
+  jsr ClearNametableRowAt054A  ; $9071
+PpuListThunkSource:
   jsr ProcessPpuUpdateList     ; $9074
   .incbin "prg_bank_4.bin", $1077, $2  ; $9077
   rts                          ; $9079
@@ -1360,7 +1360,7 @@ Sub_B4_9074:
 CopyPpuListStubToRam:
   ldx #$05                     ; $909E
 Loc_B4_90A0:
-  lda Sub_B4_9074,x            ; $90A0
+  lda PpuListThunkSource,x     ; $90A0
   sta $0520,x                  ; $90A3
   dex                          ; $90A6
   bpl Loc_B4_90A0              ; $90A7
@@ -2072,7 +2072,7 @@ Loc_B4_9F7E:
   jmp a:Tmp00                  ; $9F86
 Data_B4_9F89:
   .incbin "prg_bank_4.bin", $1F89, $B  ; $9F89
-Sub_B4_9F94:
+DrawCollectedCountIcons:
   lda $051F                    ; $9F94
   and #$03                     ; $9F97
   sta $051F                    ; $9F99
@@ -2085,29 +2085,29 @@ Loc_B4_9F9F:
   dex                          ; $9FA3
   beq Loc_B4_9FAE              ; $9FA4
   ldy #$46                     ; $9FA6
-  jsr Sub_B4_9FD3              ; $9FA8
-  jsr Sub_B4_9074              ; $9FAB
+  jsr SetupIconPpuBuffer       ; $9FA8
+  jsr PpuListThunkSource       ; $9FAB
 Loc_B4_9FAE:
   ldy #$44                     ; $9FAE
-  jsr Sub_B4_9FD3              ; $9FB0
-  jsr Sub_B4_9074              ; $9FB3
+  jsr SetupIconPpuBuffer       ; $9FB0
+  jsr PpuListThunkSource       ; $9FB3
 Loc_B4_9FB6:
   ldy #$42                     ; $9FB6
-  jsr Sub_B4_9FD3              ; $9FB8
-  jmp Sub_B4_9074              ; $9FBB
-Sub_B4_9FBE:
+  jsr SetupIconPpuBuffer       ; $9FB8
+  jmp PpuListThunkSource       ; $9FBB
+AddCollectedCountIcon:
   lda $051F                    ; $9FBE
   and #$03                     ; $9FC1
   beq Loc_B4_9FD2              ; $9FC3
   tax                          ; $9FC5
   dex                          ; $9FC6
   ldy Data_B4_9FE9,x           ; $9FC7
-  jsr Sub_B4_9FD3              ; $9FCA
+  jsr SetupIconPpuBuffer       ; $9FCA
   lda #$01                     ; $9FCD
   sta PpuOpRequest             ; $9FCF
 Loc_B4_9FD2:
   rts                          ; $9FD2
-Sub_B4_9FD3:
+SetupIconPpuBuffer:
   ldx #$0A                     ; $9FD3
 Loc_B4_9FD5:
   lda Data_B4_9FEC,x           ; $9FD5
@@ -2129,10 +2129,10 @@ Loc_B4_9FF7:
   and #$03                     ; $9FFA
   cmp #$03                     ; $9FFC
   beq Loc_B4_A01A              ; $9FFE
-Sub_B4_A000:
+SetupIconPpuBufferForIndex:
   tax                          ; $A000
   ldy Data_B4_9FE9,x           ; $A001
-  jsr Sub_B4_9FD3              ; $A004
+  jsr SetupIconPpuBuffer       ; $A004
   lda #$01                     ; $A007
   sta PpuOpRequest             ; $A009
   lda #$00                     ; $A00C
@@ -2720,17 +2720,17 @@ MazeObjType05State7:
   jmp AdvanceObjectState       ; $A6E1
 MazeObjType05State8:
   jsr AdvanceObjectState       ; $A6E4
-  jsr Sub_B4_A70F              ; $A6E7
+  jsr DispatchMazeSpecificEvent ; $A6E7
   jsr DrawCorridorView         ; $A6EA
   jsr DrawMazeScreen           ; $A6ED
-  jsr Sub_B4_9F94              ; $A6F0
+  jsr DrawCollectedCountIcons  ; $A6F0
   jsr DrawCollectedItemIcons   ; $A6F3
   jsr ProcessPpuUpdateList     ; $A6F6
   .addr Data_B4_A6FE  ; $A6F9 inline pointer (data after a JSR)
   jmp ApplyScroll              ; $A6FB
 Data_B4_A6FE:
   .incbin "prg_bank_4.bin", $26FE, $11  ; $A6FE
-Sub_B4_A70F:
+DispatchMazeSpecificEvent:
   lda MazeIndex                ; $A70F
   asl a                        ; $A712
   tax                          ; $A713
@@ -3207,7 +3207,7 @@ MazeObjType26:
   sta z:$6E                    ; $ACCC
   jmp ($006D)                  ; $ACCE
 Data_B4_ACD1:
-  .addr Sub_B4_ACDF, WaitObjectTimer, ConfirmWithAButton, ShowFullScreenMessage, FullScreenMessageWait, ReturnFromFullScreenMessage, Sub_B4_AE6A  ; $ACD1 pointer table
+  .addr Sub_B4_ACDF, WaitObjectTimer, ConfirmWithAButton, ShowFullScreenMessage, FullScreenMessageWait, ReturnFromFullScreenMessage, RequestPpuOp6AndRemove  ; $ACD1 pointer table
 Sub_B4_ACDF:
   lda $050B                    ; $ACDF
   bne Loc_B4_ACEA              ; $ACE2
@@ -3289,7 +3289,7 @@ ReturnFromFullScreenMessage:
   inc $050B                    ; $AE61
   jsr RequestPpuListB          ; $AE64
   jmp AdvanceObjectState       ; $AE67
-Sub_B4_AE6A:
+RequestPpuOp6AndRemove:
   lda #$06                     ; $AE6A
   sta PpuOpRequest             ; $AE6C
   jmp RemoveObject             ; $AE6F
@@ -3404,7 +3404,7 @@ MazeObjType11State4:
   bcs Loc_B4_AF8C              ; $AF83
   inx                          ; $AF85
   stx $051F                    ; $AF86
-  jsr Sub_B4_9FBE              ; $AF89
+  jsr AddCollectedCountIcon    ; $AF89
 Loc_B4_AF8C:
   jmp AdvanceObjectState       ; $AF8C
 MazeObjType11State5:
@@ -3522,7 +3522,7 @@ Loc_B4_B05E:
   bcc Loc_B4_B068              ; $B063
   jmp RemoveObject             ; $B065
 Loc_B4_B068:
-  jsr Sub_B4_B3DA              ; $B068
+  jsr AddObjectXVelocity       ; $B068
   cmp #$28                     ; $B06B
   bcs Loc_B4_B075              ; $B06D
   lda #$01                     ; $B06F
@@ -3852,7 +3852,7 @@ MazeObjType1B:
   sta z:$6E                    ; $B300
   jmp ($006D)                  ; $B302
 Data_B4_B305:
-  .addr Sub_B4_B315, WaitObjectTimer, CollectFullRestoreItem, Sub_B4_B34D, MazeObjType11State4, MazeObjType11State4, MazeObjType11State4, Sub_B4_B364  ; $B305 pointer table
+  .addr Sub_B4_B315, WaitObjectTimer, CollectFullRestoreItem, Sub_B4_B34D, MazeObjType11State4, MazeObjType11State4, MazeObjType11State4, RemoveObjectWithPpuListD  ; $B305 pointer table
 Sub_B4_B315:
   lda $0508                    ; $B315
   beq Loc_B4_B31D              ; $B318
@@ -3891,7 +3891,7 @@ Sub_B4_B34D:
   lda #$05                     ; $B35C
   sta PpuOpRequest             ; $B35E
   jmp AdvanceObjectState       ; $B361
-Sub_B4_B364:
+RemoveObjectWithPpuListD:
   jsr RequestPpuListD          ; $B364
   jmp RemoveObject             ; $B367
 MazeObjType2C:
@@ -3953,7 +3953,7 @@ Sub_B4_B3C7:
   sta (Tmp00),y                ; $B3D4
   ldy #$01                     ; $B3D6
   bne Loc_B4_B3E0              ; $B3D8
-Sub_B4_B3DA:
+AddObjectXVelocity:
   ldy #$0C                     ; $B3DA
   lda (Tmp00),y                ; $B3DC
   ldy #$02                     ; $B3DE

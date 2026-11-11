@@ -96,7 +96,7 @@ RunSoundDriver:
   lda #$05                     ; $C0EB
   sta z:MmcPrgShadow           ; $C0ED
   jsr MmcWritePrg              ; $C0EF
-  jsr $A000                    ; $C0F2  -> Sub_B2_A000, Sub_B4_A000, SoundDriver
+  jsr $A000                    ; $C0F2  -> Sub_B2_A000, SetupIconPpuBufferForIndex, SoundDriver
   lda $0105                    ; $C0F5
   sta z:MmcPrgShadow           ; $C0F8
   jsr MmcWritePrg              ; $C0FA

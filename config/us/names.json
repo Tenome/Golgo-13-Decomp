@@ -767,5 +767,15 @@
  "4:AE55": "ReturnFromFullScreenMessage",
  "4:B3F2": "SetObjectFlagsE0",
  "4:B3FB": "SetObjectFlagsC0",
- "4:B42A": "ResetScrollAndObjectFlags"
+ "4:B42A": "ResetScrollAndObjectFlags",
+ "4:9074": "PpuListThunkSource",
+ "4:9F94": "DrawCollectedCountIcons",
+ "4:9FBE": "AddCollectedCountIcon",
+ "4:9FD3": "SetupIconPpuBuffer",
+ "4:A000": "SetupIconPpuBufferForIndex",
+ "4:B3DA": "AddObjectXVelocity",
+ "4:A70F": "DispatchMazeSpecificEvent",
+ "4:8FCD": "ClearNametableRowAt054A",
+ "4:AE6A": "RequestPpuOp6AndRemove",
+ "4:B364": "RemoveObjectWithPpuListD"
 }

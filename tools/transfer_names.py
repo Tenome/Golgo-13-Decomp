@@ -21,6 +21,9 @@ def shape(rom, off, n=14):
         op = rom[off]
         if op not in g13dis.TAB: return None
         nm, mode = g13dis.TAB[op]; ln = g13dis.LENM[mode]
+        if op == 0xB0 and rom[off + 1] == 0xFE:                     # the JP ROM guards its jump tables with 'cmp #n / bcs *' (a trap for bad indexes): not part of the shape
+            if out and out[-1][0] == 0xC9: out.pop()
+            off += ln; continue
         out.append((op, rom[off + 1] if mode == 'imm' else None)); off += ln
         if nm in ('rts', 'rti', 'jmp'): break
     return tuple(out)
