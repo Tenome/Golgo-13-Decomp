@@ -1498,7 +1498,7 @@ void Bank4Tbl8E4A_11(void) {  /* $8ED2 bank 4 */
   { Bank4StateC_02(); return; }                                                          /* $8EDC jmp */
 }
 
-void Sub_B4_8EDF(void) {  /* $8EDF bank 4 */
+void StartPaletteFade(void) {  /* $8EDF bank 4 */
   uint8_t sp0 = R.sp;
   STA(0x60);                                                                             /* $8EDF sta */
   ASL_A();                                                                               /* $8EE1 asl */
@@ -2696,7 +2696,7 @@ void DoorState0(void) {  /* $A2B4 bank 4 */
   LDA(rd(0x87));                                                                         /* $A2CA lda */
   goto LB3C6;                                                                            /* $A2CC jmp */
 LB3C6: BUDGET();
-  push16(0xB3C8); Sub_B4_8EDF(); UNW(); ret_check(0xB3C8);                               /* $B3C6 jsr */
+  push16(0xB3C8); StartPaletteFade(); UNW(); ret_check(0xB3C8);                          /* $B3C6 jsr */
   LDA(0x00);                                                                             /* $B3C9 lda */
   push16(0xB3CD); SetObjectFrame(); UNW(); ret_check(0xB3CD);                            /* $B3CB jsr */
   push16(0xB3D0); LoadObjectSpeedFromType(); UNW(); ret_check(0xB3D0);                   /* $B3CE jsr */
@@ -2763,7 +2763,7 @@ void DoorState3(void) {  /* $A331 bank 4 */
   if ((R.a & 0x80)) {                                                                    /* $A335 bpl */
     push16(0xA339); Sub_B4_B42B(); UNW(); ret_check(0xA339);                             /* $A337 jsr */
     LDY(0x00);                                                                           /* $A33A ldy */
-    push16(0xA33E); Sub_B4_B438(); UNW(); ret_check(0xA33E);                             /* $A33C jsr */
+    push16(0xA33E); SetObjectFlagsC0(); UNW(); ret_check(0xA33E);                        /* $A33C jsr */
     LDA(0x24);                                                                           /* $A33F lda */
     push16(0xA343); QueueSound(); UNW(); ret_check(0xA343);                              /* $A341 jsr */
     { AdvanceObjectState(); return; }                                                    /* $A344 jmp */
@@ -2869,7 +2869,7 @@ void Sub_B4_A494(void) {  /* $A494 bank 4 */
   LDA(0x06);                                                                             /* $A497 lda */
   goto LB3C6;                                                                            /* $A499 jmp */
 LB3C6: BUDGET();
-  push16(0xB3C8); Sub_B4_8EDF(); UNW(); ret_check(0xB3C8);                               /* $B3C6 jsr */
+  push16(0xB3C8); StartPaletteFade(); UNW(); ret_check(0xB3C8);                          /* $B3C6 jsr */
   LDA(0x00);                                                                             /* $B3C9 lda */
   push16(0xB3CD); SetObjectFrame(); UNW(); ret_check(0xB3CD);                            /* $B3CB jsr */
   push16(0xB3D0); LoadObjectSpeedFromType(); UNW(); ret_check(0xB3D0);                   /* $B3CE jsr */
@@ -3056,7 +3056,7 @@ void Sub_B4_A507(void) {  /* $A507 bank 4 */
   LDA(0x00);                                                                             /* $A50A lda */
   goto LB3C6;                                                                            /* $A50C jmp */
 LB3C6: BUDGET();
-  push16(0xB3C8); Sub_B4_8EDF(); UNW(); ret_check(0xB3C8);                               /* $B3C6 jsr */
+  push16(0xB3C8); StartPaletteFade(); UNW(); ret_check(0xB3C8);                          /* $B3C6 jsr */
   LDA(0x00);                                                                             /* $B3C9 lda */
   push16(0xB3CD); SetObjectFrame(); UNW(); ret_check(0xB3CD);                            /* $B3CB jsr */
   push16(0xB3D0); LoadObjectSpeedFromType(); UNW(); ret_check(0xB3D0);                   /* $B3CE jsr */
@@ -3340,7 +3340,7 @@ void Sub_B4_A73B(void) {  /* $A73B bank 4 */
   call_addr(rd16bug(0x006D)); return;                                                    /* $A74E jmp */
 }
 
-void Sub_B4_A775(void) {  /* $A775 bank 4 */
+void WarpToMaze2(void) {  /* $A775 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x02);                                                                             /* $A775 lda */
   STA(MazeIndex);                                                                        /* $A777 sta */
@@ -3510,7 +3510,7 @@ LAC1D: BUDGET();
   LDA(0x14);                                                                             /* $AC44 lda */
   LDY(0x08);                                                                             /* $AC46 ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $AC48 sta */
-  push16(0xAC4C); Sub_B4_B42F(); UNW(); ret_check(0xAC4C);                               /* $AC4A jsr */
+  push16(0xAC4C); SetObjectFlagsE0(); UNW(); ret_check(0xAC4C);                          /* $AC4A jsr */
   LDA(0xFF);                                                                             /* $AC4D lda */
   LDY(0x0D);                                                                             /* $AC4F ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $AC51 sta */
@@ -3566,7 +3566,7 @@ LAAA7: BUDGET();
     INX();                                                                               /* $AAB1 inx */
   }
   TXA();                                                                                 /* $AAB2 txa */
-  push16(0xAAB5); Sub_B4_8EDF(); UNW(); ret_check(0xAAB5);                               /* $AAB3 jsr */
+  push16(0xAAB5); StartPaletteFade(); UNW(); ret_check(0xAAB5);                          /* $AAB3 jsr */
   LDA(0x68);                                                                             /* $AAB6 lda */
   LDX(0x40);                                                                             /* $AAB8 ldx */
   push16(0xAABC); Sub_B4_B3F9(); UNW(); ret_check(0xAABC);                               /* $AABA jsr */
@@ -3737,7 +3737,7 @@ void Sub_B4_AB9A(void) {  /* $AB9A bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $ABB6 jmp */
 }
 
-void Sub_B4_ABB9(void) {  /* $ABB9 bank 4 */
+void ObjectMoveUpStep(void) {  /* $ABB9 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0xFF);                                                                             /* $ABB9 lda */
   push16(0xABBD); AddToObjectY(); UNW(); ret_check(0xABBD);                              /* $ABBB jsr */
@@ -3788,7 +3788,7 @@ void Sub_B4_ABF6(void) {  /* $ABF6 bank 4 */
   LSR_A();                                                                               /* $AC0D lsr */
   TAY();                                                                                 /* $AC0E tay */
   LDA(rd((uint16_t)(0xAC15 + R.y)));                                                     /* $AC0F lda */
-  { Sub_B4_8EDF(); return; }                                                             /* $AC12 jmp */
+  { StartPaletteFade(); return; }                                                        /* $AC12 jmp */
 }
 
 void MoveObjectXY(void) {  /* $AC61 bank 4 */
@@ -3834,7 +3834,7 @@ LAC91: BUDGET();
   INX();                                                                                 /* $AC96 inx */
   STX(0x051C);                                                                           /* $AC97 stx */
   LDA(0x08);                                                                             /* $AC9A lda */
-  push16(0xAC9E); Sub_B4_8EDF(); UNW(); ret_check(0xAC9E);                               /* $AC9C jsr */
+  push16(0xAC9E); StartPaletteFade(); UNW(); ret_check(0xAC9E);                          /* $AC9C jsr */
   LDA(0x03);                                                                             /* $AC9F lda */
   LDX(0x09);                                                                             /* $ACA1 ldx */
   goto LAC7C;                                                                            /* $ACA3 jmp */
@@ -3932,7 +3932,7 @@ void Sub_B4_AD1F(void) {  /* $AD1F bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $B3D1 jmp */
 }
 
-void Sub_B4_AD2D(void) {  /* $AD2D bank 4 */
+void ConfirmWithAButton(void) {  /* $AD2D bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyNew1));                                                                      /* $AD2D lda */
   LSR_A();                                                                               /* $AD30 lsr */
@@ -3941,14 +3941,14 @@ void Sub_B4_AD2D(void) {  /* $AD2D bank 4 */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $AD35 lda */
     AND(0x7F);                                                                           /* $AD37 and */
     STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $AD39 sta */
-    push16(0xAD3D); Sub_B4_B42F(); UNW(); ret_check(0xAD3D);                             /* $AD3B jsr */
+    push16(0xAD3D); SetObjectFlagsE0(); UNW(); ret_check(0xAD3D);                        /* $AD3B jsr */
     push16(0xAD40); DisableSpriteBgRendering(); UNW(); ret_check(0xAD40);                /* $AD3E jsr */
     { AdvanceObjectState(); return; }                                                    /* $AD41 jmp */
   }
   RTS_RET(sp0);                                                                          /* $AD44 rts */
 }
 
-void Sub_B4_AD45(void) {  /* $AD45 bank 4 */
+void ShowFullScreenMessage(void) {  /* $AD45 bank 4 */
   uint8_t sp0 = R.sp;
   push16(0xAD47); DisableSpriteBgRendering(); UNW(); ret_check(0xAD47);                  /* $AD45 jsr */
   LDA(0x33);                                                                             /* $AD48 lda */
@@ -3976,7 +3976,7 @@ LAD6A: BUDGET();
   RTS_RET(sp0);                                                                          /* $AD78 rts */
 }
 
-void Sub_B4_AE4A(void) {  /* $AE4A bank 4 */
+void FullScreenMessageWait(void) {  /* $AE4A bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyNew1));                                                                      /* $AE4A lda */
   AND(0x02);                                                                             /* $AE4D and */
@@ -4002,7 +4002,7 @@ void Sub_B4_AE4A(void) {  /* $AE4A bank 4 */
   RTS_RET(sp0);                                                                          /* $AE74 rts */
 }
 
-void Sub_B4_AE7A(void) {  /* $AE7A bank 4 */
+void ReturnFromFullScreenMessage(void) {  /* $AE7A bank 4 */
   uint8_t sp0 = R.sp;
   push16(0xAE7C); DisableSpriteBgRendering(); UNW(); ret_check(0xAE7C);                  /* $AE7A jsr */
   LDA(rd(PpuCtrlShadow));                                                                /* $AE7D lda */
@@ -4096,7 +4096,7 @@ void Sub_B4_AF17(void) {  /* $AF17 bank 4 */
   LDA(rd((uint16_t)(0xAF2D + R.x)));                                                     /* $AF27 lda */
   goto LB3C6;                                                                            /* $AF2A jmp */
 LB3C6: BUDGET();
-  push16(0xB3C8); Sub_B4_8EDF(); UNW(); ret_check(0xB3C8);                               /* $B3C6 jsr */
+  push16(0xB3C8); StartPaletteFade(); UNW(); ret_check(0xB3C8);                          /* $B3C6 jsr */
   LDA(0x00);                                                                             /* $B3C9 lda */
   push16(0xB3CD); SetObjectFrame(); UNW(); ret_check(0xB3CD);                            /* $B3CB jsr */
   push16(0xB3D0); LoadObjectSpeedFromType(); UNW(); ret_check(0xB3D0);                   /* $B3CE jsr */
@@ -4180,7 +4180,7 @@ void MazeObjType11State4(void) {  /* $AFA7 bank 4 */
 
 void MazeObjType11State5(void) {  /* $AFB8 bank 4 */
   uint8_t sp0 = R.sp;
-  push16(0xAFBA); Sub_B4_B467(); UNW(); ret_check(0xAFBA);                               /* $AFB8 jsr */
+  push16(0xAFBA); ResetScrollAndObjectFlags(); UNW(); ret_check(0xAFBA);                 /* $AFB8 jsr */
   push16(0xAFBD); ResetDamageFlash(); UNW(); ret_check(0xAFBD);                          /* $AFBB jsr */
   LDA(0x45);                                                                             /* $AFBE lda */
   push16(0xAFC2); QueueSound(); UNW(); ret_check(0xAFC2);                                /* $AFC0 jsr */
@@ -4315,7 +4315,7 @@ void Sub_B4_B123(void) {  /* $B123 bank 4 */
   LDA(0x04);                                                                             /* $B133 lda */
   STA(PpuOpRequest);                                                                     /* $B135 sta */
   LDA(rd(0x87));                                                                         /* $B138 lda */
-  push16(0xB13C); Sub_B4_8EDF(); UNW(); ret_check(0xB13C);                               /* $B13A jsr */
+  push16(0xB13C); StartPaletteFade(); UNW(); ret_check(0xB13C);                          /* $B13A jsr */
   push16(0xB13F); LoadObjectSpeedFromType(); UNW(); ret_check(0xB13F);                   /* $B13D jsr */
   { AdvanceObjectState(); return; }                                                      /* $B140 jmp */
 }
@@ -4619,7 +4619,7 @@ void Sub_B4_B352(void) {  /* $B352 bank 4 */
   LDA(0x05);                                                                             /* $B35D lda */
   goto LB3C6;                                                                            /* $B35F jmp */
 LB3C6: BUDGET();
-  push16(0xB3C8); Sub_B4_8EDF(); UNW(); ret_check(0xB3C8);                               /* $B3C6 jsr */
+  push16(0xB3C8); StartPaletteFade(); UNW(); ret_check(0xB3C8);                          /* $B3C6 jsr */
   LDA(0x00);                                                                             /* $B3C9 lda */
   push16(0xB3CD); SetObjectFrame(); UNW(); ret_check(0xB3CD);                            /* $B3CB jsr */
   push16(0xB3D0); LoadObjectSpeedFromType(); UNW(); ret_check(0xB3D0);                   /* $B3CE jsr */
@@ -4751,10 +4751,10 @@ void Sub_B4_B42B(void) {  /* $B42B bank 4 */
   uint8_t sp0 = R.sp;
   AND(0x1F);                                                                             /* $B42B and */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $B42D sta */
-  { Sub_B4_B42F(); return; }
+  { SetObjectFlagsE0(); return; }
 }
 
-void Sub_B4_B42F(void) {  /* $B42F bank 4 */
+void SetObjectFlagsE0(void) {  /* $B42F bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x0A);                                                                             /* $B42F ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B431 lda */
@@ -4763,7 +4763,7 @@ void Sub_B4_B42F(void) {  /* $B42F bank 4 */
   RTS_RET(sp0);                                                                          /* $B437 rts */
 }
 
-void Sub_B4_B438(void) {  /* $B438 bank 4 */
+void SetObjectFlagsC0(void) {  /* $B438 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $B438 lda */
   ORA(0xC0);                                                                             /* $B43A ora */
@@ -4804,7 +4804,7 @@ LB461: BUDGET();
   RTS_RET(sp0);                                                                          /* $B466 rts */
 }
 
-void Sub_B4_B467(void) {  /* $B467 bank 4 */
+void ResetScrollAndObjectFlags(void) {  /* $B467 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $B467 lda */
   STA(HwScrollX);                                                                        /* $B469 sta */

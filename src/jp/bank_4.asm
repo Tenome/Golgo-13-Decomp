@@ -1182,7 +1182,7 @@ Bank4Tbl8E4A_11:
   cmp $0207                    ; $8ED7
   bne Bank4StateC_00           ; $8EDA
   jmp Bank4StateC_02           ; $8EDC
-Sub_B4_8EDF:
+StartPaletteFade:
   sta z:$60                    ; $8EDF
   asl a                        ; $8EE1
   adc z:$60                    ; $8EE2
@@ -2343,7 +2343,7 @@ DoorState3:
   bpl Loc_B4_A347              ; $A335
   jsr Sub_B4_B42B              ; $A337
   ldy #$00                     ; $A33A
-  jsr Sub_B4_B438              ; $A33C
+  jsr SetObjectFlagsC0         ; $A33C
   lda #$24                     ; $A33F
   jsr QueueSound               ; $A341
   jmp AdvanceObjectState       ; $A344
@@ -2626,7 +2626,7 @@ Data_B4_A751:
   .incbin "prg_bank_4.bin", $2751, $1  ; $A751
 Data_B4_A752:
   .incbin "prg_bank_4.bin", $2752, $23  ; $A752
-Sub_B4_A775:
+WarpToMaze2:
   lda #$02                     ; $A775
   sta MazeIndex                ; $A777
   inc PlayerCellX              ; $A77A
@@ -2777,7 +2777,7 @@ Loc_B4_AAA7:
   inx                          ; $AAB1
 Loc_B4_AAB2:
   txa                          ; $AAB2
-  jsr Sub_B4_8EDF              ; $AAB3
+  jsr StartPaletteFade         ; $AAB3
   lda #$68                     ; $AAB6
   ldx #$40                     ; $AAB8
   jsr Sub_B4_B3F9              ; $AABA
@@ -2912,7 +2912,7 @@ Loc_B4_ABAD:
   lda #$05                     ; $ABB1
   jsr SetObjectFrame           ; $ABB3
   jmp AdvanceObjectState       ; $ABB6
-Sub_B4_ABB9:
+ObjectMoveUpStep:
   lda #$FF                     ; $ABB9
   jsr AddToObjectY             ; $ABBB
   ldy #$0B                     ; $ABBE
@@ -2956,7 +2956,7 @@ Loc_B4_AC08:
   lsr a                        ; $AC0D
   tay                          ; $AC0E
   lda Data_B4_AC15,y           ; $AC0F
-  jmp Sub_B4_8EDF              ; $AC12
+  jmp StartPaletteFade         ; $AC12
 Data_B4_AC15:
   .incbin "prg_bank_4.bin", $2C15, $8  ; $AC15
 Loc_B4_AC1D:
@@ -2984,7 +2984,7 @@ Loc_B4_AC40:
   lda #$14                     ; $AC44
   ldy #$08                     ; $AC46
   sta (Tmp00),y                ; $AC48
-  jsr Sub_B4_B42F              ; $AC4A
+  jsr SetObjectFlagsE0         ; $AC4A
   lda #$FF                     ; $AC4D
   ldy #$0D                     ; $AC4F
   sta (Tmp00),y                ; $AC51
@@ -3024,7 +3024,7 @@ MazeObjType28:
   inx                          ; $AC96
   stx $051C                    ; $AC97
   lda #$08                     ; $AC9A
-  jsr Sub_B4_8EDF              ; $AC9C
+  jsr StartPaletteFade         ; $AC9C
   lda #$03                     ; $AC9F
   ldx #$09                     ; $ACA1
   jmp Loc_B4_AC7C              ; $ACA3
@@ -3125,7 +3125,7 @@ MazeObjType11State4:
 Loc_B4_AFB5:
   jmp AdvanceObjectState       ; $AFB5
 MazeObjType11State5:
-  jsr Sub_B4_B467              ; $AFB8
+  jsr ResetScrollAndObjectFlags ; $AFB8
   jsr ResetDamageFlash         ; $AFBB
   lda #$45                     ; $AFBE
   jsr QueueSound               ; $AFC0
@@ -3254,7 +3254,7 @@ Sub_B4_B123:
   lda #$04                     ; $B133
   sta PpuOpRequest             ; $B135
   lda z:$87                    ; $B138
-  jsr Sub_B4_8EDF              ; $B13A
+  jsr StartPaletteFade         ; $B13A
   jsr LoadObjectSpeedFromType  ; $B13D
   jmp AdvanceObjectState       ; $B140
   .incbin "prg_bank_4.bin", $3143, $1C  ; $B143
@@ -3497,7 +3497,7 @@ Loc_B4_B328:
   jmp RemoveObject             ; $B328
   .incbin "prg_bank_4.bin", $332B, $9B  ; $B32B
 Loc_B4_B3C6:
-  jsr Sub_B4_8EDF              ; $B3C6
+  jsr StartPaletteFade         ; $B3C6
 Loc_B4_B3C9:
   lda #$00                     ; $B3C9
   jsr SetObjectFrame           ; $B3CB
@@ -3546,13 +3546,13 @@ Loc_B4_B41D:
 Sub_B4_B42B:
   and #$1F                     ; $B42B
   sta (Tmp00),y                ; $B42D
-Sub_B4_B42F:
+SetObjectFlagsE0:
   ldy #$0A                     ; $B42F
   lda (Tmp00),y                ; $B431
   ora #$E0                     ; $B433
   sta (Tmp00),y                ; $B435
   rts                          ; $B437
-Sub_B4_B438:
+SetObjectFlagsC0:
   lda (Tmp00),y                ; $B438
   ora #$C0                     ; $B43A
   sta (Tmp00),y                ; $B43C
@@ -3569,7 +3569,7 @@ AddObjectOfType:
 Loc_B4_B451:
   rts                          ; $B451
   .incbin "prg_bank_4.bin", $3452, $15  ; $B452
-Sub_B4_B467:
+ResetScrollAndObjectFlags:
   lda #$00                     ; $B467
   sta z:HwScrollX              ; $B469
   sta z:HwScrollY              ; $B46B

@@ -3696,7 +3696,7 @@
    ]
   ]
  },
- "Sub_B4_8ECB": {
+ "StartPaletteFade": {
   "addr": 36555,
   "bank": 4,
   "instrs": 9,
@@ -4984,7 +4984,7 @@
    ]
   ]
  },
- "Sub_B4_A745": {
+ "WarpToMaze2": {
   "addr": 42821,
   "bank": 4,
   "instrs": 8,
@@ -4997,7 +4997,7 @@
    ]
   ]
  },
- "Sub_B4_A762": {
+ "WarpToNextMaze": {
   "addr": 42850,
   "bank": 4,
   "instrs": 2,
@@ -5282,7 +5282,7 @@
    ]
   ]
  },
- "Sub_B4_AB7D": {
+ "ObjectMoveUpStep": {
   "addr": 43901,
   "bank": 4,
   "instrs": 10,
@@ -5450,7 +5450,7 @@
    ]
   ]
  },
- "Sub_B4_ACED": {
+ "ConfirmWithAButton": {
   "addr": 44269,
   "bank": 4,
   "instrs": 11,
@@ -5463,7 +5463,7 @@
    ]
   ]
  },
- "Sub_B4_AD05": {
+ "ShowFullScreenMessage": {
   "addr": 44293,
   "bank": 4,
   "instrs": 22,
@@ -5480,7 +5480,7 @@
    ]
   ]
  },
- "Sub_B4_AE25": {
+ "FullScreenMessageWait": {
   "addr": 44581,
   "bank": 4,
   "instrs": 19,
@@ -5493,7 +5493,7 @@
    ]
   ]
  },
- "Sub_B4_AE55": {
+ "ReturnFromFullScreenMessage": {
   "addr": 44629,
   "bank": 4,
   "instrs": 8,
@@ -6166,7 +6166,7 @@
    ]
   ]
  },
- "Sub_B4_B3F2": {
+ "SetObjectFlagsE0": {
   "addr": 46066,
   "bank": 4,
   "instrs": 5,
@@ -6179,7 +6179,7 @@
    ]
   ]
  },
- "Sub_B4_B3FB": {
+ "SetObjectFlagsC0": {
   "addr": 46075,
   "bank": 4,
   "instrs": 4,
@@ -6218,7 +6218,7 @@
    ]
   ]
  },
- "Sub_B4_B42A": {
+ "ResetScrollAndObjectFlags": {
   "addr": 46122,
   "bank": 4,
   "instrs": 10,

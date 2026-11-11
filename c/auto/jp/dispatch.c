@@ -451,7 +451,7 @@ static int bank4(uint16_t a) {
     case 0x8EBC: Bank4Tbl8E4A_06(); return 1;
     case 0x8EC8: Bank4Tbl8E4A_0A(); return 1;
     case 0x8ED2: Bank4Tbl8E4A_11(); return 1;
-    case 0x8EDF: Sub_B4_8EDF(); return 1;
+    case 0x8EDF: StartPaletteFade(); return 1;
     case 0x8EF1: CopyPaletteEntryFromTable(); return 1;
     case 0x8F85: SetObjectFrame(); return 1;
     case 0x8FBF: AllocObjectSlot(); return 1;
@@ -543,7 +543,7 @@ static int bank4(uint16_t a) {
     case 0xA6FF: MazeObjType05State7(); return 1;
     case 0xA710: Sub_B4_A710(); return 1;
     case 0xA73B: Sub_B4_A73B(); return 1;
-    case 0xA775: Sub_B4_A775(); return 1;
+    case 0xA775: WarpToMaze2(); return 1;
     case 0xA792: Sub_B4_A792(); return 1;
     case 0xA798: Loc_B4_A798(); return 1;
     case 0xA7A9: Loc_B4_A7A9(); return 1;
@@ -564,7 +564,7 @@ static int bank4(uint16_t a) {
     case 0xAB5C: MazeObjEnemy0AStateC(); return 1;
     case 0xAB7D: MazeObjEnemy0AStateD(); return 1;
     case 0xAB9A: Sub_B4_AB9A(); return 1;
-    case 0xABB9: Sub_B4_ABB9(); return 1;
+    case 0xABB9: ObjectMoveUpStep(); return 1;
     case 0xABCF: CollectBonusItem(); return 1;
     case 0xABF6: Sub_B4_ABF6(); return 1;
     case 0xAC61: MoveObjectXY(); return 1;
@@ -575,10 +575,10 @@ static int bank4(uint16_t a) {
     case 0xACD0: Loc_B4_ACD0(); return 1;
     case 0xACFA: Loc_B4_ACFA(); return 1;
     case 0xAD1F: Sub_B4_AD1F(); return 1;
-    case 0xAD2D: Sub_B4_AD2D(); return 1;
-    case 0xAD45: Sub_B4_AD45(); return 1;
-    case 0xAE4A: Sub_B4_AE4A(); return 1;
-    case 0xAE7A: Sub_B4_AE7A(); return 1;
+    case 0xAD2D: ConfirmWithAButton(); return 1;
+    case 0xAD45: ShowFullScreenMessage(); return 1;
+    case 0xAE4A: FullScreenMessageWait(); return 1;
+    case 0xAE7A: ReturnFromFullScreenMessage(); return 1;
     case 0xAE8F: Sub_B4_AE8F(); return 1;
     case 0xAE97: MazeObjType29(); return 1;
     case 0xAEEA: Sub_B4_AEEA(); return 1;
@@ -621,11 +621,11 @@ static int bank4(uint16_t a) {
     case 0xB3FF: Sub_B4_B3FF(); return 1;
     case 0xB404: Sub_B4_B404(); return 1;
     case 0xB42B: Sub_B4_B42B(); return 1;
-    case 0xB42F: Sub_B4_B42F(); return 1;
-    case 0xB438: Sub_B4_B438(); return 1;
+    case 0xB42F: SetObjectFlagsE0(); return 1;
+    case 0xB438: SetObjectFlagsC0(); return 1;
     case 0xB43F: AddObjectOfType(); return 1;
     case 0xB452: Loc_B4_B452(); return 1;
-    case 0xB467: Sub_B4_B467(); return 1;
+    case 0xB467: ResetScrollAndObjectFlags(); return 1;
     case 0xB47A: DamagePlayer(); return 1;
     case 0xB488: AddLifeAndAmmo(); return 1;
     case 0xB4B1: UpdateAllObjectHandlers(); return 1;

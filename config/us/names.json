@@ -756,5 +756,16 @@
  "5:A184": "LoadSoundChannelRegisters",
  "5:9848": "DrawOfficeScene",
  "5:997B": "DrawSpriteListWithOffset",
- "5:9438": "MoveSceneSpriteRandomly"
+ "5:9438": "MoveSceneSpriteRandomly",
+ "4:8ECB": "StartPaletteFade",
+ "4:A745": "WarpToMaze2",
+ "4:A762": "WarpToNextMaze",
+ "4:AB7D": "ObjectMoveUpStep",
+ "4:ACED": "ConfirmWithAButton",
+ "4:AD05": "ShowFullScreenMessage",
+ "4:AE25": "FullScreenMessageWait",
+ "4:AE55": "ReturnFromFullScreenMessage",
+ "4:B3F2": "SetObjectFlagsE0",
+ "4:B3FB": "SetObjectFlagsC0",
+ "4:B42A": "ResetScrollAndObjectFlags"
 }

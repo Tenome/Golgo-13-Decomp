@@ -461,7 +461,7 @@ static int bank4(uint16_t a) {
     case 0x8EA8: Bank4StateC_06(); return 1;
     case 0x8EB4: Bank4StateC_0A(); return 1;
     case 0x8EBE: Bank4StateC_11(); return 1;
-    case 0x8ECB: Sub_B4_8ECB(); return 1;
+    case 0x8ECB: StartPaletteFade(); return 1;
     case 0x8EDD: CopyPaletteEntryFromTable(); return 1;
     case 0x8F71: SetObjectFrame(); return 1;
     case 0x8FAB: AllocObjectSlot(); return 1;
@@ -553,8 +553,8 @@ static int bank4(uint16_t a) {
     case 0xA6D3: MazeObjType05State7(); return 1;
     case 0xA6E4: MazeObjType05State8(); return 1;
     case 0xA70F: Sub_B4_A70F(); return 1;
-    case 0xA745: Sub_B4_A745(); return 1;
-    case 0xA762: Sub_B4_A762(); return 1;
+    case 0xA745: WarpToMaze2(); return 1;
+    case 0xA762: WarpToNextMaze(); return 1;
     case 0xA768: Loc_B4_A768(); return 1;
     case 0xA779: Loc_B4_A779(); return 1;
     case 0xA78A: MazeObjType05State9(); return 1;
@@ -575,7 +575,7 @@ static int bank4(uint16_t a) {
     case 0xAB20: MazeObjEnemy0AStateC(); return 1;
     case 0xAB41: MazeObjEnemy0AStateD(); return 1;
     case 0xAB5E: Sub_B4_AB5E(); return 1;
-    case 0xAB7D: Sub_B4_AB7D(); return 1;
+    case 0xAB7D: ObjectMoveUpStep(); return 1;
     case 0xAB93: CollectBonusItem(); return 1;
     case 0xABBA: Sub_B4_ABBA(); return 1;
     case 0xAC25: MoveObjectXY(); return 1;
@@ -587,10 +587,10 @@ static int bank4(uint16_t a) {
     case 0xAC94: MazeObjType10(); return 1;
     case 0xACBE: MazeObjType26(); return 1;
     case 0xACDF: Sub_B4_ACDF(); return 1;
-    case 0xACED: Sub_B4_ACED(); return 1;
-    case 0xAD05: Sub_B4_AD05(); return 1;
-    case 0xAE25: Sub_B4_AE25(); return 1;
-    case 0xAE55: Sub_B4_AE55(); return 1;
+    case 0xACED: ConfirmWithAButton(); return 1;
+    case 0xAD05: ShowFullScreenMessage(); return 1;
+    case 0xAE25: FullScreenMessageWait(); return 1;
+    case 0xAE55: ReturnFromFullScreenMessage(); return 1;
     case 0xAE6A: Sub_B4_AE6A(); return 1;
     case 0xAE72: MazeObjType29(); return 1;
     case 0xAEC5: MazeObjType11(); return 1;
@@ -639,11 +639,11 @@ static int bank4(uint16_t a) {
     case 0xB3C7: Sub_B4_B3C7(); return 1;
     case 0xB3DA: Sub_B4_B3DA(); return 1;
     case 0xB3EE: Sub_B4_B3EE(); return 1;
-    case 0xB3F2: Sub_B4_B3F2(); return 1;
-    case 0xB3FB: Sub_B4_B3FB(); return 1;
+    case 0xB3F2: SetObjectFlagsE0(); return 1;
+    case 0xB3FB: SetObjectFlagsC0(); return 1;
     case 0xB402: AddObjectOfType(); return 1;
     case 0xB415: Loc_B4_B415(); return 1;
-    case 0xB42A: Sub_B4_B42A(); return 1;
+    case 0xB42A: ResetScrollAndObjectFlags(); return 1;
     case 0xB43D: DamagePlayer(); return 1;
     case 0xB44B: AddLifeAndAmmo(); return 1;
     case 0xB474: UpdateAllObjectHandlers(); return 1;

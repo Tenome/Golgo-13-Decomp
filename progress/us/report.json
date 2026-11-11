@@ -2680,7 +2680,7 @@
      }
     },
     {
-     "name": "Sub_B4_8ECB",
+     "name": "StartPaletteFade",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3504,7 +3504,7 @@
      }
     },
     {
-     "name": "Sub_B4_A745",
+     "name": "WarpToMaze2",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3512,7 +3512,7 @@
      }
     },
     {
-     "name": "Sub_B4_A762",
+     "name": "WarpToNextMaze",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3664,7 +3664,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB7D",
+     "name": "ObjectMoveUpStep",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3744,7 +3744,7 @@
      }
     },
     {
-     "name": "Sub_B4_ACED",
+     "name": "ConfirmWithAButton",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3752,7 +3752,7 @@
      }
     },
     {
-     "name": "Sub_B4_AD05",
+     "name": "ShowFullScreenMessage",
      "size": "49",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3768,7 +3768,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE25",
+     "name": "FullScreenMessageWait",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3776,7 +3776,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE55",
+     "name": "ReturnFromFullScreenMessage",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4152,7 +4152,7 @@
      }
     },
     {
-     "name": "Sub_B4_B3F2",
+     "name": "SetObjectFlagsE0",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4160,7 +4160,7 @@
      }
     },
     {
-     "name": "Sub_B4_B3FB",
+     "name": "SetObjectFlagsC0",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4176,7 +4176,7 @@
      }
     },
     {
-     "name": "Sub_B4_B42A",
+     "name": "ResetScrollAndObjectFlags",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
