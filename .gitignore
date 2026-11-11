@@ -12,3 +12,6 @@ build/
 *.exe
 diagnostics/
 __pycache__/
+
+# Locally built, ROM-embedded game executables (never commit or share these)
+dist/

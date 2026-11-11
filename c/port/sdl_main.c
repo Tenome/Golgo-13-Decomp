@@ -1,15 +1,19 @@
 /* Windowed native port: lifted game logic + c/port/port.c PPU, SDL2 for video, keyboard/gamepad input and (optional) audio.
- *   golgo13_play ROM [--scale N] [--frames N] [--mute]
- * Keys: arrows = D-pad, Z = A, X = B, Enter = Start, Right Shift = Select, Esc = quit. */
+ *   golgo13_play [ROM] [--scale N] [--fullscreen] [--frames N] [--mute]
+ * Built with -DEMBEDDED_ROM (tools/build_port.py --embed) the ROM image is inside the exe and it starts with no arguments at all.
+ * Keys: arrows = D-pad, Z = A, X = B, Enter = Start, Right Shift = Select, F11 = full screen, M = mute, Esc = quit. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
 #include "port.h"
+#ifdef EMBEDDED_ROM
+extern const unsigned char g_embedded_rom[]; extern const unsigned long g_embedded_rom_size;
+#endif
 
 static SDL_Window *win; static SDL_Renderer *ren; static SDL_Texture *tex;
-static unsigned long limit; static Uint64 t0; static unsigned long t0_frame;
+static int fs; static unsigned long limit; static Uint64 t0; static unsigned long t0_frame;
 #include "apu.h"
 
 static uint8_t poll_input(void) {
@@ -27,7 +31,11 @@ static uint8_t poll_input(void) {
     return b;
 }
 static void present(unsigned long frame, const uint32_t (*fb)[256]) {
-    SDL_Event e; while (SDL_PollEvent(&e)) if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) g_quit = 1;
+    SDL_Event e; while (SDL_PollEvent(&e)) {
+        if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) g_quit = 1;
+        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_F11) { fs = !fs; SDL_SetWindowFullscreen(win, fs ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0); }
+        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_m && !e.key.repeat) { g_apu_enabled = !g_apu_enabled; }
+    }
     port_set_pad(poll_input());
     SDL_UpdateTexture(tex, NULL, fb, 256 * 4); SDL_RenderClear(ren); SDL_RenderCopy(ren, tex, NULL, NULL); SDL_RenderPresent(ren);
     if (!t0) { t0 = SDL_GetPerformanceCounter(); t0_frame = frame; }
@@ -37,18 +45,27 @@ static void present(unsigned long frame, const uint32_t (*fb)[256]) {
     if (limit && frame >= limit) g_quit = 1;
 }
 static void SDLCALL audio_cb(void *ud, Uint8 *stream, int len) { (void)ud; apu_fill((int16_t *)stream, len / 2); }
+static void fail(const char *msg) { fprintf(stderr, "%s\n", msg); SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Golgo 13", msg, NULL); }
 int main(int argc, char **argv) {
-    int scale = 3, mute = 0;
-    if (argc < 2) { fprintf(stderr, "usage: %s ROM [--scale N] [--frames N] [--mute]\n", argv[0]); return 2; }
-    for (int i = 2; i < argc; i++) {
+    int scale = 3, mute = 0, fullscreen = 0; const char *rom = NULL;
+    for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "--scale") && i + 1 < argc) scale = atoi(argv[++i]);
         else if (!strcmp(argv[i], "--frames") && i + 1 < argc) limit = strtoul(argv[++i], 0, 10);
         else if (!strcmp(argv[i], "--mute")) mute = 1;
+        else if (!strcmp(argv[i], "--fullscreen")) fullscreen = 1;
+        else if (argv[i][0] != '-') rom = argv[i];
     }
-    int rc = port_load(argv[1]); if (rc) { fprintf(stderr, "cannot load ROM (%d)\n", rc); return 1; }
+    int rc = 1;
+#ifdef EMBEDDED_ROM
+    if (!rom) rc = port_load_memory(g_embedded_rom, g_embedded_rom_size); else
+#endif
+    if (rom) rc = port_load(rom);
+    else { fail("No game data: run this program with a ROM path, or use a build made with --embed."); return 2; }
+    if (rc) { fail("The ROM could not be loaded (it must be the 256 KB Golgo 13 image)."); return 1; }
     SDL_SetMainReady();
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER)) { fprintf(stderr, "SDL: %s\n", SDL_GetError()); return 1; }
-    win = SDL_CreateWindow("Golgo 13 (native port)", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 256 * scale, 240 * scale, SDL_WINDOW_RESIZABLE);
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER)) { fail(SDL_GetError()); return 1; }
+    win = SDL_CreateWindow("Golgo 13", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 256 * scale, 240 * scale, SDL_WINDOW_RESIZABLE | (fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0));
+    fs = fullscreen;
     ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (!ren) ren = SDL_CreateRenderer(win, -1, 0);
     SDL_RenderSetLogicalSize(ren, 256, 240);

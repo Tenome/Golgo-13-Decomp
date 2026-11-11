@@ -65,9 +65,12 @@ Everything not found is data. Later acts have not been played, so some code ther
 ## Playing the native port
 
 ```
-python tools/build_port.py --version us --sdl <SDL2 development folder>      # also needs clang or gcc (--clang PATH)
-build/port/golgo13_play_us.exe orig/golgo13_us.nes                           # arrows, Z = A, X = B, Enter = Start, Right Shift = Select
+python tools/build_port.py --version us --sdl <SDL2 development folder> --embed     # also needs clang or gcc (--clang PATH)
+dist/Golgo13-US.exe                                                                  # double-click: no arguments, no console window
 ```
+`--embed` compiles the ROM from `orig/` into `dist/Golgo13-<VER>.exe` (with `SDL2.dll` beside it), so the game starts directly like any PC game. Those files contain the game data: keep them for yourself and never commit or share them (`dist/` is git-ignored).
+Keys: arrows = D-pad, Z = A, X = B, Enter = Start, Right Shift = Select, F11 = full screen, M = mute, Esc = quit; gamepads work too. Options: `--scale N`, `--fullscreen`, `--mute`, or a ROM path to play another copy.
+Without `--embed` the build produces `build/port/golgo13_play_us.exe`, which needs the ROM path as its argument.
 `build/port/golgo13_port_us.exe ROM --frames N --input route.txt --out DIR --shot-every N --wav out.wav` runs headless and dumps pictures / audio.
 The port runs the lifted game logic on a small PPU/APU/MMC1 host written for this project; it is not an emulator of the original CPU. See `docs/NOTES.md`.
 

@@ -4,6 +4,7 @@
  * the current cycle, which gives mid-frame scroll writes and sprite-0 hits. */
 #pragma once
 #include <stdint.h>
+#include <stddef.h>
 
 extern uint64_t g_cycles;                /* CPU cycles since power-on (3 PPU dots each) */
 extern uint8_t g_chr[0x20000];           /* 128 KB CHR-ROM, filled by port_load */
@@ -11,7 +12,8 @@ extern uint32_t g_frame[240][256];       /* last completed picture, 0x00RRGGBB *
 extern unsigned long g_frames;           /* completed pictures */
 extern int g_quit;
 
-int port_load(const char *rom_path);     /* iNES file -> PRG/CHR; 0 on success */
+int port_load(const char *rom_path);
+int port_load_memory(const uint8_t *rom, size_t n);   /* the same from a ROM image in memory */     /* iNES file -> PRG/CHR; 0 on success */
 void port_poll(void);                    /* interrupt check, called at every loop head of the lifted code */
 void port_set_present(void (*cb)(unsigned long frame, const uint32_t (*fb)[256]));
 void port_run(unsigned long frames);     /* power on and run until `frames` pictures were produced */

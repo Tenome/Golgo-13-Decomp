@@ -215,12 +215,15 @@ void port_poll(void) {
 }
 void port_set_present(void (*cb)(unsigned long, const uint32_t (*)[256])) { present_cb = cb; }
 void port_set_pad(uint8_t b) { g_pad = b; }
+int port_load_memory(const uint8_t *rom, size_t n) {
+    if (n < 16 + 0x40000 || memcmp(rom, "NES", 4)) return 2;
+    if (rom[4] != 8 || rom[5] != 16) return 3;                                     /* this port is for the 128 KB PRG / 128 KB CHR MMC1 board */
+    memcpy(g_prg_store, rom + 16, 0x20000); memcpy(g_chr, rom + 16 + 0x20000, 0x20000); g_prg = g_prg_store; return 0;
+}
 int port_load(const char *path) {
     FILE *f = fopen(path, "rb"); if (!f) return 1;
-    uint8_t hdr[16]; if (fread(hdr, 1, 16, f) != 16 || memcmp(hdr, "NES\x1A", 4)) { fclose(f); return 2; }
-    if (hdr[4] != 8 || hdr[5] != 16) { fclose(f); return 3; }                      /* this port is for the 128 KB PRG / 128 KB CHR MMC1 board */
-    if (fread(g_prg_store, 1, 0x20000, f) != 0x20000 || fread(g_chr, 1, 0x20000, f) != 0x20000) { fclose(f); return 4; }
-    fclose(f); g_prg = g_prg_store; return 0;
+    static uint8_t buf[16 + 0x40000 + 0x2000]; size_t n = fread(buf, 1, sizeof buf, f); fclose(f);
+    return port_load_memory(buf, n);
 }
 void port_run(unsigned long frames) {
     (void)frames;
