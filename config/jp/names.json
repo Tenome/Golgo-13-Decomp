@@ -587,5 +587,12 @@
  "5:91DF": "AnimateSkylineWindows",
  "5:9283": "AnimateHelicopterSprite",
  "5:8D23": "DrawOfficeSpeakerSprites",
- "5:8BC5": "AnimateOfficeSpeaker"
+ "5:8BC5": "AnimateOfficeSpeaker",
+ "DF44": "RunEndScreen",
+ "E018": "SelectEndScreenPhase",
+ "E05E": "FadeEndScreen",
+ "E079": "InitEndScreenSprites",
+ "DF12": "DrawGameOverSprite",
+ "FEA7": "StepSequenceForward",
+ "FEC1": "StepSequenceBackward"
 }

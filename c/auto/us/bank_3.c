@@ -678,7 +678,7 @@ L8961: BUDGET();
     push16(0x8963); Sub_B3_8A54(); UNW(); ret_check(0x8963);                             /* $8961 jsr */
     LDA(0x01);                                                                           /* $8964 lda */
     STA(0x0418);                                                                         /* $8966 sta */
-    { Sub_B3_8969(); return; }
+    { TextBoxWaitForA(); return; }
 L8985: BUDGET();
     INC_M(0x041B);                                                                       /* $8985 inc */
     LDY(rd(0x041B));                                                                     /* $8988 ldy */
@@ -730,7 +730,7 @@ L8A19: BUDGET();
     LDA(0x02);                                                                           /* $8A19 lda */
     STA(0x0418);                                                                         /* $8A1B sta */
     push16(0x8A20); Sub_B3_8A54(); UNW(); ret_check(0x8A20);                             /* $8A1E jsr */
-    { Sub_B3_8A21(); return; }
+    { TextBoxWaitForAAdvance(); return; }
   }
 L8A3A: BUDGET();
   RTS_RET(sp0);                                                                          /* $8A3A rts */
@@ -775,7 +775,7 @@ L8D0C: BUDGET();
   goto L8A3A;                                                                            /* $8D59 jmp */
 }
 
-void Sub_B3_8969(void) {  /* $8969 bank 3 */
+void TextBoxWaitForA(void) {  /* $8969 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyHeld1));                                                                     /* $8969 lda */
   AND(0x01);                                                                             /* $896C and */
@@ -825,7 +825,7 @@ L8A3A: BUDGET();
   RTS_RET(sp0);                                                                          /* $8A3A rts */
 }
 
-void Sub_B3_8A21(void) {  /* $8A21 bank 3 */
+void TextBoxWaitForAAdvance(void) {  /* $8A21 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyHeld1));                                                                     /* $8A21 lda */
   AND(0x01);                                                                             /* $8A24 and */

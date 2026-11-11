@@ -1444,7 +1444,7 @@ Loc_CAD0:
   jsr DoOamDma                 ; $CAD4
   jsr UploadPalette            ; $CAD7
   jsr ApplyScroll              ; $CADA
-  jsr Sub_DF44                 ; $CADD
+  jsr RunEndScreen             ; $CADD
   jsr DrawHud                  ; $CAE0
   jmp Loc_CB39                 ; $CAE3
 Loc_CAE6:
@@ -3559,7 +3559,7 @@ Loc_DEDF:
   lda #$00                     ; $DEE3
   sta z:$05                    ; $DEE5
   jsr DrawPlayerPoseOverlay    ; $DEE7
-  jsr Sub_DF12                 ; $DEEA
+  jsr DrawGameOverSprite       ; $DEEA
   lda z:PaletteDirty           ; $DEED
   cmp #$02                     ; $DEEF
   bne Loc_DEF8                 ; $DEF1
@@ -3581,7 +3581,7 @@ EndGameOverSequence:
   lda #$1F                     ; $DF0D
   sta z:TransitionTarget       ; $DF0F
   rts                          ; $DF11
-Sub_DF12:
+DrawGameOverSprite:
   lda $0139                    ; $DF12
   bne Loc_DF3D                 ; $DF15
   lda z:PaletteDirty           ; $DF17
@@ -3607,10 +3607,10 @@ Loc_DF3E:
   lda #$F1                     ; $DF3E
   sta $0139                    ; $DF40
   rts                          ; $DF43
-Sub_DF44:
+RunEndScreen:
   lda z:TransitionTarget       ; $DF44
   bne Loc_DF4B                 ; $DF46
-  jsr Sub_E079                 ; $DF48
+  jsr InitEndScreenSprites     ; $DF48
 Loc_DF4B:
   lda z:FrameCounter           ; $DF4B
   and #$07                     ; $DF4D
@@ -3650,9 +3650,9 @@ Loc_DF81:
   inx                          ; $DF87
   cpx #$08                     ; $DF88
   bcc Loc_DF81                 ; $DF8A
-  jsr Sub_E018                 ; $DF8C
+  jsr SelectEndScreenPhase     ; $DF8C
   jsr HealPlayerDuringTransition ; $DF8F
-  jsr Sub_E05E                 ; $DF92
+  jsr FadeEndScreen            ; $DF92
   ldx #$00                     ; $DF95
 Loc_DF97:
   lda Data_E014,x              ; $DF97
@@ -3672,7 +3672,7 @@ Data_E014:
   .incbin "prg_bank_7.bin", $2014, $1  ; $E014
 Data_E015:
   .incbin "prg_bank_7.bin", $2015, $3  ; $E015
-Sub_E018:
+SelectEndScreenPhase:
   ldx #$00                     ; $E018
   lda z:TransitionTarget       ; $E01A
   cmp #$20                     ; $E01C
@@ -3713,7 +3713,7 @@ HealPlayerDuringTransition:
   sta z:PlayerLifeLo           ; $E05B
 Loc_E05D:
   rts                          ; $E05D
-Sub_E05E:
+FadeEndScreen:
   lda z:TransitionTarget       ; $E05E
   cmp #$50                     ; $E060
   bcc Loc_E078                 ; $E062
@@ -3728,7 +3728,7 @@ Loc_E06E:
   jsr FadePaletteStep          ; $E075
 Loc_E078:
   rts                          ; $E078
-Sub_E079:
+InitEndScreenSprites:
   ldx #$00                     ; $E079
   lda #$FD                     ; $E07B
 Loc_E07D:
@@ -6182,12 +6182,12 @@ Loc_FDC1:
   beq Loc_FDF1                 ; $FDDD
   cmp #$10                     ; $FDDF
   bne Loc_FDE9                 ; $FDE1
-  jsr Sub_FEA7                 ; $FDE3
+  jsr StepSequenceForward      ; $FDE3
   jmp Loc_FDF1                 ; $FDE6
 Loc_FDE9:
   lda $0107                    ; $FDE9
   beq Loc_FDF1                 ; $FDEC
-  jsr Sub_FEC1                 ; $FDEE
+  jsr StepSequenceBackward     ; $FDEE
 Loc_FDF1:
   lda $0107                    ; $FDF1
   and #$0F                     ; $FDF4
@@ -6258,7 +6258,7 @@ Data_FE8D:
   .incbin "prg_bank_7.bin", $3E8D, $1  ; $FE8D
 Data_FE8E:
   .incbin "prg_bank_7.bin", $3E8E, $19  ; $FE8E
-Sub_FEA7:
+StepSequenceForward:
   ldx #$00                     ; $FEA7
 Loc_FEA9:
   lda Data_FE8C,x              ; $FEA9
@@ -6275,7 +6275,7 @@ Loc_FEBD:
   sta $0107                    ; $FEBD
 Loc_FEC0:
   rts                          ; $FEC0
-Sub_FEC1:
+StepSequenceBackward:
   ldx #$00                     ; $FEC1
 Loc_FEC3:
   lda Data_FE8C,x              ; $FEC3

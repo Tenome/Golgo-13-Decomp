@@ -110,12 +110,12 @@ static int fixed_bank(uint16_t a) {
     case 0xDE15: RunTransitionAnimationLong(); return 1;
     case 0xDED0: RunGameOverAnimation(); return 1;
     case 0xDF02: EndGameOverSequence(); return 1;
-    case 0xDF12: Sub_DF12(); return 1;
-    case 0xDF44: Sub_DF44(); return 1;
-    case 0xE018: Sub_E018(); return 1;
+    case 0xDF12: DrawGameOverSprite(); return 1;
+    case 0xDF44: RunEndScreen(); return 1;
+    case 0xE018: SelectEndScreenPhase(); return 1;
     case 0xE042: HealPlayerDuringTransition(); return 1;
-    case 0xE05E: Sub_E05E(); return 1;
-    case 0xE079: Sub_E079(); return 1;
+    case 0xE05E: FadeEndScreen(); return 1;
+    case 0xE079: InitEndScreenSprites(); return 1;
     case 0xE089: CheckExitTriggers(); return 1;
     case 0xE17D: LoadTransitionFromList(); return 1;
     case 0xE5FD: CheckStartPause(); return 1;
@@ -169,8 +169,8 @@ static int fixed_bank(uint16_t a) {
     case 0xFCBD: SetBulletHitbox2(); return 1;
     case 0xFD18: UpdatePlayerHitboxC(); return 1;
     case 0xFD61: Sub_FD61(); return 1;
-    case 0xFEA7: Sub_FEA7(); return 1;
-    case 0xFEC1: Sub_FEC1(); return 1;
+    case 0xFEA7: StepSequenceForward(); return 1;
+    case 0xFEC1: StepSequenceBackward(); return 1;
     }
     return 0;
 }
@@ -343,9 +343,9 @@ static int bank3(uint16_t a) {
     case 0x8825: QueueMenuPpuListB(); return 1;
     case 0x882D: QueueMenuPpuListC(); return 1;
     case 0x8866: Sub_B3_8866(); return 1;
-    case 0x8969: Sub_B3_8969(); return 1;
+    case 0x8969: TextBoxWaitForA(); return 1;
     case 0x89DE: Sub_B3_89DE(); return 1;
-    case 0x8A21: Sub_B3_8A21(); return 1;
+    case 0x8A21: TextBoxWaitForAAdvance(); return 1;
     case 0x8A3B: Sub_B3_8A3B(); return 1;
     case 0x8A54: Sub_B3_8A54(); return 1;
     case 0x8A69: Sub_B3_8A69(); return 1;

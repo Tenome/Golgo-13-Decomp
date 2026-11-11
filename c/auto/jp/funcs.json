@@ -10879,7 +10879,7 @@
    ]
   ]
  },
- "Sub_DF12": {
+ "DrawGameOverSprite": {
   "addr": 57106,
   "bank": 7,
   "instrs": 23,
@@ -10892,7 +10892,7 @@
    ]
   ]
  },
- "Sub_DF44": {
+ "RunEndScreen": {
   "addr": 57156,
   "bank": 7,
   "instrs": 45,
@@ -10905,7 +10905,7 @@
    ]
   ]
  },
- "Sub_E018": {
+ "SelectEndScreenPhase": {
   "addr": 57368,
   "bank": 7,
   "instrs": 20,
@@ -10931,7 +10931,7 @@
    ]
   ]
  },
- "Sub_E05E": {
+ "FadeEndScreen": {
   "addr": 57438,
   "bank": 7,
   "instrs": 12,
@@ -10944,7 +10944,7 @@
    ]
   ]
  },
- "Sub_E079": {
+ "InitEndScreenSprites": {
   "addr": 57465,
   "bank": 7,
   "instrs": 10,
@@ -11671,7 +11671,7 @@
    ]
   ]
  },
- "Sub_FEA7": {
+ "StepSequenceForward": {
   "addr": 65191,
   "bank": 7,
   "instrs": 12,
@@ -11684,7 +11684,7 @@
    ]
   ]
  },
- "Sub_FEC1": {
+ "StepSequenceBackward": {
   "addr": 65217,
   "bank": 7,
   "instrs": 13,

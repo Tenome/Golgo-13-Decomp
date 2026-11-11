@@ -566,7 +566,7 @@ Loc_B3_8961:
   jsr Sub_B3_8A54              ; $8961
   lda #$01                     ; $8964
   sta $0418                    ; $8966
-Sub_B3_8969:
+TextBoxWaitForA:
   lda JoyHeld1                 ; $8969
   and #$01                     ; $896C
   bne Loc_B3_8976              ; $896E
@@ -655,7 +655,7 @@ Loc_B3_8A19:
   lda #$02                     ; $8A19
   sta $0418                    ; $8A1B
   jsr Sub_B3_8A54              ; $8A1E
-Sub_B3_8A21:
+TextBoxWaitForAAdvance:
   lda JoyHeld1                 ; $8A21
   and #$01                     ; $8A24
   bne Loc_B3_8A2E              ; $8A26

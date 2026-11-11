@@ -684,5 +684,14 @@
  "5:92DB": "AnimateHelicopterSprite",
  "5:8E22": "DrawOfficeSpeakerSprites",
  "5:8CC4": "AnimateOfficeSpeaker",
- "1:AB27": "ProcessItemObjectTimers"
+ "1:AB27": "ProcessItemObjectTimers",
+ "DF44": "RunEndScreen",
+ "E018": "SelectEndScreenPhase",
+ "E05E": "FadeEndScreen",
+ "E079": "InitEndScreenSprites",
+ "DF12": "DrawGameOverSprite",
+ "FEA7": "StepSequenceForward",
+ "FEC1": "StepSequenceBackward",
+ "3:8969": "TextBoxWaitForA",
+ "3:8A21": "TextBoxWaitForAAdvance"
 }
