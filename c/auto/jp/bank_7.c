@@ -3588,11 +3588,11 @@ LDC0A: BUDGET();
   if (R.a < 0x90) {                                                                      /* $DC0C bcs */
     SEC();                                                                               /* $DC0E sec */
     sbc(0x78);                                                                           /* $DC0F sbc */
-    STA(0x0501);                                                                         /* $DC11 sta */
+    STA(MazeIndex);                                                                      /* $DC11 sta */
     LDA(rd(0x2A));                                                                       /* $DC14 lda */
     STA(SceneState);                                                                     /* $DC16 sta */
     LDA(0x00);                                                                           /* $DC19 lda */
-    STA(0x0502);                                                                         /* $DC1B sta */
+    STA(PpuOpRequest);                                                                   /* $DC1B sta */
     LDA(0x04);                                                                           /* $DC1E lda */
     STA(MmcPrgShadow);                                                                   /* $DC20 sta */
     RTS_RET(sp0);                                                                        /* $DC22 rts */
@@ -4297,11 +4297,11 @@ LE6D1: BUDGET();
   }
   SEC();                                                                                 /* $E6EF sec */
   sbc(0x78);                                                                             /* $E6F0 sbc */
-  STA(0x0501);                                                                           /* $E6F2 sta */
+  STA(MazeIndex);                                                                        /* $E6F2 sta */
   LDA(0x03);                                                                             /* $E6F5 lda */
   STA(SceneState);                                                                       /* $E6F7 sta */
   LDA(0x00);                                                                             /* $E6FA lda */
-  STA(0x0502);                                                                           /* $E6FC sta */
+  STA(PpuOpRequest);                                                                     /* $E6FC sta */
   LDA(0x04);                                                                             /* $E6FF lda */
   LDX(0x20);                                                                             /* $E701 ldx */
 LE703: BUDGET();
@@ -4939,11 +4939,17 @@ void UpdatePlayerSideView(void) {  /* $EF19 bank 7 */
   LDA(rd(PaletteDirty));                                                                 /* $EF19 lda */
   if (R.a == 0) {                                                                        /* $EF1B bne */
     push16(0xEF1F); Sub_EF2D(); UNW(); ret_check(0xEF1F);                                /* $EF1D jsr */
-    push16(0xEF22); SelectPlayerSpriteFrame(); UNW(); ret_check(0xEF22);                 /* $EF20 jsr */
-    push16(0xEF25); Sub_EFA9(); UNW(); ret_check(0xEF25);                                /* $EF23 jsr */
-    push16(0xEF28); Sub_EFAA(); UNW(); ret_check(0xEF28);                                /* $EF26 jsr */
-    push16(0xEF2B); FireBulletSideView(); UNW(); ret_check(0xEF2B);                      /* $EF29 jsr */
+    { Sub_EF20(); return; }
   }
+  RTS_RET(sp0);                                                                          /* $EF2C rts */
+}
+
+void Sub_EF20(void) {  /* $EF20 bank 7 */
+  uint8_t sp0 = R.sp;
+  push16(0xEF22); SelectPlayerSpriteFrame(); UNW(); ret_check(0xEF22);                   /* $EF20 jsr */
+  push16(0xEF25); Sub_EFA9(); UNW(); ret_check(0xEF25);                                  /* $EF23 jsr */
+  push16(0xEF28); Sub_EFAA(); UNW(); ret_check(0xEF28);                                  /* $EF26 jsr */
+  push16(0xEF2B); FireBulletSideView(); UNW(); ret_check(0xEF2B);                        /* $EF29 jsr */
   RTS_RET(sp0);                                                                          /* $EF2C rts */
 }
 

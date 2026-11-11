@@ -7,7 +7,8 @@
 #include "port.h"
 #include "apu.h"
 
-typedef struct { unsigned long frame; uint8_t buttons; } Step;
+extern uint8_t g_ram[];
+typedef struct { unsigned long frame; uint8_t buttons; int poke_addr, poke_val; } Step;      /* poke_addr >= 0: write RAM instead of changing buttons (route line `<frame> POKE addr val`, hex) */
 static Step steps[100000]; static int nsteps, next_step;
 static unsigned long limit = 600, shot_every; static const char *outdir; static FILE *wav; static unsigned wav_samples;
 
@@ -16,14 +17,15 @@ static int load_route(const char *path) {
     while (fgets(line, sizeof line, f) && nsteps < 100000) {
         unsigned long fr; char btn[200] = "-"; if (sscanf(line, "%lu %199[^\r\n]", &fr, btn) < 1) continue;
         uint8_t b = 0;
+        if (!strncmp(btn, "POKE", 4)) { unsigned ad, vl; if (sscanf(btn + 4, "%x %x", &ad, &vl) == 2) { steps[nsteps].frame = fr; steps[nsteps].poke_addr = (int)ad; steps[nsteps].poke_val = (int)vl; nsteps++; } continue; }
         static const struct { const char *n; uint8_t v; } map[] = {{"A", 1}, {"B", 2}, {"SELECT", 4}, {"START", 8}, {"UP", 16}, {"DOWN", 32}, {"LEFT", 64}, {"RIGHT", 128}};
         for (int i = 0; i < 8; i++) { const char *p = strstr(btn, map[i].n); if (p && (p == btn || p[-1] == '+') && (p[strlen(map[i].n)] == 0 || p[strlen(map[i].n)] == '+')) b |= map[i].v; }
-        steps[nsteps].frame = fr; steps[nsteps].buttons = b; nsteps++;
+        steps[nsteps].frame = fr; steps[nsteps].buttons = b; steps[nsteps].poke_addr = -1; nsteps++;
     }
     fclose(f); return 0;
 }
 static void present(unsigned long frame, const uint32_t (*fb)[256]) {
-    while (next_step < nsteps && steps[next_step].frame <= frame) port_set_pad(steps[next_step++].buttons);
+    while (next_step < nsteps && steps[next_step].frame <= frame) { if (steps[next_step].poke_addr >= 0) g_ram[steps[next_step].poke_addr & 0x7FF] = (uint8_t)steps[next_step].poke_val; else port_set_pad(steps[next_step].buttons); next_step++; }
     if (outdir && shot_every && frame % shot_every == 0) {
         char path[512]; snprintf(path, sizeof path, "%s/frame_%06lu.ppm", outdir, frame);
         FILE *f = fopen(path, "wb");

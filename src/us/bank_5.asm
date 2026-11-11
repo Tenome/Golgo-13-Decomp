@@ -6,7 +6,9 @@
   lda #$80                     ; $8001
   sta Data_B5_BFFD             ; $8003
   jmp Reset                    ; $8006
-  .incbin "prg_bank_5.bin", $0009, $4  ; $8009
+  .incbin "prg_bank_5.bin", $0009, $1  ; $8009
+Sub_B5_800A:
+  jmp Loc_B5_BD80              ; $800A
 Sub_B5_800D:
   jmp Loc_B5_BDF9              ; $800D
 Bank5Nmi:
@@ -1822,14 +1824,14 @@ Sub_B5_9438:
   adc $0503                    ; $9440
   and #$F0                     ; $9443
   ora JoyHeld1                 ; $9445
-  ldx $0502                    ; $9448
+  ldx PpuOpRequest             ; $9448
   asl a                        ; $944B
   bcc Loc_B5_9451              ; $944C
-  dec $0501                    ; $944E
+  dec MazeIndex                ; $944E
 Loc_B5_9451:
   asl a                        ; $9451
   bcc Loc_B5_9457              ; $9452
-  inc $0501                    ; $9454
+  inc MazeIndex                ; $9454
 Loc_B5_9457:
   asl a                        ; $9457
   bcc Loc_B5_945F              ; $9458
@@ -1843,7 +1845,7 @@ Loc_B5_945F:
   beq Loc_B5_9467              ; $9464
   inx                          ; $9466
 Loc_B5_9467:
-  stx $0502                    ; $9467
+  stx PpuOpRequest             ; $9467
   lda JoyNew1                  ; $946A
   and #$02                     ; $946D
   bne Loc_B5_9472              ; $946F
@@ -1853,7 +1855,7 @@ Loc_B5_9472:
   bcc Loc_B5_948B              ; $9474
   cpx #$74                     ; $9476
   bcs Loc_B5_948B              ; $9478
-  ldy $0501                    ; $947A
+  ldy MazeIndex                ; $947A
   cpy #$70                     ; $947D
   bcc Loc_B5_948B              ; $947F
   cpy #$78                     ; $9481
@@ -1886,9 +1888,9 @@ Loc_B5_94B3:
   dey                          ; $94B9
   bpl Loc_B5_94B3              ; $94BA
   ldy #$00                     ; $94BC
-  sty $0501                    ; $94BE
+  sty MazeIndex                ; $94BE
   ldy #$D0                     ; $94C1
-  sty $0502                    ; $94C3
+  sty PpuOpRequest             ; $94C3
   rts                          ; $94C6
 Data_B5_94C7:
   .incbin "prg_bank_5.bin", $14C7, $20  ; $94C7
@@ -2034,9 +2036,9 @@ Loc_B5_97B2:
   lda #$12                     ; $97BB
   sta SceneTimer               ; $97BD
   lda #$C0                     ; $97C0
-  sta $0502                    ; $97C2
+  sta PpuOpRequest             ; $97C2
   lda #$28                     ; $97C5
-  sta $0501                    ; $97C7
+  sta MazeIndex                ; $97C7
   lda #$00                     ; $97CA
   sta $0510                    ; $97CC
   jsr Sub_B5_9681              ; $97CF
@@ -2140,7 +2142,7 @@ Sub_B5_997B:
 Loc_B5_997E:
   lda Data_B5_99AA,y           ; $997E
   clc                          ; $9981
-  adc $0502                    ; $9982
+  adc PpuOpRequest             ; $9982
   sta OamBuffer,x              ; $9985
   inx                          ; $9988
   iny                          ; $9989
@@ -2153,7 +2155,7 @@ Loc_B5_997E:
   inx                          ; $9997
   lda Data_B5_99AA,y           ; $9998
   clc                          ; $999B
-  adc $0501                    ; $999C
+  adc MazeIndex                ; $999C
   sta OamBuffer,x              ; $999F
   inx                          ; $99A2
   iny                          ; $99A3
@@ -3014,8 +3016,26 @@ Data_B5_A5A6:
   .incbin "prg_bank_5.bin", $2DA6, $400  ; $ADA6
   .incbin "prg_bank_5.bin", $31A6, $400  ; $B1A6
   .incbin "prg_bank_5.bin", $35A6, $400  ; $B5A6
-  .incbin "prg_bank_5.bin", $39A6, $400  ; $B9A6
-  .incbin "prg_bank_5.bin", $3DA6, $53  ; $BDA6
+  .incbin "prg_bank_5.bin", $39A6, $3DA  ; $B9A6
+Loc_B5_BD80:
+  jsr ProcessPpuUpdateList     ; $BD80
+  .addr Data_B5_BD98  ; $BD83 inline pointer (data after a JSR)
+  lda PlayerFacing             ; $BD85
+  and #$02                     ; $BD88
+  bne Loc_B5_BD92              ; $BD8A
+  jsr ProcessPpuUpdateList     ; $BD8C
+  .addr Data_B5_BDED  ; $BD8F inline pointer (data after a JSR)
+  rts                          ; $BD91
+Loc_B5_BD92:
+  jsr ProcessPpuUpdateList     ; $BD92
+  .addr Data_B5_BDE1  ; $BD95 inline pointer (data after a JSR)
+  rts                          ; $BD97
+Data_B5_BD98:
+  .incbin "prg_bank_5.bin", $3D98, $49  ; $BD98
+Data_B5_BDE1:
+  .incbin "prg_bank_5.bin", $3DE1, $C  ; $BDE1
+Data_B5_BDED:
+  .incbin "prg_bank_5.bin", $3DED, $C  ; $BDED
 Loc_B5_BDF9:
   lda z:PpuCtrlShadow          ; $BDF9
   ora #$02                     ; $BDFB

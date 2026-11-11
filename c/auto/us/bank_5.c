@@ -11,6 +11,21 @@ void Loc_B5_8000(void) {  /* $8000 bank 5 */
   { Reset(); return; }                                                                   /* $8006 jmp */
 }
 
+void Sub_B5_800A(void) {  /* $800A bank 5 */
+  uint8_t sp0 = R.sp;
+  goto LBD80;                                                                            /* $800A jmp */
+LBD80: BUDGET();
+  push16(0xBD82); ProcessPpuUpdateList(); UNW(); ret_check(0xBD84);                      /* $BD80 jsr */
+  LDA(rd(PlayerFacing));                                                                 /* $BD85 lda */
+  AND(0x02);                                                                             /* $BD88 and */
+  if (R.a == 0) {                                                                        /* $BD8A bne */
+    push16(0xBD8E); ProcessPpuUpdateList(); UNW(); ret_check(0xBD90);                    /* $BD8C jsr */
+    RTS_RET(sp0);                                                                        /* $BD91 rts */
+  }
+  push16(0xBD94); ProcessPpuUpdateList(); UNW(); ret_check(0xBD96);                      /* $BD92 jsr */
+  RTS_RET(sp0);                                                                          /* $BD97 rts */
+}
+
 void Sub_B5_800D(void) {  /* $800D bank 5 */
   uint8_t sp0 = R.sp;
   goto LBDF9;                                                                            /* $800D jmp */
@@ -1100,9 +1115,9 @@ L948C: BUDGET();
     DEY();                                                                               /* $94B9 dey */
   } while (!(R.y & 0x80));                                                               /* $94BA bpl */
   LDY(0x00);                                                                             /* $94BC ldy */
-  STY(0x0501);                                                                           /* $94BE sty */
+  STY(MazeIndex);                                                                        /* $94BE sty */
   LDY(0xD0);                                                                             /* $94C1 ldy */
-  STY(0x0502);                                                                           /* $94C3 sty */
+  STY(PpuOpRequest);                                                                     /* $94C3 sty */
   RTS_RET(sp0);                                                                          /* $94C6 rts */
 }
 
@@ -1385,9 +1400,9 @@ L9785: BUDGET();
   LDA(0x12);                                                                             /* $97BB lda */
   STA(SceneTimer);                                                                       /* $97BD sta */
   LDA(0xC0);                                                                             /* $97C0 lda */
-  STA(0x0502);                                                                           /* $97C2 sta */
+  STA(PpuOpRequest);                                                                     /* $97C2 sta */
   LDA(0x28);                                                                             /* $97C5 lda */
-  STA(0x0501);                                                                           /* $97C7 sta */
+  STA(MazeIndex);                                                                        /* $97C7 sta */
   LDA(0x00);                                                                             /* $97CA lda */
   STA(0x0510);                                                                           /* $97CC sta */
   push16(0x97D1); Sub_B5_9681(); UNW(); ret_check(0x97D1);                               /* $97CF jsr */
@@ -2766,14 +2781,14 @@ void Sub_B5_9438(void) {  /* $9438 bank 5 */
   adc(rd(0x0503));                                                                       /* $9440 adc */
   AND(0xF0);                                                                             /* $9443 and */
   ORA(rd(JoyHeld1));                                                                     /* $9445 ora */
-  LDX(rd(0x0502));                                                                       /* $9448 ldx */
+  LDX(rd(PpuOpRequest));                                                                 /* $9448 ldx */
   ASL_A();                                                                               /* $944B asl */
   if (R.c) {                                                                             /* $944C bcc */
-    DEC_M(0x0501);                                                                       /* $944E dec */
+    DEC_M(MazeIndex);                                                                    /* $944E dec */
   }
   ASL_A();                                                                               /* $9451 asl */
   if (R.c) {                                                                             /* $9452 bcc */
-    INC_M(0x0501);                                                                       /* $9454 inc */
+    INC_M(MazeIndex);                                                                    /* $9454 inc */
   }
   ASL_A();                                                                               /* $9457 asl */
   if (R.c) {                                                                             /* $9458 bcc */
@@ -2789,7 +2804,7 @@ L945F: BUDGET();
     INX();                                                                               /* $9466 inx */
   }
 L9467: BUDGET();
-  STX(0x0502);                                                                           /* $9467 stx */
+  STX(PpuOpRequest);                                                                     /* $9467 stx */
   LDA(rd(JoyNew1));                                                                      /* $946A lda */
   AND(0x02);                                                                             /* $946D and */
   if (R.a == 0) {                                                                        /* $946F bne */
@@ -2799,7 +2814,7 @@ L9467: BUDGET();
   if (R.x >= 0x6C) {                                                                     /* $9474 bcc */
     cmp8(R.x, 0x74);                                                                     /* $9476 cpx */
     if (R.x >= 0x74) goto L948B;                                                         /* $9478 bcs */
-    LDY(rd(0x0501));                                                                     /* $947A ldy */
+    LDY(rd(MazeIndex));                                                                  /* $947A ldy */
     cmp8(R.y, 0x70);                                                                     /* $947D cpy */
     if (R.y < 0x70) goto L948B;                                                          /* $947F bcc */
     cmp8(R.y, 0x78);                                                                     /* $9481 cpy */
@@ -3023,7 +3038,7 @@ void Sub_B5_997B(void) {  /* $997B bank 5 */
   do { BUDGET();
     LDA(rd((uint16_t)(0x99AA + R.y)));                                                   /* $997E lda */
     CLC();                                                                               /* $9981 clc */
-    adc(rd(0x0502));                                                                     /* $9982 adc */
+    adc(rd(PpuOpRequest));                                                               /* $9982 adc */
     STA((uint16_t)(OamBuffer + R.x));                                                    /* $9985 sta */
     INX();                                                                               /* $9988 inx */
     INY();                                                                               /* $9989 iny */
@@ -3036,7 +3051,7 @@ void Sub_B5_997B(void) {  /* $997B bank 5 */
     INX();                                                                               /* $9997 inx */
     LDA(rd((uint16_t)(0x99AA + R.y)));                                                   /* $9998 lda */
     CLC();                                                                               /* $999B clc */
-    adc(rd(0x0501));                                                                     /* $999C adc */
+    adc(rd(MazeIndex));                                                                  /* $999C adc */
     STA((uint16_t)(OamBuffer + R.x));                                                    /* $999F sta */
     INX();                                                                               /* $99A2 inx */
     INY();                                                                               /* $99A3 iny */

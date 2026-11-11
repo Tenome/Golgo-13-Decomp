@@ -989,9 +989,9 @@ L9434: BUDGET();
     DEY();                                                                               /* $9461 dey */
   } while (!(R.y & 0x80));                                                               /* $9462 bpl */
   LDY(0x00);                                                                             /* $9464 ldy */
-  STY(0x0501);                                                                           /* $9466 sty */
+  STY(MazeIndex);                                                                        /* $9466 sty */
   LDY(0xD0);                                                                             /* $9469 ldy */
-  STY(0x0502);                                                                           /* $946B sty */
+  STY(PpuOpRequest);                                                                     /* $946B sty */
   RTS_RET(sp0);                                                                          /* $946E rts */
 }
 
@@ -1274,9 +1274,9 @@ L970C: BUDGET();
   LDA(0x12);                                                                             /* $9742 lda */
   STA(SceneTimer);                                                                       /* $9744 sta */
   LDA(0xC0);                                                                             /* $9747 lda */
-  STA(0x0502);                                                                           /* $9749 sta */
+  STA(PpuOpRequest);                                                                     /* $9749 sta */
   LDA(0x28);                                                                             /* $974C lda */
-  STA(0x0501);                                                                           /* $974E sta */
+  STA(MazeIndex);                                                                        /* $974E sta */
   LDA(0x00);                                                                             /* $9751 lda */
   STA(0x0510);                                                                           /* $9753 sta */
   push16(0x9758); Sub_B5_9608(); UNW(); ret_check(0x9758);                               /* $9756 jsr */
@@ -2817,14 +2817,14 @@ void Sub_B5_93E0(void) {  /* $93E0 bank 5 */
   adc(rd(0x0503));                                                                       /* $93E8 adc */
   AND(0xF0);                                                                             /* $93EB and */
   ORA(rd(JoyHeld1));                                                                     /* $93ED ora */
-  LDX(rd(0x0502));                                                                       /* $93F0 ldx */
+  LDX(rd(PpuOpRequest));                                                                 /* $93F0 ldx */
   ASL_A();                                                                               /* $93F3 asl */
   if (R.c) {                                                                             /* $93F4 bcc */
-    DEC_M(0x0501);                                                                       /* $93F6 dec */
+    DEC_M(MazeIndex);                                                                    /* $93F6 dec */
   }
   ASL_A();                                                                               /* $93F9 asl */
   if (R.c) {                                                                             /* $93FA bcc */
-    INC_M(0x0501);                                                                       /* $93FC inc */
+    INC_M(MazeIndex);                                                                    /* $93FC inc */
   }
   ASL_A();                                                                               /* $93FF asl */
   if (R.c) {                                                                             /* $9400 bcc */
@@ -2840,7 +2840,7 @@ L9407: BUDGET();
     INX();                                                                               /* $940E inx */
   }
 L940F: BUDGET();
-  STX(0x0502);                                                                           /* $940F stx */
+  STX(PpuOpRequest);                                                                     /* $940F stx */
   LDA(rd(JoyNew1));                                                                      /* $9412 lda */
   AND(0x02);                                                                             /* $9415 and */
   if (R.a == 0) {                                                                        /* $9417 bne */
@@ -2850,7 +2850,7 @@ L940F: BUDGET();
   if (R.x >= 0x6C) {                                                                     /* $941C bcc */
     cmp8(R.x, 0x74);                                                                     /* $941E cpx */
     if (R.x >= 0x74) goto L9433;                                                         /* $9420 bcs */
-    LDY(rd(0x0501));                                                                     /* $9422 ldy */
+    LDY(rd(MazeIndex));                                                                  /* $9422 ldy */
     cmp8(R.y, 0x70);                                                                     /* $9425 cpy */
     if (R.y < 0x70) goto L9433;                                                          /* $9427 bcc */
     cmp8(R.y, 0x78);                                                                     /* $9429 cpy */
@@ -3074,7 +3074,7 @@ void Sub_B5_9902(void) {  /* $9902 bank 5 */
   do { BUDGET();
     LDA(rd((uint16_t)(0x9931 + R.y)));                                                   /* $9905 lda */
     CLC();                                                                               /* $9908 clc */
-    adc(rd(0x0502));                                                                     /* $9909 adc */
+    adc(rd(PpuOpRequest));                                                               /* $9909 adc */
     STA((uint16_t)(OamBuffer + R.x));                                                    /* $990C sta */
     INX();                                                                               /* $990F inx */
     INY();                                                                               /* $9910 iny */
@@ -3087,7 +3087,7 @@ void Sub_B5_9902(void) {  /* $9902 bank 5 */
     INX();                                                                               /* $991E inx */
     LDA(rd((uint16_t)(0x9931 + R.y)));                                                   /* $991F lda */
     CLC();                                                                               /* $9922 clc */
-    adc(rd(0x0501));                                                                     /* $9923 adc */
+    adc(rd(MazeIndex));                                                                  /* $9923 adc */
     STA((uint16_t)(OamBuffer + R.x));                                                    /* $9926 sta */
     INX();                                                                               /* $9929 inx */
     INY();                                                                               /* $992A iny */

@@ -62,6 +62,14 @@
 #define ObjectCount 0x0301
 #define ObjectTable 0x0310
 #define SceneState 0x0500
+#define MazeIndex 0x0501
+#define PpuOpRequest 0x0502
+#define MazeMapPtrLo 0x0514
+#define MazeMapPtrHi 0x0515
+#define MazeWidth 0x0516
+#define PlayerCellX 0x0518
+#define PlayerCellY 0x0519
+#define PlayerFacing 0x051A
 #define SceneTimer 0x0526
 #define AnimCounter 0x052C
 #define SceneSubState 0x052D

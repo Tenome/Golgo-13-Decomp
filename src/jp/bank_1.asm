@@ -779,7 +779,7 @@ Loc_B1_8F51:
   sta z:PaletteDirty           ; $8F56
   rts                          ; $8F58
 Bank1State_02:
-  jsr Sub_B1_8F8C              ; $8F59  [heuristic code]
+  jsr Sub_B1_8F8C              ; $8F59
   ldy #$08                     ; $8F5C
   lda (Tmp00),y                ; $8F5E
   and #$3F                     ; $8F60
@@ -1212,7 +1212,7 @@ Sub_B1_946C:
 Loc_B1_94BC:
   rts                          ; $94BC
 Sub_B1_94BD:
-  jsr Sub_B1_A957              ; $94BD  [heuristic code]
+  jsr Sub_B1_A957              ; $94BD
   lda z:$04                    ; $94C0
   beq Loc_B1_94E7              ; $94C2
   ldy #$07                     ; $94C4
@@ -1324,7 +1324,7 @@ Sub_B1_960A:
   bcc Loc_B1_9691              ; $961D
   cmp z:$08                    ; $961F
   bcs Loc_B1_9691              ; $9621
-  jmp Loc_B1_9643              ; $9623
+  jmp Sub_B1_9643              ; $9623
 Loc_B1_9626:
   ldy #$09                     ; $9626
   lda (Tmp00),y                ; $9628
@@ -1334,7 +1334,7 @@ Loc_B1_9626:
   lda (Tmp00),y                ; $962F
   cmp z:$06                    ; $9631
   bcc Loc_B1_9691              ; $9633
-  jmp Loc_B1_9643              ; $9635
+  jmp Sub_B1_9643              ; $9635
 Loc_B1_9638:
   cmp z:$07                    ; $9638
   bne Loc_B1_9691              ; $963A
@@ -1342,7 +1342,7 @@ Loc_B1_9638:
   lda (Tmp00),y                ; $963D
   cmp z:$08                    ; $963F
   bcs Loc_B1_9691              ; $9641
-Loc_B1_9643:
+Sub_B1_9643:
   ldy #$02                     ; $9643
   lda (Tmp00),y                ; $9645
   bmi Loc_B1_9661              ; $9647
@@ -1401,7 +1401,7 @@ CalcViewEdgeColumn:
   sta z:$05                    ; $96A1
   rts                          ; $96A3
 Sub_B1_96A4:
-  ldy #$07                     ; $96A4
+  ldy #$07                     ; $96A4  [heuristic code]
   lda (Tmp00),y                ; $96A6
   beq Loc_B1_96BD              ; $96A8
   ldy #$0E                     ; $96AA
@@ -2078,7 +2078,135 @@ Loc_B1_9E73:
 Data_B1_9E74:
   .incbin "prg_bank_1.bin", $1E74, $1  ; $9E74
 Data_B1_9E75:
-  .incbin "prg_bank_1.bin", $1E75, $192  ; $9E75
+  .incbin "prg_bank_1.bin", $1E75, $73  ; $9E75
+  jsr Sub_B1_9F53              ; $9EE8
+  ldy #$07                     ; $9EEB
+  lda (Tmp00),y                ; $9EED
+  bne Loc_B1_9F12              ; $9EEF
+  jsr Sub_B1_95F4              ; $9EF1
+  beq Loc_B1_9F06              ; $9EF4
+  ldy #$0C                     ; $9EF6
+  lda (Tmp00),y                ; $9EF8
+  bpl Loc_B1_9F4F              ; $9EFA
+  iny                          ; $9EFC
+  lda (Tmp00),y                ; $9EFD
+  sec                          ; $9EFF
+  sbc #$01                     ; $9F00
+  sta (Tmp00),y                ; $9F02
+  bne Loc_B1_9F4F              ; $9F04
+Loc_B1_9F06:
+  jsr Sub_B1_9643              ; $9F06
+  lda #$01                     ; $9F09
+  ldy #$07                     ; $9F0B
+  sta (Tmp00),y                ; $9F0D
+  jmp Loc_B1_9F20              ; $9F0F
+Loc_B1_9F12:
+  ldy #$08                     ; $9F12
+  lda (Tmp00),y                ; $9F14
+  bne Loc_B1_9F29              ; $9F16
+  jsr Sub_B1_AAC3              ; $9F18
+  bcc Loc_B1_9F23              ; $9F1B
+  jsr Sub_B1_9F61              ; $9F1D
+Loc_B1_9F20:
+  jsr Sub_B1_9F53              ; $9F20
+Loc_B1_9F23:
+  jsr LoadObjectAnimFrameB1    ; $9F23
+  jsr Sub_B1_9F68              ; $9F26
+Loc_B1_9F29:
+  jsr Sub_B1_9ABA              ; $9F29
+  ldy #$0B                     ; $9F2C
+  lda (Tmp00),y                ; $9F2E
+  cmp #$08                     ; $9F30
+  bcs Loc_B1_9F4F              ; $9F32
+  ldy #$09                     ; $9F34
+  lda (Tmp00),y                ; $9F36
+  clc                          ; $9F38
+  adc #$01                     ; $9F39
+  and #$03                     ; $9F3B
+  sta (Tmp00),y                ; $9F3D
+  ldy #$07                     ; $9F3F
+  lda #$00                     ; $9F41
+  sta (Tmp00),y                ; $9F43
+  ldy #$05                     ; $9F45
+  sta (Tmp00),y                ; $9F47
+  ldy #$0D                     ; $9F49
+  lda #$E0                     ; $9F4B
+  sta (Tmp00),y                ; $9F4D
+Loc_B1_9F4F:
+  jsr UpdateObjectScreenXB1    ; $9F4F
+  rts                          ; $9F52
+Sub_B1_9F53:
+  jsr GetObjectStateIndex      ; $9F53
+  lda Data_B1_9FCD,y           ; $9F56
+  sta z:Tmp02                  ; $9F59
+  lda Data_B1_9FCE,y           ; $9F5B
+  sta z:Tmp03                  ; $9F5E
+  rts                          ; $9F60
+Sub_B1_9F61:
+  ldy #$0E                     ; $9F61
+  lda #$09                     ; $9F63
+  sta (Tmp00),y                ; $9F65
+  rts                          ; $9F67
+Sub_B1_9F68:
+  ldy #$00                     ; $9F68
+  lda (Tmp00),y                ; $9F6A
+  and #$80                     ; $9F6C
+  bne Loc_B1_9F84              ; $9F6E
+  ldy #$0C                     ; $9F70
+  lda (Tmp00),y                ; $9F72
+  bpl Loc_B1_9FCC              ; $9F74
+  ldy #$0E                     ; $9F76
+  lda (Tmp00),y                ; $9F78
+  cmp #$04                     ; $9F7A
+  bne Loc_B1_9FCC              ; $9F7C
+  jsr Sub_B1_AAD5              ; $9F7E
+  jmp Loc_B1_9FCC              ; $9F81
+Loc_B1_9F84:
+  ldy #$0E                     ; $9F84
+  lda (Tmp00),y                ; $9F86
+  cmp #$04                     ; $9F88
+  beq Loc_B1_9F90              ; $9F8A
+  cmp #$06                     ; $9F8C
+  bne Loc_B1_9FCC              ; $9F8E
+Loc_B1_9F90:
+  jsr Sub_B1_8FDE              ; $9F90
+  lda z:$05                    ; $9F93
+  beq Loc_B1_9FCC              ; $9F95
+  ldy #$07                     ; $9F97
+  lda ($04),y                  ; $9F99
+  and #$FE                     ; $9F9B
+  sta ($04),y                  ; $9F9D
+  bne Loc_B1_9FA6              ; $9F9F
+  lda #$01                     ; $9FA1
+  jmp Loc_B1_9FA8              ; $9FA3
+Loc_B1_9FA6:
+  lda #$02                     ; $9FA6
+Loc_B1_9FA8:
+  ldy #$0E                     ; $9FA8
+  sta ($04),y                  ; $9FAA
+  ldy #$08                     ; $9FAC
+  lda #$01                     ; $9FAE
+  sta ($04),y                  ; $9FB0
+  ldy #$0A                     ; $9FB2
+  lda ($04),y                  ; $9FB4
+  clc                          ; $9FB6
+  adc #$02                     ; $9FB7
+  sta ($04),y                  ; $9FB9
+  dey                          ; $9FBB
+  lda ($04),y                  ; $9FBC
+  adc #$00                     ; $9FBE
+  and #$03                     ; $9FC0
+  sta ($04),y                  ; $9FC2
+  ldy #$0B                     ; $9FC4
+  lda ($04),y                  ; $9FC6
+  adc #$0A                     ; $9FC8
+  sta ($04),y                  ; $9FCA
+Loc_B1_9FCC:
+  rts                          ; $9FCC
+Data_B1_9FCD:
+  .incbin "prg_bank_1.bin", $1FCD, $1  ; $9FCD
+Data_B1_9FCE:
+  .incbin "prg_bank_1.bin", $1FCE, $39  ; $9FCE
   jsr Sub_B1_A032              ; $A007
   ldy #$08                     ; $A00A
   lda (Tmp00),y                ; $A00C
@@ -2302,7 +2430,7 @@ Sub_B1_AA7A:
   sta (Tmp00),y                ; $AA81
   rts                          ; $AA83
 AllocObjectB1:
-  lda ObjectCount              ; $AA84  [heuristic code]
+  lda ObjectCount              ; $AA84
   cmp #$0F                     ; $AA87
   bcc Loc_B1_AA92              ; $AA89
   lda #$00                     ; $AA8B

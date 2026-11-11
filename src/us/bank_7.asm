@@ -3347,11 +3347,11 @@ Loc_DC0A:
   bcs Loc_DC23                 ; $DC0C
   sec                          ; $DC0E
   sbc #$78                     ; $DC0F
-  sta $0501                    ; $DC11
+  sta MazeIndex                ; $DC11
   lda z:$2A                    ; $DC14
   sta SceneState               ; $DC16
   lda #$00                     ; $DC19
-  sta $0502                    ; $DC1B
+  sta PpuOpRequest             ; $DC1B
   lda #$04                     ; $DC1E
   sta z:MmcPrgShadow           ; $DC20
   rts                          ; $DC22
@@ -4031,11 +4031,11 @@ Loc_E6E4:
 Loc_E6EF:
   sec                          ; $E6EF
   sbc #$78                     ; $E6F0
-  sta $0501                    ; $E6F2
+  sta MazeIndex                ; $E6F2
   lda #$03                     ; $E6F5
   sta SceneState               ; $E6F7
   lda #$00                     ; $E6FA
-  sta $0502                    ; $E6FC
+  sta PpuOpRequest             ; $E6FC
   lda #$04                     ; $E6FF
   ldx #$20                     ; $E701
 Loc_E703:

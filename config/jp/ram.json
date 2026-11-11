@@ -64,5 +64,13 @@
  "28": "TransitionPending",
  "29": "TransitionTarget",
  "0102": "SpawnIndexCurrent",
- "0103": "SpawnIndexNext"
+ "0103": "SpawnIndexNext",
+ "0501": "MazeIndex",
+ "0514": "MazeMapPtrLo",
+ "0515": "MazeMapPtrHi",
+ "0516": "MazeWidth",
+ "0518": "PlayerCellX",
+ "0519": "PlayerCellY",
+ "051A": "PlayerFacing",
+ "0502": "PpuOpRequest"
 }

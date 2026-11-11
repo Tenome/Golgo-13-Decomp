@@ -2609,17 +2609,13 @@
  "Bank4State_07": {
   "addr": 33143,
   "bank": 4,
-  "instrs": 10,
+  "instrs": 7,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     65911,
     65928
-   ],
-   [
-    69815,
-    69822
    ]
   ]
  },
@@ -2677,17 +2673,13 @@
  "Bank4State_0B": {
   "addr": 33269,
   "bank": 4,
-  "instrs": 65,
+  "instrs": 24,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     66037,
     66099
-   ],
-   [
-    68307,
-    68397
    ]
   ]
  },
@@ -2733,17 +2725,13 @@
  "Bank4State_0F": {
   "addr": 33380,
   "bank": 4,
-  "instrs": 6,
+  "instrs": 3,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     66148,
     66157
-   ],
-   [
-    69815,
-    69822
    ]
   ]
  },
@@ -2786,6 +2774,19 @@
    ]
   ]
  },
+ "Sub_B4_82B4": {
+  "addr": 33460,
+  "bank": 4,
+  "instrs": 22,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    66228,
+    66286
+   ]
+  ]
+ },
  "Bank4State_13": {
   "addr": 33550,
   "bank": 4,
@@ -2815,17 +2816,13 @@
  "Bank4State_15": {
   "addr": 33574,
   "bank": 4,
-  "instrs": 12,
+  "instrs": 9,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     66342,
     66365
-   ],
-   [
-    69815,
-    69822
    ]
   ]
  },
@@ -3045,7 +3042,7 @@
    ]
   ]
  },
- "Sub_B4_8546": {
+ "DrawCompassSprites": {
   "addr": 34118,
   "bank": 4,
   "instrs": 22,
@@ -3270,6 +3267,19 @@
    ]
   ]
  },
+ "Sub_B4_8AD3": {
+  "addr": 35539,
+  "bank": 4,
+  "instrs": 41,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68307,
+    68397
+   ]
+  ]
+ },
  "InitAllObjectAnims": {
   "addr": 35629,
   "bank": 4,
@@ -3345,6 +3355,74 @@
    [
     68638,
     68655
+   ]
+  ]
+ },
+ "Sub_B4_8C5C": {
+  "addr": 35932,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68700,
+    68715
+   ],
+   [
+    68876,
+    68891
+   ]
+  ]
+ },
+ "Sub_B4_8C6B": {
+  "addr": 35947,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68715,
+    68728
+   ],
+   [
+    68876,
+    68891
+   ]
+  ]
+ },
+ "Sub_B4_8C95": {
+  "addr": 35989,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68757,
+    68762
+   ],
+   [
+    68876,
+    68891
+   ]
+  ]
+ },
+ "Sub_B4_8C9F": {
+  "addr": 35999,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68767,
+    68772
+   ],
+   [
+    68876,
+    68891
    ]
   ]
  },
@@ -3606,7 +3684,7 @@
    ]
   ]
  },
- "Sub_B4_8FBB": {
+ "AdvanceObjectState": {
   "addr": 36795,
   "bank": 4,
   "instrs": 1,
@@ -3619,7 +3697,7 @@
    ]
   ]
  },
- "Sub_B4_8FBD": {
+ "IncObjectField": {
   "addr": 36797,
   "bank": 4,
   "instrs": 5,
@@ -3632,7 +3710,7 @@
    ]
   ]
  },
- "Sub_B4_8FC5": {
+ "DecObjectField": {
   "addr": 36805,
   "bank": 4,
   "instrs": 5,
@@ -3761,6 +3839,19 @@
    ]
   ]
  },
+ "Sub_B4_90B7": {
+  "addr": 37047,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    69815,
+    69822
+   ]
+  ]
+ },
  "DisableSpriteBgRendering": {
   "addr": 37054,
   "bank": 4,
@@ -3774,7 +3865,7 @@
    ]
   ]
  },
- "Sub_B4_90C5": {
+ "RandomByteMixed": {
   "addr": 37061,
   "bank": 4,
   "instrs": 5,
@@ -3826,7 +3917,7 @@
    ]
   ]
  },
- "Sub_B4_915B": {
+ "InitMazePosition": {
   "addr": 37211,
   "bank": 4,
   "instrs": 14,
@@ -3839,7 +3930,7 @@
    ]
   ]
  },
- "Sub_B4_917E": {
+ "LoadMazeData": {
   "addr": 37246,
   "bank": 4,
   "instrs": 12,
@@ -3938,7 +4029,7 @@
    ]
   ]
  },
- "Sub_B4_9868": {
+ "DrawCorridorView": {
   "addr": 39016,
   "bank": 4,
   "instrs": 24,
@@ -3955,7 +4046,7 @@
    ]
   ]
  },
- "Sub_B4_988E": {
+ "CalcPlayerCellIndex": {
   "addr": 39054,
   "bank": 4,
   "instrs": 11,
@@ -3968,7 +4059,7 @@
    ]
   ]
  },
- "Sub_B4_98A3": {
+ "CalcFacingCellOffsets": {
   "addr": 39075,
   "bank": 4,
   "instrs": 40,
@@ -3981,7 +4072,7 @@
    ]
   ]
  },
- "Sub_B4_98F6": {
+ "StoreCellRow": {
   "addr": 39158,
   "bank": 4,
   "instrs": 15,
@@ -3994,7 +4085,7 @@
    ]
   ]
  },
- "Sub_B4_990C": {
+ "LoadCellWalls": {
   "addr": 39180,
   "bank": 4,
   "instrs": 11,
@@ -4007,7 +4098,7 @@
    ]
   ]
  },
- "Sub_B4_9922": {
+ "UnpackWallBits": {
   "addr": 39202,
   "bank": 4,
   "instrs": 16,
@@ -4510,7 +4601,7 @@
    ]
   ]
  },
- "Sub_B4_A483": {
+ "CollectAmmoItem": {
   "addr": 42115,
   "bank": 4,
   "instrs": 13,
@@ -4570,7 +4661,7 @@
    ]
   ]
  },
- "Sub_B4_A4E7": {
+ "CollectLifeItem": {
   "addr": 42215,
   "bank": 4,
   "instrs": 11,
@@ -4596,7 +4687,7 @@
    ]
   ]
  },
- "Loc_B4_A526": {
+ "Sub_B4_A526": {
   "addr": 42278,
   "bank": 4,
   "instrs": 9,
@@ -4606,6 +4697,218 @@
    [
     75046,
     75065
+   ]
+  ]
+ },
+ "Sub_B4_A551": {
+  "addr": 42321,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75089,
+    75101
+   ]
+  ]
+ },
+ "Sub_B4_A55D": {
+  "addr": 42333,
+  "bank": 4,
+  "instrs": 1,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75101,
+    75104
+   ]
+  ]
+ },
+ "Sub_B4_A560": {
+  "addr": 42336,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75104,
+    75142
+   ]
+  ]
+ },
+ "Sub_B4_A5BE": {
+  "addr": 42430,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75198,
+    75231
+   ]
+  ]
+ },
+ "Sub_B4_A5DF": {
+  "addr": 42463,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75231,
+    75270
+   ]
+  ]
+ },
+ "Sub_B4_A606": {
+  "addr": 42502,
+  "bank": 4,
+  "instrs": 21,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75270,
+    75315
+   ]
+  ]
+ },
+ "Sub_B4_A698": {
+  "addr": 42648,
+  "bank": 4,
+  "instrs": 30,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75416,
+    75475
+   ]
+  ]
+ },
+ "Sub_B4_A6D3": {
+  "addr": 42707,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75475,
+    75492
+   ]
+  ]
+ },
+ "Sub_B4_A6E4": {
+  "addr": 42724,
+  "bank": 4,
+  "instrs": 8,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75492,
+    75513
+   ],
+   [
+    75515,
+    75518
+   ]
+  ]
+ },
+ "Sub_B4_A70F": {
+  "addr": 42767,
+  "bank": 4,
+  "instrs": 8,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75535,
+    75553
+   ]
+  ]
+ },
+ "Sub_B4_A762": {
+  "addr": 42850,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75618,
+    75624
+   ]
+  ]
+ },
+ "Loc_B4_A768": {
+  "addr": 42856,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75624,
+    75641
+   ]
+  ]
+ },
+ "Loc_B4_A779": {
+  "addr": 42873,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75641,
+    75658
+   ]
+  ]
+ },
+ "Sub_B4_A78A": {
+  "addr": 42890,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75658,
+    75666
+   ]
+  ]
+ },
+ "Sub_B4_A792": {
+  "addr": 42898,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75666,
+    75685
+   ]
+  ]
+ },
+ "Sub_B4_A7A5": {
+  "addr": 42917,
+  "bank": 4,
+  "instrs": 15,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75685,
+    75715
    ]
   ]
  },
@@ -4894,6 +5197,19 @@
    ]
   ]
  },
+ "Sub_B4_AC33": {
+  "addr": 44083,
+  "bank": 4,
+  "instrs": 16,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76851,
+    76885
+   ]
+  ]
+ },
  "Sub_B4_AC55": {
   "addr": 44117,
   "bank": 4,
@@ -5040,7 +5356,7 @@
    ]
   ]
  },
- "Loc_B4_AE72": {
+ "Sub_B4_AE72": {
   "addr": 44658,
   "bank": 4,
   "instrs": 24,
@@ -5536,7 +5852,7 @@
    ]
   ]
  },
- "Sub_B4_B43D": {
+ "DamagePlayer": {
   "addr": 46141,
   "bank": 4,
   "instrs": 8,
@@ -5549,7 +5865,7 @@
    ]
   ]
  },
- "Sub_B4_B44B": {
+ "AddLifeAndAmmo": {
   "addr": 46155,
   "bank": 4,
   "instrs": 23,
@@ -5611,6 +5927,35 @@
    [
     81920,
     81929
+   ]
+  ]
+ },
+ "Sub_B5_800A": {
+  "addr": 32778,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    81930,
+    81933
+   ],
+   [
+    97664,
+    97667
+   ],
+   [
+    97669,
+    97679
+   ],
+   [
+    97681,
+    97685
+   ],
+   [
+    97687,
+    97688
    ]
   ]
  },

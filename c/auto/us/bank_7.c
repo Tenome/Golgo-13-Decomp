@@ -3588,11 +3588,11 @@ LDC0A: BUDGET();
   if (R.a < 0x90) {                                                                      /* $DC0C bcs */
     SEC();                                                                               /* $DC0E sec */
     sbc(0x78);                                                                           /* $DC0F sbc */
-    STA(0x0501);                                                                         /* $DC11 sta */
+    STA(MazeIndex);                                                                      /* $DC11 sta */
     LDA(rd(0x2A));                                                                       /* $DC14 lda */
     STA(SceneState);                                                                     /* $DC16 sta */
     LDA(0x00);                                                                           /* $DC19 lda */
-    STA(0x0502);                                                                         /* $DC1B sta */
+    STA(PpuOpRequest);                                                                   /* $DC1B sta */
     LDA(0x04);                                                                           /* $DC1E lda */
     STA(MmcPrgShadow);                                                                   /* $DC20 sta */
     RTS_RET(sp0);                                                                        /* $DC22 rts */
@@ -4297,11 +4297,11 @@ LE6D1: BUDGET();
   }
   SEC();                                                                                 /* $E6EF sec */
   sbc(0x78);                                                                             /* $E6F0 sbc */
-  STA(0x0501);                                                                           /* $E6F2 sta */
+  STA(MazeIndex);                                                                        /* $E6F2 sta */
   LDA(0x03);                                                                             /* $E6F5 lda */
   STA(SceneState);                                                                       /* $E6F7 sta */
   LDA(0x00);                                                                             /* $E6FA lda */
-  STA(0x0502);                                                                           /* $E6FC sta */
+  STA(PpuOpRequest);                                                                     /* $E6FC sta */
   LDA(0x04);                                                                             /* $E6FF lda */
   LDX(0x20);                                                                             /* $E701 ldx */
 LE703: BUDGET();

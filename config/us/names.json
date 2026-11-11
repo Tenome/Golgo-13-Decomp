@@ -386,5 +386,22 @@
  "5:A464": "InlineJumpTable",
  "5:90B9": "InitScenePpuState",
  "5:9AE5": "OrSpriteAttributes",
- "5:9895": "DrawSpriteListToOam"
+ "5:9895": "DrawSpriteListToOam",
+ "4:8FBB": "AdvanceObjectState",
+ "4:8FBD": "IncObjectField",
+ "4:8FC5": "DecObjectField",
+ "4:90C5": "RandomByteMixed",
+ "4:B43D": "DamagePlayer",
+ "4:B44B": "AddLifeAndAmmo",
+ "4:9868": "DrawCorridorView",
+ "4:988E": "CalcPlayerCellIndex",
+ "4:98A3": "CalcFacingCellOffsets",
+ "4:98F6": "StoreCellRow",
+ "4:990C": "LoadCellWalls",
+ "4:9922": "UnpackWallBits",
+ "4:915B": "InitMazePosition",
+ "4:917E": "LoadMazeData",
+ "4:A483": "CollectAmmoItem",
+ "4:A4E7": "CollectLifeItem",
+ "4:8546": "DrawCompassSprites"
 }
