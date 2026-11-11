@@ -13,7 +13,7 @@ Bank1Nmi:
   jsr SetPpuCtrl               ; $8015
   jsr DoOamDma                 ; $8018
   jsr Sub_B1_802F              ; $801B
-  jsr Sub_B1_80E0              ; $801E
+  jsr RunTitleSoundDriver      ; $801E
   ldy #$00                     ; $8021
 Loc_B1_8023:
   dey                          ; $8023
@@ -105,7 +105,7 @@ AdvanceSceneOnStart:
   inc SceneState               ; $80DC
 Loc_B1_80DF:
   rts                          ; $80DF
-Sub_B1_80E0:
+RunTitleSoundDriver:
   lda $0550                    ; $80E0
   ora $0551                    ; $80E3
   beq Loc_B1_80F3              ; $80E6
@@ -1038,7 +1038,7 @@ Bank1State_04:
   lda (Tmp00),y                ; $9365
   cmp #$04                     ; $9367
   bne Loc_B1_9373              ; $9369
-  jsr Sub_B1_93C6              ; $936B
+  jsr EnemyTypeDRespawn        ; $936B
   beq Loc_B1_9381              ; $936E
   jmp Loc_B1_93B4              ; $9370
 Loc_B1_9373:
@@ -1047,14 +1047,14 @@ Loc_B1_9373:
   bne Loc_B1_938A              ; $9377
   jsr AdvanceObjectAnimStepB1  ; $9379
   bcc Loc_B1_9384              ; $937C
-  jsr Sub_B1_93FA              ; $937E
+  jsr EnemyTypeDChooseAction   ; $937E
 Loc_B1_9381:
   jsr LoadEnemyAnimTableD      ; $9381
 Loc_B1_9384:
   jsr LoadObjectAnimFrameB1    ; $9384
-  jsr Sub_B1_942E              ; $9387
+  jsr EnemyTypeDShoot          ; $9387
 Loc_B1_938A:
-  jsr Sub_B1_94BD              ; $938A
+  jsr EnemyTypeDStepAnim       ; $938A
   ldy #$07                     ; $938D
   lda (Tmp00),y                ; $938F
   cmp #$03                     ; $9391
@@ -1085,7 +1085,7 @@ LoadEnemyAnimTableD:
   lda Data_B1_94E9,y           ; $93C0
   sta z:Tmp03                  ; $93C3
   rts                          ; $93C5
-Sub_B1_93C6:
+EnemyTypeDRespawn:
   lda #$C0                     ; $93C6
   sta z:$04                    ; $93C8
   jsr CalcViewEdgeColumn       ; $93CA
@@ -1112,7 +1112,7 @@ Sub_B1_93C6:
   lda #$00                     ; $93F7
 Loc_B1_93F9:
   rts                          ; $93F9
-Sub_B1_93FA:
+EnemyTypeDChooseAction:
   ldy #$07                     ; $93FA
   lda (Tmp00),y                ; $93FC
   bne Loc_B1_9413              ; $93FE
@@ -1141,7 +1141,7 @@ Loc_B1_9423:
   lda #$00                     ; $9429
   sta (Tmp00),y                ; $942B
   rts                          ; $942D
-Sub_B1_942E:
+EnemyTypeDShoot:
   ldy #$07                     ; $942E
   lda (Tmp00),y                ; $9430
   bne Loc_B1_943F              ; $9432
@@ -1174,7 +1174,7 @@ Loc_B1_945E:
   beq Loc_B1_94BC              ; $9464
   jsr SpawnObjectAtScreenRight ; $9466
   jmp Loc_B1_94BC              ; $9469
-Sub_B1_946C:
+EnemyTypeDSpawnTwin:
   lda ObjectCount              ; $946C
   cmp #$0F                     ; $946F
   bcs Loc_B1_94BC              ; $9471
@@ -1211,7 +1211,7 @@ Sub_B1_946C:
   sta z:Tmp00                  ; $94BA
 Loc_B1_94BC:
   rts                          ; $94BC
-Sub_B1_94BD:
+EnemyTypeDStepAnim:
   jsr ApplyAnimTableFlags      ; $94BD
   lda z:$04                    ; $94C0
   beq Loc_B1_94E7              ; $94C2
@@ -1246,7 +1246,7 @@ Bank1State_05:
   lda (Tmp00),y                ; $9588
   cmp #$08                     ; $958A
   bne Loc_B1_9596              ; $958C
-  jsr Sub_B1_95F4              ; $958E
+  jsr EnemyTypeERespawnCheck   ; $958E
   beq Loc_B1_95A4              ; $9591
   jmp Loc_B1_95E2              ; $9593
 Loc_B1_9596:
@@ -1255,7 +1255,7 @@ Loc_B1_9596:
   bne Loc_B1_95C0              ; $959A
   jsr AdvanceObjectAnimStepB1  ; $959C
   bcc Loc_B1_95A7              ; $959F
-  jsr Sub_B1_96BE              ; $95A1
+  jsr EnemyTypeEChooseAction   ; $95A1
 Loc_B1_95A4:
   jsr LoadEnemyAnimTableE      ; $95A4
 Loc_B1_95A7:
@@ -1270,7 +1270,7 @@ Loc_B1_95A7:
   lda #$16                     ; $95B8
   jsr QueueSound               ; $95BA
 Loc_B1_95BD:
-  jsr Sub_B1_96A4              ; $95BD
+  jsr EnemyTypeEShoot          ; $95BD
 Loc_B1_95C0:
   jsr StepObjectAnimTimerB     ; $95C0
   ldy #$0B                     ; $95C3
@@ -1299,7 +1299,7 @@ LoadEnemyAnimTableE:
   lda Data_B1_970D,y           ; $95EE
   sta z:Tmp03                  ; $95F1
   rts                          ; $95F3
-Sub_B1_95F4:
+EnemyTypeERespawnCheck:
   lda #$C0                     ; $95F4
   sta z:$04                    ; $95F6
   jsr CalcViewEdgeColumn       ; $95F8
@@ -1324,7 +1324,7 @@ CheckObjectInViewWindow:
   bcc Loc_B1_9691              ; $961D
   cmp z:$08                    ; $961F
   bcs Loc_B1_9691              ; $9621
-  jmp Sub_B1_9643              ; $9623
+  jmp EnemyTypeERespawn        ; $9623
 Loc_B1_9626:
   ldy #$09                     ; $9626
   lda (Tmp00),y                ; $9628
@@ -1334,7 +1334,7 @@ Loc_B1_9626:
   lda (Tmp00),y                ; $962F
   cmp z:$06                    ; $9631
   bcc Loc_B1_9691              ; $9633
-  jmp Sub_B1_9643              ; $9635
+  jmp EnemyTypeERespawn        ; $9635
 Loc_B1_9638:
   cmp z:$07                    ; $9638
   bne Loc_B1_9691              ; $963A
@@ -1342,7 +1342,7 @@ Loc_B1_9638:
   lda (Tmp00),y                ; $963D
   cmp z:$08                    ; $963F
   bcs Loc_B1_9691              ; $9641
-Sub_B1_9643:
+EnemyTypeERespawn:
   ldy #$02                     ; $9643
   lda (Tmp00),y                ; $9645
   bmi Loc_B1_9661              ; $9647
@@ -1400,7 +1400,7 @@ CalcViewEdgeColumn:
   and #$03                     ; $969F
   sta z:$05                    ; $96A1
   rts                          ; $96A3
-Sub_B1_96A4:
+EnemyTypeEShoot:
   ldy #$07                     ; $96A4  [heuristic code]
   lda (Tmp00),y                ; $96A6
   beq Loc_B1_96BD              ; $96A8
@@ -1415,7 +1415,7 @@ Sub_B1_96A4:
   jsr SpawnShotObjectDefault   ; $96BA
 Loc_B1_96BD:
   rts                          ; $96BD
-Sub_B1_96BE:
+EnemyTypeEChooseAction:
   ldy #$07                     ; $96BE
   lda (Tmp00),y                ; $96C0
   beq Loc_B1_96D0              ; $96C2
@@ -1898,11 +1898,11 @@ Bank1State_08:
   bne Loc_B1_9C61              ; $9C4E
   jsr AdvanceObjectAnimStepB1  ; $9C50
   bcc Loc_B1_9C5B              ; $9C53
-  jsr Sub_B1_9C76              ; $9C55
+  jsr EnemyTypeHChooseAction   ; $9C55
   jsr LoadEnemyAnimTableH      ; $9C58
 Loc_B1_9C5B:
   jsr LoadObjectAnimFrameB1    ; $9C5B
-  jsr Sub_B1_9C92              ; $9C5E
+  jsr EnemyTypeHShoot          ; $9C5E
 Loc_B1_9C61:
   jsr StepObjectAnimTimerB     ; $9C61
   jsr UpdateObjectScreenXB1    ; $9C64
@@ -1914,7 +1914,7 @@ LoadEnemyAnimTableH:
   lda Data_B1_9CD5,y           ; $9C70
   sta z:Tmp03                  ; $9C73
   rts                          ; $9C75
-Sub_B1_9C76:
+EnemyTypeHChooseAction:
   ldy #$07                     ; $9C76
   lda (Tmp00),y                ; $9C78
   bne Loc_B1_9C87              ; $9C7A
@@ -1931,7 +1931,7 @@ Loc_B1_9C89:
   lda #$00                     ; $9C8D
   sta (Tmp00),y                ; $9C8F
   rts                          ; $9C91
-Sub_B1_9C92:
+EnemyTypeHShoot:
   ldy #$07                     ; $9C92
   lda (Tmp00),y                ; $9C94
   bne Loc_B1_9CA3              ; $9C96
@@ -1965,7 +1965,7 @@ Loc_B1_9CBC:
   jsr SpawnObjectAtScreenRight ; $9CCA
   jmp Loc_B1_9CD3              ; $9CCD
 Loc_B1_9CD0:
-  jsr Sub_B1_946C              ; $9CD0
+  jsr EnemyTypeDSpawnTwin      ; $9CD0
 Loc_B1_9CD3:
   rts                          ; $9CD3
 Data_B1_9CD4:
@@ -2084,7 +2084,7 @@ UpdateEnemyTypeJ:
   ldy #$07                     ; $9EEB
   lda (Tmp00),y                ; $9EED
   bne Loc_B1_9F12              ; $9EEF
-  jsr Sub_B1_95F4              ; $9EF1
+  jsr EnemyTypeERespawnCheck   ; $9EF1
   beq Loc_B1_9F06              ; $9EF4
   ldy #$0C                     ; $9EF6
   lda (Tmp00),y                ; $9EF8
@@ -2096,7 +2096,7 @@ UpdateEnemyTypeJ:
   sta (Tmp00),y                ; $9F02
   bne Loc_B1_9F4F              ; $9F04
 Loc_B1_9F06:
-  jsr Sub_B1_9643              ; $9F06
+  jsr EnemyTypeERespawn        ; $9F06
   lda #$01                     ; $9F09
   ldy #$07                     ; $9F0B
   sta (Tmp00),y                ; $9F0D
@@ -2208,7 +2208,8 @@ Data_B1_9FCD:
   .incbin "prg_bank_1.bin", $1FCD, $1  ; $9FCD
 Data_B1_9FCE:
   .incbin "prg_bank_1.bin", $1FCE, $39  ; $9FCE
-  jsr Sub_B1_A032              ; $A007
+UpdateStaticAnimObject:
+  jsr SetStaticAnimTablePtr    ; $A007
   ldy #$08                     ; $A00A
   lda (Tmp00),y                ; $A00C
   bne Loc_B1_A02B              ; $A00E
@@ -2229,7 +2230,7 @@ Loc_B1_A02B:
   jsr UpdateObjectScreenXB1    ; $A02E
 Loc_B1_A031:
   rts                          ; $A031
-Sub_B1_A032:
+SetStaticAnimTablePtr:
   lda #$3B                     ; $A032
   sta z:Tmp02                  ; $A034
   lda #$A0                     ; $A036
@@ -2594,10 +2595,10 @@ Bank1ObjAnim_00:
   jsr InitProjectileA          ; $ABB5
   rts                          ; $ABB8
 Bank1ObjAnim_01:
-  jsr Sub_B1_ABE0              ; $ABB9
+  jsr SpawnTemplatePair        ; $ABB9
   rts                          ; $ABBC
 Bank1ObjAnim_02:
-  jsr Sub_B1_AC5B              ; $ABBD
+  jsr InitObjectFromTemplate   ; $ABBD
   rts                          ; $ABC0
 Bank1ObjAnim_03:
   jsr InitProjectileA          ; $ABC1
@@ -2617,7 +2618,7 @@ Bank1ObjAnim_04:
   sta $04AA                    ; $ABDC
 Loc_B1_ABDF:
   rts                          ; $ABDF
-Sub_B1_ABE0:
+SpawnTemplatePair:
   inc ObjectCount              ; $ABE0
   lda ObjectCount              ; $ABE3
   inc ObjectCount              ; $ABE6
@@ -2679,7 +2680,7 @@ Data_B1_AC49:
   .incbin "prg_bank_1.bin", $2C49, $9  ; $AC49
 Data_B1_AC52:
   .incbin "prg_bank_1.bin", $2C52, $9  ; $AC52
-Sub_B1_AC5B:
+InitObjectFromTemplate:
   ldy #$00                     ; $AC5B
 Loc_B1_AC5D:
   lda Data_B1_AC81,y           ; $AC5D

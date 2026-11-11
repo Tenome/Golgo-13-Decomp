@@ -33,7 +33,7 @@ Loc_B3_8032:
 Loc_B3_803D:
   cmp #$01                     ; $803D
   bne Loc_B3_8047              ; $803F
-  jsr Sub_B3_8D71              ; $8041
+  jsr TextBoxSaveBackgroundRows ; $8041
   jmp Loc_B3_8071              ; $8044
 Loc_B3_8047:
   cmp #$02                     ; $8047
@@ -50,10 +50,10 @@ Loc_B3_8051:
 Loc_B3_8061:
   cmp #$04                     ; $8061
   bne Loc_B3_8074              ; $8063
-  jsr Sub_B3_831D              ; $8065
+  jsr TextBoxDispatchSubState  ; $8065
   jsr ApplyScroll              ; $8068
   jsr ReadJoypads              ; $806B
-  jsr Sub_B3_83D8              ; $806E
+  jsr TextBoxMainStep          ; $806E
 Loc_B3_8071:
   jsr ApplyScroll              ; $8071
 Loc_B3_8074:
@@ -145,7 +145,7 @@ Loc_B3_8118:
   inc $0421                    ; $8123
   lda #$00                     ; $8126
   sta $0422                    ; $8128
-Sub_B3_812B:
+TextBoxPickRowOffset:
   lda $0422                    ; $812B
   bne Loc_B3_8139              ; $812E
   lda #$00                     ; $8130
@@ -238,7 +238,7 @@ Loc_B3_81E3:
   lda #$FF                     ; $81E8
   sta $0423                    ; $81EA
   jmp Loc_B3_826F              ; $81ED
-Sub_B3_81F0:
+TextBoxStageDelay:
   inc $041F                    ; $81F0
   lda $041F                    ; $81F3
   cmp #$0E                     ; $81F6
@@ -365,7 +365,7 @@ Data_B3_82D7:
   .incbin "prg_bank_3.bin", $02D7, $16  ; $82D7
 Data_B3_82ED:
   .incbin "prg_bank_3.bin", $02ED, $30  ; $82ED
-Sub_B3_831D:
+TextBoxDispatchSubState:
   lda $0412                    ; $831D
   bne Loc_B3_832D              ; $8320
   lda $041C                    ; $8322
@@ -451,7 +451,7 @@ Data_B3_83C6:
   .incbin "prg_bank_3.bin", $03C6, $9  ; $83C6
 Data_B3_83CF:
   .incbin "prg_bank_3.bin", $03CF, $9  ; $83CF
-Sub_B3_83D8:
+TextBoxMainStep:
   lda $0411                    ; $83D8
   beq Loc_B3_8427              ; $83DB
   lda $041C                    ; $83DD
@@ -635,7 +635,7 @@ Loc_B3_853E:
 Loc_B3_854B:
   lda #$03                     ; $854B
   sta $0418                    ; $854D
-Sub_B3_8550:
+TextBoxWaitForChoice:
   lda JoyNew1                  ; $8550
   and #$03                     ; $8553
   bne Loc_B3_855D              ; $8555
@@ -1592,7 +1592,7 @@ Loc_B3_8D4A:
   sta $0411                    ; $8D6A
   inc $0410                    ; $8D6D
   rts                          ; $8D70
-Sub_B3_8D71:
+TextBoxSaveBackgroundRows:
   lda $0415                    ; $8D71
   bne Loc_B3_8DC6              ; $8D74
   lda #$60                     ; $8D76

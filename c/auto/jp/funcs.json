@@ -129,7 +129,7 @@
    ]
   ]
  },
- "Sub_B1_80E0": {
+ "RunTitleSoundDriver": {
   "addr": 32992,
   "bank": 1,
   "instrs": 15,
@@ -483,7 +483,7 @@
    ]
   ]
  },
- "Sub_B1_93C6": {
+ "EnemyTypeDRespawn": {
   "addr": 37830,
   "bank": 1,
   "instrs": 25,
@@ -496,7 +496,7 @@
    ]
   ]
  },
- "Sub_B1_93FA": {
+ "EnemyTypeDChooseAction": {
   "addr": 37882,
   "bank": 1,
   "instrs": 25,
@@ -509,7 +509,7 @@
    ]
   ]
  },
- "Sub_B1_942E": {
+ "EnemyTypeDShoot": {
   "addr": 37934,
   "bank": 1,
   "instrs": 29,
@@ -526,7 +526,7 @@
    ]
   ]
  },
- "Sub_B1_946C": {
+ "EnemyTypeDSpawnTwin": {
   "addr": 37996,
   "bank": 1,
   "instrs": 35,
@@ -539,7 +539,7 @@
    ]
   ]
  },
- "Sub_B1_94BD": {
+ "EnemyTypeDStepAnim": {
   "addr": 38077,
   "bank": 1,
   "instrs": 22,
@@ -578,7 +578,7 @@
    ]
   ]
  },
- "Sub_B1_95F4": {
+ "EnemyTypeERespawnCheck": {
   "addr": 38388,
   "bank": 1,
   "instrs": 10,
@@ -608,7 +608,7 @@
    ]
   ]
  },
- "Sub_B1_9643": {
+ "EnemyTypeERespawn": {
   "addr": 38467,
   "bank": 1,
   "instrs": 41,
@@ -638,7 +638,7 @@
    ]
   ]
  },
- "Sub_B1_96A4": {
+ "EnemyTypeEShoot": {
   "addr": 38564,
   "bank": 1,
   "instrs": 13,
@@ -651,7 +651,7 @@
    ]
   ]
  },
- "Sub_B1_96BE": {
+ "EnemyTypeEChooseAction": {
   "addr": 38590,
   "bank": 1,
   "instrs": 21,
@@ -859,7 +859,7 @@
    ]
   ]
  },
- "Sub_B1_9C76": {
+ "EnemyTypeHChooseAction": {
   "addr": 40054,
   "bank": 1,
   "instrs": 14,
@@ -872,7 +872,7 @@
    ]
   ]
  },
- "Sub_B1_9C92": {
+ "EnemyTypeHShoot": {
   "addr": 40082,
   "bank": 1,
   "instrs": 31,
@@ -989,7 +989,20 @@
    ]
   ]
  },
- "Sub_B1_A032": {
+ "UpdateStaticAnimObject": {
+  "addr": 40967,
+  "bank": 1,
+  "instrs": 18,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24583,
+    24626
+   ]
+  ]
+ },
+ "SetStaticAnimTablePtr": {
   "addr": 41010,
   "bank": 1,
   "instrs": 5,
@@ -1223,7 +1236,7 @@
    ]
   ]
  },
- "Sub_B1_ABE0": {
+ "SpawnTemplatePair": {
   "addr": 44000,
   "bank": 1,
   "instrs": 55,
@@ -1236,7 +1249,7 @@
    ]
   ]
  },
- "Sub_B1_AC5B": {
+ "InitObjectFromTemplate": {
   "addr": 44123,
   "bank": 1,
   "instrs": 19,
@@ -1763,7 +1776,7 @@
    ]
   ]
  },
- "Sub_B3_812B": {
+ "TextBoxPickRowOffset": {
   "addr": 33067,
   "bank": 3,
   "instrs": 51,
@@ -1797,7 +1810,7 @@
    ]
   ]
  },
- "Sub_B3_81F0": {
+ "TextBoxStageDelay": {
   "addr": 33264,
   "bank": 3,
   "instrs": 11,
@@ -1950,7 +1963,7 @@
    ]
   ]
  },
- "Sub_B3_831D": {
+ "TextBoxDispatchSubState": {
   "addr": 33565,
   "bank": 3,
   "instrs": 36,
@@ -2035,7 +2048,7 @@
    ]
   ]
  },
- "Sub_B3_83D8": {
+ "TextBoxMainStep": {
   "addr": 33752,
   "bank": 3,
   "instrs": 193,
@@ -2081,7 +2094,7 @@
    ]
   ]
  },
- "Sub_B3_8550": {
+ "TextBoxWaitForChoice": {
   "addr": 34128,
   "bank": 3,
   "instrs": 25,
@@ -2365,7 +2378,7 @@
    ]
   ]
  },
- "Sub_B3_8D71": {
+ "TextBoxSaveBackgroundRows": {
   "addr": 36209,
   "bank": 3,
   "instrs": 86,
