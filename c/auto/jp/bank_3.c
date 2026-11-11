@@ -87,7 +87,7 @@ void Bank3Dispatch_0421(void) {  /* $8081 bank 3 */
   call_addr(rd16bug(0x0000)); return;                                                    /* $8091 jmp */
 }
 
-void Sub_B3_8094(void) {  /* $8094 bank 3 */
+void TextBoxBeginStage(void) {  /* $8094 bank 3 */
   uint8_t sp0 = R.sp;
   push16(0x8096); CalcMenuRowNametableAddr(); UNW(); ret_check(0x8096);                  /* $8094 jsr */
   LDA(0x00);                                                                             /* $8097 lda */
@@ -326,7 +326,7 @@ L826F: BUDGET();
   RTS_RET(sp0);                                                                          /* $826F rts */
 }
 
-void Sub_B3_821A(void) {  /* $821A bank 3 */
+void TextBoxClearRow3(void) {  /* $821A bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x60);                                                                             /* $821A lda */
   STA(Tmp00);                                                                            /* $821C sta */
@@ -792,7 +792,7 @@ void Sub_B3_84DB(void) {  /* $84DB bank 3 */
   LDA(rd(JoyHeld1));                                                                     /* $84DB lda */
   AND(0x01);                                                                             /* $84DE and */
   if (R.a == 0) {                                                                        /* $84E0 bne */
-    push16(0x84E4); Sub_B3_86E9(); UNW(); ret_check(0x84E4);                             /* $84E2 jsr */
+    push16(0x84E4); BlinkTextCursorStep(); UNW(); ret_check(0x84E4);                     /* $84E2 jsr */
   } else {
     INC_M(0x041B);                                                                       /* $84E8 inc */
     LDA(0x01);                                                                           /* $84EB lda */
@@ -810,7 +810,7 @@ void Sub_B3_8550(void) {  /* $8550 bank 3 */
   LDA(rd(JoyNew1));                                                                      /* $8550 lda */
   AND(0x03);                                                                             /* $8553 and */
   if (R.a == 0) {                                                                        /* $8555 bne */
-    push16(0x8559); Sub_B3_86E9(); UNW(); ret_check(0x8559);                             /* $8557 jsr */
+    push16(0x8559); BlinkTextCursorStep(); UNW(); ret_check(0x8559);                     /* $8557 jsr */
   } else {
     cmp8(R.a, 0x01);                                                                     /* $855D cmp */
     if (R.a != 0x01) {                                                                   /* $855F beq */
@@ -842,7 +842,7 @@ void Sub_B3_8593(void) {  /* $8593 bank 3 */
   LDA(rd(JoyHeld1));                                                                     /* $8593 lda */
   AND(0x01);                                                                             /* $8596 and */
   if (R.a == 0) {                                                                        /* $8598 bne */
-    push16(0x859C); Sub_B3_86E9(); UNW(); ret_check(0x859C);                             /* $859A jsr */
+    push16(0x859C); BlinkTextCursorStep(); UNW(); ret_check(0x859C);                     /* $859A jsr */
   } else {
     LDA(0x00);                                                                           /* $85A0 lda */
     STA(0x72);                                                                           /* $85A2 sta */
@@ -1054,7 +1054,7 @@ L86D7: BUDGET();
   RTS_RET(sp0);                                                                          /* $86E8 rts */
 }
 
-void Sub_B3_86E9(void) {  /* $86E9 bank 3 */
+void BlinkTextCursorStep(void) {  /* $86E9 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x041E));                                                                       /* $86E9 lda */
   cmp8(R.a, 0x14);                                                                       /* $86EC cmp */

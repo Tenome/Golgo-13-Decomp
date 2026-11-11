@@ -119,20 +119,20 @@ Bank4Tbl80C9_05:
   jsr HideSpritesFromStart     ; $8143
   lda #$03                     ; $8146
   sta $051F                    ; $8148
-  jsr Sub_B4_90B6              ; $814B
+  jsr CopyPpuListStubToRam     ; $814B
   jsr InitMazePosition         ; $814E
   jsr DrawCompassSprites       ; $8151
-  jsr Sub_B4_9880              ; $8154
-  jsr Sub_B4_997B              ; $8157
+  jsr DrawCorridorView         ; $8154
+  jsr DrawMazeScreen           ; $8157
   jsr Sub_B4_9FAC              ; $815A
-  jsr Sub_B4_A033              ; $815D
-  jsr Sub_B4_A0F1              ; $8160
+  jsr DrawCollectedItemIcons   ; $815D
+  jsr SpawnDoorObjectsIfAhead  ; $8160
   jsr ClearNametable2Rows      ; $8163
   jmp ApplyScroll              ; $8166
 Bank4Tbl80C9_06:
   inc SceneState               ; $8169
-  jsr Sub_B4_B4B1              ; $816C
-  jsr Sub_B4_B4B1              ; $816F
+  jsr UpdateAllObjectHandlers  ; $816C
+  jsr UpdateAllObjectHandlers  ; $816F
   jsr DrawObjects              ; $8172
   jsr Sub_B4_905D              ; $8175
   jmp ApplyScroll              ; $8178
@@ -148,7 +148,7 @@ Bank4Tbl80C9_08:
   lda PPU_STATUS               ; $818C
   jsr ReadJoypads              ; $818F
   jsr Sub_B4_8D35              ; $8192
-  jsr Sub_B4_B4B1              ; $8195
+  jsr UpdateAllObjectHandlers  ; $8195
   jsr DrawObjects              ; $8198
   jsr ReadMazeInput            ; $819B
   ldx z:$7C                    ; $819E
@@ -172,7 +172,7 @@ Data_B4_81BC:
 Bank4Tbl80C9_09:
   lda #$45                     ; $81C5
   jsr QueueSound               ; $81C7
-  jsr Sub_B4_B011              ; $81CA
+  jsr ResetDamageFlash         ; $81CA
   jmp Loc_B4_8511              ; $81CD
 Bank4Tbl80C9_0A:
   inc SceneState               ; $81D0
@@ -192,14 +192,14 @@ Loc_B4_81EE:
   lda #$00                     ; $81EE
   ldx #$14                     ; $81F0
   tay                          ; $81F2
-  jsr Sub_B4_8BD5              ; $81F3
+  jsr RequestTransitionFromTable ; $81F3
   jmp Loc_B4_8306              ; $81F6
 Bank4Tbl80C9_0B:
   lda #$06                     ; $81F9
   sta SceneState               ; $81FB
   jsr FillPaletteBlack         ; $81FE
   jsr HideSpritesFromStart     ; $8201
-  jsr Sub_B4_95A1              ; $8204
+  jsr InitMazePalette          ; $8204
   lda z:PpuCtrlShadow          ; $8207
   and #$FC                     ; $8209
   sta z:PpuCtrlShadow          ; $820B
@@ -209,13 +209,13 @@ Bank4Tbl80C9_0B:
   sta z:HwScrollY              ; $8213
   sta z:$88                    ; $8215
   sta z:$89                    ; $8217
-  jsr Sub_B4_8B39              ; $8219
+  jsr InitAllObjectAnims       ; $8219
   jsr DrawCompassSprites       ; $821C
-  jsr Sub_B4_9880              ; $821F
-  jsr Sub_B4_997B              ; $8222
+  jsr DrawCorridorView         ; $821F
+  jsr DrawMazeScreen           ; $8222
   jsr Sub_B4_9FAC              ; $8225
-  jsr Sub_B4_A033              ; $8228
-  jsr Sub_B4_A0F1              ; $822B
+  jsr DrawCollectedItemIcons   ; $8228
+  jsr SpawnDoorObjectsIfAhead  ; $822B
   jsr ClearNametable2Rows      ; $822E
   jsr ApplyScroll              ; $8231
   jmp Sub_B4_8ADF              ; $8234
@@ -235,8 +235,8 @@ Bank4Tbl80C9_0D:
   lda z:PpuCtrlShadow          ; $8255
   ora #$02                     ; $8257
   sta z:PpuCtrlShadow          ; $8259
-  jsr Sub_B4_86DD              ; $825B
-  jsr Sub_B4_95A1              ; $825E
+  jsr ClearObjectTable         ; $825B
+  jsr InitMazePalette          ; $825E
   jmp DrawObjects              ; $8261
 Bank4Tbl80C9_0E:
   inc SceneState               ; $8264
@@ -281,7 +281,7 @@ Data_B4_82A9:
   .incbin "prg_bank_4.bin", $02A9, $1  ; $82A9
 Data_B4_82AA:
   .incbin "prg_bank_4.bin", $02AA, $12  ; $82AA
-Sub_B4_82BC:
+ReloadMazeAfterMove:
   lda #$06                     ; $82BC
   sta SceneState               ; $82BE
   jsr FillPaletteBlack         ; $82C1
@@ -295,11 +295,11 @@ Sub_B4_82BC:
   adc z:$7F                    ; $82D4
   sta PlayerCellY              ; $82D6
   jsr DrawCompassSprites       ; $82D9
-  jsr Sub_B4_9880              ; $82DC
-  jsr Sub_B4_997B              ; $82DF
+  jsr DrawCorridorView         ; $82DC
+  jsr DrawMazeScreen           ; $82DF
   jsr Sub_B4_9FAC              ; $82E2
-  jsr Sub_B4_A033              ; $82E5
-  jsr Sub_B4_A0F1              ; $82E8
+  jsr DrawCollectedItemIcons   ; $82E5
+  jsr SpawnDoorObjectsIfAhead  ; $82E8
   jsr ClearNametable2Rows      ; $82EB
   jsr Sub_B4_8ADF              ; $82EE
   lda #$1C                     ; $82F1
@@ -326,7 +326,7 @@ Bank4Tbl80C9_14:
   jsr HideSpritesFromStart     ; $8322
   jsr Sub_B4_A177              ; $8325
   jsr ApplyScroll              ; $8328
-  jmp Sub_B4_86DD              ; $832B
+  jmp ClearObjectTable         ; $832B
 Bank4State_15:
   inc SceneState               ; $832E
   lda $052E                    ; $8331
@@ -370,11 +370,11 @@ Bank4Tbl80C9_18:
   jsr HideSpritesFromStart     ; $8377
   jsr Sub_B4_8C24              ; $837A
   jsr DrawCompassSprites       ; $837D
-  jsr Sub_B4_9880              ; $8380
-  jsr Sub_B4_997B              ; $8383
+  jsr DrawCorridorView         ; $8380
+  jsr DrawMazeScreen           ; $8383
   jsr Sub_B4_9FAC              ; $8386
-  jsr Sub_B4_A033              ; $8389
-  jsr Sub_B4_A0F1              ; $838C
+  jsr DrawCollectedItemIcons   ; $8389
+  jsr SpawnDoorObjectsIfAhead  ; $838C
   jsr ClearNametable2Rows      ; $838F
   jmp ApplyScroll              ; $8392
 Bank4Tbl80C9_19:
@@ -391,7 +391,7 @@ Bank4Tbl80C9_1B:
   sta $052A                    ; $83AB
   jsr HideSpritesFromStart     ; $83AE
   jsr DrawCompassSprites       ; $83B1
-  jsr Sub_B4_A0F1              ; $83B4
+  jsr SpawnDoorObjectsIfAhead  ; $83B4
   lda z:PpuCtrlShadow          ; $83B7
   and #$FD                     ; $83B9
   sta z:PpuCtrlShadow          ; $83BB
@@ -405,11 +405,11 @@ Bank4Tbl80C9_1D:
   jsr FillPaletteBlack         ; $83C9
   jsr HideSpritesFromStart     ; $83CC
   jsr DrawCompassSprites       ; $83CF
-  jsr Sub_B4_9880              ; $83D2
-  jsr Sub_B4_997B              ; $83D5
+  jsr DrawCorridorView         ; $83D2
+  jsr DrawMazeScreen           ; $83D5
   jsr Sub_B4_9FAC              ; $83D8
-  jsr Sub_B4_A033              ; $83DB
-  jsr Sub_B4_A0F1              ; $83DE
+  jsr DrawCollectedItemIcons   ; $83DB
+  jsr SpawnDoorObjectsIfAhead  ; $83DE
   jsr ClearNametable2Rows      ; $83E1
   jmp ApplyScroll              ; $83E4
 Bank4Tbl80C9_1E:
@@ -426,12 +426,12 @@ Bank4Tbl80C9_1E:
   sta PlayerCellY              ; $8404
   lda $0513                    ; $8407
   sta PlayerFacing             ; $840A
-  jsr Sub_B4_9196              ; $840D
-  jsr Sub_B4_9880              ; $8410
-  jsr Sub_B4_997B              ; $8413
+  jsr LoadMazeData             ; $840D
+  jsr DrawCorridorView         ; $8410
+  jsr DrawMazeScreen           ; $8413
   jsr Sub_B4_9FAC              ; $8416
-  jsr Sub_B4_A033              ; $8419
-  jsr Sub_B4_A0F1              ; $841C
+  jsr DrawCollectedItemIcons   ; $8419
+  jsr SpawnDoorObjectsIfAhead  ; $841C
   jsr ClearNametable2Rows      ; $841F
   jmp ApplyScroll              ; $8422
 Bank4State_1F:
@@ -513,7 +513,7 @@ Loc_B4_849E:
   jsr QueueSound               ; $84CB
   lda #$08                     ; $84CE
   jsr QueueSound               ; $84D0
-  jsr Sub_B4_86DD              ; $84D3
+  jsr ClearObjectTable         ; $84D3
   jsr HideAllSprites           ; $84D6
   jsr SetSprite0Marker         ; $84D9
   ldx #$1F                     ; $84DC
@@ -683,7 +683,7 @@ Loc_B4_8610:
   lda #$00                     ; $8610
   ldx #$08                     ; $8612
   ldy #$03                     ; $8614
-  jmp Sub_B4_8BD5              ; $8616
+  jmp RequestTransitionFromTable ; $8616
 Bank4Tbl85C3_06:
   lda $0508                    ; $8619
   ora $050C                    ; $861C
@@ -696,7 +696,7 @@ Bank4Tbl85C3_07:
   sta $050C                    ; $862B
   ldx #$05                     ; $862E
   ldy #$04                     ; $8630
-  jmp Sub_B4_8BD5              ; $8632
+  jmp RequestTransitionFromTable ; $8632
 Bank4Tbl85C3_08:
   lda $0508                    ; $8635
   ora $050C                    ; $8638
@@ -738,7 +738,7 @@ Loc_B4_8683:
   lda #$00                     ; $8683
   ldx #$0B                     ; $8685
   ldy #$03                     ; $8687
-  jmp Sub_B4_8BD5              ; $8689
+  jmp RequestTransitionFromTable ; $8689
 Bank4Tbl85C3_0B:
   lda $0508                    ; $868C
   ora $050C                    ; $868F
@@ -762,7 +762,7 @@ Bank4Tbl85C3_0C:
   lda #$00                     ; $86B7
   ldx #$11                     ; $86B9
   ldy #$03                     ; $86BB
-  jmp Sub_B4_8BD5              ; $86BD
+  jmp RequestTransitionFromTable ; $86BD
 Bank4StateB_0D:
   lda #$0B                     ; $86C0
   sta $0510                    ; $86C2
@@ -775,8 +775,8 @@ Bank4StateB_0D:
   lda #$01                     ; $86D4
   ldx #$0E                     ; $86D6
   ldy #$07                     ; $86D8
-  jmp Sub_B4_8BD5              ; $86DA
-Sub_B4_86DD:
+  jmp RequestTransitionFromTable ; $86DA
+ClearObjectTable:
   lda #$00                     ; $86DD
   sta ObjectCount              ; $86DF
   ldx #$10                     ; $86E2
@@ -844,7 +844,7 @@ Loc_B4_8B2F:
   ldy #$00                     ; $8B34
   sta (Tmp00),y                ; $8B36
   rts                          ; $8B38
-Sub_B4_8B39:
+InitAllObjectAnims:
   lda ObjectCount              ; $8B39
   beq Loc_B4_8B4E              ; $8B3C
   jsr AslA4                    ; $8B3E
@@ -883,7 +883,7 @@ Loc_B4_8B66:
   rts                          ; $8B74
 Data_B4_8B75:
   .incbin "prg_bank_4.bin", $0B75, $60  ; $8B75
-Sub_B4_8BD5:
+RequestTransitionFromTable:
   sta $0503                    ; $8BD5
   sty z:$7C                    ; $8BD8
   ldy #$03                     ; $8BDA
@@ -918,7 +918,7 @@ Loc_B4_8C23:
   rts                          ; $8C23
 Sub_B4_8C24:
   jsr Sub_B4_8C2A              ; $8C24
-  jmp Sub_B4_9196              ; $8C27
+  jmp LoadMazeData             ; $8C27
 Sub_B4_8C2A:
   lda z:$82                    ; $8C2A
   cmp #$16                     ; $8C2C
@@ -1062,11 +1062,11 @@ Loc_B4_8DC5:
   bcs Loc_B4_8DD1              ; $8DC9
   lsr a                        ; $8DCB
   bcc Loc_B4_8DEF              ; $8DCC
-  jmp Sub_B4_8E16              ; $8DCE
+  jmp HideCursorSprites        ; $8DCE
 Loc_B4_8DD1:
   lda #$0E                     ; $8DD1
   jsr QueueSound               ; $8DD3
-  jsr Sub_B4_8E16              ; $8DD6
+  jsr HideCursorSprites        ; $8DD6
   ldy ObjectCount              ; $8DD9
   beq Loc_B4_8DE6              ; $8DDC
 Loc_B4_8DDE:
@@ -1105,7 +1105,7 @@ Loc_B4_8E0A:
   bcc Loc_B4_8DF6              ; $8E0F
   sbc #$38                     ; $8E11
   jmp Loc_B4_8E00              ; $8E13
-Sub_B4_8E16:
+HideCursorSprites:
   lda #$00                     ; $8E16
   sta z:$6F                    ; $8E18
   lda #$F0                     ; $8E1A
@@ -1188,11 +1188,11 @@ Sub_B4_8EDF:
   adc z:$60                    ; $8EE2
   tax                          ; $8EE4
   ldy #$14                     ; $8EE5
-  jsr Sub_B4_8EF1              ; $8EE7
+  jsr CopyPaletteEntryFromTable ; $8EE7
   ldy z:$60                    ; $8EEA
   ldx Data_B4_8F67,y           ; $8EEC
   ldy #$18                     ; $8EEF
-Sub_B4_8EF1:
+CopyPaletteEntryFromTable:
   lda Data_B4_8F04,x           ; $8EF1
   sta SceneTimer,y             ; $8EF4
   lda Data_B4_8F05,x           ; $8EF7
@@ -1348,7 +1348,7 @@ Sub_B4_908C:
   .incbin "prg_bank_4.bin", $108F, $2  ; $908F
   rts                          ; $9091
   .incbin "prg_bank_4.bin", $1092, $24  ; $9092
-Sub_B4_90B6:
+CopyPpuListStubToRam:
   ldx #$05                     ; $90B6
 Loc_B4_90B8:
   lda Sub_B4_908C,x            ; $90B8
@@ -1370,15 +1370,15 @@ DisableSpriteBgRendering:
   lda z:PpuMaskShadow          ; $90D6
   and #$E7                     ; $90D8
   jmp SetPpuMask               ; $90DA
-Sub_B4_90DD:
+RandomByteMixed:
   inc z:$85                    ; $90DD
-  beq Sub_B4_90DD              ; $90DF
+  beq RandomByteMixed          ; $90DF
   jsr GetRandomByte            ; $90E1
   adc z:$85                    ; $90E4
   rts                          ; $90E6
 Sub_B4_90E7:
   stx z:$86                    ; $90E7
-  jsr Sub_B4_90DD              ; $90E9
+  jsr RandomByteMixed          ; $90E9
   ldx z:$86                    ; $90EC
   adc z:$0A                    ; $90EE
   rts                          ; $90F0
@@ -1397,7 +1397,7 @@ Loc_B4_90FF:
   dex                          ; $9102
   bpl Loc_B4_90F3              ; $9103
   rts                          ; $9105
-Sub_B4_9106:
+LoadObjectSpeedFromType:
   ldy #$00                     ; $9106
   lda (Tmp00),y                ; $9108
   and #$3F                     ; $910A
@@ -1429,7 +1429,7 @@ Loc_B4_9184:
   sta PlayerCellY              ; $918D
   lda Data_B4_91D1,x           ; $9190
   sta PlayerFacing             ; $9193
-Sub_B4_9196:
+LoadMazeData:
   lda MazeIndex                ; $9196
   asl a                        ; $9199
   asl a                        ; $919A
@@ -1442,7 +1442,7 @@ Loc_B4_919E:
   iny                          ; $91A5
   cpy #$04                     ; $91A6
   bne Loc_B4_919E              ; $91A8
-  jmp Sub_B4_95A1              ; $91AA
+  jmp InitMazePalette          ; $91AA
 Data_B4_91AD:
   .incbin "prg_bank_4.bin", $11AD, $12  ; $91AD
 Data_B4_91BF:
@@ -1467,7 +1467,7 @@ Loc_B4_959A:
   dex                          ; $959D
   bne Loc_B4_959A              ; $959E
   rts                          ; $95A0
-Sub_B4_95A1:
+InitMazePalette:
   jsr InitPaletteBuffer        ; $95A1
   ldx #$02                     ; $95A4
 Loc_B4_95A6:
@@ -1482,7 +1482,7 @@ Loc_B4_95A6:
   ldy MazeIndex                ; $95BB
   ldx Data_B4_95F8,y           ; $95BE
   stx z:$87                    ; $95C1
-  jsr Sub_B4_95E0              ; $95C3
+  jsr SetFadeParamsFromTable   ; $95C3
   lda $0508                    ; $95C6
   beq Sub_B4_95DA              ; $95C9
   lda #$0F                     ; $95CB
@@ -1495,7 +1495,7 @@ Sub_B4_95DA:
   lda #$05                     ; $95DA
   sta PpuOpRequest             ; $95DC
   rts                          ; $95DF
-Sub_B4_95E0:
+SetFadeParamsFromTable:
   lda Data_B4_960C,x           ; $95E0
   sta $052E                    ; $95E3
   and #$1F                     ; $95E6
@@ -1597,7 +1597,7 @@ Loc_B4_9692:
   beq Loc_B4_96F6              ; $969F
   dex                          ; $96A1
   beq Loc_B4_96F7              ; $96A2
-  jmp Sub_B4_9702              ; $96A4
+  jmp LookupMazeCellInfo       ; $96A4
 Loc_B4_96A7:
   ldx PlayerFacing             ; $96A7
   beq Loc_B4_96C0              ; $96AA
@@ -1647,7 +1647,7 @@ Loc_B4_96F7:
   beq Loc_B4_96F6              ; $96FB
   sta z:$81                    ; $96FD
   jmp Loc_B4_9768              ; $96FF
-Sub_B4_9702:
+LookupMazeCellInfo:
   lda MazeIndex                ; $9702
   asl a                        ; $9705
   tay                          ; $9706
@@ -1720,7 +1720,7 @@ Data_B4_97CE:
   .incbin "prg_bank_4.bin", $17CE, $1  ; $97CE
 Data_B4_97CF:
   .incbin "prg_bank_4.bin", $17CF, $B1  ; $97CF
-Sub_B4_9880:
+DrawCorridorView:
   jsr CalcPlayerCellIndex      ; $9880
   jsr CalcFacingCellOffsets    ; $9883
   lda z:$8F                    ; $9886
@@ -1735,7 +1735,7 @@ Sub_B4_9880:
   sbc z:Tmp01                  ; $9898
   jsr StoreCellRow             ; $989A
   jsr LoadCellWalls            ; $989D
-  jsr Sub_B4_993A              ; $98A0
+  jsr UnpackWallBits           ; $98A0
   jmp Loc_B4_996C              ; $98A3
 CalcPlayerCellIndex:
   lda #$00                     ; $98A6
@@ -1827,7 +1827,7 @@ Loc_B4_9930:
   dex                          ; $9936
   bpl Loc_B4_9930              ; $9937
   rts                          ; $9939
-Sub_B4_993A:
+UnpackWallBits:
   ldx #$03                     ; $993A
 Loc_B4_993C:
   lda z:$8F,x                  ; $993C
@@ -1872,14 +1872,14 @@ Loc_B4_996E:
   dex                          ; $9977
   bpl Loc_B4_996E              ; $9978
   rts                          ; $997A
-Sub_B4_997B:
-  jsr Sub_B4_998D              ; $997B
+DrawMazeScreen:
+  jsr DrawRleScreen            ; $997B
   jsr Sub_B4_9A44              ; $997E
-  jsr Sub_B4_9A8B              ; $9981
+  jsr DrawWallSegments         ; $9981
   jsr Sub_B4_9F47              ; $9984
   jsr RunSoundDriver           ; $9987
   jmp RunSoundDriver           ; $998A
-Sub_B4_998D:
+DrawRleScreen:
   lda PPU_STATUS               ; $998D
   lda #$20                     ; $9990
   sta PPU_ADDR                 ; $9992
@@ -1923,7 +1923,7 @@ Sub_B4_9A44:
   rts                          ; $9A49
 Data_B4_9A4A:
   .incbin "prg_bank_4.bin", $1A4A, $41  ; $9A4A
-Sub_B4_9A8B:
+DrawWallSegments:
   ldy #$00                     ; $9A8B
   sty z:$6C                    ; $9A8D
 Loc_B4_9A8F:
@@ -2134,7 +2134,7 @@ Loc_B4_A00F:
   sta $0553                    ; $A02F
 Loc_B4_A032:
   rts                          ; $A032
-Sub_B4_A033:
+DrawCollectedItemIcons:
   lda $050C                    ; $A033
   beq Loc_B4_A03E              ; $A036
   jsr Sub_B4_A065              ; $A038
@@ -2185,7 +2185,7 @@ Sub_B4_A0B6:
   sta $0524                    ; $A0BD
   rts                          ; $A0C0
   .incbin "prg_bank_4.bin", $20C1, $30  ; $A0C1
-Sub_B4_A0F1:
+SpawnDoorObjectsIfAhead:
   lda z:$9B                    ; $A0F1
   cmp #$02                     ; $A0F3
   beq Loc_B4_A0FC              ; $A0F5
@@ -2193,7 +2193,7 @@ Sub_B4_A0F1:
   sta z:$83                    ; $A0F9
   rts                          ; $A0FB
 Loc_B4_A0FC:
-  jsr Sub_B4_9702              ; $A0FC
+  jsr LookupMazeCellInfo       ; $A0FC
   ldx z:$82                    ; $A0FF
   lda Data_B4_A116,x           ; $A101
   sta z:$83                    ; $A104
@@ -2239,7 +2239,7 @@ Loc_B4_A179:
   jmp a:Tmp00                  ; $A181
 Data_B4_A184:
   .incbin "prg_bank_4.bin", $2184, $A2  ; $A184
-Sub_B4_A226:
+MazeObjType11State7:
   jsr Sub_B4_B404              ; $A226
   ldy #$0B                     ; $A229
   jsr IncObjectField           ; $A22B
@@ -2275,9 +2275,9 @@ Loc_B4_A293:
   sta z:$6E                    ; $A29F
   jmp ($006D)                  ; $A2A1
 Data_B4_A2A4:
-  .addr Sub_B4_A2B4, Sub_B4_A2CF, Sub_B4_A2DF, Sub_B4_A331, Sub_B4_A348, Sub_B4_A3BC, DoorState6  ; $A2A4 pointer table
+  .addr DoorState0, Sub_B4_A2CF, DoorState2, DoorState3, DoorState4, DoorState5, DoorState6  ; $A2A4 pointer table
   .incbin "prg_bank_4.bin", $22B2, $2  ; $A2B2
-Sub_B4_A2B4:
+DoorState0:
   lda z:PpuCtrlShadow          ; $A2B4
   and #$FB                     ; $A2B6
   ora #$02                     ; $A2B8
@@ -2299,7 +2299,7 @@ Loc_B4_A2D7:
   lda #$18                     ; $A2D7
   jsr QueueSound               ; $A2D9
   jmp AdvanceObjectState       ; $A2DC
-Sub_B4_A2DF:
+DoorState2:
   ldy #$0B                     ; $A2DF
   jsr IncObjectField           ; $A2E1
   cmp #$11                     ; $A2E4
@@ -2337,7 +2337,7 @@ Loc_B4_A31A:
   ora #$20                     ; $A32A
   sta (Tmp00),y                ; $A32C
   jmp AdvanceObjectState       ; $A32E
-Sub_B4_A331:
+DoorState3:
   ldy #$09                     ; $A331
   lda (Tmp00),y                ; $A333
   bpl Loc_B4_A347              ; $A335
@@ -2349,7 +2349,7 @@ Sub_B4_A331:
   jmp AdvanceObjectState       ; $A344
 Loc_B4_A347:
   rts                          ; $A347
-Sub_B4_A348:
+DoorState4:
   ldy #$0B                     ; $A348
   jsr IncObjectField           ; $A34A
   cmp #$50                     ; $A34D
@@ -2393,7 +2393,7 @@ Data_B4_A393:
   .incbin "prg_bank_4.bin", $2393, $1  ; $A393
 Data_B4_A394:
   .incbin "prg_bank_4.bin", $2394, $28  ; $A394
-Sub_B4_A3BC:
+DoorState5:
   ldy #$0B                     ; $A3BC
   jsr DecObjectField           ; $A3BE
   bne Loc_B4_A3D7              ; $A3C1
@@ -2467,15 +2467,15 @@ Data_B4_A565:
   .incbin "prg_bank_4.bin", $2565, $1  ; $A565
 Data_B4_A566:
   .incbin "prg_bank_4.bin", $2566, $17  ; $A566
-Sub_B4_A57D:
+MazeObjType05State0:
   lda #$2B                     ; $A57D
   sta z:$80                    ; $A57F
   lda #$1B                     ; $A581
   jsr QueueSound               ; $A583
-  jsr Sub_B4_9106              ; $A586
+  jsr LoadObjectSpeedFromType  ; $A586
 Sub_B4_A589:
   jmp AdvanceObjectState       ; $A589
-Sub_B4_A58C:
+MazeObjType05State2:
   ldy #$0B                     ; $A58C
   lda (Tmp00),y                ; $A58E
   cmp #$08                     ; $A590
@@ -2512,7 +2512,7 @@ MazeObjType05State3:
   lda #$01                     ; $A603
   sta PpuOpRequest             ; $A605
   jmp AdvanceObjectState       ; $A608
-Sub_B4_A60B:
+MazeObjType05State4:
   ldy #$0B                     ; $A60B
   jsr IncObjectField           ; $A60D
   cmp #$18                     ; $A610
@@ -2531,7 +2531,7 @@ Loc_B4_A62B:
   lda #$00                     ; $A62B
   sta (Tmp00),y                ; $A62D
   jmp AdvanceObjectState       ; $A62F
-Sub_B4_A632:
+MazeObjType05State5:
   ldy #$0B                     ; $A632
   jsr IncObjectField           ; $A634
   cmp #$09                     ; $A637
@@ -2591,7 +2591,7 @@ Loc_B4_A6E8:
   ldy #$0B                     ; $A6F8
   sta (Tmp00),y                ; $A6FA
   jmp AdvanceObjectState       ; $A6FC
-Sub_B4_A6FF:
+MazeObjType05State7:
   jsr DisableSpriteBgRendering ; $A6FF
   lda #$05                     ; $A702
   sta PpuOpRequest             ; $A704
@@ -2601,10 +2601,10 @@ Sub_B4_A6FF:
 Sub_B4_A710:
   jsr AdvanceObjectState       ; $A710
   jsr Sub_B4_A73B              ; $A713
-  jsr Sub_B4_9880              ; $A716
-  jsr Sub_B4_997B              ; $A719
+  jsr DrawCorridorView         ; $A716
+  jsr DrawMazeScreen           ; $A719
   jsr Sub_B4_9FAC              ; $A71C
-  jsr Sub_B4_A033              ; $A71F
+  jsr DrawCollectedItemIcons   ; $A71F
   jsr ProcessPpuUpdateList     ; $A722
   .addr Data_B4_A72A  ; $A725 inline pointer (data after a JSR)
   jmp ApplyScroll              ; $A727
@@ -2634,11 +2634,11 @@ Sub_B4_A775:
   sec                          ; $A780
   sbc #$04                     ; $A781
   sta PlayerCellY              ; $A783
-  jmp Sub_B4_9196              ; $A786
+  jmp LoadMazeData             ; $A786
   .incbin "prg_bank_4.bin", $2789, $9  ; $A789
 Sub_B4_A792:
   inc MazeIndex                ; $A792
-  jmp Sub_B4_9196              ; $A795
+  jmp LoadMazeData             ; $A795
   .incbin "prg_bank_4.bin", $2798, $22  ; $A798
 Sub_B4_A7BA:
   lda #$06                     ; $A7BA
@@ -2656,7 +2656,7 @@ Loc_B4_A7CE:
   lda #$EF                     ; $A7CE
   sta z:HwScrollY              ; $A7D0
   jmp AdvanceObjectState       ; $A7D2
-Sub_B4_A7D5:
+MazeObjType05StateB:
   ldy #$0B                     ; $A7D5
   jsr IncObjectField           ; $A7D7
   cmp #$17                     ; $A7DA
@@ -2682,14 +2682,14 @@ Data_B4_A7F3:
   lda #$04                     ; $A9D5
   jmp SetObjectFrame           ; $A9D7
   .incbin "prg_bank_4.bin", $29DA, $9  ; $A9DA
-Sub_B4_A9E3:
+MazeObjType07:
   ldy #$08                     ; $A9E3
   lda (Tmp00),y                ; $A9E5
   bne Loc_B4_A9FB              ; $A9E7
   lda #$3C                     ; $A9E9
   ldy #$0B                     ; $A9EB
   sta (Tmp00),y                ; $A9ED
-  jsr Sub_B4_9106              ; $A9EF
+  jsr LoadObjectSpeedFromType  ; $A9EF
   lda z:$72                    ; $A9F2
   cmp #$03                     ; $A9F4
   bne Loc_B4_A9F8              ; $A9F6
@@ -2720,9 +2720,9 @@ Loc_B4_AA19:
 Loc_B4_AA24:
   ldy #$0B                     ; $AA24
   sta (Tmp00),y                ; $AA26
-  jsr Sub_B4_9106              ; $AA28
+  jsr LoadObjectSpeedFromType  ; $AA28
   jmp AdvanceObjectState       ; $AA2B
-Sub_B4_AA2E:
+MazeObjType09:
   ldy #$08                     ; $AA2E
   lda (Tmp00),y                ; $AA30
   bne Loc_B4_A9FB              ; $AA32
@@ -2750,7 +2750,7 @@ Data_B4_AA56:
   cmp z:$AA,x                  ; $AA5A
   cpy z:$AA                    ; $AA5C
   .incbin "prg_bank_4.bin", $2A5E, $26  ; $AA5E
-Sub_B4_AA84:
+MazeObjEnemy0AState0:
   ldy #$02                     ; $AA84
   lda (Tmp00),y                ; $AA86
   bne Loc_B4_AA99              ; $AA88
@@ -2781,11 +2781,11 @@ Loc_B4_AAB2:
   lda #$68                     ; $AAB6
   ldx #$40                     ; $AAB8
   jsr Sub_B4_B3F9              ; $AABA
-  jmp Sub_B4_9106              ; $AABD
-Sub_B4_AAC0:
+  jmp LoadObjectSpeedFromType  ; $AABD
+MazeObjEnemy0AState1:
   ldx #$40                     ; $AAC0
   bne Loc_B4_AAC6              ; $AAC2
-Sub_B4_AAC4:
+MazeObjEnemy0AState3:
   ldx #$0D                     ; $AAC4
 Loc_B4_AAC6:
   ldy #$0B                     ; $AAC6
@@ -2796,7 +2796,7 @@ Loc_B4_AACE:
   jsr AdvanceObjectState       ; $AACE
   txa                          ; $AAD1
   jmp QueueSound               ; $AAD2
-Sub_B4_AAD5:
+MazeObjEnemy0AState2:
   ldy #$0B                     ; $AAD5
   jsr IncObjectField           ; $AAD7
   bmi Loc_B4_AAFA              ; $AADA
@@ -2806,7 +2806,7 @@ Sub_B4_AAD5:
   lda Data_B4_AB13,x           ; $AAE0
   jsr SetObjectFrame           ; $AAE3
   jsr DamageFlashStep          ; $AAE6
-  jsr Sub_B4_B04B              ; $AAE9
+  jsr ShakeScreenStep          ; $AAE9
   ldy #$0B                     ; $AAEC
   lda (Tmp00),y                ; $AAEE
   and #$0F                     ; $AAF0
@@ -2823,16 +2823,16 @@ Loc_B4_AAFA:
   lda #$00                     ; $AB02
   sta z:HwScrollX              ; $AB04
   sta z:HwScrollX              ; $AB06
-  jsr Sub_B4_B011              ; $AB08
+  jsr ResetDamageFlash         ; $AB08
   jsr AdvanceObjectState       ; $AB0B
   lda #$45                     ; $AB0E
   jmp QueueSound               ; $AB10
 Data_B4_AB13:
   .incbin "prg_bank_4.bin", $2B13, $4  ; $AB13
-Sub_B4_AB17:
+MazeObjEnemy0AState4:
   ldx #$FB                     ; $AB17
   lda #$02                     ; $AB19
-  jsr Sub_B4_AC61              ; $AB1B
+  jsr MoveObjectXY             ; $AB1B
   ldy #$0B                     ; $AB1E
   jsr IncObjectField           ; $AB20
   cmp #$10                     ; $AB23
@@ -2845,10 +2845,10 @@ Loc_B4_AB2C:
   lda #$05                     ; $AB30
   jsr SetObjectFrame           ; $AB32
   jmp AdvanceObjectState       ; $AB35
-Sub_B4_AB38:
+MazeObjEnemy0AState5:
   ldx #$FF                     ; $AB38
   lda #$02                     ; $AB3A
-  jsr Sub_B4_AC61              ; $AB3C
+  jsr MoveObjectXY             ; $AB3C
   ldy #$0B                     ; $AB3F
   jsr IncObjectField           ; $AB41
   cmp #$0C                     ; $AB44
@@ -2866,10 +2866,10 @@ MazeObjEnemy0AState6:
   ldy #$08                     ; $AB57
   sta (Tmp00),y                ; $AB59
   rts                          ; $AB5B
-Sub_B4_AB5C:
+MazeObjEnemy0AStateC:
   ldx #$01                     ; $AB5C
   lda #$02                     ; $AB5E
-  jsr Sub_B4_AC61              ; $AB60
+  jsr MoveObjectXY             ; $AB60
   ldy #$0B                     ; $AB63
   jsr IncObjectField           ; $AB65
   cmp #$0C                     ; $AB68
@@ -2882,10 +2882,10 @@ Loc_B4_AB71:
   lda #$04                     ; $AB75
   jsr SetObjectFrame           ; $AB77
   jmp AdvanceObjectState       ; $AB7A
-Sub_B4_AB7D:
+MazeObjEnemy0AStateD:
   ldx #$05                     ; $AB7D
   lda #$02                     ; $AB7F
-  jsr Sub_B4_AC61              ; $AB81
+  jsr MoveObjectXY             ; $AB81
   ldy #$0B                     ; $AB84
   jsr IncObjectField           ; $AB86
   cmp #$10                     ; $AB89
@@ -2991,10 +2991,10 @@ Loc_B4_AC40:
   lda #$00                     ; $AC53
   sta z:HwScrollY              ; $AC55
   sta z:HwScrollX              ; $AC57
-  jsr Sub_B4_B011              ; $AC59
+  jsr ResetDamageFlash         ; $AC59
   lda #$06                     ; $AC5C
   jmp SetObjectFrame           ; $AC5E
-Sub_B4_AC61:
+MoveObjectXY:
   ldy #$02                     ; $AC61
   jsr AddToObjectField         ; $AC63
   txa                          ; $AC66
@@ -3018,7 +3018,7 @@ Loc_B4_AC7C:
   jmp Sub_B4_AA39              ; $AC8B
 Loc_B4_AC8E:
   jmp RemoveObject             ; $AC8E
-Sub_B4_AC91:
+MazeObjType28:
   ldx $0509                    ; $AC91
   bne Loc_B4_AC8E              ; $AC94
   inx                          ; $AC96
@@ -3046,7 +3046,7 @@ Loc_B4_AEF6:
   sta z:$6E                    ; $AF02
   jmp ($006D)                  ; $AF04
 Data_B4_AF07:
-  .addr Sub_B4_AF17, Sub_B4_AF3E, Sub_B4_AF51, Sub_B4_AF61, Sub_B4_AFA7, Sub_B4_AFB8, Sub_B4_AFC6, Sub_B4_A226  ; $AF07 pointer table
+  .addr Sub_B4_AF17, Sub_B4_AF3E, Sub_B4_AF51, MazeObjType11State3, MazeObjType11State4, MazeObjType11State5, MazeObjType11State6, MazeObjType11State7  ; $AF07 pointer table
 Sub_B4_AF17:
   lda z:$84                    ; $AF17
   beq Loc_B4_AF1E              ; $AF19
@@ -3078,7 +3078,7 @@ Loc_B4_AF59:
   lda #$40                     ; $AF59
   jsr QueueSound               ; $AF5B
   jmp AdvanceObjectState       ; $AF5E
-Sub_B4_AF61:
+MazeObjType11State3:
   ldy #$0B                     ; $AF61
   jsr IncObjectField           ; $AF63
   bpl Loc_B4_AF7C              ; $AF66
@@ -3090,7 +3090,7 @@ Sub_B4_AF61:
   lda #$00                     ; $AF73
   sta z:HwScrollY              ; $AF75
   sta z:HwScrollX              ; $AF77
-  jmp Sub_B4_B011              ; $AF79
+  jmp ResetDamageFlash         ; $AF79
 Loc_B4_AF7C:
   and #$07                     ; $AF7C
   beq Loc_B4_AF90              ; $AF7E
@@ -3102,7 +3102,7 @@ Loc_B4_AF84:
   jsr SetObjectFrame           ; $AF87
 Loc_B4_AF8A:
   jsr DamageFlashStep          ; $AF8A
-  jmp Sub_B4_B04B              ; $AF8D
+  jmp ShakeScreenStep          ; $AF8D
 Loc_B4_AF90:
   ldy #$D2                     ; $AF90
   jsr AddObjectOfType          ; $AF92
@@ -3115,7 +3115,7 @@ Loc_B4_AF9E:
   jmp Loc_B4_AF84              ; $AFA0
 Data_B4_AFA3:
   .incbin "prg_bank_4.bin", $2FA3, $4  ; $AFA3
-Sub_B4_AFA7:
+MazeObjType11State4:
   ldx $051F                    ; $AFA7
   cpx #$03                     ; $AFAA
   bcs Loc_B4_AFB5              ; $AFAC
@@ -3124,13 +3124,13 @@ Sub_B4_AFA7:
   jsr Sub_B4_9FD6              ; $AFB2
 Loc_B4_AFB5:
   jmp AdvanceObjectState       ; $AFB5
-Sub_B4_AFB8:
+MazeObjType11State5:
   jsr Sub_B4_B467              ; $AFB8
-  jsr Sub_B4_B011              ; $AFBB
+  jsr ResetDamageFlash         ; $AFBB
   lda #$45                     ; $AFBE
   jsr QueueSound               ; $AFC0
   jmp AdvanceObjectState       ; $AFC3
-Sub_B4_AFC6:
+MazeObjType11State6:
   lda #$05                     ; $AFC6
   ldx #$05                     ; $AFC8
   jsr AddLifeAndAmmo           ; $AFCA
@@ -3148,7 +3148,7 @@ DamageFlashStep:
   bcs Loc_B4_B010              ; $AFE2
   and #$03                     ; $AFE4
   cmp #$03                     ; $AFE6
-  beq Sub_B4_B011              ; $AFE8
+  beq ResetDamageFlash         ; $AFE8
   ldx #$05                     ; $AFEA
   stx PpuOpRequest             ; $AFEC
   asl a                        ; $AFEF
@@ -3166,13 +3166,13 @@ DamageFlashStep:
   sta $0530                    ; $B00D
 Loc_B4_B010:
   rts                          ; $B010
-Sub_B4_B011:
+ResetDamageFlash:
   ldx #$05                     ; $B011
   stx PpuOpRequest             ; $B013
   ldx #$0F                     ; $B016
   stx $052A                    ; $B018
   ldx z:$87                    ; $B01B
-  jmp Sub_B4_95E0              ; $B01D
+  jmp SetFadeParamsFromTable   ; $B01D
 Data_B4_B020:
   .incbin "prg_bank_4.bin", $3020, $1  ; $B020
 Data_B4_B021:
@@ -3201,7 +3201,7 @@ Loc_B4_B03B:
   sta (Tmp00),y                ; $B048
 Loc_B4_B04A:
   rts                          ; $B04A
-Sub_B4_B04B:
+ShakeScreenStep:
   inc z:$89                    ; $B04B
   lda z:$89                    ; $B04D
   lsr a                        ; $B04F
@@ -3218,7 +3218,7 @@ Data_B4_B060:
   .incbin "prg_bank_4.bin", $3060, $4  ; $B060
 Data_B4_B064:
   .incbin "prg_bank_4.bin", $3064, $92  ; $B064
-Sub_B4_B0F6:
+MazeObjType14:
   ldy #$08                     ; $B0F6
   lda (Tmp00),y                ; $B0F8
   beq Loc_B4_B0FD              ; $B0FA
@@ -3242,7 +3242,7 @@ Loc_B4_B10C:
   sta z:$6E                    ; $B118
   jmp ($006D)                  ; $B11A
 Data_B4_B11D:
-  .addr Sub_B4_B123, Sub_B4_B15F, Sub_B4_B174  ; $B11D pointer table
+  .addr Sub_B4_B123, MazeObjType16State1, MazeObjType16State2  ; $B11D pointer table
 Sub_B4_B123:
   lda #$14                     ; $B123
   ldy #$0B                     ; $B125
@@ -3255,28 +3255,28 @@ Sub_B4_B123:
   sta PpuOpRequest             ; $B135
   lda z:$87                    ; $B138
   jsr Sub_B4_8EDF              ; $B13A
-  jsr Sub_B4_9106              ; $B13D
+  jsr LoadObjectSpeedFromType  ; $B13D
   jmp AdvanceObjectState       ; $B140
   .incbin "prg_bank_4.bin", $3143, $1C  ; $B143
-Sub_B4_B15F:
+MazeObjType16State1:
   ldy #$0B                     ; $B15F
   jsr DecObjectField           ; $B161
   beq Loc_B4_B169              ; $B164
-  jmp Sub_B4_B174              ; $B166
+  jmp MazeObjType16State2      ; $B166
 Loc_B4_B169:
   ldy #$0A                     ; $B169
   lda (Tmp00),y                ; $B16B
   and #$1F                     ; $B16D
   sta (Tmp00),y                ; $B16F
   jsr AdvanceObjectState       ; $B171
-Sub_B4_B174:
-  jsr Sub_B4_90DD              ; $B174
+MazeObjType16State2:
+  jsr RandomByteMixed          ; $B174
   cmp #$20                     ; $B177
   bcs Loc_B4_B1DE              ; $B179
   lda ObjectCount              ; $B17B
   cmp #$02                     ; $B17E
   bcs Loc_B4_B1DE              ; $B180
-  jsr Sub_B4_90DD              ; $B182
+  jsr RandomByteMixed          ; $B182
   and #$07                     ; $B185
   cmp #$03                     ; $B187
   bcc Loc_B4_B18F              ; $B189
@@ -3291,7 +3291,7 @@ Loc_B4_B191:
   lda $0508                    ; $B197
   ora $050A                    ; $B19A
   beq Loc_B4_B1A6              ; $B19D
-  jsr Sub_B4_90DD              ; $B19F
+  jsr RandomByteMixed          ; $B19F
   and #$2A                     ; $B1A2
   adc #$01                     ; $B1A4
 Loc_B4_B1A6:
@@ -3338,7 +3338,7 @@ Loc_B4_B1E9:
   sta z:$6E                    ; $B1F5
   jmp ($006D)                  ; $B1F7
 Data_B4_B1FA:
-  .addr Sub_B4_B202, Sub_B4_B222, Sub_B4_B25A, Sub_B4_B285  ; $B1FA pointer table
+  .addr Sub_B4_B202, MazeObjType17State1, MazeObjType17State2, MazeObjType17State3  ; $B1FA pointer table
 Sub_B4_B202:
   ldy #$0B                     ; $B202
   jsr DecObjectField           ; $B204
@@ -3356,7 +3356,7 @@ Loc_B4_B21A:
   lda #$30                     ; $B21A
   jsr Sub_B4_B3FF              ; $B21C
   jmp Loc_B4_B3C9              ; $B21F
-Sub_B4_B222:
+MazeObjType17State1:
   ldy #$0B                     ; $B222
   jsr IncObjectField           ; $B224
   cmp #$08                     ; $B227
@@ -3383,7 +3383,7 @@ Loc_B4_B22E:
   sta $0312,x                  ; $B254
 Loc_B4_B257:
   jmp AdvanceObjectState       ; $B257
-Sub_B4_B25A:
+MazeObjType17State2:
   ldy #$00                     ; $B25A
   lda (Tmp00),y                ; $B25C
   bmi Loc_B4_B261              ; $B25E
@@ -3408,7 +3408,7 @@ Loc_B4_B279:
   jsr AdvanceObjectState       ; $B27D
   lda #$27                     ; $B280
   jmp QueueSound               ; $B282
-Sub_B4_B285:
+MazeObjType17State3:
   ldy #$0B                     ; $B285
   jsr DecObjectField           ; $B287
   tax                          ; $B28A
@@ -3438,28 +3438,28 @@ Loc_B4_B2A9:
   sta z:$6E                    ; $B2B5
   jmp ($006D)                  ; $B2B7
 Data_B4_B2BA:
-  .addr Sub_B4_B2C0, Sub_B4_B2D1, Sub_B4_B2E6  ; $B2BA pointer table
-Sub_B4_B2C0:
+  .addr MazeObjType18State0, MazeObjType18State1, MazeObjType18State2  ; $B2BA pointer table
+MazeObjType18State0:
   lda #$FF                     ; $B2C0
   ldy #$0B                     ; $B2C2
   sta (Tmp00),y                ; $B2C4
   lda #$0D                     ; $B2C6
   jsr DamagePlayer             ; $B2C8
-  jsr Sub_B4_9106              ; $B2CB
+  jsr LoadObjectSpeedFromType  ; $B2CB
   jmp AdvanceObjectState       ; $B2CE
-Sub_B4_B2D1:
+MazeObjType18State1:
   ldy #$0B                     ; $B2D1
   jsr IncObjectField           ; $B2D3
   bne Loc_B4_B2D9              ; $B2D6
   rts                          ; $B2D8
 Loc_B4_B2D9:
   cmp #$0A                     ; $B2D9
-  bcc Sub_B4_B2E6              ; $B2DB
+  bcc MazeObjType18State2      ; $B2DB
   lda #$00                     ; $B2DD
   ldy #$0A                     ; $B2DF
   sta (Tmp00),y                ; $B2E1
   jsr AdvanceObjectState       ; $B2E3
-Sub_B4_B2E6:
+MazeObjType18State2:
   ldy #$0B                     ; $B2E6
   jsr IncObjectField           ; $B2E8
   and #$0F                     ; $B2EB
@@ -3501,12 +3501,12 @@ Loc_B4_B3C6:
 Loc_B4_B3C9:
   lda #$00                     ; $B3C9
   jsr SetObjectFrame           ; $B3CB
-  jsr Sub_B4_9106              ; $B3CE
+  jsr LoadObjectSpeedFromType  ; $B3CE
   jmp AdvanceObjectState       ; $B3D1
 Data_B4_B3D4:
   .incbin "prg_bank_4.bin", $33D4, $8  ; $B3D4
 Sub_B4_B3DC:
-  jsr Sub_B4_90DD              ; $B3DC
+  jsr RandomByteMixed          ; $B3DC
   and #$07                     ; $B3DF
   tay                          ; $B3E1
   sty z:$60                    ; $B3E2
@@ -3619,7 +3619,7 @@ Loc_B4_B4AC:
   stx z:AmmoHi                 ; $B4AC
   sta z:AmmoLo                 ; $B4AE
   rts                          ; $B4B0
-Sub_B4_B4B1:
+UpdateAllObjectHandlers:
   jsr LoadObjectCountIndex     ; $B4B1
   beq Loc_B4_B4EE              ; $B4B4
 Loc_B4_B4B6:

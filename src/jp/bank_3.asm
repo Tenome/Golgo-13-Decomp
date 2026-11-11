@@ -77,7 +77,7 @@ Bank3Dispatch_0421:
   lda Data_B3_82D7,y           ; $808C
   sta z:Tmp01                  ; $808F
   jmp ($0000)                  ; $8091
-Sub_B3_8094:
+TextBoxBeginStage:
   jsr CalcMenuRowNametableAddr ; $8094
   lda #$00                     ; $8097
   sta $0422                    ; $8099
@@ -259,7 +259,7 @@ Sub_B3_8210:
 Sub_B3_8215:
   lda #$40                     ; $8215
   jmp Loc_B3_821C              ; $8217
-Sub_B3_821A:
+TextBoxClearRow3:
   lda #$60                     ; $821A
 Loc_B3_821C:
   sta z:Tmp00                  ; $821C
@@ -581,7 +581,7 @@ Sub_B3_84DB:
   lda JoyHeld1                 ; $84DB
   and #$01                     ; $84DE
   bne Loc_B3_84E8              ; $84E0
-  jsr Sub_B3_86E9              ; $84E2
+  jsr BlinkTextCursorStep      ; $84E2
   jmp Loc_B3_85AC              ; $84E5
 Loc_B3_84E8:
   inc $041B                    ; $84E8
@@ -639,7 +639,7 @@ Sub_B3_8550:
   lda JoyNew1                  ; $8550
   and #$03                     ; $8553
   bne Loc_B3_855D              ; $8555
-  jsr Sub_B3_86E9              ; $8557
+  jsr BlinkTextCursorStep      ; $8557
   jmp Loc_B3_85AC              ; $855A
 Loc_B3_855D:
   cmp #$01                     ; $855D
@@ -670,7 +670,7 @@ Sub_B3_8593:
   lda JoyHeld1                 ; $8593
   and #$01                     ; $8596
   bne Loc_B3_85A0              ; $8598
-  jsr Sub_B3_86E9              ; $859A
+  jsr BlinkTextCursorStep      ; $859A
   jmp Loc_B3_85AC              ; $859D
 Loc_B3_85A0:
   lda #$00                     ; $85A0
@@ -862,7 +862,7 @@ Loc_B3_86D7:
   ldy #$04                     ; $86E4
   sta ($5C),y                  ; $86E6
   rts                          ; $86E8
-Sub_B3_86E9:
+BlinkTextCursorStep:
   lda $041E                    ; $86E9
   cmp #$14                     ; $86EC
   bcs Loc_B3_86F6              ; $86EE
