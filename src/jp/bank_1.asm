@@ -582,7 +582,7 @@ Loc_B1_8DBB:
   beq Loc_B1_8DCE              ; $8DC5
   lda z:FrameCounter           ; $8DC7
   bne Loc_B1_8DCE              ; $8DC9
-  jsr Sub_B1_AAD5              ; $8DCB
+  jsr SpawnObjectAtScreenRight ; $8DCB
 Loc_B1_8DCE:
   rts                          ; $8DCE
 Data_B1_8DCF:
@@ -784,7 +784,7 @@ Bank1State_02:
   lda (Tmp00),y                ; $8F5E
   and #$3F                     ; $8F60
   bne Loc_B1_8F72              ; $8F62
-  jsr Sub_B1_AAC3              ; $8F64
+  jsr AdvanceObjectAnimStepB1  ; $8F64
   bcc Loc_B1_8F6F              ; $8F67
   jsr Sub_B1_8F9F              ; $8F69
   jsr Sub_B1_8F8C              ; $8F6C
@@ -843,7 +843,7 @@ Loc_B1_8FBC:
   ldy #$0C                     ; $8FC8
   lda (Tmp00),y                ; $8FCA
   bpl Loc_B1_8FD4              ; $8FCC
-  jsr Sub_B1_AAD5              ; $8FCE
+  jsr SpawnObjectAtScreenRight ; $8FCE
   jmp Loc_B1_8FD7              ; $8FD1
 Loc_B1_8FD4:
   jsr Sub_B1_8FDE              ; $8FD4
@@ -888,7 +888,7 @@ Bank1State_03:
   lda (Tmp00),y                ; $90AB
   and #$3F                     ; $90AD
   bne Loc_B1_90BF              ; $90AF
-  jsr Sub_B1_AAC3              ; $90B1
+  jsr AdvanceObjectAnimStepB1  ; $90B1
   bcc Loc_B1_90BC              ; $90B4
   jsr Sub_B1_8EA2              ; $90B6
   jmp Loc_B1_90C5              ; $90B9
@@ -990,7 +990,7 @@ Sub_B1_929F:
   lda (Tmp00),y                ; $92B7
   cmp #$04                     ; $92B9
   bne Loc_B1_92FE              ; $92BB
-  jsr Sub_B1_AAD5              ; $92BD
+  jsr SpawnObjectAtScreenRight ; $92BD
   jmp Loc_B1_92FE              ; $92C0
 Loc_B1_92C3:
   ldy #$07                     ; $92C3
@@ -1045,7 +1045,7 @@ Loc_B1_9373:
   ldy #$08                     ; $9373
   lda (Tmp00),y                ; $9375
   bne Loc_B1_938A              ; $9377
-  jsr Sub_B1_AAC3              ; $9379
+  jsr AdvanceObjectAnimStepB1  ; $9379
   bcc Loc_B1_9384              ; $937C
   jsr Sub_B1_93FA              ; $937E
 Loc_B1_9381:
@@ -1172,7 +1172,7 @@ Loc_B1_945E:
   lda (Tmp00),y                ; $9460
   and #$80                     ; $9462
   beq Loc_B1_94BC              ; $9464
-  jsr Sub_B1_AAD5              ; $9466
+  jsr SpawnObjectAtScreenRight ; $9466
   jmp Loc_B1_94BC              ; $9469
 Sub_B1_946C:
   lda ObjectCount              ; $946C
@@ -1253,7 +1253,7 @@ Loc_B1_9596:
   ldy #$08                     ; $9596
   lda (Tmp00),y                ; $9598
   bne Loc_B1_95C0              ; $959A
-  jsr Sub_B1_AAC3              ; $959C
+  jsr AdvanceObjectAnimStepB1  ; $959C
   bcc Loc_B1_95A7              ; $959F
   jsr Sub_B1_96BE              ; $95A1
 Loc_B1_95A4:
@@ -1480,7 +1480,7 @@ Loc_B1_97CC:
   ldy #$08                     ; $97CC
   lda (Tmp00),y                ; $97CE
   bne Loc_B1_97E3              ; $97D0
-  jsr Sub_B1_AAC3              ; $97D2
+  jsr AdvanceObjectAnimStepB1  ; $97D2
   bcc Loc_B1_97DD              ; $97D5
   jsr Sub_B1_98A3              ; $97D7
 Loc_B1_97DA:
@@ -1676,7 +1676,7 @@ Loc_B1_99F4:
   ldy #$08                     ; $9A03
   lda (Tmp00),y                ; $9A05
   bne Loc_B1_9A26              ; $9A07
-  jsr Sub_B1_AAC3              ; $9A09
+  jsr AdvanceObjectAnimStepB1  ; $9A09
   bcc Loc_B1_9A20              ; $9A0C
 Loc_B1_9A0E:
   ldy #$07                     ; $9A0E
@@ -1804,7 +1804,7 @@ Loc_B1_9ADB:
   ldy #$07                     ; $9AE3
   lda (Tmp00),y                ; $9AE5
   bmi Loc_B1_9B1F              ; $9AE7
-  jsr Sub_B1_AAD5              ; $9AE9
+  jsr SpawnObjectAtScreenRight ; $9AE9
   jmp Loc_B1_9B1F              ; $9AEC
 Loc_B1_9AEF:
   ldy #$0E                     ; $9AEF
@@ -1896,7 +1896,7 @@ Bank1State_08:
   ldy #$08                     ; $9C4A
   lda (Tmp00),y                ; $9C4C
   bne Loc_B1_9C61              ; $9C4E
-  jsr Sub_B1_AAC3              ; $9C50
+  jsr AdvanceObjectAnimStepB1  ; $9C50
   bcc Loc_B1_9C5B              ; $9C53
   jsr Sub_B1_9C76              ; $9C55
   jsr Sub_B1_9C68              ; $9C58
@@ -1962,7 +1962,7 @@ Loc_B1_9CBC:
   ldy #$0C                     ; $9CC4
   lda (Tmp00),y                ; $9CC6
   bpl Loc_B1_9CD3              ; $9CC8
-  jsr Sub_B1_AAD5              ; $9CCA
+  jsr SpawnObjectAtScreenRight ; $9CCA
   jmp Loc_B1_9CD3              ; $9CCD
 Loc_B1_9CD0:
   jsr Sub_B1_946C              ; $9CD0
@@ -1982,7 +1982,7 @@ Bank1State_09:
   ldy #$08                     ; $9DC6
   lda (Tmp00),y                ; $9DC8
   bne Loc_B1_9DDA              ; $9DCA
-  jsr Sub_B1_AAC3              ; $9DCC
+  jsr AdvanceObjectAnimStepB1  ; $9DCC
   bcc Loc_B1_9DD7              ; $9DCF
   jsr Sub_B1_9DFC              ; $9DD1
   jsr Sub_B1_9DEE              ; $9DD4
@@ -2049,7 +2049,7 @@ Loc_B1_9E3A:
   ldy #$0C                     ; $9E40
   lda (Tmp00),y                ; $9E42
   bpl Loc_B1_9E73              ; $9E44
-  jsr Sub_B1_AAD5              ; $9E46
+  jsr SpawnObjectAtScreenRight ; $9E46
   jmp Loc_B1_9E73              ; $9E49
 Loc_B1_9E4C:
   lda #$08                     ; $9E4C
@@ -2104,7 +2104,7 @@ Loc_B1_9F12:
   ldy #$08                     ; $9F12
   lda (Tmp00),y                ; $9F14
   bne Loc_B1_9F29              ; $9F16
-  jsr Sub_B1_AAC3              ; $9F18
+  jsr AdvanceObjectAnimStepB1  ; $9F18
   bcc Loc_B1_9F23              ; $9F1B
   jsr Sub_B1_9F61              ; $9F1D
 Loc_B1_9F20:
@@ -2159,7 +2159,7 @@ Sub_B1_9F68:
   lda (Tmp00),y                ; $9F78
   cmp #$04                     ; $9F7A
   bne Loc_B1_9FCC              ; $9F7C
-  jsr Sub_B1_AAD5              ; $9F7E
+  jsr SpawnObjectAtScreenRight ; $9F7E
   jmp Loc_B1_9FCC              ; $9F81
 Loc_B1_9F84:
   ldy #$0E                     ; $9F84
@@ -2211,7 +2211,7 @@ Data_B1_9FCE:
   ldy #$08                     ; $A00A
   lda (Tmp00),y                ; $A00C
   bne Loc_B1_A02B              ; $A00E
-  jsr Sub_B1_AAC3              ; $A010
+  jsr AdvanceObjectAnimStepB1  ; $A010
   bcc Loc_B1_A01B              ; $A013
   jsr RemoveObject             ; $A015
   jmp Loc_B1_A031              ; $A018
@@ -2419,9 +2419,9 @@ LoadObjectAnimFrameB1:
   ldy #$08                     ; $AA71
   sta (Tmp00),y                ; $AA73
   pla                          ; $AA75
-  jsr Sub_B1_AA7A              ; $AA76
+  jsr LoadObjectFrameFromTable ; $AA76
   rts                          ; $AA79
-Sub_B1_AA7A:
+LoadObjectFrameFromTable:
   tay                          ; $AA7A
   iny                          ; $AA7B
   iny                          ; $AA7C
@@ -2463,7 +2463,7 @@ Loc_B1_AA92:
   sta z:$06                    ; $AAC0
 Loc_B1_AAC2:
   rts                          ; $AAC2
-Sub_B1_AAC3:
+AdvanceObjectAnimStepB1:
   ldy #$00                     ; $AAC3
   lda (Tmp02),y                ; $AAC5
   sta z:$04                    ; $AAC7
@@ -2474,7 +2474,7 @@ Sub_B1_AAC3:
   sta (Tmp00),y                ; $AAD0
   cmp z:$04                    ; $AAD2
   rts                          ; $AAD4
-Sub_B1_AAD5:
+SpawnObjectAtScreenRight:
   lda ObjectCount              ; $AAD5
   cmp #$0F                     ; $AAD8
   bcs Loc_B1_AB1D              ; $AADA
@@ -2564,7 +2564,7 @@ Loc_B1_AB6A:
   pha                          ; $AB79
   lda (Tmp00),y                ; $AB7A
   and #$1F                     ; $AB7C
-  jsr Sub_B1_AE43              ; $AB7E
+  jsr ApplyPickupEffect        ; $AB7E
   pla                          ; $AB81
   asl a                        ; $AB82
   tay                          ; $AB83
@@ -2590,7 +2590,7 @@ Bank1ObjAnim_00:
   lda (Tmp00),y                ; $ABAD
   and $04AB                    ; $ABAF
   sta $04AB                    ; $ABB2
-  jsr Sub_B1_AFC6              ; $ABB5
+  jsr InitProjectileA          ; $ABB5
   rts                          ; $ABB8
 Bank1ObjAnim_01:
   jsr Sub_B1_ABE0              ; $ABB9
@@ -2599,19 +2599,19 @@ Bank1ObjAnim_02:
   jsr Sub_B1_AC5B              ; $ABBD
   rts                          ; $ABC0
 Bank1ObjAnim_03:
-  jsr Sub_B1_AFC6              ; $ABC1
+  jsr InitProjectileA          ; $ABC1
   lda $04AB                    ; $ABC4
   beq Loc_B1_ABCC              ; $ABC7
   jsr Sub_B1_AC8A              ; $ABC9
 Loc_B1_ABCC:
   rts                          ; $ABCC
 Bank1ObjAnim_04:
-  jsr Sub_B1_AFC6              ; $ABCD
+  jsr InitProjectileA          ; $ABCD
   rts                          ; $ABD0
   ldy #$07                     ; $ABD1  [heuristic code]
   lda (Tmp00),y                ; $ABD3
   beq Loc_B1_ABDF              ; $ABD5
-  jsr Sub_B1_AFC6              ; $ABD7
+  jsr InitProjectileA          ; $ABD7
   lda #$06                     ; $ABDA
   sta $04AA                    ; $ABDC
 Loc_B1_ABDF:
@@ -2694,7 +2694,7 @@ Loc_B1_AC5D:
   and #$1F                     ; $AC71
   cmp #$13                     ; $AC73
   bne Loc_B1_AC80              ; $AC75
-  jsr Sub_B1_AFE3              ; $AC77
+  jsr InitProjectileB          ; $AC77
   ldy #$18                     ; $AC7A
   lda #$04                     ; $AC7C
   sta (Tmp00),y                ; $AC7E
@@ -2906,7 +2906,7 @@ Loc_B1_AE29:
   jmp Loc_B1_ADA7              ; $AE3F
 Loc_B1_AE42:
   rts                          ; $AE42
-Sub_B1_AE43:
+ApplyPickupEffect:
   asl a                        ; $AE43
   tax                          ; $AE44
   lda Data_B1_AE76,x           ; $AE45
@@ -3021,15 +3021,15 @@ Loc_B1_AF9A:
   ldy #$00                     ; $AF9A
   lda (Tmp00),y                ; $AF9C
   and #$1F                     ; $AF9E
-  jsr Sub_B1_AE43              ; $AFA0
+  jsr ApplyPickupEffect        ; $AFA0
   lda (Tmp00),y                ; $AFA3
   and #$1F                     ; $AFA5
   sta $04A8                    ; $AFA7
   cmp #$09                     ; $AFAA
   bne Loc_B1_AFB1              ; $AFAC
-  jsr Sub_B1_AFE3              ; $AFAE
+  jsr InitProjectileB          ; $AFAE
 Loc_B1_AFB1:
-  jsr Sub_B1_AFC6              ; $AFB1
+  jsr InitProjectileA          ; $AFB1
   jsr Sub_B1_B0EF              ; $AFB4
   jmp Loc_B1_AFC5              ; $AFB7
 Loc_B1_AFBA:
@@ -3041,7 +3041,7 @@ Loc_B1_AFBA:
   bne Loc_B1_AF7D              ; $AFC3
 Loc_B1_AFC5:
   rts                          ; $AFC5
-Sub_B1_AFC6:
+InitProjectileA:
   ldy z:Tmp00                  ; $AFC6
   lda #$D0                     ; $AFC8
   sta $0300,y                  ; $AFCA
@@ -3054,7 +3054,7 @@ Sub_B1_AFC6:
   lda #$04                     ; $AFDD
   sta $0308,y                  ; $AFDF
   rts                          ; $AFE2
-Sub_B1_AFE3:
+InitProjectileB:
   ldy z:Tmp00                  ; $AFE3
   lda #$D0                     ; $AFE5
   sta ObjectTable,y            ; $AFE7

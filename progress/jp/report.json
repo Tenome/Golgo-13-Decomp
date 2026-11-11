@@ -1075,7 +1075,7 @@
      }
     },
     {
-     "name": "Sub_B1_AA7A",
+     "name": "LoadObjectFrameFromTable",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1091,7 +1091,7 @@
      }
     },
     {
-     "name": "Sub_B1_AAC3",
+     "name": "AdvanceObjectAnimStepB1",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1099,7 +1099,7 @@
      }
     },
     {
-     "name": "Sub_B1_AAD5",
+     "name": "SpawnObjectAtScreenRight",
      "size": "73",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1203,7 +1203,7 @@
      }
     },
     {
-     "name": "Sub_B1_AE43",
+     "name": "ApplyPickupEffect",
      "size": "51",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1227,7 +1227,7 @@
      }
     },
     {
-     "name": "Sub_B1_AFC6",
+     "name": "InitProjectileA",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1235,7 +1235,7 @@
      }
     },
     {
-     "name": "Sub_B1_AFE3",
+     "name": "InitProjectileB",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {

@@ -327,5 +327,11 @@
  "F430": "SetTopDownPlayerOam",
  "5:A3C7": "WriteApuFromShadow",
  "5:A464": "InlineJumpTable",
- "3:809F": "TextBoxSaveBackgroundRow"
+ "3:809F": "TextBoxSaveBackgroundRow",
+ "1:AE43": "ApplyPickupEffect",
+ "1:AAC3": "AdvanceObjectAnimStepB1",
+ "1:AAD5": "SpawnObjectAtScreenRight",
+ "1:AFC6": "InitProjectileA",
+ "1:AFE3": "InitProjectileB",
+ "1:AA7A": "LoadObjectFrameFromTable"
 }

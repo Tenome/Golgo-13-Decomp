@@ -264,10 +264,10 @@ static int bank1(uint16_t a) {
     case 0xA9E2: Sub_B1_A9E2(); return 1;
     case 0xAA03: UpdateObjectScreenXB1(); return 1;
     case 0xAA64: LoadObjectAnimFrameB1(); return 1;
-    case 0xAA7A: Sub_B1_AA7A(); return 1;
+    case 0xAA7A: LoadObjectFrameFromTable(); return 1;
     case 0xAA84: AllocObjectB1(); return 1;
-    case 0xAAC3: Sub_B1_AAC3(); return 1;
-    case 0xAAD5: Sub_B1_AAD5(); return 1;
+    case 0xAAC3: AdvanceObjectAnimStepB1(); return 1;
+    case 0xAAD5: SpawnObjectAtScreenRight(); return 1;
     case 0xAB1E: GetObjectStateIndex(); return 1;
     case 0xAB27: Sub_B1_AB27(); return 1;
     case 0xABAB: Bank1ObjAnim_00(); return 1;
@@ -281,11 +281,11 @@ static int bank1(uint16_t a) {
     case 0xAC8A: Sub_B1_AC8A(); return 1;
     case 0xAD18: MultiplyBy12(); return 1;
     case 0xAD82: Sub_B1_AD82(); return 1;
-    case 0xAE43: Sub_B1_AE43(); return 1;
+    case 0xAE43: ApplyPickupEffect(); return 1;
     case 0xAF00: Sub_B1_AF00(); return 1;
     case 0xAF6E: Sub_B1_AF6E(); return 1;
-    case 0xAFC6: Sub_B1_AFC6(); return 1;
-    case 0xAFE3: Sub_B1_AFE3(); return 1;
+    case 0xAFC6: InitProjectileA(); return 1;
+    case 0xAFE3: InitProjectileB(); return 1;
     case 0xB013: Sub_B1_B013(); return 1;
     case 0xB09C: Sub_B1_B09C(); return 1;
     case 0xB0EF: Sub_B1_B0EF(); return 1;

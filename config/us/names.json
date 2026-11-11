@@ -411,5 +411,11 @@
  "3:820B": "TextBoxClearRow3",
  "3:827C": "TextBoxClearRow",
  "3:821C": "TextBoxSetAttributes",
- "3:8094": "TextBoxBeginStage"
+ "3:8094": "TextBoxBeginStage",
+ "1:AE43": "ApplyPickupEffect",
+ "1:AAC3": "AdvanceObjectAnimStepB1",
+ "1:AAD5": "SpawnObjectAtScreenRight",
+ "1:AFC6": "InitProjectileA",
+ "1:AFE3": "InitProjectileB",
+ "1:AA7A": "LoadObjectFrameFromTable"
 }

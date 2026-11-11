@@ -1054,7 +1054,7 @@
    ]
   ]
  },
- "Sub_B1_AA7A": {
+ "LoadObjectFrameFromTable": {
   "addr": 43642,
   "bank": 1,
   "instrs": 7,
@@ -1080,7 +1080,7 @@
    ]
   ]
  },
- "Sub_B1_AAC3": {
+ "AdvanceObjectAnimStepB1": {
   "addr": 43715,
   "bank": 1,
   "instrs": 10,
@@ -1093,7 +1093,7 @@
    ]
   ]
  },
- "Sub_B1_AAD5": {
+ "SpawnObjectAtScreenRight": {
   "addr": 43733,
   "bank": 1,
   "instrs": 33,
@@ -1275,7 +1275,7 @@
    ]
   ]
  },
- "Sub_B1_AE43": {
+ "ApplyPickupEffect": {
   "addr": 44611,
   "bank": 1,
   "instrs": 27,
@@ -1314,7 +1314,7 @@
    ]
   ]
  },
- "Sub_B1_AFC6": {
+ "InitProjectileA": {
   "addr": 44998,
   "bank": 1,
   "instrs": 12,
@@ -1327,7 +1327,7 @@
    ]
   ]
  },
- "Sub_B1_AFE3": {
+ "InitProjectileB": {
   "addr": 45027,
   "bank": 1,
   "instrs": 20,

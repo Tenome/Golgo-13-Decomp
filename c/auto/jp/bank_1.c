@@ -613,7 +613,7 @@ L8DA9: BUDGET();
     if (R.a == 0x69) goto L8DCE;                                                         /* $8DC5 beq */
     LDA(rd(FrameCounter));                                                               /* $8DC7 lda */
     if (R.a != 0) goto L8DCE;                                                            /* $8DC9 bne */
-    push16(0x8DCD); Sub_B1_AAD5(); UNW(); ret_check(0x8DCD);                             /* $8DCB jsr */
+    push16(0x8DCD); SpawnObjectAtScreenRight(); UNW(); ret_check(0x8DCD);                /* $8DCB jsr */
   }
 L8DCE: BUDGET();
   RTS_RET(sp0);                                                                          /* $8DCE rts */
@@ -810,7 +810,7 @@ void Bank1State_02(void) {  /* $8F59 bank 1 */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8F5E lda */
   AND(0x3F);                                                                             /* $8F60 and */
   if (R.a == 0) {                                                                        /* $8F62 bne */
-    push16(0x8F66); Sub_B1_AAC3(); UNW(); ret_check(0x8F66);                             /* $8F64 jsr */
+    push16(0x8F66); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x8F66);                 /* $8F64 jsr */
     if (R.c) {                                                                           /* $8F67 bcc */
       push16(0x8F6B); Sub_B1_8F9F(); UNW(); ret_check(0x8F6B);                           /* $8F69 jsr */
       push16(0x8F6E); Sub_B1_8F8C(); UNW(); ret_check(0x8F6E);                           /* $8F6C jsr */
@@ -879,7 +879,7 @@ L8FBC: BUDGET();
       LDY(0x0C);                                                                         /* $8FC8 ldy */
       LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $8FCA lda */
       if (!(R.a & 0x80)) goto L8FD4;                                                     /* $8FCC bpl */
-      push16(0x8FD0); Sub_B1_AAD5(); UNW(); ret_check(0x8FD0);                           /* $8FCE jsr */
+      push16(0x8FD0); SpawnObjectAtScreenRight(); UNW(); ret_check(0x8FD0);              /* $8FCE jsr */
       goto L8FD7;                                                                        /* $8FD1 jmp */
     }
 L8FD4: BUDGET();
@@ -927,7 +927,7 @@ void Bank1State_03(void) {  /* $90A6 bank 1 */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $90AB lda */
   AND(0x3F);                                                                             /* $90AD and */
   if (R.a == 0) {                                                                        /* $90AF bne */
-    push16(0x90B3); Sub_B1_AAC3(); UNW(); ret_check(0x90B3);                             /* $90B1 jsr */
+    push16(0x90B3); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x90B3);                 /* $90B1 jsr */
     if (R.c) {                                                                           /* $90B4 bcc */
       push16(0x90B8); Sub_B1_8EA2(); UNW(); ret_check(0x90B8);                           /* $90B6 jsr */
       goto L90C5;                                                                        /* $90B9 jmp */
@@ -1041,7 +1041,7 @@ void Sub_B1_929F(void) {  /* $929F bank 1 */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $92B7 lda */
     cmp8(R.a, 0x04);                                                                     /* $92B9 cmp */
     if (R.a != 0x04) goto L92FE;                                                         /* $92BB bne */
-    push16(0x92BF); Sub_B1_AAD5(); UNW(); ret_check(0x92BF);                             /* $92BD jsr */
+    push16(0x92BF); SpawnObjectAtScreenRight(); UNW(); ret_check(0x92BF);                /* $92BD jsr */
   } else {
     LDY(0x07);                                                                           /* $92C3 ldy */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $92C5 lda */
@@ -1092,7 +1092,7 @@ void Bank1State_04(void) {  /* $9360 bank 1 */
   LDY(0x08);                                                                             /* $9373 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9375 lda */
   if (R.a != 0) goto L938A;                                                              /* $9377 bne */
-  push16(0x937B); Sub_B1_AAC3(); UNW(); ret_check(0x937B);                               /* $9379 jsr */
+  push16(0x937B); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x937B);                   /* $9379 jsr */
   if (!R.c) goto L9384;                                                                  /* $937C bcc */
   push16(0x9380); Sub_B1_93FA(); UNW(); ret_check(0x9380);                               /* $937E jsr */
 L9381: BUDGET();
@@ -1232,7 +1232,7 @@ L945E: BUDGET();
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9460 lda */
   AND(0x80);                                                                             /* $9462 and */
   if (R.a != 0) {                                                                        /* $9464 beq */
-    push16(0x9468); Sub_B1_AAD5(); UNW(); ret_check(0x9468);                             /* $9466 jsr */
+    push16(0x9468); SpawnObjectAtScreenRight(); UNW(); ret_check(0x9468);                /* $9466 jsr */
     goto L94BC;                                                                          /* $9469 jmp */
   }
 L94BC: BUDGET();
@@ -1322,7 +1322,7 @@ void Bank1State_05(void) {  /* $9583 bank 1 */
   LDY(0x08);                                                                             /* $9596 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9598 lda */
   if (R.a != 0) goto L95C0;                                                              /* $959A bne */
-  push16(0x959E); Sub_B1_AAC3(); UNW(); ret_check(0x959E);                               /* $959C jsr */
+  push16(0x959E); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x959E);                   /* $959C jsr */
   if (!R.c) goto L95A7;                                                                  /* $959F bcc */
   push16(0x95A3); Sub_B1_96BE(); UNW(); ret_check(0x95A3);                               /* $95A1 jsr */
 L95A4: BUDGET();
@@ -1583,7 +1583,7 @@ void Bank1State_06(void) {  /* $97B7 bank 1 */
   LDY(0x08);                                                                             /* $97CC ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $97CE lda */
   if (R.a != 0) goto L97E3;                                                              /* $97D0 bne */
-  push16(0x97D4); Sub_B1_AAC3(); UNW(); ret_check(0x97D4);                               /* $97D2 jsr */
+  push16(0x97D4); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x97D4);                   /* $97D2 jsr */
   if (!R.c) goto L97DD;                                                                  /* $97D5 bcc */
   push16(0x97D9); Sub_B1_98A3(); UNW(); ret_check(0x97D9);                               /* $97D7 jsr */
 L97DA: BUDGET();
@@ -1792,7 +1792,7 @@ L99F4: BUDGET();
     LDY(0x08);                                                                           /* $9A03 ldy */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9A05 lda */
     if (R.a != 0) goto L9A26;                                                            /* $9A07 bne */
-    push16(0x9A0B); Sub_B1_AAC3(); UNW(); ret_check(0x9A0B);                             /* $9A09 jsr */
+    push16(0x9A0B); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x9A0B);                 /* $9A09 jsr */
     if (!R.c) goto L9A20;                                                                /* $9A0C bcc */
   }
 L9A0E: BUDGET();
@@ -1932,7 +1932,7 @@ void Sub_B1_9ACB(void) {  /* $9ACB bank 1 */
     LDY(0x07);                                                                           /* $9AE3 ldy */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9AE5 lda */
     if ((R.a & 0x80)) goto L9B1F;                                                        /* $9AE7 bmi */
-    push16(0x9AEB); Sub_B1_AAD5(); UNW(); ret_check(0x9AEB);                             /* $9AE9 jsr */
+    push16(0x9AEB); SpawnObjectAtScreenRight(); UNW(); ret_check(0x9AEB);                /* $9AE9 jsr */
   } else {
     LDY(0x0E);                                                                           /* $9AEF ldy */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9AF1 lda */
@@ -2025,7 +2025,7 @@ void Bank1State_08(void) {  /* $9C47 bank 1 */
   LDY(0x08);                                                                             /* $9C4A ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9C4C lda */
   if (R.a == 0) {                                                                        /* $9C4E bne */
-    push16(0x9C52); Sub_B1_AAC3(); UNW(); ret_check(0x9C52);                             /* $9C50 jsr */
+    push16(0x9C52); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x9C52);                 /* $9C50 jsr */
     if (R.c) {                                                                           /* $9C53 bcc */
       push16(0x9C57); Sub_B1_9C76(); UNW(); ret_check(0x9C57);                           /* $9C55 jsr */
       push16(0x9C5A); Sub_B1_9C68(); UNW(); ret_check(0x9C5A);                           /* $9C58 jsr */
@@ -2099,7 +2099,7 @@ L9CBC: BUDGET();
     LDY(0x0C);                                                                           /* $9CC4 ldy */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9CC6 lda */
     if (!(R.a & 0x80)) goto L9CD3;                                                       /* $9CC8 bpl */
-    push16(0x9CCC); Sub_B1_AAD5(); UNW(); ret_check(0x9CCC);                             /* $9CCA jsr */
+    push16(0x9CCC); SpawnObjectAtScreenRight(); UNW(); ret_check(0x9CCC);                /* $9CCA jsr */
   } else {
     push16(0x9CD2); Sub_B1_946C(); UNW(); ret_check(0x9CD2);                             /* $9CD0 jsr */
   }
@@ -2118,7 +2118,7 @@ void Bank1State_09(void) {  /* $9DB9 bank 1 */
   LDY(0x08);                                                                             /* $9DC6 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9DC8 lda */
   if (R.a == 0) {                                                                        /* $9DCA bne */
-    push16(0x9DCE); Sub_B1_AAC3(); UNW(); ret_check(0x9DCE);                             /* $9DCC jsr */
+    push16(0x9DCE); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x9DCE);                 /* $9DCC jsr */
     if (R.c) {                                                                           /* $9DCF bcc */
       push16(0x9DD3); Sub_B1_9DFC(); UNW(); ret_check(0x9DD3);                           /* $9DD1 jsr */
       push16(0x9DD6); Sub_B1_9DEE(); UNW(); ret_check(0x9DD6);                           /* $9DD4 jsr */
@@ -2194,7 +2194,7 @@ void Sub_B1_9E20(void) {  /* $9E20 bank 1 */
       LDY(0x0C);                                                                         /* $9E40 ldy */
       LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                          /* $9E42 lda */
       if (!(R.a & 0x80)) goto L9E73;                                                     /* $9E44 bpl */
-      push16(0x9E48); Sub_B1_AAD5(); UNW(); ret_check(0x9E48);                           /* $9E46 jsr */
+      push16(0x9E48); SpawnObjectAtScreenRight(); UNW(); ret_check(0x9E48);              /* $9E46 jsr */
       goto L9E73;                                                                        /* $9E49 jmp */
     }
     LDA(0x08);                                                                           /* $9E4C lda */
@@ -2253,7 +2253,7 @@ void Sub_B1_9F68(void) {  /* $9F68 bank 1 */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9F78 lda */
     cmp8(R.a, 0x04);                                                                     /* $9F7A cmp */
     if (R.a != 0x04) goto L9FCC;                                                         /* $9F7C bne */
-    push16(0x9F80); Sub_B1_AAD5(); UNW(); ret_check(0x9F80);                             /* $9F7E jsr */
+    push16(0x9F80); SpawnObjectAtScreenRight(); UNW(); ret_check(0x9F80);                /* $9F7E jsr */
   } else {
     LDY(0x0E);                                                                           /* $9F84 ldy */
     LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                            /* $9F86 lda */
@@ -2503,11 +2503,11 @@ void LoadObjectAnimFrameB1(void) {  /* $AA64 bank 1 */
   LDY(0x08);                                                                             /* $AA71 ldy */
   STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                  /* $AA73 sta */
   PLA();                                                                                 /* $AA75 pla */
-  push16(0xAA78); Sub_B1_AA7A(); UNW(); ret_check(0xAA78);                               /* $AA76 jsr */
+  push16(0xAA78); LoadObjectFrameFromTable(); UNW(); ret_check(0xAA78);                  /* $AA76 jsr */
   RTS_RET(sp0);                                                                          /* $AA79 rts */
 }
 
-void Sub_B1_AA7A(void) {  /* $AA7A bank 1 */
+void LoadObjectFrameFromTable(void) {  /* $AA7A bank 1 */
   uint8_t sp0 = R.sp;
   TAY();                                                                                 /* $AA7A tay */
   INY();                                                                                 /* $AA7B iny */
@@ -2554,7 +2554,7 @@ void AllocObjectB1(void) {  /* $AA84 bank 1 */
   RTS_RET(sp0);                                                                          /* $AAC2 rts */
 }
 
-void Sub_B1_AAC3(void) {  /* $AAC3 bank 1 */
+void AdvanceObjectAnimStepB1(void) {  /* $AAC3 bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $AAC3 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                              /* $AAC5 lda */
@@ -2568,7 +2568,7 @@ void Sub_B1_AAC3(void) {  /* $AAC3 bank 1 */
   RTS_RET(sp0);                                                                          /* $AAD4 rts */
 }
 
-void Sub_B1_AAD5(void) {  /* $AAD5 bank 1 */
+void SpawnObjectAtScreenRight(void) {  /* $AAD5 bank 1 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $AAD5 lda */
   cmp8(R.a, 0x0F);                                                                       /* $AAD8 cmp */
@@ -2666,7 +2666,7 @@ LAB5C: BUDGET();
         PHA();                                                                           /* $AB79 pha */
         LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                        /* $AB7A lda */
         AND(0x1F);                                                                       /* $AB7C and */
-        push16(0xAB80); Sub_B1_AE43(); UNW(); ret_check(0xAB80);                         /* $AB7E jsr */
+        push16(0xAB80); ApplyPickupEffect(); UNW(); ret_check(0xAB80);                   /* $AB7E jsr */
         PLA();                                                                           /* $AB81 pla */
         ASL_A();                                                                         /* $AB82 asl */
         TAY();                                                                           /* $AB83 tay */
@@ -2693,7 +2693,7 @@ void Bank1ObjAnim_00(void) {  /* $ABAB bank 1 */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $ABAD lda */
   AND(rd(0x04AB));                                                                       /* $ABAF and */
   STA(0x04AB);                                                                           /* $ABB2 sta */
-  push16(0xABB7); Sub_B1_AFC6(); UNW(); ret_check(0xABB7);                               /* $ABB5 jsr */
+  push16(0xABB7); InitProjectileA(); UNW(); ret_check(0xABB7);                           /* $ABB5 jsr */
   RTS_RET(sp0);                                                                          /* $ABB8 rts */
 }
 
@@ -2711,7 +2711,7 @@ void Bank1ObjAnim_02(void) {  /* $ABBD bank 1 */
 
 void Bank1ObjAnim_03(void) {  /* $ABC1 bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0xABC3); Sub_B1_AFC6(); UNW(); ret_check(0xABC3);                               /* $ABC1 jsr */
+  push16(0xABC3); InitProjectileA(); UNW(); ret_check(0xABC3);                           /* $ABC1 jsr */
   LDA(rd(0x04AB));                                                                       /* $ABC4 lda */
   if (R.a != 0) {                                                                        /* $ABC7 beq */
     push16(0xABCB); Sub_B1_AC8A(); UNW(); ret_check(0xABCB);                             /* $ABC9 jsr */
@@ -2721,7 +2721,7 @@ void Bank1ObjAnim_03(void) {  /* $ABC1 bank 1 */
 
 void Bank1ObjAnim_04(void) {  /* $ABCD bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0xABCF); Sub_B1_AFC6(); UNW(); ret_check(0xABCF);                               /* $ABCD jsr */
+  push16(0xABCF); InitProjectileA(); UNW(); ret_check(0xABCF);                           /* $ABCD jsr */
   RTS_RET(sp0);                                                                          /* $ABD0 rts */
 }
 
@@ -2730,7 +2730,7 @@ void Loc_B1_ABD1(void) {  /* $ABD1 bank 1 */
   LDY(0x07);                                                                             /* $ABD1 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $ABD3 lda */
   if (R.a != 0) {                                                                        /* $ABD5 beq */
-    push16(0xABD9); Sub_B1_AFC6(); UNW(); ret_check(0xABD9);                             /* $ABD7 jsr */
+    push16(0xABD9); InitProjectileA(); UNW(); ret_check(0xABD9);                         /* $ABD7 jsr */
     LDA(0x06);                                                                           /* $ABDA lda */
     STA(0x04AA);                                                                         /* $ABDC sta */
   }
@@ -2815,7 +2815,7 @@ void Sub_B1_AC5B(void) {  /* $AC5B bank 1 */
   AND(0x1F);                                                                             /* $AC71 and */
   cmp8(R.a, 0x13);                                                                       /* $AC73 cmp */
   if (R.a == 0x13) {                                                                     /* $AC75 bne */
-    push16(0xAC79); Sub_B1_AFE3(); UNW(); ret_check(0xAC79);                             /* $AC77 jsr */
+    push16(0xAC79); InitProjectileB(); UNW(); ret_check(0xAC79);                         /* $AC77 jsr */
     LDY(0x18);                                                                           /* $AC7A ldy */
     LDA(0x04);                                                                           /* $AC7C lda */
     STA((uint16_t)(rd16zp(Tmp00) + R.y));                                                /* $AC7E sta */
@@ -3026,7 +3026,7 @@ LAE42: BUDGET();
   RTS_RET(sp0);                                                                          /* $AE42 rts */
 }
 
-void Sub_B1_AE43(void) {  /* $AE43 bank 1 */
+void ApplyPickupEffect(void) {  /* $AE43 bank 1 */
   uint8_t sp0 = R.sp;
   ASL_A();                                                                               /* $AE43 asl */
   TAX();                                                                                 /* $AE44 tax */
@@ -3148,15 +3148,15 @@ void Sub_B1_AF6E(void) {  /* $AF6E bank 1 */
         LDY(0x00);                                                                       /* $AF9A ldy */
         LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                        /* $AF9C lda */
         AND(0x1F);                                                                       /* $AF9E and */
-        push16(0xAFA2); Sub_B1_AE43(); UNW(); ret_check(0xAFA2);                         /* $AFA0 jsr */
+        push16(0xAFA2); ApplyPickupEffect(); UNW(); ret_check(0xAFA2);                   /* $AFA0 jsr */
         LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                        /* $AFA3 lda */
         AND(0x1F);                                                                       /* $AFA5 and */
         STA(0x04A8);                                                                     /* $AFA7 sta */
         cmp8(R.a, 0x09);                                                                 /* $AFAA cmp */
         if (R.a == 0x09) {                                                               /* $AFAC bne */
-          push16(0xAFB0); Sub_B1_AFE3(); UNW(); ret_check(0xAFB0);                       /* $AFAE jsr */
+          push16(0xAFB0); InitProjectileB(); UNW(); ret_check(0xAFB0);                   /* $AFAE jsr */
         }
-        push16(0xAFB3); Sub_B1_AFC6(); UNW(); ret_check(0xAFB3);                         /* $AFB1 jsr */
+        push16(0xAFB3); InitProjectileA(); UNW(); ret_check(0xAFB3);                     /* $AFB1 jsr */
         push16(0xAFB6); Sub_B1_B0EF(); UNW(); ret_check(0xAFB6);                         /* $AFB4 jsr */
         goto LAFC5;                                                                      /* $AFB7 jmp */
       }
@@ -3172,7 +3172,7 @@ LAFC5: BUDGET();
   RTS_RET(sp0);                                                                          /* $AFC5 rts */
 }
 
-void Sub_B1_AFC6(void) {  /* $AFC6 bank 1 */
+void InitProjectileA(void) {  /* $AFC6 bank 1 */
   uint8_t sp0 = R.sp;
   LDY(rd(Tmp00));                                                                        /* $AFC6 ldy */
   LDA(0xD0);                                                                             /* $AFC8 lda */
@@ -3188,7 +3188,7 @@ void Sub_B1_AFC6(void) {  /* $AFC6 bank 1 */
   RTS_RET(sp0);                                                                          /* $AFE2 rts */
 }
 
-void Sub_B1_AFE3(void) {  /* $AFE3 bank 1 */
+void InitProjectileB(void) {  /* $AFE3 bank 1 */
   uint8_t sp0 = R.sp;
   LDY(rd(Tmp00));                                                                        /* $AFE3 ldy */
   LDA(0xD0);                                                                             /* $AFE5 lda */
