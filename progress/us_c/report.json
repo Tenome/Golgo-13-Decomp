@@ -1,15 +1,15 @@
 {
  "measures": {
-  "fuzzy_match_percent": 96.4317,
-  "total_code": "34400",
-  "matched_code": "32062",
-  "matched_code_percent": 93.2035,
+  "fuzzy_match_percent": 97.0979,
+  "total_code": "38145",
+  "matched_code": "36047",
+  "matched_code_percent": 94.4999,
   "total_data": "0",
   "matched_data": "0",
   "matched_data_percent": 0.0,
-  "total_functions": 773,
-  "matched_functions": 691,
-  "matched_functions_percent": 89.392,
+  "total_functions": 928,
+  "matched_functions": 853,
+  "matched_functions_percent": 91.9181,
   "complete_code": "0",
   "complete_code_percent": 0.0,
   "complete_data": "0",
@@ -367,16 +367,16 @@
   {
    "name": "main/bank_1",
    "measures": {
-    "fuzzy_match_percent": 99.631,
-    "total_code": "5420",
-    "matched_code": "5380",
-    "matched_code_percent": 99.262,
+    "fuzzy_match_percent": 99.646,
+    "total_code": "5649",
+    "matched_code": "5609",
+    "matched_code_percent": 99.2919,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
-    "total_functions": 103,
-    "matched_functions": 101,
-    "matched_functions_percent": 98.0583,
+    "total_functions": 108,
+    "matched_functions": 106,
+    "matched_functions_percent": 98.1481,
     "complete_code": "0",
     "complete_code_percent": 0.0,
     "complete_data": "0",
@@ -387,8 +387,8 @@
    "sections": [
     {
      "name": ".text",
-     "size": "5420",
-     "fuzzy_match_percent": 99.631
+     "size": "5649",
+     "fuzzy_match_percent": 99.646
     }
    ],
    "functions": [
@@ -457,7 +457,7 @@
      }
     },
     {
-     "name": "Sub_B1_80D1",
+     "name": "AdvanceSceneOnStart",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -473,7 +473,7 @@
      }
     },
     {
-     "name": "Sub_B1_80FD",
+     "name": "CountSelectPresses",
      "size": "46",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -481,7 +481,7 @@
      }
     },
     {
-     "name": "Sub_B1_812B",
+     "name": "FillNametable0WithFF",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -529,7 +529,7 @@
      }
     },
     {
-     "name": "Sub_B1_85A0",
+     "name": "SaveMmcShadowRegs",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -537,7 +537,7 @@
      }
     },
     {
-     "name": "Sub_B1_85AC",
+     "name": "RestoreMmcShadowRegs",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -561,7 +561,7 @@
      }
     },
     {
-     "name": "Sub_B1_8D00",
+     "name": "ClearObjectsAndInitList",
      "size": "168",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -593,7 +593,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F1E",
+     "name": "FindObjectType01",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -770,14 +770,22 @@
     },
     {
      "name": "Sub_B1_960A",
-     "size": "138",
+     "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "22042"
      }
     },
     {
-     "name": "Sub_B1_9694",
+     "name": "Sub_B1_9643",
+     "size": "81",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "22099"
+     }
+    },
+    {
+     "name": "CalcViewEdgeColumn",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -969,6 +977,38 @@
      }
     },
     {
+     "name": "Sub_B1_9EE8",
+     "size": "107",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24312"
+     }
+    },
+    {
+     "name": "Sub_B1_9F53",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24419"
+     }
+    },
+    {
+     "name": "Sub_B1_9F61",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24433"
+     }
+    },
+    {
+     "name": "Sub_B1_9F68",
+     "size": "101",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24440"
+     }
+    },
+    {
      "name": "Sub_B1_A007",
      "size": "43",
      "fuzzy_match_percent": 100.0,
@@ -1009,7 +1049,7 @@
      }
     },
     {
-     "name": "Sub_B1_AA03",
+     "name": "UpdateObjectScreenXB1",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1017,7 +1057,7 @@
      }
     },
     {
-     "name": "Sub_B1_AA64",
+     "name": "LoadObjectAnimFrameB1",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1033,7 +1073,7 @@
      }
     },
     {
-     "name": "Sub_B1_AA84",
+     "name": "AllocObjectB1",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1057,7 +1097,7 @@
      }
     },
     {
-     "name": "Sub_B1_AB1E",
+     "name": "GetObjectStateIndex",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1137,7 +1177,7 @@
      }
     },
     {
-     "name": "Sub_B1_AD18",
+     "name": "MultiplyBy12",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1275,7 +1315,7 @@
      }
     },
     {
-     "name": "Sub_B2_8167",
+     "name": "PlayStageIntroSound",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1355,7 +1395,7 @@
      }
     },
     {
-     "name": "Sub_B2_886A",
+     "name": "CalcViewEdgeColumnB2",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1363,7 +1403,7 @@
      }
     },
     {
-     "name": "Sub_B2_8882",
+     "name": "CheckLowLifeSoundB2",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1387,7 +1427,7 @@
      }
     },
     {
-     "name": "Sub_B2_89E2",
+     "name": "ClearObjectTableAndLoadList",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1493,7 +1533,7 @@
      }
     },
     {
-     "name": "Sub_B3_8094",
+     "name": "TextBoxBeginStage",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1501,7 +1541,7 @@
      }
     },
     {
-     "name": "Sub_B3_809F",
+     "name": "TextBoxSaveBackgroundRow",
      "size": "140",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1533,7 +1573,7 @@
      }
     },
     {
-     "name": "Sub_B3_81FC",
+     "name": "TextBoxClearRow0",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1541,7 +1581,7 @@
      }
     },
     {
-     "name": "Sub_B3_8201",
+     "name": "TextBoxClearRow1",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1549,7 +1589,7 @@
      }
     },
     {
-     "name": "Sub_B3_8206",
+     "name": "TextBoxClearRow2",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1557,7 +1597,7 @@
      }
     },
     {
-     "name": "Sub_B3_820B",
+     "name": "TextBoxClearRow3",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1565,7 +1605,7 @@
      }
     },
     {
-     "name": "Sub_B3_821C",
+     "name": "TextBoxSetAttributes",
      "size": "65",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1581,7 +1621,7 @@
      }
     },
     {
-     "name": "Sub_B3_8261",
+     "name": "CalcMenuRowNametableAddr",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1589,7 +1629,7 @@
      }
     },
     {
-     "name": "Sub_B3_827C",
+     "name": "TextBoxClearRow",
      "size": "76",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1613,7 +1653,7 @@
      }
     },
     {
-     "name": "Sub_B3_881D",
+     "name": "QueueMenuPpuListA",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1629,7 +1669,7 @@
      }
     },
     {
-     "name": "Sub_B3_8825",
+     "name": "QueueMenuPpuListB",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1645,7 +1685,7 @@
      }
     },
     {
-     "name": "Sub_B3_882D",
+     "name": "QueueMenuPpuListC",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1717,7 +1757,7 @@
      }
     },
     {
-     "name": "Sub_B3_8AF4",
+     "name": "LoadFourBytesFromPtr70",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1725,7 +1765,7 @@
      }
     },
     {
-     "name": "Sub_B3_8B08",
+     "name": "StoreSpriteYTileX",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1757,7 +1797,7 @@
      }
     },
     {
-     "name": "Sub_B3_8CA1",
+     "name": "HideMenuSpritesAndRestoreScroll",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1813,7 +1853,7 @@
      }
     },
     {
-     "name": "Sub_B3_9060",
+     "name": "WriteSixPaletteEntries",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1877,16 +1917,16 @@
   {
    "name": "main/bank_4",
    "measures": {
-    "fuzzy_match_percent": 91.0167,
-    "total_code": "3885",
-    "matched_code": "3188",
-    "matched_code_percent": 82.0592,
+    "fuzzy_match_percent": 96.4384,
+    "total_code": "7300",
+    "matched_code": "6780",
+    "matched_code_percent": 92.8767,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
-    "total_functions": 138,
-    "matched_functions": 118,
-    "matched_functions_percent": 85.5072,
+    "total_functions": 280,
+    "matched_functions": 266,
+    "matched_functions_percent": 95.0,
     "complete_code": "0",
     "complete_code_percent": 0.0,
     "complete_data": "0",
@@ -1897,8 +1937,8 @@
    "sections": [
     {
      "name": ".text",
-     "size": "3885",
-     "fuzzy_match_percent": 91.0167
+     "size": "7300",
+     "fuzzy_match_percent": 96.4384
     }
    ],
    "functions": [
@@ -1919,7 +1959,7 @@
      }
     },
     {
-     "name": "Sub_B4_80B3",
+     "name": "DispatchSceneStateBank4",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1969,7 +2009,7 @@
     {
      "name": "Bank4State_05",
      "size": "44",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "65865"
      }
@@ -1977,7 +2017,7 @@
     {
      "name": "Bank4State_06",
      "size": "18",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "65909"
      }
@@ -2033,7 +2073,7 @@
     {
      "name": "Bank4State_0D",
      "size": "39",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66121"
      }
@@ -2079,6 +2119,14 @@
      }
     },
     {
+     "name": "Sub_B4_82B4",
+     "size": "58",
+     "fuzzy_match_percent": 50.0,
+     "metadata": {
+      "virtual_address": "66244"
+     }
+    },
+    {
      "name": "Loc_B4_82FE",
      "size": "7",
      "fuzzy_match_percent": 100.0,
@@ -2097,7 +2145,7 @@
     {
      "name": "Bank4State_14",
      "size": "18",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66340"
      }
@@ -2199,7 +2247,7 @@
      }
     },
     {
-     "name": "Sub_B4_846E",
+     "name": "HideSpritesFromStart",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2207,7 +2255,7 @@
      }
     },
     {
-     "name": "Sub_B4_8473",
+     "name": "HideAllSprites",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2223,7 +2271,7 @@
      }
     },
     {
-     "name": "Sub_B4_84F5",
+     "name": "ClearSceneStateTail",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2231,7 +2279,7 @@
      }
     },
     {
-     "name": "Sub_B4_84FF",
+     "name": "ClearWorkVars60",
      "size": "67",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2239,7 +2287,7 @@
      }
     },
     {
-     "name": "Sub_B4_8546",
+     "name": "DrawCompassSprites",
      "size": "61",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2375,7 +2423,7 @@
      }
     },
     {
-     "name": "Sub_B4_86D1",
+     "name": "ClearObjectTable",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2383,15 +2431,15 @@
      }
     },
     {
-     "name": "Loc_B4_8AD3",
+     "name": "Sub_B4_8AD3",
      "size": "90",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "68323"
      }
     },
     {
-     "name": "Sub_B4_8B2D",
+     "name": "InitAllObjectAnims",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2415,7 +2463,7 @@
      }
     },
     {
-     "name": "Sub_B4_8BFB",
+     "name": "CheckLowLifeSound",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2439,11 +2487,91 @@
      }
     },
     {
-     "name": "Loc_B4_8D1B",
-     "size": "10",
+     "name": "Sub_B4_8C5C",
+     "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
-      "virtual_address": "68907"
+      "virtual_address": "68716"
+     }
+    },
+    {
+     "name": "Sub_B4_8C6B",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68731"
+     }
+    },
+    {
+     "name": "Sub_B4_8C86",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68758"
+     }
+    },
+    {
+     "name": "Sub_B4_8C90",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68768"
+     }
+    },
+    {
+     "name": "Sub_B4_8C95",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68773"
+     }
+    },
+    {
+     "name": "Sub_B4_8C9A",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68778"
+     }
+    },
+    {
+     "name": "Sub_B4_8C9F",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68783"
+     }
+    },
+    {
+     "name": "Sub_B4_8CC2",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68818"
+     }
+    },
+    {
+     "name": "Sub_B4_8CCB",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68827"
+     }
+    },
+    {
+     "name": "Sub_B4_8CD8",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68840"
+     }
+    },
+    {
+     "name": "Sub_B4_8CE1",
+     "size": "68",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68849"
      }
     },
     {
@@ -2463,7 +2591,7 @@
      }
     },
     {
-     "name": "Sub_B4_8E06",
+     "name": "HideCursorSprites",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2520,10 +2648,18 @@
     },
     {
      "name": "Bank4StateC_11",
-     "size": "31",
+     "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "69326"
+     }
+    },
+    {
+     "name": "Sub_B4_8ECB",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69339"
      }
     },
     {
@@ -2535,11 +2671,43 @@
      }
     },
     {
-     "name": "Sub_B4_8FAB",
-     "size": "26",
+     "name": "Sub_B4_8F71",
+     "size": "58",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69505"
+     }
+    },
+    {
+     "name": "AllocObjectSlot",
+     "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "69563"
+     }
+    },
+    {
+     "name": "AdvanceObjectState",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69579"
+     }
+    },
+    {
+     "name": "IncObjectField",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69581"
+     }
+    },
+    {
+     "name": "DecObjectField",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69589"
      }
     },
     {
@@ -2569,17 +2737,25 @@
     {
      "name": "Sub_B4_9049",
      "size": "23",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "69721"
      }
     },
     {
-     "name": "Loc_B4_9070",
+     "name": "Sub_B4_9070",
      "size": "1",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "69760"
+     }
+    },
+    {
+     "name": "Sub_B4_9071",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69761"
      }
     },
     {
@@ -2599,7 +2775,7 @@
      }
     },
     {
-     "name": "Sub_B4_909E",
+     "name": "CopyPpuListStubToRam",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2607,7 +2783,23 @@
      }
     },
     {
-     "name": "Loc_B4_90B7",
+     "name": "Sub_B4_90AA",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69818"
+     }
+    },
+    {
+     "name": "Loc_B4_90AF",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69823"
+     }
+    },
+    {
+     "name": "Sub_B4_90B7",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2615,7 +2807,7 @@
      }
     },
     {
-     "name": "Sub_B4_90BE",
+     "name": "DisableSpriteBgRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2623,15 +2815,39 @@
      }
     },
     {
-     "name": "Sub_B4_90D9",
-     "size": "42",
+     "name": "RandomByteMixed",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69845"
+     }
+    },
+    {
+     "name": "Sub_B4_90CF",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69855"
+     }
+    },
+    {
+     "name": "HideSpritesWithTileFE",
+     "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "69865"
      }
     },
     {
-     "name": "Sub_B4_915B",
+     "name": "Sub_B4_90EE",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "69886"
+     }
+    },
+    {
+     "name": "InitMazePosition",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2639,7 +2855,7 @@
      }
     },
     {
-     "name": "Sub_B4_917E",
+     "name": "LoadMazeData",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2647,7 +2863,7 @@
      }
     },
     {
-     "name": "Sub_B4_956B",
+     "name": "InitPaletteBuffer",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2695,7 +2911,7 @@
      }
     },
     {
-     "name": "Sub_B4_9868",
+     "name": "DrawCorridorView",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2703,7 +2919,7 @@
      }
     },
     {
-     "name": "Sub_B4_988E",
+     "name": "CalcPlayerCellIndex",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2711,7 +2927,7 @@
      }
     },
     {
-     "name": "Sub_B4_98A3",
+     "name": "CalcFacingCellOffsets",
      "size": "77",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2719,7 +2935,7 @@
      }
     },
     {
-     "name": "Sub_B4_98F6",
+     "name": "StoreCellRow",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2727,7 +2943,7 @@
      }
     },
     {
-     "name": "Sub_B4_990C",
+     "name": "LoadCellWalls",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2735,7 +2951,7 @@
      }
     },
     {
-     "name": "Sub_B4_9922",
+     "name": "UnpackWallBits",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2743,7 +2959,7 @@
      }
     },
     {
-     "name": "Sub_B4_9943",
+     "name": "ExtractBitPair",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2759,7 +2975,7 @@
      }
     },
     {
-     "name": "Sub_B4_9975",
+     "name": "DrawRleScreen",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2849,17 +3065,25 @@
     {
      "name": "Sub_B4_9F7C",
      "size": "13",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "73612"
      }
     },
     {
      "name": "Sub_B4_9F94",
-     "size": "63",
+     "size": "42",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "73636"
+     }
+    },
+    {
+     "name": "Sub_B4_9FBE",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73678"
      }
     },
     {
@@ -2872,10 +3096,18 @@
     },
     {
      "name": "Loc_B4_9FF7",
-     "size": "36",
+     "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "73735"
+     }
+    },
+    {
+     "name": "Sub_B4_A000",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73744"
      }
     },
     {
@@ -2887,7 +3119,15 @@
      }
     },
     {
-     "name": "Sub_B4_A04D",
+     "name": "Sub_B4_A048",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73816"
+     }
+    },
+    {
+     "name": "SelectPpuListA",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2895,7 +3135,15 @@
      }
     },
     {
-     "name": "Sub_B4_A068",
+     "name": "Sub_B4_A063",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73843"
+     }
+    },
+    {
+     "name": "SelectPpuListB",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2903,7 +3151,15 @@
      }
     },
     {
-     "name": "Sub_B4_A083",
+     "name": "Sub_B4_A07E",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73870"
+     }
+    },
+    {
+     "name": "SelectPpuListC",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2911,11 +3167,27 @@
      }
     },
     {
-     "name": "Sub_B4_A09E",
+     "name": "Sub_B4_A099",
+     "size": "5",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73897"
+     }
+    },
+    {
+     "name": "SelectPpuListD",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "73902"
+     }
+    },
+    {
+     "name": "Sub_B4_A0C0",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "73936"
      }
     },
     {
@@ -2961,9 +3233,609 @@
     {
      "name": "Sub_B4_A15F",
      "size": "13",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "74095"
+     }
+    },
+    {
+     "name": "Sub_B4_A20A",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74266"
+     }
+    },
+    {
+     "name": "Sub_B4_A271",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74369"
+     }
+    },
+    {
+     "name": "Sub_B4_A294",
+     "size": "27",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74404"
+     }
+    },
+    {
+     "name": "Sub_B4_A2AF",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74431"
+     }
+    },
+    {
+     "name": "Sub_B4_A2BF",
+     "size": "82",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74447"
+     }
+    },
+    {
+     "name": "Sub_B4_A311",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74529"
+     }
+    },
+    {
+     "name": "Sub_B4_A328",
+     "size": "65",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74552"
+     }
+    },
+    {
+     "name": "Sub_B4_A39C",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74668"
+     }
+    },
+    {
+     "name": "Sub_B4_A3B8",
+     "size": "67",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74696"
+     }
+    },
+    {
+     "name": "Sub_B4_A40E",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74782"
+     }
+    },
+    {
+     "name": "Loc_B4_A457",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74855"
+     }
+    },
+    {
+     "name": "Sub_B4_A470",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74880"
+     }
+    },
+    {
+     "name": "Sub_B4_A478",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74888"
+     }
+    },
+    {
+     "name": "CollectAmmoItem",
+     "size": "86",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74899"
+     }
+    },
+    {
+     "name": "Sub_B4_A4DF",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74991"
+     }
+    },
+    {
+     "name": "CollectLifeItem",
+     "size": "63",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74999"
+     }
+    },
+    {
+     "name": "Sub_B4_A526",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75062"
+     }
+    },
+    {
+     "name": "Sub_B4_A551",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75105"
+     }
+    },
+    {
+     "name": "Sub_B4_A55D",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75117"
+     }
+    },
+    {
+     "name": "Sub_B4_A560",
+     "size": "38",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75120"
+     }
+    },
+    {
+     "name": "Sub_B4_A5BE",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75214"
+     }
+    },
+    {
+     "name": "Sub_B4_A5DF",
+     "size": "39",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75247"
+     }
+    },
+    {
+     "name": "Sub_B4_A606",
+     "size": "45",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75286"
+     }
+    },
+    {
+     "name": "Sub_B4_A698",
+     "size": "59",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75432"
+     }
+    },
+    {
+     "name": "Sub_B4_A6D3",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75491"
+     }
+    },
+    {
+     "name": "Sub_B4_A6E4",
+     "size": "21",
+     "fuzzy_match_percent": 50.0,
+     "metadata": {
+      "virtual_address": "75508"
+     }
+    },
+    {
+     "name": "Loc_B4_A6FB",
+     "size": "3",
+     "fuzzy_match_percent": 50.0,
+     "metadata": {
+      "virtual_address": "75531"
+     }
+    },
+    {
+     "name": "Sub_B4_A70F",
+     "size": "18",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75551"
+     }
+    },
+    {
+     "name": "Sub_B4_A745",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75605"
+     }
+    },
+    {
+     "name": "Sub_B4_A762",
+     "size": "40",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75634"
+     }
+    },
+    {
+     "name": "Sub_B4_A78A",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75674"
+     }
+    },
+    {
+     "name": "Sub_B4_A792",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75682"
+     }
+    },
+    {
+     "name": "Sub_B4_A7A5",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75701"
+     }
+    },
+    {
+     "name": "Sub_B4_A9AB",
+     "size": "46",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76219"
+     }
+    },
+    {
+     "name": "Sub_B4_A9D9",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76265"
+     }
+    },
+    {
+     "name": "Sub_B4_A9F6",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76294"
+     }
+    },
+    {
+     "name": "Sub_B4_AA01",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76305"
+     }
+    },
+    {
+     "name": "Sub_B4_AA07",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76311"
+     }
+    },
+    {
+     "name": "Sub_B4_AA48",
+     "size": "60",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76376"
+     }
+    },
+    {
+     "name": "Sub_B4_AA84",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76436"
+     }
+    },
+    {
+     "name": "Sub_B4_AA88",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76440"
+     }
+    },
+    {
+     "name": "Sub_B4_AA99",
+     "size": "62",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76457"
+     }
+    },
+    {
+     "name": "Sub_B4_AADB",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76523"
+     }
+    },
+    {
+     "name": "Sub_B4_AAFC",
+     "size": "24",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76556"
+     }
+    },
+    {
+     "name": "Sub_B4_AB14",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76580"
+     }
+    },
+    {
+     "name": "Sub_B4_AB20",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76592"
+     }
+    },
+    {
+     "name": "Sub_B4_AB41",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76625"
+     }
+    },
+    {
+     "name": "Sub_B4_AB5E",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76654"
+     }
+    },
+    {
+     "name": "Sub_B4_AB7D",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76685"
+     }
+    },
+    {
+     "name": "Sub_B4_AB93",
+     "size": "39",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76707"
+     }
+    },
+    {
+     "name": "Sub_B4_ABBA",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76746"
+     }
+    },
+    {
+     "name": "Loc_B4_ABE1",
+     "size": "68",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76785"
+     }
+    },
+    {
+     "name": "Sub_B4_AC25",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76853"
+     }
+    },
+    {
+     "name": "Sub_B4_AC2B",
+     "size": "2",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76859"
+     }
+    },
+    {
+     "name": "Sub_B4_AC2D",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76861"
+     }
+    },
+    {
+     "name": "Sub_B4_AC33",
+     "size": "34",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76867"
+     }
+    },
+    {
+     "name": "Sub_B4_AC55",
+     "size": "124",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76901"
+     }
+    },
+    {
+     "name": "Sub_B4_ACDF",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77039"
+     }
+    },
+    {
+     "name": "Sub_B4_ACED",
+     "size": "24",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77053"
+     }
+    },
+    {
+     "name": "Sub_B4_AD05",
+     "size": "49",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77077"
+     }
+    },
+    {
+     "name": "Loc_B4_AD38",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77128"
+     }
+    },
+    {
+     "name": "Sub_B4_AE25",
+     "size": "43",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77365"
+     }
+    },
+    {
+     "name": "Sub_B4_AE55",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77413"
+     }
+    },
+    {
+     "name": "Sub_B4_AE6A",
+     "size": "8",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77434"
+     }
+    },
+    {
+     "name": "Sub_B4_AE72",
+     "size": "39",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77442"
+     }
+    },
+    {
+     "name": "Sub_B4_AEC5",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77525"
+     }
+    },
+    {
+     "name": "Sub_B4_AECB",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77531"
+     }
+    },
+    {
+     "name": "Sub_B4_AEEE",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77566"
+     }
+    },
+    {
+     "name": "Sub_B4_AF15",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77605"
+     }
+    },
+    {
+     "name": "Sub_B4_AF28",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77624"
+     }
+    },
+    {
+     "name": "Sub_B4_AF38",
+     "size": "66",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77640"
+     }
+    },
+    {
+     "name": "Sub_B4_AF7E",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77710"
+     }
+    },
+    {
+     "name": "Sub_B4_AF8F",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77727"
+     }
+    },
+    {
+     "name": "Sub_B4_AF9D",
+     "size": "20",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77741"
+     }
+    },
+    {
+     "name": "Sub_B4_AFB1",
+     "size": "55",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77761"
      }
     },
     {
@@ -2975,15 +3847,319 @@
      }
     },
     {
-     "name": "Sub_B4_B402",
-     "size": "114",
+     "name": "Sub_B4_B003",
+     "size": "31",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77843"
+     }
+    },
+    {
+     "name": "Sub_B4_B022",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77874"
+     }
+    },
+    {
+     "name": "Sub_B4_B03F",
+     "size": "78",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77903"
+     }
+    },
+    {
+     "name": "Sub_B4_B08D",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77981"
+     }
+    },
+    {
+     "name": "Sub_B4_B0A6",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78006"
+     }
+    },
+    {
+     "name": "Sub_B4_B0AF",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78015"
+     }
+    },
+    {
+     "name": "Sub_B4_B0B2",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78018"
+     }
+    },
+    {
+     "name": "Sub_B4_B0C9",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78041"
+     }
+    },
+    {
+     "name": "Sub_B4_B0D9",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78057"
+     }
+    },
+    {
+     "name": "Sub_B4_B0F2",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78082"
+     }
+    },
+    {
+     "name": "Sub_B4_B12E",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78142"
+     }
+    },
+    {
+     "name": "Sub_B4_B143",
+     "size": "107",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78163"
+     }
+    },
+    {
+     "name": "Sub_B4_B1B2",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78274"
+     }
+    },
+    {
+     "name": "Sub_B4_B1CD",
+     "size": "32",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78301"
+     }
+    },
+    {
+     "name": "Sub_B4_B1ED",
+     "size": "56",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78333"
+     }
+    },
+    {
+     "name": "Sub_B4_B225",
+     "size": "43",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78389"
+     }
+    },
+    {
+     "name": "Sub_B4_B250",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78432"
+     }
+    },
+    {
+     "name": "Sub_B4_B26E",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78462"
+     }
+    },
+    {
+     "name": "Sub_B4_B287",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78487"
+     }
+    },
+    {
+     "name": "Sub_B4_B298",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78504"
+     }
+    },
+    {
+     "name": "Sub_B4_B2AD",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78525"
+     }
+    },
+    {
+     "name": "Sub_B4_B2BE",
+     "size": "71",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78542"
+     }
+    },
+    {
+     "name": "Sub_B4_B315",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78629"
+     }
+    },
+    {
+     "name": "Sub_B4_B325",
+     "size": "40",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78645"
+     }
+    },
+    {
+     "name": "Sub_B4_B34D",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78685"
+     }
+    },
+    {
+     "name": "Sub_B4_B364",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78708"
+     }
+    },
+    {
+     "name": "Loc_B4_B389",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78745"
+     }
+    },
+    {
+     "name": "Sub_B4_B39F",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78767"
+     }
+    },
+    {
+     "name": "Sub_B4_B3B2",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78786"
+     }
+    },
+    {
+     "name": "Sub_B4_B3BC",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78796"
+     }
+    },
+    {
+     "name": "Sub_B4_B3C7",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78807"
+     }
+    },
+    {
+     "name": "Sub_B4_B3DA",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78826"
+     }
+    },
+    {
+     "name": "Sub_B4_B3EE",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78846"
+     }
+    },
+    {
+     "name": "Sub_B4_B3F2",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78850"
+     }
+    },
+    {
+     "name": "Sub_B4_B3FB",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78859"
+     }
+    },
+    {
+     "name": "AddObjectOfType",
+     "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "78866"
      }
     },
     {
-     "name": "Sub_B4_B474",
+     "name": "Sub_B4_B42A",
+     "size": "19",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78906"
+     }
+    },
+    {
+     "name": "DamagePlayer",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78925"
+     }
+    },
+    {
+     "name": "AddLifeAndAmmo",
+     "size": "41",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78939"
+     }
+    },
+    {
+     "name": "UpdateAllObjectHandlers",
      "size": "62",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2999,7 +4175,7 @@
      }
     },
     {
-     "name": "Sub_B4_B4BB",
+     "name": "DispatchObjectHandler",
      "size": "33",
      "fuzzy_match_percent": 50.0,
      "metadata": {
@@ -3015,16 +4191,16 @@
   {
    "name": "main/bank_5",
    "measures": {
-    "fuzzy_match_percent": 98.3975,
-    "total_code": "5273",
-    "matched_code": "5104",
-    "matched_code_percent": 96.795,
+    "fuzzy_match_percent": 99.0138,
+    "total_code": "5374",
+    "matched_code": "5268",
+    "matched_code_percent": 98.0275,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
-    "total_functions": 190,
-    "matched_functions": 184,
-    "matched_functions_percent": 96.8421,
+    "total_functions": 198,
+    "matched_functions": 193,
+    "matched_functions_percent": 97.4747,
     "complete_code": "0",
     "complete_code_percent": 0.0,
     "complete_data": "0",
@@ -3035,8 +4211,8 @@
    "sections": [
     {
      "name": ".text",
-     "size": "5273",
-     "fuzzy_match_percent": 98.3975
+     "size": "5374",
+     "fuzzy_match_percent": 99.0138
     }
    ],
    "functions": [
@@ -3049,11 +4225,19 @@
      }
     },
     {
-     "name": "Bank5Nmi",
-     "size": "63",
-     "fuzzy_match_percent": 50.0,
+     "name": "Sub_B5_800A",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
-      "virtual_address": "81952"
+      "virtual_address": "81946"
+     }
+    },
+    {
+     "name": "Sub_B5_800D",
+     "size": "66",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "81949"
      }
     },
     {
@@ -3073,7 +4257,7 @@
      }
     },
     {
-     "name": "Sub_B5_814C",
+     "name": "DisableRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3121,7 +4305,7 @@
      }
     },
     {
-     "name": "Sub_B5_8183",
+     "name": "EnableRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3377,7 +4561,7 @@
      }
     },
     {
-     "name": "Sub_B5_838E",
+     "name": "SkipSceneOnStart",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3841,7 +5025,7 @@
      }
     },
     {
-     "name": "Sub_B5_8944",
+     "name": "FillNametableWithA",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3849,7 +5033,7 @@
      }
     },
     {
-     "name": "Sub_B5_895B",
+     "name": "FillPaletteBufferBlack",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3857,7 +5041,7 @@
      }
     },
     {
-     "name": "Sub_B5_895D",
+     "name": "FillPaletteBufferWithA",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3873,7 +5057,7 @@
      }
     },
     {
-     "name": "Sub_B5_8966",
+     "name": "ClearSceneStateTailB5",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3881,7 +5065,7 @@
      }
     },
     {
-     "name": "Sub_B5_8971",
+     "name": "HideAllSpritesB5",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3889,7 +5073,7 @@
      }
     },
     {
-     "name": "Sub_B5_8973",
+     "name": "HideSpritesFromX",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4073,7 +5257,7 @@
      }
     },
     {
-     "name": "Sub_B5_8F3A",
+     "name": "CopyRamStub0513",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4081,7 +5265,7 @@
      }
     },
     {
-     "name": "Sub_B5_8F51",
+     "name": "CopyRamStub05B8",
      "size": "55",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4105,7 +5289,7 @@
      }
     },
     {
-     "name": "Sub_B5_8FCA",
+     "name": "CopyRamStub051E",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4113,7 +5297,7 @@
      }
     },
     {
-     "name": "Sub_B5_8FDE",
+     "name": "SetMmcControlChr0Chr1",
      "size": "164",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4121,7 +5305,7 @@
      }
     },
     {
-     "name": "Sub_B5_9082",
+     "name": "RunSoundDriverBank5Timed",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4129,7 +5313,7 @@
      }
     },
     {
-     "name": "Sub_B5_90A0",
+     "name": "InitDmcAndJoypad2",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4145,7 +5329,7 @@
      }
     },
     {
-     "name": "Sub_B5_90B9",
+     "name": "InitScenePpuState",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4257,7 +5441,7 @@
      }
     },
     {
-     "name": "Sub_B5_9895",
+     "name": "DrawSpriteListToOam",
      "size": "64",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4297,7 +5481,7 @@
      }
     },
     {
-     "name": "Sub_B5_9AE5",
+     "name": "OrSpriteAttributes",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4537,7 +5721,7 @@
      }
     },
     {
-     "name": "Sub_B5_A3C7",
+     "name": "WriteApuFromShadow",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4553,11 +5737,67 @@
      }
     },
     {
-     "name": "Sub_B5_A464",
+     "name": "InlineJumpTable",
      "size": "21",
      "fuzzy_match_percent": 50.0,
      "metadata": {
       "virtual_address": "91252"
+     }
+    },
+    {
+     "name": "Loc_B5_BD80",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "97680"
+     }
+    },
+    {
+     "name": "Loc_B5_BD85",
+     "size": "10",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "97685"
+     }
+    },
+    {
+     "name": "Loc_B5_BD91",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "97697"
+     }
+    },
+    {
+     "name": "Loc_B5_BD97",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "97703"
+     }
+    },
+    {
+     "name": "Loc_B5_BDF9",
+     "size": "73",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "97801"
+     }
+    },
+    {
+     "name": "Loc_B5_BF2A",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98106"
+     }
+    },
+    {
+     "name": "Loc_B5_BF2F",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "98111"
      }
     }
    ],
@@ -4635,7 +5875,7 @@
      }
     },
     {
-     "name": "Sub_B6_808E",
+     "name": "LoadStageSpawnListPtr",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4643,7 +5883,7 @@
      }
     },
     {
-     "name": "Sub_B6_809D",
+     "name": "CalcScrollColumnIndex",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4651,7 +5891,7 @@
      }
     },
     {
-     "name": "Sub_B6_80AE",
+     "name": "CalcNextScrollColumnIndex",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4659,7 +5899,7 @@
      }
     },
     {
-     "name": "Sub_B6_80B5",
+     "name": "FindObjectByType",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4723,7 +5963,7 @@
      }
     },
     {
-     "name": "Sub_B6_831C",
+     "name": "CollectPickup",
      "size": "56",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4739,7 +5979,7 @@
      }
     },
     {
-     "name": "Sub_B6_83BE",
+     "name": "StoreSpawnStats",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4747,7 +5987,7 @@
      }
     },
     {
-     "name": "Sub_B6_83D3",
+     "name": "SetSpawnXFromScroll",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4763,7 +6003,7 @@
      }
     },
     {
-     "name": "Sub_B6_8401",
+     "name": "SetSpawnFacingBits",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4771,7 +6011,7 @@
      }
     },
     {
-     "name": "Sub_B6_840D",
+     "name": "SetRandomSpawnPhase",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4787,7 +6027,7 @@
      }
     },
     {
-     "name": "Sub_B6_863C",
+     "name": "SetRandomSpawnYNearPlayer",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4843,7 +6083,7 @@
      }
     },
     {
-     "name": "Sub_B6_873E",
+     "name": "SetSpawnYToPlayerY",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4883,7 +6123,7 @@
      }
     },
     {
-     "name": "Sub_B6_8803",
+     "name": "DuplicateObjectEntry",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4923,7 +6163,7 @@
      }
     },
     {
-     "name": "Sub_B6_89A7",
+     "name": "GetObjectBehaviorIndex",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4931,7 +6171,7 @@
      }
     },
     {
-     "name": "Sub_B6_89B2",
+     "name": "LoadBehaviorTableA",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4939,7 +6179,7 @@
      }
     },
     {
-     "name": "Sub_B6_89C0",
+     "name": "LoadObjectAnimFrame",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4955,7 +6195,7 @@
      }
     },
     {
-     "name": "Sub_B6_8A66",
+     "name": "AdvanceObjectAnimStep",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4963,7 +6203,7 @@
      }
     },
     {
-     "name": "Sub_B6_8A76",
+     "name": "UpdateObjectScreenX",
      "size": "99",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4979,7 +6219,7 @@
      }
     },
     {
-     "name": "Sub_B6_8AF4",
+     "name": "CalcObjectTileColumn",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4987,7 +6227,7 @@
      }
     },
     {
-     "name": "Sub_B6_8B08",
+     "name": "RemoveObjectIfOffscreen",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5019,7 +6259,7 @@
      }
     },
     {
-     "name": "Sub_B6_9489",
+     "name": "LoadBehaviorTableB",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5051,7 +6291,7 @@
      }
     },
     {
-     "name": "Sub_B6_96D4",
+     "name": "LoadBehaviorTableC",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5075,7 +6315,7 @@
      }
     },
     {
-     "name": "Sub_B6_9A38",
+     "name": "LoadBehaviorTableD",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5091,7 +6331,7 @@
      }
     },
     {
-     "name": "Sub_B6_A0A6",
+     "name": "LoadBehaviorTableE",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5141,7 +6381,7 @@
      }
     },
     {
-     "name": "Sub_C0C0",
+     "name": "DrawObjectsBanked",
      "size": "20",
      "fuzzy_match_percent": 50.0,
      "metadata": {
@@ -5157,7 +6397,7 @@
      }
     },
     {
-     "name": "Sub_C0E3",
+     "name": "JumpNmiGameStateDispatch",
      "size": "3",
      "fuzzy_match_percent": 50.0,
      "metadata": {
@@ -5477,7 +6717,7 @@
      }
     },
     {
-     "name": "Sub_C5AC",
+     "name": "UploadColumnOrPalette",
      "size": "83",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5621,7 +6861,7 @@
      }
     },
     {
-     "name": "Sub_CE7E",
+     "name": "LoadScrollSegmentParams",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5717,7 +6957,7 @@
      }
     },
     {
-     "name": "Sub_D28E",
+     "name": "CheckPlayerNearObject",
      "size": "122",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5725,7 +6965,7 @@
      }
     },
     {
-     "name": "Sub_D308",
+     "name": "HideObjectSpriteRange",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5733,7 +6973,7 @@
      }
     },
     {
-     "name": "Sub_D318",
+     "name": "HideSpritesUntilE0",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5837,7 +7077,7 @@
      }
     },
     {
-     "name": "Sub_D86D",
+     "name": "SelectChr1Bank0D",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5877,7 +7117,7 @@
      }
     },
     {
-     "name": "Sub_DA77",
+     "name": "FillNametable2Blank",
      "size": "56",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5893,7 +7133,7 @@
      }
     },
     {
-     "name": "Sub_DBD5",
+     "name": "ProcessTransition",
      "size": "89",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5917,7 +7157,7 @@
      }
     },
     {
-     "name": "Sub_DC87",
+     "name": "DrawPlayerPoseOverlay",
      "size": "61",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5925,7 +7165,7 @@
      }
     },
     {
-     "name": "Sub_DDD0",
+     "name": "FinishTransition",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6021,7 +7261,7 @@
      }
     },
     {
-     "name": "Sub_E17D",
+     "name": "LoadTransitionFromList",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6077,7 +7317,7 @@
      }
     },
     {
-     "name": "Sub_E939",
+     "name": "UpdatePlayerActions",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6109,7 +7349,7 @@
      }
     },
     {
-     "name": "Sub_EA61",
+     "name": "HandleFireButton",
      "size": "73",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6181,7 +7421,7 @@
      }
     },
     {
-     "name": "Sub_EF19",
+     "name": "UpdatePlayerSideView",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6197,7 +7437,7 @@
      }
     },
     {
-     "name": "Sub_EF7B",
+     "name": "SelectPlayerSpriteFrame",
      "size": "42",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6221,7 +7461,7 @@
      }
     },
     {
-     "name": "Sub_F23D",
+     "name": "FireBulletSideView",
      "size": "96",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6229,7 +7469,7 @@
      }
     },
     {
-     "name": "Sub_F29D",
+     "name": "ProbeFloorTile",
      "size": "61",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6237,7 +7477,7 @@
      }
     },
     {
-     "name": "Sub_F2DA",
+     "name": "SetupFloorProbeSideView",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6253,7 +7493,7 @@
      }
     },
     {
-     "name": "Sub_F394",
+     "name": "UpdatePlayerTopDown",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6261,7 +7501,7 @@
      }
     },
     {
-     "name": "Sub_F39E",
+     "name": "MovePlayerVertical",
      "size": "138",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6269,7 +7509,7 @@
      }
     },
     {
-     "name": "Sub_F430",
+     "name": "SetTopDownPlayerOam",
      "size": "49",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6277,7 +7517,7 @@
      }
     },
     {
-     "name": "Sub_F470",
+     "name": "FireBulletTopDown",
      "size": "72",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6309,7 +7549,7 @@
      }
     },
     {
-     "name": "Sub_F606",
+     "name": "SetPlayerScreenSide",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6317,7 +7557,7 @@
      }
     },
     {
-     "name": "Sub_F61E",
+     "name": "UploadPaletteIgnoringPad",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6365,7 +7605,7 @@
      }
     },
     {
-     "name": "Sub_F984",
+     "name": "CheckPlayerHitByObjects",
      "size": "153",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6373,7 +7613,7 @@
      }
     },
     {
-     "name": "Sub_FA47",
+     "name": "CheckBulletHitObjects",
      "size": "71",
      "fuzzy_match_percent": 100.0,
      "metadata": {

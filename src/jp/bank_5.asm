@@ -7,7 +7,9 @@
   sta Data_B5_BFFD             ; $8003
   jmp Reset                    ; $8006
   .incbin "prg_bank_5.bin", $0009, $1  ; $8009
+Sub_B5_800A:
   jmp Loc_B5_BD80              ; $800A
+Sub_B5_800D:
   jmp Loc_B5_BDF9              ; $800D
 Bank5Nmi:
   lda PPU_STATUS               ; $8010

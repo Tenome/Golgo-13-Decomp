@@ -2536,17 +2536,13 @@
  "Bank4Tbl80C9_07": {
   "addr": 33147,
   "bank": 4,
-  "instrs": 10,
+  "instrs": 7,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     65915,
     65932
-   ],
-   [
-    69839,
-    69846
    ]
   ]
  },
@@ -2604,17 +2600,13 @@
  "Bank4Tbl80C9_0B": {
   "addr": 33273,
   "bank": 4,
-  "instrs": 65,
+  "instrs": 24,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     66041,
     66103
-   ],
-   [
-    68319,
-    68409
    ]
   ]
  },
@@ -2660,17 +2652,13 @@
  "Bank4Tbl80C9_0F": {
   "addr": 33384,
   "bank": 4,
-  "instrs": 6,
+  "instrs": 3,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     66152,
     66161
-   ],
-   [
-    69839,
-    69846
    ]
   ]
  },
@@ -2713,6 +2701,19 @@
    ]
   ]
  },
+ "Sub_B4_82BC": {
+  "addr": 33468,
+  "bank": 4,
+  "instrs": 22,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    66236,
+    66294
+   ]
+  ]
+ },
  "Bank4Tbl80C9_13": {
   "addr": 33558,
   "bank": 4,
@@ -2742,17 +2743,13 @@
  "Bank4Tbl80C9_15": {
   "addr": 33582,
   "bank": 4,
-  "instrs": 12,
+  "instrs": 9,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     66350,
     66373
-   ],
-   [
-    69839,
-    69846
    ]
   ]
  },
@@ -3197,6 +3194,19 @@
    ]
   ]
  },
+ "Sub_B4_8ADF": {
+  "addr": 35551,
+  "bank": 4,
+  "instrs": 41,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68319,
+    68409
+   ]
+  ]
+ },
  "Sub_B4_8B39": {
   "addr": 35641,
   "bank": 4,
@@ -3272,6 +3282,91 @@
    [
     68650,
     68671
+   ]
+  ]
+ },
+ "Sub_B4_8C96": {
+  "addr": 35990,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68758,
+    68763
+   ],
+   [
+    68892,
+    68907
+   ]
+  ]
+ },
+ "Sub_B4_8CA0": {
+  "addr": 36000,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68768,
+    68773
+   ],
+   [
+    68892,
+    68907
+   ]
+  ]
+ },
+ "Sub_B4_8CA5": {
+  "addr": 36005,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68773,
+    68778
+   ],
+   [
+    68892,
+    68907
+   ]
+  ]
+ },
+ "Sub_B4_8CAA": {
+  "addr": 36010,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68778,
+    68783
+   ],
+   [
+    68892,
+    68907
+   ]
+  ]
+ },
+ "Sub_B4_8CAF": {
+  "addr": 36015,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68783,
+    68788
+   ],
+   [
+    68892,
+    68907
    ]
   ]
  },
@@ -3534,6 +3629,19 @@
    ]
   ]
  },
+ "Sub_B4_9088": {
+  "addr": 37000,
+  "bank": 4,
+  "instrs": 1,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    69768,
+    69769
+   ]
+  ]
+ },
  "Sub_B4_908C": {
   "addr": 37004,
   "bank": 4,
@@ -3564,6 +3672,36 @@
    ]
   ]
  },
+ "Sub_B4_90C2": {
+  "addr": 37058,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    69826,
+    69829
+   ],
+   [
+    69831,
+    69832
+   ]
+  ]
+ },
+ "Sub_B4_90CF": {
+  "addr": 37071,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    69839,
+    69846
+   ]
+  ]
+ },
  "Sub_B4_90D6": {
   "addr": 37078,
   "bank": 4,
@@ -3574,6 +3712,32 @@
    [
     69846,
     69853
+   ]
+  ]
+ },
+ "Sub_B4_90DD": {
+  "addr": 37085,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    69853,
+    69863
+   ]
+  ]
+ },
+ "Sub_B4_90E7": {
+  "addr": 37095,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    69863,
+    69873
    ]
   ]
  },
@@ -3684,34 +3848,17 @@
  "Sub_B4_961B": {
   "addr": 38427,
   "bank": 4,
-  "instrs": 107,
+  "instrs": 120,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     71195,
-    71288
-   ],
-   [
-    71314,
     71426
    ],
    [
     71528,
     71536
-   ]
-  ]
- },
- "Loc_B4_9678": {
-  "addr": 38520,
-  "bank": 4,
-  "instrs": 13,
-  "ok": true,
-  "reason": null,
-  "ranges": [
-   [
-    71288,
-    71314
    ]
   ]
  },
@@ -3962,12 +4109,25 @@
  "Sub_B4_9FEB": {
   "addr": 40939,
   "bank": 4,
-  "instrs": 11,
+  "instrs": 10,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     73707,
+    73728
+   ]
+  ]
+ },
+ "Sub_B4_A000": {
+  "addr": 40960,
+  "bank": 4,
+  "instrs": 1,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    73728,
     73729
    ]
   ]
@@ -4166,16 +4326,111 @@
    ]
   ]
  },
- "Loc_B4_A378": {
-  "addr": 41848,
+ "Sub_B4_A28D": {
+  "addr": 41613,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74381,
+    74404
+   ]
+  ]
+ },
+ "Sub_B4_A2B4": {
+  "addr": 41652,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74420,
+    74447
+   ],
+   [
+    78790,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_A2CF": {
+  "addr": 41679,
   "bank": 4,
   "instrs": 7,
   "ok": true,
   "reason": null,
   "ranges": [
    [
-    74616,
+    74447,
+    74463
+   ]
+  ]
+ },
+ "Sub_B4_A2DF": {
+  "addr": 41695,
+  "bank": 4,
+  "instrs": 36,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74463,
+    74545
+   ]
+  ]
+ },
+ "Sub_B4_A331": {
+  "addr": 41777,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74545,
+    74568
+   ]
+  ]
+ },
+ "Sub_B4_A348": {
+  "addr": 41800,
+  "bank": 4,
+  "instrs": 33,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74568,
     74633
+   ]
+  ]
+ },
+ "Sub_B4_A3BC": {
+  "addr": 41916,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74684,
+    74712
+   ]
+  ]
+ },
+ "Sub_B4_A3D8": {
+  "addr": 41944,
+  "bank": 4,
+  "instrs": 29,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74712,
+    74779
    ]
   ]
  },
@@ -4252,7 +4507,115 @@
    ]
   ]
  },
- "Loc_B4_A60B": {
+ "Sub_B4_A507": {
+  "addr": 42247,
+  "bank": 4,
+  "instrs": 8,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75015,
+    75023
+   ],
+   [
+    78790,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_A50F": {
+  "addr": 42255,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75023,
+    75048
+   ]
+  ]
+ },
+ "Loc_B4_A528": {
+  "addr": 42280,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75048,
+    75086
+   ]
+  ]
+ },
+ "Sub_B4_A54E": {
+  "addr": 42318,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75086,
+    75109
+   ]
+  ]
+ },
+ "Sub_B4_A57D": {
+  "addr": 42365,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75133,
+    75145
+   ]
+  ]
+ },
+ "Sub_B4_A589": {
+  "addr": 42377,
+  "bank": 4,
+  "instrs": 1,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75145,
+    75148
+   ]
+  ]
+ },
+ "Sub_B4_A58C": {
+  "addr": 42380,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75148,
+    75186
+   ]
+  ]
+ },
+ "Sub_B4_A5EA": {
+  "addr": 42474,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75242,
+    75275
+   ]
+  ]
+ },
+ "Sub_B4_A60B": {
   "addr": 42507,
   "bank": 4,
   "instrs": 17,
@@ -4265,7 +4628,7 @@
    ]
   ]
  },
- "Loc_B4_A632": {
+ "Sub_B4_A632": {
   "addr": 42546,
   "bank": 4,
   "instrs": 21,
@@ -4275,6 +4638,200 @@
    [
     75314,
     75359
+   ]
+  ]
+ },
+ "Sub_B4_A6C4": {
+  "addr": 42692,
+  "bank": 4,
+  "instrs": 30,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75460,
+    75519
+   ]
+  ]
+ },
+ "Sub_B4_A6FF": {
+  "addr": 42751,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75519,
+    75536
+   ]
+  ]
+ },
+ "Sub_B4_A710": {
+  "addr": 42768,
+  "bank": 4,
+  "instrs": 8,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75536,
+    75557
+   ],
+   [
+    75559,
+    75562
+   ]
+  ]
+ },
+ "Sub_B4_A73B": {
+  "addr": 42811,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75579,
+    75601
+   ]
+  ]
+ },
+ "Sub_B4_A775": {
+  "addr": 42869,
+  "bank": 4,
+  "instrs": 8,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75637,
+    75657
+   ]
+  ]
+ },
+ "Sub_B4_A792": {
+  "addr": 42898,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75666,
+    75672
+   ]
+  ]
+ },
+ "Loc_B4_A798": {
+  "addr": 42904,
+  "bank": 4,
+  "instrs": 6,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75672,
+    75689
+   ]
+  ]
+ },
+ "Loc_B4_A7A9": {
+  "addr": 42921,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75689,
+    75706
+   ]
+  ]
+ },
+ "Sub_B4_A7BA": {
+  "addr": 42938,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75706,
+    75714
+   ]
+  ]
+ },
+ "Sub_B4_A7C2": {
+  "addr": 42946,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75714,
+    75733
+   ]
+  ]
+ },
+ "Sub_B4_A7D5": {
+  "addr": 42965,
+  "bank": 4,
+  "instrs": 15,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75733,
+    75763
+   ]
+  ]
+ },
+ "Sub_B4_A9E3": {
+  "addr": 43491,
+  "bank": 4,
+  "instrs": 21,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76259,
+    76305
+   ]
+  ]
+ },
+ "Sub_B4_AA2E": {
+  "addr": 43566,
+  "bank": 4,
+  "instrs": 24,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76283,
+    76305
+   ],
+   [
+    76313,
+    76345
+   ]
+  ]
+ },
+ "Sub_B4_AA39": {
+  "addr": 43577,
+  "bank": 4,
+  "instrs": 34,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76345,
+    76351
+   ],
+   [
+    76829,
+    76897
    ]
   ]
  },
@@ -4503,42 +5060,13 @@
    ]
   ]
  },
- "Loc_B4_AC6F": {
-  "addr": 44143,
-  "bank": 4,
-  "instrs": 50,
-  "ok": true,
-  "reason": null,
-  "ranges": [
-   [
-    76345,
-    76351
-   ],
-   [
-    76829,
-    76897
-   ],
-   [
-    76911,
-    76945
-   ]
-  ]
- },
- "Loc_B4_AC91": {
+ "Sub_B4_AC91": {
   "addr": 44177,
   "bank": 4,
-  "instrs": 53,
+  "instrs": 19,
   "ok": true,
   "reason": null,
   "ranges": [
-   [
-    76345,
-    76351
-   ],
-   [
-    76829,
-    76897
-   ],
    [
     76924,
     76966
@@ -4678,6 +5206,113 @@
    ]
   ]
  },
+ "Loc_B4_AE97": {
+  "addr": 44695,
+  "bank": 4,
+  "instrs": 24,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77463,
+    77497
+   ],
+   [
+    77495,
+    77502
+   ],
+   [
+    78793,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_AEEA": {
+  "addr": 44778,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77546,
+    77552
+   ],
+   [
+    77883,
+    77899
+   ]
+  ]
+ },
+ "Sub_B4_AEF0": {
+  "addr": 44784,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77552,
+    77575
+   ]
+  ]
+ },
+ "Sub_B4_AF17": {
+  "addr": 44823,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77591,
+    77613
+   ],
+   [
+    78790,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_AF3E": {
+  "addr": 44862,
+  "bank": 4,
+  "instrs": 8,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77630,
+    77649
+   ]
+  ]
+ },
+ "Sub_B4_AF51": {
+  "addr": 44881,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77649,
+    77665
+   ]
+  ]
+ },
+ "Sub_B4_AF61": {
+  "addr": 44897,
+  "bank": 4,
+  "instrs": 29,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77665,
+    77731
+   ]
+  ]
+ },
  "Sub_B4_AFA7": {
   "addr": 44967,
   "bank": 4,
@@ -4688,6 +5323,32 @@
    [
     77735,
     77752
+   ]
+  ]
+ },
+ "Sub_B4_AFB8": {
+  "addr": 44984,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77752,
+    77766
+   ]
+  ]
+ },
+ "Sub_B4_AFC6": {
+  "addr": 44998,
+  "bank": 4,
+  "instrs": 8,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77766,
+    77786
    ]
   ]
  },
@@ -4717,6 +5378,19 @@
    ]
   ]
  },
+ "Sub_B4_B02C": {
+  "addr": 45100,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77868,
+    77883
+   ]
+  ]
+ },
  "Sub_B4_B04B": {
   "addr": 45131,
   "bank": 4,
@@ -4730,37 +5404,154 @@
    ]
   ]
  },
- "Loc_B4_B2A0": {
-  "addr": 45728,
+ "Sub_B4_B0F6": {
+  "addr": 45302,
   "bank": 4,
-  "instrs": 23,
+  "instrs": 12,
   "ok": true,
   "reason": null,
   "ranges": [
    [
-    78404,
-    78426
+    78070,
+    78086
    ],
    [
-    78496,
-    78522
-   ],
-   [
-    78562,
-    78563
+    78793,
+    78804
    ]
   ]
  },
- "Data_B4_B2BA": {
-  "addr": 45754,
+ "Sub_B4_B106": {
+  "addr": 45318,
   "bank": 4,
-  "instrs": 3,
+  "instrs": 11,
   "ok": true,
   "reason": null,
   "ranges": [
    [
-    78522,
-    78528
+    78086,
+    78109
+   ]
+  ]
+ },
+ "Sub_B4_B123": {
+  "addr": 45347,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78115,
+    78147
+   ]
+  ]
+ },
+ "Sub_B4_B15F": {
+  "addr": 45407,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78175,
+    78196
+   ]
+  ]
+ },
+ "Sub_B4_B174": {
+  "addr": 45428,
+  "bank": 4,
+  "instrs": 47,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78196,
+    78303
+   ]
+  ]
+ },
+ "Sub_B4_B1E3": {
+  "addr": 45539,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78307,
+    78330
+   ]
+  ]
+ },
+ "Sub_B4_B202": {
+  "addr": 45570,
+  "bank": 4,
+  "instrs": 18,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78338,
+    78370
+   ],
+   [
+    78793,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_B222": {
+  "addr": 45602,
+  "bank": 4,
+  "instrs": 24,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78370,
+    78426
+   ]
+  ]
+ },
+ "Sub_B4_B25A": {
+  "addr": 45658,
+  "bank": 4,
+  "instrs": 21,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78426,
+    78469
+   ]
+  ]
+ },
+ "Sub_B4_B285": {
+  "addr": 45701,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78469,
+    78491
+   ]
+  ]
+ },
+ "Sub_B4_B2A3": {
+  "addr": 45731,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78499,
+    78522
    ]
   ]
  },
@@ -4780,25 +5571,12 @@
  "Sub_B4_B2D1": {
   "addr": 45777,
   "bank": 4,
-  "instrs": 9,
+  "instrs": 10,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     78545,
-    78563
-   ]
-  ]
- },
- "Loc_B4_B2E3": {
-  "addr": 45795,
-  "bank": 4,
-  "instrs": 1,
-  "ok": true,
-  "reason": null,
-  "ranges": [
-   [
-    78563,
     78566
    ]
   ]
@@ -4816,7 +5594,7 @@
    ]
   ]
  },
- "Loc_B4_B2F7": {
+ "Sub_B4_B2F7": {
   "addr": 45815,
   "bank": 4,
   "instrs": 23,
@@ -4901,17 +5679,26 @@
  "Loc_B4_B3A7": {
   "addr": 45991,
   "bank": 4,
-  "instrs": 22,
+  "instrs": 11,
   "ok": true,
   "reason": null,
   "ranges": [
    [
-    75086,
-    75109
-   ],
-   [
     78759,
     78783
+   ]
+  ]
+ },
+ "Sub_B4_B3DC": {
+  "addr": 46044,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78812,
+    78831
    ]
   ]
  },
@@ -4967,6 +5754,19 @@
    ]
   ]
  },
+ "Sub_B4_B42B": {
+  "addr": 46123,
+  "bank": 4,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78891,
+    78895
+   ]
+  ]
+ },
  "Sub_B4_B42F": {
   "addr": 46127,
   "bank": 4,
@@ -4977,6 +5777,19 @@
    [
     78895,
     78904
+   ]
+  ]
+ },
+ "Sub_B4_B438": {
+  "addr": 46136,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78904,
+    78911
    ]
   ]
  },
@@ -5006,7 +5819,7 @@
    ]
   ]
  },
- "Loc_B4_B467": {
+ "Sub_B4_B467": {
   "addr": 46183,
   "bank": 4,
   "instrs": 10,
@@ -5094,6 +5907,60 @@
    [
     81920,
     81929
+   ]
+  ]
+ },
+ "Sub_B5_800A": {
+  "addr": 32778,
+  "bank": 5,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    81930,
+    81933
+   ],
+   [
+    97664,
+    97667
+   ],
+   [
+    97669,
+    97679
+   ],
+   [
+    97681,
+    97685
+   ],
+   [
+    97687,
+    97688
+   ]
+  ]
+ },
+ "Sub_B5_800D": {
+  "addr": 32781,
+  "bank": 5,
+  "instrs": 37,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    81933,
+    81936
+   ],
+   [
+    97785,
+    97858
+   ],
+   [
+    98090,
+    98093
+   ],
+   [
+    98095,
+    98096
    ]
   ]
  },
@@ -10656,6 +11523,19 @@
    ]
   ]
  },
+ "Ram_0000_0": {
+  "addr": 0,
+  "bank": 8,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    131072,
+    131077
+   ]
+  ]
+ },
  "Ram_0005_0": {
   "addr": 5,
   "bank": 8,
@@ -10664,12 +11544,8 @@
   "reason": null,
   "ranges": [
    [
-    131072,
-    131075
-   ],
-   [
     131077,
-    131078
+    131083
    ]
   ]
  },
@@ -10686,19 +11562,19 @@
    ]
   ]
  },
- "Ram_051E_1": {
-  "addr": 1310,
+ "Ram_0520_1": {
+  "addr": 1312,
   "bank": 9,
   "instrs": 2,
   "ok": true,
   "reason": null,
   "ranges": [
    [
-    147467,
-    147470
+    147469,
+    147472
    ],
    [
-    147472,
+    147474,
     147475
    ]
   ]
@@ -10729,8 +11605,8 @@
    ]
   ]
  },
- "Ram_05A3_4": {
-  "addr": 1443,
+ "Ram_0000_4": {
+  "addr": 0,
   "bank": 12,
   "instrs": 2,
   "ok": true,
@@ -10738,12 +11614,25 @@
   "ranges": [
    [
     196608,
-    196612
+    196613
    ]
   ]
  },
- "Ram_05B8_5": {
-  "addr": 1464,
+ "Ram_0005_4": {
+  "addr": 5,
+  "bank": 12,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    196613,
+    196619
+   ]
+  ]
+ },
+ "Ram_051E_5": {
+  "addr": 1310,
   "bank": 13,
   "instrs": 2,
   "ok": true,
@@ -10751,7 +11640,54 @@
   "ranges": [
    [
     212992,
-    212996
+    212995
+   ],
+   [
+    212997,
+    213000
+   ]
+  ]
+ },
+ "Ram_05A3_6": {
+  "addr": 1443,
+  "bank": 14,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    229376,
+    229380
+   ]
+  ]
+ },
+ "Ram_05B8_7": {
+  "addr": 1464,
+  "bank": 15,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    245760,
+    245764
+   ]
+  ]
+ },
+ "Ram_0005_8": {
+  "addr": 5,
+  "bank": 16,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    262144,
+    262147
+   ],
+   [
+    262149,
+    262150
    ]
   ]
  }

@@ -11,6 +11,70 @@ void Loc_B5_8000(void) {  /* $8000 bank 5 */
   { Reset(); return; }                                                                   /* $8006 jmp */
 }
 
+void Sub_B5_800A(void) {  /* $800A bank 5 */
+  uint8_t sp0 = R.sp;
+  goto LBD80;                                                                            /* $800A jmp */
+LBD80: BUDGET();
+  push16(0xBD82); ProcessPpuUpdateList(); UNW(); ret_check(0xBD84);                      /* $BD80 jsr */
+  LDA(rd(PlayerFacing));                                                                 /* $BD85 lda */
+  AND(0x02);                                                                             /* $BD88 and */
+  if (R.a == 0) {                                                                        /* $BD8A bne */
+    push16(0xBD8E); ProcessPpuUpdateList(); UNW(); ret_check(0xBD90);                    /* $BD8C jsr */
+    RTS_RET(sp0);                                                                        /* $BD91 rts */
+  }
+  push16(0xBD94); ProcessPpuUpdateList(); UNW(); ret_check(0xBD96);                      /* $BD92 jsr */
+  RTS_RET(sp0);                                                                          /* $BD97 rts */
+}
+
+void Sub_B5_800D(void) {  /* $800D bank 5 */
+  uint8_t sp0 = R.sp;
+  goto LBDF9;                                                                            /* $800D jmp */
+LBDF9: BUDGET();
+  LDA(rd(PpuCtrlShadow));                                                                /* $BDF9 lda */
+  ORA(0x02);                                                                             /* $BDFB ora */
+  STA(PpuCtrlShadow);                                                                    /* $BDFD sta */
+  LDX(rd(0x81));                                                                         /* $BDFF ldx */
+  DEX();                                                                                 /* $BE01 dex */
+  if (R.x != 0) {                                                                        /* $BE02 beq */
+    DEX();                                                                               /* $BE04 dex */
+    if (R.x == 0) goto LBE29;                                                            /* $BE05 beq */
+    RTS_RET(sp0);                                                                        /* $BE07 rts */
+  }
+  LDX(0x07);                                                                             /* $BE08 ldx */
+  do { BUDGET();
+    LDA(rd((uint16_t)(0xBE42 + R.x)));                                                   /* $BE0A lda */
+    STA((uint16_t)(0x0210 + R.x));                                                       /* $BE0D sta */
+    DEX();                                                                               /* $BE10 dex */
+  } while (!(R.x & 0x80));                                                               /* $BE11 bpl */
+  LDA(0xF0);                                                                             /* $BE13 lda */
+  STA(0x0218);                                                                           /* $BE15 sta */
+  STA(0x021C);                                                                           /* $BE18 sta */
+  LDX(0x57);                                                                             /* $BE1B ldx */
+  do { BUDGET();
+    LDA(rd((uint16_t)(0xBE5A + R.x)));                                                   /* $BE1D lda */
+    STA((uint16_t)(0x0220 + R.x));                                                       /* $BE20 sta */
+    DEX();                                                                               /* $BE23 dex */
+  } while (!(R.x & 0x80));                                                               /* $BE24 bpl */
+  goto LBF2A;                                                                            /* $BE26 jmp */
+LBE29: BUDGET();
+  LDX(0x0F);                                                                             /* $BE29 ldx */
+  do { BUDGET();
+    LDA(rd((uint16_t)(0xBE4A + R.x)));                                                   /* $BE2B lda */
+    STA((uint16_t)(0x0210 + R.x));                                                       /* $BE2E sta */
+    DEX();                                                                               /* $BE31 dex */
+  } while (!(R.x & 0x80));                                                               /* $BE32 bpl */
+  LDX(0x77);                                                                             /* $BE34 ldx */
+  do { BUDGET();
+    LDA(rd((uint16_t)(0xBEB2 + R.x)));                                                   /* $BE36 lda */
+    STA((uint16_t)(0x0220 + R.x));                                                       /* $BE39 sta */
+    DEX();                                                                               /* $BE3C dex */
+  } while (!(R.x & 0x80));                                                               /* $BE3D bpl */
+  goto LBF2A;                                                                            /* $BE3F jmp */
+LBF2A: BUDGET();
+  push16(0xBF2C); ProcessPpuUpdateList(); UNW(); ret_check(0xBF2E);                      /* $BF2A jsr */
+  RTS_RET(sp0);                                                                          /* $BF2F rts */
+}
+
 void Bank5Nmi(void) {  /* $8010 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(PPU_STATUS));                                                                   /* $8010 lda */

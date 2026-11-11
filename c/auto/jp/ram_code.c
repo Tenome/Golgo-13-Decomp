@@ -3,10 +3,17 @@
 #include "names.h"
 #include "decls.h"
 
+void Ram_0000_0(void) {  /* $0000 bank 8 */
+  uint8_t sp0 = R.sp;
+  LDA(0x05);                                                                             /* $0000 lda */
+  push16(0x0004); MmcWritePrgA(); UNW(); ret_check(0x0004);                              /* $0002 jsr */
+  { call_addr(0x0005); return; }
+}
+
 void Ram_0005_0(void) {  /* $0005 bank 8 */
   uint8_t sp0 = R.sp;
-  push16(0x0007); ProcessPpuUpdateList(); UNW(); ret_check(0x0009);                      /* $0005 jsr */
-  RTS_RET(sp0);                                                                          /* $000A rts */
+  push16(0x0007); call_addr(0x800A); UNW(); ret_check(0x0007);                           /* $0005 jsr */
+  { MmcWritePrg(); return; }                                                             /* $0008 jmp */
 }
 
 void Ram_0513_1(void) {  /* $0513 bank 9 */
@@ -17,10 +24,10 @@ void Ram_0513_1(void) {  /* $0513 bank 9 */
   { MmcWritePrg(); return; }                                                             /* $051B jmp */
 }
 
-void Ram_051E_1(void) {  /* $051E bank 9 */
+void Ram_0520_1(void) {  /* $0520 bank 9 */
   uint8_t sp0 = R.sp;
-  push16(0x0520); ProcessPpuUpdateList(); UNW(); ret_check(0x0522);                      /* $051E jsr */
-  { ApplyScroll(); return; }                                                             /* $0523 jmp */
+  push16(0x0522); ProcessPpuUpdateList(); UNW(); ret_check(0x0524);                      /* $0520 jsr */
+  RTS_RET(sp0);                                                                          /* $0525 rts */
 }
 
 void Ram_0568_2(void) {  /* $0568 bank 10 */
@@ -75,15 +82,40 @@ void Ram_05B8_3(void) {  /* $05B8 bank 11 */
   { MmcWritePrg(); return; }                                                             /* $05CF jmp */
 }
 
-void Ram_05A3_4(void) {  /* $05A3 bank 12 */
+void Ram_0000_4(void) {  /* $0000 bank 12 */
+  uint8_t sp0 = R.sp;
+  LDA(0x05);                                                                             /* $0000 lda */
+  push16(0x0004); MmcWritePrgA(); UNW(); ret_check(0x0004);                              /* $0002 jsr */
+  { call_addr(0x0005); return; }
+}
+
+void Ram_0005_4(void) {  /* $0005 bank 12 */
+  uint8_t sp0 = R.sp;
+  push16(0x0007); call_addr(0x800D); UNW(); ret_check(0x0007);                           /* $0005 jsr */
+  { MmcWritePrg(); return; }                                                             /* $0008 jmp */
+}
+
+void Ram_051E_5(void) {  /* $051E bank 13 */
+  uint8_t sp0 = R.sp;
+  push16(0x0520); ProcessPpuUpdateList(); UNW(); ret_check(0x0522);                      /* $051E jsr */
+  { ApplyScroll(); return; }                                                             /* $0523 jmp */
+}
+
+void Ram_05A3_6(void) {  /* $05A3 bank 14 */
   uint8_t sp0 = R.sp;
   push16(0x05A5); call_addr(0x8973); UNW(); ret_check(0x05A5);                           /* $05A3 jsr */
   cpu_brk(); return;                                                                     /* $05A6 brk */
 }
 
-void Ram_05B8_5(void) {  /* $05B8 bank 13 */
+void Ram_05B8_7(void) {  /* $05B8 bank 15 */
   uint8_t sp0 = R.sp;
   push16(0x05BA); call_addr(0x8FCA); UNW(); ret_check(0x05BA);                           /* $05B8 jsr */
   cpu_brk(); return;                                                                     /* $05BB brk */
+}
+
+void Ram_0005_8(void) {  /* $0005 bank 16 */
+  uint8_t sp0 = R.sp;
+  push16(0x0007); ProcessPpuUpdateList(); UNW(); ret_check(0x0009);                      /* $0005 jsr */
+  RTS_RET(sp0);                                                                          /* $000A rts */
 }
 

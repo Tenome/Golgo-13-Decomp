@@ -391,6 +391,7 @@ static int bank4(uint16_t a) {
     case 0x8271: Bank4Tbl80C9_10(); return 1;
     case 0x8288: Bank4Tbl80C9_11(); return 1;
     case 0x828E: Bank4Tbl80C9_12(); return 1;
+    case 0x82BC: Sub_B4_82BC(); return 1;
     case 0x8316: Bank4Tbl80C9_13(); return 1;
     case 0x831C: Bank4Tbl80C9_14(); return 1;
     case 0x832E: Bank4Tbl80C9_15(); return 1;
@@ -427,12 +428,18 @@ static int bank4(uint16_t a) {
     case 0x86B7: Bank4Tbl85C3_0C(); return 1;
     case 0x86C0: Bank4Tbl85C3_0D(); return 1;
     case 0x86DD: Sub_B4_86DD(); return 1;
+    case 0x8ADF: Sub_B4_8ADF(); return 1;
     case 0x8B39: Sub_B4_8B39(); return 1;
     case 0x8B4F: Sub_B4_8B4F(); return 1;
     case 0x8BD5: Sub_B4_8BD5(); return 1;
     case 0x8C07: Sub_B4_8C07(); return 1;
     case 0x8C24: Sub_B4_8C24(); return 1;
     case 0x8C2A: Sub_B4_8C2A(); return 1;
+    case 0x8C96: Sub_B4_8C96(); return 1;
+    case 0x8CA0: Sub_B4_8CA0(); return 1;
+    case 0x8CA5: Sub_B4_8CA5(); return 1;
+    case 0x8CAA: Sub_B4_8CAA(); return 1;
+    case 0x8CAF: Sub_B4_8CAF(); return 1;
     case 0x8D35: Sub_B4_8D35(); return 1;
     case 0x8E16: Sub_B4_8E16(); return 1;
     case 0x8E23: Sub_B4_8E23(); return 1;
@@ -452,9 +459,14 @@ static int bank4(uint16_t a) {
     case 0x8FE1: Sub_B4_8FE1(); return 1;
     case 0x901A: Sub_B4_901A(); return 1;
     case 0x905D: Sub_B4_905D(); return 1;
+    case 0x9088: Sub_B4_9088(); return 1;
     case 0x908C: Sub_B4_908C(); return 1;
     case 0x90B6: Sub_B4_90B6(); return 1;
+    case 0x90C2: Sub_B4_90C2(); return 1;
+    case 0x90CF: Sub_B4_90CF(); return 1;
     case 0x90D6: Sub_B4_90D6(); return 1;
+    case 0x90DD: Sub_B4_90DD(); return 1;
+    case 0x90E7: Sub_B4_90E7(); return 1;
     case 0x90F1: Sub_B4_90F1(); return 1;
     case 0x9106: Sub_B4_9106(); return 1;
     case 0x9173: Sub_B4_9173(); return 1;
@@ -464,7 +476,6 @@ static int bank4(uint16_t a) {
     case 0x95DA: Sub_B4_95DA(); return 1;
     case 0x95E0: Sub_B4_95E0(); return 1;
     case 0x961B: Sub_B4_961B(); return 1;
-    case 0x9678: Loc_B4_9678(); return 1;
     case 0x9702: Sub_B4_9702(); return 1;
     case 0x9880: Sub_B4_9880(); return 1;
     case 0x98A6: Sub_B4_98A6(); return 1;
@@ -482,6 +493,7 @@ static int bank4(uint16_t a) {
     case 0x9FAC: Sub_B4_9FAC(); return 1;
     case 0x9FD6: Sub_B4_9FD6(); return 1;
     case 0x9FEB: Sub_B4_9FEB(); return 1;
+    case 0xA000: Sub_B4_A000(); return 1;
     case 0xA033: Sub_B4_A033(); return 1;
     case 0xA060: Sub_B4_A060(); return 1;
     case 0xA065: Sub_B4_A065(); return 1;
@@ -496,14 +508,43 @@ static int bank4(uint16_t a) {
     case 0xA12C: Sub_B4_A12C(); return 1;
     case 0xA177: Sub_B4_A177(); return 1;
     case 0xA226: Sub_B4_A226(); return 1;
-    case 0xA378: Loc_B4_A378(); return 1;
+    case 0xA28D: Sub_B4_A28D(); return 1;
+    case 0xA2B4: Sub_B4_A2B4(); return 1;
+    case 0xA2CF: Sub_B4_A2CF(); return 1;
+    case 0xA2DF: Sub_B4_A2DF(); return 1;
+    case 0xA331: Sub_B4_A331(); return 1;
+    case 0xA348: Sub_B4_A348(); return 1;
+    case 0xA3BC: Sub_B4_A3BC(); return 1;
+    case 0xA3D8: Sub_B4_A3D8(); return 1;
     case 0xA494: Sub_B4_A494(); return 1;
     case 0xA49C: Sub_B4_A49C(); return 1;
     case 0xA4A7: Sub_B4_A4A7(); return 1;
     case 0xA4C4: Loc_B4_A4C4(); return 1;
     case 0xA4EA: Loc_B4_A4EA(); return 1;
-    case 0xA60B: Loc_B4_A60B(); return 1;
-    case 0xA632: Loc_B4_A632(); return 1;
+    case 0xA507: Sub_B4_A507(); return 1;
+    case 0xA50F: Sub_B4_A50F(); return 1;
+    case 0xA528: Loc_B4_A528(); return 1;
+    case 0xA54E: Sub_B4_A54E(); return 1;
+    case 0xA57D: Sub_B4_A57D(); return 1;
+    case 0xA589: Sub_B4_A589(); return 1;
+    case 0xA58C: Sub_B4_A58C(); return 1;
+    case 0xA5EA: Sub_B4_A5EA(); return 1;
+    case 0xA60B: Sub_B4_A60B(); return 1;
+    case 0xA632: Sub_B4_A632(); return 1;
+    case 0xA6C4: Sub_B4_A6C4(); return 1;
+    case 0xA6FF: Sub_B4_A6FF(); return 1;
+    case 0xA710: Sub_B4_A710(); return 1;
+    case 0xA73B: Sub_B4_A73B(); return 1;
+    case 0xA775: Sub_B4_A775(); return 1;
+    case 0xA792: Sub_B4_A792(); return 1;
+    case 0xA798: Loc_B4_A798(); return 1;
+    case 0xA7A9: Loc_B4_A7A9(); return 1;
+    case 0xA7BA: Sub_B4_A7BA(); return 1;
+    case 0xA7C2: Sub_B4_A7C2(); return 1;
+    case 0xA7D5: Sub_B4_A7D5(); return 1;
+    case 0xA9E3: Sub_B4_A9E3(); return 1;
+    case 0xAA2E: Sub_B4_AA2E(); return 1;
+    case 0xAA39: Sub_B4_AA39(); return 1;
     case 0xAA3F: Sub_B4_AA3F(); return 1;
     case 0xAA84: Sub_B4_AA84(); return 1;
     case 0xAAC0: Sub_B4_AAC0(); return 1;
@@ -521,8 +562,7 @@ static int bank4(uint16_t a) {
     case 0xAC61: Sub_B4_AC61(); return 1;
     case 0xAC67: Sub_B4_AC67(); return 1;
     case 0xAC69: Sub_B4_AC69(); return 1;
-    case 0xAC6F: Loc_B4_AC6F(); return 1;
-    case 0xAC91: Loc_B4_AC91(); return 1;
+    case 0xAC91: Sub_B4_AC91(); return 1;
     case 0xACA6: Loc_B4_ACA6(); return 1;
     case 0xACD0: Loc_B4_ACD0(); return 1;
     case 0xACFA: Loc_B4_ACFA(); return 1;
@@ -532,31 +572,52 @@ static int bank4(uint16_t a) {
     case 0xAE4A: Sub_B4_AE4A(); return 1;
     case 0xAE7A: Sub_B4_AE7A(); return 1;
     case 0xAE8F: Sub_B4_AE8F(); return 1;
+    case 0xAE97: Loc_B4_AE97(); return 1;
+    case 0xAEEA: Sub_B4_AEEA(); return 1;
+    case 0xAEF0: Sub_B4_AEF0(); return 1;
+    case 0xAF17: Sub_B4_AF17(); return 1;
+    case 0xAF3E: Sub_B4_AF3E(); return 1;
+    case 0xAF51: Sub_B4_AF51(); return 1;
+    case 0xAF61: Sub_B4_AF61(); return 1;
     case 0xAFA7: Sub_B4_AFA7(); return 1;
+    case 0xAFB8: Sub_B4_AFB8(); return 1;
+    case 0xAFC6: Sub_B4_AFC6(); return 1;
     case 0xAFDA: Sub_B4_AFDA(); return 1;
     case 0xB011: Sub_B4_B011(); return 1;
+    case 0xB02C: Sub_B4_B02C(); return 1;
     case 0xB04B: Sub_B4_B04B(); return 1;
-    case 0xB2A0: Loc_B4_B2A0(); return 1;
-    case 0xB2BA: Data_B4_B2BA(); return 1;
+    case 0xB0F6: Sub_B4_B0F6(); return 1;
+    case 0xB106: Sub_B4_B106(); return 1;
+    case 0xB123: Sub_B4_B123(); return 1;
+    case 0xB15F: Sub_B4_B15F(); return 1;
+    case 0xB174: Sub_B4_B174(); return 1;
+    case 0xB1E3: Sub_B4_B1E3(); return 1;
+    case 0xB202: Sub_B4_B202(); return 1;
+    case 0xB222: Sub_B4_B222(); return 1;
+    case 0xB25A: Sub_B4_B25A(); return 1;
+    case 0xB285: Sub_B4_B285(); return 1;
+    case 0xB2A3: Sub_B4_B2A3(); return 1;
     case 0xB2C0: Sub_B4_B2C0(); return 1;
     case 0xB2D1: Sub_B4_B2D1(); return 1;
-    case 0xB2E3: Loc_B4_B2E3(); return 1;
     case 0xB2E6: Sub_B4_B2E6(); return 1;
-    case 0xB2F7: Loc_B4_B2F7(); return 1;
+    case 0xB2F7: Sub_B4_B2F7(); return 1;
     case 0xB32B: Loc_B4_B32B(); return 1;
     case 0xB352: Sub_B4_B352(); return 1;
     case 0xB362: Sub_B4_B362(); return 1;
     case 0xB38A: Sub_B4_B38A(); return 1;
     case 0xB3A1: Sub_B4_B3A1(); return 1;
     case 0xB3A7: Loc_B4_B3A7(); return 1;
+    case 0xB3DC: Sub_B4_B3DC(); return 1;
     case 0xB3EF: Sub_B4_B3EF(); return 1;
     case 0xB3F9: Sub_B4_B3F9(); return 1;
     case 0xB3FF: Sub_B4_B3FF(); return 1;
     case 0xB404: Sub_B4_B404(); return 1;
+    case 0xB42B: Sub_B4_B42B(); return 1;
     case 0xB42F: Sub_B4_B42F(); return 1;
+    case 0xB438: Sub_B4_B438(); return 1;
     case 0xB43F: Sub_B4_B43F(); return 1;
     case 0xB452: Loc_B4_B452(); return 1;
-    case 0xB467: Loc_B4_B467(); return 1;
+    case 0xB467: Sub_B4_B467(); return 1;
     case 0xB47A: Sub_B4_B47A(); return 1;
     case 0xB488: Sub_B4_B488(); return 1;
     case 0xB4B1: Sub_B4_B4B1(); return 1;
@@ -568,6 +629,8 @@ static int bank4(uint16_t a) {
 static int bank5(uint16_t a) {
     switch (a) {
     case 0x8000: Loc_B5_8000(); return 1;
+    case 0x800A: Sub_B5_800A(); return 1;
+    case 0x800D: Sub_B5_800D(); return 1;
     case 0x8010: Bank5Nmi(); return 1;
     case 0x804F: Sub_B5_804F(); return 1;
     case 0x813D: Bank5Tbl8065_00(); return 1;
@@ -816,10 +879,20 @@ static int bank6(uint16_t a) {
     return 0;
 }
 static int ram_match_20000(void) {
+    if (g_ram[(0x0000) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x0001) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x0002) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0003) & 0x7FF] != 0x98) return 0;
+    if (g_ram[(0x0004) & 0x7FF] != 0xC5) return 0;
+    return 1;
+}
+static int ram_match_20005(void) {
     if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
-    if (g_ram[(0x0006) & 0x7FF] != 0x00) return 0;
-    if (g_ram[(0x0007) & 0x7FF] != 0xC1) return 0;
-    if (g_ram[(0x000A) & 0x7FF] != 0x60) return 0;
+    if (g_ram[(0x0006) & 0x7FF] != 0x0A) return 0;
+    if (g_ram[(0x0007) & 0x7FF] != 0x80) return 0;
+    if (g_ram[(0x0008) & 0x7FF] != 0x4C) return 0;
+    if (g_ram[(0x0009) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x000A) & 0x7FF] != 0xC5) return 0;
     return 1;
 }
 static int ram_match_24000(void) {
@@ -836,13 +909,11 @@ static int ram_match_24000(void) {
     if (g_ram[(0x051D) & 0x7FF] != 0xC5) return 0;
     return 1;
 }
-static int ram_match_2400B(void) {
-    if (g_ram[(0x051E) & 0x7FF] != 0x20) return 0;
-    if (g_ram[(0x051F) & 0x7FF] != 0x00) return 0;
-    if (g_ram[(0x0520) & 0x7FF] != 0xC1) return 0;
-    if (g_ram[(0x0523) & 0x7FF] != 0x4C) return 0;
-    if (g_ram[(0x0524) & 0x7FF] != 0x96) return 0;
-    if (g_ram[(0x0525) & 0x7FF] != 0xC1) return 0;
+static int ram_match_2400D(void) {
+    if (g_ram[(0x0520) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0521) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0522) & 0x7FF] != 0xC1) return 0;
+    if (g_ram[(0x0525) & 0x7FF] != 0x60) return 0;
     return 1;
 }
 static int ram_match_28000(void) {
@@ -953,39 +1024,81 @@ static int ram_match_2C000(void) {
     return 1;
 }
 static int ram_match_30000(void) {
+    if (g_ram[(0x0000) & 0x7FF] != 0xA9) return 0;
+    if (g_ram[(0x0001) & 0x7FF] != 0x05) return 0;
+    if (g_ram[(0x0002) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0003) & 0x7FF] != 0x98) return 0;
+    if (g_ram[(0x0004) & 0x7FF] != 0xC5) return 0;
+    return 1;
+}
+static int ram_match_30005(void) {
+    if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0006) & 0x7FF] != 0x0D) return 0;
+    if (g_ram[(0x0007) & 0x7FF] != 0x80) return 0;
+    if (g_ram[(0x0008) & 0x7FF] != 0x4C) return 0;
+    if (g_ram[(0x0009) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x000A) & 0x7FF] != 0xC5) return 0;
+    return 1;
+}
+static int ram_match_34000(void) {
+    if (g_ram[(0x051E) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x051F) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0520) & 0x7FF] != 0xC1) return 0;
+    if (g_ram[(0x0523) & 0x7FF] != 0x4C) return 0;
+    if (g_ram[(0x0524) & 0x7FF] != 0x96) return 0;
+    if (g_ram[(0x0525) & 0x7FF] != 0xC1) return 0;
+    return 1;
+}
+static int ram_match_38000(void) {
     if (g_ram[(0x05A3) & 0x7FF] != 0x20) return 0;
     if (g_ram[(0x05A4) & 0x7FF] != 0x73) return 0;
     if (g_ram[(0x05A5) & 0x7FF] != 0x89) return 0;
     if (g_ram[(0x05A6) & 0x7FF] != 0x00) return 0;
     return 1;
 }
-static int ram_match_34000(void) {
+static int ram_match_3C000(void) {
     if (g_ram[(0x05B8) & 0x7FF] != 0x20) return 0;
     if (g_ram[(0x05B9) & 0x7FF] != 0xCA) return 0;
     if (g_ram[(0x05BA) & 0x7FF] != 0x8F) return 0;
     if (g_ram[(0x05BB) & 0x7FF] != 0x00) return 0;
     return 1;
 }
+static int ram_match_40000(void) {
+    if (g_ram[(0x0005) & 0x7FF] != 0x20) return 0;
+    if (g_ram[(0x0006) & 0x7FF] != 0x00) return 0;
+    if (g_ram[(0x0007) & 0x7FF] != 0xC1) return 0;
+    if (g_ram[(0x000A) & 0x7FF] != 0x60) return 0;
+    return 1;
+}
 static int ram_images(uint16_t a) {
     switch (a) {
+    case 0x0000:
+        if (ram_match_20000()) { Ram_0000_0(); return 1; }
+        if (ram_match_30000()) { Ram_0000_4(); return 1; }
+        break;
     case 0x0005:
-        if (ram_match_20000()) { Ram_0005_0(); return 1; }
+        if (ram_match_20005()) { Ram_0005_0(); return 1; }
+        if (ram_match_30005()) { Ram_0005_4(); return 1; }
+        if (ram_match_40000()) { Ram_0005_8(); return 1; }
         break;
     case 0x0513:
         if (ram_match_24000()) { Ram_0513_1(); return 1; }
         break;
     case 0x051E:
-        if (ram_match_2400B()) { Ram_051E_1(); return 1; }
+        if (ram_match_34000()) { Ram_051E_5(); return 1; }
+        break;
+    case 0x0520:
+        if (ram_match_2400D()) { Ram_0520_1(); return 1; }
         break;
     case 0x0568:
         if (ram_match_28000()) { Ram_0568_2(); return 1; }
         break;
     case 0x05A3:
-        if (ram_match_30000()) { Ram_05A3_4(); return 1; }
+        if (ram_match_38000()) { Ram_05A3_6(); return 1; }
         break;
     case 0x05B8:
         if (ram_match_2C000()) { Ram_05B8_3(); return 1; }
-        if (ram_match_34000()) { Ram_05B8_5(); return 1; }
+        if (ram_match_3C000()) { Ram_05B8_7(); return 1; }
         break;
     }
     return 0;
