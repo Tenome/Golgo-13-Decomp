@@ -655,5 +655,11 @@
  "4:AB93": "CollectBonusItem",
  "4:AECB": "UpdateMazeObjType11",
  "4:B003": "SetObjectTimerFromLife",
- "4:B325": "CollectFullRestoreItem"
+ "4:B325": "CollectFullRestoreItem",
+ "1:9C68": "LoadEnemyAnimTableH",
+ "1:9DEE": "LoadEnemyAnimTableI",
+ "1:9F53": "LoadEnemyAnimTableJ",
+ "1:8F79": "StepObjectAnimTimerA",
+ "1:9ABA": "StepObjectAnimTimerB",
+ "1:A957": "ApplyAnimTableFlags"
 }

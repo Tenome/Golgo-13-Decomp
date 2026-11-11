@@ -561,5 +561,11 @@
  "4:8EF1": "CopyPaletteEntryFromTable",
  "4:95A1": "InitMazePalette",
  "4:95E0": "SetFadeParamsFromTable",
- "4:9702": "LookupMazeCellInfo"
+ "4:9702": "LookupMazeCellInfo",
+ "1:9C68": "LoadEnemyAnimTableH",
+ "1:9DEE": "LoadEnemyAnimTableI",
+ "1:9F53": "LoadEnemyAnimTableJ",
+ "1:8F79": "StepObjectAnimTimerA",
+ "1:9ABA": "StepObjectAnimTimerB",
+ "1:A957": "ApplyAnimTableFlags"
 }

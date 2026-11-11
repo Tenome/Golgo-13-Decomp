@@ -619,7 +619,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F79",
+     "name": "StepObjectAnimTimerA",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -899,7 +899,7 @@
      }
     },
     {
-     "name": "Sub_B1_9ABA",
+     "name": "StepObjectAnimTimerB",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -931,7 +931,7 @@
      }
     },
     {
-     "name": "Sub_B1_9C68",
+     "name": "LoadEnemyAnimTableH",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -963,7 +963,7 @@
      }
     },
     {
-     "name": "Sub_B1_9DEE",
+     "name": "LoadEnemyAnimTableI",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -995,7 +995,7 @@
      }
     },
     {
-     "name": "Sub_B1_9F53",
+     "name": "LoadEnemyAnimTableJ",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1035,7 +1035,7 @@
      }
     },
     {
-     "name": "Sub_B1_A957",
+     "name": "ApplyAnimTableFlags",
      "size": "102",
      "fuzzy_match_percent": 100.0,
      "metadata": {

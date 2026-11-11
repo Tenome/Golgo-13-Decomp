@@ -791,11 +791,11 @@ Bank1State_02:
 Loc_B1_8F6F:
   jsr LoadObjectAnimFrameB1    ; $8F6F
 Loc_B1_8F72:
-  jsr Sub_B1_8F79              ; $8F72
+  jsr StepObjectAnimTimerA     ; $8F72
   jsr UpdateObjectScreenXB1    ; $8F75
   rts                          ; $8F78
-Sub_B1_8F79:
-  jsr Sub_B1_A957              ; $8F79
+StepObjectAnimTimerA:
+  jsr ApplyAnimTableFlags      ; $8F79
   lda z:$04                    ; $8F7C
   beq Loc_B1_8F8B              ; $8F7E
   ldy #$08                     ; $8F80
@@ -895,7 +895,7 @@ Bank1State_03:
 Loc_B1_90BC:
   jsr LoadObjectAnimFrameB1    ; $90BC
 Loc_B1_90BF:
-  jsr Sub_B1_8F79              ; $90BF
+  jsr StepObjectAnimTimerA     ; $90BF
   jsr UpdateObjectScreenXB1    ; $90C2
 Loc_B1_90C5:
   rts                          ; $90C5
@@ -935,7 +935,7 @@ Loc_B1_9253:
   jsr LoadObjectAnimFrameB1    ; $9253
   jsr Sub_B1_929F              ; $9256
 Loc_B1_9259:
-  jsr Sub_B1_9ABA              ; $9259
+  jsr StepObjectAnimTimerB     ; $9259
   jsr UpdateObjectScreenXB1    ; $925C
   rts                          ; $925F
 LoadEnemyAnimTableC:
@@ -1212,7 +1212,7 @@ Sub_B1_946C:
 Loc_B1_94BC:
   rts                          ; $94BC
 Sub_B1_94BD:
-  jsr Sub_B1_A957              ; $94BD
+  jsr ApplyAnimTableFlags      ; $94BD
   lda z:$04                    ; $94C0
   beq Loc_B1_94E7              ; $94C2
   ldy #$07                     ; $94C4
@@ -1272,7 +1272,7 @@ Loc_B1_95A7:
 Loc_B1_95BD:
   jsr Sub_B1_96A4              ; $95BD
 Loc_B1_95C0:
-  jsr Sub_B1_9ABA              ; $95C0
+  jsr StepObjectAnimTimerB     ; $95C0
   ldy #$0B                     ; $95C3
   lda (Tmp00),y                ; $95C5
   cmp #$10                     ; $95C7
@@ -1489,7 +1489,7 @@ Loc_B1_97DD:
   jsr LoadObjectAnimFrameB1    ; $97DD
   jsr Sub_B1_98E7              ; $97E0
 Loc_B1_97E3:
-  jsr Sub_B1_9ABA              ; $97E3
+  jsr StepObjectAnimTimerB     ; $97E3
   ldy z:Tmp00                  ; $97E6
   lda $030B,y                  ; $97E8
   cmp #$0C                     ; $97EB
@@ -1692,7 +1692,7 @@ Loc_B1_9A20:
   jsr LoadObjectAnimFrameB1    ; $9A20
   jsr Sub_B1_9ACB              ; $9A23
 Loc_B1_9A26:
-  jsr Sub_B1_9ABA              ; $9A26
+  jsr StepObjectAnimTimerB     ; $9A26
 Loc_B1_9A29:
   jsr UpdateObjectScreenXB1    ; $9A29
   rts                          ; $9A2C
@@ -1776,8 +1776,8 @@ Loc_B1_9AB3:
   lda #$00                     ; $9AB5
   sta (Tmp00),y                ; $9AB7
   rts                          ; $9AB9
-Sub_B1_9ABA:
-  jsr Sub_B1_A957              ; $9ABA
+StepObjectAnimTimerB:
+  jsr ApplyAnimTableFlags      ; $9ABA
   lda z:$04                    ; $9ABD
   beq Loc_B1_9ACA              ; $9ABF
   ldy #$08                     ; $9AC1
@@ -1892,22 +1892,22 @@ Data_B1_9B81:
 Data_B1_9B82:
   .incbin "prg_bank_1.bin", $1B82, $C5  ; $9B82
 Bank1State_08:
-  jsr Sub_B1_9C68              ; $9C47
+  jsr LoadEnemyAnimTableH      ; $9C47
   ldy #$08                     ; $9C4A
   lda (Tmp00),y                ; $9C4C
   bne Loc_B1_9C61              ; $9C4E
   jsr AdvanceObjectAnimStepB1  ; $9C50
   bcc Loc_B1_9C5B              ; $9C53
   jsr Sub_B1_9C76              ; $9C55
-  jsr Sub_B1_9C68              ; $9C58
+  jsr LoadEnemyAnimTableH      ; $9C58
 Loc_B1_9C5B:
   jsr LoadObjectAnimFrameB1    ; $9C5B
   jsr Sub_B1_9C92              ; $9C5E
 Loc_B1_9C61:
-  jsr Sub_B1_9ABA              ; $9C61
+  jsr StepObjectAnimTimerB     ; $9C61
   jsr UpdateObjectScreenXB1    ; $9C64
   rts                          ; $9C67
-Sub_B1_9C68:
+LoadEnemyAnimTableH:
   jsr GetObjectStateIndex      ; $9C68
   lda Data_B1_9CD4,y           ; $9C6B
   sta z:Tmp02                  ; $9C6E
@@ -1973,7 +1973,7 @@ Data_B1_9CD4:
 Data_B1_9CD5:
   .incbin "prg_bank_1.bin", $1CD5, $E4  ; $9CD5
 Bank1State_09:
-  jsr Sub_B1_9DEE              ; $9DB9
+  jsr LoadEnemyAnimTableI      ; $9DB9
   ldy #$00                     ; $9DBC
   lda (Tmp00),y                ; $9DBE
   and #$1F                     ; $9DC0
@@ -1985,11 +1985,11 @@ Bank1State_09:
   jsr AdvanceObjectAnimStepB1  ; $9DCC
   bcc Loc_B1_9DD7              ; $9DCF
   jsr Sub_B1_9DFC              ; $9DD1
-  jsr Sub_B1_9DEE              ; $9DD4
+  jsr LoadEnemyAnimTableI      ; $9DD4
 Loc_B1_9DD7:
   jsr LoadObjectAnimFrameB1    ; $9DD7
 Loc_B1_9DDA:
-  jsr Sub_B1_9ABA              ; $9DDA
+  jsr StepObjectAnimTimerB     ; $9DDA
   lda z:$04                    ; $9DDD
   beq Loc_B1_9DE4              ; $9DDF
   jsr Sub_B1_9E20              ; $9DE1
@@ -1997,9 +1997,9 @@ Loc_B1_9DE4:
   jsr UpdateObjectScreenXB1    ; $9DE4
   rts                          ; $9DE7
 Loc_B1_9DE8:
-  jsr Sub_B1_A957              ; $9DE8
+  jsr ApplyAnimTableFlags      ; $9DE8
   jmp Loc_B1_9DE4              ; $9DEB
-Sub_B1_9DEE:
+LoadEnemyAnimTableI:
   jsr GetObjectStateIndex      ; $9DEE
   lda Data_B1_9E74,y           ; $9DF1
   sta z:Tmp02                  ; $9DF4
@@ -2079,7 +2079,7 @@ Data_B1_9E74:
   .incbin "prg_bank_1.bin", $1E74, $1  ; $9E74
 Data_B1_9E75:
   .incbin "prg_bank_1.bin", $1E75, $73  ; $9E75
-  jsr Sub_B1_9F53              ; $9EE8
+  jsr LoadEnemyAnimTableJ      ; $9EE8
   ldy #$07                     ; $9EEB
   lda (Tmp00),y                ; $9EED
   bne Loc_B1_9F12              ; $9EEF
@@ -2108,12 +2108,12 @@ Loc_B1_9F12:
   bcc Loc_B1_9F23              ; $9F1B
   jsr Sub_B1_9F61              ; $9F1D
 Loc_B1_9F20:
-  jsr Sub_B1_9F53              ; $9F20
+  jsr LoadEnemyAnimTableJ      ; $9F20
 Loc_B1_9F23:
   jsr LoadObjectAnimFrameB1    ; $9F23
   jsr Sub_B1_9F68              ; $9F26
 Loc_B1_9F29:
-  jsr Sub_B1_9ABA              ; $9F29
+  jsr StepObjectAnimTimerB     ; $9F29
   ldy #$0B                     ; $9F2C
   lda (Tmp00),y                ; $9F2E
   cmp #$08                     ; $9F30
@@ -2135,7 +2135,7 @@ Loc_B1_9F29:
 Loc_B1_9F4F:
   jsr UpdateObjectScreenXB1    ; $9F4F
   rts                          ; $9F52
-Sub_B1_9F53:
+LoadEnemyAnimTableJ:
   jsr GetObjectStateIndex      ; $9F53
   lda Data_B1_9FCD,y           ; $9F56
   sta z:Tmp02                  ; $9F59
@@ -2224,7 +2224,7 @@ Loc_B1_A01B:
   lda #$11                     ; $A026
   jsr QueueSound               ; $A028
 Loc_B1_A02B:
-  jsr Sub_B1_9ABA              ; $A02B
+  jsr StepObjectAnimTimerB     ; $A02B
   jsr UpdateObjectScreenXB1    ; $A02E
 Loc_B1_A031:
   rts                          ; $A031
@@ -2237,7 +2237,7 @@ Sub_B1_A032:
   .incbin "prg_bank_1.bin", $203B, $400  ; $A03B
   .incbin "prg_bank_1.bin", $243B, $400  ; $A43B
   .incbin "prg_bank_1.bin", $283B, $11C  ; $A83B
-Sub_B1_A957:
+ApplyAnimTableFlags:
   ldy #$0E                     ; $A957
   lda (Tmp00),y                ; $A959
   asl a                        ; $A95B

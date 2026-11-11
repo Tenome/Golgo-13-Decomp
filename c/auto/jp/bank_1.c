@@ -817,14 +817,14 @@ void Bank1State_02(void) {  /* $8F59 bank 1 */
     }
     push16(0x8F71); LoadObjectAnimFrameB1(); UNW(); ret_check(0x8F71);                   /* $8F6F jsr */
   }
-  push16(0x8F74); Sub_B1_8F79(); UNW(); ret_check(0x8F74);                               /* $8F72 jsr */
+  push16(0x8F74); StepObjectAnimTimerA(); UNW(); ret_check(0x8F74);                      /* $8F72 jsr */
   push16(0x8F77); UpdateObjectScreenXB1(); UNW(); ret_check(0x8F77);                     /* $8F75 jsr */
   RTS_RET(sp0);                                                                          /* $8F78 rts */
 }
 
-void Sub_B1_8F79(void) {  /* $8F79 bank 1 */
+void StepObjectAnimTimerA(void) {  /* $8F79 bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0x8F7B); Sub_B1_A957(); UNW(); ret_check(0x8F7B);                               /* $8F79 jsr */
+  push16(0x8F7B); ApplyAnimTableFlags(); UNW(); ret_check(0x8F7B);                       /* $8F79 jsr */
   LDA(rd(0x04));                                                                         /* $8F7C lda */
   if (R.a != 0) {                                                                        /* $8F7E beq */
     LDY(0x08);                                                                           /* $8F80 ldy */
@@ -934,7 +934,7 @@ void Bank1State_03(void) {  /* $90A6 bank 1 */
     }
     push16(0x90BE); LoadObjectAnimFrameB1(); UNW(); ret_check(0x90BE);                   /* $90BC jsr */
   }
-  push16(0x90C1); Sub_B1_8F79(); UNW(); ret_check(0x90C1);                               /* $90BF jsr */
+  push16(0x90C1); StepObjectAnimTimerA(); UNW(); ret_check(0x90C1);                      /* $90BF jsr */
   push16(0x90C4); UpdateObjectScreenXB1(); UNW(); ret_check(0x90C4);                     /* $90C2 jsr */
 L90C5: BUDGET();
   RTS_RET(sp0);                                                                          /* $90C5 rts */
@@ -976,7 +976,7 @@ void Bank1State_00(void) {  /* $9231 bank 1 */
     push16(0x9255); LoadObjectAnimFrameB1(); UNW(); ret_check(0x9255);                   /* $9253 jsr */
     push16(0x9258); Sub_B1_929F(); UNW(); ret_check(0x9258);                             /* $9256 jsr */
   }
-  push16(0x925B); Sub_B1_9ABA(); UNW(); ret_check(0x925B);                               /* $9259 jsr */
+  push16(0x925B); StepObjectAnimTimerB(); UNW(); ret_check(0x925B);                      /* $9259 jsr */
   push16(0x925E); UpdateObjectScreenXB1(); UNW(); ret_check(0x925E);                     /* $925C jsr */
   RTS_RET(sp0);                                                                          /* $925F rts */
 }
@@ -1281,7 +1281,7 @@ void Sub_B1_946C(void) {  /* $946C bank 1 */
 
 void Sub_B1_94BD(void) {  /* $94BD bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0x94BF); Sub_B1_A957(); UNW(); ret_check(0x94BF);                               /* $94BD jsr */
+  push16(0x94BF); ApplyAnimTableFlags(); UNW(); ret_check(0x94BF);                       /* $94BD jsr */
   LDA(rd(0x04));                                                                         /* $94C0 lda */
   if (R.a != 0) {                                                                        /* $94C2 beq */
     LDY(0x07);                                                                           /* $94C4 ldy */
@@ -1342,7 +1342,7 @@ L95A7: BUDGET();
 L95BD: BUDGET();
   push16(0x95BF); Sub_B1_96A4(); UNW(); ret_check(0x95BF);                               /* $95BD jsr */
 L95C0: BUDGET();
-  push16(0x95C2); Sub_B1_9ABA(); UNW(); ret_check(0x95C2);                               /* $95C0 jsr */
+  push16(0x95C2); StepObjectAnimTimerB(); UNW(); ret_check(0x95C2);                      /* $95C0 jsr */
   LDY(0x0B);                                                                             /* $95C3 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $95C5 lda */
   cmp8(R.a, 0x10);                                                                       /* $95C7 cmp */
@@ -1592,7 +1592,7 @@ L97DD: BUDGET();
   push16(0x97DF); LoadObjectAnimFrameB1(); UNW(); ret_check(0x97DF);                     /* $97DD jsr */
   push16(0x97E2); Sub_B1_98E7(); UNW(); ret_check(0x97E2);                               /* $97E0 jsr */
 L97E3: BUDGET();
-  push16(0x97E5); Sub_B1_9ABA(); UNW(); ret_check(0x97E5);                               /* $97E3 jsr */
+  push16(0x97E5); StepObjectAnimTimerB(); UNW(); ret_check(0x97E5);                      /* $97E3 jsr */
   LDY(rd(Tmp00));                                                                        /* $97E6 ldy */
   LDA(rd((uint16_t)(0x030B + R.y)));                                                     /* $97E8 lda */
   cmp8(R.a, 0x0C);                                                                       /* $97EB cmp */
@@ -1808,7 +1808,7 @@ L9A20: BUDGET();
   push16(0x9A22); LoadObjectAnimFrameB1(); UNW(); ret_check(0x9A22);                     /* $9A20 jsr */
   push16(0x9A25); Sub_B1_9ACB(); UNW(); ret_check(0x9A25);                               /* $9A23 jsr */
 L9A26: BUDGET();
-  push16(0x9A28); Sub_B1_9ABA(); UNW(); ret_check(0x9A28);                               /* $9A26 jsr */
+  push16(0x9A28); StepObjectAnimTimerB(); UNW(); ret_check(0x9A28);                      /* $9A26 jsr */
 L9A29: BUDGET();
   push16(0x9A2B); UpdateObjectScreenXB1(); UNW(); ret_check(0x9A2B);                     /* $9A29 jsr */
   RTS_RET(sp0);                                                                          /* $9A2C rts */
@@ -1900,9 +1900,9 @@ L9AB3: BUDGET();
   RTS_RET(sp0);                                                                          /* $9AB9 rts */
 }
 
-void Sub_B1_9ABA(void) {  /* $9ABA bank 1 */
+void StepObjectAnimTimerB(void) {  /* $9ABA bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0x9ABC); Sub_B1_A957(); UNW(); ret_check(0x9ABC);                               /* $9ABA jsr */
+  push16(0x9ABC); ApplyAnimTableFlags(); UNW(); ret_check(0x9ABC);                       /* $9ABA jsr */
   LDA(rd(0x04));                                                                         /* $9ABD lda */
   if (R.a != 0) {                                                                        /* $9ABF beq */
     LDY(0x08);                                                                           /* $9AC1 ldy */
@@ -2021,24 +2021,24 @@ L9B80: BUDGET();
 
 void Bank1State_08(void) {  /* $9C47 bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0x9C49); Sub_B1_9C68(); UNW(); ret_check(0x9C49);                               /* $9C47 jsr */
+  push16(0x9C49); LoadEnemyAnimTableH(); UNW(); ret_check(0x9C49);                       /* $9C47 jsr */
   LDY(0x08);                                                                             /* $9C4A ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9C4C lda */
   if (R.a == 0) {                                                                        /* $9C4E bne */
     push16(0x9C52); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x9C52);                 /* $9C50 jsr */
     if (R.c) {                                                                           /* $9C53 bcc */
       push16(0x9C57); Sub_B1_9C76(); UNW(); ret_check(0x9C57);                           /* $9C55 jsr */
-      push16(0x9C5A); Sub_B1_9C68(); UNW(); ret_check(0x9C5A);                           /* $9C58 jsr */
+      push16(0x9C5A); LoadEnemyAnimTableH(); UNW(); ret_check(0x9C5A);                   /* $9C58 jsr */
     }
     push16(0x9C5D); LoadObjectAnimFrameB1(); UNW(); ret_check(0x9C5D);                   /* $9C5B jsr */
     push16(0x9C60); Sub_B1_9C92(); UNW(); ret_check(0x9C60);                             /* $9C5E jsr */
   }
-  push16(0x9C63); Sub_B1_9ABA(); UNW(); ret_check(0x9C63);                               /* $9C61 jsr */
+  push16(0x9C63); StepObjectAnimTimerB(); UNW(); ret_check(0x9C63);                      /* $9C61 jsr */
   push16(0x9C66); UpdateObjectScreenXB1(); UNW(); ret_check(0x9C66);                     /* $9C64 jsr */
   RTS_RET(sp0);                                                                          /* $9C67 rts */
 }
 
-void Sub_B1_9C68(void) {  /* $9C68 bank 1 */
+void LoadEnemyAnimTableH(void) {  /* $9C68 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x9C6A); GetObjectStateIndex(); UNW(); ret_check(0x9C6A);                       /* $9C68 jsr */
   LDA(rd((uint16_t)(0x9CD4 + R.y)));                                                     /* $9C6B lda */
@@ -2109,7 +2109,7 @@ L9CD3: BUDGET();
 
 void Bank1State_09(void) {  /* $9DB9 bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0x9DBB); Sub_B1_9DEE(); UNW(); ret_check(0x9DBB);                               /* $9DB9 jsr */
+  push16(0x9DBB); LoadEnemyAnimTableI(); UNW(); ret_check(0x9DBB);                       /* $9DB9 jsr */
   LDY(0x00);                                                                             /* $9DBC ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9DBE lda */
   AND(0x1F);                                                                             /* $9DC0 and */
@@ -2121,11 +2121,11 @@ void Bank1State_09(void) {  /* $9DB9 bank 1 */
     push16(0x9DCE); AdvanceObjectAnimStepB1(); UNW(); ret_check(0x9DCE);                 /* $9DCC jsr */
     if (R.c) {                                                                           /* $9DCF bcc */
       push16(0x9DD3); Sub_B1_9DFC(); UNW(); ret_check(0x9DD3);                           /* $9DD1 jsr */
-      push16(0x9DD6); Sub_B1_9DEE(); UNW(); ret_check(0x9DD6);                           /* $9DD4 jsr */
+      push16(0x9DD6); LoadEnemyAnimTableI(); UNW(); ret_check(0x9DD6);                   /* $9DD4 jsr */
     }
     push16(0x9DD9); LoadObjectAnimFrameB1(); UNW(); ret_check(0x9DD9);                   /* $9DD7 jsr */
   }
-  push16(0x9DDC); Sub_B1_9ABA(); UNW(); ret_check(0x9DDC);                               /* $9DDA jsr */
+  push16(0x9DDC); StepObjectAnimTimerB(); UNW(); ret_check(0x9DDC);                      /* $9DDA jsr */
   LDA(rd(0x04));                                                                         /* $9DDD lda */
   if (R.a != 0) {                                                                        /* $9DDF beq */
     push16(0x9DE3); Sub_B1_9E20(); UNW(); ret_check(0x9DE3);                             /* $9DE1 jsr */
@@ -2134,11 +2134,11 @@ L9DE4: BUDGET();
   push16(0x9DE6); UpdateObjectScreenXB1(); UNW(); ret_check(0x9DE6);                     /* $9DE4 jsr */
   RTS_RET(sp0);                                                                          /* $9DE7 rts */
 L9DE8: BUDGET();
-  push16(0x9DEA); Sub_B1_A957(); UNW(); ret_check(0x9DEA);                               /* $9DE8 jsr */
+  push16(0x9DEA); ApplyAnimTableFlags(); UNW(); ret_check(0x9DEA);                       /* $9DE8 jsr */
   goto L9DE4;                                                                            /* $9DEB jmp */
 }
 
-void Sub_B1_9DEE(void) {  /* $9DEE bank 1 */
+void LoadEnemyAnimTableI(void) {  /* $9DEE bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x9DF0); GetObjectStateIndex(); UNW(); ret_check(0x9DF0);                       /* $9DEE jsr */
   LDA(rd((uint16_t)(0x9E74 + R.y)));                                                     /* $9DF1 lda */
@@ -2222,7 +2222,7 @@ L9E73: BUDGET();
   RTS_RET(sp0);                                                                          /* $9E73 rts */
 }
 
-void Sub_B1_9F53(void) {  /* $9F53 bank 1 */
+void LoadEnemyAnimTableJ(void) {  /* $9F53 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0x9F55); GetObjectStateIndex(); UNW(); ret_check(0x9F55);                       /* $9F53 jsr */
   LDA(rd((uint16_t)(0x9FCD + R.y)));                                                     /* $9F56 lda */
@@ -2307,7 +2307,7 @@ void Sub_B1_A032(void) {  /* $A032 bank 1 */
   RTS_RET(sp0);                                                                          /* $A03A rts */
 }
 
-void Sub_B1_A957(void) {  /* $A957 bank 1 */
+void ApplyAnimTableFlags(void) {  /* $A957 bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x0E);                                                                             /* $A957 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A959 lda */
