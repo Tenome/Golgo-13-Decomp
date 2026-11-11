@@ -4,7 +4,7 @@
  "2": "Sniper-scope scenes and palette tables (LoadPaletteSet reads them here).",
  "3": "Dialogue and briefing scenes (portrait text boxes).",
  "4": "First-person building scenes: 3-D corridor view with doors and a compass (18 mazes selected by MazeIndex = TransitionTarget - $78), enemies, ammo and life items; per-frame scene code at $8010.",
- "5": "Intro, Vic Tokai logo, title screen, act title cards and the 'To be continued' screen.",
+ "5": "Intro and cutscenes: helicopter briefing ('Approach / Close up / Snipe'), sniper-scope intro, title screen, skyline with helicopter, office briefing (man in a suit at a window), act title cards, 'To be continued'. SceneState = TransitionTarget - $8F.",
  "6": "Per-frame scene code at $8010 (scene not identified yet).",
  "7": "Fixed bank: reset, NMI, PPU / MMC1 / joypad helpers and the street-scene gameplay loop."
 }

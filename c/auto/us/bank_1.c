@@ -2697,7 +2697,7 @@ void GetObjectStateIndex(void) {  /* $AB1E bank 1 */
   RTS_RET(sp0);                                                                          /* $AB26 rts */
 }
 
-void Sub_B1_AB27(void) {  /* $AB27 bank 1 */
+void ProcessItemObjectTimers(void) {  /* $AB27 bank 1 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $AB27 lda */
   if (R.a != 0) {                                                                        /* $AB2A beq */
@@ -3176,7 +3176,7 @@ void Sub_B1_AF00(void) {  /* $AF00 bank 1 */
     LDA(rd(PaletteSetIndex));                                                            /* $AF3F lda */
     cmp8(R.a, 0x69);                                                                     /* $AF41 cmp */
     if (R.a == 0x69) {                                                                   /* $AF43 bne */
-      push16(0xAF47); Sub_B1_AB27(); UNW(); ret_check(0xAF47);                           /* $AF45 jsr */
+      push16(0xAF47); ProcessItemObjectTimers(); UNW(); ret_check(0xAF47);               /* $AF45 jsr */
       goto LAF6D;                                                                        /* $AF48 jmp */
     }
     push16(0xAF4D); Sub_B1_AF6E(); UNW(); ret_check(0xAF4D);                             /* $AF4B jsr */

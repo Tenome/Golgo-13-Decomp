@@ -1132,7 +1132,7 @@
    ]
   ]
  },
- "Sub_B1_AB27": {
+ "ProcessItemObjectTimers": {
   "addr": 43815,
   "bank": 1,
   "instrs": 59,
@@ -7818,7 +7818,7 @@
    ]
   ]
  },
- "Sub_B5_8BC5": {
+ "AnimateOfficeSpeaker": {
   "addr": 35781,
   "bank": 5,
   "instrs": 57,
@@ -7831,7 +7831,7 @@
    ]
   ]
  },
- "Sub_B5_8D23": {
+ "DrawOfficeSpeakerSprites": {
   "addr": 36131,
   "bank": 5,
   "instrs": 67,
@@ -8050,7 +8050,7 @@
    ]
   ]
  },
- "Sub_B5_91DF": {
+ "AnimateSkylineWindows": {
   "addr": 37343,
   "bank": 5,
   "instrs": 15,
@@ -8063,7 +8063,7 @@
    ]
   ]
  },
- "Sub_B5_9283": {
+ "AnimateHelicopterSprite": {
   "addr": 37507,
   "bank": 5,
   "instrs": 45,

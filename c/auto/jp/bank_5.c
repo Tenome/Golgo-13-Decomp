@@ -240,8 +240,8 @@ void EnableRendering(void) {  /* $8187 bank 5 */
 
 void Bank5Tbl8065_06(void) {  /* $818E bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x8190); Sub_B5_91DF(); UNW(); ret_check(0x8190);                               /* $818E jsr */
-  push16(0x8193); Sub_B5_9283(); UNW(); ret_check(0x8193);                               /* $8191 jsr */
+  push16(0x8190); AnimateSkylineWindows(); UNW(); ret_check(0x8190);                     /* $818E jsr */
+  push16(0x8193); AnimateHelicopterSprite(); UNW(); ret_check(0x8193);                   /* $8191 jsr */
   LDA(rd(0x053F));                                                                       /* $8194 lda */
   if (R.a == 0) {                                                                        /* $8197 bne */
     INC_M(SceneState);                                                                   /* $8199 inc */
@@ -363,7 +363,7 @@ void Bank5Scene_0D(void) {  /* $81FA bank 5 */
     LDA(0x29);                                                                           /* $8204 lda */
     push16(0x8208); QueueSound(); UNW(); ret_check(0x8208);                              /* $8206 jsr */
   }
-  push16(0x820B); Sub_B5_8D23(); UNW(); ret_check(0x820B);                               /* $8209 jsr */
+  push16(0x820B); DrawOfficeSpeakerSprites(); UNW(); ret_check(0x820B);                  /* $8209 jsr */
   goto L8F3C;                                                                            /* $820C jmp */
 L8F3C: BUDGET();
   LDA(0xC0);                                                                             /* $8F3C lda */
@@ -388,7 +388,7 @@ L8F3C: BUDGET();
 
 void Bank5Tbl8065_0E(void) {  /* $820F bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x8211); Sub_B5_8BC5(); UNW(); ret_check(0x8211);                               /* $820F jsr */
+  push16(0x8211); AnimateOfficeSpeaker(); UNW(); ret_check(0x8211);                      /* $820F jsr */
   LDA(rd(0x052E));                                                                       /* $8212 lda */
   if (R.a == 0) {                                                                        /* $8215 bne */
     INC_M(SceneState);                                                                   /* $8217 inc */
@@ -2332,7 +2332,7 @@ void Bank5NextAnimFrame(void) {  /* $8BBC bank 5 */
   RTS_RET(sp0);                                                                          /* $8BC4 rts */
 }
 
-void Sub_B5_8BC5(void) {  /* $8BC5 bank 5 */
+void AnimateOfficeSpeaker(void) {  /* $8BC5 bank 5 */
   uint8_t sp0 = R.sp;
   LDX(0x38);                                                                             /* $8BC5 ldx */
   push16(0x8BC9); HideSpritesFromX(); UNW(); ret_check(0x8BC9);                          /* $8BC7 jsr */
@@ -2396,10 +2396,10 @@ L8C23: BUDGET();
   if (R.a >= 0x06) {                                                                     /* $8C35 bcc */
     RTS_RET(sp0);                                                                        /* $8C37 rts */
   }
-  { Sub_B5_8D23(); return; }                                                             /* $8C38 jmp */
+  { DrawOfficeSpeakerSprites(); return; }                                                /* $8C38 jmp */
 }
 
-void Sub_B5_8D23(void) {  /* $8D23 bank 5 */
+void DrawOfficeSpeakerSprites(void) {  /* $8D23 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0xF0);                                                                             /* $8D23 lda */
   LDX(0x13);                                                                             /* $8D25 ldx */
@@ -2812,7 +2812,7 @@ L90B0: BUDGET();
   goto L8725;                                                                            /* $9115 jmp */
 }
 
-void Sub_B5_91DF(void) {  /* $91DF bank 5 */
+void AnimateSkylineWindows(void) {  /* $91DF bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0540));                                                                       /* $91DF lda */
   ASL_A();                                                                               /* $91E2 asl */
@@ -2832,7 +2832,7 @@ void Sub_B5_91DF(void) {  /* $91DF bank 5 */
   RTS_RET(sp0);                                                                          /* $9200 rts */
 }
 
-void Sub_B5_9283(void) {  /* $9283 bank 5 */
+void AnimateHelicopterSprite(void) {  /* $9283 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x9285); HideAllSpritesB5(); UNW(); ret_check(0x9285);                          /* $9283 jsr */
   LDX(rd(0x053F));                                                                       /* $9286 ldx */
@@ -3053,7 +3053,7 @@ void Sub_B5_97CF(void) {  /* $97CF bank 5 */
   LDA(0x58);                                                                             /* $97D4 lda */
   STA(0x0532);                                                                           /* $97D6 sta */
   push16(0x97DB); HideAllSpritesB5(); UNW(); ret_check(0x97DB);                          /* $97D9 jsr */
-  push16(0x97DE); Sub_B5_8BC5(); UNW(); ret_check(0x97DE);                               /* $97DC jsr */
+  push16(0x97DE); AnimateOfficeSpeaker(); UNW(); ret_check(0x97DE);                      /* $97DC jsr */
   LDX(0xC0);                                                                             /* $97DF ldx */
   push16(0x97E3); HideSpritesFromX(); UNW(); ret_check(0x97E3);                          /* $97E1 jsr */
   LDY(0x06);                                                                             /* $97E4 ldy */

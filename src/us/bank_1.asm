@@ -2506,7 +2506,7 @@ GetObjectStateIndex:
   asl a                        ; $AB24
   tay                          ; $AB25
   rts                          ; $AB26
-Sub_B1_AB27:
+ProcessItemObjectTimers:
   lda ObjectCount              ; $AB27
   beq Loc_B1_AB9C              ; $AB2A
   sta z:Tmp02                  ; $AB2C
@@ -2963,7 +2963,7 @@ Loc_B1_AF0F:
   lda z:PaletteSetIndex        ; $AF3F
   cmp #$69                     ; $AF41
   bne Loc_B1_AF4B              ; $AF43
-  jsr Sub_B1_AB27              ; $AF45
+  jsr ProcessItemObjectTimers  ; $AF45
   jmp Loc_B1_AF6D              ; $AF48
 Loc_B1_AF4B:
   jsr Sub_B1_AF6E              ; $AF4B

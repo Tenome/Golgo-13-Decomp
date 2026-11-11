@@ -269,7 +269,7 @@ static int bank1(uint16_t a) {
     case 0xAAC3: AdvanceObjectAnimStepB1(); return 1;
     case 0xAAD5: SpawnObjectAtScreenRight(); return 1;
     case 0xAB1E: GetObjectStateIndex(); return 1;
-    case 0xAB27: Sub_B1_AB27(); return 1;
+    case 0xAB27: ProcessItemObjectTimers(); return 1;
     case 0xABAB: Bank1ObjAnim_00(); return 1;
     case 0xABB9: Bank1ObjAnim_01(); return 1;
     case 0xABBD: Bank1ObjAnim_02(); return 1;
@@ -780,9 +780,9 @@ static int bank5(uint16_t a) {
     case 0x8C61: Bank5SubScene_09(); return 1;
     case 0x8C8E: Bank5SubScene_0A(); return 1;
     case 0x8CBB: Bank5NextAnimFrame(); return 1;
-    case 0x8CC4: Sub_B5_8CC4(); return 1;
+    case 0x8CC4: AnimateOfficeSpeaker(); return 1;
     case 0x8D00: Sub_B5_8D00(); return 1;
-    case 0x8E22: Sub_B5_8E22(); return 1;
+    case 0x8E22: DrawOfficeSpeakerSprites(); return 1;
     case 0x8F3A: CopyRamStub0513(); return 1;
     case 0x8F51: CopyRamStub05B8(); return 1;
     case 0x8F88: Sub_B5_8F88(); return 1;
@@ -796,8 +796,8 @@ static int bank5(uint16_t a) {
     case 0x90B9: InitScenePpuState(); return 1;
     case 0x90C8: DrawStageNumberScreen(); return 1;
     case 0x9206: InitTextScreenCommon(); return 1;
-    case 0x9237: Sub_B5_9237(); return 1;
-    case 0x92DB: Sub_B5_92DB(); return 1;
+    case 0x9237: AnimateSkylineWindows(); return 1;
+    case 0x92DB: AnimateHelicopterSprite(); return 1;
     case 0x9438: Sub_B5_9438(); return 1;
     case 0x9681: Sub_B5_9681(); return 1;
     case 0x976B: AnimateIntroTile(); return 1;

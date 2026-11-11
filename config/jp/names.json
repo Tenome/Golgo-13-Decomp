@@ -582,5 +582,10 @@
  "1:9E20": "Bank1State09_Shoot",
  "1:9EE8": "UpdateEnemyTypeJ",
  "1:9F61": "SetEnemyAnim9",
- "1:9F68": "EnemyTypeJShoot"
+ "1:9F68": "EnemyTypeJShoot",
+ "1:AB27": "ProcessItemObjectTimers",
+ "5:91DF": "AnimateSkylineWindows",
+ "5:9283": "AnimateHelicopterSprite",
+ "5:8D23": "DrawOfficeSpeakerSprites",
+ "5:8BC5": "AnimateOfficeSpeaker"
 }

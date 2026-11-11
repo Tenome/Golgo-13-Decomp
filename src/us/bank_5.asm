@@ -1,5 +1,5 @@
 ; Bank 5  ($8000-$BFFF switchable)
-; Intro, Vic Tokai logo, title screen, act title cards and the 'To be continued' screen.
+; Intro and cutscenes: helicopter briefing ('Approach / Close up / Snipe'), sniper-scope intro, title screen, skyline with helicopter, office briefing (man in a suit at a window), act title cards, 'To be continued'. SceneState = TransitionTarget - $8F.
 .segment "PRG_BANK_5"
 
   sei                          ; $8000  [heuristic code]
@@ -95,8 +95,8 @@ EnableRendering:
 Loc_B5_8189:
   rts                          ; $8189
 Bank5Scene_06:
-  jsr Sub_B5_9237              ; $818A
-  jsr Sub_B5_92DB              ; $818D
+  jsr AnimateSkylineWindows    ; $818A
+  jsr AnimateHelicopterSprite  ; $818D
   lda $053F                    ; $8190
   bne Loc_B5_819D              ; $8193
   inc SceneState               ; $8195
@@ -159,10 +159,10 @@ Bank5Scene_0D:
   lda #$29                     ; $8200
   jsr QueueSound               ; $8202
 Loc_B5_8205:
-  jsr Sub_B5_8E22              ; $8205
+  jsr DrawOfficeSpeakerSprites ; $8205
   jmp Loc_B5_8F5D              ; $8208
 Bank5Scene_0E:
-  jsr Sub_B5_8CC4              ; $820B
+  jsr AnimateOfficeSpeaker     ; $820B
   lda $052E                    ; $820E
   bne Loc_B5_821B              ; $8211
   inc SceneState               ; $8213
@@ -1341,7 +1341,7 @@ Bank5NextAnimFrame:
   lsr a                        ; $8CC1
   lsr a                        ; $8CC2
   rts                          ; $8CC3
-Sub_B5_8CC4:
+AnimateOfficeSpeaker:
   ldx #$38                     ; $8CC4
   jsr HideSpritesFromX         ; $8CC6
   lda $052E                    ; $8CC9
@@ -1405,12 +1405,12 @@ Loc_B5_8D2F:
   bcc Loc_B5_8D37              ; $8D34
   rts                          ; $8D36
 Loc_B5_8D37:
-  jmp Sub_B5_8E22              ; $8D37
+  jmp DrawOfficeSpeakerSprites ; $8D37
 Data_B5_8D3A:
   .incbin "prg_bank_5.bin", $0D3A, $1  ; $8D3A
 Data_B5_8D3B:
   .incbin "prg_bank_5.bin", $0D3B, $E7  ; $8D3B
-Sub_B5_8E22:
+DrawOfficeSpeakerSprites:
   lda #$F0                     ; $8E22
   ldx #$13                     ; $8E24
 Loc_B5_8E26:
@@ -1743,7 +1743,7 @@ InitTextScreenCommon:
   lda #$20                     ; $922F
   sta $0153                    ; $9231
   jmp InitScenePpuState        ; $9234
-Sub_B5_9237:
+AnimateSkylineWindows:
   lda $0540                    ; $9237
   asl a                        ; $923A
   tax                          ; $923B
@@ -1764,7 +1764,7 @@ Data_B5_9259:
   .incbin "prg_bank_5.bin", $1259, $1  ; $9259
 Data_B5_925A:
   .incbin "prg_bank_5.bin", $125A, $81  ; $925A
-Sub_B5_92DB:
+AnimateHelicopterSprite:
   jsr HideAllSpritesB5         ; $92DB
   ldx $053F                    ; $92DE
   txa                          ; $92E1
@@ -2054,7 +2054,7 @@ Sub_B5_9848:
   lda #$58                     ; $984D
   sta $0532                    ; $984F
   jsr HideAllSpritesB5         ; $9852
-  jsr Sub_B5_8CC4              ; $9855
+  jsr AnimateOfficeSpeaker     ; $9855
   ldx #$C0                     ; $9858
   jsr HideSpritesFromX         ; $985A
   ldy #$06                     ; $985D

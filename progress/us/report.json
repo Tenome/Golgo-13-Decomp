@@ -1115,7 +1115,7 @@
      }
     },
     {
-     "name": "Sub_B1_AB27",
+     "name": "ProcessItemObjectTimers",
      "size": "118",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5287,7 +5287,7 @@
      }
     },
     {
-     "name": "Sub_B5_8CC4",
+     "name": "AnimateOfficeSpeaker",
      "size": "60",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5303,7 +5303,7 @@
      }
     },
     {
-     "name": "Sub_B5_8E22",
+     "name": "DrawOfficeSpeakerSprites",
      "size": "141",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5415,7 +5415,7 @@
      }
     },
     {
-     "name": "Sub_B5_9237",
+     "name": "AnimateSkylineWindows",
      "size": "34",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5423,7 +5423,7 @@
      }
     },
     {
-     "name": "Sub_B5_92DB",
+     "name": "AnimateHelicopterSprite",
      "size": "84",
      "fuzzy_match_percent": 100.0,
      "metadata": {
