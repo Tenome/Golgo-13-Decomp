@@ -1257,7 +1257,7 @@ L854B: BUDGET();
   if (R.a == 0) goto L8526;                                                              /* $8551 beq */
   RTS_RET(sp0);                                                                          /* $8553 rts */
 L8554: BUDGET();
-  push16(0x8556); Sub_B5_976B(); UNW(); ret_check(0x8556);                               /* $8554 jsr */
+  push16(0x8556); AnimateIntroTile(); UNW(); ret_check(0x8556);                          /* $8554 jsr */
   LDA(rd(JoyNew1));                                                                      /* $8557 lda */
   AND(0x01);                                                                             /* $855A and */
   if (R.a == 0) goto L854B;                                                              /* $855C beq */
@@ -1814,7 +1814,7 @@ L9DBB: BUDGET();
   { QueueSound(); return; }                                                              /* $9DFE jmp */
 }
 
-void Sub_B5_86F5(void) {  /* $86F5 bank 5 */
+void WaitSceneTimerThenEnableRender(void) {  /* $86F5 bank 5 */
   uint8_t sp0 = R.sp;
   DEC_M(SceneTimer);                                                                     /* $86F5 dec */
   if (R.z) {                                                                             /* $86F8 bne */
@@ -1824,7 +1824,7 @@ void Sub_B5_86F5(void) {  /* $86F5 bank 5 */
   RTS_RET(sp0);                                                                          /* $8700 rts */
 }
 
-void Sub_B5_8701(void) {  /* $8701 bank 5 */
+void WaitSceneCounterZero(void) {  /* $8701 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0528));                                                                       /* $8701 lda */
   ORA(rd(0x0529));                                                                       /* $8704 ora */
@@ -1834,37 +1834,37 @@ void Sub_B5_8701(void) {  /* $8701 bank 5 */
   RTS_RET(sp0);                                                                          /* $870C rts */
 }
 
-void Sub_B5_870D(void) {  /* $870D bank 5 */
+void AdvanceSceneDisableRender(void) {  /* $870D bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $870D inc */
   { DisableRendering(); return; }                                                        /* $8710 jmp */
 }
 
-void Sub_B5_8713(void) {  /* $8713 bank 5 */
+void AdvanceSceneStateA(void) {  /* $8713 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8713 inc */
   RTS_RET(sp0);                                                                          /* $8716 rts */
 }
 
-void Sub_B5_8717(void) {  /* $8717 bank 5 */
+void AdvanceSceneStateB(void) {  /* $8717 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8717 inc */
   RTS_RET(sp0);                                                                          /* $871A rts */
 }
 
-void Sub_B5_871B(void) {  /* $871B bank 5 */
+void AdvanceSceneDisableRenderB(void) {  /* $871B bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $871B inc */
   { DisableRendering(); return; }                                                        /* $871E jmp */
 }
 
-void Sub_B5_8721(void) {  /* $8721 bank 5 */
+void AdvanceSceneStateC(void) {  /* $8721 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8721 inc */
   RTS_RET(sp0);                                                                          /* $8724 rts */
 }
 
-void Sub_B5_8725(void) {  /* $8725 bank 5 */
+void SetSceneState25(void) {  /* $8725 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x25);                                                                             /* $8725 lda */
   STA(SceneState);                                                                       /* $8727 sta */
@@ -2921,7 +2921,7 @@ void Sub_B5_9681(void) {  /* $9681 bank 5 */
   RTS_RET(sp0);                                                                          /* $9723 rts */
 }
 
-void Sub_B5_976B(void) {  /* $976B bank 5 */
+void AnimateIntroTile(void) {  /* $976B bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(0x0504);                                                                         /* $976B inc */
   LDA(rd(0x0504));                                                                       /* $976E lda */
@@ -3082,7 +3082,7 @@ void SoundDriver(void) {  /* $A000 bank 5 */
     LDA(0x00);                                                                           /* $A005 lda */
     STA(Tmp00);                                                                          /* $A007 sta */
     do { BUDGET();
-      push16(0xA00B); Sub_B5_A044(); UNW(); ret_check(0xA00B);                           /* $A009 jsr */
+      push16(0xA00B); ClearSoundChannelFlags(); UNW(); ret_check(0xA00B);                /* $A009 jsr */
       INC_M(Tmp00);                                                                      /* $A00C inc */
       DEC_M(SoundQueue);                                                                 /* $A00E dec */
     } while (!R.z);                                                                      /* $A011 bne */
@@ -3116,7 +3116,7 @@ void SoundDriver(void) {  /* $A000 bank 5 */
   RTS_RET(sp0);                                                                          /* $A043 rts */
 }
 
-void Sub_B5_A044(void) {  /* $A044 bank 5 */
+void ClearSoundChannelFlags(void) {  /* $A044 bank 5 */
   uint8_t sp0 = R.sp;
   LDX(rd(Tmp00));                                                                        /* $A044 ldx */
   LDA(rd((uint16_t)(0x06E1 + R.x)));                                                     /* $A046 lda */
@@ -3203,7 +3203,7 @@ void Sub_B5_A0C9(void) {  /* $A0C9 bank 5 */
   ASL_A();                                                                               /* $A0CD asl */
   ASL_A();                                                                               /* $A0CE asl */
   STA(0x06CF);                                                                           /* $A0CF sta */
-  push16(0xA0D4); Sub_B5_A357(); UNW(); ret_check(0xA0D4);                               /* $A0D2 jsr */
+  push16(0xA0D4); TickSoundChannelDelay(); UNW(); ret_check(0xA0D4);                     /* $A0D2 jsr */
   LDY(0x01);                                                                             /* $A0D5 ldy */
   LDA(rd((uint16_t)(rd16zp(SndPtrLo) + R.y)));                                           /* $A0D7 lda */
   SEC();                                                                                 /* $A0D9 sec */
@@ -3219,7 +3219,7 @@ void Sub_B5_A0C9(void) {  /* $A0C9 bank 5 */
   LDY(0x07);                                                                             /* $A0E7 ldy */
   LDA(0x00);                                                                             /* $A0E9 lda */
   STA((uint16_t)(rd16zp(SndPtrLo) + R.y));                                               /* $A0EB sta */
-  push16(0xA0EF); Sub_B5_A363(); UNW(); ret_check(0xA0EF);                               /* $A0ED jsr */
+  push16(0xA0EF); FetchSoundChannelStep(); UNW(); ret_check(0xA0EF);                     /* $A0ED jsr */
   LDY(0x10);                                                                             /* $A0F0 ldy */
   LDA(0x08);                                                                             /* $A0F2 lda */
   STA((uint16_t)(rd16zp(SndPtrLo) + R.y));                                               /* $A0F4 sta */
@@ -3236,7 +3236,7 @@ void Sub_B5_A0C9(void) {  /* $A0C9 bank 5 */
     INC_M(Tmp01);                                                                        /* $A107 inc */
     LDA(rd((uint16_t)(rd16zp(Tmp02) + R.y)));                                            /* $A109 lda */
     if (!(R.a & 0x80)) goto LA113;                                                       /* $A10B bpl */
-    push16(0xA10F); Sub_B5_A1A3(); UNW(); ret_check(0xA10F);                             /* $A10D jsr */
+    push16(0xA10F); DispatchSoundCommand(); UNW(); ret_check(0xA10F);                    /* $A10D jsr */
   }                                                                                      /* $A110 jmp */
 LA113: BUDGET();
   TAX();                                                                                 /* $A113 tax */
@@ -3315,7 +3315,7 @@ LA13B: BUDGET();
 
 void Sub_B5_A17F(void) {  /* $A17F bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0xA181); Sub_B5_A402(); UNW(); ret_check(0xA181);                               /* $A17F jsr */
+  push16(0xA181); IsSoundChannelActive(); UNW(); ret_check(0xA181);                      /* $A17F jsr */
   if (R.z) {                                                                             /* $A182 bne */
     { Sub_B5_A184(); return; }
   }
@@ -3340,7 +3340,7 @@ void Sub_B5_A184(void) {  /* $A184 bank 5 */
   RTS_RET(sp0);                                                                          /* $A1A2 rts */
 }
 
-void Sub_B5_A1A3(void) {  /* $A1A3 bank 5 */
+void DispatchSoundCommand(void) {  /* $A1A3 bank 5 */
   uint8_t sp0 = R.sp;
   STA(0x06);                                                                             /* $A1A3 sta */
   AND(0x7F);                                                                             /* $A1A5 and */
@@ -3379,7 +3379,7 @@ void SoundCmdA_02(void) {  /* $A1CE bank 5 */
   INY();                                                                                 /* $A1E1 iny */
   LDA(0x00);                                                                             /* $A1E2 lda */
   STA((uint16_t)(rd16zp(SndPtrLo) + R.y));                                               /* $A1E4 sta */
-  push16(0xA1E8); Sub_B5_A363(); UNW(); ret_check(0xA1E8);                               /* $A1E6 jsr */
+  push16(0xA1E8); FetchSoundChannelStep(); UNW(); ret_check(0xA1E8);                     /* $A1E6 jsr */
   RTS_RET(sp0);                                                                          /* $A1E9 rts */
 }
 
@@ -3641,18 +3641,18 @@ void SoundCmdB_06(void) {  /* $A32C bank 5 */
   RTS_RET(sp0);                                                                          /* $A356 rts */
 }
 
-void Sub_B5_A357(void) {  /* $A357 bank 5 */
+void TickSoundChannelDelay(void) {  /* $A357 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(0x0E);                                                                             /* $A357 ldy */
   LDA(rd((uint16_t)(rd16zp(SndPtrLo) + R.y)));                                           /* $A359 lda */
-  if (R.a == 0) { Sub_B5_A363(); return; }                                               /* $A35B beq */
+  if (R.a == 0) { FetchSoundChannelStep(); return; }                                     /* $A35B beq */
   SEC();                                                                                 /* $A35D sec */
   sbc(0x01);                                                                             /* $A35E sbc */
   STA((uint16_t)(rd16zp(SndPtrLo) + R.y));                                               /* $A360 sta */
   RTS_RET(sp0);                                                                          /* $A362 rts */
 }
 
-void Sub_B5_A363(void) {  /* $A363 bank 5 */
+void FetchSoundChannelStep(void) {  /* $A363 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(0x05);                                                                             /* $A363 ldy */
   LDA(rd((uint16_t)(rd16zp(SndPtrLo) + R.y)));                                           /* $A365 lda */
@@ -3706,7 +3706,7 @@ void Sub_B5_A363(void) {  /* $A363 bank 5 */
   }
   LDY(0x0F);                                                                             /* $A3B3 ldy */
   STA((uint16_t)(rd16zp(SndPtrLo) + R.y));                                               /* $A3B5 sta */
-  push16(0xA3B9); Sub_B5_A402(); UNW(); ret_check(0xA3B9);                               /* $A3B7 jsr */
+  push16(0xA3B9); IsSoundChannelActive(); UNW(); ret_check(0xA3B9);                      /* $A3B7 jsr */
   if (R.z) {                                                                             /* $A3BA bne */
     LDY(0x0F);                                                                           /* $A3BC ldy */
     LDA(rd((uint16_t)(rd16zp(SndPtrLo) + R.y)));                                         /* $A3BE lda */
@@ -3752,7 +3752,7 @@ void WriteApuFromShadow(void) {  /* $A3C7 bank 5 */
   RTS_RET(sp0);                                                                          /* $A401 rts */
 }
 
-void Sub_B5_A402(void) {  /* $A402 bank 5 */
+void IsSoundChannelActive(void) {  /* $A402 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0xF4));                                                                         /* $A402 lda */
   cmp8(R.a, 0x04);                                                                       /* $A404 cmp */

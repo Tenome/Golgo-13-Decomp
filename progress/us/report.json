@@ -4943,7 +4943,7 @@
      }
     },
     {
-     "name": "Sub_B5_86F5",
+     "name": "WaitSceneTimerThenEnableRender",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4951,7 +4951,7 @@
      }
     },
     {
-     "name": "Sub_B5_8701",
+     "name": "WaitSceneCounterZero",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4959,7 +4959,7 @@
      }
     },
     {
-     "name": "Sub_B5_870D",
+     "name": "AdvanceSceneDisableRender",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4967,7 +4967,7 @@
      }
     },
     {
-     "name": "Sub_B5_8713",
+     "name": "AdvanceSceneStateA",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4975,7 +4975,7 @@
      }
     },
     {
-     "name": "Sub_B5_8717",
+     "name": "AdvanceSceneStateB",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4983,7 +4983,7 @@
      }
     },
     {
-     "name": "Sub_B5_871B",
+     "name": "AdvanceSceneDisableRenderB",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4991,7 +4991,7 @@
      }
     },
     {
-     "name": "Sub_B5_8721",
+     "name": "AdvanceSceneStateC",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4999,7 +4999,7 @@
      }
     },
     {
-     "name": "Sub_B5_8725",
+     "name": "SetSceneState25",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5431,7 +5431,7 @@
      }
     },
     {
-     "name": "Sub_B5_976B",
+     "name": "AnimateIntroTile",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5591,7 +5591,7 @@
      }
     },
     {
-     "name": "Sub_B5_A044",
+     "name": "ClearSoundChannelFlags",
      "size": "133",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5623,7 +5623,7 @@
      }
     },
     {
-     "name": "Sub_B5_A1A3",
+     "name": "DispatchSoundCommand",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5735,7 +5735,7 @@
      }
     },
     {
-     "name": "Sub_B5_A357",
+     "name": "TickSoundChannelDelay",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5743,7 +5743,7 @@
      }
     },
     {
-     "name": "Sub_B5_A363",
+     "name": "FetchSoundChannelStep",
      "size": "100",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5759,7 +5759,7 @@
      }
     },
     {
-     "name": "Sub_B5_A402",
+     "name": "IsSoundChannelActive",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {

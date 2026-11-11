@@ -484,5 +484,19 @@
  "4:AFE8": "ResetDamageFlash",
  "4:B022": "ShakeScreenStep",
  "4:B4B2": "LoadObjectCountIndex",
- "4:90EE": "LoadObjectSpeedFromType"
+ "4:90EE": "LoadObjectSpeedFromType",
+ "5:86F5": "WaitSceneTimerThenEnableRender",
+ "5:8701": "WaitSceneCounterZero",
+ "5:870D": "AdvanceSceneDisableRender",
+ "5:8713": "AdvanceSceneStateA",
+ "5:8717": "AdvanceSceneStateB",
+ "5:871B": "AdvanceSceneDisableRenderB",
+ "5:8721": "AdvanceSceneStateC",
+ "5:8725": "SetSceneState25",
+ "5:976B": "AnimateIntroTile",
+ "5:A044": "ClearSoundChannelFlags",
+ "5:A357": "TickSoundChannelDelay",
+ "5:A363": "FetchSoundChannelStep",
+ "5:A402": "IsSoundChannelActive",
+ "5:A1A3": "DispatchSoundCommand"
 }

@@ -7572,7 +7572,7 @@
    ]
   ]
  },
- "Sub_B5_86F5": {
+ "WaitSceneTimerThenEnableRender": {
   "addr": 34549,
   "bank": 5,
   "instrs": 5,
@@ -7585,7 +7585,7 @@
    ]
   ]
  },
- "Sub_B5_8701": {
+ "WaitSceneCounterZero": {
   "addr": 34561,
   "bank": 5,
   "instrs": 5,
@@ -7598,7 +7598,7 @@
    ]
   ]
  },
- "Sub_B5_870D": {
+ "AdvanceSceneDisableRender": {
   "addr": 34573,
   "bank": 5,
   "instrs": 2,
@@ -7611,7 +7611,7 @@
    ]
   ]
  },
- "Sub_B5_8713": {
+ "AdvanceSceneStateA": {
   "addr": 34579,
   "bank": 5,
   "instrs": 2,
@@ -7624,7 +7624,7 @@
    ]
   ]
  },
- "Sub_B5_8717": {
+ "AdvanceSceneStateB": {
   "addr": 34583,
   "bank": 5,
   "instrs": 2,
@@ -7637,7 +7637,7 @@
    ]
   ]
  },
- "Sub_B5_871B": {
+ "AdvanceSceneDisableRenderB": {
   "addr": 34587,
   "bank": 5,
   "instrs": 2,
@@ -7650,7 +7650,7 @@
    ]
   ]
  },
- "Sub_B5_8721": {
+ "AdvanceSceneStateC": {
   "addr": 34593,
   "bank": 5,
   "instrs": 2,
@@ -7663,7 +7663,7 @@
    ]
   ]
  },
- "Sub_B5_8725": {
+ "SetSceneState25": {
   "addr": 34597,
   "bank": 5,
   "instrs": 3,
@@ -8329,7 +8329,7 @@
    ]
   ]
  },
- "Sub_B5_976B": {
+ "AnimateIntroTile": {
   "addr": 38763,
   "bank": 5,
   "instrs": 9,
@@ -8433,7 +8433,7 @@
    ]
   ]
  },
- "Sub_B5_A044": {
+ "ClearSoundChannelFlags": {
   "addr": 41028,
   "bank": 5,
   "instrs": 71,
@@ -8493,7 +8493,7 @@
    ]
   ]
  },
- "Sub_B5_A1A3": {
+ "DispatchSoundCommand": {
   "addr": 41379,
   "bank": 5,
   "instrs": 7,
@@ -8679,7 +8679,7 @@
    ]
   ]
  },
- "Sub_B5_A357": {
+ "TickSoundChannelDelay": {
   "addr": 41815,
   "bank": 5,
   "instrs": 7,
@@ -8692,7 +8692,7 @@
    ]
   ]
  },
- "Sub_B5_A363": {
+ "FetchSoundChannelStep": {
   "addr": 41827,
   "bank": 5,
   "instrs": 56,
@@ -8722,7 +8722,7 @@
    ]
   ]
  },
- "Sub_B5_A402": {
+ "IsSoundChannelActive": {
   "addr": 41986,
   "bank": 5,
   "instrs": 16,

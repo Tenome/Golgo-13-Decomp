@@ -120,3 +120,7 @@ SceneTimer = $0526
 AnimCounter = $052C
 SceneSubState = $052D
 SoundQueue = $06E0
+
+; RAM bytes that mean something else inside one bank
+SceneSpriteX = $0501
+SceneSpriteY = $0502

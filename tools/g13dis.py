@@ -51,6 +51,10 @@ HW = {0x2000:'PPU_CTRL',0x2001:'PPU_MASK',0x2002:'PPU_STATUS',0x2003:'OAM_ADDR',
 RAMN = {}
 _rf = os.path.join(CONF, 'ram.json')
 if os.path.exists(_rf): RAMN = {int(k, 16): v for k, v in json.load(open(_rf)).items()}
+BANKRAM = {}      # config/<ver>/ram_bank.json: {"<bank>": {"0501": "Name"}} - the same RAM byte can mean different things in different scenes
+_bf = os.path.join(CONF, 'ram_bank.json')
+if os.path.exists(_bf): BANKRAM = {int(b): {int(k, 16): v for k, v in d.items()} for b, d in json.load(open(_bf)).items()}
+def ramname(p, v): return BANKRAM.get(p >> 14, {}).get(v) if p < 0x20000 else None
 KIND = {}
 IDX = {}   # p -> set of banks-of-referrers (indexed abs operand targets)
 RANK = {'sub': 3, 'loc': 2, 'data': 1}
@@ -312,14 +316,15 @@ def fmt_operand(p, n, m, ob, labels, names):
     if m in ('abs', 'abx', 'aby', 'ind'):
         tp = resolve(p, v)
         if v in HW: sym = HW[v]
+        elif ramname(p, v) and m != 'ind': sym = ('a:' if v < 0x100 else '') + ramname(p, v)
         elif v in RAMN and m != 'ind': sym = ('a:' if v < 0x100 else '') + RAMN[v]
         elif tp is not None and tp in labels: sym = lname(tp, names)
         elif v < 0x100: sym = f'${v:04X}' if m == 'ind' else f'a:${v:02X}'
         else: sym = f'${v:04X}'
     elif m in ('izx', 'izy'):
-        sym = RAMN.get(v, f'${v:02X}')
+        sym = ramname(p, v) or RAMN.get(v, f'${v:02X}')
     else:
-        sym = 'z:' + RAMN[v] if v in RAMN else f'z:${v:02X}'
+        sym = 'z:' + (ramname(p, v) or RAMN[v]) if (ramname(p, v) or v in RAMN) else f'z:${v:02X}'
     return {'abs': f'{n} {sym}', 'abx': f'{n} {sym},x', 'aby': f'{n} {sym},y', 'ind': f'{n} ({sym})',
             'zp': f'{n} {sym}', 'zpx': f'{n} {sym},x', 'zpy': f'{n} {sym},y', 'izx': f'{n} ({sym},x)', 'izy': f'{n} ({sym}),y'}[m]
 CODE = [None]
@@ -392,6 +397,7 @@ def emit(code, labels, outdir):
     hw = ['; Hardware register equates'] + [f'{n} = ${a:04X}' for a, n in sorted(HW.items())]
     hw += ['', '; Controller bits as stored in JoyHeld1 / JoyNew1 (first bit read = A ends up in bit 0)'] + [f'JOY_{n} = ${v:02X}' for n, v in (('A', 1), ('B', 2), ('SELECT', 4), ('START', 8), ('UP', 0x10), ('DOWN', 0x20), ('LEFT', 0x40), ('RIGHT', 0x80))]
     hw += ['', '; RAM variables'] + [f'{n} = ${a:04X}' for a, n in sorted(RAMN.items())]
+    hw += ['', '; RAM bytes that mean something else inside one bank'] + [f'{n} = ${a:04X}' for b_, d_ in sorted(BANKRAM.items()) for a, n in sorted(d_.items())]
     open(os.path.join(outdir, 'hardware.inc'), 'w').write('\n'.join(hw) + '\n')
     open(os.path.join(outdir, 'inside_instr.inc'), 'w').write('; labels that point inside an instruction\n' + '\n'.join(equ) + '\n')
     hdr = ROM[:16]

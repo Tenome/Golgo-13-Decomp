@@ -5535,7 +5535,7 @@
      }
     },
     {
-     "name": "Sub_B5_A044",
+     "name": "ClearSoundChannelFlags",
      "size": "133",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5567,7 +5567,7 @@
      }
     },
     {
-     "name": "Sub_B5_A1A3",
+     "name": "DispatchSoundCommand",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5679,7 +5679,7 @@
      }
     },
     {
-     "name": "Sub_B5_A357",
+     "name": "TickSoundChannelDelay",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5687,7 +5687,7 @@
      }
     },
     {
-     "name": "Sub_B5_A363",
+     "name": "FetchSoundChannelStep",
      "size": "100",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5703,7 +5703,7 @@
      }
     },
     {
-     "name": "Sub_B5_A402",
+     "name": "IsSoundChannelActive",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {

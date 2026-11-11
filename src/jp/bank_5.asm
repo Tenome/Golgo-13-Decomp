@@ -816,6 +816,7 @@ Sub_B5_86F4:
   lda $0528                    ; $86F4
   ora $0529                    ; $86F7
   bne Loc_B5_8701              ; $86FA
+SetSceneState25:
   lda #$25                     ; $86FC
   sta SceneState               ; $86FE
 Loc_B5_8701:
@@ -1875,14 +1876,14 @@ Sub_B5_93E0:
   adc $0503                    ; $93E8
   and #$F0                     ; $93EB
   ora JoyHeld1                 ; $93ED
-  ldx PpuOpRequest             ; $93F0
+  ldx SceneSpriteY             ; $93F0
   asl a                        ; $93F3
   bcc Loc_B5_93F9              ; $93F4
-  dec MazeIndex                ; $93F6
+  dec SceneSpriteX             ; $93F6
 Loc_B5_93F9:
   asl a                        ; $93F9
   bcc Loc_B5_93FF              ; $93FA
-  inc MazeIndex                ; $93FC
+  inc SceneSpriteX             ; $93FC
 Loc_B5_93FF:
   asl a                        ; $93FF
   bcc Loc_B5_9407              ; $9400
@@ -1896,7 +1897,7 @@ Loc_B5_9407:
   beq Loc_B5_940F              ; $940C
   inx                          ; $940E
 Loc_B5_940F:
-  stx PpuOpRequest             ; $940F
+  stx SceneSpriteY             ; $940F
   lda JoyNew1                  ; $9412
   and #$02                     ; $9415
   bne Loc_B5_941A              ; $9417
@@ -1906,7 +1907,7 @@ Loc_B5_941A:
   bcc Loc_B5_9433              ; $941C
   cpx #$74                     ; $941E
   bcs Loc_B5_9433              ; $9420
-  ldy MazeIndex                ; $9422
+  ldy SceneSpriteX             ; $9422
   cpy #$70                     ; $9425
   bcc Loc_B5_9433              ; $9427
   cpy #$78                     ; $9429
@@ -1939,9 +1940,9 @@ Loc_B5_945B:
   dey                          ; $9461
   bpl Loc_B5_945B              ; $9462
   ldy #$00                     ; $9464
-  sty MazeIndex                ; $9466
+  sty SceneSpriteX             ; $9466
   ldy #$D0                     ; $9469
-  sty PpuOpRequest             ; $946B
+  sty SceneSpriteY             ; $946B
   rts                          ; $946E
 Data_B5_946F:
   .incbin "prg_bank_5.bin", $146F, $20  ; $946F
@@ -2087,9 +2088,9 @@ Loc_B5_9739:
   lda #$12                     ; $9742
   sta SceneTimer               ; $9744
   lda #$C0                     ; $9747
-  sta PpuOpRequest             ; $9749
+  sta SceneSpriteY             ; $9749
   lda #$28                     ; $974C
-  sta MazeIndex                ; $974E
+  sta SceneSpriteX             ; $974E
   lda #$00                     ; $9751
   sta $0510                    ; $9753
   jsr Sub_B5_9608              ; $9756
@@ -2193,7 +2194,7 @@ Sub_B5_9902:
 Loc_B5_9905:
   lda Data_B5_9931,y           ; $9905
   clc                          ; $9908
-  adc PpuOpRequest             ; $9909
+  adc SceneSpriteY             ; $9909
   sta OamBuffer,x              ; $990C
   inx                          ; $990F
   iny                          ; $9910
@@ -2206,7 +2207,7 @@ Loc_B5_9905:
   inx                          ; $991E
   lda Data_B5_9931,y           ; $991F
   clc                          ; $9922
-  adc MazeIndex                ; $9923
+  adc SceneSpriteX             ; $9923
   sta OamBuffer,x              ; $9926
   inx                          ; $9929
   iny                          ; $992A
@@ -2515,7 +2516,7 @@ SoundDriver:
   lda #$00                     ; $A005
   sta z:Tmp00                  ; $A007
 Loc_B5_A009:
-  jsr Sub_B5_A044              ; $A009
+  jsr ClearSoundChannelFlags   ; $A009
   inc z:Tmp00                  ; $A00C
   dec SoundQueue               ; $A00E
   bne Loc_B5_A009              ; $A011
@@ -2547,7 +2548,7 @@ Loc_B5_A031:
   bne Loc_B5_A019              ; $A03E
   jsr WriteApuFromShadow       ; $A040
   rts                          ; $A043
-Sub_B5_A044:
+ClearSoundChannelFlags:
   ldx z:Tmp00                  ; $A044
   lda $06E1,x                  ; $A046
   bne Loc_B5_A065              ; $A049
@@ -2630,7 +2631,7 @@ Sub_B5_A0C9:
   asl a                        ; $A0CD
   asl a                        ; $A0CE
   sta $06CF                    ; $A0CF
-  jsr Sub_B5_A357              ; $A0D2
+  jsr TickSoundChannelDelay    ; $A0D2
   ldy #$01                     ; $A0D5
   lda (SndPtrLo),y             ; $A0D7
   sec                          ; $A0D9
@@ -2646,7 +2647,7 @@ Loc_B5_A0E1:
   ldy #$07                     ; $A0E7
   lda #$00                     ; $A0E9
   sta (SndPtrLo),y             ; $A0EB
-  jsr Sub_B5_A363              ; $A0ED
+  jsr FetchSoundChannelStep    ; $A0ED
   ldy #$10                     ; $A0F0
   lda #$08                     ; $A0F2
   sta (SndPtrLo),y             ; $A0F4
@@ -2663,7 +2664,7 @@ Loc_B5_A105:
   inc z:Tmp01                  ; $A107
   lda (Tmp02),y                ; $A109
   bpl Loc_B5_A113              ; $A10B
-  jsr Sub_B5_A1A3              ; $A10D
+  jsr DispatchSoundCommand     ; $A10D
   jmp Loc_B5_A105              ; $A110
 Loc_B5_A113:
   tax                          ; $A113
@@ -2736,7 +2737,7 @@ Loc_B5_A16E:
   sta (SndPtrLo),y             ; $A17C
   rts                          ; $A17E
 Sub_B5_A17F:
-  jsr Sub_B5_A402              ; $A17F
+  jsr IsSoundChannelActive     ; $A17F
   bne Loc_B5_A1A2              ; $A182
 Sub_B5_A184:
   ldx $06CF                    ; $A184
@@ -2754,7 +2755,7 @@ Sub_B5_A184:
   sta $06D3,x                  ; $A19F
 Loc_B5_A1A2:
   rts                          ; $A1A2
-Sub_B5_A1A3:
+DispatchSoundCommand:
   sta z:$06                    ; $A1A3
   and #$7F                     ; $A1A5
   lsr a                        ; $A1A7
@@ -2787,7 +2788,7 @@ SoundCmdA_02:
   iny                          ; $A1E1
   lda #$00                     ; $A1E2
   sta (SndPtrLo),y             ; $A1E4
-  jsr Sub_B5_A363              ; $A1E6
+  jsr FetchSoundChannelStep    ; $A1E6
   rts                          ; $A1E9
 SoundCmdA_04:
   lda z:$06                    ; $A1EA
@@ -3002,15 +3003,15 @@ Loc_B5_A354:
   pla                          ; $A354
   pla                          ; $A355
   rts                          ; $A356
-Sub_B5_A357:
+TickSoundChannelDelay:
   ldy #$0E                     ; $A357
   lda (SndPtrLo),y             ; $A359
-  beq Sub_B5_A363              ; $A35B
+  beq FetchSoundChannelStep    ; $A35B
   sec                          ; $A35D
   sbc #$01                     ; $A35E
   sta (SndPtrLo),y             ; $A360
   rts                          ; $A362
-Sub_B5_A363:
+FetchSoundChannelStep:
   ldy #$05                     ; $A363
   lda (SndPtrLo),y             ; $A365
   sta z:$04                    ; $A367
@@ -3060,7 +3061,7 @@ Loc_B5_A3A4:
   bit $04A5                    ; $A3B0
   ldy #$0F                     ; $A3B3
   sta (SndPtrLo),y             ; $A3B5
-  jsr Sub_B5_A402              ; $A3B7
+  jsr IsSoundChannelActive     ; $A3B7
   bne Loc_B5_A3C6              ; $A3BA
   ldy #$0F                     ; $A3BC
   lda (SndPtrLo),y             ; $A3BE
@@ -3101,7 +3102,7 @@ Loc_B5_A3F9:
   cpx #$10                     ; $A3FD
   bne Loc_B5_A3D6              ; $A3FF
   rts                          ; $A401
-Sub_B5_A402:
+IsSoundChannelActive:
   lda z:$F4                    ; $A402
   cmp #$04                     ; $A404
   bcc Loc_B5_A40B              ; $A406

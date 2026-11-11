@@ -7331,12 +7331,29 @@
  "Sub_B5_86F4": {
   "addr": 34548,
   "bank": 5,
-  "instrs": 6,
+  "instrs": 4,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     83700,
+    83708
+   ],
+   [
+    83713,
+    83714
+   ]
+  ]
+ },
+ "SetSceneState25": {
+  "addr": 34556,
+  "bank": 5,
+  "instrs": 3,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    83708,
     83714
    ]
   ]
@@ -8062,7 +8079,7 @@
    ]
   ]
  },
- "Sub_B5_A044": {
+ "ClearSoundChannelFlags": {
   "addr": 41028,
   "bank": 5,
   "instrs": 71,
@@ -8122,7 +8139,7 @@
    ]
   ]
  },
- "Sub_B5_A1A3": {
+ "DispatchSoundCommand": {
   "addr": 41379,
   "bank": 5,
   "instrs": 7,
@@ -8308,7 +8325,7 @@
    ]
   ]
  },
- "Sub_B5_A357": {
+ "TickSoundChannelDelay": {
   "addr": 41815,
   "bank": 5,
   "instrs": 7,
@@ -8321,7 +8338,7 @@
    ]
   ]
  },
- "Sub_B5_A363": {
+ "FetchSoundChannelStep": {
   "addr": 41827,
   "bank": 5,
   "instrs": 56,
@@ -8351,7 +8368,7 @@
    ]
   ]
  },
- "Sub_B5_A402": {
+ "IsSoundChannelActive": {
   "addr": 41986,
   "bank": 5,
   "instrs": 16,

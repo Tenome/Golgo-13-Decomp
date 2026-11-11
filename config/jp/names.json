@@ -424,5 +424,11 @@
  "4:AC67": "AddToObjectY",
  "4:AC69": "AddToObjectField",
  "4:AFDA": "DamageFlashStep",
- "4:B4EF": "LoadObjectCountIndex"
+ "4:B4EF": "LoadObjectCountIndex",
+ "5:A044": "ClearSoundChannelFlags",
+ "5:A357": "TickSoundChannelDelay",
+ "5:A363": "FetchSoundChannelStep",
+ "5:A402": "IsSoundChannelActive",
+ "5:A1A3": "DispatchSoundCommand",
+ "5:86FC": "SetSceneState25"
 }

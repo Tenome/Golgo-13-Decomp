@@ -724,6 +724,7 @@ static int bank5(uint16_t a) {
     case 0x86DA: Sub_B5_86DA(); return 1;
     case 0x86E8: Sub_B5_86E8(); return 1;
     case 0x86F4: Sub_B5_86F4(); return 1;
+    case 0x86FC: SetSceneState25(); return 1;
     case 0x87B5: Sub_B5_87B5(); return 1;
     case 0x87BD: Sub_B5_87BD(); return 1;
     case 0x87C8: Sub_B5_87C8(); return 1;
@@ -777,11 +778,11 @@ static int bank5(uint16_t a) {
     case 0x9902: Sub_B5_9902(); return 1;
     case 0x9A6C: OrSpriteAttributes(); return 1;
     case 0xA000: SoundDriver(); return 1;
-    case 0xA044: Sub_B5_A044(); return 1;
+    case 0xA044: ClearSoundChannelFlags(); return 1;
     case 0xA0C9: Sub_B5_A0C9(); return 1;
     case 0xA17F: Sub_B5_A17F(); return 1;
     case 0xA184: Sub_B5_A184(); return 1;
-    case 0xA1A3: Sub_B5_A1A3(); return 1;
+    case 0xA1A3: DispatchSoundCommand(); return 1;
     case 0xA1BE: SoundCmdA_00(); return 1;
     case 0xA1CE: SoundCmdA_02(); return 1;
     case 0xA1EA: SoundCmdA_04(); return 1;
@@ -795,10 +796,10 @@ static int bank5(uint16_t a) {
     case 0xA2F4: SoundCmdB_04(); return 1;
     case 0xA321: SoundCmdB_05(); return 1;
     case 0xA32C: SoundCmdB_06(); return 1;
-    case 0xA357: Sub_B5_A357(); return 1;
-    case 0xA363: Sub_B5_A363(); return 1;
+    case 0xA357: TickSoundChannelDelay(); return 1;
+    case 0xA363: FetchSoundChannelStep(); return 1;
     case 0xA3C7: WriteApuFromShadow(); return 1;
-    case 0xA402: Sub_B5_A402(); return 1;
+    case 0xA402: IsSoundChannelActive(); return 1;
     case 0xA464: InlineJumpTable(); return 1;
     }
     return 0;
