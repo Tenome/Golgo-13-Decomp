@@ -2774,7 +2774,7 @@
    ]
   ]
  },
- "Sub_B4_82B4": {
+ "ReloadMazeAfterMove": {
   "addr": 33460,
   "bank": 4,
   "instrs": 22,
@@ -3003,7 +3003,7 @@
    ]
   ]
  },
- "Sub_B4_8481": {
+ "SetSprite0Marker": {
   "addr": 33921,
   "bank": 4,
   "instrs": 9,
@@ -3267,7 +3267,7 @@
    ]
   ]
  },
- "Sub_B4_8AD3": {
+ "LoadMazeObjectTables": {
   "addr": 35539,
   "bank": 4,
   "instrs": 41,
@@ -3306,7 +3306,7 @@
    ]
   ]
  },
- "Sub_B4_8BC9": {
+ "RequestTransitionFromTable": {
   "addr": 35785,
   "bank": 4,
   "instrs": 12,
@@ -3332,7 +3332,7 @@
    ]
   ]
  },
- "Sub_B4_8C18": {
+ "ChangeMazeSection": {
   "addr": 35864,
   "bank": 4,
   "instrs": 2,
@@ -3345,7 +3345,7 @@
    ]
   ]
  },
- "Sub_B4_8C1E": {
+ "DispatchMazeExit": {
   "addr": 35870,
   "bank": 4,
   "instrs": 8,
@@ -3722,7 +3722,7 @@
    ]
   ]
  },
- "Sub_B4_8F71": {
+ "SetObjectFrame": {
   "addr": 36721,
   "bank": 4,
   "instrs": 34,
@@ -3817,7 +3817,7 @@
    ]
   ]
  },
- "Sub_B4_9049": {
+ "DispatchPpuOpRequest": {
   "addr": 36937,
   "bank": 4,
   "instrs": 10,
@@ -3903,7 +3903,7 @@
    ]
   ]
  },
- "Sub_B4_90B7": {
+ "EnableSpriteBgRendering": {
   "addr": 37047,
   "bank": 4,
   "instrs": 3,
@@ -3968,7 +3968,7 @@
    ]
   ]
  },
- "Sub_B4_90EE": {
+ "LoadObjectSpeedFromType": {
   "addr": 37102,
   "bank": 4,
   "instrs": 11,
@@ -4188,7 +4188,7 @@
    ]
   ]
  },
- "Sub_B4_9963": {
+ "DrawMazeScreen": {
   "addr": 39267,
   "bank": 4,
   "instrs": 6,
@@ -4231,7 +4231,7 @@
    ]
   ]
  },
- "Sub_B4_9A73": {
+ "DrawWallSegments": {
   "addr": 39539,
   "bank": 4,
   "instrs": 54,
@@ -4346,7 +4346,7 @@
    ]
   ]
  },
- "Sub_B4_A01B": {
+ "DrawCollectedItemIcons": {
   "addr": 40987,
   "bank": 4,
   "instrs": 17,
@@ -4476,7 +4476,7 @@
    ]
   ]
  },
- "Sub_B4_A0D9": {
+ "SpawnDoorObjectsIfAhead": {
   "addr": 41177,
   "bank": 4,
   "instrs": 24,
@@ -4540,7 +4540,7 @@
    ]
   ]
  },
- "Sub_B4_A271": {
+ "UpdateDoorObject": {
   "addr": 41585,
   "bank": 4,
   "instrs": 9,
@@ -4553,7 +4553,7 @@
    ]
   ]
  },
- "Sub_B4_A294": {
+ "DoorState0": {
   "addr": 41620,
   "bank": 4,
   "instrs": 17,
@@ -4570,7 +4570,7 @@
    ]
   ]
  },
- "Sub_B4_A2AF": {
+ "DoorState1": {
   "addr": 41647,
   "bank": 4,
   "instrs": 7,
@@ -4583,7 +4583,7 @@
    ]
   ]
  },
- "Sub_B4_A2BF": {
+ "DoorState2": {
   "addr": 41663,
   "bank": 4,
   "instrs": 36,
@@ -4596,7 +4596,7 @@
    ]
   ]
  },
- "Sub_B4_A311": {
+ "DoorState3": {
   "addr": 41745,
   "bank": 4,
   "instrs": 10,
@@ -4609,7 +4609,7 @@
    ]
   ]
  },
- "Sub_B4_A328": {
+ "DoorState4": {
   "addr": 41768,
   "bank": 4,
   "instrs": 33,
@@ -4622,7 +4622,7 @@
    ]
   ]
  },
- "Sub_B4_A39C": {
+ "DoorState5": {
   "addr": 41884,
   "bank": 4,
   "instrs": 12,
@@ -4635,7 +4635,7 @@
    ]
   ]
  },
- "Sub_B4_A3B8": {
+ "DoorState6": {
   "addr": 41912,
   "bank": 4,
   "instrs": 29,
@@ -4678,7 +4678,7 @@
    ]
   ]
  },
- "Sub_B4_A478": {
+ "WaitObjectTimer": {
   "addr": 42104,
   "bank": 4,
   "instrs": 5,
@@ -5075,7 +5075,7 @@
    ]
   ]
  },
- "Sub_B4_AA07": {
+ "UpdateEnemyObject": {
   "addr": 43527,
   "bank": 4,
   "instrs": 9,
@@ -5261,7 +5261,7 @@
    ]
   ]
  },
- "Sub_B4_AC25": {
+ "MoveObjectXY": {
   "addr": 44069,
   "bank": 4,
   "instrs": 3,
@@ -5274,7 +5274,7 @@
    ]
   ]
  },
- "Sub_B4_AC2B": {
+ "AddToObjectY": {
   "addr": 44075,
   "bank": 4,
   "instrs": 1,
@@ -5287,7 +5287,7 @@
    ]
   ]
  },
- "Sub_B4_AC2D": {
+ "AddToObjectField": {
   "addr": 44077,
   "bank": 4,
   "instrs": 4,
@@ -5605,7 +5605,7 @@
    ]
   ]
  },
- "Sub_B4_AFB1": {
+ "DamageFlashStep": {
   "addr": 44977,
   "bank": 4,
   "instrs": 25,
@@ -5618,7 +5618,7 @@
    ]
   ]
  },
- "Sub_B4_AFE8": {
+ "ResetDamageFlash": {
   "addr": 45032,
   "bank": 4,
   "instrs": 6,
@@ -5644,7 +5644,7 @@
    ]
   ]
  },
- "Sub_B4_B022": {
+ "ShakeScreenStep": {
   "addr": 45090,
   "bank": 4,
   "instrs": 11,
@@ -6210,7 +6210,7 @@
    ]
   ]
  },
- "Sub_B4_B4B2": {
+ "LoadObjectCountIndex": {
   "addr": 46258,
   "bank": 4,
   "instrs": 4,

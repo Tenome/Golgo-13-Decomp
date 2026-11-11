@@ -2144,7 +2144,7 @@
      }
     },
     {
-     "name": "Sub_B4_82B4",
+     "name": "ReloadMazeAfterMove",
      "size": "58",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2288,7 +2288,7 @@
      }
     },
     {
-     "name": "Sub_B4_8481",
+     "name": "SetSprite0Marker",
      "size": "116",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2456,7 +2456,7 @@
      }
     },
     {
-     "name": "Sub_B4_8AD3",
+     "name": "LoadMazeObjectTables",
      "size": "90",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2480,7 +2480,7 @@
      }
     },
     {
-     "name": "Sub_B4_8BC9",
+     "name": "RequestTransitionFromTable",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2496,7 +2496,7 @@
      }
     },
     {
-     "name": "Sub_B4_8C18",
+     "name": "ChangeMazeSection",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2504,7 +2504,7 @@
      }
     },
     {
-     "name": "Sub_B4_8C1E",
+     "name": "DispatchMazeExit",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2696,7 +2696,7 @@
      }
     },
     {
-     "name": "Sub_B4_8F71",
+     "name": "SetObjectFrame",
      "size": "58",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2760,7 +2760,7 @@
      }
     },
     {
-     "name": "Sub_B4_9049",
+     "name": "DispatchPpuOpRequest",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2824,7 +2824,7 @@
      }
     },
     {
-     "name": "Sub_B4_90B7",
+     "name": "EnableSpriteBgRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2864,7 +2864,7 @@
      }
     },
     {
-     "name": "Sub_B4_90EE",
+     "name": "LoadObjectSpeedFromType",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2992,7 +2992,7 @@
      }
     },
     {
-     "name": "Sub_B4_9963",
+     "name": "DrawMazeScreen",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3024,7 +3024,7 @@
      }
     },
     {
-     "name": "Sub_B4_9A73",
+     "name": "DrawWallSegments",
      "size": "115",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3136,7 +3136,7 @@
      }
     },
     {
-     "name": "Sub_B4_A01B",
+     "name": "DrawCollectedItemIcons",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3216,7 +3216,7 @@
      }
     },
     {
-     "name": "Sub_B4_A0D9",
+     "name": "SpawnDoorObjectsIfAhead",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3272,7 +3272,7 @@
      }
     },
     {
-     "name": "Sub_B4_A271",
+     "name": "UpdateDoorObject",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3280,7 +3280,7 @@
      }
     },
     {
-     "name": "Sub_B4_A294",
+     "name": "DoorState0",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3288,7 +3288,7 @@
      }
     },
     {
-     "name": "Sub_B4_A2AF",
+     "name": "DoorState1",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3296,7 +3296,7 @@
      }
     },
     {
-     "name": "Sub_B4_A2BF",
+     "name": "DoorState2",
      "size": "82",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3304,7 +3304,7 @@
      }
     },
     {
-     "name": "Sub_B4_A311",
+     "name": "DoorState3",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3312,7 +3312,7 @@
      }
     },
     {
-     "name": "Sub_B4_A328",
+     "name": "DoorState4",
      "size": "65",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3320,7 +3320,7 @@
      }
     },
     {
-     "name": "Sub_B4_A39C",
+     "name": "DoorState5",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3328,7 +3328,7 @@
      }
     },
     {
-     "name": "Sub_B4_A3B8",
+     "name": "DoorState6",
      "size": "67",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3360,7 +3360,7 @@
      }
     },
     {
-     "name": "Sub_B4_A478",
+     "name": "WaitObjectTimer",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3560,7 +3560,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA07",
+     "name": "UpdateEnemyObject",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3680,7 +3680,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC25",
+     "name": "MoveObjectXY",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3688,7 +3688,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC2B",
+     "name": "AddToObjectY",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3696,7 +3696,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC2D",
+     "name": "AddToObjectField",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3856,7 +3856,7 @@
      }
     },
     {
-     "name": "Sub_B4_AFB1",
+     "name": "DamageFlashStep",
      "size": "55",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3864,7 +3864,7 @@
      }
     },
     {
-     "name": "Sub_B4_AFE8",
+     "name": "ResetDamageFlash",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3880,7 +3880,7 @@
      }
     },
     {
-     "name": "Sub_B4_B022",
+     "name": "ShakeScreenStep",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4192,7 +4192,7 @@
      }
     },
     {
-     "name": "Sub_B4_B4B2",
+     "name": "LoadObjectCountIndex",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
