@@ -326,5 +326,6 @@
  "F2DA": "SetupFloorProbeSideView",
  "F430": "SetTopDownPlayerOam",
  "5:A3C7": "WriteApuFromShadow",
- "5:A464": "InlineJumpTable"
+ "5:A464": "InlineJumpTable",
+ "3:809F": "TextBoxSaveBackgroundRow"
 }

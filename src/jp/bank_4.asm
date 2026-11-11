@@ -1196,7 +1196,7 @@ Sub_B4_8FBF:
   lda #$03                     ; $8FCA
   sta z:Tmp01                  ; $8FCC
   rts                          ; $8FCE
-Loc_B4_8FCF:
+Sub_B4_8FCF:
   ldy #$08                     ; $8FCF
 Sub_B4_8FD1:
   lda (Tmp00),y                ; $8FD1
@@ -1307,7 +1307,17 @@ Sub_B4_90D6:
   lda z:PpuMaskShadow          ; $90D6
   and #$E7                     ; $90D8
   jmp SetPpuMask               ; $90DA
-  .incbin "prg_bank_4.bin", $10DD, $14  ; $90DD
+Sub_B4_90DD:
+  inc z:$85                    ; $90DD
+  beq Sub_B4_90DD              ; $90DF
+  jsr GetRandomByte            ; $90E1
+  adc z:$85                    ; $90E4
+  rts                          ; $90E6
+  stx z:$86                    ; $90E7  [heuristic code]
+  jsr Sub_B4_90DD              ; $90E9
+  ldx z:$86                    ; $90EC
+  adc z:$0A                    ; $90EE
+  rts                          ; $90F0
 Sub_B4_90F1:
   ldx #$1C                     ; $90F1
 Loc_B4_90F3:
@@ -2203,7 +2213,7 @@ Data_B4_A48E:
   sta $054E                    ; $A600
   lda #$01                     ; $A603
   sta PpuOpRequest             ; $A605
-  jmp Loc_B4_8FCF              ; $A608
+  jmp Sub_B4_8FCF              ; $A608
   ldy #$0B                     ; $A60B  [heuristic code]
   jsr Sub_B4_8FD1              ; $A60D
   cmp #$18                     ; $A610
@@ -2221,7 +2231,7 @@ Data_B4_A48E:
 Loc_B4_A62B:
   lda #$00                     ; $A62B
   sta (Tmp00),y                ; $A62D
-  jmp Loc_B4_8FCF              ; $A62F
+  jmp Sub_B4_8FCF              ; $A62F
   .incbin "prg_bank_4.bin", $2632, $39A  ; $A632
   sta (Tmp00),y                ; $A9CC
   lda #$14                     ; $A9CE
@@ -2246,7 +2256,7 @@ Loc_B4_A62B:
   cmp #$03                     ; $A9F4
   bne Loc_B4_A9F8              ; $A9F6
 Loc_B4_A9F8:
-  jmp Loc_B4_8FCF              ; $A9F8
+  jmp Sub_B4_8FCF              ; $A9F8
 Loc_B4_A9FB:
   ldy #$0B                     ; $A9FB
   jsr Sub_B4_8FD1              ; $A9FD
@@ -2262,7 +2272,7 @@ Loc_B4_AA10:
   .incbin "prg_bank_4.bin", $2A11, $11F  ; $AA11
   lda #$05                     ; $AB30
   jsr Sub_B4_8F85              ; $AB32
-  jmp Loc_B4_8FCF              ; $AB35
+  jmp Sub_B4_8FCF              ; $AB35
   .incbin "prg_bank_4.bin", $2B38, $10A  ; $AB38
   sta (Tmp00),y                ; $AC42
   lda #$14                     ; $AC44
@@ -2278,7 +2288,34 @@ Loc_B4_AA10:
   jsr Sub_B4_B011              ; $AC59
   lda #$06                     ; $AC5C
   jmp Sub_B4_8F85              ; $AC5E
-  .incbin "prg_bank_4.bin", $2C61, $3B0  ; $AC61
+  .incbin "prg_bank_4.bin", $2C61, $379  ; $AC61
+Loc_B4_AFDA:
+  inc z:$88                    ; $AFDA
+  lda z:$88                    ; $AFDC
+  lsr a                        ; $AFDE
+  bcc Loc_B4_B010              ; $AFDF
+  lsr a                        ; $AFE1
+  bcs Loc_B4_B010              ; $AFE2
+  and #$03                     ; $AFE4
+  cmp #$03                     ; $AFE6
+  beq Sub_B4_B011              ; $AFE8
+  ldx #$05                     ; $AFEA
+  stx PpuOpRequest             ; $AFEC
+  asl a                        ; $AFEF
+  asl a                        ; $AFF0
+  tax                          ; $AFF1
+  lda Data_B4_B020,x           ; $AFF2
+  sta $052A                    ; $AFF5
+  lda Data_B4_B021,x           ; $AFF8
+  sta $052E                    ; $AFFB
+  lda Data_B4_B022,x           ; $AFFE
+  sta $052B                    ; $B001
+  sta $052F                    ; $B004
+  lda Data_B4_B023,x           ; $B007
+  sta AnimCounter              ; $B00A
+  sta $0530                    ; $B00D
+Loc_B4_B010:
+  rts                          ; $B010
 Sub_B4_B011:
   ldx #$05                     ; $B011
   stx PpuOpRequest             ; $B013
@@ -2286,8 +2323,140 @@ Sub_B4_B011:
   stx $052A                    ; $B018
   ldx z:$87                    ; $B01B
   jmp Sub_B4_95E0              ; $B01D
-  .incbin "prg_bank_4.bin", $3020, $400  ; $B020
-  .incbin "prg_bank_4.bin", $3420, $F  ; $B420
+Data_B4_B020:
+  .incbin "prg_bank_4.bin", $3020, $1  ; $B020
+Data_B4_B021:
+  .incbin "prg_bank_4.bin", $3021, $1  ; $B021
+Data_B4_B022:
+  .incbin "prg_bank_4.bin", $3022, $1  ; $B022
+Data_B4_B023:
+  .incbin "prg_bank_4.bin", $3023, $1F1  ; $B023
+  lda (Tmp00),y                ; $B214
+  and #$7F                     ; $B216
+  sta (Tmp00),y                ; $B218
+  lda #$30                     ; $B21A
+  jsr Sub_B4_B3FF              ; $B21C
+  jmp Loc_B4_B3C9              ; $B21F
+  .incbin "prg_bank_4.bin", $3222, $22  ; $B222
+Loc_B4_B244:
+  lda #$D9                     ; $B244
+  sta ObjectTable,x            ; $B246
+  lda (Tmp00),y                ; $B249
+  adc #$08                     ; $B24B
+  sta $031B,x                  ; $B24D
+  ldy #$02                     ; $B250
+  lda (Tmp00),y                ; $B252
+  sta $0312,x                  ; $B254
+  jmp Sub_B4_8FCF              ; $B257
+  .incbin "prg_bank_4.bin", $325A, $45  ; $B25A
+  rts                          ; $B29F
+  bvc *+66                     ; $B2A0  [heuristic code]
+  bmi Loc_B4_B244              ; $B2A2
+  php                          ; $B2A4
+  lda (Tmp00),y                ; $B2A5
+  cmp #$03                     ; $B2A7
+Loc_B4_B2A9:
+  bcs Loc_B4_B2A9              ; $B2A9
+  asl a                        ; $B2AB
+  tax                          ; $B2AC
+  lda Data_B4_B2BA,x           ; $B2AD
+  sta z:$6D                    ; $B2B0
+  lda Data_B4_B2BB,x           ; $B2B2
+  sta z:$6E                    ; $B2B5
+  jmp ($006D)                  ; $B2B7
+Data_B4_B2BA:
+  .addr Sub_B4_B2C0, Sub_B4_B2D1, Sub_B4_B2E6  ; $B2BA pointer table
+Sub_B4_B2C0:
+  lda #$FF                     ; $B2C0
+  ldy #$0B                     ; $B2C2
+  sta (Tmp00),y                ; $B2C4
+  lda #$0D                     ; $B2C6
+  jsr Sub_B4_B47A              ; $B2C8
+  jsr Sub_B4_9106              ; $B2CB
+  jmp Sub_B4_8FCF              ; $B2CE
+Sub_B4_B2D1:
+  ldy #$0B                     ; $B2D1
+  jsr Sub_B4_8FD1              ; $B2D3
+  bne Loc_B4_B2D9              ; $B2D6
+  rts                          ; $B2D8
+Loc_B4_B2D9:
+  cmp #$0A                     ; $B2D9
+  bcc Sub_B4_B2E6              ; $B2DB
+  lda #$00                     ; $B2DD
+  ldy #$0A                     ; $B2DF
+  sta (Tmp00),y                ; $B2E1
+  jsr Sub_B4_8FCF              ; $B2E3
+Sub_B4_B2E6:
+  ldy #$0B                     ; $B2E6
+  jsr Sub_B4_8FD1              ; $B2E8
+  and #$0F                     ; $B2EB
+  bne Loc_B4_B2F4              ; $B2ED
+  lda #$07                     ; $B2EF
+  jsr Sub_B4_B47A              ; $B2F1
+Loc_B4_B2F4:
+  jmp Loc_B4_AFDA              ; $B2F4
+  ldy #$08                     ; $B2F7  [heuristic code]
+  lda (Tmp00),y                ; $B2F9
+  bne Loc_B4_B31C              ; $B2FB
+  lda #$01                     ; $B2FD
+  sta (Tmp00),y                ; $B2FF
+  lda $0508                    ; $B301
+  ora $050A                    ; $B304
+  bne Loc_B4_B311              ; $B307
+  ldy #$00                     ; $B309
+  lda (Tmp00),y                ; $B30B
+  and #$7F                     ; $B30D
+  sta (Tmp00),y                ; $B30F
+Loc_B4_B311:
+  lda #$A3                     ; $B311
+  ldy #$01                     ; $B313
+  sta (Tmp00),y                ; $B315
+  lda #$01                     ; $B317
+  jmp Sub_B4_8F85              ; $B319
+Loc_B4_B31C:
+  ldy #$0B                     ; $B31C
+  jsr Sub_B4_8FD9              ; $B31E
+  beq Loc_B4_B328              ; $B321
+  and #$01                     ; $B323
+  jmp Sub_B4_8F85              ; $B325
+Loc_B4_B328:
+  jmp RemoveObject             ; $B328
+  .incbin "prg_bank_4.bin", $332B, $5E  ; $B32B
+Loc_B4_B389:
+  rts                          ; $B389
+  .incbin "prg_bank_4.bin", $338A, $3F  ; $B38A
+Loc_B4_B3C9:
+  lda #$00                     ; $B3C9
+  jsr Sub_B4_8F85              ; $B3CB
+  jsr Sub_B4_9106              ; $B3CE
+  jmp Sub_B4_8FCF              ; $B3D1
+Data_B4_B3D4:
+  sei                          ; $B3D4  [heuristic code]
+  rti                          ; $B3D5
+  sei                          ; $B3D6  [heuristic code]
+  bcs Loc_B4_B389              ; $B3D7
+  rti                          ; $B3D9
+  bcs Loc_B4_B41C              ; $B3DA  [heuristic code]
+  jsr Sub_B4_90DD              ; $B3DC
+  and #$07                     ; $B3DF
+  tay                          ; $B3E1
+  sty z:$60                    ; $B3E2
+  ldx Data_B4_B3D4,y           ; $B3E4
+  lda #$68                     ; $B3E7
+  jsr Sub_B4_B3F9              ; $B3E9
+  ldx z:$60                    ; $B3EC
+  rts                          ; $B3EE
+  .incbin "prg_bank_4.bin", $33EF, $A  ; $B3EF
+Sub_B4_B3F9:
+  jsr Sub_B4_B3FF              ; $B3F9
+  txa                          ; $B3FC
+  iny                          ; $B3FD
+  bit $01A0                    ; $B3FE
+  sta (Tmp00),y                ; $B401
+  rts                          ; $B403
+  .incbin "prg_bank_4.bin", $3404, $18  ; $B404
+Loc_B4_B41C:
+  .incbin "prg_bank_4.bin", $341C, $13  ; $B41C
 Sub_B4_B42F:
   ldy #$0A                     ; $B42F
   lda (Tmp00),y                ; $B431

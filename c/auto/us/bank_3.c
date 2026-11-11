@@ -87,16 +87,16 @@ void Bank3Dispatch_0421(void) {  /* $8081 bank 3 */
   call_addr(rd16bug(0x0000)); return;                                                    /* $8091 jmp */
 }
 
-void Sub_B3_8094(void) {  /* $8094 bank 3 */
+void TextBoxBeginStage(void) {  /* $8094 bank 3 */
   uint8_t sp0 = R.sp;
   push16(0x8096); CalcMenuRowNametableAddr(); UNW(); ret_check(0x8096);                  /* $8094 jsr */
   LDA(0x00);                                                                             /* $8097 lda */
   STA(0x0422);                                                                           /* $8099 sta */
   INC_M(0x0421);                                                                         /* $809C inc */
-  { Sub_B3_809F(); return; }
+  { TextBoxSaveBackgroundRow(); return; }
 }
 
-void Sub_B3_809F(void) {  /* $809F bank 3 */
+void TextBoxSaveBackgroundRow(void) {  /* $809F bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuCtrlShadow));                                                                /* $809F lda */
   AND(0xFB);                                                                             /* $80A1 and */
@@ -194,7 +194,7 @@ void Sub_B3_812B(void) {  /* $812B bank 3 */
 L815D: BUDGET();
   LDA(0x00);                                                                             /* $815D lda */
   STA(0x05);                                                                             /* $815F sta */
-  push16(0x8163); Sub_B3_827C(); UNW(); ret_check(0x8163);                               /* $8161 jsr */
+  push16(0x8163); TextBoxClearRow(); UNW(); ret_check(0x8163);                           /* $8161 jsr */
   INC_M(0x0422);                                                                         /* $8164 inc */
   goto L8260;                                                                            /* $8167 jmp */
 L816A: BUDGET();
@@ -275,7 +275,7 @@ L8260: BUDGET();
   RTS_RET(sp0);                                                                          /* $8260 rts */
 }
 
-void Sub_B3_81FC(void) {  /* $81FC bank 3 */
+void TextBoxClearRow0(void) {  /* $81FC bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $81FC lda */
   goto L820D;                                                                            /* $81FE jmp */
@@ -283,14 +283,14 @@ L820D: BUDGET();
   STA(Tmp00);                                                                            /* $820D sta */
   LDA(0xFF);                                                                             /* $820F lda */
   STA(0x05);                                                                             /* $8211 sta */
-  push16(0x8215); Sub_B3_827C(); UNW(); ret_check(0x8215);                               /* $8213 jsr */
+  push16(0x8215); TextBoxClearRow(); UNW(); ret_check(0x8215);                           /* $8213 jsr */
   INC_M(0x0421);                                                                         /* $8216 inc */
   goto L8260;                                                                            /* $8219 jmp */
 L8260: BUDGET();
   RTS_RET(sp0);                                                                          /* $8260 rts */
 }
 
-void Sub_B3_8201(void) {  /* $8201 bank 3 */
+void TextBoxClearRow1(void) {  /* $8201 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x20);                                                                             /* $8201 lda */
   goto L820D;                                                                            /* $8203 jmp */
@@ -298,14 +298,14 @@ L820D: BUDGET();
   STA(Tmp00);                                                                            /* $820D sta */
   LDA(0xFF);                                                                             /* $820F lda */
   STA(0x05);                                                                             /* $8211 sta */
-  push16(0x8215); Sub_B3_827C(); UNW(); ret_check(0x8215);                               /* $8213 jsr */
+  push16(0x8215); TextBoxClearRow(); UNW(); ret_check(0x8215);                           /* $8213 jsr */
   INC_M(0x0421);                                                                         /* $8216 inc */
   goto L8260;                                                                            /* $8219 jmp */
 L8260: BUDGET();
   RTS_RET(sp0);                                                                          /* $8260 rts */
 }
 
-void Sub_B3_8206(void) {  /* $8206 bank 3 */
+void TextBoxClearRow2(void) {  /* $8206 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x40);                                                                             /* $8206 lda */
   goto L820D;                                                                            /* $8208 jmp */
@@ -313,27 +313,27 @@ L820D: BUDGET();
   STA(Tmp00);                                                                            /* $820D sta */
   LDA(0xFF);                                                                             /* $820F lda */
   STA(0x05);                                                                             /* $8211 sta */
-  push16(0x8215); Sub_B3_827C(); UNW(); ret_check(0x8215);                               /* $8213 jsr */
+  push16(0x8215); TextBoxClearRow(); UNW(); ret_check(0x8215);                           /* $8213 jsr */
   INC_M(0x0421);                                                                         /* $8216 inc */
   goto L8260;                                                                            /* $8219 jmp */
 L8260: BUDGET();
   RTS_RET(sp0);                                                                          /* $8260 rts */
 }
 
-void Sub_B3_820B(void) {  /* $820B bank 3 */
+void TextBoxClearRow3(void) {  /* $820B bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x60);                                                                             /* $820B lda */
   STA(Tmp00);                                                                            /* $820D sta */
   LDA(0xFF);                                                                             /* $820F lda */
   STA(0x05);                                                                             /* $8211 sta */
-  push16(0x8215); Sub_B3_827C(); UNW(); ret_check(0x8215);                               /* $8213 jsr */
+  push16(0x8215); TextBoxClearRow(); UNW(); ret_check(0x8215);                           /* $8213 jsr */
   INC_M(0x0421);                                                                         /* $8216 inc */
   goto L8260;                                                                            /* $8219 jmp */
 L8260: BUDGET();
   RTS_RET(sp0);                                                                          /* $8260 rts */
 }
 
-void Sub_B3_821C(void) {  /* $821C bank 3 */
+void TextBoxSetAttributes(void) {  /* $821C bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuCtrlShadow));                                                                /* $821C lda */
   AND(0xFB);                                                                             /* $821E and */
@@ -396,7 +396,7 @@ void CalcMenuRowNametableAddr(void) {  /* $8261 bank 3 */
   RTS_RET(sp0);                                                                          /* $827B rts */
 }
 
-void Sub_B3_827C(void) {  /* $827C bank 3 */
+void TextBoxClearRow(void) {  /* $827C bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuCtrlShadow));                                                                /* $827C lda */
   AND(0xFB);                                                                             /* $827E and */

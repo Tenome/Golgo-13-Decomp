@@ -403,5 +403,13 @@
  "4:917E": "LoadMazeData",
  "4:A483": "CollectAmmoItem",
  "4:A4E7": "CollectLifeItem",
- "4:8546": "DrawCompassSprites"
+ "4:8546": "DrawCompassSprites",
+ "3:809F": "TextBoxSaveBackgroundRow",
+ "3:81FC": "TextBoxClearRow0",
+ "3:8201": "TextBoxClearRow1",
+ "3:8206": "TextBoxClearRow2",
+ "3:820B": "TextBoxClearRow3",
+ "3:827C": "TextBoxClearRow",
+ "3:821C": "TextBoxSetAttributes",
+ "3:8094": "TextBoxBeginStage"
 }

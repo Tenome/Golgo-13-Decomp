@@ -77,12 +77,12 @@ Bank3Dispatch_0421:
   lda Data_B3_82C8,y           ; $808C
   sta z:Tmp01                  ; $808F
   jmp ($0000)                  ; $8091
-Sub_B3_8094:
+TextBoxBeginStage:
   jsr CalcMenuRowNametableAddr ; $8094
   lda #$00                     ; $8097
   sta $0422                    ; $8099
   inc $0421                    ; $809C
-Sub_B3_809F:
+TextBoxSaveBackgroundRow:
   lda z:PpuCtrlShadow          ; $809F
   and #$FB                     ; $80A1
   sta z:PpuCtrlShadow          ; $80A3
@@ -175,7 +175,7 @@ Loc_B3_8153:
 Loc_B3_815D:
   lda #$00                     ; $815D
   sta z:$05                    ; $815F
-  jsr Sub_B3_827C              ; $8161
+  jsr TextBoxClearRow          ; $8161
   inc $0422                    ; $8164
   jmp Loc_B3_8260              ; $8167
 Loc_B3_816A:
@@ -244,25 +244,25 @@ Loc_B3_81EE:
   sta $0422                    ; $81F3
   inc $0421                    ; $81F6
   jmp Loc_B3_8260              ; $81F9
-Sub_B3_81FC:
+TextBoxClearRow0:
   lda #$00                     ; $81FC
   jmp Loc_B3_820D              ; $81FE
-Sub_B3_8201:
+TextBoxClearRow1:
   lda #$20                     ; $8201
   jmp Loc_B3_820D              ; $8203
-Sub_B3_8206:
+TextBoxClearRow2:
   lda #$40                     ; $8206
   jmp Loc_B3_820D              ; $8208
-Sub_B3_820B:
+TextBoxClearRow3:
   lda #$60                     ; $820B
 Loc_B3_820D:
   sta z:Tmp00                  ; $820D
   lda #$FF                     ; $820F
   sta z:$05                    ; $8211
-  jsr Sub_B3_827C              ; $8213
+  jsr TextBoxClearRow          ; $8213
   inc $0421                    ; $8216
   jmp Loc_B3_8260              ; $8219
-Sub_B3_821C:
+TextBoxSetAttributes:
   lda z:PpuCtrlShadow          ; $821C
   and #$FB                     ; $821E
   sta z:PpuCtrlShadow          ; $8220
@@ -315,7 +315,7 @@ CalcMenuRowNametableAddr:
   lsr a                        ; $8277
   sta $042E                    ; $8278
   rts                          ; $827B
-Sub_B3_827C:
+TextBoxClearRow:
   lda z:PpuCtrlShadow          ; $827C
   and #$FB                     ; $827E
   sta z:PpuCtrlShadow          ; $8280

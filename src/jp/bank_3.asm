@@ -82,7 +82,7 @@ Sub_B3_8094:
   lda #$00                     ; $8097
   sta $0422                    ; $8099
   inc $0421                    ; $809C
-Sub_B3_809F:
+TextBoxSaveBackgroundRow:
   lda z:PpuCtrlShadow          ; $809F
   and #$FB                     ; $80A1
   sta z:PpuCtrlShadow          ; $80A3

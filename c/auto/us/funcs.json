@@ -1772,7 +1772,7 @@
    ]
   ]
  },
- "Sub_B3_8094": {
+ "TextBoxBeginStage": {
   "addr": 32916,
   "bank": 3,
   "instrs": 4,
@@ -1785,7 +1785,7 @@
    ]
   ]
  },
- "Sub_B3_809F": {
+ "TextBoxSaveBackgroundRow": {
   "addr": 32927,
   "bank": 3,
   "instrs": 59,
@@ -1853,7 +1853,7 @@
    ]
   ]
  },
- "Sub_B3_81FC": {
+ "TextBoxClearRow0": {
   "addr": 33276,
   "bank": 3,
   "instrs": 9,
@@ -1874,7 +1874,7 @@
    ]
   ]
  },
- "Sub_B3_8201": {
+ "TextBoxClearRow1": {
   "addr": 33281,
   "bank": 3,
   "instrs": 9,
@@ -1895,7 +1895,7 @@
    ]
   ]
  },
- "Sub_B3_8206": {
+ "TextBoxClearRow2": {
   "addr": 33286,
   "bank": 3,
   "instrs": 9,
@@ -1916,7 +1916,7 @@
    ]
   ]
  },
- "Sub_B3_820B": {
+ "TextBoxClearRow3": {
   "addr": 33291,
   "bank": 3,
   "instrs": 8,
@@ -1933,7 +1933,7 @@
    ]
   ]
  },
- "Sub_B3_821C": {
+ "TextBoxSetAttributes": {
   "addr": 33308,
   "bank": 3,
   "instrs": 29,
@@ -1976,7 +1976,7 @@
    ]
   ]
  },
- "Sub_B3_827C": {
+ "TextBoxClearRow": {
   "addr": 33404,
   "bank": 3,
   "instrs": 35,

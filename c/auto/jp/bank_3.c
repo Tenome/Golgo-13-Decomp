@@ -93,10 +93,10 @@ void Sub_B3_8094(void) {  /* $8094 bank 3 */
   LDA(0x00);                                                                             /* $8097 lda */
   STA(0x0422);                                                                           /* $8099 sta */
   INC_M(0x0421);                                                                         /* $809C inc */
-  { Sub_B3_809F(); return; }
+  { TextBoxSaveBackgroundRow(); return; }
 }
 
-void Sub_B3_809F(void) {  /* $809F bank 3 */
+void TextBoxSaveBackgroundRow(void) {  /* $809F bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuCtrlShadow));                                                                /* $809F lda */
   AND(0xFB);                                                                             /* $80A1 and */
