@@ -481,5 +481,12 @@
  "4:A5EA": "MazeObjType05State3",
  "4:A6C4": "MazeObjType05State6",
  "4:A7C2": "MazeObjType05StateA",
- "4:AB50": "MazeObjEnemy0AState6"
+ "4:AB50": "MazeObjEnemy0AState6",
+ "4:858B": "UpdateCompassMarkers",
+ "4:901A": "ClearNametable2Rows",
+ "4:90C2": "PpuOpRunList",
+ "4:961B": "ReadMazeInput",
+ "4:ABCF": "CollectBonusItem",
+ "4:B02C": "SetObjectTimerFromLife",
+ "4:B362": "CollectFullRestoreItem"
 }

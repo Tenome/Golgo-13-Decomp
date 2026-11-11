@@ -3055,7 +3055,7 @@
    ]
   ]
  },
- "Sub_B4_8583": {
+ "UpdateCompassMarkers": {
   "addr": 34179,
   "bank": 4,
   "instrs": 17,
@@ -3358,7 +3358,7 @@
    ]
   ]
  },
- "Sub_B4_8C5C": {
+ "MazeExit1": {
   "addr": 35932,
   "bank": 4,
   "instrs": 13,
@@ -3375,7 +3375,7 @@
    ]
   ]
  },
- "Sub_B4_8C6B": {
+ "MazeExit2": {
   "addr": 35947,
   "bank": 4,
   "instrs": 12,
@@ -3392,7 +3392,7 @@
    ]
   ]
  },
- "Sub_B4_8C86": {
+ "MazeExit3": {
   "addr": 35974,
   "bank": 4,
   "instrs": 9,
@@ -3409,7 +3409,7 @@
    ]
   ]
  },
- "Sub_B4_8C90": {
+ "MazeExit4": {
   "addr": 35984,
   "bank": 4,
   "instrs": 9,
@@ -3426,7 +3426,7 @@
    ]
   ]
  },
- "Sub_B4_8C95": {
+ "MazeExit5": {
   "addr": 35989,
   "bank": 4,
   "instrs": 9,
@@ -3443,7 +3443,7 @@
    ]
   ]
  },
- "Sub_B4_8C9A": {
+ "MazeExit6": {
   "addr": 35994,
   "bank": 4,
   "instrs": 9,
@@ -3460,7 +3460,7 @@
    ]
   ]
  },
- "Sub_B4_8C9F": {
+ "MazeExit7": {
   "addr": 35999,
   "bank": 4,
   "instrs": 9,
@@ -3477,7 +3477,7 @@
    ]
   ]
  },
- "Sub_B4_8CC2": {
+ "MazeExitToStreetA": {
   "addr": 36034,
   "bank": 4,
   "instrs": 4,
@@ -3490,7 +3490,7 @@
    ]
   ]
  },
- "Sub_B4_8CCB": {
+ "MazeExit8": {
   "addr": 36043,
   "bank": 4,
   "instrs": 12,
@@ -3507,7 +3507,7 @@
    ]
   ]
  },
- "Sub_B4_8CD8": {
+ "MazeExitToStreetB": {
   "addr": 36056,
   "bank": 4,
   "instrs": 4,
@@ -3520,7 +3520,7 @@
    ]
   ]
  },
- "Sub_B4_8CE1": {
+ "MazeExit9": {
   "addr": 36065,
   "bank": 4,
   "instrs": 12,
@@ -3567,7 +3567,7 @@
    ]
   ]
  },
- "Sub_B4_8D25": {
+ "HandleActionButtonInMaze": {
   "addr": 36133,
   "bank": 4,
   "instrs": 114,
@@ -3605,7 +3605,7 @@
    ]
   ]
  },
- "Sub_B4_8E13": {
+ "DispatchPickupHandler": {
   "addr": 36371,
   "bank": 4,
   "instrs": 17,
@@ -3709,7 +3709,7 @@
    ]
   ]
  },
- "Sub_B4_8EDD": {
+ "CopyPaletteEntryFromTable": {
   "addr": 36573,
   "bank": 4,
   "instrs": 7,
@@ -3800,7 +3800,7 @@
    ]
   ]
  },
- "Sub_B4_9006": {
+ "ClearNametable2Rows": {
   "addr": 36870,
   "bank": 4,
   "instrs": 23,
@@ -3830,7 +3830,7 @@
    ]
   ]
  },
- "Sub_B4_9070": {
+ "PpuOpNone": {
   "addr": 36976,
   "bank": 4,
   "instrs": 1,
@@ -3843,7 +3843,7 @@
    ]
   ]
  },
- "Sub_B4_9071": {
+ "PpuOpClearRow": {
   "addr": 36977,
   "bank": 4,
   "instrs": 1,
@@ -3886,7 +3886,7 @@
    ]
   ]
  },
- "Sub_B4_90AA": {
+ "PpuOpRunList": {
   "addr": 37034,
   "bank": 4,
   "instrs": 2,
@@ -4020,7 +4020,7 @@
    ]
   ]
  },
- "Sub_B4_9589": {
+ "InitMazePalette": {
   "addr": 38281,
   "bank": 4,
   "instrs": 22,
@@ -4033,7 +4033,7 @@
    ]
   ]
  },
- "Sub_B4_95C2": {
+ "RequestPaletteUpdate": {
   "addr": 38338,
   "bank": 4,
   "instrs": 3,
@@ -4046,7 +4046,7 @@
    ]
   ]
  },
- "Sub_B4_95C8": {
+ "SetFadeParamsFromTable": {
   "addr": 38344,
   "bank": 4,
   "instrs": 10,
@@ -4059,7 +4059,7 @@
    ]
   ]
  },
- "Sub_B4_9603": {
+ "ReadMazeInput": {
   "addr": 38403,
   "bank": 4,
   "instrs": 120,
@@ -4076,7 +4076,7 @@
    ]
   ]
  },
- "Sub_B4_96EA": {
+ "LookupMazeCellInfo": {
   "addr": 38634,
   "bank": 4,
   "instrs": 54,
@@ -4214,7 +4214,7 @@
    ]
   ]
  },
- "Sub_B4_9A2C": {
+ "DrawMazeWallsList": {
   "addr": 39468,
   "bank": 4,
   "instrs": 2,
@@ -4281,7 +4281,7 @@
    ]
   ]
  },
- "Sub_B4_9F7C": {
+ "CopyThunkToRamAndCall800A": {
   "addr": 40828,
   "bank": 4,
   "instrs": 6,
@@ -4359,7 +4359,7 @@
    ]
   ]
  },
- "Sub_B4_A048": {
+ "RequestPpuListA": {
   "addr": 41032,
   "bank": 4,
   "instrs": 2,
@@ -4385,7 +4385,7 @@
    ]
   ]
  },
- "Sub_B4_A063": {
+ "RequestPpuListB": {
   "addr": 41059,
   "bank": 4,
   "instrs": 2,
@@ -4411,7 +4411,7 @@
    ]
   ]
  },
- "Sub_B4_A07E": {
+ "RequestPpuListC": {
   "addr": 41086,
   "bank": 4,
   "instrs": 2,
@@ -4437,7 +4437,7 @@
    ]
   ]
  },
- "Sub_B4_A099": {
+ "RequestPpuListD": {
   "addr": 41113,
   "bank": 4,
   "instrs": 2,
@@ -4463,7 +4463,7 @@
    ]
   ]
  },
- "Sub_B4_A0C0": {
+ "RequestPpuListE": {
   "addr": 41152,
   "bank": 4,
   "instrs": 7,
@@ -4497,7 +4497,7 @@
    ]
   ]
  },
- "Sub_B4_A114": {
+ "SpawnDoorObjectLeft": {
   "addr": 41236,
   "bank": 4,
   "instrs": 6,
@@ -4514,7 +4514,7 @@
    ]
   ]
  },
- "Sub_B4_A15F": {
+ "CopyThunkToRamAndCall800D": {
   "addr": 41311,
   "bank": 4,
   "instrs": 6,
@@ -5346,7 +5346,7 @@
    ]
   ]
  },
- "Sub_B4_AB93": {
+ "CollectBonusItem": {
   "addr": 43923,
   "bank": 4,
   "instrs": 15,
@@ -5608,7 +5608,7 @@
    ]
   ]
  },
- "Sub_B4_AECB": {
+ "UpdateMazeObjType11": {
   "addr": 44747,
   "bank": 4,
   "instrs": 9,
@@ -5742,7 +5742,7 @@
    ]
   ]
  },
- "Sub_B4_B003": {
+ "SetObjectTimerFromLife": {
   "addr": 45059,
   "bank": 4,
   "instrs": 9,
@@ -6070,7 +6070,7 @@
    ]
   ]
  },
- "Sub_B4_B325": {
+ "CollectFullRestoreItem": {
   "addr": 45861,
   "bank": 4,
   "instrs": 18,

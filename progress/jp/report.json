@@ -2312,7 +2312,7 @@
      }
     },
     {
-     "name": "Sub_B4_858B",
+     "name": "UpdateCompassMarkers",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2696,7 +2696,7 @@
      }
     },
     {
-     "name": "Sub_B4_901A",
+     "name": "ClearNametable2Rows",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2752,7 +2752,7 @@
      }
     },
     {
-     "name": "Sub_B4_90C2",
+     "name": "PpuOpRunList",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2872,7 +2872,7 @@
      }
     },
     {
-     "name": "Sub_B4_961B",
+     "name": "ReadMazeInput",
      "size": "231",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3600,7 +3600,7 @@
      }
     },
     {
-     "name": "Sub_B4_ABCF",
+     "name": "CollectBonusItem",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3808,7 +3808,7 @@
      }
     },
     {
-     "name": "Sub_B4_B02C",
+     "name": "SetObjectTimerFromLife",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3960,7 +3960,7 @@
      }
     },
     {
-     "name": "Sub_B4_B362",
+     "name": "CollectFullRestoreItem",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {

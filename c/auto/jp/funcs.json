@@ -2982,7 +2982,7 @@
    ]
   ]
  },
- "Sub_B4_858B": {
+ "UpdateCompassMarkers": {
   "addr": 34187,
   "bank": 4,
   "instrs": 17,
@@ -3599,7 +3599,7 @@
    ]
   ]
  },
- "Sub_B4_901A": {
+ "ClearNametable2Rows": {
   "addr": 36890,
   "bank": 4,
   "instrs": 23,
@@ -3672,7 +3672,7 @@
    ]
   ]
  },
- "Sub_B4_90C2": {
+ "PpuOpRunList": {
   "addr": 37058,
   "bank": 4,
   "instrs": 2,
@@ -3845,7 +3845,7 @@
    ]
   ]
  },
- "Sub_B4_961B": {
+ "ReadMazeInput": {
   "addr": 38427,
   "bank": 4,
   "instrs": 120,
@@ -5109,7 +5109,7 @@
    ]
   ]
  },
- "Sub_B4_ABCF": {
+ "CollectBonusItem": {
   "addr": 43983,
   "bank": 4,
   "instrs": 15,
@@ -5492,7 +5492,7 @@
    ]
   ]
  },
- "Sub_B4_B02C": {
+ "SetObjectTimerFromLife": {
   "addr": 45100,
   "bank": 4,
   "instrs": 9,
@@ -5751,7 +5751,7 @@
    ]
   ]
  },
- "Sub_B4_B362": {
+ "CollectFullRestoreItem": {
   "addr": 45922,
   "bank": 4,
   "instrs": 18,

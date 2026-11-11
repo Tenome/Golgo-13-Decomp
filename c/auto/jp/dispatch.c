@@ -412,7 +412,7 @@ static int bank4(uint16_t a) {
     case 0x84FD: ClearSceneStateTail(); return 1;
     case 0x8507: ClearWorkVars60(); return 1;
     case 0x854E: DrawCompassSprites(); return 1;
-    case 0x858B: Sub_B4_858B(); return 1;
+    case 0x858B: UpdateCompassMarkers(); return 1;
     case 0x85DF: Bank4StateB_00(); return 1;
     case 0x85E4: Bank4StateB_01(); return 1;
     case 0x85EB: Bank4Tbl85C3_02(); return 1;
@@ -457,12 +457,12 @@ static int bank4(uint16_t a) {
     case 0x8FD1: IncObjectField(); return 1;
     case 0x8FD9: DecObjectField(); return 1;
     case 0x8FE1: Sub_B4_8FE1(); return 1;
-    case 0x901A: Sub_B4_901A(); return 1;
+    case 0x901A: ClearNametable2Rows(); return 1;
     case 0x905D: Sub_B4_905D(); return 1;
     case 0x9088: Sub_B4_9088(); return 1;
     case 0x908C: Sub_B4_908C(); return 1;
     case 0x90B6: Sub_B4_90B6(); return 1;
-    case 0x90C2: Sub_B4_90C2(); return 1;
+    case 0x90C2: PpuOpRunList(); return 1;
     case 0x90CF: EnableSpriteBgRendering(); return 1;
     case 0x90D6: DisableSpriteBgRendering(); return 1;
     case 0x90DD: Sub_B4_90DD(); return 1;
@@ -475,7 +475,7 @@ static int bank4(uint16_t a) {
     case 0x95A1: Sub_B4_95A1(); return 1;
     case 0x95DA: Sub_B4_95DA(); return 1;
     case 0x95E0: Sub_B4_95E0(); return 1;
-    case 0x961B: Sub_B4_961B(); return 1;
+    case 0x961B: ReadMazeInput(); return 1;
     case 0x9702: Sub_B4_9702(); return 1;
     case 0x9880: Sub_B4_9880(); return 1;
     case 0x98A6: CalcPlayerCellIndex(); return 1;
@@ -563,7 +563,7 @@ static int bank4(uint16_t a) {
     case 0xAB7D: Sub_B4_AB7D(); return 1;
     case 0xAB9A: Sub_B4_AB9A(); return 1;
     case 0xABB9: Sub_B4_ABB9(); return 1;
-    case 0xABCF: Sub_B4_ABCF(); return 1;
+    case 0xABCF: CollectBonusItem(); return 1;
     case 0xABF6: Sub_B4_ABF6(); return 1;
     case 0xAC61: Sub_B4_AC61(); return 1;
     case 0xAC67: AddToObjectY(); return 1;
@@ -590,7 +590,7 @@ static int bank4(uint16_t a) {
     case 0xAFC6: Sub_B4_AFC6(); return 1;
     case 0xAFDA: DamageFlashStep(); return 1;
     case 0xB011: Sub_B4_B011(); return 1;
-    case 0xB02C: Sub_B4_B02C(); return 1;
+    case 0xB02C: SetObjectTimerFromLife(); return 1;
     case 0xB04B: Sub_B4_B04B(); return 1;
     case 0xB0F6: Sub_B4_B0F6(); return 1;
     case 0xB106: Sub_B4_B106(); return 1;
@@ -609,7 +609,7 @@ static int bank4(uint16_t a) {
     case 0xB2F7: MazeObjType19(); return 1;
     case 0xB32B: Loc_B4_B32B(); return 1;
     case 0xB352: Sub_B4_B352(); return 1;
-    case 0xB362: Sub_B4_B362(); return 1;
+    case 0xB362: CollectFullRestoreItem(); return 1;
     case 0xB38A: Sub_B4_B38A(); return 1;
     case 0xB3A1: Sub_B4_B3A1(); return 1;
     case 0xB3A7: Loc_B4_B3A7(); return 1;

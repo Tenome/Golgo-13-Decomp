@@ -272,7 +272,7 @@ void Bank4Tbl80C9_05(void) {  /* $813D bank 4 */
   push16(0x815C); Sub_B4_9FAC(); UNW(); ret_check(0x815C);                               /* $815A jsr */
   push16(0x815F); Sub_B4_A033(); UNW(); ret_check(0x815F);                               /* $815D jsr */
   push16(0x8162); Sub_B4_A0F1(); UNW(); ret_check(0x8162);                               /* $8160 jsr */
-  push16(0x8165); Sub_B4_901A(); UNW(); ret_check(0x8165);                               /* $8163 jsr */
+  push16(0x8165); ClearNametable2Rows(); UNW(); ret_check(0x8165);                       /* $8163 jsr */
   { ApplyScroll(); return; }                                                             /* $8166 jmp */
 }
 
@@ -304,7 +304,7 @@ void Bank4Tbl80C9_08(void) {  /* $818C bank 4 */
   push16(0x8194); Sub_B4_8D35(); UNW(); ret_check(0x8194);                               /* $8192 jsr */
   push16(0x8197); Sub_B4_B4B1(); UNW(); ret_check(0x8197);                               /* $8195 jsr */
   push16(0x819A); DrawObjects(); UNW(); ret_check(0x819A);                               /* $8198 jsr */
-  push16(0x819D); Sub_B4_961B(); UNW(); ret_check(0x819D);                               /* $819B jsr */
+  push16(0x819D); ReadMazeInput(); UNW(); ret_check(0x819D);                             /* $819B jsr */
   LDX(rd(0x7C));                                                                         /* $819E ldx */
   LDA(rd((uint16_t)(0x81BC + R.x)));                                                     /* $81A0 lda */
   STA(SceneState);                                                                       /* $81A3 sta */
@@ -355,7 +355,7 @@ L8534: BUDGET();
       STA((uint16_t)(0x0213 + R.x));                                                     /* $8534 sta */
       DEY();                                                                             /* $8537 dey */
     } while (!(R.y & 0x80));                                                             /* $8538 bpl */
-    push16(0x853C); Sub_B4_858B(); UNW(); ret_check(0x853C);                             /* $853A jsr */
+    push16(0x853C); UpdateCompassMarkers(); UNW(); ret_check(0x853C);                    /* $853A jsr */
     LDA(rd(0x0213));                                                                     /* $853D lda */
     AND(0x1F);                                                                           /* $8540 and */
     cmp8(R.a, 0x1C);                                                                     /* $8542 cmp */
@@ -427,7 +427,7 @@ void Bank4Tbl80C9_0B(void) {  /* $81F9 bank 4 */
   push16(0x8227); Sub_B4_9FAC(); UNW(); ret_check(0x8227);                               /* $8225 jsr */
   push16(0x822A); Sub_B4_A033(); UNW(); ret_check(0x822A);                               /* $8228 jsr */
   push16(0x822D); Sub_B4_A0F1(); UNW(); ret_check(0x822D);                               /* $822B jsr */
-  push16(0x8230); Sub_B4_901A(); UNW(); ret_check(0x8230);                               /* $822E jsr */
+  push16(0x8230); ClearNametable2Rows(); UNW(); ret_check(0x8230);                       /* $822E jsr */
   push16(0x8233); ApplyScroll(); UNW(); ret_check(0x8233);                               /* $8231 jsr */
   { Sub_B4_8ADF(); return; }                                                             /* $8234 jmp */
 }
@@ -531,7 +531,7 @@ void Sub_B4_82BC(void) {  /* $82BC bank 4 */
   push16(0x82E4); Sub_B4_9FAC(); UNW(); ret_check(0x82E4);                               /* $82E2 jsr */
   push16(0x82E7); Sub_B4_A033(); UNW(); ret_check(0x82E7);                               /* $82E5 jsr */
   push16(0x82EA); Sub_B4_A0F1(); UNW(); ret_check(0x82EA);                               /* $82E8 jsr */
-  push16(0x82ED); Sub_B4_901A(); UNW(); ret_check(0x82ED);                               /* $82EB jsr */
+  push16(0x82ED); ClearNametable2Rows(); UNW(); ret_check(0x82ED);                       /* $82EB jsr */
   push16(0x82F0); Sub_B4_8ADF(); UNW(); ret_check(0x82F0);                               /* $82EE jsr */
   LDA(0x1C);                                                                             /* $82F1 lda */
   { QueueSound(); return; }                                                              /* $82F3 jmp */
@@ -609,7 +609,7 @@ void Bank4Tbl80C9_18(void) {  /* $836F bank 4 */
   push16(0x8388); Sub_B4_9FAC(); UNW(); ret_check(0x8388);                               /* $8386 jsr */
   push16(0x838B); Sub_B4_A033(); UNW(); ret_check(0x838B);                               /* $8389 jsr */
   push16(0x838E); Sub_B4_A0F1(); UNW(); ret_check(0x838E);                               /* $838C jsr */
-  push16(0x8391); Sub_B4_901A(); UNW(); ret_check(0x8391);                               /* $838F jsr */
+  push16(0x8391); ClearNametable2Rows(); UNW(); ret_check(0x8391);                       /* $838F jsr */
   { ApplyScroll(); return; }                                                             /* $8392 jmp */
 }
 
@@ -666,7 +666,7 @@ void Bank4Tbl80C9_1D(void) {  /* $83C4 bank 4 */
   push16(0x83DA); Sub_B4_9FAC(); UNW(); ret_check(0x83DA);                               /* $83D8 jsr */
   push16(0x83DD); Sub_B4_A033(); UNW(); ret_check(0x83DD);                               /* $83DB jsr */
   push16(0x83E0); Sub_B4_A0F1(); UNW(); ret_check(0x83E0);                               /* $83DE jsr */
-  push16(0x83E3); Sub_B4_901A(); UNW(); ret_check(0x83E3);                               /* $83E1 jsr */
+  push16(0x83E3); ClearNametable2Rows(); UNW(); ret_check(0x83E3);                       /* $83E1 jsr */
   { ApplyScroll(); return; }                                                             /* $83E4 jmp */
 }
 
@@ -691,7 +691,7 @@ void Bank4Tbl80C9_1E(void) {  /* $83E7 bank 4 */
   push16(0x8418); Sub_B4_9FAC(); UNW(); ret_check(0x8418);                               /* $8416 jsr */
   push16(0x841B); Sub_B4_A033(); UNW(); ret_check(0x841B);                               /* $8419 jsr */
   push16(0x841E); Sub_B4_A0F1(); UNW(); ret_check(0x841E);                               /* $841C jsr */
-  push16(0x8421); Sub_B4_901A(); UNW(); ret_check(0x8421);                               /* $841F jsr */
+  push16(0x8421); ClearNametable2Rows(); UNW(); ret_check(0x8421);                       /* $841F jsr */
   { ApplyScroll(); return; }                                                             /* $8422 jmp */
 }
 
@@ -818,10 +818,10 @@ void DrawCompassSprites(void) {  /* $854E bank 4 */
   STA(0x021B);                                                                           /* $8582 sta */
   LDA(rd((uint16_t)(0x85A9 + R.x)));                                                     /* $8585 lda */
   STA(0x021F);                                                                           /* $8588 sta */
-  { Sub_B4_858B(); return; }
+  { UpdateCompassMarkers(); return; }
 }
 
-void Sub_B4_858B(void) {  /* $858B bank 4 */
+void UpdateCompassMarkers(void) {  /* $858B bank 4 */
   uint8_t sp0 = R.sp;
   LDX(0x03);                                                                             /* $858B ldx */
   do { BUDGET();
@@ -1629,7 +1629,7 @@ void Sub_B4_8FE1(void) {  /* $8FE1 bank 4 */
   RTS_RET(sp0);                                                                          /* $9019 rts */
 }
 
-void Sub_B4_901A(void) {  /* $901A bank 4 */
+void ClearNametable2Rows(void) {  /* $901A bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuCtrlShadow));                                                                /* $901A lda */
   AND(0xFD);                                                                             /* $901C and */
@@ -1696,7 +1696,7 @@ void Sub_B4_90B6(void) {  /* $90B6 bank 4 */
   RTS_RET(sp0);                                                                          /* $90C1 rts */
 }
 
-void Sub_B4_90C2(void) {  /* $90C2 bank 4 */
+void PpuOpRunList(void) {  /* $90C2 bank 4 */
   uint8_t sp0 = R.sp;
   push16(0x90C4); ProcessPpuUpdateList(); UNW(); ret_check(0x90C6);                      /* $90C2 jsr */
   RTS_RET(sp0);                                                                          /* $90C7 rts */
@@ -1873,7 +1873,7 @@ void Sub_B4_95E0(void) {  /* $95E0 bank 4 */
   RTS_RET(sp0);                                                                          /* $95F7 rts */
 }
 
-void Sub_B4_961B(void) {  /* $961B bank 4 */
+void ReadMazeInput(void) {  /* $961B bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $961B lda */
   if (R.a != 0) {                                                                        /* $961E beq */
@@ -3752,7 +3752,7 @@ void Sub_B4_ABB9(void) {  /* $ABB9 bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $ABCC jmp */
 }
 
-void Sub_B4_ABCF(void) {  /* $ABCF bank 4 */
+void CollectBonusItem(void) {  /* $ABCF bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x051C));                                                                       /* $ABCF lda */
   STA(0x0509);                                                                           /* $ABD2 sta */
@@ -4090,7 +4090,7 @@ void Sub_B4_AF17(void) {  /* $AF17 bank 4 */
   if (R.a != 0) {                                                                        /* $AF19 beq */
     { RemoveObject(); return; }                                                          /* $AF1B jmp */
   }
-  push16(0xAF20); Sub_B4_B02C(); UNW(); ret_check(0xAF20);                               /* $AF1E jsr */
+  push16(0xAF20); SetObjectTimerFromLife(); UNW(); ret_check(0xAF20);                    /* $AF1E jsr */
   push16(0xAF23); Sub_B4_B3DC(); UNW(); ret_check(0xAF23);                               /* $AF21 jsr */
   LDX(rd(MazeIndex));                                                                    /* $AF24 ldx */
   LDA(rd((uint16_t)(0xAF2D + R.x)));                                                     /* $AF27 lda */
@@ -4110,7 +4110,7 @@ void Sub_B4_AF3E(void) {  /* $AF3E bank 4 */
   if (!R.z) {                                                                            /* $AF43 beq */
     RTS_RET(sp0);                                                                        /* $AF45 rts */
   }
-  push16(0xAF48); Sub_B4_B02C(); UNW(); ret_check(0xAF48);                               /* $AF46 jsr */
+  push16(0xAF48); SetObjectTimerFromLife(); UNW(); ret_check(0xAF48);                    /* $AF46 jsr */
   LDA(0x01);                                                                             /* $AF49 lda */
   push16(0xAF4D); SetObjectFrame(); UNW(); ret_check(0xAF4D);                            /* $AF4B jsr */
   { AdvanceObjectState(); return; }                                                      /* $AF4E jmp */
@@ -4240,7 +4240,7 @@ void Sub_B4_B011(void) {  /* $B011 bank 4 */
   { Sub_B4_95E0(); return; }                                                             /* $B01D jmp */
 }
 
-void Sub_B4_B02C(void) {  /* $B02C bank 4 */
+void SetObjectTimerFromLife(void) {  /* $B02C bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerLifeLo));                                                                 /* $B02C lda */
   AND(0xC0);                                                                             /* $B02E and */
@@ -4626,7 +4626,7 @@ LB3C6: BUDGET();
   { AdvanceObjectState(); return; }                                                      /* $B3D1 jmp */
 }
 
-void Sub_B4_B362(void) {  /* $B362 bank 4 */
+void CollectFullRestoreItem(void) {  /* $B362 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(JoyNew1));                                                                      /* $B362 lda */
   AND(0x01);                                                                             /* $B365 and */
