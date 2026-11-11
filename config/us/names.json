@@ -740,5 +740,21 @@
  "3:8866": "TextBoxMainStep",
  "3:89DE": "TextBoxWaitForChoice",
  "3:9362": "TextBoxInitStage",
- "3:91FF": "TextBoxSaveBackgroundRows"
+ "3:91FF": "TextBoxSaveBackgroundRows",
+ "D177": "CheckAreaInStageList",
+ "D7B2": "CheckDialogueTrigger",
+ "D8CB": "RunDialogueState",
+ "DA0A": "PrepareDialogueScreen",
+ "DB07": "DialogueLoadAreaScript",
+ "E664": "HandleSceneRequest",
+ "EA02": "StartPlayerFallIfNoFloor",
+ "EA2D": "AdvancePlayerPoseTimer",
+ "F804": "BuildBulletHitboxes",
+ "EFA9": "ReturnNop",
+ "5:A0C9": "TickSoundChannel",
+ "5:A17F": "LoadSoundChannelRegistersIfActive",
+ "5:A184": "LoadSoundChannelRegisters",
+ "5:9848": "DrawOfficeScene",
+ "5:997B": "DrawSpriteListWithOffset",
+ "5:9438": "MoveSceneSpriteRandomly"
 }

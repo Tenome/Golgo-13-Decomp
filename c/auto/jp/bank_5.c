@@ -1076,7 +1076,7 @@ void Bank5Tbl8065_38(void) {  /* $844F bank 5 */
 void Bank5Tbl8065_39(void) {  /* $845A bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x845C); Sub_B5_98FB(); UNW(); ret_check(0x845C);                               /* $845A jsr */
-  push16(0x845F); Sub_B5_93E0(); UNW(); ret_check(0x845F);                               /* $845D jsr */
+  push16(0x845F); MoveSceneSpriteRandomly(); UNW(); ret_check(0x845F);                   /* $845D jsr */
   LDA(rd(SceneTimer));                                                                   /* $8460 lda */
   if (R.a != 0) {                                                                        /* $8463 beq */
     INC_M(SceneState);                                                                   /* $8465 inc */
@@ -1226,7 +1226,7 @@ L84F5: BUDGET();
   if (R.a == 0) goto L84D0;                                                              /* $84FB beq */
   RTS_RET(sp0);                                                                          /* $84FD rts */
 L8510: BUDGET();
-  push16(0x8512); Sub_B5_97CF(); UNW(); ret_check(0x8512);                               /* $8510 jsr */
+  push16(0x8512); DrawOfficeScene(); UNW(); ret_check(0x8512);                           /* $8510 jsr */
   LDA(rd(0x052E));                                                                       /* $8513 lda */
   if (R.a != 0) goto L84F5;                                                              /* $8516 bne */
   INC_M(SceneState);                                                                     /* $8518 inc */
@@ -2884,7 +2884,7 @@ L92D6: BUDGET();
   RTS_RET(sp0);                                                                          /* $92D6 rts */
 }
 
-void Sub_B5_93E0(void) {  /* $93E0 bank 5 */
+void MoveSceneSpriteRandomly(void) {  /* $93E0 bank 5 */
   uint8_t sp0 = R.sp;
   do { BUDGET();
     INC_M(0x0503);                                                                       /* $93E0 inc */
@@ -2943,7 +2943,7 @@ void Sub_B5_9608(void) {  /* $9608 bank 5 */
   LDY(0x78);                                                                             /* $9608 ldy */
   STY(0x0511);                                                                           /* $960A sty */
   LDY(0x4E);                                                                             /* $960D ldy */
-  push16(0x9611); Sub_B5_9902(); UNW(); ret_check(0x9611);                               /* $960F jsr */
+  push16(0x9611); DrawSpriteListWithOffset(); UNW(); ret_check(0x9611);                  /* $960F jsr */
   LDA(rd(0x0510));                                                                       /* $9612 lda */
   AND(0x3C);                                                                             /* $9615 and */
   LSR_A();                                                                               /* $9617 lsr */
@@ -3046,7 +3046,7 @@ void AnimateIntroTile(void) {  /* $96F2 bank 5 */
   RTS_RET(sp0);                                                                          /* $9703 rts */
 }
 
-void Sub_B5_97CF(void) {  /* $97CF bank 5 */
+void DrawOfficeScene(void) {  /* $97CF bank 5 */
   uint8_t sp0 = R.sp;
   LDA(0x58);                                                                             /* $97CF lda */
   STA(0x0531);                                                                           /* $97D1 sta */
@@ -3141,10 +3141,10 @@ void Sub_B5_98FB(void) {  /* $98FB bank 5 */
   LDY(0x84);                                                                             /* $98FB ldy */
   STY(0x0511);                                                                           /* $98FD sty */
   LDY(0x00);                                                                             /* $9900 ldy */
-  { Sub_B5_9902(); return; }
+  { DrawSpriteListWithOffset(); return; }
 }
 
-void Sub_B5_9902(void) {  /* $9902 bank 5 */
+void DrawSpriteListWithOffset(void) {  /* $9902 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x9904); HideAllSpritesB5(); UNW(); ret_check(0x9904);                          /* $9902 jsr */
   do { BUDGET();
@@ -3214,7 +3214,7 @@ void SoundDriver(void) {  /* $A000 bank 5 */
     LDA(rd((uint16_t)(rd16zp(SndPtrLo) + R.y)));                                         /* $A029 lda */
     LSR_A();                                                                             /* $A02B lsr */
     if (R.c) {                                                                           /* $A02C bcc */
-      push16(0xA030); Sub_B5_A0C9(); UNW(); ret_check(0xA030);                           /* $A02E jsr */
+      push16(0xA030); TickSoundChannel(); UNW(); ret_check(0xA030);                      /* $A02E jsr */
     }
     LDY(0x00);                                                                           /* $A031 ldy */
     LDA(rd((uint16_t)(rd16zp(SndPtrLo) + R.y)));                                         /* $A033 lda */
@@ -3308,7 +3308,7 @@ LA0C8: BUDGET();
   RTS_RET(sp0);                                                                          /* $A0C8 rts */
 }
 
-void Sub_B5_A0C9(void) {  /* $A0C9 bank 5 */
+void TickSoundChannel(void) {  /* $A0C9 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd(0xF4));                                                                         /* $A0C9 lda */
   AND(0x03);                                                                             /* $A0CB and */
@@ -3412,7 +3412,7 @@ LA13B: BUDGET();
   LDA(rd(0x05));                                                                         /* $A165 lda */
   ORA(0x08);                                                                             /* $A167 ora */
   STA((uint16_t)(rd16zp(SndPtrLo) + R.y));                                               /* $A169 sta */
-  push16(0xA16D); Sub_B5_A17F(); UNW(); ret_check(0xA16D);                               /* $A16B jsr */
+  push16(0xA16D); LoadSoundChannelRegistersIfActive(); UNW(); ret_check(0xA16D);         /* $A16B jsr */
   LDY(0x03);                                                                             /* $A16E ldy */
   LDA(rd(Tmp01));                                                                        /* $A170 lda */
   CLC();                                                                                 /* $A172 clc */
@@ -3425,16 +3425,16 @@ LA13B: BUDGET();
   RTS_RET(sp0);                                                                          /* $A17E rts */
 }
 
-void Sub_B5_A17F(void) {  /* $A17F bank 5 */
+void LoadSoundChannelRegistersIfActive(void) {  /* $A17F bank 5 */
   uint8_t sp0 = R.sp;
   push16(0xA181); IsSoundChannelActive(); UNW(); ret_check(0xA181);                      /* $A17F jsr */
   if (R.z) {                                                                             /* $A182 bne */
-    { Sub_B5_A184(); return; }
+    { LoadSoundChannelRegisters(); return; }
   }
   RTS_RET(sp0);                                                                          /* $A1A2 rts */
 }
 
-void Sub_B5_A184(void) {  /* $A184 bank 5 */
+void LoadSoundChannelRegisters(void) {  /* $A184 bank 5 */
   uint8_t sp0 = R.sp;
   LDX(rd(0x06CF));                                                                       /* $A184 ldx */
   LDA(rd((uint16_t)(0x06D0 + R.x)));                                                     /* $A187 lda */
@@ -3517,7 +3517,7 @@ LA1EA: BUDGET();
   LDA(0x08);                                                                             /* $A1F2 lda */
   INY();                                                                                 /* $A1F4 iny */
   STA((uint16_t)(rd16zp(SndPtrLo) + R.y));                                               /* $A1F5 sta */
-  push16(0xA1F9); Sub_B5_A17F(); UNW(); ret_check(0xA1F9);                               /* $A1F7 jsr */
+  push16(0xA1F9); LoadSoundChannelRegistersIfActive(); UNW(); ret_check(0xA1F9);         /* $A1F7 jsr */
   PLA();                                                                                 /* $A1FA pla */
   PLA();                                                                                 /* $A1FB pla */
   goto LA16E;                                                                            /* $A1FC jmp */
@@ -3742,7 +3742,7 @@ void SoundCmdB_06(void) {  /* $A32C bank 5 */
     STA(SndPtrLo);                                                                       /* $A341 sta */
     LDA(rd((uint16_t)(0xA445 + R.x)));                                                   /* $A343 lda */
     STA(SndPtrHi);                                                                       /* $A346 sta */
-    push16(0xA34A); Sub_B5_A184(); UNW(); ret_check(0xA34A);                             /* $A348 jsr */
+    push16(0xA34A); LoadSoundChannelRegisters(); UNW(); ret_check(0xA34A);               /* $A348 jsr */
     LDY(0x0F);                                                                           /* $A34B ldy */
     LDA(rd((uint16_t)(rd16zp(SndPtrLo) + R.y)));                                         /* $A34D lda */
     ORA(0x20);                                                                           /* $A34F ora */

@@ -8376,7 +8376,7 @@
    ]
   ]
  },
- "Sub_B5_9438": {
+ "MoveSceneSpriteRandomly": {
   "addr": 37944,
   "bank": 5,
   "instrs": 40,
@@ -8415,7 +8415,7 @@
    ]
   ]
  },
- "Sub_B5_9848": {
+ "DrawOfficeScene": {
   "addr": 38984,
   "bank": 5,
   "instrs": 16,
@@ -8467,7 +8467,7 @@
    ]
   ]
  },
- "Sub_B5_997B": {
+ "DrawSpriteListWithOffset": {
   "addr": 39291,
   "bank": 5,
   "instrs": 23,
@@ -8519,7 +8519,7 @@
    ]
   ]
  },
- "Sub_B5_A0C9": {
+ "TickSoundChannel": {
   "addr": 41161,
   "bank": 5,
   "instrs": 102,
@@ -8536,7 +8536,7 @@
    ]
   ]
  },
- "Sub_B5_A17F": {
+ "LoadSoundChannelRegistersIfActive": {
   "addr": 41343,
   "bank": 5,
   "instrs": 3,
@@ -8553,7 +8553,7 @@
    ]
   ]
  },
- "Sub_B5_A184": {
+ "LoadSoundChannelRegisters": {
   "addr": 41348,
   "bank": 5,
   "instrs": 14,
@@ -10751,7 +10751,7 @@
    ]
   ]
  },
- "Sub_D177": {
+ "CheckAreaInStageList": {
   "addr": 53623,
   "bank": 7,
   "instrs": 33,
@@ -10967,7 +10967,7 @@
    ]
   ]
  },
- "Sub_D7B2": {
+ "CheckDialogueTrigger": {
   "addr": 55218,
   "bank": 7,
   "instrs": 86,
@@ -10993,7 +10993,7 @@
    ]
   ]
  },
- "Sub_D8CB": {
+ "RunDialogueState": {
   "addr": 55499,
   "bank": 7,
   "instrs": 132,
@@ -11010,7 +11010,7 @@
    ]
   ]
  },
- "Sub_DA0A": {
+ "PrepareDialogueScreen": {
   "addr": 55818,
   "bank": 7,
   "instrs": 27,
@@ -11049,7 +11049,7 @@
    ]
   ]
  },
- "Sub_DB07": {
+ "DialogueLoadAreaScript": {
   "addr": 56071,
   "bank": 7,
   "instrs": 62,
@@ -11296,7 +11296,7 @@
    ]
   ]
  },
- "Sub_E664": {
+ "HandleSceneRequest": {
   "addr": 58980,
   "bank": 7,
   "instrs": 84,
@@ -11387,7 +11387,7 @@
    ]
   ]
  },
- "Sub_EA02": {
+ "StartPlayerFallIfNoFloor": {
   "addr": 59906,
   "bank": 7,
   "instrs": 20,
@@ -11400,7 +11400,7 @@
    ]
   ]
  },
- "Sub_EA2D": {
+ "AdvancePlayerPoseTimer": {
   "addr": 59949,
   "bank": 7,
   "instrs": 25,
@@ -11569,7 +11569,7 @@
    ]
   ]
  },
- "Sub_EFA9": {
+ "ReturnNop": {
   "addr": 61353,
   "bank": 7,
   "instrs": 1,
@@ -11798,7 +11798,7 @@
    ]
   ]
  },
- "Sub_F804": {
+ "BuildBulletHitboxes": {
   "addr": 63492,
   "bank": 7,
   "instrs": 196,

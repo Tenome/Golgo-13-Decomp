@@ -1355,7 +1355,7 @@ NmiGameStateDispatch:
   beq Loc_CA0B                 ; $CA06
   jmp Loc_CB95                 ; $CA08
 Loc_CA0B:
-  jsr Sub_E664                 ; $CA0B
+  jsr HandleSceneRequest       ; $CA0B
   beq Loc_CA13                 ; $CA0E
   jmp Loc_CB9B                 ; $CA10
 Loc_CA13:
@@ -1398,9 +1398,9 @@ Loc_CA5C:
 Loc_CA66:
   cmp #$02                     ; $CA66
   bne Loc_CA79                 ; $CA68
-  jsr Sub_D7B2                 ; $CA6A
+  jsr CheckDialogueTrigger     ; $CA6A
   jsr DoOamDma                 ; $CA6D
-  jsr Sub_D8CB                 ; $CA70
+  jsr RunDialogueState         ; $CA70
   lda PPU_STATUS               ; $CA73
   jmp Loc_CB8E                 ; $CA76
 Loc_CA79:
@@ -1489,7 +1489,7 @@ Loc_CB39:
   jsr CheckObjectContact       ; $CB39
   lda z:ScrollColumnPending    ; $CB3C
   bne Loc_CB62                 ; $CB3E
-  jsr Sub_DB07                 ; $CB40
+  jsr DialogueLoadAreaScript   ; $CB40
   lda $0404                    ; $CB43
   cmp #$FF                     ; $CB46
   beq Loc_CB62                 ; $CB48
@@ -2266,9 +2266,9 @@ StartLevelScene:
   sta z:GameState              ; $D16C
   lda #$18                     ; $D16E
   jsr SetPpuMask               ; $D170
-  jsr Sub_D177                 ; $D173
+  jsr CheckAreaInStageList     ; $D173
   rts                          ; $D176
-Sub_D177:
+CheckAreaInStageList:
   lda z:PaletteSetIndex        ; $D177
   asl a                        ; $D179
   tax                          ; $D17A
@@ -2875,7 +2875,7 @@ Loc_D7A4:
   jmp Loc_D74B                 ; $D7AE
 Loc_D7B1:
   rts                          ; $D7B1
-Sub_D7B2:
+CheckDialogueTrigger:
   lda $0438                    ; $D7B2
   bne Loc_D7BA                 ; $D7B5
   jmp Loc_D824                 ; $D7B7
@@ -2996,7 +2996,7 @@ Data_D88B:
   .incbin "prg_bank_7.bin", $188B, $1  ; $D88B
 Data_D88C:
   .incbin "prg_bank_7.bin", $188C, $3F  ; $D88C
-Sub_D8CB:
+RunDialogueState:
   lda $0405                    ; $D8CB
   bne Loc_D8D3                 ; $D8CE
   jmp Loc_D99C                 ; $D8D0
@@ -3011,7 +3011,7 @@ Loc_D8DB:
   beq Loc_D918                 ; $D8E1
   jmp Loc_D92D                 ; $D8E3
 Loc_D8E6:
-  jsr Sub_DA0A                 ; $D8E6
+  jsr PrepareDialogueScreen    ; $D8E6
   lda $0405                    ; $D8E9
   asl a                        ; $D8EC
   tay                          ; $D8ED
@@ -3102,7 +3102,7 @@ Loc_D99D:
   beq Loc_D9CE                 ; $D9A4
   jmp Loc_D9E1                 ; $D9A6
 Loc_D9A9:
-  jsr Sub_DA0A                 ; $D9A9
+  jsr PrepareDialogueScreen    ; $D9A9
   lda $0405                    ; $D9AC
   asl a                        ; $D9AF
   tay                          ; $D9B0
@@ -3144,7 +3144,7 @@ Loc_D9EF:
   lda #$00                     ; $DA02
   sta $0405                    ; $DA04
   jmp Loc_D99C                 ; $DA07
-Sub_DA0A:
+PrepareDialogueScreen:
   lda z:PpuMaskShadow          ; $DA0A
   and #$E7                     ; $DA0C
   jsr SetPpuMask               ; $DA0E
@@ -3235,7 +3235,7 @@ Data_DAB6:
   .incbin "prg_bank_7.bin", $1AB6, $21  ; $DAB6
 Data_DAD7:
   .incbin "prg_bank_7.bin", $1AD7, $30  ; $DAD7
-Sub_DB07:
+DialogueLoadAreaScript:
   lda $0421                    ; $DB07
   beq Loc_DB0F                 ; $DB0A
   jmp Loc_DB57                 ; $DB0C
@@ -3947,11 +3947,11 @@ Loc_E640:
   jsr DoOamDma                 ; $E657
   rts                          ; $E65A
 Loc_E65B:
-  jsr Sub_D177                 ; $E65B
+  jsr CheckAreaInStageList     ; $E65B
   lda #$18                     ; $E65E
   jsr SetPpuMask               ; $E660
   rts                          ; $E663
-Sub_E664:
+HandleSceneRequest:
   lda $013E                    ; $E664
   bne Loc_E66C                 ; $E667
   lda #$00                     ; $E669
@@ -4185,11 +4185,11 @@ UpdatePlayerActions:
   jsr UpdatePlayerJumpArc      ; $E941
   jmp Loc_E94A                 ; $E944
 Loc_E947:
-  jsr Sub_EA02                 ; $E947
+  jsr StartPlayerFallIfNoFloor ; $E947
 Loc_E94A:
   lda z:$33                    ; $E94A
   beq Loc_E954                 ; $E94C
-  jsr Sub_EA2D                 ; $E94E
+  jsr AdvancePlayerPoseTimer   ; $E94E
   jmp Loc_E957                 ; $E951
 Loc_E954:
   jsr HandleFireButton         ; $E954
@@ -4253,7 +4253,7 @@ Loc_E9D1:
   rts                          ; $E9D1
 Data_E9D2:
   .incbin "prg_bank_7.bin", $29D2, $30  ; $E9D2
-Sub_EA02:
+StartPlayerFallIfNoFloor:
   lda z:PlayerPose             ; $EA02
   and #$0F                     ; $EA04
   cmp #$03                     ; $EA06
@@ -4277,7 +4277,7 @@ Loc_EA21:
   jsr SetPlayerPose            ; $EA29
 Loc_EA2C:
   rts                          ; $EA2C
-Sub_EA2D:
+AdvancePlayerPoseTimer:
   inc z:$34                    ; $EA2D
   lda z:PlayerPose             ; $EA2F
   and #$0F                     ; $EA31
@@ -4632,7 +4632,7 @@ UpdatePlayerSideView:
   bne Loc_EF2C                 ; $EF1B
   jsr UpdatePlayerWalkInput    ; $EF1D
   jsr SelectPlayerSpriteFrame  ; $EF20
-  jsr Sub_EFA9                 ; $EF23
+  jsr ReturnNop                ; $EF23
   jsr CalcPlayerSpriteDataPtr  ; $EF26
   jsr FireBulletSideView       ; $EF29
 Loc_EF2C:
@@ -4707,7 +4707,7 @@ Loc_EF9F:
   rts                          ; $EFA4
 Data_EFA5:
   .incbin "prg_bank_7.bin", $2FA5, $4  ; $EFA5
-Sub_EFA9:
+ReturnNop:
   rts                          ; $EFA9
 CalcPlayerSpriteDataPtr:
   lda #$00                     ; $EFAA
@@ -5407,7 +5407,7 @@ Data_F77B:
   .incbin "prg_bank_7.bin", $377B, $1  ; $F77B
 Data_F77C:
   .incbin "prg_bank_7.bin", $377C, $88  ; $F77C
-Sub_F804:
+BuildBulletHitboxes:
   lda $0119                    ; $F804
   beq Loc_F823                 ; $F807
   lda $011C                    ; $F809
@@ -5888,7 +5888,7 @@ Loc_FB7C:
   sta $011E                    ; $FB7C
 Loc_FB7F:
   jsr ClearObjectStatusBits    ; $FB7F
-  jsr Sub_F804                 ; $FB82
+  jsr BuildBulletHitboxes      ; $FB82
   jsr CheckPlayerHitByObjects  ; $FB85
   jsr CheckBulletHitObjects    ; $FB88
   lda $0258                    ; $FB8B
@@ -5924,7 +5924,7 @@ Loc_FBBB:
 Loc_FBD0:
   sta $0123                    ; $FBD0
   jsr ClearObjectStatusBits    ; $FBD3
-  jsr Sub_F804                 ; $FBD6
+  jsr BuildBulletHitboxes      ; $FBD6
   jsr TickObjectStates         ; $FBD9
   jsr UpdateLifeBlink          ; $FBDC
   rts                          ; $FBDF
@@ -5993,7 +5993,7 @@ Loc_FC4F:
   jsr SetBulletHitbox2         ; $FC4F
 Loc_FC52:
   jsr ClearObjectStatusBits    ; $FC52
-  jsr Sub_F804                 ; $FC55
+  jsr BuildBulletHitboxes      ; $FC55
   jsr CheckPlayerHitByObjects  ; $FC58
   jsr TickObjectStates         ; $FC5B
   jsr UpdateLifeBlink          ; $FC5E
@@ -6116,7 +6116,7 @@ Loc_FD4B:
   sta $0119                    ; $FD4B
   jsr SetBulletHitbox2         ; $FD4E
   jsr ClearObjectStatusBits    ; $FD51
-  jsr Sub_F804                 ; $FD54
+  jsr BuildBulletHitboxes      ; $FD54
   jsr CheckPlayerHitByObjects  ; $FD57
   jsr TickObjectStates         ; $FD5A
   jsr UpdateLifeBlink          ; $FD5D

@@ -1510,7 +1510,7 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
   push16(0xCA02); TickClock(); UNW(); ret_check(0xCA02);                                 /* $CA00 jsr */
   LDA(rd(0x013A));                                                                       /* $CA03 lda */
   if (R.a == 0) {                                                                        /* $CA06 beq */
-    push16(0xCA0D); Sub_E664(); UNW(); ret_check(0xCA0D);                                /* $CA0B jsr */
+    push16(0xCA0D); HandleSceneRequest(); UNW(); ret_check(0xCA0D);                      /* $CA0B jsr */
     if (!R.z) {                                                                          /* $CA0E beq */
       goto LCB9B;                                                                        /* $CA10 jmp */
     }
@@ -1553,9 +1553,9 @@ void NmiGameStateDispatch(void) {  /* $C9F9 bank 7 */
     }
     cmp8(R.a, 0x02);                                                                     /* $CA66 cmp */
     if (R.a == 0x02) {                                                                   /* $CA68 bne */
-      push16(0xCA6C); Sub_D7B2(); UNW(); ret_check(0xCA6C);                              /* $CA6A jsr */
+      push16(0xCA6C); CheckDialogueTrigger(); UNW(); ret_check(0xCA6C);                  /* $CA6A jsr */
       push16(0xCA6F); DoOamDma(); UNW(); ret_check(0xCA6F);                              /* $CA6D jsr */
-      push16(0xCA72); Sub_D8CB(); UNW(); ret_check(0xCA72);                              /* $CA70 jsr */
+      push16(0xCA72); RunDialogueState(); UNW(); ret_check(0xCA72);                      /* $CA70 jsr */
       LDA(rd(PPU_STATUS));                                                               /* $CA73 lda */
       goto LCB8E;                                                                        /* $CA76 jmp */
     }
@@ -1638,7 +1638,7 @@ LCB39: BUDGET();
     push16(0xCB3B); CheckObjectContact(); UNW(); ret_check(0xCB3B);                      /* $CB39 jsr */
     LDA(rd(ScrollColumnPending));                                                        /* $CB3C lda */
     if (R.a == 0) {                                                                      /* $CB3E bne */
-      push16(0xCB42); Sub_DB07(); UNW(); ret_check(0xCB42);                              /* $CB40 jsr */
+      push16(0xCB42); DialogueLoadAreaScript(); UNW(); ret_check(0xCB42);                /* $CB40 jsr */
       LDA(rd(0x0404));                                                                   /* $CB43 lda */
       cmp8(R.a, 0xFF);                                                                   /* $CB46 cmp */
       if (R.a == 0xFF) goto LCB62;                                                       /* $CB48 beq */
@@ -2449,11 +2449,11 @@ void StartLevelScene(void) {  /* $D13A bank 7 */
   STA(GameState);                                                                        /* $D16C sta */
   LDA(0x18);                                                                             /* $D16E lda */
   push16(0xD172); SetPpuMask(); UNW(); ret_check(0xD172);                                /* $D170 jsr */
-  push16(0xD175); Sub_D177(); UNW(); ret_check(0xD175);                                  /* $D173 jsr */
+  push16(0xD175); CheckAreaInStageList(); UNW(); ret_check(0xD175);                      /* $D173 jsr */
   RTS_RET(sp0);                                                                          /* $D176 rts */
 }
 
-void Sub_D177(void) {  /* $D177 bank 7 */
+void CheckAreaInStageList(void) {  /* $D177 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteSetIndex));                                                              /* $D177 lda */
   ASL_A();                                                                               /* $D179 asl */
@@ -3113,7 +3113,7 @@ LD756: BUDGET();
   RTS_RET(sp0);                                                                          /* $D7B1 rts */
 }
 
-void Sub_D7B2(void) {  /* $D7B2 bank 7 */
+void CheckDialogueTrigger(void) {  /* $D7B2 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0438));                                                                       /* $D7B2 lda */
   if (R.a == 0) {                                                                        /* $D7B5 bne */
@@ -3233,7 +3233,7 @@ void SelectChr1Bank0D(void) {  /* $D86D bank 7 */
   RTS_RET(sp0);                                                                          /* $D882 rts */
 }
 
-void Sub_D8CB(void) {  /* $D8CB bank 7 */
+void RunDialogueState(void) {  /* $D8CB bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0405));                                                                       /* $D8CB lda */
   if (R.a != 0) {                                                                        /* $D8CE bne */
@@ -3247,7 +3247,7 @@ void Sub_D8CB(void) {  /* $D8CB bank 7 */
       if (R.a == 0x01) goto LD918;                                                       /* $D8E1 beq */
       goto LD92D;                                                                        /* $D8E3 jmp */
     }
-    push16(0xD8E8); Sub_DA0A(); UNW(); ret_check(0xD8E8);                                /* $D8E6 jsr */
+    push16(0xD8E8); PrepareDialogueScreen(); UNW(); ret_check(0xD8E8);                   /* $D8E6 jsr */
     LDA(rd(0x0405));                                                                     /* $D8E9 lda */
     ASL_A();                                                                             /* $D8EC asl */
     TAY();                                                                               /* $D8ED tay */
@@ -3338,7 +3338,7 @@ LD99D: BUDGET();
     if (R.a == 0x01) goto LD9CE;                                                         /* $D9A4 beq */
     goto LD9E1;                                                                          /* $D9A6 jmp */
   }
-  push16(0xD9AB); Sub_DA0A(); UNW(); ret_check(0xD9AB);                                  /* $D9A9 jsr */
+  push16(0xD9AB); PrepareDialogueScreen(); UNW(); ret_check(0xD9AB);                     /* $D9A9 jsr */
   LDA(rd(0x0405));                                                                       /* $D9AC lda */
   ASL_A();                                                                               /* $D9AF asl */
   TAY();                                                                                 /* $D9B0 tay */
@@ -3382,7 +3382,7 @@ LD9E1: BUDGET();
   goto LD99C;                                                                            /* $DA07 jmp */
 }
 
-void Sub_DA0A(void) {  /* $DA0A bank 7 */
+void PrepareDialogueScreen(void) {  /* $DA0A bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PpuMaskShadow));                                                                /* $DA0A lda */
   AND(0xE7);                                                                             /* $DA0C and */
@@ -3474,7 +3474,7 @@ void FillNametable2Blank(void) {  /* $DA77 bank 7 */
   RTS_RET(sp0);                                                                          /* $DAAE rts */
 }
 
-void Sub_DB07(void) {  /* $DB07 bank 7 */
+void DialogueLoadAreaScript(void) {  /* $DB07 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0421));                                                                       /* $DB07 lda */
   if (R.a == 0) {                                                                        /* $DB0A beq */
@@ -4212,13 +4212,13 @@ LE634: BUDGET();
     push16(0xE659); DoOamDma(); UNW(); ret_check(0xE659);                                /* $E657 jsr */
     RTS_RET(sp0);                                                                        /* $E65A rts */
   }
-  push16(0xE65D); Sub_D177(); UNW(); ret_check(0xE65D);                                  /* $E65B jsr */
+  push16(0xE65D); CheckAreaInStageList(); UNW(); ret_check(0xE65D);                      /* $E65B jsr */
   LDA(0x18);                                                                             /* $E65E lda */
   push16(0xE662); SetPpuMask(); UNW(); ret_check(0xE662);                                /* $E660 jsr */
   RTS_RET(sp0);                                                                          /* $E663 rts */
 }
 
-void Sub_E664(void) {  /* $E664 bank 7 */
+void HandleSceneRequest(void) {  /* $E664 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x013E));                                                                       /* $E664 lda */
   if (R.a == 0) {                                                                        /* $E667 bne */
@@ -4462,11 +4462,11 @@ void UpdatePlayerActions(void) {  /* $E939 bank 7 */
     if (R.a != 0) {                                                                      /* $E93F beq */
       push16(0xE943); UpdatePlayerJumpArc(); UNW(); ret_check(0xE943);                   /* $E941 jsr */
     } else {
-      push16(0xE949); Sub_EA02(); UNW(); ret_check(0xE949);                              /* $E947 jsr */
+      push16(0xE949); StartPlayerFallIfNoFloor(); UNW(); ret_check(0xE949);              /* $E947 jsr */
     }
     LDA(rd(0x33));                                                                       /* $E94A lda */
     if (R.a != 0) {                                                                      /* $E94C beq */
-      push16(0xE950); Sub_EA2D(); UNW(); ret_check(0xE950);                              /* $E94E jsr */
+      push16(0xE950); AdvancePlayerPoseTimer(); UNW(); ret_check(0xE950);                /* $E94E jsr */
     } else {
       push16(0xE956); HandleFireButton(); UNW(); ret_check(0xE956);                      /* $E954 jsr */
     }
@@ -4530,7 +4530,7 @@ LE9C6: BUDGET();
   RTS_RET(sp0);                                                                          /* $E9D1 rts */
 }
 
-void Sub_EA02(void) {  /* $EA02 bank 7 */
+void StartPlayerFallIfNoFloor(void) {  /* $EA02 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(PlayerPose));                                                                   /* $EA02 lda */
   AND(0x0F);                                                                             /* $EA04 and */
@@ -4557,7 +4557,7 @@ LEA2C: BUDGET();
   RTS_RET(sp0);                                                                          /* $EA2C rts */
 }
 
-void Sub_EA2D(void) {  /* $EA2D bank 7 */
+void AdvancePlayerPoseTimer(void) {  /* $EA2D bank 7 */
   uint8_t sp0 = R.sp;
   INC_M(0x34);                                                                           /* $EA2D inc */
   LDA(rd(PlayerPose));                                                                   /* $EA2F lda */
@@ -4947,7 +4947,7 @@ void UpdatePlayerSideView(void) {  /* $EF19 bank 7 */
 void Sub_EF20(void) {  /* $EF20 bank 7 */
   uint8_t sp0 = R.sp;
   push16(0xEF22); SelectPlayerSpriteFrame(); UNW(); ret_check(0xEF22);                   /* $EF20 jsr */
-  push16(0xEF25); Sub_EFA9(); UNW(); ret_check(0xEF25);                                  /* $EF23 jsr */
+  push16(0xEF25); ReturnNop(); UNW(); ret_check(0xEF25);                                 /* $EF23 jsr */
   push16(0xEF28); CalcPlayerSpriteDataPtr(); UNW(); ret_check(0xEF28);                   /* $EF26 jsr */
   push16(0xEF2B); FireBulletSideView(); UNW(); ret_check(0xEF2B);                        /* $EF29 jsr */
   RTS_RET(sp0);                                                                          /* $EF2C rts */
@@ -5028,7 +5028,7 @@ void SelectPlayerSpriteFrame(void) {  /* $EF7B bank 7 */
   RTS_RET(sp0);                                                                          /* $EFA4 rts */
 }
 
-void Sub_EFA9(void) {  /* $EFA9 bank 7 */
+void ReturnNop(void) {  /* $EFA9 bank 7 */
   uint8_t sp0 = R.sp;
   RTS_RET(sp0);                                                                          /* $EFA9 rts */
 }
@@ -5750,7 +5750,7 @@ LF6EB: BUDGET();
   RTS_RET(sp0);                                                                          /* $F6EB rts */
 }
 
-void Sub_F804(void) {  /* $F804 bank 7 */
+void BuildBulletHitboxes(void) {  /* $F804 bank 7 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0119));                                                                       /* $F804 lda */
   if (R.a != 0) {                                                                        /* $F807 beq */
@@ -6240,7 +6240,7 @@ LFB7C: BUDGET();
     STA(0x011E);                                                                         /* $FB7C sta */
   }
   push16(0xFB81); ClearObjectStatusBits(); UNW(); ret_check(0xFB81);                     /* $FB7F jsr */
-  push16(0xFB84); Sub_F804(); UNW(); ret_check(0xFB84);                                  /* $FB82 jsr */
+  push16(0xFB84); BuildBulletHitboxes(); UNW(); ret_check(0xFB84);                       /* $FB82 jsr */
   push16(0xFB87); CheckPlayerHitByObjects(); UNW(); ret_check(0xFB87);                   /* $FB85 jsr */
   push16(0xFB8A); CheckBulletHitObjects(); UNW(); ret_check(0xFB8A);                     /* $FB88 jsr */
   LDA(rd(0x0258));                                                                       /* $FB8B lda */
@@ -6274,7 +6274,7 @@ LFB7C: BUDGET();
   }
   STA(0x0123);                                                                           /* $FBD0 sta */
   push16(0xFBD5); ClearObjectStatusBits(); UNW(); ret_check(0xFBD5);                     /* $FBD3 jsr */
-  push16(0xFBD8); Sub_F804(); UNW(); ret_check(0xFBD8);                                  /* $FBD6 jsr */
+  push16(0xFBD8); BuildBulletHitboxes(); UNW(); ret_check(0xFBD8);                       /* $FBD6 jsr */
   push16(0xFBDB); TickObjectStates(); UNW(); ret_check(0xFBDB);                          /* $FBD9 jsr */
   push16(0xFBDE); UpdateLifeBlink(); UNW(); ret_check(0xFBDE);                           /* $FBDC jsr */
   RTS_RET(sp0);                                                                          /* $FBDF rts */
@@ -6350,7 +6350,7 @@ void UpdatePlayerHitboxB(void) {  /* $FC1A bank 7 */
     push16(0xFC51); SetBulletHitbox2(); UNW(); ret_check(0xFC51);                        /* $FC4F jsr */
   }
   push16(0xFC54); ClearObjectStatusBits(); UNW(); ret_check(0xFC54);                     /* $FC52 jsr */
-  push16(0xFC57); Sub_F804(); UNW(); ret_check(0xFC57);                                  /* $FC55 jsr */
+  push16(0xFC57); BuildBulletHitboxes(); UNW(); ret_check(0xFC57);                       /* $FC55 jsr */
   push16(0xFC5A); CheckPlayerHitByObjects(); UNW(); ret_check(0xFC5A);                   /* $FC58 jsr */
   push16(0xFC5D); TickObjectStates(); UNW(); ret_check(0xFC5D);                          /* $FC5B jsr */
   push16(0xFC60); UpdateLifeBlink(); UNW(); ret_check(0xFC60);                           /* $FC5E jsr */
@@ -6480,7 +6480,7 @@ void UpdatePlayerHitboxC(void) {  /* $FD18 bank 7 */
   STA(0x0119);                                                                           /* $FD4B sta */
   push16(0xFD50); SetBulletHitbox2(); UNW(); ret_check(0xFD50);                          /* $FD4E jsr */
   push16(0xFD53); ClearObjectStatusBits(); UNW(); ret_check(0xFD53);                     /* $FD51 jsr */
-  push16(0xFD56); Sub_F804(); UNW(); ret_check(0xFD56);                                  /* $FD54 jsr */
+  push16(0xFD56); BuildBulletHitboxes(); UNW(); ret_check(0xFD56);                       /* $FD54 jsr */
   push16(0xFD59); CheckPlayerHitByObjects(); UNW(); ret_check(0xFD59);                   /* $FD57 jsr */
   push16(0xFD5C); TickObjectStates(); UNW(); ret_check(0xFD5C);                          /* $FD5A jsr */
   push16(0xFD5F); UpdateLifeBlink(); UNW(); ret_check(0xFD5F);                           /* $FD5D jsr */

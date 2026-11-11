@@ -5327,7 +5327,7 @@
      }
     },
     {
-     "name": "Sub_B5_93E0",
+     "name": "MoveSceneSpriteRandomly",
      "size": "119",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5375,7 +5375,7 @@
      }
     },
     {
-     "name": "Sub_B5_97CF",
+     "name": "DrawOfficeScene",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5407,7 +5407,7 @@
      }
     },
     {
-     "name": "Sub_B5_9902",
+     "name": "DrawSpriteListWithOffset",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5543,7 +5543,7 @@
      }
     },
     {
-     "name": "Sub_B5_A0C9",
+     "name": "TickSoundChannel",
      "size": "182",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5551,7 +5551,7 @@
      }
     },
     {
-     "name": "Sub_B5_A17F",
+     "name": "LoadSoundChannelRegistersIfActive",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5559,7 +5559,7 @@
      }
     },
     {
-     "name": "Sub_B5_A184",
+     "name": "LoadSoundChannelRegisters",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6925,7 +6925,7 @@
      }
     },
     {
-     "name": "Sub_D177",
+     "name": "CheckAreaInStageList",
      "size": "64",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7053,7 +7053,7 @@
      }
     },
     {
-     "name": "Sub_D7B2",
+     "name": "CheckDialogueTrigger",
      "size": "187",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7069,7 +7069,7 @@
      }
     },
     {
-     "name": "Sub_D8CB",
+     "name": "RunDialogueState",
      "size": "51",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7085,7 +7085,7 @@
      }
     },
     {
-     "name": "Sub_DA0A",
+     "name": "PrepareDialogueScreen",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7109,7 +7109,7 @@
      }
     },
     {
-     "name": "Sub_DB07",
+     "name": "DialogueLoadAreaScript",
      "size": "122",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7261,7 +7261,7 @@
      }
     },
     {
-     "name": "Sub_E664",
+     "name": "HandleSceneRequest",
      "size": "174",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7317,7 +7317,7 @@
      }
     },
     {
-     "name": "Sub_EA02",
+     "name": "StartPlayerFallIfNoFloor",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7325,7 +7325,7 @@
      }
     },
     {
-     "name": "Sub_EA2D",
+     "name": "AdvancePlayerPoseTimer",
      "size": "52",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7437,7 +7437,7 @@
      }
     },
     {
-     "name": "Sub_EFA9",
+     "name": "ReturnNop",
      "size": "1",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7589,7 +7589,7 @@
      }
     },
     {
-     "name": "Sub_F804",
+     "name": "BuildBulletHitboxes",
      "size": "384",
      "fuzzy_match_percent": 100.0,
      "metadata": {

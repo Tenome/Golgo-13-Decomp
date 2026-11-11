@@ -29,7 +29,7 @@ LCB2C: BUDGET();
   push16(0xCB3B); CheckObjectContact(); UNW(); ret_check(0xCB3B);                        /* $CB39 jsr */
   LDA(rd(ScrollColumnPending));                                                          /* $CB3C lda */
   if (R.a == 0) {                                                                        /* $CB3E bne */
-    push16(0xCB42); Sub_DB07(); UNW(); ret_check(0xCB42);                                /* $CB40 jsr */
+    push16(0xCB42); DialogueLoadAreaScript(); UNW(); ret_check(0xCB42);                  /* $CB40 jsr */
     LDA(rd(0x0404));                                                                     /* $CB43 lda */
     cmp8(R.a, 0xFF);                                                                     /* $CB46 cmp */
     if (R.a == 0xFF) goto LCB62;                                                         /* $CB48 beq */

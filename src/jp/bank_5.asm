@@ -469,7 +469,7 @@ Bank5Tbl8065_38:
   jmp QueueSound               ; $8457
 Bank5Tbl8065_39:
   jsr Sub_B5_98FB              ; $845A
-  jsr Sub_B5_93E0              ; $845D
+  jsr MoveSceneSpriteRandomly  ; $845D
   lda SceneTimer               ; $8460
   beq Loc_B5_8473              ; $8463
   inc SceneState               ; $8465
@@ -559,7 +559,7 @@ Bank5Tbl8065_49:
   lda #$0F                     ; $850B
   jmp QueueSound               ; $850D
 Bank5Tbl8065_4A:
-  jsr Sub_B5_97CF              ; $8510
+  jsr DrawOfficeScene          ; $8510
   lda $052E                    ; $8513
   bne Loc_B5_84F5              ; $8516
   inc SceneState               ; $8518
@@ -1869,9 +1869,9 @@ Data_B5_92D7:
   .incbin "prg_bank_5.bin", $12D7, $1  ; $92D7
 Data_B5_92D8:
   .incbin "prg_bank_5.bin", $12D8, $108  ; $92D8
-Sub_B5_93E0:
+MoveSceneSpriteRandomly:
   inc $0503                    ; $93E0
-  beq Sub_B5_93E0              ; $93E3
+  beq MoveSceneSpriteRandomly  ; $93E3
   jsr GetRandomByte            ; $93E5
   adc $0503                    ; $93E8
   and #$F0                     ; $93EB
@@ -1952,7 +1952,7 @@ Sub_B5_9608:
   ldy #$78                     ; $9608
   sty $0511                    ; $960A
   ldy #$4E                     ; $960D
-  jsr Sub_B5_9902              ; $960F
+  jsr DrawSpriteListWithOffset ; $960F
   lda $0510                    ; $9612
   and #$3C                     ; $9615
   lsr a                        ; $9617
@@ -2100,7 +2100,7 @@ Data_B5_975E:
   .incbin "prg_bank_5.bin", $175E, $8  ; $975E
 Data_B5_9766:
   .incbin "prg_bank_5.bin", $1766, $69  ; $9766
-Sub_B5_97CF:
+DrawOfficeScene:
   lda #$58                     ; $97CF
   sta $0531                    ; $97D1
   lda #$58                     ; $97D4
@@ -2189,7 +2189,7 @@ Sub_B5_98FB:
   ldy #$84                     ; $98FB
   sty $0511                    ; $98FD
   ldy #$00                     ; $9900
-Sub_B5_9902:
+DrawSpriteListWithOffset:
   jsr HideAllSpritesB5         ; $9902
 Loc_B5_9905:
   lda Data_B5_9931,y           ; $9905
@@ -2536,7 +2536,7 @@ Loc_B5_A019:
   lda (SndPtrLo),y             ; $A029
   lsr a                        ; $A02B
   bcc Loc_B5_A031              ; $A02C
-  jsr Sub_B5_A0C9              ; $A02E
+  jsr TickSoundChannel         ; $A02E
 Loc_B5_A031:
   ldy #$00                     ; $A031
   lda (SndPtrLo),y             ; $A033
@@ -2625,7 +2625,7 @@ Loc_B5_A094:
   bne Loc_B5_A07C              ; $A0C6
 Loc_B5_A0C8:
   rts                          ; $A0C8
-Sub_B5_A0C9:
+TickSoundChannel:
   lda z:$F4                    ; $A0C9
   and #$03                     ; $A0CB
   asl a                        ; $A0CD
@@ -2724,7 +2724,7 @@ Loc_B5_A15E:
   lda z:$05                    ; $A165
   ora #$08                     ; $A167
   sta (SndPtrLo),y             ; $A169
-  jsr Sub_B5_A17F              ; $A16B
+  jsr LoadSoundChannelRegistersIfActive ; $A16B
 Loc_B5_A16E:
   ldy #$03                     ; $A16E
   lda z:Tmp01                  ; $A170
@@ -2736,10 +2736,10 @@ Loc_B5_A16E:
   adc #$00                     ; $A17A
   sta (SndPtrLo),y             ; $A17C
   rts                          ; $A17E
-Sub_B5_A17F:
+LoadSoundChannelRegistersIfActive:
   jsr IsSoundChannelActive     ; $A17F
   bne Loc_B5_A1A2              ; $A182
-Sub_B5_A184:
+LoadSoundChannelRegisters:
   ldx $06CF                    ; $A184
   lda $06D0,x                  ; $A187
   ora #$20                     ; $A18A
@@ -2798,7 +2798,7 @@ SoundCmdA_04:
   lda #$08                     ; $A1F2
   iny                          ; $A1F4
   sta (SndPtrLo),y             ; $A1F5
-  jsr Sub_B5_A17F              ; $A1F7
+  jsr LoadSoundChannelRegistersIfActive ; $A1F7
   pla                          ; $A1FA
   pla                          ; $A1FB
   jmp Loc_B5_A16E              ; $A1FC
@@ -2994,7 +2994,7 @@ SoundCmdB_06:
   sta z:SndPtrLo               ; $A341
   lda Data_B5_A445,x           ; $A343
   sta z:SndPtrHi               ; $A346
-  jsr Sub_B5_A184              ; $A348
+  jsr LoadSoundChannelRegisters ; $A348
   ldy #$0F                     ; $A34B
   lda (SndPtrLo),y             ; $A34D
   ora #$20                     ; $A34F
