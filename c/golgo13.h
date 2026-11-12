@@ -57,4 +57,11 @@ void PixelToNametableAddr(void);     /* $C4C8 */
 Regs AddTileOffsetToPtr20(Regs r);   /* $C761 */
 Regs AddNibbleOffsetToPtr(Regs r);   /* $CF84 */
 Regs AddPackedOffsetToPtr20(Regs r); /* $CFA3 */
+void DrawLifeHud(void);              /* $C941 */
+void DrawAmmoHud(void);              /* $C962 */
+void DrawHud(void);                  /* $C929 */
+void SetupFloorProbeSideView(void);  /* $F2DA */
+void PlayerActionState3(void);       /* $D5BD */
+void PlayerActionState4(void);       /* $D5E2 */
+void SelectPlayerSpriteFrame(void);  /* $EF7B */
 

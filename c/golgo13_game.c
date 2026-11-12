@@ -172,3 +172,65 @@ static Regs add_to_pointer(Regs r, unsigned mode, unsigned source, unsigned lo_z
 Regs AddTileOffsetToPtr20(Regs r)   { return add_to_pointer(r, OFFSET_RRRCCCCC, r.y, 0x20, 0x21); }        /* $C761: byte = RRRCCCCC -> pointer $20/$21 += (RRR << 8) | (CCCCC << 3) */
 Regs AddNibbleOffsetToPtr(Regs r)   { return add_to_pointer(r, OFFSET_HHHHLLLL, r.y, 0x02, 0x03); }        /* $CF84: byte = HHHHLLLL -> pointer Tmp02/Tmp03 += (HHHH << 8) | (LLLL << 4) */
 Regs AddPackedOffsetToPtr20(Regs r) { return add_to_pointer(r, OFFSET_HHHLLLLL, 0x06 + r.y, 0x20, 0x21); } /* $CFA3: byte at $06+Y = HHHLLLLL -> pointer $20/$21 += (HHH << 8) | (LLLLL << 3) */
+
+/* ---- HUD ---- */
+#define PlayerPose RAM(0x36)
+#define PlayerSpriteFrame RAM(0x37)
+#define PlayerActionState RAM(0x30)
+#define PlayerActionTimer RAM(0x31)
+#define FloorProbeValid RAM(0x3E)
+#define FloorProbeAddrLo RAM(0x40)
+#define FloorProbeAddrHi RAM(0x41)
+#define PlayerSpriteY0 RAM(0x0238)
+
+/* The life and ammo counters are drawn on alternate frames (life on even, ammo on odd), except in game state 7. In the scene states
+ * $10-$2F the sprites sit lower on the screen (index $10 / $30 instead of $00 / $20). */
+static int hud_is_lowered(void) { return GameState >= 0x10 && GameState < 0x30; }
+void DrawLifeHud(void) {                         /* $C941 */
+    InitHudSprites((Regs){GameState, hud_is_lowered() ? 0x10 : 0x00, 0x00, 0});
+    Tmp03 = PlayerLifeLo; RAM(0x04) = PlayerLifeHi;
+    DrawHudNumber((Regs){0, 0x00, 0, 0});
+}
+void DrawAmmoHud(void) {                         /* $C962 */
+    InitHudSprites((Regs){GameState, hud_is_lowered() ? 0x30 : 0x20, 0x10, 0});
+    Tmp03 = AmmoLo; RAM(0x04) = AmmoHi;
+    DrawHudNumber((Regs){0, 0x10, 0, 0});
+}
+void DrawHud(void) {                             /* $C929 */
+    if (GameState == 0x07) return;
+    if (FrameCounter & 1) DrawAmmoHud(); else DrawLifeHud();
+}
+
+/* $F2DA: remember the nametable cell under the player's feet (7 pixels right of the sprite origin, 47 below it) for ReadFloorProbeTile */
+void SetupFloorProbeSideView(void) {
+    FloorProbeValid = 1;
+    Tmp02 = (uint8_t)(PlayerSpriteY0 + 0x2F); Tmp03 = (uint8_t)(PlayerSpriteX0 + 0x07);
+    PixelToNametableAddr();
+    FloorProbeAddrLo = Tmp00; FloorProbeAddrHi = Tmp01;
+}
+
+/* ---- player ---- */
+/* $D5BD / $D5C5: player action state 3 hands over to the scene code of bank 3 (dialogue / briefing) */
+void PlayerActionState3(void) {
+    RAM(0x0400) = ROMB(0xF77B + PlayerPose);
+    RAM(0x5C) = 0x8C; RAM(0x5D) = 0x02; RAM(0x0402) = 0x02;
+    RAM(0x0410) = 0; RAM(0x0403) = 0;
+    MmcPrgShadow = 3; MmcWritePrg((Regs){0x03, PlayerPose, 0, 0});
+    PlayerActionState++;
+}
+/* $D5E2: player action state 4 chooses the next state from a flag table: 8 when neither flag bit is set, 6 when both are, else 5 with a sound */
+void PlayerActionState4(void) {
+    uint8_t flags = ROMB(0xF77A + PlayerPose) & 0x0C;
+    if (flags == 0) PlayerActionState = 8;
+    else if (flags == 0x0C) PlayerActionState = 6;
+    else { QueueSound((Regs){0x0F, PlayerPose, 0, 0}); PlayerActionState = 5; }
+    PlayerActionTimer = 0;
+}
+/* $EF7B: sprite frame = 12 when facing left, + the pose's frame offset, + a walk cycle step from the frame counter (0, 1, 2, 1) */
+void SelectPlayerSpriteFrame(void) {
+    uint8_t frame = (PlayerPose & 0x10) ? 0x0C : 0;
+    frame = (uint8_t)(frame + ROMB(0xEFA5 + (PlayerPose & 3)));
+    uint8_t step = (FrameCounter & 0x30) >> 4;
+    PlayerSpriteFrame = (uint8_t)(frame + (step == 3 ? 1 : step));
+}
+

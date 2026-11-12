@@ -90,6 +90,13 @@ TESTS = [
     ('AddTileOffsetToPtr20', 0xC761, True, 'axyc', lambda r: dict(x=r.choice([0, 0, 1, 0x10, 0xFF]), y=r.randint(0, 255))),
     ('AddNibbleOffsetToPtr', 0xCF84, True, 'axyc', lambda r: dict(x=r.choice([0, 0, 1, 0x10, 0xFF]), y=r.randint(0, 255))),
     ('AddPackedOffsetToPtr20', 0xCFA3, True, 'axyc', lambda r: dict(x=r.choice([0, 0, 1, 0x10, 0xFF]), y=r.randint(0, 255))),
+    ('DrawLifeHud', 0xC941, False, '', lambda r: dict(ram={0x14: r.choice([0, 7, 0x0F, 0x10, 0x2F, 0x30, 0xFF]), 0x38: r.randint(0, 255), 0x39: r.choice([0, 0, 1, 2])})),
+    ('DrawAmmoHud', 0xC962, False, '', lambda r: dict(ram={0x14: r.choice([0, 7, 0x0F, 0x10, 0x2F, 0x30, 0xFF]), 0x3A: r.randint(0, 255), 0x3B: r.choice([0, 0, 1, 2])})),
+    ('DrawHud', 0xC929, False, '', lambda r: dict(ram={0x14: r.choice([0, 7, 8, 0x10, 0x30]), 0x10: r.randint(0, 255), 0x38: r.randint(0, 255), 0x3A: r.randint(0, 255), 0x39: 0, 0x3B: 0})),
+    ('SetupFloorProbeSideView', 0xF2DA, False, '', lambda r: dict(ram={0x0238: r.randint(0, 255), 0x023B: r.randint(0, 255), 0x19: r.randint(0, 255), 0x1A: r.randint(0, 255)})),
+    ('PlayerActionState3', 0xD5BD, False, '', lambda r: dict(ram={0x36: r.randint(0, 40), 0x30: r.randint(0, 255)})),
+    ('PlayerActionState4', 0xD5E2, False, '', lambda r: dict(ram={0x36: r.randint(0, 40)})),
+    ('SelectPlayerSpriteFrame', 0xEF7B, False, '', lambda r: dict(ram={0x36: r.randint(0, 255), 0x10: r.randint(0, 255)})),
 ]
 
 def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):
