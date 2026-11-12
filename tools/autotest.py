@@ -8,7 +8,7 @@ an unknown target are skipped, so a routine is `verified` only with enough compl
 usage: python tools/autotest.py [--version us|jp] [--runs N] [--only NAME] [--jobs N] [--clang PATH]"""
 import argparse, ctypes, json, multiprocessing, os, random, shutil, subprocess, sys, zlib
 ap = argparse.ArgumentParser(); ap.add_argument('--version', default=os.environ.get('G13_VERSION', 'us')); ap.add_argument('--runs', type=int, default=80)
-ap.add_argument('--only'); ap.add_argument('--jobs', type=int, default=10); ap.add_argument('--clang'); ap.add_argument('--min-ok', type=int, default=20)
+ap.add_argument('--only', help='one routine or a comma separated list'); ap.add_argument('--merge', action='store_true', help='with --only: add the routines that verify to config/<ver>/verified.json'); ap.add_argument('--jobs', type=int, default=10); ap.add_argument('--clang'); ap.add_argument('--min-ok', type=int, default=20)
 ap.add_argument('--steps', type=int, default=30000)
 ap.add_argument('--snaps', help='file of 2 KB RAM snapshots from tools/frametest.py --dump-ram (default build/ram_snaps_<ver>.bin when present)')
 a = ap.parse_args()
@@ -109,7 +109,7 @@ if __name__ == '__main__':
     os.environ['G13_VERSION'] = a.version
     build()
     FUNCS = json.load(open(os.path.join(ADIR, 'funcs.json')))
-    names = [n for n, v in FUNCS.items() if v['ok'] and v['bank'] < 8 and (not a.only or n == a.only)]
+    names = [n for n, v in FUNCS.items() if v['ok'] and v['bank'] < 8 and (not a.only or n in a.only.split(','))]
     chunks = [names[i::a.jobs] for i in range(a.jobs)]
     with multiprocessing.Pool(a.jobs) as pool: parts = pool.map(worker, chunks)
     res = {}; [res.update(p) for p in parts]
@@ -121,4 +121,7 @@ if __name__ == '__main__':
     json.dump({n: dict(ok=r[0], skipped=r[1], fail=r[2]) for n, r in sorted(res.items())}, open(os.path.join(ROOT, 'build', f'autotest_{a.version}.json'), 'w'), indent=1)
     if not a.only and not failed:      # committed so the C-progress report (tools/report.py --c) can be rebuilt without the ROM
         json.dump({'verified': sorted(verified), 'lifted': sorted(names)}, open(os.path.join(ROOT, 'config', a.version, 'verified.json'), 'w'), indent=0)
+    if a.only and a.merge and not failed:      # add routines that now have enough comparisons (for example after adding more realistic RAM snapshots)
+        vf = os.path.join(ROOT, 'config', a.version, 'verified.json'); cur = json.load(open(vf))
+        cur['verified'] = sorted(set(cur['verified']) | set(verified)); json.dump(cur, open(vf, 'w'), indent=0)
     sys.exit(1 if failed else 0)

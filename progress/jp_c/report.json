@@ -1,17 +1,17 @@
 {
  "measures": {
-  "fuzzy_match_percent": 96.4514,
-  "total_code": "38297",
-  "matched_code": "35861",
-  "matched_code_percent": 93.6392,
+  "fuzzy_match_percent": 100.0,
+  "total_code": "39395",
+  "matched_code": "39395",
+  "matched_code_percent": 100.0,
   "total_data": "0",
   "matched_data": "0",
   "matched_data_percent": 0.0,
-  "total_functions": 922,
-  "matched_functions": 837,
-  "matched_functions_percent": 90.7809,
-  "complete_code": "0",
-  "complete_code_percent": 0.0,
+  "total_functions": 928,
+  "matched_functions": 928,
+  "matched_functions_percent": 100.0,
+  "complete_code": "39395",
+  "complete_code_percent": 100.0,
   "complete_data": "0",
   "complete_data_percent": 0.0,
   "total_units": 8,
@@ -21,18 +21,18 @@
   {
    "name": "main/bank_0",
    "measures": {
-    "fuzzy_match_percent": 3.6,
-    "total_code": "125",
-    "matched_code": "0",
-    "matched_code_percent": 0.0,
+    "fuzzy_match_percent": 100.0,
+    "total_code": "9",
+    "matched_code": "9",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
-    "total_functions": 39,
-    "matched_functions": 0,
-    "matched_functions_percent": 0.0,
-    "complete_code": "0",
-    "complete_code_percent": 0.0,
+    "total_functions": 1,
+    "matched_functions": 1,
+    "matched_functions_percent": 100.0,
+    "complete_code": "9",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -41,344 +41,40 @@
    "sections": [
     {
      "name": ".text",
-     "size": "125",
-     "fuzzy_match_percent": 3.6
+     "size": "9",
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "Loc_B0_8000",
      "size": "9",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "16"
-     }
-    },
-    {
-     "name": "Loc_B0_8010",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "32"
-     }
-    },
-    {
-     "name": "Loc_B0_8014",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "36"
-     }
-    },
-    {
-     "name": "Loc_B0_8016",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "38"
-     }
-    },
-    {
-     "name": "Loc_B0_801A",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "42"
-     }
-    },
-    {
-     "name": "Loc_B0_801E",
-     "size": "2",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "46"
-     }
-    },
-    {
-     "name": "Loc_B0_8024",
-     "size": "2",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "52"
-     }
-    },
-    {
-     "name": "Loc_B0_84F1",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1281"
-     }
-    },
-    {
-     "name": "Loc_B0_84F7",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1287"
-     }
-    },
-    {
-     "name": "Loc_B0_84FB",
-     "size": "6",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1291"
-     }
-    },
-    {
-     "name": "Loc_B0_8505",
-     "size": "2",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1301"
-     }
-    },
-    {
-     "name": "Loc_B0_8508",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1304"
-     }
-    },
-    {
-     "name": "Loc_B0_850B",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1307"
-     }
-    },
-    {
-     "name": "Loc_B0_8513",
-     "size": "4",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1315"
-     }
-    },
-    {
-     "name": "Loc_B0_8525",
-     "size": "8",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1333"
-     }
-    },
-    {
-     "name": "Loc_B0_8558",
-     "size": "2",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1384"
-     }
-    },
-    {
-     "name": "Loc_B0_855B",
-     "size": "2",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1387"
-     }
-    },
-    {
-     "name": "Loc_B0_8563",
-     "size": "6",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1395"
-     }
-    },
-    {
-     "name": "Loc_B0_856C",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1404"
-     }
-    },
-    {
-     "name": "Loc_B0_8571",
-     "size": "4",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1409"
-     }
-    },
-    {
-     "name": "Loc_B0_857B",
-     "size": "2",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1419"
-     }
-    },
-    {
-     "name": "Loc_B0_857E",
-     "size": "2",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1422"
-     }
-    },
-    {
-     "name": "Loc_B0_8581",
-     "size": "5",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1425"
-     }
-    },
-    {
-     "name": "Loc_B0_8588",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1432"
-     }
-    },
-    {
-     "name": "Loc_B0_858D",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1437"
-     }
-    },
-    {
-     "name": "Loc_B0_8591",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1441"
-     }
-    },
-    {
-     "name": "Loc_B0_8593",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1443"
-     }
-    },
-    {
-     "name": "Loc_B0_8596",
-     "size": "8",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1446"
-     }
-    },
-    {
-     "name": "Loc_B0_859F",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1455"
-     }
-    },
-    {
-     "name": "Loc_B0_85A8",
-     "size": "5",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1464"
-     }
-    },
-    {
-     "name": "Loc_B0_85B0",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1472"
-     }
-    },
-    {
-     "name": "Loc_B0_85B6",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1478"
-     }
-    },
-    {
-     "name": "Loc_B0_85BC",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1484"
-     }
-    },
-    {
-     "name": "Loc_B0_86F2",
-     "size": "2",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1794"
-     }
-    },
-    {
-     "name": "Loc_B0_86F7",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1799"
-     }
-    },
-    {
-     "name": "Loc_B0_86F9",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1801"
-     }
-    },
-    {
-     "name": "Loc_B0_86FB",
-     "size": "3",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "1803"
-     }
-    },
-    {
-     "name": "Loc_B0_AB8F",
-     "size": "6",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "11167"
-     }
-    },
-    {
-     "name": "Loc_B0_ABF3",
-     "size": "4",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "11267"
      }
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "source_path": "c/auto/jp/bank_0.c"
    }
   },
   {
    "name": "main/bank_1",
    "measures": {
-    "fuzzy_match_percent": 96.8078,
-    "total_code": "5670",
-    "matched_code": "5458",
-    "matched_code_percent": 96.261,
+    "fuzzy_match_percent": 100.0,
+    "total_code": "6184",
+    "matched_code": "6184",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
-    "total_functions": 108,
-    "matched_functions": 103,
-    "matched_functions_percent": 95.3704,
-    "complete_code": "0",
-    "complete_code_percent": 0.0,
+    "total_functions": 119,
+    "matched_functions": 119,
+    "matched_functions_percent": 100.0,
+    "complete_code": "6184",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -387,15 +83,15 @@
    "sections": [
     {
      "name": ".text",
-     "size": "5670",
-     "fuzzy_match_percent": 96.8078
+     "size": "6184",
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "Loc_B1_8000",
      "size": "9",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "16400"
      }
@@ -403,15 +99,15 @@
     {
      "name": "Bank1Nmi",
      "size": "31",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "16416"
      }
     },
     {
-     "name": "Sub_B1_802F",
+     "name": "Bank1Dispatch_SceneState",
      "size": "22",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "16447"
      }
@@ -465,7 +161,7 @@
      }
     },
     {
-     "name": "Sub_B1_80E0",
+     "name": "RunTitleSoundDriver",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -537,7 +233,7 @@
      }
     },
     {
-     "name": "Sub_B1_85AF",
+     "name": "RestoreMmcShadowRegs",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -609,7 +305,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F79",
+     "name": "StepObjectAnimTimerA",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -625,7 +321,7 @@
      }
     },
     {
-     "name": "Sub_B1_8F9F",
+     "name": "Bank1State02_ChooseAction",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -705,7 +401,7 @@
      }
     },
     {
-     "name": "Sub_B1_93C6",
+     "name": "EnemyTypeDRespawn",
      "size": "52",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -713,7 +409,7 @@
      }
     },
     {
-     "name": "Sub_B1_93FA",
+     "name": "EnemyTypeDChooseAction",
      "size": "52",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -721,7 +417,7 @@
      }
     },
     {
-     "name": "Sub_B1_942E",
+     "name": "EnemyTypeDShoot",
      "size": "62",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -729,7 +425,7 @@
      }
     },
     {
-     "name": "Sub_B1_946C",
+     "name": "EnemyTypeDSpawnTwin",
      "size": "81",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -737,7 +433,7 @@
      }
     },
     {
-     "name": "Sub_B1_94BD",
+     "name": "EnemyTypeDStepAnim",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -761,7 +457,7 @@
      }
     },
     {
-     "name": "Sub_B1_95F4",
+     "name": "EnemyTypeERespawnCheck",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -777,7 +473,7 @@
      }
     },
     {
-     "name": "Sub_B1_9643",
+     "name": "EnemyTypeERespawn",
      "size": "81",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -793,7 +489,7 @@
      }
     },
     {
-     "name": "Sub_B1_96A4",
+     "name": "EnemyTypeEShoot",
      "size": "26",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -801,7 +497,7 @@
      }
     },
     {
-     "name": "Sub_B1_96BE",
+     "name": "EnemyTypeEChooseAction",
      "size": "42",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -841,7 +537,7 @@
      }
     },
     {
-     "name": "Sub_B1_9824",
+     "name": "Bank1State06_Respawn",
      "size": "127",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -849,7 +545,7 @@
      }
     },
     {
-     "name": "Sub_B1_98A3",
+     "name": "Bank1State06_ChooseAction",
      "size": "68",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -857,7 +553,7 @@
      }
     },
     {
-     "name": "Sub_B1_98E7",
+     "name": "Bank1State06_Shoot",
      "size": "35",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -881,7 +577,7 @@
      }
     },
     {
-     "name": "Sub_B1_9A3B",
+     "name": "Bank1State07_ChooseAction",
      "size": "127",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -889,7 +585,7 @@
      }
     },
     {
-     "name": "Sub_B1_9ABA",
+     "name": "StepObjectAnimTimerB",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -897,7 +593,7 @@
      }
     },
     {
-     "name": "Sub_B1_9ACB",
+     "name": "Bank1State07_Shoot",
      "size": "85",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -905,7 +601,7 @@
      }
     },
     {
-     "name": "Sub_B1_9B20",
+     "name": "Bank1State07_ChooseActionFlipped",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -921,7 +617,7 @@
      }
     },
     {
-     "name": "Sub_B1_9C68",
+     "name": "LoadEnemyAnimTableH",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -929,7 +625,7 @@
      }
     },
     {
-     "name": "Sub_B1_9C76",
+     "name": "EnemyTypeHChooseAction",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -937,7 +633,7 @@
      }
     },
     {
-     "name": "Sub_B1_9C92",
+     "name": "EnemyTypeHShoot",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -953,7 +649,7 @@
      }
     },
     {
-     "name": "Sub_B1_9DEE",
+     "name": "LoadEnemyAnimTableI",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -961,7 +657,7 @@
      }
     },
     {
-     "name": "Sub_B1_9DFC",
+     "name": "Bank1State09_ChooseAction",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -969,7 +665,7 @@
      }
     },
     {
-     "name": "Sub_B1_9E20",
+     "name": "Bank1State09_Shoot",
      "size": "84",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -977,15 +673,31 @@
      }
     },
     {
-     "name": "Loc_B1_9EE8",
+     "name": "Sub_B1_9E98",
+     "size": "50",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24232"
+     }
+    },
+    {
+     "name": "Sub_B1_9ECA",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24282"
+     }
+    },
+    {
+     "name": "UpdateEnemyTypeJ",
      "size": "107",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "24312"
      }
     },
     {
-     "name": "Sub_B1_9F53",
+     "name": "LoadEnemyAnimTableJ",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -993,7 +705,7 @@
      }
     },
     {
-     "name": "Sub_B1_9F61",
+     "name": "SetEnemyAnim9",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1001,7 +713,7 @@
      }
     },
     {
-     "name": "Sub_B1_9F68",
+     "name": "EnemyTypeJShoot",
      "size": "101",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1009,15 +721,15 @@
      }
     },
     {
-     "name": "Loc_B1_A007",
+     "name": "UpdateStaticAnimObject",
      "size": "43",
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "24599"
      }
     },
     {
-     "name": "Sub_B1_A032",
+     "name": "SetStaticAnimTablePtr",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1025,7 +737,79 @@
      }
     },
     {
-     "name": "Sub_B1_A957",
+     "name": "Sub_B1_A060",
+     "size": "30",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24688"
+     }
+    },
+    {
+     "name": "Sub_B1_A07E",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24718"
+     }
+    },
+    {
+     "name": "Sub_B1_A08C",
+     "size": "17",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24732"
+     }
+    },
+    {
+     "name": "Sub_B1_A0AB",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24763"
+     }
+    },
+    {
+     "name": "Sub_B1_A0CC",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24796"
+     }
+    },
+    {
+     "name": "Sub_B1_A0DA",
+     "size": "158",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24810"
+     }
+    },
+    {
+     "name": "Sub_B1_A178",
+     "size": "36",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "24968"
+     }
+    },
+    {
+     "name": "Sub_B1_A89A",
+     "size": "149",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "26794"
+     }
+    },
+    {
+     "name": "Sub_B1_A953",
+     "size": "4",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "26979"
+     }
+    },
+    {
+     "name": "ApplyAnimTableFlags",
      "size": "102",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1105,7 +889,7 @@
      }
     },
     {
-     "name": "Sub_B1_AB27",
+     "name": "ProcessItemObjectTimers",
      "size": "118",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1153,7 +937,7 @@
      }
     },
     {
-     "name": "Sub_B1_ABE0",
+     "name": "SpawnTemplatePair",
      "size": "105",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1161,7 +945,7 @@
      }
     },
     {
-     "name": "Sub_B1_AC5B",
+     "name": "InitObjectFromTemplate",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1258,25 +1042,25 @@
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "source_path": "c/auto/jp/bank_1.c"
    }
   },
   {
    "name": "main/bank_2",
    "measures": {
-    "fuzzy_match_percent": 91.7719,
+    "fuzzy_match_percent": 100.0,
     "total_code": "2139",
-    "matched_code": "1787",
-    "matched_code_percent": 83.5437,
+    "matched_code": "2139",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 23,
-    "matched_functions": 20,
-    "matched_functions_percent": 86.9565,
-    "complete_code": "0",
-    "complete_code_percent": 0.0,
+    "matched_functions": 23,
+    "matched_functions_percent": 100.0,
+    "complete_code": "2139",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -1286,14 +1070,14 @@
     {
      "name": ".text",
      "size": "2139",
-     "fuzzy_match_percent": 91.7719
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "Loc_B2_8000",
      "size": "9",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "32784"
      }
@@ -1301,7 +1085,7 @@
     {
      "name": "Bank2Nmi",
      "size": "113",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "32800"
      }
@@ -1309,7 +1093,7 @@
     {
      "name": "Sub_B2_8081",
      "size": "230",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "32913"
      }
@@ -1476,25 +1260,25 @@
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "source_path": "c/auto/jp/bank_2.c"
    }
   },
   {
    "name": "main/bank_3",
    "measures": {
-    "fuzzy_match_percent": 97.9581,
+    "fuzzy_match_percent": 100.0,
     "total_code": "3722",
-    "matched_code": "3570",
-    "matched_code_percent": 95.9162,
+    "matched_code": "3722",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 49,
-    "matched_functions": 46,
-    "matched_functions_percent": 93.8776,
-    "complete_code": "0",
-    "complete_code_percent": 0.0,
+    "matched_functions": 49,
+    "matched_functions_percent": 100.0,
+    "complete_code": "3722",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -1504,14 +1288,14 @@
     {
      "name": ".text",
      "size": "3722",
-     "fuzzy_match_percent": 97.9581
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "Loc_B3_8000",
      "size": "9",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "49168"
      }
@@ -1519,7 +1303,7 @@
     {
      "name": "Bank3Nmi",
      "size": "113",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "49184"
      }
@@ -1533,7 +1317,7 @@
      }
     },
     {
-     "name": "Sub_B3_8094",
+     "name": "TextBoxBeginStage",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1549,7 +1333,7 @@
      }
     },
     {
-     "name": "Sub_B3_812B",
+     "name": "TextBoxPickRowOffset",
      "size": "113",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1557,7 +1341,7 @@
      }
     },
     {
-     "name": "Sub_B3_819C",
+     "name": "TextBoxRestoreBackgroundTile",
      "size": "84",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1565,7 +1349,7 @@
      }
     },
     {
-     "name": "Sub_B3_81F0",
+     "name": "TextBoxStageDelay",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1573,7 +1357,7 @@
      }
     },
     {
-     "name": "Sub_B3_820B",
+     "name": "TextBoxClearRow0",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1581,7 +1365,7 @@
      }
     },
     {
-     "name": "Sub_B3_8210",
+     "name": "TextBoxClearRow1",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1589,7 +1373,7 @@
      }
     },
     {
-     "name": "Sub_B3_8215",
+     "name": "TextBoxClearRow2",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1597,7 +1381,7 @@
      }
     },
     {
-     "name": "Sub_B3_821A",
+     "name": "TextBoxClearRow3",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1613,7 +1397,7 @@
      }
     },
     {
-     "name": "Sub_B3_826C",
+     "name": "TextBoxRunInitStage",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1637,7 +1421,7 @@
      }
     },
     {
-     "name": "Sub_B3_831D",
+     "name": "TextBoxDispatchSubState",
      "size": "84",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1647,7 +1431,7 @@
     {
      "name": "Bank3Dispatch_041C",
      "size": "30",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "50049"
      }
@@ -1701,7 +1485,7 @@
      }
     },
     {
-     "name": "Sub_B3_83D8",
+     "name": "TextBoxMainStep",
      "size": "259",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1709,7 +1493,7 @@
      }
     },
     {
-     "name": "Sub_B3_84DB",
+     "name": "TextBoxWaitForA",
      "size": "117",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1717,7 +1501,7 @@
      }
     },
     {
-     "name": "Sub_B3_8550",
+     "name": "TextBoxWaitForChoice",
      "size": "67",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1725,7 +1509,7 @@
      }
     },
     {
-     "name": "Sub_B3_8593",
+     "name": "TextBoxWaitForAAdvance",
      "size": "26",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1781,7 +1565,7 @@
      }
     },
     {
-     "name": "Sub_B3_86E9",
+     "name": "BlinkTextCursorStep",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1877,7 +1661,7 @@
      }
     },
     {
-     "name": "Sub_B3_8D71",
+     "name": "TextBoxSaveBackgroundRows",
      "size": "184",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1893,7 +1677,7 @@
      }
     },
     {
-     "name": "Sub_B3_8EC6",
+     "name": "TextBoxInitStage",
      "size": "175",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1902,25 +1686,25 @@
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "source_path": "c/auto/jp/bank_3.c"
    }
   },
   {
    "name": "main/bank_4",
    "measures": {
-    "fuzzy_match_percent": 95.0847,
-    "total_code": "7141",
-    "matched_code": "6455",
-    "matched_code_percent": 90.3935,
+    "fuzzy_match_percent": 100.0,
+    "total_code": "7840",
+    "matched_code": "7840",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
-    "total_functions": 268,
-    "matched_functions": 247,
-    "matched_functions_percent": 92.1642,
-    "complete_code": "0",
-    "complete_code_percent": 0.0,
+    "total_functions": 301,
+    "matched_functions": 301,
+    "matched_functions_percent": 100.0,
+    "complete_code": "7840",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -1929,15 +1713,15 @@
    "sections": [
     {
      "name": ".text",
-     "size": "7141",
-     "fuzzy_match_percent": 95.0847
+     "size": "7840",
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "Loc_B4_8000",
      "size": "9",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "65552"
      }
@@ -1945,13 +1729,13 @@
     {
      "name": "Bank4Nmi",
      "size": "147",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "65568"
      }
     },
     {
-     "name": "Sub_B4_80B3",
+     "name": "DispatchSceneStateBank4",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2049,7 +1833,7 @@
     {
      "name": "Bank4Tbl80C9_0B",
      "size": "62",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66057"
      }
@@ -2105,15 +1889,15 @@
     {
      "name": "Bank4Tbl80C9_12",
      "size": "27",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66206"
      }
     },
     {
-     "name": "Sub_B4_82BC",
+     "name": "ReloadMazeAfterMove",
      "size": "58",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66252"
      }
@@ -2169,7 +1953,7 @@
     {
      "name": "Bank4Tbl80C9_18",
      "size": "38",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66431"
      }
@@ -2185,7 +1969,7 @@
     {
      "name": "Bank4Tbl80C9_1A",
      "size": "6",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66475"
      }
@@ -2209,7 +1993,7 @@
     {
      "name": "Bank4Tbl80C9_1D",
      "size": "35",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66516"
      }
@@ -2217,7 +2001,7 @@
     {
      "name": "Bank4Tbl80C9_1E",
      "size": "62",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "66551"
      }
@@ -2287,7 +2071,7 @@
      }
     },
     {
-     "name": "Sub_B4_858B",
+     "name": "UpdateCompassMarkers",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2415,7 +2199,7 @@
      }
     },
     {
-     "name": "Sub_B4_86DD",
+     "name": "ClearObjectTable",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2423,7 +2207,7 @@
      }
     },
     {
-     "name": "Sub_B4_8ADF",
+     "name": "LoadMazeObjectTables",
      "size": "90",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2431,7 +2215,7 @@
      }
     },
     {
-     "name": "Sub_B4_8B39",
+     "name": "InitAllObjectAnims",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2447,7 +2231,7 @@
      }
     },
     {
-     "name": "Sub_B4_8BD5",
+     "name": "RequestTransitionFromTable",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2463,23 +2247,31 @@
      }
     },
     {
-     "name": "Sub_B4_8C24",
+     "name": "ChangeMazeSection",
      "size": "6",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "68660"
      }
     },
     {
-     "name": "Sub_B4_8C2A",
+     "name": "DispatchMazeExit",
      "size": "21",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "68666"
      }
     },
     {
-     "name": "Sub_B4_8C96",
+     "name": "Sub_B4_8C7B",
+     "size": "13",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68747"
+     }
+    },
+    {
+     "name": "MazeExit3",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2487,7 +2279,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CA0",
+     "name": "MazeExit4",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2495,7 +2287,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CA5",
+     "name": "MazeExit5",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2503,7 +2295,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CAA",
+     "name": "MazeExit6",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2511,7 +2303,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CAF",
+     "name": "MazeExit7",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2519,15 +2311,31 @@
      }
     },
     {
-     "name": "Loc_B4_8D1C",
-     "size": "25",
+     "name": "Sub_B4_8CB4",
+     "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
-      "virtual_address": "68908"
+      "virtual_address": "68804"
      }
     },
     {
-     "name": "Sub_B4_8D35",
+     "name": "Sub_B4_8CD2",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68834"
+     }
+    },
+    {
+     "name": "Sub_B4_8CF1",
+     "size": "68",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "68865"
+     }
+    },
+    {
+     "name": "HandleActionButtonInMaze",
      "size": "97",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2543,7 +2351,7 @@
      }
     },
     {
-     "name": "Sub_B4_8E16",
+     "name": "HideCursorSprites",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2551,7 +2359,7 @@
      }
     },
     {
-     "name": "Sub_B4_8E23",
+     "name": "DispatchPickupHandler",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2607,7 +2415,7 @@
      }
     },
     {
-     "name": "Sub_B4_8EDF",
+     "name": "StartPaletteFade",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2615,7 +2423,7 @@
      }
     },
     {
-     "name": "Sub_B4_8EF1",
+     "name": "CopyPaletteEntryFromTable",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2663,7 +2471,7 @@
      }
     },
     {
-     "name": "Sub_B4_8FE1",
+     "name": "ClearNametableRowAt054A",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2671,7 +2479,7 @@
      }
     },
     {
-     "name": "Sub_B4_901A",
+     "name": "ClearNametable2Rows",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2687,7 +2495,7 @@
      }
     },
     {
-     "name": "Sub_B4_905D",
+     "name": "DispatchPpuOpRequest",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2695,7 +2503,7 @@
      }
     },
     {
-     "name": "Sub_B4_9088",
+     "name": "PpuOpNone",
      "size": "1",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2703,7 +2511,7 @@
      }
     },
     {
-     "name": "Sub_B4_908C",
+     "name": "PpuListThunkSource",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2719,7 +2527,7 @@
      }
     },
     {
-     "name": "Sub_B4_90B6",
+     "name": "CopyPpuListStubToRam",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2727,7 +2535,7 @@
      }
     },
     {
-     "name": "Sub_B4_90C2",
+     "name": "PpuOpRunList",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2743,11 +2551,11 @@
      }
     },
     {
-     "name": "Loc_B4_90CE",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
+     "name": "Sub_B4_90C8",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
-      "virtual_address": "69854"
+      "virtual_address": "69848"
      }
     },
     {
@@ -2767,7 +2575,7 @@
      }
     },
     {
-     "name": "Sub_B4_90DD",
+     "name": "RandomByteMixed",
      "size": "10",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2791,7 +2599,7 @@
      }
     },
     {
-     "name": "Sub_B4_9106",
+     "name": "LoadObjectSpeedFromType",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2807,7 +2615,7 @@
      }
     },
     {
-     "name": "Sub_B4_9196",
+     "name": "LoadMazeData",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2823,7 +2631,7 @@
      }
     },
     {
-     "name": "Sub_B4_95A1",
+     "name": "InitMazePalette",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2831,7 +2639,7 @@
      }
     },
     {
-     "name": "Sub_B4_95DA",
+     "name": "RequestPaletteUpdate",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2839,7 +2647,7 @@
      }
     },
     {
-     "name": "Sub_B4_95E0",
+     "name": "SetFadeParamsFromTable",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2847,7 +2655,7 @@
      }
     },
     {
-     "name": "Sub_B4_961B",
+     "name": "ReadMazeInput",
      "size": "231",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2855,7 +2663,7 @@
      }
     },
     {
-     "name": "Sub_B4_9702",
+     "name": "LookupMazeCellInfo",
      "size": "110",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2863,7 +2671,7 @@
      }
     },
     {
-     "name": "Sub_B4_9880",
+     "name": "DrawCorridorView",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2903,7 +2711,7 @@
      }
     },
     {
-     "name": "Sub_B4_993A",
+     "name": "UnpackWallBits",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2919,15 +2727,15 @@
      }
     },
     {
-     "name": "Sub_B4_997B",
+     "name": "DrawMazeScreen",
      "size": "18",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "72075"
      }
     },
     {
-     "name": "Sub_B4_998D",
+     "name": "DrawRleScreen",
      "size": "57",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2951,9 +2759,9 @@
      }
     },
     {
-     "name": "Sub_B4_9A8B",
+     "name": "DrawWallSegments",
      "size": "115",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "72347"
      }
@@ -2961,7 +2769,7 @@
     {
      "name": "Loc_B4_9B00",
      "size": "4",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "72464"
      }
@@ -2969,7 +2777,7 @@
     {
      "name": "Loc_B4_9B06",
      "size": "1",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "72470"
      }
@@ -3015,7 +2823,7 @@
      }
     },
     {
-     "name": "Sub_B4_9F94",
+     "name": "CopyThunkToRamAndCall800A",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3023,7 +2831,7 @@
      }
     },
     {
-     "name": "Sub_B4_9FAC",
+     "name": "DrawCollectedCountIcons",
      "size": "42",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3031,7 +2839,7 @@
      }
     },
     {
-     "name": "Sub_B4_9FD6",
+     "name": "AddCollectedCountIcon",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3039,7 +2847,7 @@
      }
     },
     {
-     "name": "Sub_B4_9FEB",
+     "name": "SetupIconPpuBuffer",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3063,7 +2871,7 @@
      }
     },
     {
-     "name": "Sub_B4_A033",
+     "name": "DrawCollectedItemIcons",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3143,7 +2951,7 @@
      }
     },
     {
-     "name": "Sub_B4_A0F1",
+     "name": "SpawnDoorObjectsIfAhead",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3183,7 +2991,7 @@
      }
     },
     {
-     "name": "Sub_B4_A177",
+     "name": "CopyThunkToRamAndCall800D",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3191,7 +2999,31 @@
      }
     },
     {
-     "name": "Sub_B4_A226",
+     "name": "Sub_B4_A18F",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74143"
+     }
+    },
+    {
+     "name": "Sub_B4_A1AE",
+     "size": "22",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74174"
+     }
+    },
+    {
+     "name": "Sub_B4_A1D5",
+     "size": "81",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74213"
+     }
+    },
+    {
+     "name": "MazeObjType11State7",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3199,7 +3031,23 @@
      }
     },
     {
-     "name": "Sub_B4_A28D",
+     "name": "Sub_B4_A242",
+     "size": "11",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74322"
+     }
+    },
+    {
+     "name": "Sub_B4_A25E",
+     "size": "47",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74350"
+     }
+    },
+    {
+     "name": "UpdateDoorObject",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3207,7 +3055,7 @@
      }
     },
     {
-     "name": "Sub_B4_A2B4",
+     "name": "DoorState0",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3215,7 +3063,7 @@
      }
     },
     {
-     "name": "Sub_B4_A2CF",
+     "name": "DoorState1",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3223,7 +3071,7 @@
      }
     },
     {
-     "name": "Sub_B4_A2DF",
+     "name": "DoorState2",
      "size": "82",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3231,7 +3079,7 @@
      }
     },
     {
-     "name": "Sub_B4_A331",
+     "name": "DoorState3",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3239,7 +3087,7 @@
      }
     },
     {
-     "name": "Sub_B4_A348",
+     "name": "DoorState4",
      "size": "65",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3247,7 +3095,7 @@
      }
     },
     {
-     "name": "Sub_B4_A3BC",
+     "name": "DoorState5",
      "size": "28",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3263,7 +3111,7 @@
      }
     },
     {
-     "name": "Loc_B4_A477",
+     "name": "Sub_B4_A477",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3271,7 +3119,7 @@
      }
     },
     {
-     "name": "Sub_B4_A494",
+     "name": "MazeObjType04State0",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3279,7 +3127,7 @@
      }
     },
     {
-     "name": "Sub_B4_A49C",
+     "name": "WaitObjectTimer",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3288,10 +3136,26 @@
     },
     {
      "name": "CollectAmmoItem",
-     "size": "90",
+     "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "74935"
+     }
+    },
+    {
+     "name": "Sub_B4_A4C4",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74964"
+     }
+    },
+    {
+     "name": "MazeObjType20",
+     "size": "46",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "74979"
      }
     },
     {
@@ -3304,14 +3168,30 @@
     },
     {
      "name": "CollectLifeItem",
-     "size": "63",
+     "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "75039"
      }
     },
     {
-     "name": "Sub_B4_A54E",
+     "name": "MazeObjType21",
+     "size": "14",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75064"
+     }
+    },
+    {
+     "name": "Sub_B4_A537",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75079"
+     }
+    },
+    {
+     "name": "MazeObjType05",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3319,7 +3199,7 @@
      }
     },
     {
-     "name": "Sub_B4_A57D",
+     "name": "MazeObjType05State0",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3327,7 +3207,7 @@
      }
     },
     {
-     "name": "Sub_B4_A589",
+     "name": "MazeObjType05State1",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3335,7 +3215,7 @@
      }
     },
     {
-     "name": "Sub_B4_A58C",
+     "name": "MazeObjType05State2",
      "size": "38",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3351,7 +3231,7 @@
      }
     },
     {
-     "name": "Sub_B4_A60B",
+     "name": "MazeObjType05State4",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3359,7 +3239,7 @@
      }
     },
     {
-     "name": "Sub_B4_A632",
+     "name": "MazeObjType05State5",
      "size": "45",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3375,7 +3255,7 @@
      }
     },
     {
-     "name": "Sub_B4_A6FF",
+     "name": "MazeObjType05State7",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3385,7 +3265,7 @@
     {
      "name": "Sub_B4_A710",
      "size": "21",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "75552"
      }
@@ -3393,13 +3273,13 @@
     {
      "name": "Loc_B4_A727",
      "size": "3",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "75575"
      }
     },
     {
-     "name": "Sub_B4_A73B",
+     "name": "DispatchMazeSpecificEvent",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3407,7 +3287,7 @@
      }
     },
     {
-     "name": "Sub_B4_A775",
+     "name": "WarpToMaze2",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3415,7 +3295,7 @@
      }
     },
     {
-     "name": "Sub_B4_A792",
+     "name": "WarpToNextMaze",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3423,7 +3303,7 @@
      }
     },
     {
-     "name": "Sub_B4_A7BA",
+     "name": "MazeObjType05State9",
      "size": "8",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3439,7 +3319,7 @@
      }
     },
     {
-     "name": "Sub_B4_A7D5",
+     "name": "MazeObjType05StateB",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3447,23 +3327,127 @@
      }
     },
     {
-     "name": "Loc_B4_A9CC",
-     "size": "14",
-     "fuzzy_match_percent": 0.0,
+     "name": "Sub_B4_A809",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
      "metadata": {
-      "virtual_address": "76252"
+      "virtual_address": "75801"
      }
     },
     {
-     "name": "Sub_B4_A9E3",
-     "size": "75",
+     "name": "Sub_B4_A8C2",
+     "size": "6",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75986"
+     }
+    },
+    {
+     "name": "Sub_B4_A8C8",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "75992"
+     }
+    },
+    {
+     "name": "Sub_B4_A8EF",
+     "size": "28",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76031"
+     }
+    },
+    {
+     "name": "Sub_B4_A91C",
+     "size": "33",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76076"
+     }
+    },
+    {
+     "name": "Sub_B4_A93D",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76109"
+     }
+    },
+    {
+     "name": "Sub_B4_A949",
+     "size": "7",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76121"
+     }
+    },
+    {
+     "name": "Sub_B4_A950",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76128"
+     }
+    },
+    {
+     "name": "Sub_B4_A95C",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76140"
+     }
+    },
+    {
+     "name": "Sub_B4_A968",
+     "size": "25",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76152"
+     }
+    },
+    {
+     "name": "Sub_B4_A981",
+     "size": "26",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76177"
+     }
+    },
+    {
+     "name": "Sub_B4_A99B",
+     "size": "16",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76203"
+     }
+    },
+    {
+     "name": "Loc_B4_A9BC",
+     "size": "39",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76236"
+     }
+    },
+    {
+     "name": "MazeObjType07",
+     "size": "46",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "76275"
      }
     },
     {
-     "name": "Sub_B4_AA2E",
+     "name": "Sub_B4_AA11",
+     "size": "29",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "76321"
+     }
+    },
+    {
+     "name": "MazeObjType09",
      "size": "11",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3471,7 +3455,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA39",
+     "name": "MazeObjType0A",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3479,7 +3463,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA3F",
+     "name": "UpdateEnemyObject",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3487,7 +3471,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA84",
+     "name": "MazeObjEnemy0AState0",
      "size": "60",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3495,7 +3479,7 @@
      }
     },
     {
-     "name": "Sub_B4_AAC0",
+     "name": "MazeObjEnemy0AState1",
      "size": "4",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3503,7 +3487,7 @@
      }
     },
     {
-     "name": "Sub_B4_AAC4",
+     "name": "MazeObjEnemy0AState3",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3511,7 +3495,7 @@
      }
     },
     {
-     "name": "Sub_B4_AAD5",
+     "name": "MazeObjEnemy0AState2",
      "size": "62",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3519,7 +3503,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB17",
+     "name": "MazeObjEnemy0AState4",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3527,7 +3511,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB38",
+     "name": "MazeObjEnemy0AState5",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3543,7 +3527,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB5C",
+     "name": "MazeObjEnemy0AStateC",
      "size": "33",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3551,7 +3535,7 @@
      }
     },
     {
-     "name": "Sub_B4_AB7D",
+     "name": "MazeObjEnemy0AStateD",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3567,7 +3551,7 @@
      }
     },
     {
-     "name": "Sub_B4_ABB9",
+     "name": "ObjectMoveUpStep",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3575,7 +3559,7 @@
      }
     },
     {
-     "name": "Sub_B4_ABCF",
+     "name": "CollectBonusItem",
      "size": "39",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3599,7 +3583,7 @@
      }
     },
     {
-     "name": "Sub_B4_AC61",
+     "name": "MoveObjectXY",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3623,15 +3607,15 @@
      }
     },
     {
-     "name": "Loc_B4_AC7C",
-     "size": "21",
+     "name": "MazeObjType27",
+     "size": "34",
      "fuzzy_match_percent": 100.0,
      "metadata": {
-      "virtual_address": "76940"
+      "virtual_address": "76927"
      }
     },
     {
-     "name": "Sub_B4_AC91",
+     "name": "MazeObjType28",
      "size": "128",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3647,7 +3631,7 @@
      }
     },
     {
-     "name": "Sub_B4_AD2D",
+     "name": "ConfirmWithAButton",
      "size": "24",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3655,7 +3639,7 @@
      }
     },
     {
-     "name": "Sub_B4_AD45",
+     "name": "ShowFullScreenMessage",
      "size": "49",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3671,7 +3655,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE4A",
+     "name": "FullScreenMessageWait",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3679,7 +3663,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE7A",
+     "name": "ReturnFromFullScreenMessage",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3687,7 +3671,7 @@
      }
     },
     {
-     "name": "Sub_B4_AE8F",
+     "name": "RequestPpuOp6AndRemove",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3695,7 +3679,15 @@
      }
     },
     {
-     "name": "Sub_B4_AEEA",
+     "name": "Sub_B4_AEBE",
+     "size": "44",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77518"
+     }
+    },
+    {
+     "name": "MazeObjType11",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3703,7 +3695,7 @@
      }
     },
     {
-     "name": "Sub_B4_AEF0",
+     "name": "UpdateMazeObjType11",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3711,7 +3703,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF17",
+     "name": "MazeObjType11State0",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3719,7 +3711,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF3E",
+     "name": "MazeObjType11State1",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3727,7 +3719,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF51",
+     "name": "MazeObjType11State2",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3735,7 +3727,7 @@
      }
     },
     {
-     "name": "Sub_B4_AF61",
+     "name": "MazeObjType11State3",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3743,7 +3735,7 @@
      }
     },
     {
-     "name": "Sub_B4_AFA7",
+     "name": "MazeObjType11State4",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3751,7 +3743,7 @@
      }
     },
     {
-     "name": "Sub_B4_AFB8",
+     "name": "MazeObjType11State5",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3759,7 +3751,7 @@
      }
     },
     {
-     "name": "Sub_B4_AFC6",
+     "name": "MazeObjType11State6",
      "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3775,7 +3767,7 @@
      }
     },
     {
-     "name": "Sub_B4_B011",
+     "name": "ResetDamageFlash",
      "size": "15",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3783,7 +3775,7 @@
      }
     },
     {
-     "name": "Sub_B4_B02C",
+     "name": "SetObjectTimerFromLife",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3791,7 +3783,7 @@
      }
     },
     {
-     "name": "Sub_B4_B04B",
+     "name": "ShakeScreenStep",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3799,7 +3791,47 @@
      }
     },
     {
-     "name": "Sub_B4_B0F6",
+     "name": "Sub_B4_B068",
+     "size": "78",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "77944"
+     }
+    },
+    {
+     "name": "Sub_B4_B0B6",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78022"
+     }
+    },
+    {
+     "name": "Sub_B4_B0D3",
+     "size": "9",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78051"
+     }
+    },
+    {
+     "name": "Sub_B4_B0DC",
+     "size": "3",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78060"
+     }
+    },
+    {
+     "name": "Sub_B4_B0DF",
+     "size": "23",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78063"
+     }
+    },
+    {
+     "name": "MazeObjType14",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3807,7 +3839,7 @@
      }
     },
     {
-     "name": "Sub_B4_B106",
+     "name": "MazeObjType16",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3823,7 +3855,7 @@
      }
     },
     {
-     "name": "Sub_B4_B15F",
+     "name": "MazeObjType16State1",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3831,7 +3863,7 @@
      }
     },
     {
-     "name": "Sub_B4_B174",
+     "name": "MazeObjType16State2",
      "size": "107",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3839,7 +3871,7 @@
      }
     },
     {
-     "name": "Sub_B4_B1E3",
+     "name": "MazeObjType17",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3847,7 +3879,7 @@
      }
     },
     {
-     "name": "Sub_B4_B202",
+     "name": "MazeObjType17State0",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3855,7 +3887,7 @@
      }
     },
     {
-     "name": "Sub_B4_B222",
+     "name": "MazeObjType17State1",
      "size": "56",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3863,7 +3895,7 @@
      }
     },
     {
-     "name": "Sub_B4_B25A",
+     "name": "MazeObjType17State2",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3871,7 +3903,7 @@
      }
     },
     {
-     "name": "Sub_B4_B285",
+     "name": "MazeObjType17State3",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3879,15 +3911,7 @@
      }
     },
     {
-     "name": "Loc_B4_B29F",
-     "size": "1",
-     "fuzzy_match_percent": 0.0,
-     "metadata": {
-      "virtual_address": "78511"
-     }
-    },
-    {
-     "name": "Sub_B4_B2A3",
+     "name": "MazeObjType18",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3895,7 +3919,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2C0",
+     "name": "MazeObjType18State0",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3903,7 +3927,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2D1",
+     "name": "MazeObjType18State1",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3911,7 +3935,7 @@
      }
     },
     {
-     "name": "Sub_B4_B2E6",
+     "name": "MazeObjType18State2",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3935,7 +3959,7 @@
      }
     },
     {
-     "name": "Sub_B4_B362",
+     "name": "CollectFullRestoreItem",
      "size": "40",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3951,7 +3975,7 @@
      }
     },
     {
-     "name": "Sub_B4_B3A1",
+     "name": "RemoveObjectWithPpuListD",
      "size": "30",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3992,10 +4016,18 @@
     },
     {
      "name": "Sub_B4_B404",
-     "size": "31",
+     "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "78868"
+     }
+    },
+    {
+     "name": "AddObjectXVelocity",
+     "size": "12",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78887"
      }
     },
     {
@@ -4007,7 +4039,7 @@
      }
     },
     {
-     "name": "Sub_B4_B42F",
+     "name": "SetObjectFlagsE0",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4015,7 +4047,7 @@
      }
     },
     {
-     "name": "Sub_B4_B438",
+     "name": "SetObjectFlagsC0",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4024,14 +4056,22 @@
     },
     {
      "name": "AddObjectOfType",
-     "size": "40",
+     "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "78927"
      }
     },
     {
-     "name": "Sub_B4_B467",
+     "name": "Sub_B4_B452",
+     "size": "21",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "78946"
+     }
+    },
+    {
+     "name": "ResetScrollAndObjectFlags",
      "size": "19",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4055,7 +4095,7 @@
      }
     },
     {
-     "name": "Sub_B4_B4B1",
+     "name": "UpdateAllObjectHandlers",
      "size": "62",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4073,32 +4113,40 @@
     {
      "name": "DispatchObjectHandler",
      "size": "37",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "79112"
+     }
+    },
+    {
+     "name": "Sub_B4_B577",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "79239"
      }
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "source_path": "c/auto/jp/bank_4.c"
    }
   },
   {
    "name": "main/bank_5",
    "measures": {
-    "fuzzy_match_percent": 99.0616,
-    "total_code": "5648",
-    "matched_code": "5542",
-    "matched_code_percent": 98.1232,
+    "fuzzy_match_percent": 100.0,
+    "total_code": "5649",
+    "matched_code": "5649",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
-    "total_functions": 204,
-    "matched_functions": 199,
-    "matched_functions_percent": 97.549,
-    "complete_code": "0",
-    "complete_code_percent": 0.0,
+    "total_functions": 205,
+    "matched_functions": 205,
+    "matched_functions_percent": 100.0,
+    "complete_code": "5649",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -4107,21 +4155,21 @@
    "sections": [
     {
      "name": ".text",
-     "size": "5648",
-     "fuzzy_match_percent": 99.0616
+     "size": "5649",
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "Loc_B5_8000",
      "size": "9",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "81936"
      }
     },
     {
-     "name": "Sub_B5_800A",
+     "name": "CallBank5FromBank4A",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4129,7 +4177,7 @@
      }
     },
     {
-     "name": "Sub_B5_800D",
+     "name": "CallBank5FromBank4B",
      "size": "66",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4137,7 +4185,7 @@
      }
     },
     {
-     "name": "Sub_B5_804F",
+     "name": "Bank5SceneDispatch",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4153,7 +4201,7 @@
      }
     },
     {
-     "name": "Sub_B5_8150",
+     "name": "DisableRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4201,7 +4249,7 @@
      }
     },
     {
-     "name": "Sub_B5_8187",
+     "name": "EnableRendering",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4419,7 +4467,7 @@
     {
      "name": "Bank5Tbl8065_20",
      "size": "12",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "82752"
      }
@@ -4793,6 +4841,14 @@
      }
     },
     {
+     "name": "Sub_B5_8693",
+     "size": "1",
+     "fuzzy_match_percent": 100.0,
+     "metadata": {
+      "virtual_address": "83619"
+     }
+    },
+    {
      "name": "Sub_B5_8694",
      "size": "11",
      "fuzzy_match_percent": 100.0,
@@ -4801,7 +4857,7 @@
      }
     },
     {
-     "name": "Sub_B5_869F",
+     "name": "WaitSceneTimerThenEnableRender",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4809,7 +4865,7 @@
      }
     },
     {
-     "name": "Sub_B5_86AB",
+     "name": "WaitSceneCounterZero",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4953,7 +5009,7 @@
      }
     },
     {
-     "name": "Sub_B5_8946",
+     "name": "HideAllSpritesB5",
      "size": "2",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4961,7 +5017,7 @@
      }
     },
     {
-     "name": "Sub_B5_8948",
+     "name": "HideSpritesFromX",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5001,7 +5057,7 @@
      }
     },
     {
-     "name": "Sub_B5_8A50",
+     "name": "Bank5SubStateDispatch",
      "size": "22",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5089,7 +5145,7 @@
      }
     },
     {
-     "name": "Sub_B5_8BBC",
+     "name": "Bank5NextAnimFrame",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5097,7 +5153,7 @@
      }
     },
     {
-     "name": "Sub_B5_8BC5",
+     "name": "AnimateOfficeSpeaker",
      "size": "118",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5105,7 +5161,7 @@
      }
     },
     {
-     "name": "Sub_B5_8D23",
+     "name": "DrawOfficeSpeakerSprites",
      "size": "141",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5113,7 +5169,7 @@
      }
     },
     {
-     "name": "Sub_B5_8E3B",
+     "name": "CopyRamStub0513",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5121,7 +5177,7 @@
      }
     },
     {
-     "name": "Sub_B5_8E52",
+     "name": "CopyRamStub05B8",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5193,7 +5249,7 @@
      }
     },
     {
-     "name": "Sub_B5_8FA9",
+     "name": "CopyRamStub051E",
      "size": "12",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5225,7 +5281,7 @@
      }
     },
     {
-     "name": "Sub_B5_9092",
+     "name": "BlankScreenAndInitPpu",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5281,7 +5337,7 @@
      }
     },
     {
-     "name": "Sub_B5_91DF",
+     "name": "AnimateSkylineWindows",
      "size": "34",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5289,7 +5345,7 @@
      }
     },
     {
-     "name": "Sub_B5_9283",
+     "name": "AnimateHelicopterSprite",
      "size": "84",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5297,7 +5353,7 @@
      }
     },
     {
-     "name": "Sub_B5_93E0",
+     "name": "MoveSceneSpriteRandomly",
      "size": "119",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5321,7 +5377,7 @@
      }
     },
     {
-     "name": "Sub_B5_96F2",
+     "name": "AnimateIntroTile",
      "size": "18",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5345,7 +5401,7 @@
      }
     },
     {
-     "name": "Sub_B5_97CF",
+     "name": "DrawOfficeScene",
      "size": "37",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5361,7 +5417,7 @@
      }
     },
     {
-     "name": "Sub_B5_981C",
+     "name": "DrawSpriteListToOam",
      "size": "64",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5377,7 +5433,7 @@
      }
     },
     {
-     "name": "Sub_B5_9902",
+     "name": "DrawSpriteListWithOffset",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5513,7 +5569,7 @@
      }
     },
     {
-     "name": "Sub_B5_A0C9",
+     "name": "TickSoundChannel",
      "size": "182",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5521,7 +5577,7 @@
      }
     },
     {
-     "name": "Sub_B5_A17F",
+     "name": "LoadSoundChannelRegistersIfActive",
      "size": "5",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5529,7 +5585,7 @@
      }
     },
     {
-     "name": "Sub_B5_A184",
+     "name": "LoadSoundChannelRegisters",
      "size": "31",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5563,7 +5619,7 @@
     {
      "name": "SoundCmdA_04",
      "size": "21",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "90618"
      }
@@ -5643,7 +5699,7 @@
     {
      "name": "SoundCmdB_06",
      "size": "43",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "90940"
      }
@@ -5683,7 +5739,7 @@
     {
      "name": "InlineJumpTable",
      "size": "21",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "91252"
      }
@@ -5746,25 +5802,25 @@
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "source_path": "c/auto/jp/bank_5.c"
    }
   },
   {
    "name": "main/bank_6",
    "measures": {
-    "fuzzy_match_percent": 98.2083,
+    "fuzzy_match_percent": 100.0,
     "total_code": "2707",
-    "matched_code": "2610",
-    "matched_code_percent": 96.4167,
+    "matched_code": "2707",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
     "total_functions": 63,
-    "matched_functions": 60,
-    "matched_functions_percent": 95.2381,
-    "complete_code": "0",
-    "complete_code_percent": 0.0,
+    "matched_functions": 63,
+    "matched_functions_percent": 100.0,
+    "complete_code": "2707",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -5774,14 +5830,14 @@
     {
      "name": ".text",
      "size": "2707",
-     "fuzzy_match_percent": 98.2083
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "Loc_B6_8000",
      "size": "9",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "98320"
      }
@@ -5789,7 +5845,7 @@
     {
      "name": "Bank6Nmi",
      "size": "15",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "98336"
      }
@@ -5963,7 +6019,7 @@
      }
     },
     {
-     "name": "Sub_B6_85FD",
+     "name": "SpawnObjectTypeCB",
      "size": "63",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5979,7 +6035,7 @@
      }
     },
     {
-     "name": "Sub_B6_865C",
+     "name": "RandomizeSpawnFlags70",
      "size": "48",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5987,7 +6043,7 @@
      }
     },
     {
-     "name": "Sub_B6_868C",
+     "name": "SetSpawnYWithRandomOffset",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -5995,7 +6051,7 @@
      }
     },
     {
-     "name": "Sub_B6_869A",
+     "name": "SetSpawnSideFromPlayerY",
      "size": "32",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6003,7 +6059,7 @@
      }
     },
     {
-     "name": "Sub_B6_86BA",
+     "name": "ShiftSpawnXLeft4",
      "size": "17",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6019,7 +6075,7 @@
      }
     },
     {
-     "name": "Sub_B6_8703",
+     "name": "TurnObjectIntoPickupEffect",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6035,7 +6091,7 @@
      }
     },
     {
-     "name": "Sub_B6_8746",
+     "name": "ShiftSpawnXRight18",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6043,7 +6099,7 @@
      }
     },
     {
-     "name": "Sub_B6_8756",
+     "name": "SetChildObjectTypes52",
      "size": "125",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6051,7 +6107,7 @@
      }
     },
     {
-     "name": "Sub_B6_87D3",
+     "name": "SetSpawnYFixed10",
      "size": "7",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6059,7 +6115,7 @@
      }
     },
     {
-     "name": "Sub_B6_87DA",
+     "name": "OffsetSpawnXByInput",
      "size": "41",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6075,15 +6131,15 @@
      }
     },
     {
-     "name": "Sub_B6_8822",
+     "name": "RandomizeSpawnFlagsPair",
      "size": "73",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "100402"
      }
     },
     {
-     "name": "Sub_B6_886B",
+     "name": "RandomizeSpawnFlag10",
      "size": "80",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -6284,25 +6340,25 @@
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "source_path": "c/auto/jp/bank_6.c"
    }
   },
   {
    "name": "main/bank_7",
    "measures": {
-    "fuzzy_match_percent": 96.8327,
+    "fuzzy_match_percent": 100.0,
     "total_code": "11145",
-    "matched_code": "10439",
-    "matched_code_percent": 93.6653,
+    "matched_code": "11145",
+    "matched_code_percent": 100.0,
     "total_data": "0",
     "matched_data": "0",
     "matched_data_percent": 0.0,
-    "total_functions": 168,
-    "matched_functions": 162,
-    "matched_functions_percent": 96.4286,
-    "complete_code": "0",
-    "complete_code_percent": 0.0,
+    "total_functions": 167,
+    "matched_functions": 167,
+    "matched_functions_percent": 100.0,
+    "complete_code": "11145",
+    "complete_code_percent": 100.0,
     "complete_data": "0",
     "complete_data_percent": 0.0,
     "total_units": 1,
@@ -6312,14 +6368,14 @@
     {
      "name": ".text",
      "size": "11145",
-     "fuzzy_match_percent": 96.8327
+     "fuzzy_match_percent": 100.0
     }
    ],
    "functions": [
     {
      "name": "Loc_C000",
      "size": "142",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "114704"
      }
@@ -6327,7 +6383,7 @@
     {
      "name": "DrawObjectsBanked",
      "size": "20",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "114896"
      }
@@ -6335,7 +6391,7 @@
     {
      "name": "Loc_C0E0",
      "size": "3",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "114928"
      }
@@ -6343,7 +6399,7 @@
     {
      "name": "JumpNmiGameStateDispatch",
      "size": "3",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "114931"
      }
@@ -6359,7 +6415,7 @@
     {
      "name": "ProcessPpuUpdateList",
      "size": "112",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "114960"
      }
@@ -6759,7 +6815,7 @@
     {
      "name": "NmiGameStateDispatch",
      "size": "426",
-     "fuzzy_match_percent": 50.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "117257"
      }
@@ -6885,7 +6941,7 @@
      }
     },
     {
-     "name": "Sub_D177",
+     "name": "CheckAreaInStageList",
      "size": "64",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7013,7 +7069,7 @@
      }
     },
     {
-     "name": "Sub_D7B2",
+     "name": "CheckDialogueTrigger",
      "size": "187",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7029,7 +7085,7 @@
      }
     },
     {
-     "name": "Sub_D8CB",
+     "name": "RunDialogueState",
      "size": "51",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7045,7 +7101,7 @@
      }
     },
     {
-     "name": "Sub_DA0A",
+     "name": "PrepareDialogueScreen",
      "size": "59",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7069,7 +7125,7 @@
      }
     },
     {
-     "name": "Sub_DB07",
+     "name": "DialogueLoadAreaScript",
      "size": "122",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7149,7 +7205,7 @@
      }
     },
     {
-     "name": "Sub_DF12",
+     "name": "DrawGameOverSprite",
      "size": "50",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7157,7 +7213,7 @@
      }
     },
     {
-     "name": "Sub_DF44",
+     "name": "RunEndScreen",
      "size": "96",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7165,7 +7221,7 @@
      }
     },
     {
-     "name": "Sub_E018",
+     "name": "SelectEndScreenPhase",
      "size": "36",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7181,7 +7237,7 @@
      }
     },
     {
-     "name": "Sub_E05E",
+     "name": "FadeEndScreen",
      "size": "27",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7189,7 +7245,7 @@
      }
     },
     {
-     "name": "Sub_E079",
+     "name": "InitEndScreenSprites",
      "size": "16",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7221,7 +7277,7 @@
      }
     },
     {
-     "name": "Sub_E664",
+     "name": "HandleSceneRequest",
      "size": "174",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7277,7 +7333,7 @@
      }
     },
     {
-     "name": "Sub_EA02",
+     "name": "StartPlayerFallIfNoFloor",
      "size": "43",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7285,7 +7341,7 @@
      }
     },
     {
-     "name": "Sub_EA2D",
+     "name": "AdvancePlayerPoseTimer",
      "size": "52",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7366,18 +7422,10 @@
     },
     {
      "name": "UpdatePlayerSideView",
-     "size": "7",
+     "size": "20",
      "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": "126761"
-     }
-    },
-    {
-     "name": "Sub_EF20",
-     "size": "13",
-     "fuzzy_match_percent": 100.0,
-     "metadata": {
-      "virtual_address": "126768"
      }
     },
     {
@@ -7397,7 +7445,7 @@
      }
     },
     {
-     "name": "Sub_EFA9",
+     "name": "ReturnNop",
      "size": "1",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7549,7 +7597,7 @@
      }
     },
     {
-     "name": "Sub_F804",
+     "name": "BuildBulletHitboxes",
      "size": "384",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7645,7 +7693,7 @@
      }
     },
     {
-     "name": "Sub_FEA7",
+     "name": "StepSequenceForward",
      "size": "26",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7653,7 +7701,7 @@
      }
     },
     {
-     "name": "Sub_FEC1",
+     "name": "StepSequenceBackward",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -7662,7 +7710,7 @@
     }
    ],
    "metadata": {
-    "complete": false,
+    "complete": true,
     "source_path": "c/auto/jp/bank_7.c"
    }
   }

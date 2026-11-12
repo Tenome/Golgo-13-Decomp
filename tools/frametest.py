@@ -16,6 +16,7 @@ ap.add_argument('--dump-every', type=int, default=40)
 ap.add_argument('--dump-from', type=int, default=0, help='with --dump-ram: only frames >= this')
 ap.add_argument('--fuzz-state', type=int, default=0, help='every N frames (after frame 1500) overwrite scene variables (PaletteSetIndex, StageIndex, GameState, SceneState, transition request) on both sides to reach code the random route never gets to')
 ap.add_argument('--fuzz-objects', type=int, default=0, help='every N frames in street gameplay replace the object table with 1-3 random objects (random types and states) to reach enemy code the route never spawns')
+ap.add_argument('--credit', action='store_true', help='when every frame matched: record the routines that ran (and the MMC1 reset stubs, run from power-on) in config/<ver>/lockstep.json, which tools/report.py --c counts as verified')
 ap.add_argument('--sweep-range', nargs=2, help='with --sweep: only targets LO..HI (hex)')
 ap.add_argument('--sweep', action='store_true', help='with --fuzz-state: walk through every scene-change target ($50-$A8) in order, from any state')
 ap.add_argument('--out-first', help='write {prg offset: [frame, GameState, PaletteSetIndex, StageIndex, bank]} for every ROM instruction the first time it ran')
@@ -45,6 +46,25 @@ vec = lambda i: prg[0x1FFFA + 2 * i] | prg[0x1FFFB + 2 * i] << 8
 NMI, RESET = vec(0), vec(1)
 IDLE = 0xC078                                       # the main loop after the reset code (see config/*/names.json MainIdleLoop)
 
+
+# ---- MMC1 reset stubs ('sei / lda #$80 / sta $BFFD / jmp Reset' at $8000 of each switchable bank): run each from power-on on both sides
+import json
+stub_ok = []
+if a.credit:
+    FJ = json.load(open(os.path.join(ADIR, 'funcs.json')))
+    for b in range(7):
+        nm_ = f'Loc_B{b}_8000'
+        if nm_ not in FJ: continue
+        c2 = sim6502.CPU(prg); c2.bank = b; c2.pc = 0x8000; c2.sp = 0xFD; st_ = 0
+        while c2.pc != IDLE and st_ < 3_000_000: c2.step(); st_ += 1
+        c2.ram[0x2F] = 1
+        for k in range(0x800): ram_c[k] = 0
+        R.a = R.x = R.y = R.c = R.z = R.n = R.v = R.d = R.i = 0; R.sp = 0xFD; bank_c.value = b; lib.iolog_reset()
+        rc2 = run_fn(fn(nm_), 400000)
+        same = rc2 == 1 and c2.pc == IDLE and all(c2.ram[k] == ram_c[k] for k in range(0x800) if not 0x100 <= k < 0x200) and [(log_addr[k], log_val[k]) for k in range(min(log_n.value, 8192))] == c2.io_writes and c2.bank == bank_c.value
+        print(f'reset stub of bank {b}: {"identical to the original" if same else "DIFFERENT"}')
+        if same: stub_ok.append(nm_)
+        else: sys.exit(1)
 # ---- power-on: RAM random-ish like hardware is not needed; both start from zero RAM
 cpu = sim6502.CPU(prg); cpu.bank = 0; cpu.ram_log = set(); cpu.exec_log = set()
 lib.iolog_reset(); bank_c.value = 0
@@ -106,10 +126,10 @@ for frame in range(a.frames):
         if a.sweep: pk.append((0xFB, 0))
         for ad, vl in pk: cpu.ram[ad] = vl; ram_c[ad] = vl
     if a.fuzz_objects and frame >= 1500 and frame % a.fuzz_objects == 0 and ((cpu.ram[0xFB] == 0 and cpu.ram[0x14] >= 7) or cpu.ram[0xFB] == 4):
-        k = fz.randrange(1, 4); bytes_ = {0x0301: k}
+        k = fz.randrange(1, 4); bytes_ = {0x0301: k}; maze = cpu.ram[0xFB] == 4
         for i in range(1, k + 1):
-            b = 0x300 + 16 * i; ty = fz.randrange(0, 0x30)
-            vals = [ty | fz.choice((0x80, 0x80, 0)), fz.randrange(0x60, 0xB0), fz.randrange(0x30, 0xC0), 0, fz.choice((0, 0x40, 0x80, 0xC0)), fz.randrange(0, 8), 0, fz.randrange(0, 10), 0,
+            b = 0x300 + 16 * i; ty = fz.randrange(0, 0x2D if maze else 0x30)
+            vals = [ty | fz.choice((0x80, 0x80, 0)), fz.randrange(0x60, 0xB0), fz.randrange(0x30, 0xC0), 0, fz.choice((0, 0x40, 0x80, 0xC0)), fz.randrange(0, 8), 0, 0 if maze else fz.randrange(0, 10), 0,
                     cpu.ram[0x18], cpu.ram[0x19] + fz.randrange(0x40, 0x90) & 0xFF, fz.randrange(0x60, 0xB0), 0, 0, 0, 0]
             for j, v_ in enumerate(vals): bytes_[b + j] = v_
         for ad, vl in bytes_.items(): cpu.ram[ad] = vl; ram_c[ad] = vl
@@ -150,6 +170,12 @@ for frame in range(a.frames):
     if a.dump_ram and frame % a.dump_every == 0 and frame >= a.dump_from:
         with open(a.dump_ram, 'ab') as df: df.write(bytes(cpu.ram))
     cpu.io_writes[:] = cpu.io_writes
+if a.credit:
+    ran = {k for k, v in FJ.items() if v['ok'] and v['bank'] < 8 and (v['ranges'][0][0] in cpu.exec_log or any(lo_ <= 7 * 0x4000 + (IDLE & 0x3FFF) < hi_ for lo_, hi_ in v['ranges']))}      # the main idle loop is where every frame returns to
+    LS = os.path.join(ROOT, 'config', a.version, 'lockstep.json')
+    old_ = set(json.load(open(LS))) if os.path.exists(LS) else set()
+    new_ = old_ | {f"{FJ[k]['bank']}:{FJ[k]['addr']:04X}" for k in ran | set(stub_ok)}; json.dump(sorted(new_), open(LS, 'w'), indent=1)      # keyed by bank:address so renaming a routine keeps its credit
+    print(f'lockstep credit: {len(ran)} routines ran in this run, {len(new_)} in total')
 if a.out_first: json.dump(first, open(a.out_first, 'w'))
 if a.out_exec: json.dump(sorted(cpu.exec_log), open(a.out_exec, 'w'))
 print('states seen (GameState, StageIndex, PRG bank):', sorted(seen)[:40], '...' if len(seen) > 40 else '')

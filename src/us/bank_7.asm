@@ -74,7 +74,7 @@ Nmi:
   bne Loc_C08B                 ; $C086
   jmp JumpNmiGameStateDispatch ; $C088
 Loc_C08B:
-  jmp $8010                    ; $C08B  -> Loc_B0_8010, Bank1Nmi, Bank2Nmi, Bank3Nmi, Bank4Nmi, Bank5Nmi, Bank6Nmi
+  jmp $8010                    ; $C08B  -> Bank1Nmi, Bank2Nmi, Bank3Nmi, Bank4Nmi, Bank5Nmi, Bank6Nmi
   .incbin "prg_bank_7.bin", $008E, $32  ; $C08E
 DrawObjectsBanked:
   dec z:MmcPrgShadow           ; $C0C0
@@ -1478,7 +1478,7 @@ Loc_CB1F:
   lda #$06                     ; $CB22
   sta z:MmcPrgShadow           ; $CB24
   jsr MmcWritePrg              ; $CB26
-  jmp $8010                    ; $CB29  -> Loc_B0_8010, Bank1Nmi, Bank2Nmi, Bank3Nmi, Bank4Nmi, Bank5Nmi, Bank6Nmi
+  jmp $8010                    ; $CB29  -> Bank1Nmi, Bank2Nmi, Bank3Nmi, Bank4Nmi, Bank5Nmi, Bank6Nmi
 Loc_CB2C:
   lda #$00                     ; $CB2C
   sta z:MmcPrgShadow           ; $CB2E

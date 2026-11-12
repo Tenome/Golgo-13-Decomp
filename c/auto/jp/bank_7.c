@@ -4939,17 +4939,11 @@ void UpdatePlayerSideView(void) {  /* $EF19 bank 7 */
   LDA(rd(PaletteDirty));                                                                 /* $EF19 lda */
   if (R.a == 0) {                                                                        /* $EF1B bne */
     push16(0xEF1F); UpdatePlayerWalkInput(); UNW(); ret_check(0xEF1F);                   /* $EF1D jsr */
-    { Sub_EF20(); return; }
+    push16(0xEF22); SelectPlayerSpriteFrame(); UNW(); ret_check(0xEF22);                 /* $EF20 jsr */
+    push16(0xEF25); ReturnNop(); UNW(); ret_check(0xEF25);                               /* $EF23 jsr */
+    push16(0xEF28); CalcPlayerSpriteDataPtr(); UNW(); ret_check(0xEF28);                 /* $EF26 jsr */
+    push16(0xEF2B); FireBulletSideView(); UNW(); ret_check(0xEF2B);                      /* $EF29 jsr */
   }
-  RTS_RET(sp0);                                                                          /* $EF2C rts */
-}
-
-void Sub_EF20(void) {  /* $EF20 bank 7 */
-  uint8_t sp0 = R.sp;
-  push16(0xEF22); SelectPlayerSpriteFrame(); UNW(); ret_check(0xEF22);                   /* $EF20 jsr */
-  push16(0xEF25); ReturnNop(); UNW(); ret_check(0xEF25);                                 /* $EF23 jsr */
-  push16(0xEF28); CalcPlayerSpriteDataPtr(); UNW(); ret_check(0xEF28);                   /* $EF26 jsr */
-  push16(0xEF2B); FireBulletSideView(); UNW(); ret_check(0xEF2B);                        /* $EF29 jsr */
   RTS_RET(sp0);                                                                          /* $EF2C rts */
 }
 

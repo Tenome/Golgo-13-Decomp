@@ -937,6 +937,32 @@
    ]
   ]
  },
+ "Sub_B1_9E98": {
+  "addr": 40600,
+  "bank": 1,
+  "instrs": 23,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24216,
+    24266
+   ]
+  ]
+ },
+ "Sub_B1_9ECA": {
+  "addr": 40650,
+  "bank": 1,
+  "instrs": 5,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24266,
+    24275
+   ]
+  ]
+ },
  "UpdateEnemyTypeJ": {
   "addr": 40680,
   "bank": 1,
@@ -1012,6 +1038,123 @@
    [
     24626,
     24635
+   ]
+  ]
+ },
+ "Sub_B1_A060": {
+  "addr": 41056,
+  "bank": 1,
+  "instrs": 12,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24672,
+    24702
+   ]
+  ]
+ },
+ "Sub_B1_A07E": {
+  "addr": 41086,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24702,
+    24716
+   ]
+  ]
+ },
+ "Sub_B1_A08C": {
+  "addr": 41100,
+  "bank": 1,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24716,
+    24733
+   ]
+  ]
+ },
+ "Sub_B1_A0AB": {
+  "addr": 41131,
+  "bank": 1,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24747,
+    24780
+   ]
+  ]
+ },
+ "Sub_B1_A0CC": {
+  "addr": 41164,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24780,
+    24794
+   ]
+  ]
+ },
+ "Sub_B1_A0DA": {
+  "addr": 41178,
+  "bank": 1,
+  "instrs": 76,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24794,
+    24952
+   ]
+  ]
+ },
+ "Sub_B1_A178": {
+  "addr": 41336,
+  "bank": 1,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24952,
+    24988
+   ]
+  ]
+ },
+ "Sub_B1_A89A": {
+  "addr": 43162,
+  "bank": 1,
+  "instrs": 70,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    26778,
+    26927
+   ]
+  ]
+ },
+ "Sub_B1_A953": {
+  "addr": 43347,
+  "bank": 1,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    26963,
+    26967
    ]
   ]
  },
@@ -3311,6 +3454,23 @@
    ]
   ]
  },
+ "Sub_B4_8C7B": {
+  "addr": 35963,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68731,
+    68744
+   ],
+   [
+    68892,
+    68907
+   ]
+  ]
+ },
  "MazeExit3": {
   "addr": 35990,
   "bank": 4,
@@ -3392,6 +3552,83 @@
    ],
    [
     68892,
+    68907
+   ]
+  ]
+ },
+ "Sub_B4_8CB4": {
+  "addr": 36020,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68788,
+    68793
+   ],
+   [
+    68892,
+    68907
+   ]
+  ]
+ },
+ "Sub_B4_8CD2": {
+  "addr": 36050,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68818,
+    68827
+   ]
+  ]
+ },
+ "Sub_B4_8CF1": {
+  "addr": 36081,
+  "bank": 4,
+  "instrs": 12,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68849,
+    68862
+   ],
+   [
+    68892,
+    68907
+   ]
+  ]
+ },
+ "Loc_B4_8CFE": {
+  "addr": 36094,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68862,
+    68877
+   ],
+   [
+    68892,
+    68907
+   ]
+  ]
+ },
+ "Loc_B4_8D0D": {
+  "addr": 36109,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    68877,
     68907
    ]
   ]
@@ -3712,6 +3949,19 @@
    [
     69831,
     69832
+   ]
+  ]
+ },
+ "Sub_B4_90C8": {
+  "addr": 37064,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    69832,
+    69839
    ]
   ]
  },
@@ -4339,6 +4589,49 @@
    ]
   ]
  },
+ "Sub_B4_A18F": {
+  "addr": 41359,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74127,
+    74150
+   ]
+  ]
+ },
+ "Sub_B4_A1AE": {
+  "addr": 41390,
+  "bank": 4,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74158,
+    74180
+   ],
+   [
+    78790,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_A1D5": {
+  "addr": 41429,
+  "bank": 4,
+  "instrs": 35,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74197,
+    74278
+   ]
+  ]
+ },
  "MazeObjType11State7": {
   "addr": 41510,
   "bank": 4,
@@ -4349,6 +4642,36 @@
    [
     74278,
     74306
+   ]
+  ]
+ },
+ "Sub_B4_A242": {
+  "addr": 41538,
+  "bank": 4,
+  "instrs": 5,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74306,
+    74317
+   ]
+  ]
+ },
+ "Sub_B4_A25E": {
+  "addr": 41566,
+  "bank": 4,
+  "instrs": 25,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74334,
+    74381
+   ],
+   [
+    78793,
+    78804
    ]
   ]
  },
@@ -4460,6 +4783,19 @@
    ]
   ]
  },
+ "Sub_B4_A477": {
+  "addr": 42103,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74871,
+    74894
+   ]
+  ]
+ },
  "MazeObjType04State0": {
   "addr": 42132,
   "bank": 4,
@@ -4503,17 +4839,13 @@
    ]
   ]
  },
- "Loc_B4_A4C4": {
+ "Sub_B4_A4C4": {
   "addr": 42180,
   "bank": 4,
-  "instrs": 22,
+  "instrs": 11,
   "ok": true,
   "reason": null,
   "ranges": [
-   [
-    74871,
-    74894
-   ],
    [
     74948,
     74952
@@ -4527,14 +4859,10 @@
  "MazeObjType1D": {
   "addr": 42184,
   "bank": 4,
-  "instrs": 22,
+  "instrs": 11,
   "ok": true,
   "reason": null,
   "ranges": [
-   [
-    74871,
-    74894
-   ],
    [
     74952,
     74956
@@ -4548,14 +4876,10 @@
  "MazeObjType1E": {
   "addr": 42188,
   "bank": 4,
-  "instrs": 22,
+  "instrs": 11,
   "ok": true,
   "reason": null,
   "ranges": [
-   [
-    74871,
-    74894
-   ],
    [
     74956,
     74960
@@ -4569,16 +4893,25 @@
  "MazeObjType1F": {
   "addr": 42192,
   "bank": 4,
-  "instrs": 22,
+  "instrs": 11,
   "ok": true,
   "reason": null,
   "ranges": [
    [
-    74871,
-    74894
-   ],
-   [
     74960,
+    74986
+   ]
+  ]
+ },
+ "MazeObjType20": {
+  "addr": 42195,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74963,
     74986
    ]
   ]
@@ -4686,6 +5019,19 @@
   "ranges": [
    [
     75060,
+    75086
+   ]
+  ]
+ },
+ "Sub_B4_A537": {
+  "addr": 42295,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75063,
     75086
    ]
   ]
@@ -4928,6 +5274,198 @@
    ]
   ]
  },
+ "Sub_B4_A809": {
+  "addr": 43017,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75785,
+    75808
+   ]
+  ]
+ },
+ "Sub_B4_A8C2": {
+  "addr": 43202,
+  "bank": 4,
+  "instrs": 16,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75970,
+    75976
+   ],
+   [
+    76220,
+    76251
+   ]
+  ]
+ },
+ "Sub_B4_A8C8": {
+  "addr": 43208,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75976,
+    75999
+   ]
+  ]
+ },
+ "Sub_B4_A8EF": {
+  "addr": 43247,
+  "bank": 4,
+  "instrs": 16,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76015,
+    76043
+   ],
+   [
+    78790,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_A91C": {
+  "addr": 43292,
+  "bank": 4,
+  "instrs": 14,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76060,
+    76093
+   ]
+  ]
+ },
+ "Sub_B4_A93D": {
+  "addr": 43325,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76093,
+    76105
+   ],
+   [
+    76251,
+    76259
+   ]
+  ]
+ },
+ "Sub_B4_A949": {
+  "addr": 43337,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76105,
+    76112
+   ]
+  ]
+ },
+ "Sub_B4_A950": {
+  "addr": 43344,
+  "bank": 4,
+  "instrs": 18,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76072,
+    76092
+   ],
+   [
+    76112,
+    76124
+   ],
+   [
+    76251,
+    76259
+   ]
+  ]
+ },
+ "Sub_B4_A95C": {
+  "addr": 43356,
+  "bank": 4,
+  "instrs": 18,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76072,
+    76092
+   ],
+   [
+    76124,
+    76136
+   ],
+   [
+    76251,
+    76259
+   ]
+  ]
+ },
+ "Sub_B4_A968": {
+  "addr": 43368,
+  "bank": 4,
+  "instrs": 15,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76136,
+    76161
+   ],
+   [
+    76251,
+    76259
+   ]
+  ]
+ },
+ "Sub_B4_A981": {
+  "addr": 43393,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76161,
+    76187
+   ],
+   [
+    76251,
+    76259
+   ]
+  ]
+ },
+ "Sub_B4_A99B": {
+  "addr": 43419,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76187,
+    76203
+   ]
+  ]
+ },
  "MazeObjType07": {
   "addr": 43491,
   "bank": 4,
@@ -4938,6 +5476,19 @@
    [
     76259,
     76305
+   ]
+  ]
+ },
+ "Sub_B4_AA11": {
+  "addr": 43537,
+  "bank": 4,
+  "instrs": 23,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76283,
+    76334
    ]
   ]
  },
@@ -5200,6 +5751,19 @@
    ]
   ]
  },
+ "MazeObjType27": {
+  "addr": 44143,
+  "bank": 4,
+  "instrs": 16,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76911,
+    76945
+   ]
+  ]
+ },
  "MazeObjType28": {
   "addr": 44177,
   "bank": 4,
@@ -5363,6 +5927,52 @@
    ],
    [
     78793,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_AEBE": {
+  "addr": 44734,
+  "bank": 4,
+  "instrs": 25,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77471,
+    77497
+   ],
+   [
+    77495,
+    77513
+   ],
+   [
+    78793,
+    78804
+   ]
+  ]
+ },
+ "MazeObjType2B": {
+  "addr": 44745,
+  "bank": 4,
+  "instrs": 31,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77483,
+    77497
+   ],
+   [
+    77495,
+    77502
+   ],
+   [
+    77513,
+    77546
+   ],
+   [
+    78790,
     78804
    ]
   ]
@@ -5541,6 +6151,75 @@
    [
     77899,
     77920
+   ]
+  ]
+ },
+ "Sub_B4_B068": {
+  "addr": 45160,
+  "bank": 4,
+  "instrs": 40,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77928,
+    78006
+   ],
+   [
+    78793,
+    78804
+   ]
+  ]
+ },
+ "Sub_B4_B0B6": {
+  "addr": 45238,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78006,
+    78029
+   ]
+  ]
+ },
+ "Sub_B4_B0D3": {
+  "addr": 45267,
+  "bank": 4,
+  "instrs": 4,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78035,
+    78044
+   ]
+  ]
+ },
+ "Sub_B4_B0DC": {
+  "addr": 45276,
+  "bank": 4,
+  "instrs": 1,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78044,
+    78047
+   ]
+  ]
+ },
+ "Sub_B4_B0DF": {
+  "addr": 45279,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    78047,
+    78070
    ]
   ]
  },
@@ -5963,7 +6642,7 @@
    ]
   ]
  },
- "Loc_B4_B452": {
+ "Sub_B4_B452": {
   "addr": 46162,
   "bank": 4,
   "instrs": 13,
@@ -6051,6 +6730,19 @@
    [
     79096,
     79133
+   ]
+  ]
+ },
+ "Sub_B4_B577": {
+  "addr": 46455,
+  "bank": 4,
+  "instrs": 1,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    79223,
+    79224
    ]
   ]
  },
@@ -7358,6 +8050,19 @@
    [
     83591,
     83603
+   ]
+  ]
+ },
+ "Sub_B5_8693": {
+  "addr": 34451,
+  "bank": 5,
+  "instrs": 1,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    83603,
+    83604
    ]
   ]
  },
@@ -11263,29 +11968,12 @@
  "UpdatePlayerSideView": {
   "addr": 61209,
   "bank": 7,
-  "instrs": 4,
+  "instrs": 8,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     126745,
-    126752
-   ],
-   [
-    126764,
-    126765
-   ]
-  ]
- },
- "Sub_EF20": {
-  "addr": 61216,
-  "bank": 7,
-  "instrs": 5,
-  "ok": true,
-  "reason": null,
-  "ranges": [
-   [
-    126752,
     126765
    ]
   ]

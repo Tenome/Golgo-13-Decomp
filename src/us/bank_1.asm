@@ -1389,7 +1389,7 @@ CalcViewEdgeColumn:
   sta z:$05                    ; $96A1
   rts                          ; $96A3
 EnemyTypeEShoot:
-  ldy #$07                     ; $96A4  [heuristic code]
+  ldy #$07                     ; $96A4
   lda (Tmp00),y                ; $96A6
   beq Loc_B1_96BD              ; $96A8
   ldy #$0E                     ; $96AA
@@ -2066,7 +2066,42 @@ Loc_B1_9E73:
 Data_B1_9E74:
   .incbin "prg_bank_1.bin", $1E74, $1  ; $9E74
 Data_B1_9E75:
-  .incbin "prg_bank_1.bin", $1E75, $73  ; $9E75
+  .incbin "prg_bank_1.bin", $1E75, $23  ; $9E75
+Sub_B1_9E98:
+  jsr Sub_B1_9ECA              ; $9E98
+  ldy #$08                     ; $9E9B
+  lda (Tmp00),y                ; $9E9D
+  bne Loc_B1_9EC3              ; $9E9F
+  ldy #$00                     ; $9EA1
+  lda (Tmp02),y                ; $9EA3
+  sta z:$04                    ; $9EA5
+  ldy #$0E                     ; $9EA7
+  lda (Tmp00),y                ; $9EA9
+  clc                          ; $9EAB
+  adc #$01                     ; $9EAC
+  sta (Tmp00),y                ; $9EAE
+  cmp z:$04                    ; $9EB0
+  bcc Loc_B1_9EC0              ; $9EB2
+  ldy #$0C                     ; $9EB4
+  lda (Tmp00),y                ; $9EB6
+  beq Loc_B1_9EC6              ; $9EB8
+  jsr RemoveObject             ; $9EBA
+  jmp Loc_B1_9EC9              ; $9EBD
+Loc_B1_9EC0:
+  jsr LoadObjectAnimFrameB1    ; $9EC0
+Loc_B1_9EC3:
+  jsr StepObjectAnimTimerB     ; $9EC3
+Loc_B1_9EC6:
+  jsr UpdateObjectScreenXB1    ; $9EC6
+Loc_B1_9EC9:
+  rts                          ; $9EC9
+Sub_B1_9ECA:
+  lda #$D3                     ; $9ECA
+  sta z:Tmp02                  ; $9ECC
+  lda #$9E                     ; $9ECE
+  sta z:Tmp03                  ; $9ED0
+  rts                          ; $9ED2
+  .incbin "prg_bank_1.bin", $1ED3, $15  ; $9ED3
 UpdateEnemyTypeJ:
   jsr LoadEnemyAnimTableJ      ; $9EE8
   ldy #$07                     ; $9EEB
@@ -2224,9 +2259,261 @@ SetStaticAnimTablePtr:
   lda #$A0                     ; $A036
   sta z:Tmp03                  ; $A038
   rts                          ; $A03A
-  .incbin "prg_bank_1.bin", $203B, $400  ; $A03B
-  .incbin "prg_bank_1.bin", $243B, $400  ; $A43B
-  .incbin "prg_bank_1.bin", $283B, $11C  ; $A83B
+  .incbin "prg_bank_1.bin", $203B, $25  ; $A03B
+Sub_B1_A060:
+  jsr Sub_B1_A07E              ; $A060
+  ldy #$08                     ; $A063
+  lda (Tmp00),y                ; $A065
+  bne Loc_B1_A077              ; $A067
+  jsr AdvanceObjectAnimStepB1  ; $A069
+  bcc Loc_B1_A074              ; $A06C
+  jsr Sub_B1_A08C              ; $A06E
+  jsr Sub_B1_A07E              ; $A071
+Loc_B1_A074:
+  jsr LoadObjectAnimFrameB1    ; $A074
+Loc_B1_A077:
+  jsr StepObjectAnimTimerB     ; $A077
+  jsr UpdateObjectScreenXB1    ; $A07A
+  rts                          ; $A07D
+Sub_B1_A07E:
+  jsr GetObjectStateIndex      ; $A07E
+  lda Data_B1_A09D,y           ; $A081
+  sta z:Tmp02                  ; $A084
+  lda Data_B1_A09E,y           ; $A086
+  sta z:Tmp03                  ; $A089
+  rts                          ; $A08B
+Sub_B1_A08C:
+  ldy #$07                     ; $A08C
+  lda (Tmp00),y                ; $A08E
+  beq Loc_B1_A096              ; $A090
+  lda #$00                     ; $A092
+  sta (Tmp00),y                ; $A094
+Loc_B1_A096:
+  ldy #$0E                     ; $A096
+  lda #$00                     ; $A098
+  sta (Tmp00),y                ; $A09A
+  rts                          ; $A09C
+Data_B1_A09D:
+  .incbin "prg_bank_1.bin", $209D, $1  ; $A09D
+Data_B1_A09E:
+  .incbin "prg_bank_1.bin", $209E, $D  ; $A09E
+Sub_B1_A0AB:
+  jsr Sub_B1_A0CC              ; $A0AB
+  ldy #$08                     ; $A0AE
+  lda (Tmp00),y                ; $A0B0
+  bne Loc_B1_A0C5              ; $A0B2
+  jsr AdvanceObjectAnimStepB1  ; $A0B4
+  bcc Loc_B1_A0BF              ; $A0B7
+  jsr Sub_B1_A0DA              ; $A0B9
+  jsr Sub_B1_A0CC              ; $A0BC
+Loc_B1_A0BF:
+  jsr LoadObjectAnimFrameB1    ; $A0BF
+  jsr Sub_B1_A178              ; $A0C2
+Loc_B1_A0C5:
+  jsr StepObjectAnimTimerB     ; $A0C5
+  jsr UpdateObjectScreenXB1    ; $A0C8
+  rts                          ; $A0CB
+Sub_B1_A0CC:
+  jsr GetObjectStateIndex      ; $A0CC
+  lda Data_B1_A1A0,y           ; $A0CF
+  sta z:Tmp02                  ; $A0D2
+  lda Data_B1_A1A1,y           ; $A0D4
+  sta z:Tmp03                  ; $A0D7
+  rts                          ; $A0D9
+Sub_B1_A0DA:
+  ldy #$07                     ; $A0DA
+  lda (Tmp00),y                ; $A0DC
+  cmp #$04                     ; $A0DE
+  beq Loc_B1_A11A              ; $A0E0
+  and #$01                     ; $A0E2
+  bne Loc_B1_A116              ; $A0E4
+  lda (Tmp00),y                ; $A0E6
+  ora #$01                     ; $A0E8
+  sta (Tmp00),y                ; $A0EA
+  inc $04AC                    ; $A0EC
+  lda BossPhase                ; $A0EF
+  bmi Loc_B1_A171              ; $A0F2
+  and #$7F                     ; $A0F4
+  cmp #$03                     ; $A0F6
+  beq Loc_B1_A104              ; $A0F8
+  lda $04AC                    ; $A0FA
+  cmp #$02                     ; $A0FD
+  bne Loc_B1_A171              ; $A0FF
+  jmp Loc_B1_A10B              ; $A101
+Loc_B1_A104:
+  lda $04AC                    ; $A104
+  cmp #$03                     ; $A107
+  bne Loc_B1_A171              ; $A109
+Loc_B1_A10B:
+  lda #$80                     ; $A10B
+  ora BossPhase                ; $A10D
+  sta BossPhase                ; $A110
+  jmp Loc_B1_A171              ; $A113
+Loc_B1_A116:
+  lda #$04                     ; $A116
+  sta (Tmp00),y                ; $A118
+Loc_B1_A11A:
+  lda BossPhase                ; $A11A
+  and #$7F                     ; $A11D
+  tay                          ; $A11F
+  lda Data_B1_A19C,y           ; $A120
+  sta z:$04                    ; $A123
+  jsr GetRandomByte            ; $A125
+  cmp #$C0                     ; $A128
+  bcs Loc_B1_A130              ; $A12A
+  cpy #$01                     ; $A12C
+  bne Loc_B1_A132              ; $A12E
+Loc_B1_A130:
+  and #$7F                     ; $A130
+Loc_B1_A132:
+  sta z:$05                    ; $A132
+  ldy #$0C                     ; $A134
+  lda (Tmp00),y                ; $A136
+  bpl Loc_B1_A157              ; $A138
+  clc                          ; $A13A
+  lda #$80                     ; $A13B
+  adc z:$05                    ; $A13D
+  ldy #$0A                     ; $A13F
+  sta (Tmp00),y                ; $A141
+  dey                          ; $A143
+  lda #$00                     ; $A144
+  adc z:$04                    ; $A146
+  and #$03                     ; $A148
+  sta (Tmp00),y                ; $A14A
+  ldy #$0C                     ; $A14C
+  lda (Tmp00),y                ; $A14E
+  and #$7F                     ; $A150
+  sta (Tmp00),y                ; $A152
+  jmp Loc_B1_A171              ; $A154
+Loc_B1_A157:
+  lda #$80                     ; $A157
+  sec                          ; $A159
+  sbc z:$05                    ; $A15A
+  ldy #$0A                     ; $A15C
+  sta (Tmp00),y                ; $A15E
+  dey                          ; $A160
+  lda z:$04                    ; $A161
+  sbc #$00                     ; $A163
+  and #$03                     ; $A165
+  sta (Tmp00),y                ; $A167
+  ldy #$0C                     ; $A169
+  lda (Tmp00),y                ; $A16B
+  ora #$80                     ; $A16D
+  sta (Tmp00),y                ; $A16F
+Loc_B1_A171:
+  ldy #$0E                     ; $A171
+  lda #$00                     ; $A173
+  sta (Tmp00),y                ; $A175
+  rts                          ; $A177
+Sub_B1_A178:
+  ldy #$07                     ; $A178
+  lda (Tmp00),y                ; $A17A
+  cmp #$04                     ; $A17C
+  bne Loc_B1_A19B              ; $A17E
+  ldy #$05                     ; $A180
+  lda (Tmp00),y                ; $A182
+  cmp #$0A                     ; $A184
+  bne Loc_B1_A19B              ; $A186
+  lda $04AD                    ; $A188
+  beq Loc_B1_A196              ; $A18B
+Loc_B1_A18D:
+  ldy #$08                     ; $A18D
+  lda #$20                     ; $A18F
+  sta (Tmp00),y                ; $A191
+  jmp Loc_B1_A19B              ; $A193
+Loc_B1_A196:
+  jsr Sub_B1_A89A              ; $A196
+  bne Loc_B1_A18D              ; $A199
+Loc_B1_A19B:
+  rts                          ; $A19B
+Data_B1_A19C:
+  .incbin "prg_bank_1.bin", $219C, $4  ; $A19C
+Data_B1_A1A0:
+  .incbin "prg_bank_1.bin", $21A0, $1  ; $A1A0
+Data_B1_A1A1:
+  .incbin "prg_bank_1.bin", $21A1, $400  ; $A1A1
+  .incbin "prg_bank_1.bin", $25A1, $2F9  ; $A5A1
+Sub_B1_A89A:
+  lda ObjectCount              ; $A89A
+  cmp #$0C                     ; $A89D
+  bcc Loc_B1_A8A6              ; $A89F
+  lda #$FF                     ; $A8A1
+  jmp Loc_B1_A92E              ; $A8A3
+Loc_B1_A8A6:
+  lda z:Tmp02                  ; $A8A6
+  pha                          ; $A8A8
+  lda z:Tmp03                  ; $A8A9
+  pha                          ; $A8AB
+  lda ObjectCount              ; $A8AC
+  pha                          ; $A8AF
+  adc #$01                     ; $A8B0
+  sta z:Tmp02                  ; $A8B2
+  adc #$03                     ; $A8B4
+  sta ObjectCount              ; $A8B6
+  lda z:Tmp02                  ; $A8B9
+  jsr AslA4                    ; $A8BB
+  sta z:Tmp02                  ; $A8BE
+  lda #$03                     ; $A8C0
+  sta z:Tmp03                  ; $A8C2
+  ldx #$00                     ; $A8C4
+Loc_B1_A8C6:
+  ldy #$00                     ; $A8C6
+Loc_B1_A8C8:
+  lda Data_B1_A92F,x           ; $A8C8
+  sta (Tmp02),y                ; $A8CB
+  inx                          ; $A8CD
+  iny                          ; $A8CE
+  cpx #$24                     ; $A8CF
+  bcs Loc_B1_A8E1              ; $A8D1
+  cpy #$09                     ; $A8D3
+  bcc Loc_B1_A8C8              ; $A8D5
+  lda #$10                     ; $A8D7
+  clc                          ; $A8D9
+  adc z:Tmp02                  ; $A8DA
+  sta z:Tmp02                  ; $A8DC
+  jmp Loc_B1_A8C6              ; $A8DE
+Loc_B1_A8E1:
+  pla                          ; $A8E1
+  jsr AslA4                    ; $A8E2
+  tax                          ; $A8E5
+  ldy #$0A                     ; $A8E6
+  lda (Tmp00),y                ; $A8E8
+  clc                          ; $A8EA
+  adc #$04                     ; $A8EB
+  sta $031D,x                  ; $A8ED
+  sta $032D,x                  ; $A8F0
+  sta $033D,x                  ; $A8F3
+  sta $034D,x                  ; $A8F6
+  dey                          ; $A8F9
+  lda (Tmp00),y                ; $A8FA
+  adc #$00                     ; $A8FC
+  and #$03                     ; $A8FE
+  sta $031C,x                  ; $A900
+  sta $032C,x                  ; $A903
+  sta $033C,x                  ; $A906
+  sta $034C,x                  ; $A909
+  ldy #$0B                     ; $A90C
+  lda (Tmp00),y                ; $A90E
+  sta $031E,x                  ; $A910
+  sta $032E,x                  ; $A913
+  sta $033E,x                  ; $A916
+  sta $034E,x                  ; $A919
+  lda #$3B                     ; $A91C
+  jsr QueueSound               ; $A91E
+  lda #$01                     ; $A921
+  sta $04AD                    ; $A923
+  pla                          ; $A926
+  sta z:Tmp03                  ; $A927
+  pla                          ; $A929
+  sta z:Tmp02                  ; $A92A
+  lda #$00                     ; $A92C
+Loc_B1_A92E:
+  rts                          ; $A92E
+Data_B1_A92F:
+  .incbin "prg_bank_1.bin", $292F, $24  ; $A92F
+Sub_B1_A953:
+  jsr UpdateObjectScreenXB1    ; $A953
+  rts                          ; $A956
 ApplyAnimTableFlags:
   ldy #$0E                     ; $A957
   lda (Tmp00),y                ; $A959

@@ -47,6 +47,10 @@ def main():
     names = g.load_names()
     units = []; all_code = []; all_data = []
     vset = set(ver_c['verified']) if ver_c else set(); lset = set(ver_c['lifted']) if ver_c else set()
+    lsf = os.path.join(ROOT, 'config', a.version, 'lockstep.json')            # routines that ran inside a whole-program run whose every frame matched (tools/frametest.py --credit)
+    if a.c and os.path.exists(lsf):
+        lk = set(json.load(open(lsf))); fj0 = json.load(open(os.path.join(ROOT, 'c', 'auto', a.version, 'funcs.json')))
+        vset |= {n_ for n_, v_ in fj0.items() if f"{v_['bank']}:{v_['addr']:04X}" in lk}
     cover = []
     if a.c:
         fj = json.load(open(os.path.join(ROOT, 'c', 'auto', a.version, 'funcs.json')))

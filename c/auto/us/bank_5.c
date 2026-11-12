@@ -2111,16 +2111,6 @@ void Bank5SubScene_01(void) {  /* $8B12 bank 5 */
   RTS_RET(sp0);                                                                          /* $8B23 rts */
 }
 
-void Data_B5_8B24(void) {  /* $8B24 bank 5 */
-  uint8_t sp0 = R.sp;
-  ORA(rd(rd16zp((uint8_t)(FrameInSecond + R.x))));                                       /* $8B24 ora */
-  AND(rd(rd16zp((uint8_t)(PlayerActionTimer + R.x))));                                   /* $8B26 and */
-  push16(0x8B2A); call_addr(0xBB20); UNW(); ret_check(0x8B2A);                           /* $8B28 jsr */
-  STY(0x04C9);                                                                           /* $8B2B sty */
-  if (!R.c) { Sub_B5_8B33(); return; }                                                   /* $8B2E bcc */
-  { Bank5SubScene_00(); return; }                                                        /* $8B30 jmp */
-}
-
 void Bank5SubScene_02(void) {  /* $8B29 bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x8B2B); Bank5NextAnimFrame(); UNW(); ret_check(0x8B2B);                        /* $8B29 jsr */

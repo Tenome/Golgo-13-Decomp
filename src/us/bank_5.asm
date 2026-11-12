@@ -1154,9 +1154,7 @@ Loc_B5_8B1C:
   sta $014F                    ; $8B20
   rts                          ; $8B23
 Data_B5_8B24:
-  ora (FrameInSecond,x)        ; $8B24  [heuristic code]
-  and (PlayerActionTimer,x)    ; $8B26
-  .incbin "prg_bank_5.bin", $0B28, $1  ; $8B28
+  .incbin "prg_bank_5.bin", $0B24, $5  ; $8B24
 Bank5SubScene_02:
   jsr Bank5NextAnimFrame       ; $8B29
   cmp #$04                     ; $8B2C

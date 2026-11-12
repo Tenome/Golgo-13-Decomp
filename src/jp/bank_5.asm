@@ -760,7 +760,8 @@ Bank5Tbl8065_5D:
   inc SceneState               ; $868F
 Loc_B5_8692:
   rts                          ; $8692
-  .incbin "prg_bank_5.bin", $0693, $1  ; $8693
+Sub_B5_8693:
+  rts                          ; $8693
 Sub_B5_8694:
   inc SceneState               ; $8694
   lda #$06                     ; $8697
@@ -1000,10 +1001,9 @@ Loc_B5_888A:
 Loc_B5_88B7:
   rts                          ; $88B7
 Data_B5_88B8:
-  cpy z:$88                    ; $88B8  [heuristic code]
-  dex                          ; $88BA
-  dey                          ; $88BB
-  .incbin "prg_bank_5.bin", $08BC, $32  ; $88BC
+  .incbin "prg_bank_5.bin", $08B8, $1  ; $88B8
+Data_B5_88B9:
+  .incbin "prg_bank_5.bin", $08B9, $35  ; $88B9
 Data_B5_88EE:
   .incbin "prg_bank_5.bin", $08EE, $25  ; $88EE
 Data_B5_8913:
@@ -1560,15 +1560,9 @@ Loc_B5_8F0F:
   sta SceneTimer               ; $8F22
   rts                          ; $8F25
 Data_B5_8F26:
-  asl z:AreaGroup,x            ; $8F26  [heuristic code]
-  ora ($0F,x)                  ; $8F28
-  asl z:AreaGroup,x            ; $8F2A
-  ora ($0F,x)                  ; $8F2C
-  asl z:$08,x                  ; $8F2E
-  ora ($0F,x)                  ; $8F30
-  jsr Sub_C623                 ; $8F32
-  ora ($9F,x)                  ; $8F35
-  .incbin "prg_bank_5.bin", $0F37, $5  ; $8F37
+  .incbin "prg_bank_5.bin", $0F26, $D  ; $8F26
+Data_B5_8F33:
+  .incbin "prg_bank_5.bin", $0F33, $9  ; $8F33
 Loc_B5_8F3C:
   lda #$C0                     ; $8F3C
   ldx #$00                     ; $8F3E
@@ -2315,8 +2309,7 @@ OrSpriteAttributes:
   bne OrSpriteAttributes       ; $9A79
   rts                          ; $9A7B
 Data_B5_9A7C:
-  and ($EF,x)                  ; $9A7C  [heuristic code]
-  .incbin "prg_bank_5.bin", $1A7E, $4  ; $9A7E
+  .incbin "prg_bank_5.bin", $1A7C, $6  ; $9A7C
 Data_B5_9A82:
   .incbin "prg_bank_5.bin", $1A82, $1  ; $9A82
 Data_B5_9A83:

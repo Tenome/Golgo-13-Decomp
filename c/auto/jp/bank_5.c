@@ -1722,6 +1722,11 @@ void Bank5Tbl8065_5D(void) {  /* $8687 bank 5 */
   RTS_RET(sp0);                                                                          /* $8692 rts */
 }
 
+void Sub_B5_8693(void) {  /* $8693 bank 5 */
+  uint8_t sp0 = R.sp;
+  RTS_RET(sp0);                                                                          /* $8693 rts */
+}
+
 void Sub_B5_8694(void) {  /* $8694 bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $8694 inc */

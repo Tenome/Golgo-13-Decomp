@@ -963,6 +963,32 @@
    ]
   ]
  },
+ "Sub_B1_9E98": {
+  "addr": 40600,
+  "bank": 1,
+  "instrs": 23,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24216,
+    24266
+   ]
+  ]
+ },
+ "Sub_B1_9ECA": {
+  "addr": 40650,
+  "bank": 1,
+  "instrs": 5,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24266,
+    24275
+   ]
+  ]
+ },
  "UpdateEnemyTypeJ": {
   "addr": 40680,
   "bank": 1,
@@ -1038,6 +1064,123 @@
    [
     24626,
     24635
+   ]
+  ]
+ },
+ "Sub_B1_A060": {
+  "addr": 41056,
+  "bank": 1,
+  "instrs": 12,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24672,
+    24702
+   ]
+  ]
+ },
+ "Sub_B1_A07E": {
+  "addr": 41086,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24702,
+    24716
+   ]
+  ]
+ },
+ "Sub_B1_A08C": {
+  "addr": 41100,
+  "bank": 1,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24716,
+    24733
+   ]
+  ]
+ },
+ "Sub_B1_A0AB": {
+  "addr": 41131,
+  "bank": 1,
+  "instrs": 13,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24747,
+    24780
+   ]
+  ]
+ },
+ "Sub_B1_A0CC": {
+  "addr": 41164,
+  "bank": 1,
+  "instrs": 6,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24780,
+    24794
+   ]
+  ]
+ },
+ "Sub_B1_A0DA": {
+  "addr": 41178,
+  "bank": 1,
+  "instrs": 76,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24794,
+    24952
+   ]
+  ]
+ },
+ "Sub_B1_A178": {
+  "addr": 41336,
+  "bank": 1,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    24952,
+    24988
+   ]
+  ]
+ },
+ "Sub_B1_A89A": {
+  "addr": 43162,
+  "bank": 1,
+  "instrs": 70,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    26778,
+    26927
+   ]
+  ]
+ },
+ "Sub_B1_A953": {
+  "addr": 43347,
+  "bank": 1,
+  "instrs": 2,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    26963,
+    26967
    ]
   ]
  },
@@ -4540,6 +4683,23 @@
    ]
   ]
  },
+ "MazeObjType02": {
+  "addr": 41538,
+  "bank": 4,
+  "instrs": 25,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74306,
+    74353
+   ],
+   [
+    78732,
+    78743
+   ]
+  ]
+ },
  "UpdateDoorObject": {
   "addr": 41585,
   "bank": 4,
@@ -4717,6 +4877,57 @@
    ]
   ]
  },
+ "MazeObjType1C": {
+  "addr": 42144,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74912,
+    74916
+   ],
+   [
+    74929,
+    74950
+   ]
+  ]
+ },
+ "MazeObjType1D": {
+  "addr": 42148,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74916,
+    74920
+   ],
+   [
+    74929,
+    74950
+   ]
+  ]
+ },
+ "MazeObjType1E": {
+  "addr": 42152,
+  "bank": 4,
+  "instrs": 11,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74920,
+    74924
+   ],
+   [
+    74929,
+    74950
+   ]
+  ]
+ },
  "MazeObjType1F": {
   "addr": 42156,
   "bank": 4,
@@ -4726,6 +4937,19 @@
   "ranges": [
    [
     74924,
+    74950
+   ]
+  ]
+ },
+ "MazeObjType20": {
+  "addr": 42159,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    74927,
     74950
    ]
   ]
@@ -4833,6 +5057,19 @@
   "ranges": [
    [
     75020,
+    75046
+   ]
+  ]
+ },
+ "MazeObjType25": {
+  "addr": 42255,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75023,
     75046
    ]
   ]
@@ -5072,6 +5309,198 @@
    [
     75685,
     75715
+   ]
+  ]
+ },
+ "MazeObjType1A": {
+  "addr": 42969,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75737,
+    75756
+   ]
+  ]
+ },
+ "MazeObjType06": {
+  "addr": 43150,
+  "bank": 4,
+  "instrs": 16,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75918,
+    75924
+   ],
+   [
+    76164,
+    76195
+   ]
+  ]
+ },
+ "Sub_B4_A894": {
+  "addr": 43156,
+  "bank": 4,
+  "instrs": 9,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75924,
+    75943
+   ]
+  ]
+ },
+ "Sub_B4_A8B7": {
+  "addr": 43191,
+  "bank": 4,
+  "instrs": 16,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    75959,
+    75987
+   ],
+   [
+    78729,
+    78743
+   ]
+  ]
+ },
+ "Sub_B4_A8E4": {
+  "addr": 43236,
+  "bank": 4,
+  "instrs": 14,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76004,
+    76037
+   ]
+  ]
+ },
+ "Sub_B4_A905": {
+  "addr": 43269,
+  "bank": 4,
+  "instrs": 10,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76037,
+    76049
+   ],
+   [
+    76195,
+    76203
+   ]
+  ]
+ },
+ "Sub_B4_A911": {
+  "addr": 43281,
+  "bank": 4,
+  "instrs": 3,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76049,
+    76056
+   ]
+  ]
+ },
+ "Sub_B4_A918": {
+  "addr": 43288,
+  "bank": 4,
+  "instrs": 18,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76016,
+    76036
+   ],
+   [
+    76056,
+    76068
+   ],
+   [
+    76195,
+    76203
+   ]
+  ]
+ },
+ "Sub_B4_A924": {
+  "addr": 43300,
+  "bank": 4,
+  "instrs": 18,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76016,
+    76036
+   ],
+   [
+    76068,
+    76080
+   ],
+   [
+    76195,
+    76203
+   ]
+  ]
+ },
+ "Sub_B4_A930": {
+  "addr": 43312,
+  "bank": 4,
+  "instrs": 15,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76080,
+    76105
+   ],
+   [
+    76195,
+    76203
+   ]
+  ]
+ },
+ "Sub_B4_A949": {
+  "addr": 43337,
+  "bank": 4,
+  "instrs": 17,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76105,
+    76131
+   ],
+   [
+    76195,
+    76203
+   ]
+  ]
+ },
+ "Sub_B4_A963": {
+  "addr": 43363,
+  "bank": 4,
+  "instrs": 7,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    76131,
+    76147
    ]
   ]
  },
@@ -5536,6 +5965,52 @@
    ],
    [
     78732,
+    78743
+   ]
+  ]
+ },
+ "MazeObjType2A": {
+  "addr": 44697,
+  "bank": 4,
+  "instrs": 25,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77434,
+    77460
+   ],
+   [
+    77458,
+    77476
+   ],
+   [
+    78732,
+    78743
+   ]
+  ]
+ },
+ "MazeObjType2B": {
+  "addr": 44708,
+  "bank": 4,
+  "instrs": 31,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    77446,
+    77460
+   ],
+   [
+    77458,
+    77465
+   ],
+   [
+    77476,
+    77509
+   ],
+   [
+    78729,
     78743
    ]
   ]
@@ -6205,7 +6680,7 @@
    ]
   ]
  },
- "Loc_B4_B415": {
+ "Sub_B4_B415": {
   "addr": 46101,
   "bank": 4,
   "instrs": 13,
@@ -7958,19 +8433,6 @@
    [
     84754,
     84772
-   ]
-  ]
- },
- "Data_B5_8B24": {
-  "addr": 35620,
-  "bank": 5,
-  "instrs": 6,
-  "ok": true,
-  "reason": null,
-  "ranges": [
-   [
-    84772,
-    84787
    ]
   ]
  },
