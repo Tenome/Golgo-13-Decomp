@@ -69,10 +69,13 @@ python tools/build_port.py --version us --sdl <SDL2 development folder> --embed 
 dist/Golgo13-US.exe                                                                  # double-click: no arguments, no console window
 ```
 `--embed` compiles the ROM from `orig/` into `dist/Golgo13-<VER>.exe` (with `SDL2.dll` beside it), so the game starts directly like any PC game. Those files contain the game data: keep them for yourself and never commit or share them (`dist/` is git-ignored).
-Keys: arrows = D-pad, Z = A, X = B, Enter = Start, Right Shift = Select, F11 = full screen, M = mute, Esc = quit; gamepads work too. Options: `--scale N`, `--fullscreen`, `--mute`, or a ROM path to play another copy.
+Default keys: arrows = D-pad, Z = A, X = B, Enter = Start, Right Shift = Select, F11 = full screen, M = mute, Esc = quit; gamepads work too (left stick or D-pad, pad B = game A, pad A = game B, Start, Back = Select). Keys and pad buttons can be changed in `controls.ini`, which the program creates next to itself on the first run (up to three keys per button; SDL key and button names are listed in the file). Options: `--scale N`, `--fullscreen`, `--mute`, or a ROM path to play another copy.
 Without `--embed` the build produces `build/port/golgo13_play_us.exe`, which needs the ROM path as its argument.
 `build/port/golgo13_port_us.exe ROM --frames N --input route.txt --out DIR --shot-every N --wav out.wav` runs headless and dumps pictures / audio.
 The port runs the lifted game logic on a small PPU/APU/MMC1 host written for this project; it is not an emulator of the original CPU. See `docs/NOTES.md`.
 
 ## Verification in one command
 `tools/verify_all.sh us [cc65 dir] [frames]` regenerates the sources, checks that the ROM rebuilds byte for byte, rewrites the report, lifts the C and runs the per-routine and the whole-program differential tests.
+
+## How the C and the percentages are verified
+`us_c` / `jp_c` count a routine as matched when its lifted C has been compared with the original 6502 code: (1) per-routine tests on random and real-play RAM images (`tools/autotest.py`), (2) whole-program runs in which RAM, I/O writes and the PRG bank match after every frame (`tools/frametest.py --credit`, chain in `tools/creditrun.sh`, recorded in `config/<ver>/lockstep.json`), and (3) the MMC1 reset stubs run from power-on. Routines credited by (2) were checked on the paths those runs took, not exhaustively.
