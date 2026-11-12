@@ -67,33 +67,48 @@ static void ppu_write(uint16_t a, uint8_t d) {
 }
 static inline int rendering(void) { return (mask & 0x18) != 0; }
 
-static void render_line(int y) {
-    uint8_t bg[256], bgop[256]; uint32_t *out = g_frame[y];
-    uint32_t backdrop = PAL[palette[0] & 0x3F];
-    if (!rendering()) { for (int x = 0; x < 256; x++) out[x] = backdrop; return; }
-    /* background */
-    if (mask & 0x08) {
-        uint16_t vv = v; unsigned fy = (vv >> 12) & 7;
-        for (int tile = 0; tile < 33; tile++) {
-            uint8_t nt = *nt_ptr(0x2000 | (vv & 0x0FFF));
-            uint8_t at = *nt_ptr(0x23C0 | (vv & 0x0C00) | ((vv >> 4) & 0x38) | ((vv >> 2) & 7));
-            int shift = ((vv >> 4) & 4) | (vv & 2);
-            unsigned pal = (at >> shift) & 3;
-            uint16_t pa = (uint16_t)(((ctrl & 0x10) ? 0x1000 : 0) + nt * 16 + fy);
-            uint8_t lo = chr_read(pa), hi = chr_read(pa + 8);
-            for (int px = 0; px < 8; px++) {
-                int x = tile * 8 + px - fine_x; if (x < 0 || x > 255) continue;
-                unsigned c = ((lo >> (7 - px)) & 1) | (((hi >> (7 - px)) & 1) << 1);
-                bg[x] = (uint8_t)(c ? (pal << 2 | c) : 0); bgop[x] = c != 0;
-            }
-            if ((vv & 0x1F) == 31) { vv = (uint16_t)((vv & ~0x1F) ^ 0x400); } else vv++;
+static uint16_t line_v0;                          /* v at the start of the line */
+static struct { int tile; uint16_t v; } vev[8]; static int nvev;   /* v written by the CPU during the visible part: from which tile it applies */
+/* MMC1 registers changed by the CPU during the line: the background reads its pattern bytes while the line is drawn, so a bank switch only
+ * applies to the tiles fetched after it; the sprites are fetched in the blanking time after the line and see the final state. */
+static uint8_t ls_chr0, ls_chr1, ls_ctrl;                          /* state at the start of the line */
+static struct { int dot; uint8_t chr0, chr1, ctrl; } mev[16]; static int nmev;
+static uint8_t bgbuf[256], bgopbuf[256]; static int bg_on;           /* background of the line being drawn (filled at dot 256) */
+
+static void render_bg(int y) {
+    (void)y; bg_on = rendering();
+    memset(bgbuf, 0, sizeof bgbuf); memset(bgopbuf, 0, sizeof bgopbuf);
+    if (!bg_on || !(mask & 0x08)) return;
+    uint8_t save0 = mmc_chr0, save1 = mmc_chr1, savec = mmc_control;
+    uint16_t vv = line_v0; unsigned fy;
+    for (int tile = 0; tile < 33; tile++) {
+        for (int e = 0; e < nvev; e++) if (vev[e].tile == tile) vv = vev[e].v;          /* a $2006 write took effect for this tile */
+        int fetch_dot = tile < 2 ? -1 : 8 * (tile - 2) + 6;                              /* tile 0/1 were fetched in the previous blanking time */
+        mmc_chr0 = ls_chr0; mmc_chr1 = ls_chr1; mmc_control = ls_ctrl;
+        for (int e = 0; e < nmev; e++) if (mev[e].dot <= fetch_dot) { mmc_chr0 = mev[e].chr0; mmc_chr1 = mev[e].chr1; mmc_control = mev[e].ctrl; }
+        fy = (vv >> 12) & 7;
+        uint8_t nt = *nt_ptr(0x2000 | (vv & 0x0FFF));
+        uint8_t at = *nt_ptr(0x23C0 | (vv & 0x0C00) | ((vv >> 4) & 0x38) | ((vv >> 2) & 7));
+        int shift = ((vv >> 4) & 4) | (vv & 2);
+        unsigned pal = (at >> shift) & 3;
+        uint16_t pa = (uint16_t)(((ctrl & 0x10) ? 0x1000 : 0) + nt * 16 + fy);
+        uint8_t lo = chr_read(pa), hi = chr_read(pa + 8);
+        for (int px = 0; px < 8; px++) {
+            int x = tile * 8 + px - fine_x; if (x < 0 || x > 255) continue;
+            unsigned c = ((lo >> (7 - px)) & 1) | (((hi >> (7 - px)) & 1) << 1);
+            bgbuf[x] = (uint8_t)(c ? (pal << 2 | c) : 0); bgopbuf[x] = c != 0;
         }
-        if (!(mask & 0x02)) for (int x = 0; x < 8; x++) { bg[x] = 0; bgop[x] = 0; }
-    } else { memset(bg, 0, sizeof bg); memset(bgop, 0, sizeof bgop); }
-    uint8_t col[256], prio[256]; memset(prio, 0, sizeof prio);
-    for (int x = 0; x < 256; x++) col[x] = bg[x];
-    /* sprites */
-    if (mask & 0x10) {
+        if ((vv & 0x1F) == 31) { vv = (uint16_t)((vv & ~0x1F) ^ 0x400); } else vv++;
+    }
+    mmc_chr0 = save0; mmc_chr1 = save1; mmc_control = savec;
+    if (!(mask & 0x02)) for (int x = 0; x < 8; x++) { bgbuf[x] = 0; bgopbuf[x] = 0; }
+}
+
+/* sprites + final picture of line y (with `probe`: only the x of the sprite 0 hit, -1 = none) */
+static int render_obj(int y, int probe) {
+    uint32_t *out = g_frame[y]; int hit_x = -1;
+    uint8_t col[256]; memcpy(col, bgbuf, sizeof col);
+    if (rendering() && (mask & 0x10)) {
         int h = (ctrl & 0x20) ? 16 : 8, count = 0; int idx[8];
         for (int i = 0; i < 64 && count < 8; i++) { int row = y - (oam[i * 4] + 1); if (row >= 0 && row < h) idx[count++] = i; }
         uint8_t sp[256], spop[256], spri[256], spzero[256]; memset(spop, 0, sizeof spop); memset(spzero, 0, sizeof spzero);
@@ -113,14 +128,23 @@ static void render_line(int y) {
         }
         for (int x = 0; x < 256; x++) {
             if (!spop[x]) continue;
-            if (spzero[x] && bgop[x] && x < 255 && (mask & 0x08)) status |= 0x40;          /* sprite 0 hit */
-            if (!bgop[x] || !spri[x]) { col[x] = sp[x]; }
+            if (spzero[x] && bgopbuf[x] && x < 255 && (mask & 0x08)) { if (hit_x < 0) hit_x = x; if (!probe) status |= 0x40; }          /* sprite 0 hit */
+            if (!bgopbuf[x] || !spri[x]) { col[x] = sp[x]; }
         }
     }
+    if (probe) return hit_x;
+    uint32_t backdrop = PAL[palette[0] & 0x3F];
     for (int x = 0; x < 256; x++) {
         uint8_t c = col[x]; if ((c & 3) == 0) c = 0;
-        out[x] = PAL[palette[c & 0x1F] & 0x3F];
+        out[x] = bg_on ? PAL[palette[c & 0x1F] & 0x3F] : backdrop;
     }
+    return hit_x;
+}
+/* the sprite 0 probe at the start of a line: where will the hit happen (uses the registers as they are then) */
+static int probe_line(int y) {
+    if (!rendering()) return -1;
+    uint16_t sv0 = line_v0; int sn = nvev, sm = nmev; nvev = nmev = 0;
+    render_bg(y); int hx = render_obj(y, 1); nvev = sn; nmev = sm; (void)sv0; return hx;
 }
 
 static void end_of_line_updates(void) {                   /* what the PPU does to v at the end of a rendered line */
@@ -133,27 +157,41 @@ static void end_of_line_updates(void) {                   /* what the PPU does t
     }
     v = (uint16_t)((v & ~0x041F) | (t & 0x041F));          /* horizontal bits copied from t */
 }
-static void advance_line(void) {
-    if (line < 240) { render_line(line); end_of_line_updates(); }
-    line++; line_start_dot += 341;
-    if (line == 241) {                                    /* vblank begins */
-        status |= 0x80;
-        if (ctrl & 0x80) nmi_pending = 1;
-        g_frames++;
-        if (g_apu_enabled) apu_render_frame();
-        if (present_cb) present_cb(g_frames, (const uint32_t (*)[256])g_frame);
-        if (g_quit) longjmp(g_jmp, 99);
-    } else if (line == 262) {
-        line = 0;
-    }
-    if (line == 261) {                                    /* pre-render line: flags clear, vertical bits copied */
-        status &= (uint8_t)~0xE0;
-    }
-    if (line == 0 && rendering()) v = (uint16_t)((v & ~0x7BE0) | (t & 0x7BE0));
+/* Timing of one scanline (341 dots), as far as the game needs it:
+ *   dot 0      line starts; sprite 0 is probed once for this line (where the hit will happen)
+ *   dot 1      line 241: vblank flag, NMI request, the picture of the frame is complete
+ *   dot 256    the visible part is over: the line is drawn with the registers as they are NOW, then the vertical increment and the
+ *              horizontal copy of v happen. Writes the CPU makes in the horizontal blanking therefore belong to the next line.
+ * (The real PPU fetches while it draws; drawing the whole line at dot 256 is exact for writes that land in the blanking time, which is what
+ *  the game's raster tricks use, and an approximation for writes during the visible part.) */
+static int line_rendered, vbl_set = 1, s0_valid; static uint64_t s0_dot;
+static void next_line(void) {
+    line++; line_start_dot += 341; line_rendered = 0;
+    if (line == 241) vbl_set = 0;
+    else if (line == 262) line = 0;
+    if (line == 261) status &= (uint8_t)~0xE0;           /* pre-render line: flags clear */
+    if (line == 0 && rendering()) v = (uint16_t)((v & ~0x7BE0) | (t & 0x7BE0));     /* vertical bits copied from t */
+    line_v0 = v; nvev = 0; ls_chr0 = mmc_chr0; ls_chr1 = mmc_chr1; ls_ctrl = mmc_control; nmev = 0;
+    s0_valid = 0;
+    if (line < 240) { int hx = probe_line(line); if (hx >= 0) { s0_valid = 1; s0_dot = line_start_dot + 2 + (uint64_t)hx; if (getenv("G13_WLOG") && g_frames == (unsigned long)atoi(getenv("G13_WLOG"))) fprintf(stderr, "sprite0 hit planned: line %d x %d" "%c", line, hx, 10); } }
 }
 static void catch_up(void) {                              /* run the PPU to the current CPU time */
     uint64_t dots = g_cycles * 3;
-    while (line_start_dot + 341 <= dots) advance_line();
+    for (;;) {
+        if (line < 240 && line_rendered == 0 && line_start_dot + 256 <= dots) { render_bg(line); end_of_line_updates(); line_rendered = 1; }
+        if (line < 240 && line_rendered == 1 && line_start_dot + 321 <= dots) { render_obj(line, 0); line_rendered = 2; }
+        if (line == 241 && !vbl_set && line_start_dot + 1 <= dots) {
+            vbl_set = 1; status |= 0x80;
+            if (ctrl & 0x80) nmi_pending = 1;
+            g_frames++;
+            if (g_apu_enabled) apu_render_frame();
+            if (present_cb) present_cb(g_frames, (const uint32_t (*)[256])g_frame);
+            if (g_quit) longjmp(g_jmp, 99);
+        }
+        if (line_start_dot + 341 <= dots) { next_line(); continue; }
+        break;
+    }
+    if (s0_valid && dots >= s0_dot) status |= 0x40;
 }
 
 static unsigned pad_idx;
@@ -173,6 +211,7 @@ uint8_t io_read(uint16_t addr) {
     return 0;
 }
 void io_write(uint16_t addr, uint8_t d) {
+    if (getenv("G13_WLOG") && g_frames == (unsigned long)atoi(getenv("G13_WLOG")) && ((addr >= 0x2000 && addr < 0x2008) || addr >= 0x8000 || addr == 0x4014)) fprintf(stderr, "W %04X=%02X cyc %llu line %d dot %d" "%c", addr, d, (unsigned long long)g_cycles, line, (int)(g_cycles * 3 - line_start_dot), 10);
     if (addr >= 0x2000 && addr < 0x4000) {
         catch_up();
         switch (addr & 7) {
@@ -181,14 +220,21 @@ void io_write(uint16_t addr, uint8_t d) {
         case 3: oam_addr = d; break;
         case 4: oam[oam_addr++] = d; break;
         case 5: if (!w_latch) { fine_x = d & 7; t = (uint16_t)((t & ~0x1F) | (d >> 3)); } else { t = (uint16_t)((t & ~0x73E0) | ((d & 7) << 12) | ((d >> 3) << 5)); } w_latch ^= 1; break;
-        case 6: if (!w_latch) { t = (uint16_t)((t & 0x00FF) | ((d & 0x3F) << 8)); } else { t = (uint16_t)((t & 0xFF00) | d); v = t; } w_latch ^= 1; break;
+        case 6: if (getenv("G13_PPULOG") && g_frames >= 3590 && g_frames <= 3590) fprintf(stderr, "f%lu line %d dot %d $2006=%02X latch %d\n", g_frames, line, (int)(g_cycles * 3 - line_start_dot), d, w_latch);
+                if (!w_latch) { t = (uint16_t)((t & 0x00FF) | ((d & 0x3F) << 8)); } else {
+                    t = (uint16_t)((t & 0xFF00) | d); v = t;
+                    if (line < 240 && rendering() && nvev < 8) {         /* the background fetch of tile m happens 2 tiles before it is shown: the write applies from tile (next fetch group + 2) */
+                        int dot = (int)(g_cycles * 3 - line_start_dot), tile = (dot + 7) / 8 + 2;
+                        if (tile <= 32) { vev[nvev].tile = tile; vev[nvev].v = v; nvev++; }
+                    }
+                } w_latch ^= 1; break;
         case 7: ppu_write(v & 0x3FFF, d); v = (uint16_t)(v + ((ctrl & 4) ? 32 : 1)); break;
         }
         return;
     }
     if (addr == 0x4014) {                                 /* OAM DMA from CPU page d */
         for (int i = 0; i < 256; i++) oam[(uint8_t)(oam_addr + i)] = g_ram[((d << 8) + i) & 0x7FF];
-        g_cycles += 513; return;
+        g_cycles += 513 + (g_cycles & 1); return;      /* the CPU is halted: 513 cycles, 514 when the DMA starts on an odd one */
     }
     if (addr >= 0x4000 && addr <= 0x4013 || addr == 0x4015 || addr == 0x4017) { apu_write(addr, d); return; }
     if (addr == 0x4016) { pad_idx = 0; return; }                                   /* strobe restarts the shift register */
@@ -198,6 +244,7 @@ void io_write(uint16_t addr, uint8_t d) {
         if (mmc_count == 5) {
             switch ((addr >> 13) & 3) { case 0: mmc_control = mmc_shift; break; case 1: mmc_chr0 = mmc_shift; break; case 2: mmc_chr1 = mmc_shift; break; default: mmc_prg = mmc_shift; g_bank = mmc_prg & 7; }
             mmc_shift = 0; mmc_count = 0;
+            if (line < 240 && nmev < 16) { mev[nmev].dot = (int)(g_cycles * 3 - line_start_dot); mev[nmev].chr0 = mmc_chr0; mev[nmev].chr1 = mmc_chr1; mev[nmev].ctrl = mmc_control; nmev++; }
         }
     }
 }
@@ -206,7 +253,7 @@ void io_write(uint16_t addr, uint8_t d) {
 void port_poll(void) {
     catch_up();
     if (nmi_pending && !in_nmi) {
-        nmi_pending = 0; in_nmi = 1;
+        nmi_pending = 0; in_nmi = 1; g_cycles += 7;      /* interrupt sequence */
         Cpu saved = R; uint8_t sp = R.sp;
         R.sp = (uint8_t)(sp - 3);
         Nmi();

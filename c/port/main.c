@@ -32,7 +32,10 @@ static void present(unsigned long frame, const uint32_t (*fb)[256]) {
         if (f) { fprintf(f, "P6\n256 240\n255\n"); for (int y = 0; y < 240; y++) for (int x = 0; x < 256; x++) { uint32_t c = fb[y][x]; fputc(c >> 16, f); fputc(c >> 8, f); fputc(c, f); } fclose(f); }
     }
     if (wav) { int16_t buf[1024]; unsigned n = 735 + (frame % 5 == 0); apu_fill(buf, (int)n); fwrite(buf, 2, n, wav); wav_samples += n; }
-    if (frame >= limit) g_quit = 1;
+    if (frame >= limit) {
+        if (getenv("G13_DUMP")) { for (int i = 0; i < 64; i++) { const uint8_t *o = g_ram + 0x200 + 4 * i; if (o[0] < 0xF0) fprintf(stderr, "spr %2d y=%3d tile=%02X attr=%02X x=%3d" "%c", i, o[0], o[1], o[2], o[3], 10); } }
+        g_quit = 1;
+    }
 }
 int main(int argc, char **argv) {
     if (argc < 2) { fprintf(stderr, "usage: %s ROM [--frames N] [--input route.txt] [--out DIR] [--shot-every N]\n", argv[0]); return 2; }

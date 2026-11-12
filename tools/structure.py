@@ -9,8 +9,9 @@ Anything that does not fit stays a goto. The result is semantically identical (t
 
 
 class Item:
-    def __init__(self, kind, text='', cond=None, neg=None, target=None, labels=None, comment='', body=None, els=None):
+    def __init__(self, kind, text='', cond=None, neg=None, target=None, labels=None, comment='', body=None, els=None, tk=0, tkmode=None):
         self.kind, self.text, self.cond, self.neg, self.target = kind, text, cond, neg, target
+        self.tk = tk; self.tkmode = tkmode      # extra cycles when the branch is taken (native port timing); tkmode says where the taken path went: 'else' / 'body'
         self.labels = list(labels or []); self.comment = comment; self.body = body; self.els = els
 
 
@@ -59,7 +60,7 @@ def try_loop(items):
         ext = outside_refs(items, i, j)
         if ext & inside_entry_only: return None
         body = items[i:j]
-        loop = Item('loop', text=it.text, cond=it.cond if it.kind == 'cb' else None, labels=items[i].labels, comment=it.comment)
+        loop = Item('loop', text=it.text, cond=it.cond if it.kind == 'cb' else None, labels=items[i].labels, comment=it.comment, tk=it.tk if it.kind == 'cb' else 0)
         # keep the entry label inside the loop body if the body still jumps to it
         loop.body = body
         loop.labels = [l for l in items[i].labels if l != entry]
@@ -102,13 +103,13 @@ def try_if(items):
                     then = block[:-1]
                     els[0].labels = [l for l in els[0].labels if l != it.target]
                     if not then:                                    # nothing to do when the branch is not taken: if (cond) { else-part }
-                        node = Item('if', text=it.text, cond=it.cond, labels=items[i].labels, comment=it.comment, body=els, els=None)
+                        node = Item('if', text=it.text, cond=it.cond, labels=items[i].labels, comment=it.comment, body=els, els=None, tk=it.tk, tkmode='body')
                     else:
-                        node = Item('if', text=it.text, cond=it.neg, labels=items[i].labels, comment=it.comment, body=then, els=els)
+                        node = Item('if', text=it.text, cond=it.neg, labels=items[i].labels, comment=it.comment, body=then, els=els, tk=it.tk, tkmode='else')
                     return items[:i] + [node] + items[m:]
-        node = Item('if', text=it.text, cond=it.neg, labels=items[i].labels, comment=it.comment, body=block, els=None)
+        node = Item('if', text=it.text, cond=it.neg, labels=items[i].labels, comment=it.comment, body=block, els=None, tk=it.tk, tkmode='else')
         if not block:
-            return items[:i] + [Item('plain', text=it.text, labels=items[i].labels, comment=it.comment)] + items[k:]
+            return items[:i] + [Item('plain', text=it.text + (f'if ({it.cond}) CYC({it.tk});' if it.tk else ''), labels=items[i].labels, comment=it.comment)] + items[k:]
         return items[:i] + [node] + items[k:]
     return None
 
@@ -140,18 +141,23 @@ def render(items, indent, referenced):
             if l in referenced: out.append(f'{l}: BUDGET();')
         if it.kind == 'plain':
             if it.text.strip(): out.append(_fmt(ind, it.text, it.comment))
-        elif it.kind == 'cb': out.append(_fmt(ind, f'{it.text}if ({it.cond}) goto {it.target};', it.comment))
+        elif it.kind == 'cb': out.append(_fmt(ind, f'{it.text}if ({it.cond}) {{ CYC({it.tk}); goto {it.target}; }}' if it.tk else f'{it.text}if ({it.cond}) goto {it.target};', it.comment))
         elif it.kind == 'goto': out.append(_fmt(ind, f'{it.text}goto {it.target};', it.comment))
         elif it.kind == 'if':
             out.append(_fmt(ind, f'{it.text}if ({it.cond}) {{', it.comment))
+            if it.tk and it.tkmode == 'body': out.append(f'{ind}  CYC({it.tk});')
             out += render(it.body, indent + 1, referenced)
             if it.els is not None:
-                out.append(f'{ind}}} else {{'); out += render(it.els, indent + 1, referenced)
+                out.append(f'{ind}}} else {{')
+                if it.tk and it.tkmode == 'else': out.append(f'{ind}  CYC({it.tk});')
+                out += render(it.els, indent + 1, referenced)
+            elif it.tk and it.tkmode == 'else': out.append(f'{ind}}} else {{ CYC({it.tk});')
             out.append(f'{ind}}}')
         elif it.kind == 'loop':
             out.append(f'{ind}do {{ BUDGET();' if it.cond is not None else f'{ind}for (;;) {{ BUDGET();')
             out += render(it.body, indent + 1, referenced)
-            out.append(_fmt(ind, f'}} while ({it.cond});' if it.cond is not None else '}', it.comment))
+            if it.text.strip(): out.append(f'{ind}  {it.text.strip()}')                 # base cost (and trace point) of the branch that closes the loop
+            out.append(_fmt(ind, (f'}} while (({it.cond}) && (CYC({it.tk}), 1));' if it.tk else f'}} while ({it.cond});') if it.cond is not None else '}', it.comment))
     return out
 
 

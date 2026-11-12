@@ -64,4 +64,7 @@ void SetupFloorProbeSideView(void);  /* $F2DA */
 void PlayerActionState3(void);       /* $D5BD */
 void PlayerActionState4(void);       /* $D5E2 */
 void SelectPlayerSpriteFrame(void);  /* $EF7B */
+void SetBulletHitbox1(void);         /* $FC62 */
+void SetBulletHitbox2(void);         /* $FCBD */
+void SelectEndScreenPhase(void);     /* $E018 */
 

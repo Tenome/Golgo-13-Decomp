@@ -97,6 +97,9 @@ TESTS = [
     ('PlayerActionState3', 0xD5BD, False, '', lambda r: dict(ram={0x36: r.randint(0, 40), 0x30: r.randint(0, 255)})),
     ('PlayerActionState4', 0xD5E2, False, '', lambda r: dict(ram={0x36: r.randint(0, 40)})),
     ('SelectPlayerSpriteFrame', 0xEF7B, False, '', lambda r: dict(ram={0x36: r.randint(0, 255), 0x10: r.randint(0, 255)})),
+    ('SetBulletHitbox1', 0xFC62, False, '', lambda r: dict(ram=dict([(0x024C + 4 * i + k, r.choice([0, 0x10, 0xE7, 0xE8, 0xDF, 0xE0, 0xFF, r.randint(0, 255)])) for i in range(2) for k in (0, 3)] + [(0x011E + k, r.randint(0, 255)) for k in range(10)]))),
+    ('SetBulletHitbox2', 0xFCBD, False, '', lambda r: dict(ram=dict([(0x0254 + 4 * i + k, r.choice([0, 0x10, 0xE7, 0xE8, 0xDF, 0xE0, 0xFF, r.randint(0, 255)])) for i in range(2) for k in (0, 3)] + [(0x011E + k, r.randint(0, 255)) for k in range(10)]))),
+    ('SelectEndScreenPhase', 0xE018, False, '', lambda r: dict(ram={0x29: r.choice([0, 0x1F, 0x20, 0x22, 0x23, 0x25, 0x26, 0x28, 0x29, 0x2B, 0x2C, 0xFF, r.randint(0, 255)])})),
 ]
 
 def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):

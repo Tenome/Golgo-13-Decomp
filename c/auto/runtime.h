@@ -21,8 +21,10 @@ extern int g_trace_on; void g13_trace(uint16_t pc);
 #ifdef PORT_CYCLES
 extern uint64_t g_cycles;       /* native port: CPU cycles since the start of the frame; the PPU catches up lazily */
 #define CYC(n) (g_cycles += (n))
+#define PXC(base, idx) (g_cycles += ((((base) & 0xFF) + (idx)) > 0xFF))      /* indexed read crossing a page: one more cycle */
 #else
 #define CYC(n) ((void)0)
+#define PXC(base, idx) ((void)0)
 #endif
 #define NZ(v) do { R.z = ((uint8_t)(v) == 0); R.n = ((uint8_t)(v) >> 7) & 1; } while (0)
 uint8_t rd(uint16_t a);

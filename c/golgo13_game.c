@@ -234,3 +234,29 @@ void SelectPlayerSpriteFrame(void) {
     PlayerSpriteFrame = (uint8_t)(frame + (step == 3 ? 1 : step));
 }
 
+/* ---- bullets and end screen ---- */
+/* A bullet hit record (5 bytes at $011E / $0123 ...): flag, Y, X, size, sprite number. The flag is 0 when the bullet is off screen
+ * (Y >= $E8 or X >= $E0) so that nothing can be hit by it. Y and X are copied even when only the second test fails, like the original. */
+static void bullet_hit_record(unsigned sprite_y_addr, unsigned record, uint8_t sprite_index, uint8_t flag_when_live) {
+    uint8_t y = RAM(sprite_y_addr), flag = 0;
+    if (y < 0xE8) {
+        RAM(record + 1) = y; uint8_t x = RAM(sprite_y_addr + 3); RAM(record + 2) = x;
+        if (x < 0xE0) { RAM(record + 3) = 0x14; RAM(record + 4) = sprite_index; flag = flag_when_live; }
+    }
+    RAM(record) = flag;
+}
+void SetBulletHitbox1(void) {                    /* $FC62: the bullets in sprites $4C and $50 */
+    bullet_hit_record(0x024C, 0x011E, 0x4C, 0x40);
+    bullet_hit_record(0x0250, 0x0123, 0x50, 0x20);
+}
+void SetBulletHitbox2(void) {                    /* $FCBD: the bullets in sprites $54 and $58 */
+    bullet_hit_record(0x0254, 0x011E, 0x54, 0x40);
+    bullet_hit_record(0x0258, 0x0123, 0x58, 0x20);
+}
+/* $E018: the end screen has six phases chosen from the transition counter (thresholds $20, $23, $26, $29, $2C); the phase picks a CHR bank */
+void SelectEndScreenPhase(void) {
+    uint8_t t = TransitionTarget;
+    unsigned phase = t < 0x20 ? 0 : t < 0x23 ? 1 : t < 0x26 ? 2 : t < 0x29 ? 3 : t < 0x2C ? 4 : 5;
+    RAM(0x0157) = ROMB(0xE03C + phase);
+}
+

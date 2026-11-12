@@ -54,6 +54,13 @@ def sym(v, wide):
     return SYM.get(v) if v in SYM and (wide or v < 0x100 or True) else None
 
 RMW = ('inc', 'dec', 'asl', 'lsr', 'rol', 'ror')
+READS = ('lda', 'ldx', 'ldy', 'adc', 'sbc', 'and', 'ora', 'eor', 'cmp')
+def page_cross(n, m, ob):
+    """C statement adding the extra cycle of an indexed read that crosses a page (the 6502 re-reads the high byte)"""
+    if n not in READS: return ''
+    if m in ('abx', 'aby'): return f"PXC(0x{ob[0] | ob[1] << 8:04X}, R.{'x' if m == 'abx' else 'y'}); "
+    if m == 'izy': return f"PXC(g_ram[0x{ob[0]:02X}], R.y); "
+    return ''
 def cycles_of(n, m):
     if n == 'brk': return 7
     if n in ('rts', 'rti', 'jsr'): return 6
@@ -154,11 +161,12 @@ def lift_function(entry):
     out = []
 
     def label(p): return f'L{g.addr_of(p):04X}'
-    def jump_to(cur, t, cond=None):
+    def jump_to(cur, t, cond=None, tk=0):
         k = target_code(cur, t)
         if k[0] == 'local': need_label.add(k[1]); stmt = f'goto {label(k[1])};'
         elif k[0] == 'entry': stmt = f'{{ {fname(k[1])}(); return; }}'
         else: stmt = f'{{ call_addr(0x{t:04X}); return; }}'
+        if cond and tk and CYCLES: stmt = '{ CYC(%d); %s }' % (tk, stmt)
         return f'if ({cond}) {stmt}' if cond else stmt
     def call(cur, t):
         k = target_code(cur, t)
@@ -205,8 +213,9 @@ def lift_function(entry):
                              'bcs': (f'{r_} >= {m_}', f'{r_} < {m_}'), 'bcc': (f'{r_} < {m_}', f'{r_} >= {m_}'),
                              'bmi': (sg, f'!{sg}'), 'bpl': (f'!{sg}', sg)}[n]
             k_ = target_code(p, t)
-            if k_[0] == 'local': need_label.add(k_[1]); CBI[p] = (cond, neg, label(k_[1])); s = ''
-            else: s = jump_to(p, t, cond)
+            tk_ = (1 + int((((g.addr_of(p) + 2) ^ t) & 0xFF00) != 0)) if CYCLES else 0    # taken branch: +1 cycle, +1 more across a page
+            if k_[0] == 'local': need_label.add(k_[1]); CBI[p] = (cond, neg, label(k_[1]), tk_); s = ''
+            else: s = jump_to(p, t, cond, tk_)
         elif n == 'jsr' and is_dispatch_call(p, body[p]):      # the callee jumps to a handler whose RTS returns to our caller
             k0 = target_code(p, ob[0] | ob[1] << 8); s = f'push16(0x{g.addr_of(p) + 2:04X}); {fname(k0[1])}(); return;'
         elif n == 'jsr': s = call(p, ob[0] | ob[1] << 8)
@@ -276,13 +285,13 @@ def lift_function(entry):
         stmts[p] = stmts[p] + extra
     lines = [f'void {fname(entry)}(void) {{  /* ${g.addr_of(entry):04X} bank {g.bank_of(entry)} */', '  uint8_t sp0 = R.sp;']
     if STRUCT:
-        prefix = lambda p_: (f"TR(0x{g.addr_of(p_):04X}); " if TRACE else "") + (f"CYC({cycles_of(body[p_][1], body[p_][2])}); " if CYCLES else "")
+        prefix = lambda p_: (f"TR(0x{g.addr_of(p_):04X}); " if TRACE else "") + (f"CYC({cycles_of(body[p_][1], body[p_][2])}); " + page_cross(body[p_][1], body[p_][2], body[p_][4]) if CYCLES else "")
         items = []
         if order[0] != entry: items.append(structure.Item('goto', target=label(entry), labels=[]))
         for p in order:
             op, n, m, l, ob = body[p]; lab = [label(p)] if p in need_label else []
             cm = f'${g.addr_of(p):04X} {n}'
-            if p in CBI: items.append(structure.Item('cb', cond=CBI[p][0], neg=CBI[p][1], target=CBI[p][2], labels=lab, text=prefix(p), comment=cm))
+            if p in CBI: items.append(structure.Item('cb', cond=CBI[p][0], neg=CBI[p][1], target=CBI[p][2], labels=lab, text=prefix(p), comment=cm, tk=CBI[p][3]))
             elif p in GOTOI: items.append(structure.Item('goto', target=GOTOI[p], labels=lab, text=prefix(p), comment=cm))
             else: items.append(structure.Item('plain', text=prefix(p) + BASE[p], labels=lab, comment=cm, target=PUSHED.get(p)))
             if p in XGOTO: items.append(structure.Item('goto', target=XGOTO[p], labels=[]))   # fall-through that is not the next instruction in address order
