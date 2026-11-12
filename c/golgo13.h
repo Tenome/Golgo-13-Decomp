@@ -35,3 +35,26 @@ Regs AdjustAmmo(Regs r);       /* $EEB7 */
 Regs UseAmmo(Regs r);          /* $EACF */
 Regs ClearObjectStatusBits(Regs r); /* $FBE0 */
 Regs UpdateLifeBlink(Regs r);  /* $FBFE */
+
+/* ---- game logic (c/golgo13_game.c) ---- */
+Regs HideObjectSpriteRange(Regs r);  /* $D308 */
+Regs HideSpritesUntilE0(Regs r);     /* $D318 */
+void MoveBulletsRight8(void);        /* $F698 */
+void MoveBulletsSide6(void);         /* $F634 */
+void MoveBulletsSide4(void);         /* $F664 */
+void ComputeAreaGroup(void);         /* $CCD3 */
+void SetPlayerScreenSide(void);      /* $F606 */
+void StepSequenceForward(void);      /* $FEA7 */
+void StepSequenceBackward(void);     /* $FEC1 */
+void FinishTransition(void);         /* $DDD0 */
+void EndGameOverSequence(void);      /* $DF02 */
+void InitEndScreenSprites(void);     /* $E079 */
+void HealPlayerDuringTransition(void); /* $E042 */
+void ResetPlayerForRetry(void);      /* $E85E */
+void UpdateLowLifeAlarm(void);       /* $E916 */
+void RemoveObject(void);             /* $C43D */
+void PixelToNametableAddr(void);     /* $C4C8 */
+Regs AddTileOffsetToPtr20(Regs r);   /* $C761 */
+Regs AddNibbleOffsetToPtr(Regs r);   /* $CF84 */
+Regs AddPackedOffsetToPtr20(Regs r); /* $CFA3 */
+

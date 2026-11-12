@@ -19,7 +19,7 @@ def find_cc():
     sys.exit('no C compiler found (pass --clang PATH or set CLANG)')
 dll = os.path.join(ROOT, 'build', 'golgo13_c' + ('.dll' if os.name == 'nt' else '.so'))
 os.makedirs(os.path.dirname(dll), exist_ok=True)
-subprocess.check_call([find_cc(), '-shared', '-O1', '-fPIC', '-Wall', '-Wno-unused-function', '-o', dll, os.path.join(ROOT, 'c', 'golgo13.c'), os.path.join(ROOT, 'c', 'core.c')])
+subprocess.check_call([find_cc(), '-shared', '-O1', '-fPIC', '-Wall', '-Wno-unused-function', '-o', dll, os.path.join(ROOT, 'c', 'golgo13.c'), os.path.join(ROOT, 'c', 'golgo13_game.c'), os.path.join(ROOT, 'c', 'core.c')])
 lib = ctypes.CDLL(dll)
 class Regs(ctypes.Structure): _fields_ = [('a', ctypes.c_uint8), ('x', ctypes.c_uint8), ('y', ctypes.c_uint8), ('c', ctypes.c_uint8)]
 ram_c = (ctypes.c_uint8 * 0x800).in_dll(lib, 'g_ram')
@@ -70,6 +70,26 @@ TESTS = [
     ('UseAmmo',        0xEACF, True, 'ac', lambda r: dict(x=r.randint(0, 12), ram={0x3A: r.choice([0, 1, 0x80, 0xFF, r.randint(0, 255)]), 0x3B: r.choice([0, 0, 1, 2, 0x80, 0xFF])})),
     ('ClearObjectStatusBits', 0xFBE0, True, 'axyc', lambda r: dict(ram={0x0301: r.choice([0, 1, 2, 5, 16, 17, 40, r.randint(0, 255)])})),
     ('UpdateLifeBlink', 0xFBFE, True, 'a', lambda r: dict(ram={0x114: r.choice([0, 0, 1, 7]), 0x116: r.randint(0, 255), 0x10: r.randint(0, 255), 0x38: r.randint(0, 255)})),
+    ('HideObjectSpriteRange', 0xD308, True, 'axyc', lambda r: dict(x=r.randint(0, 20), ram={0x03: 2, 0x02: r.randint(0, 255), 0x0313: r.randint(0, 255), 0x0323: r.randint(0, 255), 0x0333: r.randint(0, 255)})),
+    ('HideSpritesUntilE0', 0xD318, True, 'axyc', lambda r: dict(ram={0x05: 2, 0x04: r.choice([0, 0x50, 0xD0, 0xDF, 0xE0, 0xFF, r.randint(0, 255)])})),
+    ('MoveBulletsRight8', 0xF698, False, '', lambda r: dict(ram=dict((0x200 + 0x4C + 4 * i + r.choice([0, 3]), r.choice([0, 0x10, 0xE7, 0xE8, 0xEE, 0xF5, 0xF6, 0xFF])) for i in range(4)))),
+    ('MoveBulletsSide6', 0xF634, False, '', lambda r: dict(ram=dict((0x200 + 0x58 + 4 * i + r.choice([0, 2, 3]), r.choice([0, 6, 0x40, 0xE7, 0xE8, 0xF0, 0xF6, 0xFA, 0xFF])) for i in range(4)))),
+    ('MoveBulletsSide4', 0xF664, False, '', lambda r: dict(ram=dict((0x200 + 0x54 + 4 * i + r.choice([0, 2, 3]), r.choice([0, 3, 4, 7, 8, 0x40, 0xE7, 0xE8, 0xEF, 0xF0, 0xFC, 0xFF])) for i in range(4)))),
+    ('ComputeAreaGroup', 0xCCD3, False, '', lambda r: dict(ram={0x17: r.choice([0, 0x11, 0x12, 0x2F, 0x30, 0x3F, 0x40, 0xFF, r.randint(0, 255)])})),
+    ('SetPlayerScreenSide', 0xF606, False, '', lambda r: dict(ram={0x023B: r.choice([0, 0x77, 0x78, 0x79, 0xFF, r.randint(0, 255)])})),
+    ('StepSequenceForward', 0xFEA7, False, '', lambda r: dict(ram={0x0107: r.choice([0x00, 0x02, 0x08, 0x0A, 0x0E, 0x12, 0x1A, 0x1E, 0x32, 0x38, 0x3B, 0x40, 0x49])})),
+    ('StepSequenceBackward', 0xFEC1, False, '', lambda r: dict(ram={0x0107: r.choice([0x00, 0x02, 0x08, 0x0A, 0x0E, 0x12, 0x1A, 0x1E, 0x32, 0x38, 0x3B, 0x40, 0x49])})),
+    ('FinishTransition', 0xDDD0, False, '', lambda r: {}),
+    ('EndGameOverSequence', 0xDF02, False, '', lambda r: {}),
+    ('InitEndScreenSprites', 0xE079, False, '', lambda r: {}),
+    ('HealPlayerDuringTransition', 0xE042, False, '', lambda r: dict(ram={0x29: r.choice([0, 0x2F, 0x30, 0x50, 0xFF]), 0x10: r.choice([0, 8, 7, 0xF8, r.randint(0, 255)]), 0x38: r.choice([0, 100, 190, 199, 200, 201, 255, r.randint(0, 255)])})),
+    ('ResetPlayerForRetry', 0xE85E, False, '', lambda r: dict(ram={0x3A: r.choice([0, 1, 9, 10, 19, 20, 255, r.randint(0, 255)]), 0x3B: r.choice([0, 1, 2, 255]), 0x29: r.choice([0x77, 0x76, r.randint(0, 255)])})),
+    ('UpdateLowLifeAlarm', 0xE916, False, '', lambda r: dict(ram={0x0117: r.choice([0, 1]), 0x38: r.choice([0, 0x31, 0x32, 0x33, 0xFF, r.randint(0, 255)])})),
+    ('RemoveObject', 0xC43D, False, '', lambda r: dict(ram={0x00: r.choice([0x10, 0x20, 0x30, 0x40, 0x80, 0xE0, 0xF0, r.randint(0, 255)]), 0x0301: r.choice([0, 1, 2, 3, 5, 9, 15])})),
+    ('PixelToNametableAddr', 0xC4C8, False, '', lambda r: dict(ram={0x02: r.randint(0, 255), 0x03: r.randint(0, 255), 0x19: r.randint(0, 255), 0x1A: r.choice([0, 0x10, 0xEF, 0xF0, r.randint(0, 255)])})),
+    ('AddTileOffsetToPtr20', 0xC761, True, 'axyc', lambda r: dict(x=r.choice([0, 0, 1, 0x10, 0xFF]), y=r.randint(0, 255))),
+    ('AddNibbleOffsetToPtr', 0xCF84, True, 'axyc', lambda r: dict(x=r.choice([0, 0, 1, 0x10, 0xFF]), y=r.randint(0, 255))),
+    ('AddPackedOffsetToPtr20', 0xCFA3, True, 'axyc', lambda r: dict(x=r.choice([0, 0, 1, 0x10, 0xFF]), y=r.randint(0, 255))),
 ]
 
 def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):
