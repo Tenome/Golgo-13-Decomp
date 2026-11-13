@@ -87,4 +87,6 @@ void TickObjectStates(void);         /* $FA8E */
 void UpdatePlayerHitboxA(void);      /* $FB00 */
 void UpdatePlayerHitboxB(void);      /* $FC1A */
 void UpdatePlayerHitboxC(void);      /* $FD18 */
+void FadePaletteStep(void);          /* $E8D3 */
+Regs CheckPlayerNearObject(Regs r);  /* $D28E */
 

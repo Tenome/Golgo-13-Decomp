@@ -630,3 +630,36 @@ void UpdatePlayerHitboxC(void) {                 /* $FD18 */
     clear_hit_flags(); BuildBulletHitboxes(); CheckPlayerHitByObjects(); TickObjectStates(); UpdateLifeBlink((Regs){0, 0, 0, 0});
 }
 
+/* $E8D3: the palette fades out in steps: at fade level $40 / $50 / $60 every colour at or above $30 / $20 / $10 (the lighter ones) drops by one
+ * brightness step; from level $70 the whole palette is black ($0F) */
+#define PaletteFadeLevel RAM(0x013D)
+#define PaletteBuffer(i) RAM(0x0140 + (i))
+void FadePaletteStep(void) {
+    uint8_t level = PaletteFadeLevel, threshold;
+    if (level == 0x40) threshold = 0x30; else if (level == 0x50) threshold = 0x20; else if (level == 0x60) threshold = 0x10;
+    else {
+        if (level >= 0x70) for (unsigned i = 0; i < 0x20; i++) PaletteBuffer(i) = 0x0F;
+        return;
+    }
+    RAM(0x04) = threshold;
+    for (unsigned i = 0; i < 0x20; i++) if (PaletteBuffer(i) >= threshold) PaletteBuffer(i) = (uint8_t)(PaletteBuffer(i) - 0x10);
+}
+
+/* $D28E: is the player close enough to the object at table offset X (within 15 pixels in Y, 21 in X)? If so the dialogue / pickup scene of
+ * bank 3 is prepared: the object's sprites (from $0200 + its OAM start up to the end of its box) and the ones after it are hidden. Result in A. */
+Regs CheckPlayerNearObject(Regs r) {
+    unsigned o = 0x0310 + r.x;
+    Tmp00 = RAM(o + 1); Tmp01 = RAM(o + 2);
+    uint8_t dy = (uint8_t)(PlayerSpriteY - Tmp00);
+    if (dy < 0xF0 && dy >= 0x10) { r.a = 0; return r; }
+    uint8_t dx = (uint8_t)(PlayerSpriteX0 - Tmp01);
+    if (dx < 0xEA && dx >= 0x16) { r.a = 0; return r; }
+    RAM(0x0410) = 0; RAM(0x0403) = 0; RAM(0x5D) = 2; Tmp03 = 2; RAM(0x05) = 2; RAM(0x0402) = 2;
+    Tmp02 = GameState == 3 ? 0x58 : 0x4C;
+    uint8_t first = RAM(o + 3);                                   /* +3 / +4: first OAM byte of the object and its number of sprites */
+    RAM(0x04) = (uint8_t)(first + (RAM(o + 4) << 2)); RAM(0x5C) = RAM(0x04);
+    if ((uint8_t)(first - Tmp02) >= 0x30) RAM(0x5C) = Tmp02;
+    HideObjectSpriteRange(r); HideSpritesUntilE0(r);
+    RAM(0x0110) = 0; r.a = 1; return r;
+}
+
