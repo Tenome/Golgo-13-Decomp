@@ -211,12 +211,15 @@ void SetupFloorProbeSideView(void) {
 
 /* ---- player ---- */
 /* $D5BD / $D5C5: player action state 3 hands over to the scene code of bank 3 (dialogue / briefing) */
-void PlayerActionState3(void) {
-    RAM(0x0400) = ROMB(0xF77B + PlayerPose);
+static void enter_bank3_scene(uint8_t x) {       /* $D5C5: set up the dialogue scene of bank 3 and switch to it */
     RAM(0x5C) = 0x8C; RAM(0x5D) = 0x02; RAM(0x0402) = 0x02;
     RAM(0x0410) = 0; RAM(0x0403) = 0;
-    MmcPrgShadow = 3; MmcWritePrg((Regs){0x03, PlayerPose, 0, 0});
+    MmcPrgShadow = 3; MmcWritePrg((Regs){0x03, x, 0, 0});
     PlayerActionState++;
+}
+void PlayerActionState3(void) {
+    RAM(0x0400) = ROMB(0xF77B + PlayerPose);
+    enter_bank3_scene(PlayerPose);
 }
 /* $D5E2: player action state 4 chooses the next state from a flag table: 8 when neither flag bit is set, 6 when both are, else 5 with a sound */
 void PlayerActionState4(void) {
@@ -433,5 +436,54 @@ void MovePlayerVertical(void) {
         uint8_t old = RAM(0x0247), carry = old >= 0x0E; uint8_t v = (uint8_t)(old - 0x0E); RAM(0x0247) = v;
         RAM(0x024B) = (uint8_t)(v - 0x08 - (carry ? 0 : 1));
     }
+}
+
+/* $D3A4: standing still: after A is pressed (or while the timer runs) a 4-frame idle animation advances by time */
+void PlayerActionIdle(void) {
+    if (PlayerActionTimer == 0 && !(JoyHeld1 & JOY_A)) return;
+    PlayerActionTimer++;
+    uint8_t t = PlayerActionTimer;
+    PlayerSpriteFrame = t < 0x0E ? 0 : t < 0x1C ? 1 : t < 0x2A ? 2 : 3;
+}
+/* $D6A4: player action state 6 (a cutscene pose): at the frames listed in a table of 6 pairs, 8 sprites of the scene are replaced
+ * from another table; after 232 frames the next state starts */
+void PlayerActionState6(void) {
+    PlayerActionTimer++;
+    if (PlayerActionTimer >= 0xE8) { PlayerActionState++; return; }
+    for (unsigned x = 0; x < 0x0C; x += 2) {
+        if (ROMB(0xD6D4 + x) != PlayerActionTimer) continue;
+        unsigned y = ROMB(0xD6D5 + x);
+        for (unsigned k = 0; k < 8; k++) OAM(0xC1 + 4 * k) = ROMB(0xD6E0 + y + k);
+        return;
+    }
+}
+/* $D710: player action state 7: three of the scene codes play two sound effects before the dialogue scene starts */
+void PlayerActionState7(void) {
+    uint8_t scene = ROMB(0xF77C + PlayerPose); RAM(0x0400) = scene;
+    unsigned first = 0, second = 0; int sound = 1;
+    if (scene == 0x0A) { first = 0x00; second = 0x08; }
+    else if (scene == 0x28) { first = 0x1E; second = 0x14; }
+    else if (scene == 0x2A) { first = 0x22; second = 0x15; }
+    else sound = 0;
+    if (sound) { QueueSound((Regs){(uint8_t)first, PlayerPose, (uint8_t)second, 0}); QueueSound((Regs){(uint8_t)second, PlayerPose, (uint8_t)second, 0}); }
+    enter_bank3_scene(PlayerPose);
+}
+
+/* $FA47: after a bullet hit on an object (flag $40 in its status byte) the hit sound plays, the object's hit points drop by one and a
+ * 64-frame lockout starts; every object's hit flags are cleared each frame */
+void CheckBulletHitObjects(void) {
+    if (RAM(0x0115)) { RAM(0x0115)--; return; }
+    Tmp00 = 0x10; Tmp01 = 0x03;
+    uint8_t left = (uint8_t)ObjectCount;
+    if (left == 0) return;
+    do {
+        unsigned obj = 0x0300 + Tmp00;
+        if (RAM(obj + 4) & 0x40) {
+            RAM(0x0115) = 0x40; QueueSound((Regs){0x0D, left, 0, 0});
+            if (RAM(obj + 6)) RAM(obj + 6)--;
+        }
+        RAM(obj + 4) &= 0x3F;
+        Tmp00 = (uint8_t)(Tmp00 + 0x10); left--;
+    } while (left);
 }
 

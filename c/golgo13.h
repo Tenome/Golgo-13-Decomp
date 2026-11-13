@@ -77,4 +77,8 @@ void SpawnBulletSprite(void);        /* $EEC9 */
 void SelectPlayerWalkFrame(void);    /* $EB2F */
 void UpdatePlayerJumpArc(void);      /* $E971 */
 void MovePlayerVertical(void);       /* $F39E */
+void PlayerActionIdle(void);         /* $D3A4 */
+void PlayerActionState6(void);       /* $D6A4 */
+void PlayerActionState7(void);       /* $D710 */
+void CheckBulletHitObjects(void);    /* $FA47 */
 

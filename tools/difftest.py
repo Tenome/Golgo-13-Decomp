@@ -110,6 +110,10 @@ TESTS = [
     ('SelectPlayerWalkFrame', 0xEB2F, False, '', lambda r: dict(ram={0x36: r.choice([0, 1, 2, 3, 4, 5, 6, 7, 0x10, 0x16, r.randint(0, 255)]), 0x10: r.randint(0, 255), 0x31: r.randint(0, 20), 0x34: r.choice([0, 7, 8, 9, 0x0F, 0x10, 0x17, 0x18, 0x1F, 0x20, 0x21, 0xDF, 0xE0, 0xFF, r.randint(0, 255)]), 0x3A: r.choice([0, 3]), 0x3B: 0, 0x0238: r.randint(0, 255), 0x023B: r.randint(0, 255)})),
     ('UpdatePlayerJumpArc', 0xE971, False, '', lambda r: dict(ram={0x31: r.choice([0, 1, 0x16, 0x17, 0x18, 0x2F, 0x30, 0x31, 0xFF, r.randint(0, 255)]), 0x0238: r.randint(0, 255), 0x010B: r.choice([0, 2, 0x20, 0x22, 0xFF]), 0xFA: r.randint(0, 31), 0x3F: r.randint(0, 255), 0x36: r.randint(0, 255)})),
     ('MovePlayerVertical', 0xF39E, False, '', lambda r: dict(ram={0x010B: r.choice([0, 0x10, 0x20, 0x40, 0x80, 0x50, 0xA0, 0xFF, r.randint(0, 255)]), 0x0238: r.choice([0x11, 0x12, 0xC7, 0xC8, r.randint(0, 255)]), 0x023B: r.choice([0x17, 0x18, 0xDF, 0xE0, r.randint(0, 255)]), 0x18: r.choice([0, 0x0E, 0x0F, 0x10]), 0x10: r.randint(0, 255), 0x0247: r.randint(0, 255)})),
+    ('PlayerActionIdle', 0xD3A4, False, '', lambda r: dict(ram={0x31: r.choice([0, 1, 0x0D, 0x0E, 0x1B, 0x1C, 0x29, 0x2A, 0xFF, r.randint(0, 255)]), 0x010B: r.choice([0, 1, 0xFF])})),
+    ('PlayerActionState6', 0xD6A4, False, '', lambda r: dict(ram={0x31: r.choice([0, 1, 0xE6, 0xE7, 0xE8, r.randint(0, 255), 0x00, 0x3B, 0x4D, 0x71, 0x86, 0xAB]), 0x30: r.randint(0, 255)})),
+    ('PlayerActionState7', 0xD710, False, '', lambda r: dict(ram={0x36: r.randint(0, 40), 0x30: r.randint(0, 255)})),
+    ('CheckBulletHitObjects', 0xFA47, False, '', lambda r: dict(ram=dict([(0x0115, r.choice([0, 0, 0, 1, 5])), (0x0301, r.choice([0, 1, 2, 3, 6]))] + [(0x0314 + 16 * i, r.choice([0, 0x40, 0x80, 0xC0, r.randint(0, 255)])) for i in range(8)] + [(0x0316 + 16 * i, r.choice([0, 1, 2, 9])) for i in range(8)]))),
 ]
 
 def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):
