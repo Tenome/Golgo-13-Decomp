@@ -83,4 +83,8 @@ void PlayerActionState7(void);       /* $D710 */
 void CheckBulletHitObjects(void);    /* $FA47 */
 void BuildBulletHitboxes(void);      /* $F804 */
 void CheckPlayerHitByObjects(void);  /* $F984 */
+void TickObjectStates(void);         /* $FA8E */
+void UpdatePlayerHitboxA(void);      /* $FB00 */
+void UpdatePlayerHitboxB(void);      /* $FC1A */
+void UpdatePlayerHitboxC(void);      /* $FD18 */
 

@@ -562,3 +562,71 @@ void CheckPlayerHitByObjects(void) {
     }
 }
 
+/* $FA8E: per frame, for every object: the hit-flash countdown in the high nibble of +6 runs down; when an object was just hit by a bullet
+ * (status bits $40 / $20) its hit points' low nibble drops, the bullet's sprite is hidden and the flash starts. (In the original the sprite
+ * index ends up in X, which is also the loop counter: the scan continues with that value. This is kept.) */
+void TickObjectStates(void) {
+    Tmp00 = 0x10; Tmp01 = 0x03;
+    uint8_t left = (uint8_t)ObjectCount;
+    if (left == 0) return;
+    for (;;) {
+        unsigned o = OBJ(Tmp00);
+        if (RAM(o + OBJ_HP) & 0xF0) RAM(o + OBJ_HP) = (uint8_t)(RAM(o + OBJ_HP) - 0x10);
+        else if ((RAM(o + OBJ_HITS) & 0x60) && (RAM(o + OBJ_HP) & 0x0F) != 0 && (RAM(o + OBJ_HP) & 0x0F) != 0x0F) {
+            RAM(o + OBJ_HP) = (uint8_t)(((RAM(o + OBJ_HP) - 1) & 0xFF) | 0xF0);
+            if ((RAM(o + OBJ_HITS) & 0x60) == 0x40) left = RAM(0x0122);
+            else { left = RAM(0x0127); if (left >= 0x40) { left = 0x5C; RAM(0x0204 + left) = SPRITE_HIDDEN; } }
+            OAM(left) = SPRITE_HIDDEN;
+        }
+        RAM(o + OBJ_HITS) &= 0x1F;
+        Tmp00 = (uint8_t)(Tmp00 + 0x10);
+        if (--left == 0) return;
+    }
+}
+
+/* The three player hit-box routines (one per view / pose set) fill hit record 0 with the player's box (flag $80) unless the player is in
+ * his hurt blink, then run the collision pass. */
+static void clear_hit_flags(void) { ClearObjectStatusBits((Regs){0, 0, 0, 0}); }
+static void player_hit_record(uint8_t y, uint8_t x_offset, uint8_t size) {
+    RAM(0x011A) = y; RAM(0x011B) = (uint8_t)(PlayerSpriteX0 + x_offset); RAM(0x011C) = size; RAM(0x0119) = 0x80;
+}
+static void bullet_record_from_sprite(unsigned sprite, unsigned record, uint8_t size, uint8_t flag) {   /* a bullet sprite (Y at $0200 + sprite) as hit record */
+    uint8_t y = RAM(0x0200 + sprite), live = y < 0xE8;
+    if (live) { RAM(record + 1) = y; RAM(record + 2) = RAM(0x0200 + sprite + 3); RAM(record + 3) = size; RAM(record + 4) = (uint8_t)sprite; }
+    RAM(record) = live ? flag : 0;
+}
+void UpdatePlayerHitboxA(void) {                 /* $FB00 */
+    if (HurtTimer) { if (!(FrameCounter & 1)) HurtTimer--; RAM(0x0119) = 0; }
+    else {
+        uint8_t pose = PlayerPose & 0x0F, carry = pose >= 2;
+        uint8_t dy = pose == 2 ? 0x12 : 0x08, size = pose == 2 ? 0x61 : 0x81;
+        player_hit_record((uint8_t)(PlayerSpriteY + dy + carry), 6, size);
+    }
+    if (RAM(0x0115)) RAM(0x0115)--;
+    else {
+        uint8_t flag = 0;
+        if ((PlayerPose & 0x0F) == POSE_SHOOT && ShootPoseTimer == 2) {          /* the muzzle flash of a fresh shot hurts what is in front */
+            RAM(0x011F) = (uint8_t)(PlayerSpriteY + 0x11);
+            RAM(0x0120) = (uint8_t)(((PlayerPose & 0x10) ? 0xEE : 0x0E) + PlayerSpriteX0);
+            RAM(0x0121) = 0x35; flag = 0x40;
+        }
+        RAM(0x011E) = flag;
+    }
+    clear_hit_flags(); BuildBulletHitboxes(); CheckPlayerHitByObjects(); CheckBulletHitObjects();
+    bullet_record_from_sprite(0x58, 0x011E, 0x12, 0x40);
+    bullet_record_from_sprite(0x5C, 0x0123, 0x12, 0x20);
+    clear_hit_flags(); BuildBulletHitboxes(); TickObjectStates(); UpdateLifeBlink((Regs){0, 0, 0, 0});
+}
+void UpdatePlayerHitboxB(void) {                 /* $FC1A */
+    if (HurtTimer) { if (!(FrameCounter & 1)) HurtTimer--; RAM(0x0119) = 0; }
+    else player_hit_record(PlayerSpriteY, 0, 0x44);
+    if (!(FrameCounter & 1)) SetBulletHitbox1(); else SetBulletHitbox2();
+    clear_hit_flags(); BuildBulletHitboxes(); CheckPlayerHitByObjects(); TickObjectStates(); UpdateLifeBlink((Regs){0, 0, 0, 0});
+}
+void UpdatePlayerHitboxC(void) {                 /* $FD18 */
+    if (HurtTimer) { if (!(FrameCounter & 1)) HurtTimer--; RAM(0x0119) = 0; }
+    else player_hit_record(PlayerSpriteY, 0, (PlayerPose & 0x0F) == 1 ? 0x44 : 0x63);
+    SetBulletHitbox2();
+    clear_hit_flags(); BuildBulletHitboxes(); CheckPlayerHitByObjects(); TickObjectStates(); UpdateLifeBlink((Regs){0, 0, 0, 0});
+}
+
