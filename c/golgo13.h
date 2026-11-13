@@ -102,4 +102,20 @@ Regs GetObjectBehaviorIndex(Regs r); /* $B6:89A7 */
 Regs AdvanceObjectAnimStep(Regs r);  /* $B6:8A66 */
 void CalcObjectTileColumn(void);     /* $B6:8AF4 */
 Regs StoreSpawnStats(Regs r);        /* $B6:83BE */
+/* ---- bank 4 ---- */
+Regs IncObjectField(Regs r);         /* $B4:8FBD */
+Regs DecObjectField(Regs r);         /* $B4:8FC5 */
+Regs AdvanceObjectState(Regs r);     /* $B4:8FBB */
+Regs AddToObjectField(Regs r);       /* $B4:AC2D */
+Regs AddToObjectY(Regs r);           /* $B4:AC2B */
+Regs MoveObjectXY(Regs r);           /* $B4:AC25 */
+Regs SetObjectFlagsE0(Regs r);       /* $B4:B3F2 */
+Regs SetObjectFlagsC0(Regs r);       /* $B4:B3FB */
+void AllocObjectSlot(void);          /* $B4:8FAB */
+void ClearObjectTable(void);         /* $B4:86D1 */
+Regs HideAllSprites(Regs r);         /* $B4:8473 */
+void DamagePlayer(Regs r);           /* $B4:B43D */
+void AddLifeAndAmmo(Regs r);         /* $B4:B44B */
+Regs ExtractBitPair(Regs r);         /* $B4:9943 */
+Regs RandomByteMixed(Regs r);        /* $B4:90C5 */
 

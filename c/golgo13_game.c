@@ -736,3 +736,56 @@ Regs StoreSpawnStats(Regs r) {                   /* copy two bytes of the spawn 
     r.y = 7; r.a = second; return r;
 }
 
+/* =====================================================================================================================================
+ * Bank 4 (first-person building scenes): object helpers. The object being worked on is at Tmp00/Tmp01 (a 16-byte entry of the table at $0310).
+ * ===================================================================================================================================== */
+Regs IncObjectField(Regs r) {                    /* $B4:8FBD: object byte Y goes up by one; A = the new value */
+    unsigned n = CUR_OBJ(r.y) + 1; CUR_OBJ(r.y) = (uint8_t)n; r.a = (uint8_t)n; r.c = n > 0xFF; return r;
+}
+Regs DecObjectField(Regs r) {                    /* $B4:8FC5: byte Y goes down by one; carry set when there was no borrow */
+    unsigned v = CUR_OBJ(r.y); CUR_OBJ(r.y) = (uint8_t)(v - 1); r.a = (uint8_t)(v - 1); r.c = v >= 1; return r;
+}
+Regs AdvanceObjectState(Regs r) { r.y = 8; return IncObjectField(r); }   /* $B4:8FBB: the state byte (+8) goes to the next state */
+Regs AddToObjectField(Regs r) {                  /* $B4:AC2D: byte Y += A */
+    unsigned n = CUR_OBJ(r.y) + r.a; CUR_OBJ(r.y) = (uint8_t)n; r.a = (uint8_t)n; r.c = n > 0xFF; return r;
+}
+Regs AddToObjectY(Regs r) { r.y = 1; return AddToObjectField(r); }       /* $B4:AC2B: screen Y (+1) += A */
+Regs MoveObjectXY(Regs r) {                      /* $B4:AC25: X (+2) += A, then Y (+1) += X register */
+    r.y = 2; r = AddToObjectField(r); r.a = r.x; return AddToObjectY(r);
+}
+Regs SetObjectFlagsE0(Regs r) { r.y = 0x0A; r.a = CUR_OBJ(0x0A) | 0xE0; CUR_OBJ(0x0A) = r.a; return r; }   /* $B4:B3F2 */
+Regs SetObjectFlagsC0(Regs r) { r.a = CUR_OBJ(r.y) | 0xC0; CUR_OBJ(r.y) = r.a; return r; }               /* $B4:B3FB: byte Y gets bits 7 and 6 */
+void AllocObjectSlot(void) {                     /* $B4:8FAB: the next free object entry; Tmp00/Tmp01 point at it */
+    ObjectCount++; Tmp00 = (uint8_t)(ObjectCount << 4); Tmp01 = 3;
+}
+void ClearObjectTable(void) {                    /* $B4:86D1: no objects: the table from the second entry on is zeroed */
+    ObjectCount = 0; for (unsigned x = 0x10; x < 0x100; x++) RAM(0x0300 + x) = 0;
+}
+Regs HideAllSprites(Regs r) {                    /* $B4:8473: Y = $F0 in all 64 sprites; X ends at 0 */
+    r.x = 0;
+    do { OAM(r.x) = SPRITE_HIDDEN; r.x = (uint8_t)(r.x + 4); } while (r.x != 0);
+    r.a = SPRITE_HIDDEN; return r;
+}
+/* damage and pickups (life 0-200 in PlayerLifeLo/Hi, ammo up to $190) */
+void DamagePlayer(Regs r) {                      /* $B4:B43D: life -= A, with a borrow into the high byte */
+    uint8_t lo = PlayerLifeLo; PlayerLifeLo = (uint8_t)(lo - r.a); RAM(0x6A) = r.a;
+    if (lo < r.a) PlayerLifeHi--;
+}
+void AddLifeAndAmmo(Regs r) {                    /* $B4:B44B: life += A (at most 200), ammo += X (at most $190) */
+    uint8_t life = r.a; unsigned s = life + PlayerLifeLo;
+    PlayerLifeLo = (s > 0xFF || (uint8_t)s >= 0xC8) ? 0xC8 : (uint8_t)s;
+    unsigned lo = r.x + AmmoLo; uint8_t hi = (uint8_t)(AmmoHi + (lo > 0xFF)); lo &= 0xFF;
+    if (hi >= 1 && (hi != 1 || lo >= 0x90)) { hi = 1; lo = 0x90; }
+    AmmoHi = hi; AmmoLo = (uint8_t)lo;
+}
+Regs ExtractBitPair(Regs r) {                    /* $B4:9943: the 2-bit field number Y (0 = lowest) of A; callers load Y just before, so the zero flag stands for Y == 0 */
+    uint8_t a = r.a;
+    for (int i = 0; i < r.y; i++) a >>= 2;       /* (the original handles Y of 0-3 and shifts three times at most) */
+    r.a = a & 3; return r;
+}
+Regs RandomByteMixed(Regs r) {                   /* $B4:90C5: the scene's own counter ($85, never 0) added to the random byte */
+    do { RAM(0x85)++; } while (RAM(0x85) == 0);
+    Regs g = GetRandomByte(r); unsigned s = g.a + RAM(0x85) + g.c;
+    r.a = (uint8_t)s; r.x = g.x; r.c = s > 0xFF; return r;
+}
+

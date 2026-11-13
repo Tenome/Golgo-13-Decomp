@@ -134,6 +134,21 @@ TESTS = [
     ('AdvanceObjectAnimStep', 0x8A66, True, 'ayc', lambda r: dict(ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF])), (0x03, 3), (0x02, r.randint(0, 255))])), 6),
     ('CalcObjectTileColumn', 0x8AF4, False, '', lambda r: dict(ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF]))])), 6),
     ('StoreSpawnStats', 0x83BE, True, 'ay', lambda r: dict(y=r.randint(0, 6), ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF]))])), 6),
+    ('IncObjectField', 0x8FBD, True, 'ayc', lambda r: dict(y=r.randint(0, 15), ram=dict([(0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3)])), 4),
+    ('DecObjectField', 0x8FC5, True, 'ayc', lambda r: dict(y=r.randint(0, 15), ram=dict([(0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3)] + [(0x0300 + o + k, r.choice([0, 1, 255])) for o in (0x10, 0x20, 0x70, 0xE0) for k in range(16)])), 4),
+    ('AdvanceObjectState', 0x8FBB, True, 'ayc', lambda r: dict(ram=dict([(0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3)])), 4),
+    ('AddToObjectField', 0x8FC5 + 0x1C68, True, 'ayc', lambda r: dict(y=r.randint(0, 15), ram=dict([(0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3)])), 4),
+    ('AddToObjectY', 0xAC2B, True, 'ayc', lambda r: dict(ram=dict([(0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3)])), 4),
+    ('MoveObjectXY', 0xAC25, True, 'ayc', lambda r: dict(ram=dict([(0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3)])), 4),
+    ('SetObjectFlagsE0', 0xB3F2, True, 'ayc', lambda r: dict(ram=dict([(0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3)])), 4),
+    ('SetObjectFlagsC0', 0xB3FB, True, 'ayc', lambda r: dict(y=r.randint(0, 15), ram=dict([(0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3)])), 4),
+    ('AllocObjectSlot', 0x8FAB, False, '', lambda r: dict(ram={0x0301: r.choice([0, 1, 2, 7, 14, 255])}), 4),
+    ('ClearObjectTable', 0x86D1, False, '', lambda r: {}, 4),
+    ('HideAllSprites', 0x8473, True, 'axa', lambda r: dict(x=r.choice([0, 4, 0x40, 0xFC, 0x80])), 4),
+    ('DamagePlayer', 0xB43D, True, 'V', lambda r: dict(ram={0x38: r.choice([0, 1, 5, 200, r.randint(0, 255)]), 0x39: r.choice([0, 1, 255])}), 4),
+    ('AddLifeAndAmmo', 0xB44B, True, 'V', lambda r: dict(ram={0x38: r.choice([0, 100, 199, 200, 255, r.randint(0, 255)]), 0x3A: r.choice([0, 0x8F, 0x90, 0xFF, r.randint(0, 255)]), 0x3B: r.choice([0, 0, 1, 2, 255])}), 4),
+    ('ExtractBitPair', 0x9943, True, 'a', lambda r: dict(y=r.randint(1, 3)), 4),
+    ('RandomByteMixed', 0x90C5, True, 'ac', lambda r: dict(ram={0x85: r.choice([0, 1, 0xFE, 0xFF, r.randint(0, 255)]), 0x0108: r.randint(0, 255)}), 4),
 ]
 
 def run(name, addr, takes_regs, cmp_regs, gen, runs, seed, fixed_bank=None):
