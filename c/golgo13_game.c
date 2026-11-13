@@ -663,3 +663,18 @@ Regs CheckPlayerNearObject(Regs r) {
     RAM(0x0110) = 0; r.a = 1; return r;
 }
 
+/* $C4EB: copy the palette set number PaletteSetIndex from bank 2 into the palette buffer: a table at $BA6C holds two bytes per set, each a
+ * 12-bit offset into a pool of 16-color palettes (background pool at $BB42, sprite pool at $BDA2); bank 2 is switched in around the copy */
+void LoadPaletteSet(void) {
+    uint8_t saved = MmcPrgShadow;
+    MmcPrgShadow = 2; MmcWritePrg((Regs){2, 0, 0, 0});
+    unsigned x = (unsigned)PaletteSetIndex * 2 & 0xFF;
+    uint8_t bg = ROMB(0xBA6C + x), spr = ROMB(0xBA6D + x);
+    unsigned lo = ((bg << 4) & 0xFF) + 0x42; Tmp00 = (uint8_t)lo; Tmp01 = (uint8_t)(0xBB + (lo > 0xFF) + (bg >> 4));
+    lo = ((spr << 4) & 0xFF) + 0xA2; Tmp02 = (uint8_t)lo; Tmp03 = (uint8_t)(0xBD + (lo > 0xFF) + (spr >> 4));
+    uint16_t bg_ptr = (uint16_t)(Tmp00 | Tmp01 << 8), spr_ptr = (uint16_t)(Tmp02 | Tmp03 << 8);
+    for (unsigned i = 0; i < 0x10; i++) PaletteBuffer(i) = ROMB(bg_ptr + i);
+    for (unsigned i = 0; i < 0x10; i++) PaletteBuffer(0x10 + i) = ROMB(spr_ptr + i);
+    MmcPrgShadow = saved; MmcWritePrg((Regs){saved, 0x20, 0x10, 0});
+}
+
