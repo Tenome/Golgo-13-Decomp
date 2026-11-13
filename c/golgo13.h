@@ -72,4 +72,9 @@ void AdvancePlayerPoseTimer(void);   /* $EA2D */
 void HandleFireButton(Regs r);       /* $EA61 */
 void MovePlayerOnScreenSide(void);   /* $D0AB */
 void UpdatePlayerWalkInput(void);    /* $EF2D */
+void UpdatePlayerShootPose(void);    /* $EAD9 */
+void SpawnBulletSprite(void);        /* $EEC9 */
+void SelectPlayerWalkFrame(void);    /* $EB2F */
+void UpdatePlayerJumpArc(void);      /* $E971 */
+void MovePlayerVertical(void);       /* $F39E */
 

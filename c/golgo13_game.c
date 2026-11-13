@@ -342,3 +342,96 @@ void UpdatePlayerWalkInput(void) {
     if (vertical == JOY_UP) RAM(0x0238)--; else RAM(0x0238)++;
 }
 
+/* ---- more player code ---- */
+#define PlayerSpriteY RAM(0x0238)
+
+/* $EAD9: the standing / walking pose follows the left-right stick, the crouch pose follows down; every pose change may spend ammo
+ * (UseAmmo only does so for X >= 6, so here it is a no-op that is kept for the register effects) */
+void UpdatePlayerShootPose(void) {
+    uint8_t pose = PlayerPose & 0x0F, sideways = JoyHeld1 & (JOY_LEFT | JOY_RIGHT);
+    int facing_part = 1;
+    if (pose == POSE_STAND) {
+        if (sideways) { set_pose(POSE_WALK); UseAmmo((Regs){PlayerPose, POSE_WALK, 0, 0}); } else facing_part = 0;
+    } else if (pose == POSE_WALK) {
+        if (sideways) facing_part = 0; else { set_pose(POSE_STAND); UseAmmo((Regs){PlayerPose, POSE_STAND, 0, 0}); }
+    }
+    if (facing_part && (PlayerPose & 0x0F) < POSE_SHOOT) UpdatePlayerFacing((Regs){0, 0, 0, 0});
+    pose = PlayerPose & 0x0F; uint8_t held = JoyHeld1;                       /* the vertical part: up / down poses */
+    if (pose == POSE_UP) { if (held & JOY_DOWN) return; set_pose(POSE_STAND); UseAmmo((Regs){PlayerPose, POSE_STAND, 0, 0}); }
+    else if (pose > POSE_UP) return;
+    else { if (!(held & JOY_DOWN)) return; set_pose(POSE_UP); UseAmmo((Regs){PlayerPose, POSE_UP, 0, 0}); }
+}
+
+/* $EEC9: fire one bullet into a free sprite among $58-$67 (Y below $E8 = in use), 24 pixels ahead of the player, and use one round */
+void SpawnBulletSprite(void) {
+    if (AmmoLo == 0 && AmmoHi == 0) return;
+    unsigned x = 0x58;
+    while (OAM_Y(x) < 0xE8) { x += 4; if (x >= 0x68) return; }
+    OAM_Y(x) = (uint8_t)(PlayerSpriteY + 3); OAM(x + 1) = 0xBE;
+    uint8_t attr, dx;
+    if (!(PlayerPose & 0x10)) { attr = 0x00; dx = 0x18; } else { attr = 0x40; dx = 0xF0; }
+    OAM_X(x) = (uint8_t)(dx + PlayerSpriteX0); OAM_FLAGS(x) = attr;
+    AdjustAmmo((Regs){0xFF, 0, 0, 0});
+    QueueSound((Regs){0x0E, (uint8_t)x, 0, 0});
+}
+
+/* $EB2F: choose the sprite frame (PlayerSpriteFrame = facing bit | frame number) from the pose; the shooting poses also time the muzzle flash */
+void SelectPlayerWalkFrame(void) {
+    uint8_t pose = PlayerPose & 0x0F, frame;
+    if (pose == POSE_STAND) frame = 7;
+    else if (pose == POSE_WALK) { uint8_t t = (FrameCounter & 0x30) >> 4; frame = t == 2 ? 0 : t == 3 ? 2 : t; }
+    else if (pose == POSE_UP) frame = 4;
+    else if (pose == POSE_DOWN) frame = PlayerActionTimer < 8 ? 4 : 5;
+    else if (pose == POSE_SHOOT) frame = 6;
+    else if (pose == POSE_AIM_LOW) {
+        uint8_t t = ShootPoseTimer;
+        if (t == 8) { SpawnBulletSprite(); frame = 8; }
+        else if (t < 8) frame = 7;
+        else if (t < 0x10) frame = 8;
+        else if (t < 0x18) frame = 9;
+        else if (t < 0x20) frame = 8;
+        else frame = 7;
+    } else {
+        ShootPoseTimer++; uint8_t t = ShootPoseTimer;
+        if (t < 0x20) frame = 0;
+        else if (t >= 0xE0) { set_pose(POSE_STAND); frame = 7; }
+        else { uint8_t u = t & 0x1F; frame = u < 0x0A ? 0x0A : u < 0x16 ? 0x0B : 0x0C; }
+    }
+    Tmp02 = frame;                                       /* (the original leaves the frame number in Tmp02) */
+    PlayerSpriteFrame = (uint8_t)((PlayerPose & 0x10) | frame);
+}
+
+/* $E971: the jump / fall arc: Y moves by a table value per frame (6 after $30 frames); in the first $18 frames releasing B ends the rise;
+ * after that the player lands when the floor tile is solid and Down is not held in the upper half. */
+void UpdatePlayerJumpArc(void) {
+    uint8_t t = PlayerActionTimer, dy = ROMB(0xE9D2 + t);
+    if (t >= 0x30) dy = 6;
+    PlayerSpriteY = (uint8_t)(PlayerSpriteY + dy); PlayerActionTimer++;
+    if (PlayerActionTimer < 0x18) { if (!(JoyHeld1 & JOY_B)) PlayerActionTimer = 0x18; }
+    else if (FloorProbeTile >= ROMB(0xE961 + MmcChr1Shadow) && !(PlayerSpriteY < 0x90 && (JoyHeld1 & JOY_DOWN))) {
+        PlayerActionState = 0; ShootPoseActive = 0; PlayerPose &= 0x10;
+        PlayerSpriteY = (uint8_t)((PlayerSpriteY & 0xF0) | 0x02);
+    }
+    if ((PlayerPose & 0x0F) < POSE_SHOOT) UpdatePlayerFacing((Regs){0, 0, 0, 0});
+}
+
+/* $F39E: top-down view (bank 6 style scenes): Up / Down move the player in Y (Down twice as fast), Left / Right in X while the screen has
+ * not reached the last page; then the four sprites of the crosshair body are placed around the player, flickering every other frame */
+void MovePlayerVertical(void) {
+    uint8_t held = JoyHeld1;
+    if ((held & JOY_UP) && PlayerSpriteY >= 0x12) PlayerSpriteY--;
+    if ((held & JOY_DOWN) && PlayerSpriteY < 0xC8) PlayerSpriteY += 2;
+    if (RAM(0x18) < 0x0F) {
+        if (held & JOY_LEFT) { if (PlayerSpriteX0 >= 0x18) PlayerSpriteX0 -= 2; }
+        else if ((held & JOY_RIGHT) && PlayerSpriteX0 < 0xE0) PlayerSpriteX0++;
+    }
+    for (unsigned k = 0; k < 4; k++) {
+        OAM(0x3C + 4 * k) = (uint8_t)(ROMB(0xF428 + 2 * k) + PlayerSpriteY);
+        OAM(0x3C + 4 * k + 3) = (uint8_t)(ROMB(0xF428 + 2 * k + 1) + PlayerSpriteX0);
+    }
+    if (!(FrameCounter & 0x02)) {
+        uint8_t old = RAM(0x0247), carry = old >= 0x0E; uint8_t v = (uint8_t)(old - 0x0E); RAM(0x0247) = v;
+        RAM(0x024B) = (uint8_t)(v - 0x08 - (carry ? 0 : 1));
+    }
+}
+
