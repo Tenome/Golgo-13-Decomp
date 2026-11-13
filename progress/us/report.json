@@ -1537,7 +1537,7 @@
      }
     },
     {
-     "name": "Sub_B3_8A3B",
+     "name": "ShowContinueArrow",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1545,7 +1545,7 @@
      }
     },
     {
-     "name": "Sub_B3_8A54",
+     "name": "HideContinueArrow",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1577,7 +1577,7 @@
      }
     },
     {
-     "name": "Sub_B3_8B1A",
+     "name": "InitTextBoxSprites",
      "size": "93",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1593,7 +1593,7 @@
      }
     },
     {
-     "name": "Sub_B3_8BB9",
+     "name": "TypeNextTextCharacter",
      "size": "232",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1633,7 +1633,7 @@
      }
     },
     {
-     "name": "Sub_B3_8EE9",
+     "name": "TextBoxLoadModeParams",
      "size": "52",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1673,7 +1673,7 @@
      }
     },
     {
-     "name": "Sub_B3_90B0",
+     "name": "CopyGlyphRowsToBuffer",
      "size": "257",
      "fuzzy_match_percent": 100.0,
      "metadata": {

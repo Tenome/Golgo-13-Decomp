@@ -2293,7 +2293,7 @@
    ]
   ]
  },
- "Sub_B3_8A3B": {
+ "ShowContinueArrow": {
   "addr": 35387,
   "bank": 3,
   "instrs": 15,
@@ -2306,7 +2306,7 @@
    ]
   ]
  },
- "Sub_B3_8A54": {
+ "HideContinueArrow": {
   "addr": 35412,
   "bank": 3,
   "instrs": 11,
@@ -2358,7 +2358,7 @@
    ]
   ]
  },
- "Sub_B3_8B1A": {
+ "InitTextBoxSprites": {
   "addr": 35610,
   "bank": 3,
   "instrs": 51,
@@ -2384,7 +2384,7 @@
    ]
   ]
  },
- "Sub_B3_8BB9": {
+ "TypeNextTextCharacter": {
   "addr": 35769,
   "bank": 3,
   "instrs": 94,
@@ -2487,7 +2487,7 @@
    ]
   ]
  },
- "Sub_B3_8EE9": {
+ "TextBoxLoadModeParams": {
   "addr": 36585,
   "bank": 3,
   "instrs": 164,
@@ -2538,7 +2538,7 @@
    ]
   ]
  },
- "Sub_B3_90B0": {
+ "CopyGlyphRowsToBuffer": {
   "addr": 37040,
   "bank": 3,
   "instrs": 83,

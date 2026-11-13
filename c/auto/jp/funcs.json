@@ -2267,7 +2267,7 @@
    ]
   ]
  },
- "Sub_B3_85AD": {
+ "ShowContinueArrow": {
   "addr": 34221,
   "bank": 3,
   "instrs": 15,
@@ -2280,7 +2280,7 @@
    ]
   ]
  },
- "Sub_B3_85C6": {
+ "HideContinueArrow": {
   "addr": 34246,
   "bank": 3,
   "instrs": 11,
@@ -2332,7 +2332,7 @@
    ]
   ]
  },
- "Sub_B3_868C": {
+ "InitTextBoxSprites": {
   "addr": 34444,
   "bank": 3,
   "instrs": 51,
@@ -2358,7 +2358,7 @@
    ]
   ]
  },
- "Sub_B3_872B": {
+ "TypeNextTextCharacter": {
   "addr": 34603,
   "bank": 3,
   "instrs": 94,
@@ -2461,7 +2461,7 @@
    ]
   ]
  },
- "Sub_B3_8A5B": {
+ "TextBoxLoadModeParams": {
   "addr": 35419,
   "bank": 3,
   "instrs": 164,
@@ -2498,12 +2498,33 @@
  "Sub_B3_8C06": {
   "addr": 35846,
   "bank": 3,
-  "instrs": 148,
+  "instrs": 66,
   "ok": true,
   "reason": null,
   "ranges": [
    [
     52230,
+    52258
+   ],
+   [
+    52404,
+    52515
+   ]
+  ]
+ },
+ "CopyGlyphRowsToBuffer": {
+  "addr": 35874,
+  "bank": 3,
+  "instrs": 83,
+  "ok": true,
+  "reason": null,
+  "ranges": [
+   [
+    52258,
+    52404
+   ],
+   [
+    52514,
     52515
    ]
   ]
@@ -3454,7 +3475,7 @@
    ]
   ]
  },
- "Sub_B4_8C7B": {
+ "MazeExit2": {
   "addr": 35963,
   "bank": 4,
   "instrs": 12,
@@ -3573,7 +3594,7 @@
    ]
   ]
  },
- "Sub_B4_8CD2": {
+ "MazeExitToStreetA": {
   "addr": 36050,
   "bank": 4,
   "instrs": 4,
@@ -3586,7 +3607,7 @@
    ]
   ]
  },
- "Sub_B4_8CF1": {
+ "MazeExit9": {
   "addr": 36081,
   "bank": 4,
   "instrs": 12,
@@ -4658,7 +4679,7 @@
    ]
   ]
  },
- "Sub_B4_A25E": {
+ "MazeObjType02": {
   "addr": 41566,
   "bank": 4,
   "instrs": 25,
@@ -4783,7 +4804,7 @@
    ]
   ]
  },
- "Sub_B4_A477": {
+ "MazeObjType04": {
   "addr": 42103,
   "bank": 4,
   "instrs": 11,
@@ -4839,7 +4860,7 @@
    ]
   ]
  },
- "Sub_B4_A4C4": {
+ "MazeObjType1C": {
   "addr": 42180,
   "bank": 4,
   "instrs": 11,
@@ -5023,7 +5044,7 @@
    ]
   ]
  },
- "Sub_B4_A537": {
+ "MazeObjType25": {
   "addr": 42295,
   "bank": 4,
   "instrs": 10,
@@ -5274,7 +5295,7 @@
    ]
   ]
  },
- "Sub_B4_A809": {
+ "MazeObjType1A": {
   "addr": 43017,
   "bank": 4,
   "instrs": 11,
@@ -5287,7 +5308,7 @@
    ]
   ]
  },
- "Sub_B4_A8C2": {
+ "MazeObjType06": {
   "addr": 43202,
   "bank": 4,
   "instrs": 16,
@@ -5479,7 +5500,7 @@
    ]
   ]
  },
- "Sub_B4_AA11": {
+ "MazeObjType08": {
   "addr": 43537,
   "bank": 4,
   "instrs": 23,
@@ -5931,7 +5952,7 @@
    ]
   ]
  },
- "Sub_B4_AEBE": {
+ "MazeObjType2A": {
   "addr": 44734,
   "bank": 4,
   "instrs": 25,
@@ -6154,7 +6175,7 @@
    ]
   ]
  },
- "Sub_B4_B068": {
+ "MazeObjType12": {
   "addr": 45160,
   "bank": 4,
   "instrs": 40,
@@ -6171,7 +6192,7 @@
    ]
   ]
  },
- "Sub_B4_B0B6": {
+ "MazeObjType13": {
   "addr": 45238,
   "bank": 4,
   "instrs": 11,
@@ -6184,7 +6205,7 @@
    ]
   ]
  },
- "Sub_B4_B0D3": {
+ "MazeObjType13State0": {
   "addr": 45267,
   "bank": 4,
   "instrs": 4,
@@ -6197,7 +6218,7 @@
    ]
   ]
  },
- "Sub_B4_B0DC": {
+ "MazeObjType13State1": {
   "addr": 45276,
   "bank": 4,
   "instrs": 1,
@@ -6210,7 +6231,7 @@
    ]
   ]
  },
- "Sub_B4_B0DF": {
+ "MazeObjType13State2": {
   "addr": 45279,
   "bank": 4,
   "instrs": 9,
@@ -6733,7 +6754,7 @@
    ]
   ]
  },
- "Sub_B4_B577": {
+ "MazeObjType00": {
   "addr": 46455,
   "bank": 4,
   "instrs": 1,

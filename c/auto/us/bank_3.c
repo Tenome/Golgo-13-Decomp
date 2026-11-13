@@ -48,7 +48,7 @@ void Bank3Nmi(void) {  /* $8010 bank 3 */
       LDA(rd(0x0410));                                                                   /* $8054 lda */
       cmp8(R.a, 0x03);                                                                   /* $8057 cmp */
       if (R.a == 0x03) {                                                                 /* $8059 bne */
-        push16(0x805D); Sub_B3_8EE9(); UNW(); ret_check(0x805D);                         /* $805B jsr */
+        push16(0x805D); TextBoxLoadModeParams(); UNW(); ret_check(0x805D);               /* $805B jsr */
         goto L8071;                                                                      /* $805E jmp */
       }
       cmp8(R.a, 0x04);                                                                   /* $8061 cmp */
@@ -557,7 +557,7 @@ void TextBoxMainStep(void) {  /* $8866 bank 3 */
     if (R.a != 0) {                                                                      /* $886E beq */
       goto L8A3A;                                                                        /* $8870 jmp */
     }
-    push16(0x8875); Sub_B3_8BB9(); UNW(); ret_check(0x8875);                             /* $8873 jsr */
+    push16(0x8875); TypeNextTextCharacter(); UNW(); ret_check(0x8875);                   /* $8873 jsr */
     LDA(rd(TextBoxMode));                                                                /* $8876 lda */
     cmp8(R.a, 0x02);                                                                     /* $8879 cmp */
     if (R.a == 0x02) goto L88D4;                                                         /* $887B beq */
@@ -602,8 +602,8 @@ L88A4: BUDGET();
   LDA(0xFF);                                                                             /* $88C8 lda */
   STA(0x70);                                                                             /* $88CA sta */
   STA(0x71);                                                                             /* $88CC sta */
-  push16(0x88D0); Sub_B3_8A3B(); UNW(); ret_check(0x88D0);                               /* $88CE jsr */
-  push16(0x88D3); Sub_B3_8B1A(); UNW(); ret_check(0x88D3);                               /* $88D1 jsr */
+  push16(0x88D0); ShowContinueArrow(); UNW(); ret_check(0x88D0);                         /* $88CE jsr */
+  push16(0x88D3); InitTextBoxSprites(); UNW(); ret_check(0x88D3);                        /* $88D1 jsr */
 L88D4: BUDGET();
   LDY(0x00);                                                                             /* $88D4 ldy */
   LDA(rd((uint16_t)(rd16zp(0x6C) + R.y)));                                               /* $88D6 lda */
@@ -675,7 +675,7 @@ L893D: BUDGET();
     STA(0x72);                                                                           /* $895C sta */
     goto L890B;                                                                          /* $895E jmp */
 L8961: BUDGET();
-    push16(0x8963); Sub_B3_8A54(); UNW(); ret_check(0x8963);                             /* $8961 jsr */
+    push16(0x8963); HideContinueArrow(); UNW(); ret_check(0x8963);                       /* $8961 jsr */
     LDA(0x01);                                                                           /* $8964 lda */
     STA(TextBoxState);                                                                   /* $8966 sta */
     { TextBoxWaitForA(); return; }
@@ -729,7 +729,7 @@ L8998: BUDGET();
 L8A19: BUDGET();
     LDA(0x02);                                                                           /* $8A19 lda */
     STA(TextBoxState);                                                                   /* $8A1B sta */
-    push16(0x8A20); Sub_B3_8A54(); UNW(); ret_check(0x8A20);                             /* $8A1E jsr */
+    push16(0x8A20); HideContinueArrow(); UNW(); ret_check(0x8A20);                       /* $8A1E jsr */
     { TextBoxWaitForAAdvance(); return; }
   }
 L8A3A: BUDGET();
@@ -841,7 +841,7 @@ void TextBoxWaitForAAdvance(void) {  /* $8A21 bank 3 */
   RTS_RET(sp0);                                                                          /* $8A3A rts */
 }
 
-void Sub_B3_8A3B(void) {  /* $8A3B bank 3 */
+void ShowContinueArrow(void) {  /* $8A3B bank 3 */
   uint8_t sp0 = R.sp;
   LDY(0x2C);                                                                             /* $8A3B ldy */
   LDA(0x5E);                                                                             /* $8A3D lda */
@@ -860,7 +860,7 @@ void Sub_B3_8A3B(void) {  /* $8A3B bank 3 */
   RTS_RET(sp0);                                                                          /* $8A53 rts */
 }
 
-void Sub_B3_8A54(void) {  /* $8A54 bank 3 */
+void HideContinueArrow(void) {  /* $8A54 bank 3 */
   uint8_t sp0 = R.sp;
   LDY(0x2D);                                                                             /* $8A54 ldy */
   LDA(0xFF);                                                                             /* $8A56 lda */
@@ -984,7 +984,7 @@ void StoreSpriteYTileX(void) {  /* $8B08 bank 3 */
   RTS_RET(sp0);                                                                          /* $8B19 rts */
 }
 
-void Sub_B3_8B1A(void) {  /* $8B1A bank 3 */
+void InitTextBoxSprites(void) {  /* $8B1A bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x38);                                                                             /* $8B1A lda */
   STA(Tmp00);                                                                            /* $8B1C sta */
@@ -1082,7 +1082,7 @@ L8BB8: BUDGET();
   RTS_RET(sp0);                                                                          /* $8BB8 rts */
 }
 
-void Sub_B3_8BB9(void) {  /* $8BB9 bank 3 */
+void TypeNextTextCharacter(void) {  /* $8BB9 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(FrameCounter));                                                                 /* $8BB9 lda */
   AND(0x01);                                                                             /* $8BBB and */
@@ -1440,7 +1440,7 @@ void Sub_B3_8EAB(void) {  /* $8EAB bank 3 */
   RTS_RET(sp0);                                                                          /* $8EBC rts */
 }
 
-void Sub_B3_8EE9(void) {  /* $8EE9 bank 3 */
+void TextBoxLoadModeParams(void) {  /* $8EE9 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(TextBoxMode));                                                                  /* $8EE9 lda */
   AND(0x7F);                                                                             /* $8EEC and */
@@ -1656,7 +1656,7 @@ void Sub_B3_9094(void) {  /* $9094 bank 3 */
     LDX(0x00);                                                                           /* $90AA ldx */
     LDA(0x08);                                                                           /* $90AC lda */
     STA(Tmp01);                                                                          /* $90AE sta */
-    { Sub_B3_90B0(); return; }
+    { CopyGlyphRowsToBuffer(); return; }
   }
   LDA(rd(0x0414));                                                                       /* $9142 lda */
   AND(0x02);                                                                             /* $9145 and */
@@ -1716,7 +1716,7 @@ void Sub_B3_9094(void) {  /* $9094 bank 3 */
   RTS_RET(sp0);                                                                          /* $91B0 rts */
 }
 
-void Sub_B3_90B0(void) {  /* $90B0 bank 3 */
+void CopyGlyphRowsToBuffer(void) {  /* $90B0 bank 3 */
   uint8_t sp0 = R.sp;
   do { BUDGET();
     LDA(0x08);                                                                           /* $90B0 lda */

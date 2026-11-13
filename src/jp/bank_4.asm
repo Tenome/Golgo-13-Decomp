@@ -935,7 +935,7 @@ Data_B4_8C3F:
   .incbin "prg_bank_4.bin", $0C3F, $1  ; $8C3F
 Data_B4_8C40:
   .incbin "prg_bank_4.bin", $0C40, $3B  ; $8C40
-Sub_B4_8C7B:
+MazeExit2:
   lda #$04                     ; $8C7B
   sta PlayerCellX              ; $8C7D
   sta PlayerCellY              ; $8C80
@@ -962,13 +962,13 @@ Sub_B4_8CB4:
   lda #$0A                     ; $8CB4
   jmp Loc_B4_8D1C              ; $8CB6
   .incbin "prg_bank_4.bin", $0CB9, $19  ; $8CB9
-Sub_B4_8CD2:
+MazeExitToStreetA:
   lda #$00                     ; $8CD2
   ldx #$17                     ; $8CD4
   ldy #$00                     ; $8CD6
   jmp RequestTransitionFromTable ; $8CD8
   .incbin "prg_bank_4.bin", $0CDB, $16  ; $8CDB
-Sub_B4_8CF1:
+MazeExit9:
   lda #$02                     ; $8CF1
   sta PlayerCellX              ; $8CF3
   inc PlayerCellY              ; $8CF6
@@ -2364,7 +2364,7 @@ Sub_B4_A242:
   rts                          ; $A24C
 Data_B4_A24D:
   .incbin "prg_bank_4.bin", $224D, $11  ; $A24D
-Sub_B4_A25E:
+MazeObjType02:
   ldy #$08                     ; $A25E
   lda (Tmp00),y                ; $A260
   bne Loc_B4_A274              ; $A262
@@ -2576,7 +2576,7 @@ Data_B4_A431:
   .incbin "prg_bank_4.bin", $2431, $1  ; $A431
 Data_B4_A432:
   .incbin "prg_bank_4.bin", $2432, $45  ; $A432
-Sub_B4_A477:
+MazeObjType04:
   ldy #$08                     ; $A477
   lda (Tmp00),y                ; $A479
   cmp #$03                     ; $A47B
@@ -2617,7 +2617,7 @@ CollectAmmoItem:
   sta z:AmmoHi                 ; $A4C1
 Loc_B4_A4C3:
   rts                          ; $A4C3
-Sub_B4_A4C4:
+MazeObjType1C:
   lda #$01                     ; $A4C4
   bne Loc_B4_A4D5              ; $A4C6
 MazeObjType1D:
@@ -2641,7 +2641,7 @@ Loc_B4_A4DD:
   lda #$C4                     ; $A4E1
   ldy #$00                     ; $A4E3
   sta (Tmp00),y                ; $A4E5
-  jmp Sub_B4_A477              ; $A4E7
+  jmp MazeObjType04            ; $A4E7
 MazeObjType0E:
   ldy #$08                     ; $A4EA
   lda (Tmp00),y                ; $A4EC
@@ -2686,7 +2686,7 @@ MazeObjType23:
 MazeObjType24:
   lda #$08                     ; $A534
   .incbin "prg_bank_4.bin", $2536, $1  ; $A536
-Sub_B4_A537:
+MazeObjType25:
   lda #$10                     ; $A537
 Loc_B4_A539:
   bit $051D                    ; $A539
@@ -2924,7 +2924,7 @@ Loc_B4_A7E6:
   jmp RemoveObject             ; $A7F0
 Data_B4_A7F3:
   .incbin "prg_bank_4.bin", $27F3, $16  ; $A7F3
-Sub_B4_A809:
+MazeObjType1A:
   ldy #$08                     ; $A809
   lda (Tmp00),y                ; $A80B
   cmp #$11                     ; $A80D
@@ -2941,7 +2941,7 @@ Data_B4_A820:
   .incbin "prg_bank_4.bin", $2820, $1  ; $A820
 Data_B4_A821:
   .incbin "prg_bank_4.bin", $2821, $A1  ; $A821
-Sub_B4_A8C2:
+MazeObjType06:
   jsr Sub_B4_A8C8              ; $A8C2
   jmp Loc_B4_A9BC              ; $A8C5
 Sub_B4_A8C8:
@@ -3096,7 +3096,7 @@ Loc_B4_A9FB:
   jmp AddObjectOfType          ; $AA0D
 Loc_B4_AA10:
   rts                          ; $AA10
-Sub_B4_AA11:
+MazeObjType08:
   ldy #$08                     ; $AA11
   lda (Tmp00),y                ; $AA13
   bne Loc_B4_A9FB              ; $AA15
@@ -3588,7 +3588,7 @@ Loc_B4_AEAB:
   ldy #$01                     ; $AEB9
   sta (Tmp00),y                ; $AEBB
   rts                          ; $AEBD
-Sub_B4_AEBE:
+MazeObjType2A:
   ldy #$08                     ; $AEBE
   lda (Tmp00),y                ; $AEC0
   bne Loc_B4_AEAB              ; $AEC2
@@ -3784,7 +3784,7 @@ Data_B4_B060:
   .incbin "prg_bank_4.bin", $3060, $4  ; $B060
 Data_B4_B064:
   .incbin "prg_bank_4.bin", $3064, $4  ; $B064
-Sub_B4_B068:
+MazeObjType12:
   ldy #$08                     ; $B068
   lda (Tmp00),y                ; $B06A
   bne Loc_B4_B087              ; $B06C
@@ -3826,7 +3826,7 @@ Loc_B4_B0AA:
   jmp SetObjectFrame           ; $B0B2
 Loc_B4_B0B5:
   rts                          ; $B0B5
-Sub_B4_B0B6:
+MazeObjType13:
   ldy #$08                     ; $B0B6
   lda (Tmp00),y                ; $B0B8
   cmp #$03                     ; $B0BA
@@ -3843,14 +3843,14 @@ Data_B4_B0CD:
   .incbin "prg_bank_4.bin", $30CD, $1  ; $B0CD
 Data_B4_B0CE:
   .incbin "prg_bank_4.bin", $30CE, $5  ; $B0CE
-Sub_B4_B0D3:
+MazeObjType13State0:
   jsr LoadObjectSpeedFromType  ; $B0D3
   lda #$00                     ; $B0D6
   ldy #$0B                     ; $B0D8
   sta (Tmp00),y                ; $B0DA
-Sub_B4_B0DC:
+MazeObjType13State1:
   jmp AdvanceObjectState       ; $B0DC
-Sub_B4_B0DF:
+MazeObjType13State2:
   ldy #$0B                     ; $B0DF
   jsr IncObjectField           ; $B0E1
   cmp #$40                     ; $B0E4
@@ -4398,7 +4398,7 @@ Data_B4_B51D:
   .incbin "prg_bank_4.bin", $351D, $1  ; $B51D
 Data_B4_B51E:
   .incbin "prg_bank_4.bin", $351E, $59  ; $B51E
-Sub_B4_B577:
+MazeObjType00:
   rts                          ; $B577
   .incbin "prg_bank_4.bin", $3578, $8  ; $B578
 Data_B4_B580:

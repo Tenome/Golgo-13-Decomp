@@ -804,7 +804,7 @@ Loc_C5BA:
   lda #$00                     ; $C5BA
   sta PPU_MASK                 ; $C5BC
   jsr UploadPalette            ; $C5BF
-  jsr $90B0                    ; $C5C2  -> Sub_B2_90B0, Sub_B3_90B0
+  jsr $90B0                    ; $C5C2  -> Sub_B2_90B0, CopyGlyphRowsToBuffer
   lda z:PpuMaskShadow          ; $C5C5
   sta PPU_MASK                 ; $C5C7
 Loc_C5CA:

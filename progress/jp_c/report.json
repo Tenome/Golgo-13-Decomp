@@ -1517,7 +1517,7 @@
      }
     },
     {
-     "name": "Sub_B3_85AD",
+     "name": "ShowContinueArrow",
      "size": "25",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1525,7 +1525,7 @@
      }
     },
     {
-     "name": "Sub_B3_85C6",
+     "name": "HideContinueArrow",
      "size": "21",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1557,7 +1557,7 @@
      }
     },
     {
-     "name": "Sub_B3_868C",
+     "name": "InitTextBoxSprites",
      "size": "93",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1573,7 +1573,7 @@
      }
     },
     {
-     "name": "Sub_B3_872B",
+     "name": "TypeNextTextCharacter",
      "size": "232",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -1613,7 +1613,7 @@
      }
     },
     {
-     "name": "Sub_B3_8A5B",
+     "name": "TextBoxLoadModeParams",
      "size": "52",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2263,7 +2263,7 @@
      }
     },
     {
-     "name": "Sub_B4_8C7B",
+     "name": "MazeExit2",
      "size": "13",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2319,7 +2319,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CD2",
+     "name": "MazeExitToStreetA",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -2327,7 +2327,7 @@
      }
     },
     {
-     "name": "Sub_B4_8CF1",
+     "name": "MazeExit9",
      "size": "68",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3039,7 +3039,7 @@
      }
     },
     {
-     "name": "Sub_B4_A25E",
+     "name": "MazeObjType02",
      "size": "47",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3111,7 +3111,7 @@
      }
     },
     {
-     "name": "Sub_B4_A477",
+     "name": "MazeObjType04",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3143,7 +3143,7 @@
      }
     },
     {
-     "name": "Sub_B4_A4C4",
+     "name": "MazeObjType1C",
      "size": "14",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3183,7 +3183,7 @@
      }
     },
     {
-     "name": "Sub_B4_A537",
+     "name": "MazeObjType25",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3327,7 +3327,7 @@
      }
     },
     {
-     "name": "Sub_B4_A809",
+     "name": "MazeObjType1A",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3335,7 +3335,7 @@
      }
     },
     {
-     "name": "Sub_B4_A8C2",
+     "name": "MazeObjType06",
      "size": "6",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3439,7 +3439,7 @@
      }
     },
     {
-     "name": "Sub_B4_AA11",
+     "name": "MazeObjType08",
      "size": "29",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3679,7 +3679,7 @@
      }
     },
     {
-     "name": "Sub_B4_AEBE",
+     "name": "MazeObjType2A",
      "size": "44",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3791,7 +3791,7 @@
      }
     },
     {
-     "name": "Sub_B4_B068",
+     "name": "MazeObjType12",
      "size": "78",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3799,7 +3799,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0B6",
+     "name": "MazeObjType13",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3807,7 +3807,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0D3",
+     "name": "MazeObjType13State0",
      "size": "9",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3815,7 +3815,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0DC",
+     "name": "MazeObjType13State1",
      "size": "3",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -3823,7 +3823,7 @@
      }
     },
     {
-     "name": "Sub_B4_B0DF",
+     "name": "MazeObjType13State2",
      "size": "23",
      "fuzzy_match_percent": 100.0,
      "metadata": {
@@ -4119,7 +4119,7 @@
      }
     },
     {
-     "name": "Sub_B4_B577",
+     "name": "MazeObjType00",
      "size": "1",
      "fuzzy_match_percent": 100.0,
      "metadata": {

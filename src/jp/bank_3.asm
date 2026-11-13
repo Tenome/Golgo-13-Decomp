@@ -45,7 +45,7 @@ Loc_B3_8051:
   lda $0410                    ; $8054
   cmp #$03                     ; $8057
   bne Loc_B3_8061              ; $8059
-  jsr Sub_B3_8A5B              ; $805B
+  jsr TextBoxLoadModeParams    ; $805B
   jmp Loc_B3_8071              ; $805E
 Loc_B3_8061:
   cmp #$04                     ; $8061
@@ -458,7 +458,7 @@ TextBoxMainStep:
   beq Loc_B3_83E5              ; $83E0
   jmp Loc_B3_85AC              ; $83E2
 Loc_B3_83E5:
-  jsr Sub_B3_872B              ; $83E5
+  jsr TypeNextTextCharacter    ; $83E5
   lda TextBoxMode              ; $83E8
   cmp #$02                     ; $83EB
   beq Loc_B3_8446              ; $83ED
@@ -502,8 +502,8 @@ Loc_B3_8427:
   lda #$FF                     ; $843A
   sta z:$70                    ; $843C
   sta z:$71                    ; $843E
-  jsr Sub_B3_85AD              ; $8440
-  jsr Sub_B3_868C              ; $8443
+  jsr ShowContinueArrow        ; $8440
+  jsr InitTextBoxSprites       ; $8443
 Loc_B3_8446:
   ldy #$00                     ; $8446
   lda ($6C),y                  ; $8448
@@ -574,7 +574,7 @@ Loc_B3_84C4:
   sta z:$72                    ; $84CE
   jmp Loc_B3_847D              ; $84D0
 Loc_B3_84D3:
-  jsr Sub_B3_85C6              ; $84D3
+  jsr HideContinueArrow        ; $84D3
   lda #$01                     ; $84D6
   sta TextBoxState             ; $84D8
 TextBoxWaitForA:
@@ -665,7 +665,7 @@ Loc_B3_8567:
 Loc_B3_858B:
   lda #$02                     ; $858B
   sta TextBoxState             ; $858D
-  jsr Sub_B3_85C6              ; $8590
+  jsr HideContinueArrow        ; $8590
 TextBoxWaitForAAdvance:
   lda JoyHeld1                 ; $8593
   and #$01                     ; $8596
@@ -680,7 +680,7 @@ Loc_B3_85A0:
   jsr Sub_B3_85DB              ; $85A9
 Loc_B3_85AC:
   rts                          ; $85AC
-Sub_B3_85AD:
+ShowContinueArrow:
   ldy #$2C                     ; $85AD
   lda #$5E                     ; $85AF
   sta ($5C),y                  ; $85B1
@@ -696,7 +696,7 @@ Sub_B3_85AD:
   sbc z:HwScrollX              ; $85C1
   sta ($5C),y                  ; $85C3
   rts                          ; $85C5
-Sub_B3_85C6:
+HideContinueArrow:
   ldy #$2D                     ; $85C6
   lda #$FF                     ; $85C8
   sta ($5C),y                  ; $85CA
@@ -808,7 +808,7 @@ StoreSpriteYTileX:
   sbc z:HwScrollX              ; $8687
   sta ($5C),y                  ; $8689
   rts                          ; $868B
-Sub_B3_868C:
+InitTextBoxSprites:
   lda #$38                     ; $868C
   sta z:Tmp00                  ; $868E
   lda #$30                     ; $8690
@@ -900,7 +900,7 @@ Loc_B3_8720:
   sta ($5C),y                  ; $8728
 Loc_B3_872A:
   rts                          ; $872A
-Sub_B3_872B:
+TypeNextTextCharacter:
   lda z:FrameCounter           ; $872B
   and #$01                     ; $872D
   beq Loc_B3_8734              ; $872F
@@ -1182,7 +1182,7 @@ Data_B3_8A33:
   .incbin "prg_bank_3.bin", $0A33, $1  ; $8A33
 Data_B3_8A34:
   .incbin "prg_bank_3.bin", $0A34, $27  ; $8A34
-Sub_B3_8A5B:
+TextBoxLoadModeParams:
   lda TextBoxMode              ; $8A5B
   and #$7F                     ; $8A5E
   cmp #$01                     ; $8A60
@@ -1404,7 +1404,7 @@ Loc_B3_8C0E:
   ldx #$00                     ; $8C1C
   lda #$08                     ; $8C1E
   sta z:Tmp01                  ; $8C20
-Loc_B3_8C22:
+CopyGlyphRowsToBuffer:
   lda #$08                     ; $8C22
   sta z:Tmp00                  ; $8C24
 Loc_B3_8C26:
@@ -1425,7 +1425,7 @@ Loc_B3_8C26:
   adc z:Tmp03                  ; $8C3D
   sta z:Tmp03                  ; $8C3F
   dec z:Tmp01                  ; $8C41
-  bne Loc_B3_8C22              ; $8C43
+  bne CopyGlyphRowsToBuffer    ; $8C43
   lda $0414                    ; $8C45
   and #$02                     ; $8C48
   bne Loc_B3_8C4F              ; $8C4A

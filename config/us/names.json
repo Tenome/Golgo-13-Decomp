@@ -777,5 +777,11 @@
  "4:A70F": "DispatchMazeSpecificEvent",
  "4:8FCD": "ClearNametableRowAt054A",
  "4:AE6A": "RequestPpuOp6AndRemove",
- "4:B364": "RemoveObjectWithPpuListD"
+ "4:B364": "RemoveObjectWithPpuListD",
+ "3:8A3B": "ShowContinueArrow",
+ "3:8A54": "HideContinueArrow",
+ "3:8B1A": "InitTextBoxSprites",
+ "3:8BB9": "TypeNextTextCharacter",
+ "3:8EE9": "TextBoxLoadModeParams",
+ "3:90B0": "CopyGlyphRowsToBuffer"
 }
