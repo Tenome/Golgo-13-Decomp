@@ -81,4 +81,6 @@ void PlayerActionIdle(void);         /* $D3A4 */
 void PlayerActionState6(void);       /* $D6A4 */
 void PlayerActionState7(void);       /* $D710 */
 void CheckBulletHitObjects(void);    /* $FA47 */
+void BuildBulletHitboxes(void);      /* $F804 */
+void CheckPlayerHitByObjects(void);  /* $F984 */
 

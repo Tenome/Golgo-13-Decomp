@@ -487,3 +487,78 @@ void CheckBulletHitObjects(void) {
     } while (left);
 }
 
+/* ---- collisions ---- */
+/* Object table entry fields used below (16 bytes at $0310 + 16 * n): +0 type and flags (bit 7 alive, bit 6 can be shot), +1 Y, +2 X,
+ * +4 hit flags (bit 7 touches the player, bits 6 / 5 / 4 hit by the bullet in hit record 1 / 2 / 3), +6 hit points, +11 world Y,
+ * +15 size (high nibble = height / 4, low nibble = width / 4). */
+#define OBJ(n) (0x0300 + (n))
+#define OBJ_TYPE 0
+#define OBJ_Y 1
+#define OBJ_X 2
+#define OBJ_HITS 4
+#define OBJ_HP 6
+#define OBJ_SIZE 15
+#define HurtTimer RAM(0x0114)
+
+/* $F804: three bullet hit records (flag, Y, X, size) are compared with every shootable object: when the two boxes overlap the record's flag
+ * is OR-ed into the object's hit byte. The box test is the original's carry arithmetic: starting below the other box's bottom edge only
+ * counts when the other box's top is above the bottom of this one, and the other way round. */
+static int boxes_overlap(uint8_t ry, uint8_t ry2, uint8_t oy1, uint8_t oy2) { return ry >= oy2 ? ry2 < oy1 : ry2 >= oy1; }
+void BuildBulletHitboxes(void) {
+    static const struct { unsigned flag, y, x, size, y2, x2; } rec[3] = {
+        {0x0119, 0x011A, 0x011B, 0x011C, 0x08, 0x09}, {0x011E, 0x011F, 0x0120, 0x0121, 0x0A, 0x0B}, {0x0123, 0x0124, 0x0125, 0x0126, 0x0C, 0x0D}};
+    for (int k = 0; k < 3; k++) if (RAM(rec[k].flag)) {
+        RAM(rec[k].y2) = (uint8_t)(((RAM(rec[k].size) & 0xF0) >> 2) + RAM(rec[k].y));
+        RAM(rec[k].x2) = (uint8_t)(((RAM(rec[k].size) & 0x0F) << 2) + RAM(rec[k].x));
+    }
+    if (ObjectCount == 0) return;
+    Tmp00 = 0x10; Tmp01 = 0x03;
+    uint8_t left = (uint8_t)ObjectCount;
+    do {
+        unsigned o = OBJ(Tmp00);
+        if ((RAM(o + OBJ_TYPE) & 0xC0) == 0xC0 && RAM(o + OBJ_SIZE) != 0) {
+            Tmp02 = RAM(o + OBJ_Y); Tmp03 = RAM(o + OBJ_X);
+            unsigned y2 = ((RAM(o + OBJ_SIZE) & 0xF0) >> 2) + Tmp02; RAM(0x04) = (uint8_t)y2;
+            if (y2 <= 0xFF) {
+                unsigned x2 = ((RAM(o + OBJ_SIZE) & 0x0F) << 2) + Tmp03; RAM(0x05) = (uint8_t)x2;
+                if (x2 <= 0xFF) {
+                    for (int k = 0; k < 3; k++) {
+                        if (!RAM(rec[k].flag)) continue;
+                        if (k == 0 && RAM(rec[k].y) >= 0xE0) continue;
+                        if (boxes_overlap(RAM(rec[k].y), RAM(rec[k].y2), Tmp02, RAM(0x04)) && boxes_overlap(RAM(rec[k].x), RAM(rec[k].x2), Tmp03, RAM(0x05)))
+                            RAM(o + OBJ_HITS) |= RAM(rec[k].flag);
+                    }
+                }
+            }
+        }
+        Tmp00 = (uint8_t)(Tmp00 + 0x10); left--;
+    } while (left);
+}
+
+/* $F984: the first object that touches the player hurts him: sound $43, a 16-frame invulnerability, life minus the object type's damage
+ * (table at $FA1D). Object type $27 while the player is in a low pose is a bonus instead: full life. Objects of types 0 stop the scan. */
+void CheckPlayerHitByObjects(void) {
+    if (HurtTimer) return;
+    Tmp00 = 0x10; Tmp01 = 0x03;
+    uint8_t left = (uint8_t)ObjectCount;
+    if (left == 0) return;
+    for (;;) {
+        unsigned o = OBJ(Tmp00);
+        if (RAM(o + OBJ_HITS) & 0x80) {
+            uint8_t type = RAM(o + OBJ_TYPE) & 0x3F;
+            if (type == 0) return;
+            if (type == 0x27 && (PlayerPose & 0x0F) < 3) {
+                PlayerPose = 7; ShootPoseTimer = 0; PlayerLifeLo = 200; RAM(o + 11) = 0xF0; RAM(0x0138) = 1; return;
+            }
+            QueueSound((Regs){0x43, left, 0, 0}); HurtTimer = 0x10;
+            uint8_t dmg = ROMB(0xFA1D + type);
+            PlayerLifeLo = PlayerLifeLo >= dmg ? (uint8_t)(PlayerLifeLo - dmg) : 0;
+            if (type == 0x09 || type == 0x16 || type == 0x18 || type == 0x22 || type == 0x25) RAM(o + OBJ_HP) = 0;   /* these die on contact */
+            return;
+        }
+        RAM(o + OBJ_HITS) &= 0x7F;
+        Tmp00 = (uint8_t)(Tmp00 + 0x10);
+        if (--left == 0) return;
+    }
+}
+

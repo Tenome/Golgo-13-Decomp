@@ -114,6 +114,8 @@ TESTS = [
     ('PlayerActionState6', 0xD6A4, False, '', lambda r: dict(ram={0x31: r.choice([0, 1, 0xE6, 0xE7, 0xE8, r.randint(0, 255), 0x00, 0x3B, 0x4D, 0x71, 0x86, 0xAB]), 0x30: r.randint(0, 255)})),
     ('PlayerActionState7', 0xD710, False, '', lambda r: dict(ram={0x36: r.randint(0, 40), 0x30: r.randint(0, 255)})),
     ('CheckBulletHitObjects', 0xFA47, False, '', lambda r: dict(ram=dict([(0x0115, r.choice([0, 0, 0, 1, 5])), (0x0301, r.choice([0, 1, 2, 3, 6]))] + [(0x0314 + 16 * i, r.choice([0, 0x40, 0x80, 0xC0, r.randint(0, 255)])) for i in range(8)] + [(0x0316 + 16 * i, r.choice([0, 1, 2, 9])) for i in range(8)]))),
+    ('BuildBulletHitboxes', 0xF804, False, '', lambda r: dict(ram=dict([(0x0301, r.choice([0, 1, 2, 4, 6]))] + [(a, r.choice([0, 0x10, 0x40, 0x80, 0xC0, r.randint(0, 255)])) for a in (0x0119, 0x011E, 0x0123)] + [(a, r.randint(0, 255)) for a in (0x011A, 0x011B, 0x011C, 0x011F, 0x0120, 0x0121, 0x0124, 0x0125, 0x0126)] + [(0x0310 + 16 * i, r.choice([0xC0, 0xC1, 0xFF, 0x40, r.randint(0, 255)])) for i in range(6)] + [(0x031F + 16 * i, r.choice([0, 0x11, 0x22, 0x44, r.randint(0, 255)])) for i in range(6)] + [(0x0311 + 16 * i, r.randint(0, 255)) for i in range(6)] + [(0x0312 + 16 * i, r.randint(0, 255)) for i in range(6)]))),
+    ('CheckPlayerHitByObjects', 0xF984, False, '', lambda r: dict(ram=dict([(0x0114, r.choice([0, 0, 0, 1])), (0x0301, r.choice([0, 1, 2, 4])), (0x38, r.choice([0, 1, 5, 50, 200, r.randint(0, 255)])), (0x36, r.randint(0, 255))] + [(0x0314 + 16 * i, r.choice([0, 0x80, 0xC0, 0x40, r.randint(0, 255)])) for i in range(6)] + [(0x0310 + 16 * i, r.choice([0, 1, 9, 0x16, 0x18, 0x22, 0x25, 0x27, 0xC0 | 0x27, 0x28, r.randint(0, 255)])) for i in range(6)]))),
 ]
 
 def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):
