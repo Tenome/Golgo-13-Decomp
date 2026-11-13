@@ -678,3 +678,61 @@ void LoadPaletteSet(void) {
     MmcPrgShadow = saved; MmcWritePrg((Regs){saved, 0x20, 0x10, 0});
 }
 
+/* =====================================================================================================================================
+ * Bank 6 (street scene spawns). These routines live in a switchable bank, so the tests run them with bank 6 mapped.
+ * The spawn code builds a new object in the table through the pointer $0A/$0B; Tmp00/Tmp01 point at the object being updated.
+ * ===================================================================================================================================== */
+#define NEW_OBJ(y) PTR(RAM(0x0A), RAM(0x0B), (y))
+#define CUR_OBJ(y) PTR(Tmp00, Tmp01, (y))
+
+/* $B6:808E: pointer to this area's spawn list (a table of pointers at $B500, one per palette set / area) */
+void LoadStageSpawnListPtr(void) {
+    unsigned x = (PaletteSetIndex << 1) & 0xFF;
+    Tmp00 = ROMB(0xB500 + x); Tmp01 = ROMB(0xB501 + x);
+}
+/* column of the map the screen's left edge (current page) or the next page is on: Tmp02 = page * 16 + ScrollX / 16 */
+static void column_index(uint8_t page) { Tmp02 = (uint8_t)(((page << 4) & 0xFF) | (ScrollX >> 4)); }
+void CalcScrollColumnIndex(void) { column_index(RAM(0x18)); }
+void CalcNextScrollColumnIndex(void) { column_index((uint8_t)(RAM(0x18) + 1)); }
+
+/* is an object of the type in $06 in the table (types at +7 of each entry from the second one on)? X = 1 if so, else 0 */
+Regs FindObjectByType(Regs r) {
+    uint8_t left = (uint8_t)ObjectCount; r.x = left;
+    if (left == 0) return r;
+    RAM(0x04) = 0x17; RAM(0x05) = 0x03;
+    do {
+        if (RAM(0x0300 + RAM(0x04)) == RAM(0x06)) { r.x = 1; return r; }
+        RAM(0x04) = (uint8_t)(RAM(0x04) + 0x10); left--;
+    } while (left);
+    r.x = 0; return r;
+}
+
+void SetRandomSpawnPhase(void) {                 /* the new object's animation step (+14) is random 0-3 */
+    Regs g = GetRandomByte((Regs){0, 0, 0, 0});
+    NEW_OBJ(0x0E) = g.a & 3;
+}
+/* the new object's world X (+9 page, +10 position): at the left edge of the screen, or one screen width... when $08 != 0 at the right edge (ScrollX + 255) */
+void SetSpawnXFromScroll(void) {
+    if (RAM(0x08) == 0) { NEW_OBJ(9) = RAM(0x18); NEW_OBJ(10) = ScrollX; }
+    else { unsigned s = 0xFF + ScrollX; NEW_OBJ(10) = (uint8_t)s; NEW_OBJ(9) = (uint8_t)(RAM(0x18) + (s > 0xFF)); }
+}
+void SetSpawnFacingBits(void) {                  /* bit 6 of +9 carries the side the object came from ($08 << 6) */
+    NEW_OBJ(9) = (uint8_t)(NEW_OBJ(9) | ((RAM(0x08) << 6) & 0xFF));
+}
+Regs GetObjectBehaviorIndex(Regs r) {            /* Y = twice the high nibble of +9 (index into a table of pointers) */
+    r.y = (uint8_t)((CUR_OBJ(9) & 0xF0) >> 3); return r;
+}
+Regs AdvanceObjectAnimStep(Regs r) {             /* the animation step counter (+14) goes up; $04 = the animation's length (first byte of the table Tmp02) */
+    RAM(0x04) = PTR(Tmp02, Tmp03, 0);
+    unsigned n = CUR_OBJ(0x0E) + 1; CUR_OBJ(0x0E) = (uint8_t)n;
+    r.a = (uint8_t)n; r.c = n > 0xFF; r.y = 0x0E; return r;
+}
+void CalcObjectTileColumn(void) {                /* $04 = tile column of the object's world X: low nibble of +9 and high nibble of +10 */
+    RAM(0x04) = (uint8_t)(((CUR_OBJ(9) << 4) & 0xFF) | (CUR_OBJ(10) >> 4));
+}
+Regs StoreSpawnStats(Regs r) {                   /* copy two bytes of the spawn list entry at offset Y+2 / Y+3 into the new object (+11 and +7) */
+    uint8_t second = CUR_OBJ(r.y + 3), first = CUR_OBJ(r.y + 2) & 0xFE;
+    NEW_OBJ(0x0B) = first; NEW_OBJ(7) = second;
+    r.y = 7; r.a = second; return r;
+}
+

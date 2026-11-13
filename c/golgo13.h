@@ -90,4 +90,16 @@ void UpdatePlayerHitboxC(void);      /* $FD18 */
 void FadePaletteStep(void);          /* $E8D3 */
 Regs CheckPlayerNearObject(Regs r);  /* $D28E */
 void LoadPaletteSet(void);           /* $C4EB */
+/* ---- bank 6 ---- */
+void LoadStageSpawnListPtr(void);    /* $B6:808E */
+void CalcScrollColumnIndex(void);    /* $B6:809D */
+void CalcNextScrollColumnIndex(void);/* $B6:80AE */
+Regs FindObjectByType(Regs r);       /* $B6:80B5 */
+void SetRandomSpawnPhase(void);      /* $B6:840D */
+void SetSpawnXFromScroll(void);      /* $B6:83D3 */
+void SetSpawnFacingBits(void);       /* $B6:8401 */
+Regs GetObjectBehaviorIndex(Regs r); /* $B6:89A7 */
+Regs AdvanceObjectAnimStep(Regs r);  /* $B6:8A66 */
+void CalcObjectTileColumn(void);     /* $B6:8AF4 */
+Regs StoreSpawnStats(Regs r);        /* $B6:83BE */
 

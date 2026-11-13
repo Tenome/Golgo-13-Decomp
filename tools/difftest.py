@@ -123,9 +123,20 @@ TESTS = [
     ('FadePaletteStep', 0xE8D3, False, '', lambda r: dict(ram=dict([(0x013D, r.choice([0, 0x3F, 0x40, 0x41, 0x50, 0x60, 0x6F, 0x70, 0xFF, r.randint(0, 255)]))] + [(0x0140 + i, r.choice([0x0F, 0x10, 0x20, 0x30, 0x3F, r.randint(0, 255)])) for i in range(32)]))),
     ('CheckPlayerNearObject', 0xD28E, True, 'a', lambda r: dict(x=r.choice([0, 0x10, 0x20]), ram=dict([(0x0238, r.choice([0x40, 0x41, 0x4F, 0x50, 0x3F, r.randint(0, 255)])), (0x023B, r.choice([0x40, 0x50, 0x55, 0x56, 0x2B, r.randint(0, 255)])), (0x14, r.choice([3, 4])), (0x0311, r.choice([0x40, 0x4A, 0x45, r.randint(0, 255)])), (0x0312, 0x50), (0x0321, 0x40), (0x0322, 0x50), (0x0331, 0x40), (0x0332, 0x50), (0x0313, r.randint(0x40, 0xF0)), (0x0314, r.randint(0, 6)), (0x0323, r.randint(0x40, 0xF0)), (0x0324, r.randint(0, 6)), (0x0333, r.randint(0x40, 0xF0)), (0x0334, r.randint(0, 6)), (0x02, 0), (0x03, 2)]))),
     ('LoadPaletteSet', 0xC4EB, False, '', lambda r: dict(ram={0x17: r.choice([0, 1, 0x10, 0x3F, 0x40, 0x7F, r.randint(0, 255)]), 0xFB: r.randint(0, 6)})),
+    ('LoadStageSpawnListPtr', 0x808E, False, '', lambda r: dict(ram={0x17: r.randint(0, 255)}), 6),
+    ('CalcScrollColumnIndex', 0x809D, False, '', lambda r: dict(ram={0x18: r.randint(0, 255), 0x19: r.randint(0, 255)}), 6),
+    ('CalcNextScrollColumnIndex', 0x80AE, False, '', lambda r: dict(ram={0x18: r.choice([0, 3, 0xFF, r.randint(0, 255)]), 0x19: r.randint(0, 255)}), 6),
+    ('FindObjectByType', 0x80B5, True, 'x', lambda r: dict(ram=dict([(0x0301, r.choice([0, 1, 2, 4, 9])), (0x06, r.randint(0, 3))] + [(0x0317 + 16 * i, r.randint(0, 3)) for i in range(10)])), 6),
+    ('SetRandomSpawnPhase', 0x840D, False, '', lambda r: dict(ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF])), (0x0108, r.randint(0, 255))])), 6),
+    ('SetSpawnXFromScroll', 0x83D3, False, '', lambda r: dict(ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF])), (0x18, r.randint(0, 255)), (0x19, r.choice([0, 1, 0xFF, r.randint(0, 255)]))])), 6),
+    ('SetSpawnFacingBits', 0x8401, False, '', lambda r: dict(ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF]))])), 6),
+    ('GetObjectBehaviorIndex', 0x89A7, True, 'y', lambda r: dict(ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF]))])), 6),
+    ('AdvanceObjectAnimStep', 0x8A66, True, 'ayc', lambda r: dict(ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF])), (0x03, 3), (0x02, r.randint(0, 255))])), 6),
+    ('CalcObjectTileColumn', 0x8AF4, False, '', lambda r: dict(ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF]))])), 6),
+    ('StoreSpawnStats', 0x83BE, True, 'ay', lambda r: dict(y=r.randint(0, 6), ram=dict([(0x0A, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x0B, 3), (0x00, r.choice([0x10, 0x20, 0x70, 0xE0, r.randint(0, 255)])), (0x01, 3), (0x02, r.randint(0, 255)), (0x03, 3), (0x08, r.choice([0, 1, 2, 0xFF]))])), 6),
 ]
 
-def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):
+def run(name, addr, takes_regs, cmp_regs, gen, runs, seed, fixed_bank=None):
     rnd = random.Random(seed); fn = getattr(lib, name)
     returns = takes_regs and 'V' not in cmp_regs
     fn.restype = Regs if returns else None
@@ -134,7 +145,7 @@ def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):
         ram = bytearray(rnd.randrange(256) for _ in range(0x800))
         regs = dict(a=rnd.randrange(256), x=rnd.randrange(256), y=rnd.randrange(256), c=rnd.randrange(2)); regs.update(gen(rnd))
         for k, v in regs.pop('ram', {}).items(): ram[k] = v
-        ram = bytes(ram); bank = rnd.randrange(7)
+        ram = bytes(ram); bank = rnd.randrange(7) if fixed_bank is None else fixed_bank
         cpu = sim6502.CPU(prg); cpu.ram[:] = ram; cpu.bank = bank
         ra = cpu.call(addr, regs['a'], regs['x'], regs['y'], regs['c'])
         for k in range(0x800): ram_c[k] = ram[k]
@@ -152,9 +163,9 @@ def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):
     return True
 
 ok = True
-for n, addr, tr, cr, gen in TESTS:
+for n, addr, tr, cr, gen, *fb in TESTS:                    # an optional 6th field fixes the PRG bank (for routines of a switchable bank)
     if a.only and n != a.only: continue
-    r = run(n, addr, tr, cr, gen, a.runs, hash(n) & 0xFFFF)
+    r = run(n, addr, tr, cr, gen, a.runs, hash(n) & 0xFFFF, fb[0] if fb else None)
     print(f'{"ok  " if r else "FAIL"} {n:24s} ${addr:04X}  ({a.runs} random states)')
     ok &= r
 print('ALL MATCH' if ok else 'MISMATCHES FOUND'); sys.exit(0 if ok else 1)
