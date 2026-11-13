@@ -260,3 +260,85 @@ void SelectEndScreenPhase(void) {
     RAM(0x0157) = ROMB(0xE03C + phase);
 }
 
+/* ---- player movement and shooting (street scenes) ---- */
+#define JoyHeld1 RAM(0x010B)
+#define JoyNew1 RAM(0x010D)
+#define JOY_A 0x01
+#define JOY_B 0x02
+#define JOY_UP 0x10
+#define JOY_DOWN 0x20
+#define JOY_LEFT 0x40
+#define JOY_RIGHT 0x80
+#define MmcChr1Shadow RAM(0xFA)
+#define FloorProbeTile RAM(0x3F)
+#define ShootPoseActive RAM(0x33)                /* 1 while the shooting pose is held */
+#define ShootPoseTimer RAM(0x34)
+#define WeaponEquipped RAM(0x3C)
+enum { POSE_STAND = 0, POSE_WALK = 1, POSE_UP = 2, POSE_DOWN = 3, POSE_SHOOT = 4, POSE_AIM_LOW = 6 };   /* low nibble of PlayerPose; bit 4 = facing left */
+static void set_pose(uint8_t pose) { SetPlayerPose((Regs){0, pose, 0, 0}); }
+
+/* $EA02: on the ground and not already falling or jumping: B jumps, otherwise the player falls when the floor tile under the feet is
+ * below the walkable range for the current CHR set. Both start action state 1 with the timer that drives the arc. */
+void StartPlayerFallIfNoFloor(void) {
+    if ((PlayerPose & 0x0F) >= POSE_DOWN) return;
+    uint8_t timer;
+    if (JoyNew1 & JOY_B) timer = 0;                                           /* jump */
+    else { if (FloorProbeTile >= ROMB(0xE961 + MmcChr1Shadow)) return; timer = 0x20; }   /* walked off an edge: start falling */
+    PlayerActionTimer = timer; PlayerActionState = 1;
+    set_pose(POSE_DOWN);
+}
+
+/* $EA2D: the shooting pose ends after a number of frames that depends on the pose (aiming poses 4 and 6: 32 frames, others: 224) */
+void AdvancePlayerPoseTimer(void) {
+    ShootPoseTimer++;
+    uint8_t pose = PlayerPose & 0x0F, next;
+    if (pose == POSE_SHOOT)         { if (ShootPoseTimer < 0x20) return; next = POSE_DOWN; }
+    else if (pose == POSE_AIM_LOW)  { if (ShootPoseTimer < 0x20) return; next = POSE_STAND; }
+    else                            { if (ShootPoseTimer < 0xE0) return; next = POSE_STAND; }
+    set_pose(next); ShootPoseActive = 0;
+}
+
+/* $EA61: A fires. With a weapon and ammo the pose depends on the current one; without, a standing player crouches (action state 1,
+ * 24 pixels lower). The register X on entry is used unchanged for poses above 3, like in the original. */
+void HandleFireButton(Regs r) {
+    if (!(JoyNew1 & JOY_A)) return;
+    uint8_t pose = PlayerPose & 0x0F, x;
+    if (WeaponEquipped && (AmmoLo | AmmoHi)) {
+        if (pose == POSE_DOWN) x = POSE_SHOOT; else if (pose > POSE_DOWN) x = r.x; else x = POSE_AIM_LOW;
+    } else {
+        if (pose == POSE_DOWN) x = POSE_SHOOT;
+        else if (pose > POSE_DOWN) return;
+        else { PlayerActionState = 1; PlayerActionTimer = 0x20; RAM(0x0238) = (uint8_t)(RAM(0x0238) - 0x18); x = POSE_SHOOT; }
+    }
+    set_pose(x); ShootPoseActive = 1; ShootPoseTimer = 0;
+}
+
+/* $D0AB: left / right movement of the player sprite while the screen does not scroll (PlayerScreenSide 1 = left half, 2 = right half) */
+void MovePlayerOnScreenSide(void) {
+    uint8_t x = PlayerSpriteX0, held = JoyHeld1 & (JOY_LEFT | JOY_RIGHT);
+    if (PlayerScreenSide == 0 || held == 0) return;
+    if (PlayerScreenSide == 1) {
+        if (held == JOY_LEFT) { if (x >= 0x11) PlayerSpriteX0--; }
+        else if (x < 0x78) PlayerSpriteX0++;
+    } else {
+        if (held == JOY_LEFT && x >= 0x79) PlayerSpriteX0--;
+        else if (x < 0xE0) PlayerSpriteX0++;      /* (also when walking left below $79, like the original) */
+    }
+}
+
+/* $EF2D: walking pose and vertical movement of the side view: stand, then walk when the stick points the way the player faces, otherwise
+ * climb / descend poses from up / down, and finally move one pixel up or down */
+void UpdatePlayerWalkInput(void) {
+    if ((PlayerPose & 0x0F) == 0) UpdatePlayerFacing((Regs){0, 0, 0, 0});
+    set_pose(POSE_STAND);
+    int walking = (PlayerPose & 0x10) ? (JoyHeld1 & JOY_LEFT) : (JoyHeld1 & JOY_RIGHT);
+    if (walking) set_pose(POSE_WALK);
+    else {
+        uint8_t vertical = JoyHeld1 & (JOY_UP | JOY_DOWN);
+        if (vertical == JOY_UP) set_pose(POSE_UP); else if (vertical == JOY_DOWN) set_pose(POSE_DOWN);
+    }
+    uint8_t vertical = JoyHeld1 & (JOY_UP | JOY_DOWN);
+    if (vertical == 0) return;
+    if (vertical == JOY_UP) RAM(0x0238)--; else RAM(0x0238)++;
+}
+

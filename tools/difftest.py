@@ -100,6 +100,11 @@ TESTS = [
     ('SetBulletHitbox1', 0xFC62, False, '', lambda r: dict(ram=dict([(0x024C + 4 * i + k, r.choice([0, 0x10, 0xE7, 0xE8, 0xDF, 0xE0, 0xFF, r.randint(0, 255)])) for i in range(2) for k in (0, 3)] + [(0x011E + k, r.randint(0, 255)) for k in range(10)]))),
     ('SetBulletHitbox2', 0xFCBD, False, '', lambda r: dict(ram=dict([(0x0254 + 4 * i + k, r.choice([0, 0x10, 0xE7, 0xE8, 0xDF, 0xE0, 0xFF, r.randint(0, 255)])) for i in range(2) for k in (0, 3)] + [(0x011E + k, r.randint(0, 255)) for k in range(10)]))),
     ('SelectEndScreenPhase', 0xE018, False, '', lambda r: dict(ram={0x29: r.choice([0, 0x1F, 0x20, 0x22, 0x23, 0x25, 0x26, 0x28, 0x29, 0x2B, 0x2C, 0xFF, r.randint(0, 255)])})),
+    ('StartPlayerFallIfNoFloor', 0xEA02, False, '', lambda r: dict(ram={0x36: r.randint(0, 255), 0x010D: r.choice([0, 2, 3, 0xFF]), 0xFA: r.randint(0, 31), 0x3F: r.randint(0, 255)})),
+    ('AdvancePlayerPoseTimer', 0xEA2D, False, '', lambda r: dict(ram={0x36: r.choice([0, 1, 4, 6, 0x14, 0x16, 3, r.randint(0, 255)]), 0x34: r.choice([0, 0x1E, 0x1F, 0x20, 0xDE, 0xDF, 0xE0, 0xFF, r.randint(0, 255)]), 0x33: 1})),
+    ('HandleFireButton', 0xEA61, True, 'V', lambda r: dict(ram={0x36: r.choice([0, 1, 2, 3, 4, 5, 6, 0x13, r.randint(0, 255)]), 0x010D: r.choice([0, 1, 0x81, 0xFF]), 0x3C: r.choice([0, 1]), 0x3A: r.choice([0, 0, 5]), 0x3B: r.choice([0, 0, 1]), 0x0238: r.randint(0, 255)})),
+    ('MovePlayerOnScreenSide', 0xD0AB, False, '', lambda r: dict(ram={0x32: r.choice([0, 1, 2, 3]), 0x010B: r.choice([0, 0x40, 0x80, 0xC0, 0x41, 0xFF]), 0x023B: r.choice([0, 0x10, 0x11, 0x77, 0x78, 0x79, 0xDF, 0xE0, 0xFF, r.randint(0, 255)])})),
+    ('UpdatePlayerWalkInput', 0xEF2D, False, '', lambda r: dict(ram={0x36: r.randint(0, 255), 0x010B: r.choice([0, 0x10, 0x20, 0x30, 0x40, 0x80, 0x50, 0xA0, 0xFF, r.randint(0, 255)]), 0x0238: r.randint(0, 255)})),
 ]
 
 def run(name, addr, takes_regs, cmp_regs, gen, runs, seed):

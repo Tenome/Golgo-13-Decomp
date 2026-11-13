@@ -108,7 +108,7 @@ static void render_bg(int y) {
 static int render_obj(int y, int probe) {
     uint32_t *out = g_frame[y]; int hit_x = -1;
     uint8_t col[256]; memcpy(col, bgbuf, sizeof col);
-    if (rendering() && (mask & 0x10)) {
+    if (y > 0 && rendering() && (mask & 0x10)) {           /* the first line never shows sprites: their data is fetched one line ahead and the pre-render line fetches none */
         int h = (ctrl & 0x20) ? 16 : 8, count = 0; int idx[8];
         for (int i = 0; i < 64 && count < 8; i++) { int row = y - (oam[i * 4] + 1); if (row >= 0 && row < h) idx[count++] = i; }
         uint8_t sp[256], spop[256], spri[256], spzero[256]; memset(spop, 0, sizeof spop); memset(spzero, 0, sizeof spzero);
@@ -170,7 +170,7 @@ static void next_line(void) {
     if (line == 241) vbl_set = 0;
     else if (line == 262) line = 0;
     if (line == 261) status &= (uint8_t)~0xE0;           /* pre-render line: flags clear */
-    if (line == 0 && rendering()) v = (uint16_t)((v & ~0x7BE0) | (t & 0x7BE0));     /* vertical bits copied from t */
+    if (line == 0 && rendering()) v = (uint16_t)((v & ~0x7FFF) | (t & 0x7FFF));      /* the pre-render line copies the vertical bits (dots 280-304) and the horizontal ones (dot 257) from t */
     line_v0 = v; nvev = 0; ls_chr0 = mmc_chr0; ls_chr1 = mmc_chr1; ls_ctrl = mmc_control; nmev = 0;
     s0_valid = 0;
     if (line < 240) { int hx = probe_line(line); if (hx >= 0) { s0_valid = 1; s0_dot = line_start_dot + 2 + (uint64_t)hx; if (getenv("G13_WLOG") && g_frames == (unsigned long)atoi(getenv("G13_WLOG"))) fprintf(stderr, "sprite0 hit planned: line %d x %d" "%c", line, hx, 10); } }

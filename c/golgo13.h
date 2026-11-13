@@ -67,4 +67,9 @@ void SelectPlayerSpriteFrame(void);  /* $EF7B */
 void SetBulletHitbox1(void);         /* $FC62 */
 void SetBulletHitbox2(void);         /* $FCBD */
 void SelectEndScreenPhase(void);     /* $E018 */
+void StartPlayerFallIfNoFloor(void); /* $EA02 */
+void AdvancePlayerPoseTimer(void);   /* $EA2D */
+void HandleFireButton(Regs r);       /* $EA61 */
+void MovePlayerOnScreenSide(void);   /* $D0AB */
+void UpdatePlayerWalkInput(void);    /* $EF2D */
 
