@@ -39,7 +39,7 @@ Data_B1_8045:
 Bank1Tbl8045_00:
   inc SceneState               ; $804D
   jsr SaveMmcShadowRegs        ; $8050
-Sub_B1_8053:
+DisablePpuMask:
   lda #$00                     ; $8053
   jmp SetPpuMask               ; $8055
 Bank1Tbl8045_01:
@@ -82,7 +82,7 @@ Loc_B1_809C:
   sty z:MmcChr1Shadow          ; $80A4
   jmp MmcWriteChr1             ; $80A6
 Bank1Tbl8045_03:
-  jsr Sub_B1_8053              ; $80A9
+  jsr DisablePpuMask           ; $80A9
   jsr FillPaletteBlack         ; $80AC
   jsr FillNametable0WithFF     ; $80AF
   jsr RestoreMmcShadowRegs     ; $80B2
@@ -2272,29 +2272,29 @@ SetStaticAnimTablePtr:
   sta z:Tmp03                  ; $A038
   rts                          ; $A03A
   .incbin "prg_bank_1.bin", $203B, $25  ; $A03B
-Sub_B1_A060:
-  jsr Sub_B1_A07E              ; $A060
+UpdateBossAnimationA:
+  jsr LoadBossAnimTableA       ; $A060
   ldy #$08                     ; $A063
   lda (Tmp00),y                ; $A065
   bne Loc_B1_A077              ; $A067
   jsr AdvanceObjectAnimStepB1  ; $A069
   bcc Loc_B1_A074              ; $A06C
-  jsr Sub_B1_A08C              ; $A06E
-  jsr Sub_B1_A07E              ; $A071
+  jsr ResetBossAnimFields      ; $A06E
+  jsr LoadBossAnimTableA       ; $A071
 Loc_B1_A074:
   jsr LoadObjectAnimFrameB1    ; $A074
 Loc_B1_A077:
   jsr StepObjectAnimTimerB     ; $A077
   jsr UpdateObjectScreenXB1    ; $A07A
   rts                          ; $A07D
-Sub_B1_A07E:
+LoadBossAnimTableA:
   jsr GetObjectStateIndex      ; $A07E
   lda Data_B1_A09D,y           ; $A081
   sta z:Tmp02                  ; $A084
   lda Data_B1_A09E,y           ; $A086
   sta z:Tmp03                  ; $A089
   rts                          ; $A08B
-Sub_B1_A08C:
+ResetBossAnimFields:
   ldy #$07                     ; $A08C
   lda (Tmp00),y                ; $A08E
   beq Loc_B1_A096              ; $A090
@@ -2309,15 +2309,15 @@ Data_B1_A09D:
   .incbin "prg_bank_1.bin", $209D, $1  ; $A09D
 Data_B1_A09E:
   .incbin "prg_bank_1.bin", $209E, $D  ; $A09E
-Sub_B1_A0AB:
-  jsr Sub_B1_A0CC              ; $A0AB
+UpdateBossAnimationB:
+  jsr LoadBossAnimTableB       ; $A0AB
   ldy #$08                     ; $A0AE
   lda (Tmp00),y                ; $A0B0
   bne Loc_B1_A0C5              ; $A0B2
   jsr AdvanceObjectAnimStepB1  ; $A0B4
   bcc Loc_B1_A0BF              ; $A0B7
-  jsr Sub_B1_A0DA              ; $A0B9
-  jsr Sub_B1_A0CC              ; $A0BC
+  jsr AdvanceBossPhaseOnHit    ; $A0B9
+  jsr LoadBossAnimTableB       ; $A0BC
 Loc_B1_A0BF:
   jsr LoadObjectAnimFrameB1    ; $A0BF
   jsr Sub_B1_A178              ; $A0C2
@@ -2325,14 +2325,14 @@ Loc_B1_A0C5:
   jsr StepObjectAnimTimerB     ; $A0C5
   jsr UpdateObjectScreenXB1    ; $A0C8
   rts                          ; $A0CB
-Sub_B1_A0CC:
+LoadBossAnimTableB:
   jsr GetObjectStateIndex      ; $A0CC
   lda Data_B1_A1A0,y           ; $A0CF
   sta z:Tmp02                  ; $A0D2
   lda Data_B1_A1A1,y           ; $A0D4
   sta z:Tmp03                  ; $A0D7
   rts                          ; $A0D9
-Sub_B1_A0DA:
+AdvanceBossPhaseOnHit:
   ldy #$07                     ; $A0DA
   lda (Tmp00),y                ; $A0DC
   cmp #$04                     ; $A0DE

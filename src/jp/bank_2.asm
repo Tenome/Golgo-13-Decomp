@@ -54,7 +54,7 @@ Bank2Nmi:
 Loc_B2_807D:
   cmp #$11                     ; $807D
   bne Loc_B2_8087              ; $807F
-Sub_B2_8081:
+ScopeScrollEndCheckThenContinue:
   jsr CheckScopeScrollEnd      ; $8081
   jmp Loc_B2_815C              ; $8084
 Loc_B2_8087:
@@ -69,17 +69,17 @@ Loc_B2_8094:
   jsr UploadColumnOrPalette    ; $809A
   jsr ApplyScroll              ; $809D
   jsr DrawHud                  ; $80A0
-  jsr Sub_B2_83C7              ; $80A3
+  jsr ScanScopeTargets         ; $80A3
   jsr DrawObjectsBanked        ; $80A6
   lda z:PaletteSetIndex        ; $80A9
   cmp #$69                     ; $80AB
   bne Loc_B2_80B5              ; $80AD
-  jsr Sub_B2_8488              ; $80AF
+  jsr ScopeBossPhase6Check     ; $80AF
   jsr TickScopeSecondTimer     ; $80B2
 Loc_B2_80B5:
-  jsr Sub_B2_87AC              ; $80B5
+  jsr ScopePalette69Check      ; $80B5
   jsr CheckLowLifeSoundB2      ; $80B8
-  jsr Sub_B2_88AA              ; $80BB
+  jsr ScopeLifeRefillCheck     ; $80BB
   lda $0497                    ; $80BE
   bmi Loc_B2_810C              ; $80C1
   jsr ReadJoypads              ; $80C3
@@ -331,7 +331,7 @@ Loc_B2_83B4:
   dec z:ScrollX                ; $83C4
 Loc_B2_83C6:
   rts                          ; $83C6
-Sub_B2_83C7:
+ScanScopeTargets:
   lda ObjectCount              ; $83C7
   beq Loc_B2_8439              ; $83CA
   sta z:Tmp02                  ; $83CC
@@ -400,7 +400,7 @@ Loc_B2_8439:
   rts                          ; $8439
 Data_B2_843A:
   .incbin "prg_bank_2.bin", $043A, $4E  ; $843A
-Sub_B2_8488:
+ScopeBossPhase6Check:
   lda BossPhase                ; $8488
   and #$7F                     ; $848B
   cmp #$06                     ; $848D
@@ -611,7 +611,7 @@ Data_B2_86AC:
   .incbin "prg_bank_2.bin", $06AC, $D0  ; $86AC
 Data_B2_877C:
   .incbin "prg_bank_2.bin", $077C, $30  ; $877C
-Sub_B2_87AC:
+ScopePalette69Check:
   lda z:PaletteSetIndex        ; $87AC
   cmp #$69                     ; $87AE
   bne Loc_B2_87B5              ; $87B0
@@ -747,7 +747,7 @@ Loc_B2_889C:
   dec $04A9                    ; $88A6
 Loc_B2_88A9:
   rts                          ; $88A9
-Sub_B2_88AA:
+ScopeLifeRefillCheck:
   lda $0497                    ; $88AA
   bne Loc_B2_88DF              ; $88AD
   lda z:PaletteSetIndex        ; $88AF

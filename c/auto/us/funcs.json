@@ -64,7 +64,7 @@
    ]
   ]
  },
- "Sub_B1_804F": {
+ "DisablePpuMask": {
   "addr": 32847,
   "bank": 1,
   "instrs": 2,
@@ -1067,7 +1067,7 @@
    ]
   ]
  },
- "Sub_B1_A060": {
+ "UpdateBossAnimationA": {
   "addr": 41056,
   "bank": 1,
   "instrs": 12,
@@ -1080,7 +1080,7 @@
    ]
   ]
  },
- "Sub_B1_A07E": {
+ "LoadBossAnimTableA": {
   "addr": 41086,
   "bank": 1,
   "instrs": 6,
@@ -1093,7 +1093,7 @@
    ]
   ]
  },
- "Sub_B1_A08C": {
+ "ResetBossAnimFields": {
   "addr": 41100,
   "bank": 1,
   "instrs": 9,
@@ -1106,7 +1106,7 @@
    ]
   ]
  },
- "Sub_B1_A0AB": {
+ "UpdateBossAnimationB": {
   "addr": 41131,
   "bank": 1,
   "instrs": 13,
@@ -1119,7 +1119,7 @@
    ]
   ]
  },
- "Sub_B1_A0CC": {
+ "LoadBossAnimTableB": {
   "addr": 41164,
   "bank": 1,
   "instrs": 6,
@@ -1132,7 +1132,7 @@
    ]
   ]
  },
- "Sub_B1_A0DA": {
+ "AdvanceBossPhaseOnHit": {
   "addr": 41178,
   "bank": 1,
   "instrs": 76,
@@ -1604,7 +1604,7 @@
    ]
   ]
  },
- "Sub_B2_8081": {
+ "ScopeScrollEndCheckThenContinue": {
   "addr": 32897,
   "bank": 2,
   "instrs": 7,
@@ -1690,7 +1690,7 @@
    ]
   ]
  },
- "Sub_B2_83C7": {
+ "ScanScopeTargets": {
   "addr": 33735,
   "bank": 2,
   "instrs": 59,
@@ -1703,7 +1703,7 @@
    ]
   ]
  },
- "Sub_B2_8488": {
+ "ScopeBossPhase6Check": {
   "addr": 33928,
   "bank": 2,
   "instrs": 100,
@@ -1729,7 +1729,7 @@
    ]
   ]
  },
- "Sub_B2_87AC": {
+ "ScopePalette69Check": {
   "addr": 34732,
   "bank": 2,
   "instrs": 83,
@@ -1768,7 +1768,7 @@
    ]
   ]
  },
- "Sub_B2_88AA": {
+ "ScopeLifeRefillCheck": {
   "addr": 34986,
   "bank": 2,
   "instrs": 60,
@@ -2319,7 +2319,7 @@
    ]
   ]
  },
- "Sub_B3_8A69": {
+ "BuildTextBoxTilePointers": {
   "addr": 35433,
   "bank": 3,
   "instrs": 70,
@@ -2521,7 +2521,7 @@
    ]
   ]
  },
- "Sub_B3_9094": {
+ "UpdateTextBox": {
   "addr": 37012,
   "bank": 3,
   "instrs": 66,
@@ -2555,7 +2555,7 @@
    ]
   ]
  },
- "Sub_B3_91B1": {
+ "SetupTextBoxNametablePointers": {
   "addr": 37297,
   "bank": 3,
   "instrs": 37,
@@ -2581,7 +2581,7 @@
    ]
   ]
  },
- "Sub_B3_92B7": {
+ "RunTextBoxRowStep": {
   "addr": 37559,
   "bank": 3,
   "instrs": 74,
@@ -5342,7 +5342,7 @@
    ]
   ]
  },
- "Sub_B4_A894": {
+ "DispatchObjectState": {
   "addr": 43156,
   "bank": 4,
   "instrs": 9,
@@ -5355,7 +5355,7 @@
    ]
   ]
  },
- "Sub_B4_A8B7": {
+ "RemoveObjectIfRoomCleared": {
   "addr": 43191,
   "bank": 4,
   "instrs": 16,
@@ -5372,7 +5372,7 @@
    ]
   ]
  },
- "Sub_B4_A8E4": {
+ "ObjectCountdownDone": {
   "addr": 43236,
   "bank": 4,
   "instrs": 14,
@@ -5385,7 +5385,7 @@
    ]
   ]
  },
- "Sub_B4_A905": {
+ "ObjectStateMoveLeft7": {
   "addr": 43269,
   "bank": 4,
   "instrs": 10,
@@ -5402,7 +5402,7 @@
    ]
   ]
  },
- "Sub_B4_A911": {
+ "SetObjectTimer9AndAdvance": {
   "addr": 43281,
   "bank": 4,
   "instrs": 3,
@@ -5415,7 +5415,7 @@
    ]
   ]
  },
- "Sub_B4_A918": {
+ "ObjectStateMoveLeft4": {
   "addr": 43288,
   "bank": 4,
   "instrs": 18,
@@ -5436,7 +5436,7 @@
    ]
   ]
  },
- "Sub_B4_A924": {
+ "ObjectStateMoveLeft2": {
   "addr": 43300,
   "bank": 4,
   "instrs": 18,
@@ -5457,7 +5457,7 @@
    ]
   ]
  },
- "Sub_B4_A930": {
+ "ObjectStateMoveRight2": {
   "addr": 43312,
   "bank": 4,
   "instrs": 15,
@@ -6598,7 +6598,7 @@
    ]
   ]
  },
- "Sub_B4_B3C7": {
+ "ApplyObjectFallStep": {
   "addr": 46023,
   "bank": 4,
   "instrs": 14,
@@ -6628,7 +6628,7 @@
    ]
   ]
  },
- "Sub_B4_B3EE": {
+ "StoreMaskedFieldAndSetFlagsE0": {
   "addr": 46062,
   "bank": 4,
   "instrs": 2,
@@ -8224,7 +8224,7 @@
    ]
   ]
  },
- "Sub_B5_87E0": {
+ "AddSpriteBaseOffsetA": {
   "addr": 34784,
   "bank": 5,
   "instrs": 4,
@@ -8237,7 +8237,7 @@
    ]
   ]
  },
- "Sub_B5_87E8": {
+ "StoreSpriteAttrAddBaseB": {
   "addr": 34792,
   "bank": 5,
   "instrs": 5,
@@ -8250,7 +8250,7 @@
    ]
   ]
  },
- "Sub_B5_87F3": {
+ "StoreSpriteTileAndNext": {
   "addr": 34803,
   "bank": 5,
   "instrs": 10,
@@ -8263,7 +8263,7 @@
    ]
   ]
  },
- "Sub_B5_8806": {
+ "StepSpriteTableIndex": {
   "addr": 34822,
   "bank": 5,
   "instrs": 5,
@@ -8328,7 +8328,7 @@
    ]
   ]
  },
- "Sub_B5_895F": {
+ "FillPaletteBufferLoop": {
   "addr": 35167,
   "bank": 5,
   "instrs": 4,

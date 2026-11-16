@@ -22,13 +22,13 @@ Bank3Nmi:
   lda DialogueStage            ; $8025
   cmp #$03                     ; $8028
   bne Loc_B3_802F              ; $802A
-  jsr Sub_B3_8E29              ; $802C
+  jsr RunTextBoxRowStep        ; $802C
 Loc_B3_802F:
   jmp Loc_B3_8074              ; $802F
 Loc_B3_8032:
   lda $0410                    ; $8032
   bne Loc_B3_803D              ; $8035
-  jsr Sub_B3_8D23              ; $8037
+  jsr SetupTextBoxNametablePointers ; $8037
   jmp Loc_B3_8074              ; $803A
 Loc_B3_803D:
   cmp #$01                     ; $803D
@@ -38,7 +38,7 @@ Loc_B3_803D:
 Loc_B3_8047:
   cmp #$02                     ; $8047
   bne Loc_B3_8051              ; $8049
-  jsr Sub_B3_8C06              ; $804B
+  jsr UpdateTextBox            ; $804B
   jmp Loc_B3_8071              ; $804E
 Loc_B3_8051:
   jsr DoOamDma                 ; $8051
@@ -511,7 +511,7 @@ Loc_B3_8446:
   iny                          ; $844C
   lda ($6C),y                  ; $844D
   sta z:$6F                    ; $844F
-  jsr Sub_B3_85DB              ; $8451
+  jsr BuildTextBoxTilePointers ; $8451
   lda #$00                     ; $8454
   sta z:$72                    ; $8456
   sta TextBoxState             ; $8458
@@ -677,7 +677,7 @@ Loc_B3_85A0:
   sta z:$72                    ; $85A2
   lda #$01                     ; $85A4
   sta TextBoxDispatchIndex     ; $85A6
-  jsr Sub_B3_85DB              ; $85A9
+  jsr BuildTextBoxTilePointers ; $85A9
 Loc_B3_85AC:
   rts                          ; $85AC
 ShowContinueArrow:
@@ -708,7 +708,7 @@ HideContinueArrow:
   lda #$00                     ; $85D5
   sta $041E                    ; $85D7
   rts                          ; $85DA
-Sub_B3_85DB:
+BuildTextBoxTilePointers:
   ldy #$02                     ; $85DB
   lda ($6C),y                  ; $85DD
   sta z:Tmp00                  ; $85DF
@@ -1388,7 +1388,7 @@ Loc_B3_8BEA:
   .incbin "prg_bank_3.bin", $0BF8, $5  ; $8BF8
 Data_B3_8BFD:
   .incbin "prg_bank_3.bin", $0BFD, $9  ; $8BFD
-Sub_B3_8C06:
+UpdateTextBox:
   lda TextBoxMode              ; $8C06
   beq Loc_B3_8C0E              ; $8C09
   jmp Loc_B3_8CB4              ; $8C0B
@@ -1552,7 +1552,7 @@ Loc_B3_8D05:
   sta $0410                    ; $8D1F
 Loc_B3_8D22:
   rts                          ; $8D22
-Sub_B3_8D23:
+SetupTextBoxNametablePointers:
   lda #$00                     ; $8D23
   sta z:$58                    ; $8D25
   sta z:$5A                    ; $8D27
@@ -1685,7 +1685,7 @@ Loc_B3_8E1E:
   sta $0410                    ; $8E25
 Loc_B3_8E28:
   rts                          ; $8E28
-Sub_B3_8E29:
+RunTextBoxRowStep:
   lda TextBoxStage             ; $8E29
   bne Loc_B3_8E50              ; $8E2C
   lda $0404                    ; $8E2E

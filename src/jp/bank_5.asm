@@ -863,61 +863,61 @@ Loc_B5_8758:
   beq Loc_B5_87A2              ; $875E
   rts                          ; $8760
 Loc_B5_8761:
-  jsr Sub_B5_87B5              ; $8761
+  jsr AddSpriteBaseOffsetA     ; $8761
   bcs Loc_B5_8772              ; $8764
-  jsr Sub_B5_87BD              ; $8766
+  jsr StoreSpriteAttrAddBaseB  ; $8766
   bcs Loc_B5_8772              ; $8769
   cmp #$F0                     ; $876B
   bcs Loc_B5_8772              ; $876D
-  jsr Sub_B5_87C8              ; $876F
+  jsr StoreSpriteTileAndNext   ; $876F
 Loc_B5_8772:
-  jsr Sub_B5_87DB              ; $8772
+  jsr StepSpriteTableIndex     ; $8772
   bcc Loc_B5_8761              ; $8775
   rts                          ; $8777
 Loc_B5_8778:
-  jsr Sub_B5_87B5              ; $8778
+  jsr AddSpriteBaseOffsetA     ; $8778
   bcc Loc_B5_8789              ; $877B
-  jsr Sub_B5_87BD              ; $877D
+  jsr StoreSpriteAttrAddBaseB  ; $877D
   bcs Loc_B5_8789              ; $8780
   cmp #$F0                     ; $8782
   bcs Loc_B5_8789              ; $8784
-  jsr Sub_B5_87C8              ; $8786
+  jsr StoreSpriteTileAndNext   ; $8786
 Loc_B5_8789:
-  jsr Sub_B5_87DB              ; $8789
+  jsr StepSpriteTableIndex     ; $8789
   bcc Loc_B5_8778              ; $878C
   rts                          ; $878E
 Loc_B5_878F:
-  jsr Sub_B5_87B5              ; $878F
+  jsr AddSpriteBaseOffsetA     ; $878F
   bcs Loc_B5_879C              ; $8792
-  jsr Sub_B5_87BD              ; $8794
+  jsr StoreSpriteAttrAddBaseB  ; $8794
   bcc Loc_B5_879C              ; $8797
-  jsr Sub_B5_87C8              ; $8799
+  jsr StoreSpriteTileAndNext   ; $8799
 Loc_B5_879C:
-  jsr Sub_B5_87DB              ; $879C
+  jsr StepSpriteTableIndex     ; $879C
   bcc Loc_B5_878F              ; $879F
   rts                          ; $87A1
 Loc_B5_87A2:
-  jsr Sub_B5_87B5              ; $87A2
+  jsr AddSpriteBaseOffsetA     ; $87A2
   bcc Loc_B5_87AF              ; $87A5
-  jsr Sub_B5_87BD              ; $87A7
+  jsr StoreSpriteAttrAddBaseB  ; $87A7
   bcc Loc_B5_87AF              ; $87AA
-  jsr Sub_B5_87C8              ; $87AC
+  jsr StoreSpriteTileAndNext   ; $87AC
 Loc_B5_87AF:
-  jsr Sub_B5_87DB              ; $87AF
+  jsr StepSpriteTableIndex     ; $87AF
   bcc Loc_B5_87A2              ; $87B2
   rts                          ; $87B4
-Sub_B5_87B5:
+AddSpriteBaseOffsetA:
   lda Data_B5_87E3,x           ; $87B5
   clc                          ; $87B8
   adc $053A                    ; $87B9
   rts                          ; $87BC
-Sub_B5_87BD:
+StoreSpriteAttrAddBaseB:
   sta $0203,y                  ; $87BD
   lda Data_B5_87E1,x           ; $87C0
   clc                          ; $87C3
   adc $053D                    ; $87C4
   rts                          ; $87C7
-Sub_B5_87C8:
+StoreSpriteTileAndNext:
   sta OamBuffer,y              ; $87C8
   lda Data_B5_87E2,x           ; $87CB
   sta $0201,y                  ; $87CE
@@ -928,7 +928,7 @@ Sub_B5_87C8:
   iny                          ; $87D8
   iny                          ; $87D9
   rts                          ; $87DA
-Sub_B5_87DB:
+StepSpriteTableIndex:
   inx                          ; $87DB
   inx                          ; $87DC
   inx                          ; $87DD

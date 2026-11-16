@@ -64,7 +64,7 @@
    ]
   ]
  },
- "Sub_B1_8053": {
+ "DisablePpuMask": {
   "addr": 32851,
   "bank": 1,
   "instrs": 2,
@@ -1041,7 +1041,7 @@
    ]
   ]
  },
- "Sub_B1_A060": {
+ "UpdateBossAnimationA": {
   "addr": 41056,
   "bank": 1,
   "instrs": 12,
@@ -1054,7 +1054,7 @@
    ]
   ]
  },
- "Sub_B1_A07E": {
+ "LoadBossAnimTableA": {
   "addr": 41086,
   "bank": 1,
   "instrs": 6,
@@ -1067,7 +1067,7 @@
    ]
   ]
  },
- "Sub_B1_A08C": {
+ "ResetBossAnimFields": {
   "addr": 41100,
   "bank": 1,
   "instrs": 9,
@@ -1080,7 +1080,7 @@
    ]
   ]
  },
- "Sub_B1_A0AB": {
+ "UpdateBossAnimationB": {
   "addr": 41131,
   "bank": 1,
   "instrs": 13,
@@ -1093,7 +1093,7 @@
    ]
   ]
  },
- "Sub_B1_A0CC": {
+ "LoadBossAnimTableB": {
   "addr": 41164,
   "bank": 1,
   "instrs": 6,
@@ -1106,7 +1106,7 @@
    ]
   ]
  },
- "Sub_B1_A0DA": {
+ "AdvanceBossPhaseOnHit": {
   "addr": 41178,
   "bank": 1,
   "instrs": 76,
@@ -1578,7 +1578,7 @@
    ]
   ]
  },
- "Sub_B2_8081": {
+ "ScopeScrollEndCheckThenContinue": {
   "addr": 32897,
   "bank": 2,
   "instrs": 7,
@@ -1664,7 +1664,7 @@
    ]
   ]
  },
- "Sub_B2_83C7": {
+ "ScanScopeTargets": {
   "addr": 33735,
   "bank": 2,
   "instrs": 59,
@@ -1677,7 +1677,7 @@
    ]
   ]
  },
- "Sub_B2_8488": {
+ "ScopeBossPhase6Check": {
   "addr": 33928,
   "bank": 2,
   "instrs": 100,
@@ -1703,7 +1703,7 @@
    ]
   ]
  },
- "Sub_B2_87AC": {
+ "ScopePalette69Check": {
   "addr": 34732,
   "bank": 2,
   "instrs": 83,
@@ -1742,7 +1742,7 @@
    ]
   ]
  },
- "Sub_B2_88AA": {
+ "ScopeLifeRefillCheck": {
   "addr": 34986,
   "bank": 2,
   "instrs": 60,
@@ -2293,7 +2293,7 @@
    ]
   ]
  },
- "Sub_B3_85DB": {
+ "BuildTextBoxTilePointers": {
   "addr": 34267,
   "bank": 3,
   "instrs": 70,
@@ -2495,7 +2495,7 @@
    ]
   ]
  },
- "Sub_B3_8C06": {
+ "UpdateTextBox": {
   "addr": 35846,
   "bank": 3,
   "instrs": 66,
@@ -2529,7 +2529,7 @@
    ]
   ]
  },
- "Sub_B3_8D23": {
+ "SetupTextBoxNametablePointers": {
   "addr": 36131,
   "bank": 3,
   "instrs": 37,
@@ -2555,7 +2555,7 @@
    ]
   ]
  },
- "Sub_B3_8E29": {
+ "RunTextBoxRowStep": {
   "addr": 36393,
   "bank": 3,
   "instrs": 67,
@@ -5325,7 +5325,7 @@
    ]
   ]
  },
- "Sub_B4_A8C8": {
+ "DispatchObjectState": {
   "addr": 43208,
   "bank": 4,
   "instrs": 11,
@@ -5338,7 +5338,7 @@
    ]
   ]
  },
- "Sub_B4_A8EF": {
+ "RemoveObjectIfRoomCleared": {
   "addr": 43247,
   "bank": 4,
   "instrs": 16,
@@ -5355,7 +5355,7 @@
    ]
   ]
  },
- "Sub_B4_A91C": {
+ "ObjectCountdownDone": {
   "addr": 43292,
   "bank": 4,
   "instrs": 14,
@@ -5368,7 +5368,7 @@
    ]
   ]
  },
- "Sub_B4_A93D": {
+ "ObjectStateMoveLeft7": {
   "addr": 43325,
   "bank": 4,
   "instrs": 10,
@@ -5385,7 +5385,7 @@
    ]
   ]
  },
- "Sub_B4_A949": {
+ "SetObjectTimer9AndAdvance": {
   "addr": 43337,
   "bank": 4,
   "instrs": 3,
@@ -5398,7 +5398,7 @@
    ]
   ]
  },
- "Sub_B4_A950": {
+ "ObjectStateMoveLeft4": {
   "addr": 43344,
   "bank": 4,
   "instrs": 18,
@@ -5419,7 +5419,7 @@
    ]
   ]
  },
- "Sub_B4_A95C": {
+ "ObjectStateMoveLeft2": {
   "addr": 43356,
   "bank": 4,
   "instrs": 18,
@@ -5440,7 +5440,7 @@
    ]
   ]
  },
- "Sub_B4_A968": {
+ "ObjectStateMoveRight2": {
   "addr": 43368,
   "bank": 4,
   "instrs": 15,
@@ -6581,7 +6581,7 @@
    ]
   ]
  },
- "Sub_B4_B404": {
+ "ApplyObjectFallStep": {
   "addr": 46084,
   "bank": 4,
   "instrs": 14,
@@ -6611,7 +6611,7 @@
    ]
   ]
  },
- "Sub_B4_B42B": {
+ "StoreMaskedFieldAndSetFlagsE0": {
   "addr": 46123,
   "bank": 4,
   "instrs": 2,
@@ -8241,7 +8241,7 @@
    ]
   ]
  },
- "Sub_B5_87B5": {
+ "AddSpriteBaseOffsetA": {
   "addr": 34741,
   "bank": 5,
   "instrs": 4,
@@ -8254,7 +8254,7 @@
    ]
   ]
  },
- "Sub_B5_87BD": {
+ "StoreSpriteAttrAddBaseB": {
   "addr": 34749,
   "bank": 5,
   "instrs": 5,
@@ -8267,7 +8267,7 @@
    ]
   ]
  },
- "Sub_B5_87C8": {
+ "StoreSpriteTileAndNext": {
   "addr": 34760,
   "bank": 5,
   "instrs": 10,
@@ -8280,7 +8280,7 @@
    ]
   ]
  },
- "Sub_B5_87DB": {
+ "StepSpriteTableIndex": {
   "addr": 34779,
   "bank": 5,
   "instrs": 5,

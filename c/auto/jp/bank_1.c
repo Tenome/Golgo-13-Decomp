@@ -48,10 +48,10 @@ void Bank1Tbl8045_00(void) {  /* $804D bank 1 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $804D inc */
   push16(0x8052); SaveMmcShadowRegs(); UNW(); ret_check(0x8052);                         /* $8050 jsr */
-  { Sub_B1_8053(); return; }
+  { DisablePpuMask(); return; }
 }
 
-void Sub_B1_8053(void) {  /* $8053 bank 1 */
+void DisablePpuMask(void) {  /* $8053 bank 1 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $8053 lda */
   { SetPpuMask(); return; }                                                              /* $8055 jmp */
@@ -106,7 +106,7 @@ L809C: BUDGET();
 
 void Bank1Tbl8045_03(void) {  /* $80A9 bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0x80AB); Sub_B1_8053(); UNW(); ret_check(0x80AB);                               /* $80A9 jsr */
+  push16(0x80AB); DisablePpuMask(); UNW(); ret_check(0x80AB);                            /* $80A9 jsr */
   push16(0x80AE); FillPaletteBlack(); UNW(); ret_check(0x80AE);                          /* $80AC jsr */
   push16(0x80B1); FillNametable0WithFF(); UNW(); ret_check(0x80B1);                      /* $80AF jsr */
   push16(0x80B4); RestoreMmcShadowRegs(); UNW(); ret_check(0x80B4);                      /* $80B2 jsr */
@@ -2433,16 +2433,16 @@ void SetStaticAnimTablePtr(void) {  /* $A032 bank 1 */
   RTS_RET(sp0);                                                                          /* $A03A rts */
 }
 
-void Sub_B1_A060(void) {  /* $A060 bank 1 */
+void UpdateBossAnimationA(void) {  /* $A060 bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0xA062); Sub_B1_A07E(); UNW(); ret_check(0xA062);                               /* $A060 jsr */
+  push16(0xA062); LoadBossAnimTableA(); UNW(); ret_check(0xA062);                        /* $A060 jsr */
   LDY(0x08);                                                                             /* $A063 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A065 lda */
   if (R.a == 0) {                                                                        /* $A067 bne */
     push16(0xA06B); AdvanceObjectAnimStepB1(); UNW(); ret_check(0xA06B);                 /* $A069 jsr */
     if (R.c) {                                                                           /* $A06C bcc */
-      push16(0xA070); Sub_B1_A08C(); UNW(); ret_check(0xA070);                           /* $A06E jsr */
-      push16(0xA073); Sub_B1_A07E(); UNW(); ret_check(0xA073);                           /* $A071 jsr */
+      push16(0xA070); ResetBossAnimFields(); UNW(); ret_check(0xA070);                   /* $A06E jsr */
+      push16(0xA073); LoadBossAnimTableA(); UNW(); ret_check(0xA073);                    /* $A071 jsr */
     }
     push16(0xA076); LoadObjectAnimFrameB1(); UNW(); ret_check(0xA076);                   /* $A074 jsr */
   }
@@ -2451,7 +2451,7 @@ void Sub_B1_A060(void) {  /* $A060 bank 1 */
   RTS_RET(sp0);                                                                          /* $A07D rts */
 }
 
-void Sub_B1_A07E(void) {  /* $A07E bank 1 */
+void LoadBossAnimTableA(void) {  /* $A07E bank 1 */
   uint8_t sp0 = R.sp;
   push16(0xA080); GetObjectStateIndex(); UNW(); ret_check(0xA080);                       /* $A07E jsr */
   LDA(rd((uint16_t)(0xA09D + R.y)));                                                     /* $A081 lda */
@@ -2461,7 +2461,7 @@ void Sub_B1_A07E(void) {  /* $A07E bank 1 */
   RTS_RET(sp0);                                                                          /* $A08B rts */
 }
 
-void Sub_B1_A08C(void) {  /* $A08C bank 1 */
+void ResetBossAnimFields(void) {  /* $A08C bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x07);                                                                             /* $A08C ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A08E lda */
@@ -2475,16 +2475,16 @@ void Sub_B1_A08C(void) {  /* $A08C bank 1 */
   RTS_RET(sp0);                                                                          /* $A09C rts */
 }
 
-void Sub_B1_A0AB(void) {  /* $A0AB bank 1 */
+void UpdateBossAnimationB(void) {  /* $A0AB bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0xA0AD); Sub_B1_A0CC(); UNW(); ret_check(0xA0AD);                               /* $A0AB jsr */
+  push16(0xA0AD); LoadBossAnimTableB(); UNW(); ret_check(0xA0AD);                        /* $A0AB jsr */
   LDY(0x08);                                                                             /* $A0AE ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A0B0 lda */
   if (R.a == 0) {                                                                        /* $A0B2 bne */
     push16(0xA0B6); AdvanceObjectAnimStepB1(); UNW(); ret_check(0xA0B6);                 /* $A0B4 jsr */
     if (R.c) {                                                                           /* $A0B7 bcc */
-      push16(0xA0BB); Sub_B1_A0DA(); UNW(); ret_check(0xA0BB);                           /* $A0B9 jsr */
-      push16(0xA0BE); Sub_B1_A0CC(); UNW(); ret_check(0xA0BE);                           /* $A0BC jsr */
+      push16(0xA0BB); AdvanceBossPhaseOnHit(); UNW(); ret_check(0xA0BB);                 /* $A0B9 jsr */
+      push16(0xA0BE); LoadBossAnimTableB(); UNW(); ret_check(0xA0BE);                    /* $A0BC jsr */
     }
     push16(0xA0C1); LoadObjectAnimFrameB1(); UNW(); ret_check(0xA0C1);                   /* $A0BF jsr */
     push16(0xA0C4); Sub_B1_A178(); UNW(); ret_check(0xA0C4);                             /* $A0C2 jsr */
@@ -2494,7 +2494,7 @@ void Sub_B1_A0AB(void) {  /* $A0AB bank 1 */
   RTS_RET(sp0);                                                                          /* $A0CB rts */
 }
 
-void Sub_B1_A0CC(void) {  /* $A0CC bank 1 */
+void LoadBossAnimTableB(void) {  /* $A0CC bank 1 */
   uint8_t sp0 = R.sp;
   push16(0xA0CE); GetObjectStateIndex(); UNW(); ret_check(0xA0CE);                       /* $A0CC jsr */
   LDA(rd((uint16_t)(0xA1A0 + R.y)));                                                     /* $A0CF lda */
@@ -2504,7 +2504,7 @@ void Sub_B1_A0CC(void) {  /* $A0CC bank 1 */
   RTS_RET(sp0);                                                                          /* $A0D9 rts */
 }
 
-void Sub_B1_A0DA(void) {  /* $A0DA bank 1 */
+void AdvanceBossPhaseOnHit(void) {  /* $A0DA bank 1 */
   uint8_t sp0 = R.sp;
   LDY(0x07);                                                                             /* $A0DA ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $A0DC lda */

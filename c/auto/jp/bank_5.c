@@ -491,54 +491,54 @@ L8758: BUDGET();
   RTS_RET(sp0);                                                                          /* $8760 rts */
   do { BUDGET();
 L8761: BUDGET();
-    push16(0x8763); Sub_B5_87B5(); UNW(); ret_check(0x8763);                             /* $8761 jsr */
+    push16(0x8763); AddSpriteBaseOffsetA(); UNW(); ret_check(0x8763);                    /* $8761 jsr */
     if (!R.c) {                                                                          /* $8764 bcs */
-      push16(0x8768); Sub_B5_87BD(); UNW(); ret_check(0x8768);                           /* $8766 jsr */
+      push16(0x8768); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x8768);               /* $8766 jsr */
       if (R.c) goto L8772;                                                               /* $8769 bcs */
       cmp8(R.a, 0xF0);                                                                   /* $876B cmp */
       if (R.a >= 0xF0) goto L8772;                                                       /* $876D bcs */
-      push16(0x8771); Sub_B5_87C8(); UNW(); ret_check(0x8771);                           /* $876F jsr */
+      push16(0x8771); StoreSpriteTileAndNext(); UNW(); ret_check(0x8771);                /* $876F jsr */
     }
 L8772: BUDGET();
-    push16(0x8774); Sub_B5_87DB(); UNW(); ret_check(0x8774);                             /* $8772 jsr */
+    push16(0x8774); StepSpriteTableIndex(); UNW(); ret_check(0x8774);                    /* $8772 jsr */
   } while (!R.c);                                                                        /* $8775 bcc */
   RTS_RET(sp0);                                                                          /* $8777 rts */
   do { BUDGET();
 L8778: BUDGET();
-    push16(0x877A); Sub_B5_87B5(); UNW(); ret_check(0x877A);                             /* $8778 jsr */
+    push16(0x877A); AddSpriteBaseOffsetA(); UNW(); ret_check(0x877A);                    /* $8778 jsr */
     if (R.c) {                                                                           /* $877B bcc */
-      push16(0x877F); Sub_B5_87BD(); UNW(); ret_check(0x877F);                           /* $877D jsr */
+      push16(0x877F); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x877F);               /* $877D jsr */
       if (R.c) goto L8789;                                                               /* $8780 bcs */
       cmp8(R.a, 0xF0);                                                                   /* $8782 cmp */
       if (R.a >= 0xF0) goto L8789;                                                       /* $8784 bcs */
-      push16(0x8788); Sub_B5_87C8(); UNW(); ret_check(0x8788);                           /* $8786 jsr */
+      push16(0x8788); StoreSpriteTileAndNext(); UNW(); ret_check(0x8788);                /* $8786 jsr */
     }
 L8789: BUDGET();
-    push16(0x878B); Sub_B5_87DB(); UNW(); ret_check(0x878B);                             /* $8789 jsr */
+    push16(0x878B); StepSpriteTableIndex(); UNW(); ret_check(0x878B);                    /* $8789 jsr */
   } while (!R.c);                                                                        /* $878C bcc */
   RTS_RET(sp0);                                                                          /* $878E rts */
   do { BUDGET();
 L878F: BUDGET();
-    push16(0x8791); Sub_B5_87B5(); UNW(); ret_check(0x8791);                             /* $878F jsr */
+    push16(0x8791); AddSpriteBaseOffsetA(); UNW(); ret_check(0x8791);                    /* $878F jsr */
     if (!R.c) {                                                                          /* $8792 bcs */
-      push16(0x8796); Sub_B5_87BD(); UNW(); ret_check(0x8796);                           /* $8794 jsr */
+      push16(0x8796); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x8796);               /* $8794 jsr */
       if (!R.c) goto L879C;                                                              /* $8797 bcc */
-      push16(0x879B); Sub_B5_87C8(); UNW(); ret_check(0x879B);                           /* $8799 jsr */
+      push16(0x879B); StoreSpriteTileAndNext(); UNW(); ret_check(0x879B);                /* $8799 jsr */
     }
 L879C: BUDGET();
-    push16(0x879E); Sub_B5_87DB(); UNW(); ret_check(0x879E);                             /* $879C jsr */
+    push16(0x879E); StepSpriteTableIndex(); UNW(); ret_check(0x879E);                    /* $879C jsr */
   } while (!R.c);                                                                        /* $879F bcc */
   RTS_RET(sp0);                                                                          /* $87A1 rts */
   do { BUDGET();
 L87A2: BUDGET();
-    push16(0x87A4); Sub_B5_87B5(); UNW(); ret_check(0x87A4);                             /* $87A2 jsr */
+    push16(0x87A4); AddSpriteBaseOffsetA(); UNW(); ret_check(0x87A4);                    /* $87A2 jsr */
     if (R.c) {                                                                           /* $87A5 bcc */
-      push16(0x87A9); Sub_B5_87BD(); UNW(); ret_check(0x87A9);                           /* $87A7 jsr */
+      push16(0x87A9); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x87A9);               /* $87A7 jsr */
       if (!R.c) goto L87AF;                                                              /* $87AA bcc */
-      push16(0x87AE); Sub_B5_87C8(); UNW(); ret_check(0x87AE);                           /* $87AC jsr */
+      push16(0x87AE); StoreSpriteTileAndNext(); UNW(); ret_check(0x87AE);                /* $87AC jsr */
     }
 L87AF: BUDGET();
-    push16(0x87B1); Sub_B5_87DB(); UNW(); ret_check(0x87B1);                             /* $87AF jsr */
+    push16(0x87B1); StepSpriteTableIndex(); UNW(); ret_check(0x87B1);                    /* $87AF jsr */
   } while (!R.c);                                                                        /* $87B2 bcc */
   RTS_RET(sp0);                                                                          /* $87B4 rts */
 }
@@ -605,54 +605,54 @@ L8758: BUDGET();
   RTS_RET(sp0);                                                                          /* $8760 rts */
   do { BUDGET();
 L8761: BUDGET();
-    push16(0x8763); Sub_B5_87B5(); UNW(); ret_check(0x8763);                             /* $8761 jsr */
+    push16(0x8763); AddSpriteBaseOffsetA(); UNW(); ret_check(0x8763);                    /* $8761 jsr */
     if (!R.c) {                                                                          /* $8764 bcs */
-      push16(0x8768); Sub_B5_87BD(); UNW(); ret_check(0x8768);                           /* $8766 jsr */
+      push16(0x8768); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x8768);               /* $8766 jsr */
       if (R.c) goto L8772;                                                               /* $8769 bcs */
       cmp8(R.a, 0xF0);                                                                   /* $876B cmp */
       if (R.a >= 0xF0) goto L8772;                                                       /* $876D bcs */
-      push16(0x8771); Sub_B5_87C8(); UNW(); ret_check(0x8771);                           /* $876F jsr */
+      push16(0x8771); StoreSpriteTileAndNext(); UNW(); ret_check(0x8771);                /* $876F jsr */
     }
 L8772: BUDGET();
-    push16(0x8774); Sub_B5_87DB(); UNW(); ret_check(0x8774);                             /* $8772 jsr */
+    push16(0x8774); StepSpriteTableIndex(); UNW(); ret_check(0x8774);                    /* $8772 jsr */
   } while (!R.c);                                                                        /* $8775 bcc */
   RTS_RET(sp0);                                                                          /* $8777 rts */
   do { BUDGET();
 L8778: BUDGET();
-    push16(0x877A); Sub_B5_87B5(); UNW(); ret_check(0x877A);                             /* $8778 jsr */
+    push16(0x877A); AddSpriteBaseOffsetA(); UNW(); ret_check(0x877A);                    /* $8778 jsr */
     if (R.c) {                                                                           /* $877B bcc */
-      push16(0x877F); Sub_B5_87BD(); UNW(); ret_check(0x877F);                           /* $877D jsr */
+      push16(0x877F); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x877F);               /* $877D jsr */
       if (R.c) goto L8789;                                                               /* $8780 bcs */
       cmp8(R.a, 0xF0);                                                                   /* $8782 cmp */
       if (R.a >= 0xF0) goto L8789;                                                       /* $8784 bcs */
-      push16(0x8788); Sub_B5_87C8(); UNW(); ret_check(0x8788);                           /* $8786 jsr */
+      push16(0x8788); StoreSpriteTileAndNext(); UNW(); ret_check(0x8788);                /* $8786 jsr */
     }
 L8789: BUDGET();
-    push16(0x878B); Sub_B5_87DB(); UNW(); ret_check(0x878B);                             /* $8789 jsr */
+    push16(0x878B); StepSpriteTableIndex(); UNW(); ret_check(0x878B);                    /* $8789 jsr */
   } while (!R.c);                                                                        /* $878C bcc */
   RTS_RET(sp0);                                                                          /* $878E rts */
   do { BUDGET();
 L878F: BUDGET();
-    push16(0x8791); Sub_B5_87B5(); UNW(); ret_check(0x8791);                             /* $878F jsr */
+    push16(0x8791); AddSpriteBaseOffsetA(); UNW(); ret_check(0x8791);                    /* $878F jsr */
     if (!R.c) {                                                                          /* $8792 bcs */
-      push16(0x8796); Sub_B5_87BD(); UNW(); ret_check(0x8796);                           /* $8794 jsr */
+      push16(0x8796); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x8796);               /* $8794 jsr */
       if (!R.c) goto L879C;                                                              /* $8797 bcc */
-      push16(0x879B); Sub_B5_87C8(); UNW(); ret_check(0x879B);                           /* $8799 jsr */
+      push16(0x879B); StoreSpriteTileAndNext(); UNW(); ret_check(0x879B);                /* $8799 jsr */
     }
 L879C: BUDGET();
-    push16(0x879E); Sub_B5_87DB(); UNW(); ret_check(0x879E);                             /* $879C jsr */
+    push16(0x879E); StepSpriteTableIndex(); UNW(); ret_check(0x879E);                    /* $879C jsr */
   } while (!R.c);                                                                        /* $879F bcc */
   RTS_RET(sp0);                                                                          /* $87A1 rts */
   do { BUDGET();
 L87A2: BUDGET();
-    push16(0x87A4); Sub_B5_87B5(); UNW(); ret_check(0x87A4);                             /* $87A2 jsr */
+    push16(0x87A4); AddSpriteBaseOffsetA(); UNW(); ret_check(0x87A4);                    /* $87A2 jsr */
     if (R.c) {                                                                           /* $87A5 bcc */
-      push16(0x87A9); Sub_B5_87BD(); UNW(); ret_check(0x87A9);                           /* $87A7 jsr */
+      push16(0x87A9); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x87A9);               /* $87A7 jsr */
       if (!R.c) goto L87AF;                                                              /* $87AA bcc */
-      push16(0x87AE); Sub_B5_87C8(); UNW(); ret_check(0x87AE);                           /* $87AC jsr */
+      push16(0x87AE); StoreSpriteTileAndNext(); UNW(); ret_check(0x87AE);                /* $87AC jsr */
     }
 L87AF: BUDGET();
-    push16(0x87B1); Sub_B5_87DB(); UNW(); ret_check(0x87B1);                             /* $87AF jsr */
+    push16(0x87B1); StepSpriteTableIndex(); UNW(); ret_check(0x87B1);                    /* $87AF jsr */
   } while (!R.c);                                                                        /* $87B2 bcc */
   RTS_RET(sp0);                                                                          /* $87B4 rts */
 }
@@ -1929,7 +1929,7 @@ void SetSceneState25(void) {  /* $86FC bank 5 */
   RTS_RET(sp0);                                                                          /* $8701 rts */
 }
 
-void Sub_B5_87B5(void) {  /* $87B5 bank 5 */
+void AddSpriteBaseOffsetA(void) {  /* $87B5 bank 5 */
   uint8_t sp0 = R.sp;
   LDA(rd((uint16_t)(0x87E3 + R.x)));                                                     /* $87B5 lda */
   CLC();                                                                                 /* $87B8 clc */
@@ -1937,7 +1937,7 @@ void Sub_B5_87B5(void) {  /* $87B5 bank 5 */
   RTS_RET(sp0);                                                                          /* $87BC rts */
 }
 
-void Sub_B5_87BD(void) {  /* $87BD bank 5 */
+void StoreSpriteAttrAddBaseB(void) {  /* $87BD bank 5 */
   uint8_t sp0 = R.sp;
   STA((uint16_t)(0x0203 + R.y));                                                         /* $87BD sta */
   LDA(rd((uint16_t)(0x87E1 + R.x)));                                                     /* $87C0 lda */
@@ -1946,7 +1946,7 @@ void Sub_B5_87BD(void) {  /* $87BD bank 5 */
   RTS_RET(sp0);                                                                          /* $87C7 rts */
 }
 
-void Sub_B5_87C8(void) {  /* $87C8 bank 5 */
+void StoreSpriteTileAndNext(void) {  /* $87C8 bank 5 */
   uint8_t sp0 = R.sp;
   STA((uint16_t)(OamBuffer + R.y));                                                      /* $87C8 sta */
   LDA(rd((uint16_t)(0x87E2 + R.x)));                                                     /* $87CB lda */
@@ -1960,7 +1960,7 @@ void Sub_B5_87C8(void) {  /* $87C8 bank 5 */
   RTS_RET(sp0);                                                                          /* $87DA rts */
 }
 
-void Sub_B5_87DB(void) {  /* $87DB bank 5 */
+void StepSpriteTableIndex(void) {  /* $87DB bank 5 */
   uint8_t sp0 = R.sp;
   INX();                                                                                 /* $87DB inx */
   INX();                                                                                 /* $87DC inx */
@@ -2725,54 +2725,54 @@ L8758: BUDGET();
   RTS_RET(sp0);                                                                          /* $8760 rts */
   do { BUDGET();
 L8761: BUDGET();
-    push16(0x8763); Sub_B5_87B5(); UNW(); ret_check(0x8763);                             /* $8761 jsr */
+    push16(0x8763); AddSpriteBaseOffsetA(); UNW(); ret_check(0x8763);                    /* $8761 jsr */
     if (!R.c) {                                                                          /* $8764 bcs */
-      push16(0x8768); Sub_B5_87BD(); UNW(); ret_check(0x8768);                           /* $8766 jsr */
+      push16(0x8768); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x8768);               /* $8766 jsr */
       if (R.c) goto L8772;                                                               /* $8769 bcs */
       cmp8(R.a, 0xF0);                                                                   /* $876B cmp */
       if (R.a >= 0xF0) goto L8772;                                                       /* $876D bcs */
-      push16(0x8771); Sub_B5_87C8(); UNW(); ret_check(0x8771);                           /* $876F jsr */
+      push16(0x8771); StoreSpriteTileAndNext(); UNW(); ret_check(0x8771);                /* $876F jsr */
     }
 L8772: BUDGET();
-    push16(0x8774); Sub_B5_87DB(); UNW(); ret_check(0x8774);                             /* $8772 jsr */
+    push16(0x8774); StepSpriteTableIndex(); UNW(); ret_check(0x8774);                    /* $8772 jsr */
   } while (!R.c);                                                                        /* $8775 bcc */
   RTS_RET(sp0);                                                                          /* $8777 rts */
   do { BUDGET();
 L8778: BUDGET();
-    push16(0x877A); Sub_B5_87B5(); UNW(); ret_check(0x877A);                             /* $8778 jsr */
+    push16(0x877A); AddSpriteBaseOffsetA(); UNW(); ret_check(0x877A);                    /* $8778 jsr */
     if (R.c) {                                                                           /* $877B bcc */
-      push16(0x877F); Sub_B5_87BD(); UNW(); ret_check(0x877F);                           /* $877D jsr */
+      push16(0x877F); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x877F);               /* $877D jsr */
       if (R.c) goto L8789;                                                               /* $8780 bcs */
       cmp8(R.a, 0xF0);                                                                   /* $8782 cmp */
       if (R.a >= 0xF0) goto L8789;                                                       /* $8784 bcs */
-      push16(0x8788); Sub_B5_87C8(); UNW(); ret_check(0x8788);                           /* $8786 jsr */
+      push16(0x8788); StoreSpriteTileAndNext(); UNW(); ret_check(0x8788);                /* $8786 jsr */
     }
 L8789: BUDGET();
-    push16(0x878B); Sub_B5_87DB(); UNW(); ret_check(0x878B);                             /* $8789 jsr */
+    push16(0x878B); StepSpriteTableIndex(); UNW(); ret_check(0x878B);                    /* $8789 jsr */
   } while (!R.c);                                                                        /* $878C bcc */
   RTS_RET(sp0);                                                                          /* $878E rts */
   do { BUDGET();
 L878F: BUDGET();
-    push16(0x8791); Sub_B5_87B5(); UNW(); ret_check(0x8791);                             /* $878F jsr */
+    push16(0x8791); AddSpriteBaseOffsetA(); UNW(); ret_check(0x8791);                    /* $878F jsr */
     if (!R.c) {                                                                          /* $8792 bcs */
-      push16(0x8796); Sub_B5_87BD(); UNW(); ret_check(0x8796);                           /* $8794 jsr */
+      push16(0x8796); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x8796);               /* $8794 jsr */
       if (!R.c) goto L879C;                                                              /* $8797 bcc */
-      push16(0x879B); Sub_B5_87C8(); UNW(); ret_check(0x879B);                           /* $8799 jsr */
+      push16(0x879B); StoreSpriteTileAndNext(); UNW(); ret_check(0x879B);                /* $8799 jsr */
     }
 L879C: BUDGET();
-    push16(0x879E); Sub_B5_87DB(); UNW(); ret_check(0x879E);                             /* $879C jsr */
+    push16(0x879E); StepSpriteTableIndex(); UNW(); ret_check(0x879E);                    /* $879C jsr */
   } while (!R.c);                                                                        /* $879F bcc */
   RTS_RET(sp0);                                                                          /* $87A1 rts */
   do { BUDGET();
 L87A2: BUDGET();
-    push16(0x87A4); Sub_B5_87B5(); UNW(); ret_check(0x87A4);                             /* $87A2 jsr */
+    push16(0x87A4); AddSpriteBaseOffsetA(); UNW(); ret_check(0x87A4);                    /* $87A2 jsr */
     if (R.c) {                                                                           /* $87A5 bcc */
-      push16(0x87A9); Sub_B5_87BD(); UNW(); ret_check(0x87A9);                           /* $87A7 jsr */
+      push16(0x87A9); StoreSpriteAttrAddBaseB(); UNW(); ret_check(0x87A9);               /* $87A7 jsr */
       if (!R.c) goto L87AF;                                                              /* $87AA bcc */
-      push16(0x87AE); Sub_B5_87C8(); UNW(); ret_check(0x87AE);                           /* $87AC jsr */
+      push16(0x87AE); StoreSpriteTileAndNext(); UNW(); ret_check(0x87AE);                /* $87AC jsr */
     }
 L87AF: BUDGET();
-    push16(0x87B1); Sub_B5_87DB(); UNW(); ret_check(0x87B1);                             /* $87AF jsr */
+    push16(0x87B1); StepSpriteTableIndex(); UNW(); ret_check(0x87B1);                    /* $87AF jsr */
   } while (!R.c);                                                                        /* $87B2 bcc */
   RTS_RET(sp0);                                                                          /* $87B4 rts */
 L90B0: BUDGET();

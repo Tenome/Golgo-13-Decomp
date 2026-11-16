@@ -27,13 +27,13 @@ void Bank3Nmi(void) {  /* $8010 bank 3 */
     LDA(rd(DialogueStage));                                                              /* $8025 lda */
     cmp8(R.a, 0x03);                                                                     /* $8028 cmp */
     if (R.a == 0x03) {                                                                   /* $802A bne */
-      push16(0x802E); Sub_B3_92B7(); UNW(); ret_check(0x802E);                           /* $802C jsr */
+      push16(0x802E); RunTextBoxRowStep(); UNW(); ret_check(0x802E);                     /* $802C jsr */
     }
     goto L8074;                                                                          /* $802F jmp */
   }
   LDA(rd(0x0410));                                                                       /* $8032 lda */
   if (R.a == 0) {                                                                        /* $8035 bne */
-    push16(0x8039); Sub_B3_91B1(); UNW(); ret_check(0x8039);                             /* $8037 jsr */
+    push16(0x8039); SetupTextBoxNametablePointers(); UNW(); ret_check(0x8039);           /* $8037 jsr */
   } else {
     cmp8(R.a, 0x01);                                                                     /* $803D cmp */
     if (R.a == 0x01) {                                                                   /* $803F bne */
@@ -41,7 +41,7 @@ void Bank3Nmi(void) {  /* $8010 bank 3 */
     } else {
       cmp8(R.a, 0x02);                                                                   /* $8047 cmp */
       if (R.a == 0x02) {                                                                 /* $8049 bne */
-        push16(0x804D); Sub_B3_9094(); UNW(); ret_check(0x804D);                         /* $804B jsr */
+        push16(0x804D); UpdateTextBox(); UNW(); ret_check(0x804D);                       /* $804B jsr */
         goto L8071;                                                                      /* $804E jmp */
       }
       push16(0x8053); DoOamDma(); UNW(); ret_check(0x8053);                              /* $8051 jsr */
@@ -611,7 +611,7 @@ L88D4: BUDGET();
   INY();                                                                                 /* $88DA iny */
   LDA(rd((uint16_t)(rd16zp(0x6C) + R.y)));                                               /* $88DB lda */
   STA(0x6F);                                                                             /* $88DD sta */
-  push16(0x88E1); Sub_B3_8A69(); UNW(); ret_check(0x88E1);                               /* $88DF jsr */
+  push16(0x88E1); BuildTextBoxTilePointers(); UNW(); ret_check(0x88E1);                  /* $88DF jsr */
   LDA(0x00);                                                                             /* $88E2 lda */
   STA(0x72);                                                                             /* $88E4 sta */
   STA(TextBoxState);                                                                     /* $88E6 sta */
@@ -836,7 +836,7 @@ void TextBoxWaitForAAdvance(void) {  /* $8A21 bank 3 */
     STA(0x72);                                                                           /* $8A30 sta */
     LDA(0x01);                                                                           /* $8A32 lda */
     STA(TextBoxDispatchIndex);                                                           /* $8A34 sta */
-    push16(0x8A39); Sub_B3_8A69(); UNW(); ret_check(0x8A39);                             /* $8A37 jsr */
+    push16(0x8A39); BuildTextBoxTilePointers(); UNW(); ret_check(0x8A39);                /* $8A37 jsr */
   }
   RTS_RET(sp0);                                                                          /* $8A3A rts */
 }
@@ -875,7 +875,7 @@ void HideContinueArrow(void) {  /* $8A54 bank 3 */
   RTS_RET(sp0);                                                                          /* $8A68 rts */
 }
 
-void Sub_B3_8A69(void) {  /* $8A69 bank 3 */
+void BuildTextBoxTilePointers(void) {  /* $8A69 bank 3 */
   uint8_t sp0 = R.sp;
   LDY(0x02);                                                                             /* $8A69 ldy */
   LDA(rd((uint16_t)(rd16zp(0x6C) + R.y)));                                               /* $8A6B lda */
@@ -1641,7 +1641,7 @@ void WriteSixPaletteEntries(void) {  /* $9060 bank 3 */
   RTS_RET(sp0);                                                                          /* $9085 rts */
 }
 
-void Sub_B3_9094(void) {  /* $9094 bank 3 */
+void UpdateTextBox(void) {  /* $9094 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(TextBoxMode));                                                                  /* $9094 lda */
   if (R.a == 0) {                                                                        /* $9097 beq */
@@ -1808,7 +1808,7 @@ L91B0: BUDGET();
   RTS_RET(sp0);                                                                          /* $91B0 rts */
 }
 
-void Sub_B3_91B1(void) {  /* $91B1 bank 3 */
+void SetupTextBoxNametablePointers(void) {  /* $91B1 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(0x00);                                                                             /* $91B1 lda */
   STA(0x58);                                                                             /* $91B3 sta */
@@ -1947,7 +1947,7 @@ L92B6: BUDGET();
   RTS_RET(sp0);                                                                          /* $92B6 rts */
 }
 
-void Sub_B3_92B7(void) {  /* $92B7 bank 3 */
+void RunTextBoxRowStep(void) {  /* $92B7 bank 3 */
   uint8_t sp0 = R.sp;
   LDA(rd(TextBoxStage));                                                                 /* $92B7 lda */
   if (R.a == 0) {                                                                        /* $92BA bne */

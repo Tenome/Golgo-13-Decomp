@@ -1463,7 +1463,7 @@ Loc_CB00:
   lda #$03                     ; $CB00
   sta z:MmcPrgShadow           ; $CB02
   jsr MmcWritePrg              ; $CB04
-  jsr $8081                    ; $CB07  -> Sub_B2_8081, Bank3Dispatch_0421
+  jsr $8081                    ; $CB07  -> ScopeScrollEndCheckThenContinue, Bank3Dispatch_0421
   lda #$00                     ; $CB0A
   sta z:MmcPrgShadow           ; $CB0C
   jsr MmcWritePrg              ; $CB0E
@@ -1712,7 +1712,7 @@ Loc_CD16:
   lda #$03                     ; $CD16
   sta z:MmcPrgShadow           ; $CD18
   jsr MmcWritePrg              ; $CD1A
-  jsr $8081                    ; $CD1D  -> Sub_B2_8081, Bank3Dispatch_0421
+  jsr $8081                    ; $CD1D  -> ScopeScrollEndCheckThenContinue, Bank3Dispatch_0421
   jsr ApplyScroll              ; $CD20
   lda #$00                     ; $CD23
   sta z:MmcPrgShadow           ; $CD25

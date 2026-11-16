@@ -2268,7 +2268,7 @@ Loc_B4_A161:
 Data_B4_A16C:
   .incbin "prg_bank_4.bin", $216C, $9E  ; $A16C
 MazeObjType11State7:
-  jsr Sub_B4_B3C7              ; $A20A
+  jsr ApplyObjectFallStep      ; $A20A
   ldy #$0B                     ; $A20D
   jsr IncObjectField           ; $A20F
   cmp #$10                     ; $A212
@@ -2385,7 +2385,7 @@ DoorState3:
   ldy #$09                     ; $A311
   lda (Tmp00),y                ; $A313
   bpl Loc_B4_A327              ; $A315
-  jsr Sub_B4_B3EE              ; $A317
+  jsr StoreMaskedFieldAndSetFlagsE0 ; $A317
   ldy #$00                     ; $A31A
   jsr SetObjectFlagsC0         ; $A31C
   lda #$24                     ; $A31F
@@ -2857,9 +2857,9 @@ Data_B4_A7EC:
 Data_B4_A7ED:
   .incbin "prg_bank_4.bin", $27ED, $A1  ; $A7ED
 MazeObjType06:
-  jsr Sub_B4_A894              ; $A88E
+  jsr DispatchObjectState      ; $A88E
   jmp Loc_B4_A984              ; $A891
-Sub_B4_A894:
+DispatchObjectState:
   ldy #$08                     ; $A894
   lda (Tmp00),y                ; $A896
   asl a                        ; $A898
@@ -2870,8 +2870,8 @@ Sub_B4_A894:
   sta z:$6E                    ; $A8A2
   jmp ($006D)                  ; $A8A4
 Data_B4_A8A7:
-  .addr Sub_B4_A8B7, Sub_B4_A8E4, Sub_B4_A905, Sub_B4_A918, Sub_B4_A924, Sub_B4_A930, Sub_B4_A949, MazeObjType11State7  ; $A8A7 pointer table
-Sub_B4_A8B7:
+  .addr RemoveObjectIfRoomCleared, ObjectCountdownDone, ObjectStateMoveLeft7, ObjectStateMoveLeft4, ObjectStateMoveLeft2, ObjectStateMoveRight2, Sub_B4_A949, MazeObjType11State7  ; $A8A7 pointer table
+RemoveObjectIfRoomCleared:
   ldy #$02                     ; $A8B7
   lda (Tmp00),y                ; $A8B9
   bne Loc_B4_A8C4              ; $A8BB
@@ -2886,7 +2886,7 @@ Loc_B4_A8C4:
   jmp Loc_B4_B389              ; $A8D0
 Data_B4_A8D3:
   .incbin "prg_bank_4.bin", $28D3, $11  ; $A8D3
-Sub_B4_A8E4:
+ObjectCountdownDone:
   ldy #$0B                     ; $A8E4
   jsr DecObjectField           ; $A8E6
   bne Loc_B4_A904              ; $A8E9
@@ -2903,36 +2903,36 @@ Loc_B4_A8F0:
   jmp QueueSound               ; $A901
 Loc_B4_A904:
   rts                          ; $A904
-Sub_B4_A905:
+ObjectStateMoveLeft7:
   ldy #$0B                     ; $A905
   jsr DecObjectField           ; $A907
-  beq Sub_B4_A911              ; $A90A
+  beq SetObjectTimer9AndAdvance ; $A90A
   lda #$F9                     ; $A90C
   jmp Loc_B4_A9A3              ; $A90E
-Sub_B4_A911:
+SetObjectTimer9AndAdvance:
   lda #$09                     ; $A911
   sta (Tmp00),y                ; $A913
   jmp AdvanceObjectState       ; $A915
-Sub_B4_A918:
+ObjectStateMoveLeft4:
   ldy #$0B                     ; $A918
   jsr DecObjectField           ; $A91A
   beq Loc_B4_A8F0              ; $A91D
   lda #$FC                     ; $A91F
   jmp Loc_B4_A9A3              ; $A921
-Sub_B4_A924:
+ObjectStateMoveLeft2:
   ldy #$0B                     ; $A924
   jsr DecObjectField           ; $A926
   beq Loc_B4_A8F0              ; $A929
   lda #$FE                     ; $A92B
   jmp Loc_B4_A9A3              ; $A92D
-Sub_B4_A930:
+ObjectStateMoveRight2:
   ldy #$0B                     ; $A930
   jsr DecObjectField           ; $A932
   beq Loc_B4_A93C              ; $A935
   lda #$02                     ; $A937
   jmp Loc_B4_A9A3              ; $A939
 Loc_B4_A93C:
-  jsr Sub_B4_A911              ; $A93C
+  jsr SetObjectTimer9AndAdvance ; $A93C
   lda #$1E                     ; $A93F
   jsr DamagePlayer             ; $A941
   lda #$34                     ; $A944
@@ -2965,7 +2965,7 @@ Loc_B4_A984:
   ldy #$09                     ; $A984
   lda (Tmp00),y                ; $A986
   bpl Loc_B4_A9A2              ; $A988
-  jsr Sub_B4_B3EE              ; $A98A
+  jsr StoreMaskedFieldAndSetFlagsE0 ; $A98A
   jsr ResetScrollAndObjectFlags ; $A98D
   lda #$07                     ; $A990
   ldy #$08                     ; $A992
@@ -3681,7 +3681,7 @@ Loc_B4_B012:
   ldy #$09                     ; $B012
   lda (Tmp00),y                ; $B014
   bpl Loc_B4_B021              ; $B016
-  jsr Sub_B4_B3EE              ; $B018
+  jsr StoreMaskedFieldAndSetFlagsE0 ; $B018
   lda #$04                     ; $B01B
   ldy #$08                     ; $B01D
   sta (Tmp00),y                ; $B01F
@@ -3720,7 +3720,7 @@ MazeObjType12:
   sta (Tmp00),y                ; $B059
   jmp Loc_B4_B38C              ; $B05B
 Loc_B4_B05E:
-  jsr Sub_B4_B3C7              ; $B05E
+  jsr ApplyObjectFallStep      ; $B05E
   cmp #$90                     ; $B061
   bcc Loc_B4_B068              ; $B063
   jmp RemoveObject             ; $B065
@@ -4145,7 +4145,7 @@ Sub_B4_B3BC:
   bit $01A0                    ; $B3C1
   sta (Tmp00),y                ; $B3C4
   rts                          ; $B3C6
-Sub_B4_B3C7:
+ApplyObjectFallStep:
   ldy #$0E                     ; $B3C7
   lda (Tmp00),y                ; $B3C9
   adc #$1C                     ; $B3CB
@@ -4166,7 +4166,7 @@ Loc_B4_B3E0:
   sta (Tmp00),y                ; $B3E3
   rts                          ; $B3E5
   .incbin "prg_bank_4.bin", $33E6, $8  ; $B3E6
-Sub_B4_B3EE:
+StoreMaskedFieldAndSetFlagsE0:
   and #$1F                     ; $B3EE
   sta (Tmp00),y                ; $B3F0
 SetObjectFlagsE0:

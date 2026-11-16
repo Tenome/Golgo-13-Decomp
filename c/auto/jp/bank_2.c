@@ -59,7 +59,7 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
     }
     cmp8(R.a, 0x11);                                                                     /* $807D cmp */
     if (R.a == 0x11) {                                                                   /* $807F bne */
-      { Sub_B2_8081(); return; }
+      { ScopeScrollEndCheckThenContinue(); return; }
     }
     LDA(0x18);                                                                           /* $8087 lda */
     push16(0x808B); SetPpuMask(); UNW(); ret_check(0x808B);                              /* $8089 jsr */
@@ -71,17 +71,17 @@ void Bank2Nmi(void) {  /* $8010 bank 2 */
     push16(0x809C); UploadColumnOrPalette(); UNW(); ret_check(0x809C);                   /* $809A jsr */
     push16(0x809F); ApplyScroll(); UNW(); ret_check(0x809F);                             /* $809D jsr */
     push16(0x80A2); DrawHud(); UNW(); ret_check(0x80A2);                                 /* $80A0 jsr */
-    push16(0x80A5); Sub_B2_83C7(); UNW(); ret_check(0x80A5);                             /* $80A3 jsr */
+    push16(0x80A5); ScanScopeTargets(); UNW(); ret_check(0x80A5);                        /* $80A3 jsr */
     push16(0x80A8); DrawObjectsBanked(); UNW(); ret_check(0x80A8);                       /* $80A6 jsr */
     LDA(rd(PaletteSetIndex));                                                            /* $80A9 lda */
     cmp8(R.a, 0x69);                                                                     /* $80AB cmp */
     if (R.a == 0x69) {                                                                   /* $80AD bne */
-      push16(0x80B1); Sub_B2_8488(); UNW(); ret_check(0x80B1);                           /* $80AF jsr */
+      push16(0x80B1); ScopeBossPhase6Check(); UNW(); ret_check(0x80B1);                  /* $80AF jsr */
       push16(0x80B4); TickScopeSecondTimer(); UNW(); ret_check(0x80B4);                  /* $80B2 jsr */
     }
-    push16(0x80B7); Sub_B2_87AC(); UNW(); ret_check(0x80B7);                             /* $80B5 jsr */
+    push16(0x80B7); ScopePalette69Check(); UNW(); ret_check(0x80B7);                     /* $80B5 jsr */
     push16(0x80BA); CheckLowLifeSoundB2(); UNW(); ret_check(0x80BA);                     /* $80B8 jsr */
-    push16(0x80BD); Sub_B2_88AA(); UNW(); ret_check(0x80BD);                             /* $80BB jsr */
+    push16(0x80BD); ScopeLifeRefillCheck(); UNW(); ret_check(0x80BD);                    /* $80BB jsr */
     LDA(rd(0x0497));                                                                     /* $80BE lda */
     if (!(R.a & 0x80)) {                                                                 /* $80C1 bmi */
       push16(0x80C5); ReadJoypads(); UNW(); ret_check(0x80C5);                           /* $80C3 jsr */
@@ -163,7 +163,7 @@ L815F: BUDGET();
   return;                                                                                /* $8166 rti */
 }
 
-void Sub_B2_8081(void) {  /* $8081 bank 2 */
+void ScopeScrollEndCheckThenContinue(void) {  /* $8081 bank 2 */
   uint8_t sp0 = R.sp;
   push16(0x8083); CheckScopeScrollEnd(); UNW(); ret_check(0x8083);                       /* $8081 jsr */
   goto L815C;                                                                            /* $8084 jmp */
@@ -350,7 +350,7 @@ L83C6: BUDGET();
   RTS_RET(sp0);                                                                          /* $83C6 rts */
 }
 
-void Sub_B2_83C7(void) {  /* $83C7 bank 2 */
+void ScanScopeTargets(void) {  /* $83C7 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $83C7 lda */
   if (R.a != 0) {                                                                        /* $83CA beq */
@@ -422,7 +422,7 @@ L842E: BUDGET();
   RTS_RET(sp0);                                                                          /* $8439 rts */
 }
 
-void Sub_B2_8488(void) {  /* $8488 bank 2 */
+void ScopeBossPhase6Check(void) {  /* $8488 bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(BossPhase));                                                                    /* $8488 lda */
   AND(0x7F);                                                                             /* $848B and */
@@ -626,7 +626,7 @@ void InitScopeEnemies(void) {  /* $8609 bank 2 */
   RTS_RET(sp0);                                                                          /* $86AB rts */
 }
 
-void Sub_B2_87AC(void) {  /* $87AC bank 2 */
+void ScopePalette69Check(void) {  /* $87AC bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(PaletteSetIndex));                                                              /* $87AC lda */
   cmp8(R.a, 0x69);                                                                       /* $87AE cmp */
@@ -764,7 +764,7 @@ L88A9: BUDGET();
   RTS_RET(sp0);                                                                          /* $88A9 rts */
 }
 
-void Sub_B2_88AA(void) {  /* $88AA bank 2 */
+void ScopeLifeRefillCheck(void) {  /* $88AA bank 2 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0497));                                                                       /* $88AA lda */
   if (R.a == 0) {                                                                        /* $88AD bne */
