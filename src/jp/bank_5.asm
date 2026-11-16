@@ -1025,10 +1025,10 @@ FillPaletteBufferBlack:
   lda #$0F                     ; $8930
 FillPaletteBufferWithA:
   ldx #$1F                     ; $8932
-Sub_B5_8934:
+FillPaletteBufferLoop:
   sta PaletteBuffer,x          ; $8934
   dex                          ; $8937
-  bpl Sub_B5_8934              ; $8938
+  bpl FillPaletteBufferLoop    ; $8938
   rts                          ; $893A
 ClearSceneStateTailB5:
   lda #$00                     ; $893B
@@ -2229,7 +2229,7 @@ Loc_B5_99D6:
   jsr LoadPaletteSet           ; $99D8
   lda #$0F                     ; $99DB
   tax                          ; $99DD
-  jsr Sub_B5_8934              ; $99DE
+  jsr FillPaletteBufferLoop    ; $99DE
   lda #$20                     ; $99E1
   sta $014F                    ; $99E3
   jsr ProcessPpuUpdateList     ; $99E6

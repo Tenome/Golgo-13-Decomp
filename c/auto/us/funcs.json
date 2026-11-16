@@ -3436,7 +3436,7 @@
    ]
   ]
  },
- "Sub_B4_8B43": {
+ "LookUpMazeObjectFrame": {
   "addr": 35651,
   "bank": 4,
   "instrs": 21,
@@ -4085,7 +4085,7 @@
    ]
   ]
  },
- "Sub_B4_90CF": {
+ "RandomByteMixedPlusTmp0A": {
   "addr": 37071,
   "bank": 4,
   "instrs": 5,
@@ -4395,7 +4395,7 @@
    ]
   ]
  },
- "Sub_B4_9F2F": {
+ "DrawMazeWallPatches": {
   "addr": 40751,
   "bank": 4,
   "instrs": 33,
@@ -5474,7 +5474,7 @@
    ]
   ]
  },
- "Sub_B4_A949": {
+ "ObjectStateMoveRight2Alt": {
   "addr": 43337,
   "bank": 4,
   "instrs": 17,
@@ -5491,7 +5491,7 @@
    ]
   ]
  },
- "Sub_B4_A963": {
+ "SetRandomObjectCountdown": {
   "addr": 43363,
   "bank": 4,
   "instrs": 7,
@@ -5698,7 +5698,7 @@
    ]
   ]
  },
- "Sub_B4_AB5E": {
+ "ObjectRiseState": {
   "addr": 43870,
   "bank": 4,
   "instrs": 13,
@@ -5737,7 +5737,7 @@
    ]
   ]
  },
- "Sub_B4_ABBA": {
+ "ObjectCountdownToState11": {
   "addr": 43962,
   "bank": 4,
   "instrs": 14,
@@ -6477,7 +6477,7 @@
    ]
   ]
  },
- "Sub_B4_B315": {
+ "RemoveMazeItemIfRestored": {
   "addr": 45845,
   "bank": 4,
   "instrs": 11,
@@ -6507,7 +6507,7 @@
    ]
   ]
  },
- "Sub_B4_B34D": {
+ "RequestMazePpuUpdate5": {
   "addr": 45901,
   "bank": 4,
   "instrs": 9,
@@ -6546,7 +6546,7 @@
    ]
   ]
  },
- "Sub_B4_B39F": {
+ "SpawnRandomDirectionParticle": {
   "addr": 45983,
   "bank": 4,
   "instrs": 9,
@@ -6680,7 +6680,7 @@
    ]
   ]
  },
- "Sub_B4_B415": {
+ "SetObjectFacingFromX": {
   "addr": 46101,
   "bank": 4,
   "instrs": 13,
@@ -9317,7 +9317,7 @@
    ]
   ]
  },
- "Sub_B6_801F": {
+ "CheckScrollColumnSpawn": {
   "addr": 32799,
   "bank": 6,
   "instrs": 26,
@@ -9494,7 +9494,7 @@
    ]
   ]
  },
- "Sub_B6_83A8": {
+ "InitSpawnWithRandomPhase": {
   "addr": 33704,
   "bank": 6,
   "instrs": 10,
@@ -9975,7 +9975,7 @@
    ]
   ]
  },
- "Sub_B6_89DE": {
+ "PickEnemyMoveTargetRange": {
   "addr": 35294,
   "bank": 6,
   "instrs": 65,
@@ -10053,7 +10053,7 @@
    ]
   ]
  },
- "Sub_B6_8B9C": {
+ "PickEnemyMoveTargetRandom": {
   "addr": 35740,
   "bank": 6,
   "instrs": 58,
@@ -10113,7 +10113,7 @@
    ]
   ]
  },
- "Sub_B6_9497": {
+ "SelectEnemySideByPosition": {
   "addr": 38039,
   "bank": 6,
   "instrs": 20,
@@ -10126,7 +10126,7 @@
    ]
   ]
  },
- "Sub_B6_95EE": {
+ "MaybeEnemyShoot": {
   "addr": 38382,
   "bank": 6,
   "instrs": 25,
@@ -10139,7 +10139,7 @@
    ]
   ]
  },
- "Sub_B6_9621": {
+ "MaybeSpawnEnemyBullet": {
   "addr": 38433,
   "bank": 6,
   "instrs": 77,
@@ -10178,7 +10178,7 @@
    ]
   ]
  },
- "Sub_B6_975A": {
+ "CheckEnemyInShootRange": {
   "addr": 38746,
   "bank": 6,
   "instrs": 87,

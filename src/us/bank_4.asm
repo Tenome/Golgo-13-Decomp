@@ -837,12 +837,12 @@ InitAllObjectAnims:
   lda #$03                     ; $8B37
   sta z:Tmp01                  ; $8B39
 Loc_B4_8B3B:
-  jsr Sub_B4_8B43              ; $8B3B
+  jsr LookUpMazeObjectFrame    ; $8B3B
   lda z:Tmp00                  ; $8B3E
   bne Loc_B4_8B3B              ; $8B40
 Loc_B4_8B42:
   rts                          ; $8B42
-Sub_B4_8B43:
+LookUpMazeObjectFrame:
   ldy #$00                     ; $8B43
   lda (Tmp00),y                ; $8B45
   and #$3F                     ; $8B47
@@ -1384,7 +1384,7 @@ RandomByteMixed:
   jsr GetRandomByte            ; $90C9
   adc z:$85                    ; $90CC
   rts                          ; $90CE
-Sub_B4_90CF:
+RandomByteMixedPlusTmp0A:
   stx z:$86                    ; $90CF
   jsr RandomByteMixed          ; $90D1
   ldx z:$86                    ; $90D4
@@ -1884,7 +1884,7 @@ DrawMazeScreen:
   jsr DrawRleScreen            ; $9963
   jsr DrawMazeWallsList        ; $9966
   jsr DrawWallSegments         ; $9969
-  jsr Sub_B4_9F2F              ; $996C
+  jsr DrawMazeWallPatches      ; $996C
   jsr RunSoundDriver           ; $996F
   jmp RunSoundDriver           ; $9972
 DrawRleScreen:
@@ -2020,7 +2020,7 @@ Data_B4_9F1D:
   .incbin "prg_bank_4.bin", $1F1D, $9  ; $9F1D
 Data_B4_9F26:
   .incbin "prg_bank_4.bin", $1F26, $9  ; $9F26
-Sub_B4_9F2F:
+DrawMazeWallPatches:
   lda z:$9B                    ; $9F2F
   bne Loc_B4_9F7B              ; $9F31
   lda z:$A7                    ; $9F33
@@ -2291,7 +2291,7 @@ MazeObjType02:
   jsr QueueSound               ; $A24A
   lda #$78                     ; $A24D
   jsr Sub_B4_B3C2              ; $A24F
-  jsr Sub_B4_B415              ; $A252
+  jsr SetObjectFacingFromX     ; $A252
   jmp Loc_B4_B38C              ; $A255
 Loc_B4_A258:
   jsr AddObjectXVelocity       ; $A258
@@ -2870,7 +2870,7 @@ DispatchObjectState:
   sta z:$6E                    ; $A8A2
   jmp ($006D)                  ; $A8A4
 Data_B4_A8A7:
-  .addr RemoveObjectIfRoomCleared, ObjectCountdownDone, ObjectStateMoveLeft7, ObjectStateMoveLeft4, ObjectStateMoveLeft2, ObjectStateMoveRight2, Sub_B4_A949, MazeObjType11State7  ; $A8A7 pointer table
+  .addr RemoveObjectIfRoomCleared, ObjectCountdownDone, ObjectStateMoveLeft7, ObjectStateMoveLeft4, ObjectStateMoveLeft2, ObjectStateMoveRight2, ObjectStateMoveRight2Alt, MazeObjType11State7  ; $A8A7 pointer table
 RemoveObjectIfRoomCleared:
   ldy #$02                     ; $A8B7
   lda (Tmp00),y                ; $A8B9
@@ -2879,8 +2879,8 @@ RemoveObjectIfRoomCleared:
   beq Loc_B4_A8C4              ; $A8BF
   jmp RemoveObject             ; $A8C1
 Loc_B4_A8C4:
-  jsr Sub_B4_A963              ; $A8C4
-  jsr Sub_B4_B39F              ; $A8C7
+  jsr SetRandomObjectCountdown ; $A8C4
+  jsr SpawnRandomDirectionParticle ; $A8C7
   ldx MazeIndex                ; $A8CA
   lda Data_B4_A8D3,x           ; $A8CD
   jmp Loc_B4_B389              ; $A8D0
@@ -2937,7 +2937,7 @@ Loc_B4_A93C:
   jsr DamagePlayer             ; $A941
   lda #$34                     ; $A944
   jmp QueueSound               ; $A946
-Sub_B4_A949:
+ObjectStateMoveRight2Alt:
   ldy #$0B                     ; $A949
   jsr DecObjectField           ; $A94B
   beq Loc_B4_A955              ; $A94E
@@ -2951,7 +2951,7 @@ Loc_B4_A955:
   sta (Tmp00),y                ; $A95C
   ldy #$53                     ; $A95E
   jmp AddObjectOfType          ; $A960
-Sub_B4_A963:
+SetRandomObjectCountdown:
   jsr RandomByteMixed          ; $A963
   and #$0F                     ; $A966
   ldx MazeIndex                ; $A968
@@ -3044,7 +3044,7 @@ UpdateEnemyObject:
   sta z:$6E                    ; $AA15
   jmp ($006D)                  ; $AA17
 Data_B4_AA1A:
-  .addr MazeObjEnemy0AState0, MazeObjEnemy0AState1, MazeObjEnemy0AState2, MazeObjEnemy0AState3, MazeObjEnemy0AState4, MazeObjEnemy0AState5, MazeObjEnemy0AState6, MazeObjEnemy0AState1, MazeObjEnemy0AState2, MazeObjEnemy0AState3, MazeObjEnemy0AState4, MazeObjEnemy0AState5, MazeObjEnemy0AStateC, MazeObjEnemy0AStateD, MazeObjEnemy0AState1, MazeObjEnemy0AState2, MazeObjEnemy0AState3, Sub_B4_AB5E, ObjectMoveUpStep, MazeObjEnemy0AState6, CollectBonusItem, MazeObjType11State7, Sub_B4_ABBA  ; $AA1A pointer table
+  .addr MazeObjEnemy0AState0, MazeObjEnemy0AState1, MazeObjEnemy0AState2, MazeObjEnemy0AState3, MazeObjEnemy0AState4, MazeObjEnemy0AState5, MazeObjEnemy0AState6, MazeObjEnemy0AState1, MazeObjEnemy0AState2, MazeObjEnemy0AState3, MazeObjEnemy0AState4, MazeObjEnemy0AState5, MazeObjEnemy0AStateC, MazeObjEnemy0AStateD, MazeObjEnemy0AState1, MazeObjEnemy0AState2, MazeObjEnemy0AState3, ObjectRiseState, ObjectMoveUpStep, MazeObjEnemy0AState6, CollectBonusItem, MazeObjType11State7, ObjectCountdownToState11  ; $AA1A pointer table
 MazeObjEnemy0AState0:
   ldy #$02                     ; $AA48
   lda (Tmp00),y                ; $AA4A
@@ -3192,7 +3192,7 @@ Loc_B4_AB52:
   lda #$00                     ; $AB56
   jsr SetObjectFrame           ; $AB58
   jmp AdvanceObjectState       ; $AB5B
-Sub_B4_AB5E:
+ObjectRiseState:
   lda #$FA                     ; $AB5E
   jsr AddToObjectY             ; $AB60
   ldy #$0B                     ; $AB63
@@ -3236,7 +3236,7 @@ CollectBonusItem:
 Loc_B4_ABB4:
   jsr AddLifeAndAmmo           ; $ABB4
   jmp AdvanceObjectState       ; $ABB7
-Sub_B4_ABBA:
+ObjectCountdownToState11:
   ldy #$0B                     ; $ABBA
   jsr DecObjectField           ; $ABBC
   bne Loc_B4_ABCC              ; $ABBF
@@ -3539,7 +3539,7 @@ MazeObjType11State0:
   jmp RemoveObject             ; $AEF2
 Loc_B4_AEF5:
   jsr SetObjectTimerFromLife   ; $AEF5
-  jsr Sub_B4_B39F              ; $AEF8
+  jsr SpawnRandomDirectionParticle ; $AEF8
   ldx MazeIndex                ; $AEFB
   lda Data_B4_AF04,x           ; $AEFE
   jmp Loc_B4_B389              ; $AF01
@@ -3861,7 +3861,7 @@ Loc_B4_B177:
   lda #$D7                     ; $B181
   sta $0300,x                  ; $B183
 Loc_B4_B186:
-  jsr Sub_B4_90CF              ; $B186
+  jsr RandomByteMixedPlusTmp0A ; $B186
   cmp #$20                     ; $B189
   bcc Loc_B4_B186              ; $B18B
   cmp #$E0                     ; $B18D
@@ -4055,8 +4055,8 @@ MazeObjType1B:
   sta z:$6E                    ; $B300
   jmp ($006D)                  ; $B302
 Data_B4_B305:
-  .addr Sub_B4_B315, WaitObjectTimer, CollectFullRestoreItem, Sub_B4_B34D, MazeObjType11State4, MazeObjType11State4, MazeObjType11State4, RemoveObjectWithPpuListD  ; $B305 pointer table
-Sub_B4_B315:
+  .addr RemoveMazeItemIfRestored, WaitObjectTimer, CollectFullRestoreItem, RequestMazePpuUpdate5, MazeObjType11State4, MazeObjType11State4, MazeObjType11State4, RemoveObjectWithPpuListD  ; $B305 pointer table
+RemoveMazeItemIfRestored:
   lda MazeItemFullRestore      ; $B315
   beq Loc_B4_B31D              ; $B318
   jmp RemoveObject             ; $B31A
@@ -4084,7 +4084,7 @@ CollectFullRestoreItem:
   jmp AdvanceObjectState       ; $B349
 Loc_B4_B34C:
   rts                          ; $B34C
-Sub_B4_B34D:
+RequestMazePpuUpdate5:
   lda #$0F                     ; $B34D
   sta $0532                    ; $B34F
   lda #$00                     ; $B352
@@ -4122,7 +4122,7 @@ Loc_B4_B38C:
   jmp AdvanceObjectState       ; $B394
 Data_B4_B397:
   .incbin "prg_bank_4.bin", $3397, $8  ; $B397
-Sub_B4_B39F:
+SpawnRandomDirectionParticle:
   jsr RandomByteMixed          ; $B39F
   and #$07                     ; $B3A2
   tay                          ; $B3A4
@@ -4191,7 +4191,7 @@ AddObjectOfType:
   sta ObjectTable,x            ; $B411
 Loc_B4_B414:
   rts                          ; $B414
-Sub_B4_B415:
+SetObjectFacingFromX:
   ldx #$02                     ; $B415
   ldy #$02                     ; $B417
   lda (Tmp00),y                ; $B419

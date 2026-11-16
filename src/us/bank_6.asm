@@ -11,9 +11,9 @@ Bank6Nmi:
   jsr ProcessCollectedObjects  ; $8010
   jsr ResetObjectTableAndSpawn ; $8013
   jsr DrawObjects              ; $8016
-  jsr Sub_B6_801F              ; $8019
+  jsr CheckScrollColumnSpawn   ; $8019
   jmp Loc_C0E0                 ; $801C
-Sub_B6_801F:
+CheckScrollColumnSpawn:
   lda z:ScrollX                ; $801F
   and #$0F                     ; $8021
   bne Loc_B6_8049              ; $8023
@@ -386,7 +386,7 @@ Data_B6_8354:
   .incbin "prg_bank_6.bin", $0354, $2A  ; $8354
 Data_B6_837E:
   .incbin "prg_bank_6.bin", $037E, $2A  ; $837E
-Sub_B6_83A8:
+InitSpawnWithRandomPhase:
   jsr InitSpawnedObject        ; $83A8
   jsr SetRandomSpawnPhase      ; $83AB
   jsr SetSpawnFacingBits       ; $83AE
@@ -862,7 +862,7 @@ UpdateEnemyTypeA:
   jsr AdvanceObjectAnimStep    ; $8918
   cmp z:$04                    ; $891B
   bcc Loc_B6_8925              ; $891D
-  jsr Sub_B6_89DE              ; $891F
+  jsr PickEnemyMoveTargetRange ; $891F
   jsr LoadBehaviorTableA       ; $8922
 Loc_B6_8925:
   jsr LoadObjectAnimFrame      ; $8925
@@ -979,7 +979,7 @@ LoadObjectAnimFrame:
   ldy #$05                     ; $89D9
   sta (Tmp00),y                ; $89DB
   rts                          ; $89DD
-Sub_B6_89DE:
+PickEnemyMoveTargetRange:
   jsr CalcObjectTileColumn     ; $89DE
   ldy #$0C                     ; $89E1
   lda (Tmp00),y                ; $89E3
@@ -1167,7 +1167,7 @@ Data_B6_8B14:
   .incbin "prg_bank_6.bin", $0B14, $1  ; $8B14
 Data_B6_8B15:
   .incbin "prg_bank_6.bin", $0B15, $87  ; $8B15
-Sub_B6_8B9C:
+PickEnemyMoveTargetRandom:
   jsr GetRandomByte            ; $8B9C
   sta z:$08                    ; $8B9F
   ldy #$01                     ; $8BA1
@@ -1228,18 +1228,18 @@ UpdateEnemyTypeB:
   jsr AdvanceObjectAnimStep    ; $9463
   cmp z:$04                    ; $9466
   bcc Loc_B6_9473              ; $9468
-  jsr Sub_B6_8B9C              ; $946A
-  jsr Sub_B6_9497              ; $946D
+  jsr PickEnemyMoveTargetRandom ; $946A
+  jsr SelectEnemySideByPosition ; $946D
   jsr LoadBehaviorTableB       ; $9470
 Loc_B6_9473:
   jsr LoadObjectAnimFrame      ; $9473
-  jsr Sub_B6_95EE              ; $9476
+  jsr MaybeEnemyShoot          ; $9476
 Loc_B6_9479:
   jsr ApplyAnimFlagEffects     ; $9479
   jsr ClampObjectYMin24        ; $947C
   jsr UpdateObjectScreenX      ; $947F
   jsr RemoveObjectIfOffscreen  ; $9482
-  jsr Sub_B6_9621              ; $9485
+  jsr MaybeSpawnEnemyBullet    ; $9485
   rts                          ; $9488
 LoadBehaviorTableB:
   jsr GetObjectBehaviorIndex   ; $9489
@@ -1248,7 +1248,7 @@ LoadBehaviorTableB:
   lda Data_B6_94BF,y           ; $9491
   sta z:Tmp03                  ; $9494
   rts                          ; $9496
-Sub_B6_9497:
+SelectEnemySideByPosition:
   ldy #$02                     ; $9497
   lda (Tmp00),y                ; $9499
   tax                          ; $949B
@@ -1276,7 +1276,7 @@ Data_B6_94BE:
   .incbin "prg_bank_6.bin", $14BE, $1  ; $94BE
 Data_B6_94BF:
   .incbin "prg_bank_6.bin", $14BF, $12F  ; $94BF
-Sub_B6_95EE:
+MaybeEnemyShoot:
   ldy #$0E                     ; $95EE
   lda (Tmp00),y                ; $95F0
   cmp #$05                     ; $95F2
@@ -1306,7 +1306,7 @@ Loc_B6_9614:
   sta (Tmp00),y                ; $961E
 Loc_B6_9620:
   rts                          ; $9620
-Sub_B6_9621:
+MaybeSpawnEnemyBullet:
   lda ObjectCount              ; $9621
   cmp #$0D                     ; $9624
   bcs Loc_B6_9655              ; $9626
@@ -1399,7 +1399,7 @@ Loc_B6_96C7:
   jsr ApplyAnimFlagEffects     ; $96C7
   jsr UpdateObjectScreenX      ; $96CA
   jsr RemoveObjectIfOffscreen  ; $96CD
-  jsr Sub_B6_975A              ; $96D0
+  jsr CheckEnemyInShootRange   ; $96D0
   rts                          ; $96D3
 LoadBehaviorTableC:
   jsr GetObjectBehaviorIndex   ; $96D4
@@ -1412,7 +1412,7 @@ Data_B6_96E2:
   .incbin "prg_bank_6.bin", $16E2, $1  ; $96E2
 Data_B6_96E3:
   .incbin "prg_bank_6.bin", $16E3, $77  ; $96E3
-Sub_B6_975A:
+CheckEnemyInShootRange:
   lda ObjectCount              ; $975A
   cmp #$08                     ; $975D
   bcs Loc_B6_9787              ; $975F

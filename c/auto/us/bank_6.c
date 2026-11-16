@@ -16,7 +16,7 @@ void Bank6Nmi(void) {  /* $8010 bank 6 */
   push16(0x8012); ProcessCollectedObjects(); UNW(); ret_check(0x8012);                   /* $8010 jsr */
   push16(0x8015); ResetObjectTableAndSpawn(); UNW(); ret_check(0x8015);                  /* $8013 jsr */
   push16(0x8018); DrawObjects(); UNW(); ret_check(0x8018);                               /* $8016 jsr */
-  push16(0x801B); Sub_B6_801F(); UNW(); ret_check(0x801B);                               /* $8019 jsr */
+  push16(0x801B); CheckScrollColumnSpawn(); UNW(); ret_check(0x801B);                    /* $8019 jsr */
   goto LC0E0;                                                                            /* $801C jmp */
 LC0E0: BUDGET();
   goto LCB2C;                                                                            /* $C0E0 jmp */
@@ -78,7 +78,7 @@ LCB88: BUDGET();
   return;                                                                                /* $CBA2 rti */
 }
 
-void Sub_B6_801F(void) {  /* $801F bank 6 */
+void CheckScrollColumnSpawn(void) {  /* $801F bank 6 */
   uint8_t sp0 = R.sp;
   LDA(rd(ScrollX));                                                                      /* $801F lda */
   AND(0x0F);                                                                             /* $8021 and */
@@ -508,7 +508,7 @@ L8353: BUDGET();
   RTS_RET(sp0);                                                                          /* $8353 rts */
 }
 
-void Sub_B6_83A8(void) {  /* $83A8 bank 6 */
+void InitSpawnWithRandomPhase(void) {  /* $83A8 bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x83AA); InitSpawnedObject(); UNW(); ret_check(0x83AA);                         /* $83A8 jsr */
   push16(0x83AD); SetRandomSpawnPhase(); UNW(); ret_check(0x83AD);                       /* $83AB jsr */
@@ -1079,7 +1079,7 @@ void UpdateEnemyTypeA(void) {  /* $890F bank 6 */
     push16(0x891A); AdvanceObjectAnimStep(); UNW(); ret_check(0x891A);                   /* $8918 jsr */
     cmp8(R.a, rd(0x04));                                                                 /* $891B cmp */
     if (R.a >= rd(0x04)) {                                                               /* $891D bcc */
-      push16(0x8921); Sub_B6_89DE(); UNW(); ret_check(0x8921);                           /* $891F jsr */
+      push16(0x8921); PickEnemyMoveTargetRange(); UNW(); ret_check(0x8921);              /* $891F jsr */
       push16(0x8924); LoadBehaviorTableA(); UNW(); ret_check(0x8924);                    /* $8922 jsr */
     }
     push16(0x8927); LoadObjectAnimFrame(); UNW(); ret_check(0x8927);                     /* $8925 jsr */
@@ -1210,7 +1210,7 @@ void LoadObjectAnimFrame(void) {  /* $89C0 bank 6 */
   RTS_RET(sp0);                                                                          /* $89DD rts */
 }
 
-void Sub_B6_89DE(void) {  /* $89DE bank 6 */
+void PickEnemyMoveTargetRange(void) {  /* $89DE bank 6 */
   uint8_t sp0 = R.sp;
   push16(0x89E0); CalcObjectTileColumn(); UNW(); ret_check(0x89E0);                      /* $89DE jsr */
   LDY(0x0C);                                                                             /* $89E1 ldy */
@@ -1414,7 +1414,7 @@ void RemoveObjectIfOffscreen(void) {  /* $8B08 bank 6 */
   RTS_RET(sp0);                                                                          /* $8B13 rts */
 }
 
-void Sub_B6_8B9C(void) {  /* $8B9C bank 6 */
+void PickEnemyMoveTargetRandom(void) {  /* $8B9C bank 6 */
   uint8_t sp0 = R.sp;
   goto L8B9C;
 L8A0A: BUDGET();
@@ -1510,18 +1510,18 @@ void UpdateEnemyTypeB(void) {  /* $945A bank 6 */
     push16(0x9465); AdvanceObjectAnimStep(); UNW(); ret_check(0x9465);                   /* $9463 jsr */
     cmp8(R.a, rd(0x04));                                                                 /* $9466 cmp */
     if (R.a >= rd(0x04)) {                                                               /* $9468 bcc */
-      push16(0x946C); Sub_B6_8B9C(); UNW(); ret_check(0x946C);                           /* $946A jsr */
-      push16(0x946F); Sub_B6_9497(); UNW(); ret_check(0x946F);                           /* $946D jsr */
+      push16(0x946C); PickEnemyMoveTargetRandom(); UNW(); ret_check(0x946C);             /* $946A jsr */
+      push16(0x946F); SelectEnemySideByPosition(); UNW(); ret_check(0x946F);             /* $946D jsr */
       push16(0x9472); LoadBehaviorTableB(); UNW(); ret_check(0x9472);                    /* $9470 jsr */
     }
     push16(0x9475); LoadObjectAnimFrame(); UNW(); ret_check(0x9475);                     /* $9473 jsr */
-    push16(0x9478); Sub_B6_95EE(); UNW(); ret_check(0x9478);                             /* $9476 jsr */
+    push16(0x9478); MaybeEnemyShoot(); UNW(); ret_check(0x9478);                         /* $9476 jsr */
   }
   push16(0x947B); ApplyAnimFlagEffects(); UNW(); ret_check(0x947B);                      /* $9479 jsr */
   push16(0x947E); ClampObjectYMin24(); UNW(); ret_check(0x947E);                         /* $947C jsr */
   push16(0x9481); UpdateObjectScreenX(); UNW(); ret_check(0x9481);                       /* $947F jsr */
   push16(0x9484); RemoveObjectIfOffscreen(); UNW(); ret_check(0x9484);                   /* $9482 jsr */
-  push16(0x9487); Sub_B6_9621(); UNW(); ret_check(0x9487);                               /* $9485 jsr */
+  push16(0x9487); MaybeSpawnEnemyBullet(); UNW(); ret_check(0x9487);                     /* $9485 jsr */
   RTS_RET(sp0);                                                                          /* $9488 rts */
 }
 
@@ -1535,7 +1535,7 @@ void LoadBehaviorTableB(void) {  /* $9489 bank 6 */
   RTS_RET(sp0);                                                                          /* $9496 rts */
 }
 
-void Sub_B6_9497(void) {  /* $9497 bank 6 */
+void SelectEnemySideByPosition(void) {  /* $9497 bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x02);                                                                             /* $9497 ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9499 lda */
@@ -1561,7 +1561,7 @@ L94BD: BUDGET();
   RTS_RET(sp0);                                                                          /* $94BD rts */
 }
 
-void Sub_B6_95EE(void) {  /* $95EE bank 6 */
+void MaybeEnemyShoot(void) {  /* $95EE bank 6 */
   uint8_t sp0 = R.sp;
   LDY(0x0E);                                                                             /* $95EE ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $95F0 lda */
@@ -1594,7 +1594,7 @@ L9620: BUDGET();
   RTS_RET(sp0);                                                                          /* $9620 rts */
 }
 
-void Sub_B6_9621(void) {  /* $9621 bank 6 */
+void MaybeSpawnEnemyBullet(void) {  /* $9621 bank 6 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $9621 lda */
   cmp8(R.a, 0x0D);                                                                       /* $9624 cmp */
@@ -1693,7 +1693,7 @@ void Loc_B6_96B8(void) {  /* $96B8 bank 6 */
   push16(0x96C9); ApplyAnimFlagEffects(); UNW(); ret_check(0x96C9);                      /* $96C7 jsr */
   push16(0x96CC); UpdateObjectScreenX(); UNW(); ret_check(0x96CC);                       /* $96CA jsr */
   push16(0x96CF); RemoveObjectIfOffscreen(); UNW(); ret_check(0x96CF);                   /* $96CD jsr */
-  push16(0x96D2); Sub_B6_975A(); UNW(); ret_check(0x96D2);                               /* $96D0 jsr */
+  push16(0x96D2); CheckEnemyInShootRange(); UNW(); ret_check(0x96D2);                    /* $96D0 jsr */
   RTS_RET(sp0);                                                                          /* $96D3 rts */
 }
 
@@ -1707,7 +1707,7 @@ void LoadBehaviorTableC(void) {  /* $96D4 bank 6 */
   RTS_RET(sp0);                                                                          /* $96E1 rts */
 }
 
-void Sub_B6_975A(void) {  /* $975A bank 6 */
+void CheckEnemyInShootRange(void) {  /* $975A bank 6 */
   uint8_t sp0 = R.sp;
   LDA(rd(ObjectCount));                                                                  /* $975A lda */
   cmp8(R.a, 0x08);                                                                       /* $975D cmp */

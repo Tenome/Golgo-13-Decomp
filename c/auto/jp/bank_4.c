@@ -1096,14 +1096,14 @@ void InitAllObjectAnims(void) {  /* $8B39 bank 4 */
     LDA(0x03);                                                                           /* $8B43 lda */
     STA(Tmp01);                                                                          /* $8B45 sta */
     do { BUDGET();
-      push16(0x8B49); Sub_B4_8B4F(); UNW(); ret_check(0x8B49);                           /* $8B47 jsr */
+      push16(0x8B49); LookUpMazeObjectFrame(); UNW(); ret_check(0x8B49);                 /* $8B47 jsr */
       LDA(rd(Tmp00));                                                                    /* $8B4A lda */
     } while (R.a != 0);                                                                  /* $8B4C bne */
   }
   RTS_RET(sp0);                                                                          /* $8B4E rts */
 }
 
-void Sub_B4_8B4F(void) {  /* $8B4F bank 4 */
+void LookUpMazeObjectFrame(void) {  /* $8B4F bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x00);                                                                             /* $8B4F ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $8B51 lda */
@@ -1826,7 +1826,7 @@ void RandomByteMixed(void) {  /* $90DD bank 4 */
   RTS_RET(sp0);                                                                          /* $90E6 rts */
 }
 
-void Sub_B4_90E7(void) {  /* $90E7 bank 4 */
+void RandomByteMixedPlusTmp0A(void) {  /* $90E7 bank 4 */
   uint8_t sp0 = R.sp;
   STX(0x86);                                                                             /* $90E7 stx */
   push16(0x90EB); RandomByteMixed(); UNW(); ret_check(0x90EB);                           /* $90E9 jsr */
@@ -2364,7 +2364,7 @@ void DrawMazeScreen(void) {  /* $997B bank 4 */
   push16(0x997D); DrawRleScreen(); UNW(); ret_check(0x997D);                             /* $997B jsr */
   push16(0x9980); Sub_B4_9A44(); UNW(); ret_check(0x9980);                               /* $997E jsr */
   push16(0x9983); DrawWallSegments(); UNW(); ret_check(0x9983);                          /* $9981 jsr */
-  push16(0x9986); Sub_B4_9F47(); UNW(); ret_check(0x9986);                               /* $9984 jsr */
+  push16(0x9986); DrawMazeWallPatches(); UNW(); ret_check(0x9986);                       /* $9984 jsr */
   push16(0x9989); RunSoundDriver(); UNW(); ret_check(0x9989);                            /* $9987 jsr */
   { RunSoundDriver(); return; }                                                          /* $998A jmp */
 }
@@ -2478,7 +2478,7 @@ L9B01: BUDGET();
   RTS_RET(sp0);                                                                          /* $9B06 rts */
 }
 
-void Sub_B4_9F47(void) {  /* $9F47 bank 4 */
+void DrawMazeWallPatches(void) {  /* $9F47 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x9B));                                                                         /* $9F47 lda */
   if (R.a == 0) {                                                                        /* $9F49 bne */
@@ -2770,7 +2770,7 @@ void Sub_B4_A1AE(void) {  /* $A1AE bank 4 */
     { RemoveObject(); return; }                                                          /* $A1B2 jmp */
   }
   push16(0xA1B7); Sub_B4_A242(); UNW(); ret_check(0xA1B7);                               /* $A1B5 jsr */
-  push16(0xA1BA); Sub_B4_B3DC(); UNW(); ret_check(0xA1BA);                               /* $A1B8 jsr */
+  push16(0xA1BA); SpawnRandomDirectionParticle(); UNW(); ret_check(0xA1BA);              /* $A1B8 jsr */
   LDX(rd(MazeIndex));                                                                    /* $A1BB ldx */
   LDA(rd((uint16_t)(0xA1C4 + R.x)));                                                     /* $A1BE lda */
   goto LB3C6;                                                                            /* $A1C1 jmp */
@@ -2810,7 +2810,7 @@ void Sub_B4_A1D5(void) {  /* $A1D5 bank 4 */
   push16(0xA206); Sub_B4_A242(); UNW(); ret_check(0xA206);                               /* $A204 jsr */
   LDA(0x00);                                                                             /* $A207 lda */
   push16(0xA20B); SetObjectFrame(); UNW(); ret_check(0xA20B);                            /* $A209 jsr */
-  { Sub_B4_B3DC(); return; }                                                             /* $A20C jmp */
+  { SpawnRandomDirectionParticle(); return; }                                            /* $A20C jmp */
 LA20F: BUDGET();
   LDY(0x05);                                                                             /* $A20F ldy */
   push16(0xA213); IncObjectField(); UNW(); ret_check(0xA213);                            /* $A211 jsr */
@@ -2862,7 +2862,7 @@ void MazeObjType02(void) {  /* $A25E bank 4 */
     push16(0xA268); QueueSound(); UNW(); ret_check(0xA268);                              /* $A266 jsr */
     LDA(0x78);                                                                           /* $A269 lda */
     push16(0xA26D); Sub_B4_B3FF(); UNW(); ret_check(0xA26D);                             /* $A26B jsr */
-    push16(0xA270); Sub_B4_B452(); UNW(); ret_check(0xA270);                             /* $A26E jsr */
+    push16(0xA270); SetObjectFacingFromX(); UNW(); ret_check(0xA270);                    /* $A26E jsr */
   } else {
     push16(0xA276); AddObjectXVelocity(); UNW(); ret_check(0xA276);                      /* $A274 jsr */
     DEY();                                                                               /* $A277 dey */
@@ -3691,8 +3691,8 @@ void RemoveObjectIfRoomCleared(void) {  /* $A8EF bank 4 */
     { RemoveObject(); return; }                                                          /* $A8F9 jmp */
   }
 LA8FC: BUDGET();
-  push16(0xA8FE); Sub_B4_A99B(); UNW(); ret_check(0xA8FE);                               /* $A8FC jsr */
-  push16(0xA901); Sub_B4_B3DC(); UNW(); ret_check(0xA901);                               /* $A8FF jsr */
+  push16(0xA8FE); SetRandomObjectCountdown(); UNW(); ret_check(0xA8FE);                  /* $A8FC jsr */
+  push16(0xA901); SpawnRandomDirectionParticle(); UNW(); ret_check(0xA901);              /* $A8FF jsr */
   LDX(rd(MazeIndex));                                                                    /* $A902 ldx */
   LDA(rd((uint16_t)(0xA90B + R.x)));                                                     /* $A905 lda */
   goto LB3C6;                                                                            /* $A908 jmp */
@@ -3817,7 +3817,7 @@ void ObjectStateMoveRight2(void) {  /* $A968 bank 4 */
   RTS_RET(sp0);                                                                          /* $A9E2 rts */
 }
 
-void Sub_B4_A981(void) {  /* $A981 bank 4 */
+void ObjectStateMoveRight2Alt(void) {  /* $A981 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x0B);                                                                             /* $A981 ldy */
   push16(0xA985); DecObjectField(); UNW(); ret_check(0xA985);                            /* $A983 jsr */
@@ -3839,7 +3839,7 @@ void Sub_B4_A981(void) {  /* $A981 bank 4 */
   RTS_RET(sp0);                                                                          /* $A9E2 rts */
 }
 
-void Sub_B4_A99B(void) {  /* $A99B bank 4 */
+void SetRandomObjectCountdown(void) {  /* $A99B bank 4 */
   uint8_t sp0 = R.sp;
   push16(0xA99D); RandomByteMixed(); UNW(); ret_check(0xA99D);                           /* $A99B jsr */
   AND(0x0F);                                                                             /* $A99E and */
@@ -4180,7 +4180,7 @@ void MazeObjEnemy0AStateD(void) {  /* $AB7D bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $AB97 jmp */
 }
 
-void Sub_B4_AB9A(void) {  /* $AB9A bank 4 */
+void ObjectRiseState(void) {  /* $AB9A bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0xFA);                                                                             /* $AB9A lda */
   push16(0xAB9E); AddToObjectY(); UNW(); ret_check(0xAB9E);                              /* $AB9C jsr */
@@ -4233,7 +4233,7 @@ void CollectBonusItem(void) {  /* $ABCF bank 4 */
   { AdvanceObjectState(); return; }                                                      /* $ABF3 jmp */
 }
 
-void Sub_B4_ABF6(void) {  /* $ABF6 bank 4 */
+void ObjectCountdownToState11(void) {  /* $ABF6 bank 4 */
   uint8_t sp0 = R.sp;
   LDY(0x0B);                                                                             /* $ABF6 ldy */
   push16(0xABFA); DecObjectField(); UNW(); ret_check(0xABFA);                            /* $ABF8 jsr */
@@ -4651,7 +4651,7 @@ void MazeObjType11State0(void) {  /* $AF17 bank 4 */
     { RemoveObject(); return; }                                                          /* $AF1B jmp */
   }
   push16(0xAF20); SetObjectTimerFromLife(); UNW(); ret_check(0xAF20);                    /* $AF1E jsr */
-  push16(0xAF23); Sub_B4_B3DC(); UNW(); ret_check(0xAF23);                               /* $AF21 jsr */
+  push16(0xAF23); SpawnRandomDirectionParticle(); UNW(); ret_check(0xAF23);              /* $AF21 jsr */
   LDX(rd(MazeIndex));                                                                    /* $AF24 ldx */
   LDA(rd((uint16_t)(0xAF2D + R.x)));                                                     /* $AF27 lda */
   goto LB3C6;                                                                            /* $AF2A jmp */
@@ -5026,7 +5026,7 @@ LB191: BUDGET();
       STA((uint16_t)(0x0300 + R.x));                                                     /* $B1B4 sta */
       do { BUDGET();
 LB1B7: BUDGET();
-        push16(0xB1B9); Sub_B4_90E7(); UNW(); ret_check(0xB1B9);                         /* $B1B7 jsr */
+        push16(0xB1B9); RandomByteMixedPlusTmp0A(); UNW(); ret_check(0xB1B9);            /* $B1B7 jsr */
         cmp8(R.a, 0x20);                                                                 /* $B1BA cmp */
       } while (R.a < 0x20);                                                              /* $B1BC bcc */
       cmp8(R.a, 0xE0);                                                                   /* $B1BE cmp */
@@ -5263,7 +5263,7 @@ void MazeObjType1B(void) {  /* $B32B bank 4 */
   call_addr(rd16bug(0x006D)); return;                                                    /* $B33F jmp */
 }
 
-void Sub_B4_B352(void) {  /* $B352 bank 4 */
+void RemoveMazeItemIfRestored(void) {  /* $B352 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(MazeItemFullRestore));                                                          /* $B352 lda */
   if (R.a != 0) {                                                                        /* $B355 beq */
@@ -5303,7 +5303,7 @@ void CollectFullRestoreItem(void) {  /* $B362 bank 4 */
   RTS_RET(sp0);                                                                          /* $B389 rts */
 }
 
-void Sub_B4_B38A(void) {  /* $B38A bank 4 */
+void RequestMazePpuUpdate5(void) {  /* $B38A bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x0F);                                                                             /* $B38A lda */
   STA(0x0532);                                                                           /* $B38C sta */
@@ -5339,7 +5339,7 @@ LB3BC: BUDGET();
   { RemoveObject(); return; }                                                            /* $B3BC jmp */
 }
 
-void Sub_B4_B3DC(void) {  /* $B3DC bank 4 */
+void SpawnRandomDirectionParticle(void) {  /* $B3DC bank 4 */
   uint8_t sp0 = R.sp;
   push16(0xB3DE); RandomByteMixed(); UNW(); ret_check(0xB3DE);                           /* $B3DC jsr */
   AND(0x07);                                                                             /* $B3DF and */
@@ -5448,7 +5448,7 @@ void AddObjectOfType(void) {  /* $B43F bank 4 */
   RTS_RET(sp0);                                                                          /* $B451 rts */
 }
 
-void Sub_B4_B452(void) {  /* $B452 bank 4 */
+void SetObjectFacingFromX(void) {  /* $B452 bank 4 */
   uint8_t sp0 = R.sp;
   LDX(0x02);                                                                             /* $B452 ldx */
   LDY(0x02);                                                                             /* $B454 ldy */

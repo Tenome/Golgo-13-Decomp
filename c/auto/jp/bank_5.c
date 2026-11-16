@@ -1485,7 +1485,7 @@ L99B5: BUDGET();
   push16(0x99DA); LoadPaletteSet(); UNW(); ret_check(0x99DA);                            /* $99D8 jsr */
   LDA(0x0F);                                                                             /* $99DB lda */
   TAX();                                                                                 /* $99DD tax */
-  push16(0x99E0); Sub_B5_8934(); UNW(); ret_check(0x99E0);                               /* $99DE jsr */
+  push16(0x99E0); FillPaletteBufferLoop(); UNW(); ret_check(0x99E0);                     /* $99DE jsr */
   LDA(0x20);                                                                             /* $99E1 lda */
   STA(0x014F);                                                                           /* $99E3 sta */
   push16(0x99E8); ProcessPpuUpdateList(); UNW(); ret_check(0x99EA);                      /* $99E6 jsr */
@@ -2058,10 +2058,10 @@ void FillPaletteBufferBlack(void) {  /* $8930 bank 5 */
 void FillPaletteBufferWithA(void) {  /* $8932 bank 5 */
   uint8_t sp0 = R.sp;
   LDX(0x1F);                                                                             /* $8932 ldx */
-  { Sub_B5_8934(); return; }
+  { FillPaletteBufferLoop(); return; }
 }
 
-void Sub_B5_8934(void) {  /* $8934 bank 5 */
+void FillPaletteBufferLoop(void) {  /* $8934 bank 5 */
   uint8_t sp0 = R.sp;
   do { BUDGET();
     STA((uint16_t)(PaletteBuffer + R.x));                                                /* $8934 sta */
