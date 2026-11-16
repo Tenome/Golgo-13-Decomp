@@ -384,7 +384,7 @@ void Sub_B1_85BB(void) {  /* $85BB bank 1 */
   RTS_RET(sp0);                                                                          /* $85F3 rts */
 }
 
-void Sub_B1_8600(void) {  /* $8600 bank 1 */
+void FlushPpuRowBuffer(void) {  /* $8600 bank 1 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0546));                                                                       /* $8600 lda */
   if (R.a != 0) {                                                                        /* $8603 beq */
@@ -2222,9 +2222,9 @@ L9E73: BUDGET();
   RTS_RET(sp0);                                                                          /* $9E73 rts */
 }
 
-void Sub_B1_9E98(void) {  /* $9E98 bank 1 */
+void UpdateEffectObject(void) {  /* $9E98 bank 1 */
   uint8_t sp0 = R.sp;
-  push16(0x9E9A); Sub_B1_9ECA(); UNW(); ret_check(0x9E9A);                               /* $9E98 jsr */
+  push16(0x9E9A); LoadEffectAnimTable(); UNW(); ret_check(0x9E9A);                       /* $9E98 jsr */
   LDY(0x08);                                                                             /* $9E9B ldy */
   LDA(rd((uint16_t)(rd16zp(Tmp00) + R.y)));                                              /* $9E9D lda */
   if (R.a == 0) {                                                                        /* $9E9F bne */
@@ -2253,7 +2253,7 @@ L9EC9: BUDGET();
   RTS_RET(sp0);                                                                          /* $9EC9 rts */
 }
 
-void Sub_B1_9ECA(void) {  /* $9ECA bank 1 */
+void LoadEffectAnimTable(void) {  /* $9ECA bank 1 */
   uint8_t sp0 = R.sp;
   LDA(0xD3);                                                                             /* $9ECA lda */
   STA(Tmp02);                                                                            /* $9ECC sta */
@@ -2694,7 +2694,7 @@ LA8E1: BUDGET();
   RTS_RET(sp0);                                                                          /* $A92E rts */
 }
 
-void Sub_B1_A953(void) {  /* $A953 bank 1 */
+void UpdateObjectScreenXOnly(void) {  /* $A953 bank 1 */
   uint8_t sp0 = R.sp;
   push16(0xA955); UpdateObjectScreenXB1(); UNW(); ret_check(0xA955);                     /* $A953 jsr */
   RTS_RET(sp0);                                                                          /* $A956 rts */
@@ -3107,7 +3107,7 @@ void Bank1ObjAnim_03(void) {  /* $ABC1 bank 1 */
   push16(0xABC3); InitProjectileA(); UNW(); ret_check(0xABC3);                           /* $ABC1 jsr */
   LDA(rd(BossSubPhase));                                                                 /* $ABC4 lda */
   if (R.a != 0) {                                                                        /* $ABC7 beq */
-    push16(0xABCB); Sub_B1_AC8A(); UNW(); ret_check(0xABCB);                             /* $ABC9 jsr */
+    push16(0xABCB); CheckBossPhase3(); UNW(); ret_check(0xABCB);                         /* $ABC9 jsr */
   }
   RTS_RET(sp0);                                                                          /* $ABCC rts */
 }
@@ -3216,7 +3216,7 @@ void InitObjectFromTemplate(void) {  /* $AC5B bank 1 */
   RTS_RET(sp0);                                                                          /* $AC80 rts */
 }
 
-void Sub_B1_AC8A(void) {  /* $AC8A bank 1 */
+void CheckBossPhase3(void) {  /* $AC8A bank 1 */
   uint8_t sp0 = R.sp;
   LDA(rd(BossPhase));                                                                    /* $AC8A lda */
   AND(0x7F);                                                                             /* $AC8D and */
@@ -3648,7 +3648,7 @@ LB054: BUDGET();
     STA(0x0494);                                                                         /* $B062 sta */
     LDA(0x00);                                                                           /* $B065 lda */
     STA(0x0491);                                                                         /* $B067 sta */
-    push16(0xB06C); Sub_B1_B09C(); UNW(); ret_check(0xB06C);                             /* $B06A jsr */
+    push16(0xB06C); DrawBossSprites(); UNW(); ret_check(0xB06C);                         /* $B06A jsr */
   } else {
     DEC_M(0x0492);                                                                       /* $B070 dec */
     if (!R.z) goto LB09B;                                                                /* $B073 bne */
@@ -3666,13 +3666,13 @@ LB054: BUDGET();
       STA(0x0260);                                                                       /* $B092 sta */
       goto LB09B;                                                                        /* $B095 jmp */
     }
-    push16(0xB09A); Sub_B1_B09C(); UNW(); ret_check(0xB09A);                             /* $B098 jsr */
+    push16(0xB09A); DrawBossSprites(); UNW(); ret_check(0xB09A);                         /* $B098 jsr */
   }
 LB09B: BUDGET();
   RTS_RET(sp0);                                                                          /* $B09B rts */
 }
 
-void Sub_B1_B09C(void) {  /* $B09C bank 1 */
+void DrawBossSprites(void) {  /* $B09C bank 1 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x0491));                                                                       /* $B09C lda */
   ASL_A();                                                                               /* $B09F asl */

@@ -2507,7 +2507,7 @@ MazeObjType04:
 Data_B4_A46A:
   .addr MazeObjType04State0, WaitObjectTimer, CollectAmmoItem  ; $A46A pointer table
 MazeObjType04State0:
-  jsr Sub_B4_B3B2              ; $A470
+  jsr InitObjectTimerAndSpawnSprite ; $A470
   lda #$06                     ; $A473
   jmp Loc_B4_B389              ; $A475
 WaitObjectTimer:
@@ -2570,7 +2570,7 @@ MazeObjType0E:
 Data_B4_A4D9:
   .addr Sub_B4_A4DF, WaitObjectTimer, CollectLifeItem  ; $A4D9 pointer table
 Sub_B4_A4DF:
-  jsr Sub_B4_B3B2              ; $A4DF
+  jsr InitObjectTimerAndSpawnSprite ; $A4DF
   lda #$00                     ; $A4E2
   jmp Loc_B4_B389              ; $A4E4
 CollectLifeItem:
@@ -3340,7 +3340,7 @@ Loc_B4_AC76:
   lda MazeItemFullRestore      ; $AC76
   ora $050A                    ; $AC79
   bne Loc_B4_AC90              ; $AC7C
-  jsr Sub_B4_B3B2              ; $AC7E
+  jsr InitObjectTimerAndSpawnSprite ; $AC7E
   jmp Loc_B4_B38C              ; $AC81
 Loc_B4_AC84:
   lda JoyNew1                  ; $AC84
@@ -3363,7 +3363,7 @@ Loc_B4_ACA0:
   lda MazeItemFullRestore      ; $ACA0
   ora $050C                    ; $ACA3
   bne Loc_B4_ACBA              ; $ACA6
-  jsr Sub_B4_B3B2              ; $ACA8
+  jsr InitObjectTimerAndSpawnSprite ; $ACA8
   jmp Loc_B4_B38C              ; $ACAB
 Loc_B4_ACAE:
   lda JoyNew1                  ; $ACAE
@@ -3390,7 +3390,7 @@ Data_B4_ACD1:
 Sub_B4_ACDF:
   lda $050B                    ; $ACDF
   bne Loc_B4_ACEA              ; $ACE2
-  jsr Sub_B4_B3B2              ; $ACE4
+  jsr InitObjectTimerAndSpawnSprite ; $ACE4
   jmp Loc_B4_B38C              ; $ACE7
 Loc_B4_ACEA:
   jmp RemoveObject             ; $ACEA
@@ -4061,7 +4061,7 @@ RemoveMazeItemIfRestored:
   beq Loc_B4_B31D              ; $B318
   jmp RemoveObject             ; $B31A
 Loc_B4_B31D:
-  jsr Sub_B4_B3B2              ; $B31D
+  jsr InitObjectTimerAndSpawnSprite ; $B31D
   lda #$05                     ; $B320
   jmp Loc_B4_B389              ; $B322
 CollectFullRestoreItem:
@@ -4132,7 +4132,7 @@ SpawnRandomDirectionParticle:
   jsr Sub_B4_B3BC              ; $B3AC
   ldx z:$60                    ; $B3AF
   rts                          ; $B3B1
-Sub_B4_B3B2:
+InitObjectTimerAndSpawnSprite:
   lda #$0A                     ; $B3B2
   ldy #$0B                     ; $B3B4
   sta (Tmp00),y                ; $B3B6

@@ -833,5 +833,16 @@
  "4:B315": "RemoveMazeItemIfRestored",
  "4:B34D": "RequestMazePpuUpdate5",
  "4:B39F": "SpawnRandomDirectionParticle",
- "4:B415": "SetObjectFacingFromX"
+ "4:B415": "SetObjectFacingFromX",
+ "1:8600": "FlushPpuRowBuffer",
+ "1:9ECA": "LoadEffectAnimTable",
+ "1:9E98": "UpdateEffectObject",
+ "1:A953": "UpdateObjectScreenXOnly",
+ "1:AC8A": "CheckBossPhase3",
+ "1:B09C": "DrawBossSprites",
+ "5:9681": "DrawBobbingSpriteGroup",
+ "5:986D": "DrawAnimatedSpriteGroup",
+ "5:9974": "DrawSpriteListOffset84",
+ "5:86EA": "AdvanceSceneWithTimer6",
+ "4:B3B2": "InitObjectTimerAndSpawnSprite"
 }

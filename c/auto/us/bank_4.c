@@ -3022,7 +3022,7 @@ void MazeObjType04(void) {  /* $A457 bank 4 */
 
 void MazeObjType04State0(void) {  /* $A470 bank 4 */
   uint8_t sp0 = R.sp;
-  push16(0xA472); Sub_B4_B3B2(); UNW(); ret_check(0xA472);                               /* $A470 jsr */
+  push16(0xA472); InitObjectTimerAndSpawnSprite(); UNW(); ret_check(0xA472);             /* $A470 jsr */
   LDA(0x06);                                                                             /* $A473 lda */
   goto LB389;                                                                            /* $A475 jmp */
 LB389: BUDGET();
@@ -3161,7 +3161,7 @@ void MazeObjType0E(void) {  /* $A4C6 bank 4 */
 
 void Sub_B4_A4DF(void) {  /* $A4DF bank 4 */
   uint8_t sp0 = R.sp;
-  push16(0xA4E1); Sub_B4_B3B2(); UNW(); ret_check(0xA4E1);                               /* $A4DF jsr */
+  push16(0xA4E1); InitObjectTimerAndSpawnSprite(); UNW(); ret_check(0xA4E1);             /* $A4DF jsr */
   LDA(0x00);                                                                             /* $A4E2 lda */
   goto LB389;                                                                            /* $A4E4 jmp */
 LB389: BUDGET();
@@ -4237,7 +4237,7 @@ void MazeObjType0F(void) {  /* $AC6A bank 4 */
   LDA(rd(MazeItemFullRestore));                                                          /* $AC76 lda */
   ORA(rd(0x050A));                                                                       /* $AC79 ora */
   if (R.a != 0) goto LAC90;                                                              /* $AC7C bne */
-  push16(0xAC80); Sub_B4_B3B2(); UNW(); ret_check(0xAC80);                               /* $AC7E jsr */
+  push16(0xAC80); InitObjectTimerAndSpawnSprite(); UNW(); ret_check(0xAC80);             /* $AC7E jsr */
   goto LB38C;                                                                            /* $AC81 jmp */
 LAC84: BUDGET();
   LDA(rd(JoyNew1));                                                                      /* $AC84 lda */
@@ -4268,7 +4268,7 @@ void MazeObjType10(void) {  /* $AC94 bank 4 */
   LDA(rd(MazeItemFullRestore));                                                          /* $ACA0 lda */
   ORA(rd(0x050C));                                                                       /* $ACA3 ora */
   if (R.a != 0) goto LACBA;                                                              /* $ACA6 bne */
-  push16(0xACAA); Sub_B4_B3B2(); UNW(); ret_check(0xACAA);                               /* $ACA8 jsr */
+  push16(0xACAA); InitObjectTimerAndSpawnSprite(); UNW(); ret_check(0xACAA);             /* $ACA8 jsr */
   goto LB38C;                                                                            /* $ACAB jmp */
 LACAE: BUDGET();
   LDA(rd(JoyNew1));                                                                      /* $ACAE lda */
@@ -4304,7 +4304,7 @@ void Sub_B4_ACDF(void) {  /* $ACDF bank 4 */
   uint8_t sp0 = R.sp;
   LDA(rd(0x050B));                                                                       /* $ACDF lda */
   if (R.a == 0) {                                                                        /* $ACE2 bne */
-    push16(0xACE6); Sub_B4_B3B2(); UNW(); ret_check(0xACE6);                             /* $ACE4 jsr */
+    push16(0xACE6); InitObjectTimerAndSpawnSprite(); UNW(); ret_check(0xACE6);           /* $ACE4 jsr */
   } else {
     { RemoveObject(); return; }                                                          /* $ACEA jmp */
   }
@@ -5151,7 +5151,7 @@ void RemoveMazeItemIfRestored(void) {  /* $B315 bank 4 */
   if (R.a != 0) {                                                                        /* $B318 beq */
     { RemoveObject(); return; }                                                          /* $B31A jmp */
   }
-  push16(0xB31F); Sub_B4_B3B2(); UNW(); ret_check(0xB31F);                               /* $B31D jsr */
+  push16(0xB31F); InitObjectTimerAndSpawnSprite(); UNW(); ret_check(0xB31F);             /* $B31D jsr */
   LDA(0x05);                                                                             /* $B320 lda */
   goto LB389;                                                                            /* $B322 jmp */
 LB389: BUDGET();
@@ -5234,7 +5234,7 @@ void SpawnRandomDirectionParticle(void) {  /* $B39F bank 4 */
   RTS_RET(sp0);                                                                          /* $B3B1 rts */
 }
 
-void Sub_B4_B3B2(void) {  /* $B3B2 bank 4 */
+void InitObjectTimerAndSpawnSprite(void) {  /* $B3B2 bank 4 */
   uint8_t sp0 = R.sp;
   LDA(0x0A);                                                                             /* $B3B2 lda */
   LDY(0x0B);                                                                             /* $B3B4 ldy */

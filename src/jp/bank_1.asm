@@ -348,7 +348,7 @@ Loc_B1_85F3:
   rts                          ; $85F3
 Data_B1_85F4:
   .incbin "prg_bank_1.bin", $05F4, $C  ; $85F4
-Sub_B1_8600:
+FlushPpuRowBuffer:
   lda $0546                    ; $8600
   beq Loc_B1_861B              ; $8603
   jsr SetPpuAddrFromBuf        ; $8605
@@ -2079,8 +2079,8 @@ Data_B1_9E74:
   .incbin "prg_bank_1.bin", $1E74, $1  ; $9E74
 Data_B1_9E75:
   .incbin "prg_bank_1.bin", $1E75, $23  ; $9E75
-Sub_B1_9E98:
-  jsr Sub_B1_9ECA              ; $9E98
+UpdateEffectObject:
+  jsr LoadEffectAnimTable      ; $9E98
   ldy #$08                     ; $9E9B
   lda (Tmp00),y                ; $9E9D
   bne Loc_B1_9EC3              ; $9E9F
@@ -2107,7 +2107,7 @@ Loc_B1_9EC6:
   jsr UpdateObjectScreenXB1    ; $9EC6
 Loc_B1_9EC9:
   rts                          ; $9EC9
-Sub_B1_9ECA:
+LoadEffectAnimTable:
   lda #$D3                     ; $9ECA
   sta z:Tmp02                  ; $9ECC
   lda #$9E                     ; $9ECE
@@ -2523,7 +2523,7 @@ Loc_B1_A92E:
   rts                          ; $A92E
 Data_B1_A92F:
   .incbin "prg_bank_1.bin", $292F, $24  ; $A92F
-Sub_B1_A953:
+UpdateObjectScreenXOnly:
   jsr UpdateObjectScreenXB1    ; $A953
   rts                          ; $A956
 ApplyAnimTableFlags:
@@ -2891,7 +2891,7 @@ Bank1ObjAnim_03:
   jsr InitProjectileA          ; $ABC1
   lda BossSubPhase             ; $ABC4
   beq Loc_B1_ABCC              ; $ABC7
-  jsr Sub_B1_AC8A              ; $ABC9
+  jsr CheckBossPhase3          ; $ABC9
 Loc_B1_ABCC:
   rts                          ; $ABCC
 Bank1ObjAnim_04:
@@ -2991,7 +2991,7 @@ Loc_B1_AC80:
   rts                          ; $AC80
 Data_B1_AC81:
   .incbin "prg_bank_1.bin", $2C81, $9  ; $AC81
-Sub_B1_AC8A:
+CheckBossPhase3:
   lda BossPhase                ; $AC8A
   and #$7F                     ; $AC8D
   cmp #$03                     ; $AC8F
@@ -3407,7 +3407,7 @@ Loc_B1_B054:
   sta $0494                    ; $B062
   lda #$00                     ; $B065
   sta $0491                    ; $B067
-  jsr Sub_B1_B09C              ; $B06A
+  jsr DrawBossSprites          ; $B06A
   jmp Loc_B1_B09B              ; $B06D
 Loc_B1_B070:
   dec $0492                    ; $B070
@@ -3426,10 +3426,10 @@ Loc_B1_B070:
   sta $0260                    ; $B092
   jmp Loc_B1_B09B              ; $B095
 Loc_B1_B098:
-  jsr Sub_B1_B09C              ; $B098
+  jsr DrawBossSprites          ; $B098
 Loc_B1_B09B:
   rts                          ; $B09B
-Sub_B1_B09C:
+DrawBossSprites:
   lda $0491                    ; $B09C
   asl a                        ; $B09F
   tax                          ; $B0A0

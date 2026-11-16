@@ -1131,7 +1131,7 @@ void Bank5Scene_38(void) {  /* $84A5 bank 5 */
 
 void Bank5Scene_39(void) {  /* $84B0 bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x84B2); Sub_B5_9974(); UNW(); ret_check(0x84B2);                               /* $84B0 jsr */
+  push16(0x84B2); DrawSpriteListOffset84(); UNW(); ret_check(0x84B2);                    /* $84B0 jsr */
   push16(0x84B5); MoveSceneSpriteRandomly(); UNW(); ret_check(0x84B5);                   /* $84B3 jsr */
   LDA(rd(SceneTimer));                                                                   /* $84B6 lda */
   if (R.a != 0) {                                                                        /* $84B9 beq */
@@ -1159,7 +1159,7 @@ void Bank5Scene_3A(void) {  /* $84CA bank 5 */
 
 void Bank5Scene_3B(void) {  /* $84DA bank 5 */
   uint8_t sp0 = R.sp;
-  push16(0x84DC); Sub_B5_986D(); UNW(); ret_check(0x84DC);                               /* $84DA jsr */
+  push16(0x84DC); DrawAnimatedSpriteGroup(); UNW(); ret_check(0x84DC);                   /* $84DA jsr */
   LDA(rd(0x0505));                                                                       /* $84DD lda */
   if (R.a == 0) {                                                                        /* $84E0 bne */
     INC_M(SceneState);                                                                   /* $84E2 inc */
@@ -1405,7 +1405,7 @@ L9785: BUDGET();
   STA(MazeIndex);                                                                        /* $97C7 sta */
   LDA(0x00);                                                                             /* $97CA lda */
   STA(0x0510);                                                                           /* $97CC sta */
-  push16(0x97D1); Sub_B5_9681(); UNW(); ret_check(0x97D1);                               /* $97CF jsr */
+  push16(0x97D1); DrawBobbingSpriteGroup(); UNW(); ret_check(0x97D1);                    /* $97CF jsr */
   LDA(0x00);                                                                             /* $97D2 lda */
   { QueueSound(); return; }                                                              /* $97D4 jmp */
 }
@@ -1428,7 +1428,7 @@ void Bank5Scene_2F(void) {  /* $85D0 bank 5 */
   push16(0x85D6); MmcWriteChr0(); UNW(); ret_check(0x85D6);                              /* $85D4 jsr */
   LDA(0x1E);                                                                             /* $85D7 lda */
   push16(0x85DB); SetPpuMask(); UNW(); ret_check(0x85DB);                                /* $85D9 jsr */
-  push16(0x85DE); Sub_B5_9681(); UNW(); ret_check(0x85DE);                               /* $85DC jsr */
+  push16(0x85DE); DrawBobbingSpriteGroup(); UNW(); ret_check(0x85DE);                    /* $85DC jsr */
   do { BUDGET();
     bit8(rd(PPU_STATUS));                                                                /* $85DF bit */
   } while (R.v);                                                                         /* $85E2 bvs */
@@ -1778,7 +1778,7 @@ void Bank5Scene_5D(void) {  /* $86DD bank 5 */
   RTS_RET(sp0);                                                                          /* $86E8 rts */
 }
 
-void Sub_B5_86EA(void) {  /* $86EA bank 5 */
+void AdvanceSceneWithTimer6(void) {  /* $86EA bank 5 */
   uint8_t sp0 = R.sp;
   INC_M(SceneState);                                                                     /* $86EA inc */
   LDA(0x06);                                                                             /* $86ED lda */
@@ -2816,7 +2816,7 @@ L948B: BUDGET();
   RTS_RET(sp0);                                                                          /* $948B rts */
 }
 
-void Sub_B5_9681(void) {  /* $9681 bank 5 */
+void DrawBobbingSpriteGroup(void) {  /* $9681 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(0x78);                                                                             /* $9681 ldy */
   STY(0x0511);                                                                           /* $9683 sty */
@@ -2945,7 +2945,7 @@ void DrawOfficeScene(void) {  /* $9848 bank 5 */
   { DrawSpriteListToOam(); return; }                                                     /* $986A jmp */
 }
 
-void Sub_B5_986D(void) {  /* $986D bank 5 */
+void DrawAnimatedSpriteGroup(void) {  /* $986D bank 5 */
   uint8_t sp0 = R.sp;
   push16(0x986F); HideAllSpritesB5(); UNW(); ret_check(0x986F);                          /* $986D jsr */
   LDA(0x00);                                                                             /* $9870 lda */
@@ -3014,7 +3014,7 @@ L98D4: BUDGET();
   RTS_RET(sp0);                                                                          /* $98D4 rts */
 }
 
-void Sub_B5_9974(void) {  /* $9974 bank 5 */
+void DrawSpriteListOffset84(void) {  /* $9974 bank 5 */
   uint8_t sp0 = R.sp;
   LDY(0x84);                                                                             /* $9974 ldy */
   STY(0x0511);                                                                           /* $9976 sty */

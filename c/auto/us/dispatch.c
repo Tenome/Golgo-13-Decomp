@@ -201,7 +201,7 @@ static int bank1(uint16_t a) {
     case 0x85AC: RestoreMmcShadowRegs(); return 1;
     case 0x85B8: Sub_B1_85B8(); return 1;
     case 0x85B9: Loc_B1_85B9(); return 1;
-    case 0x8600: Sub_B1_8600(); return 1;
+    case 0x8600: FlushPpuRowBuffer(); return 1;
     case 0x8D00: ClearObjectsAndInitList(); return 1;
     case 0x8DFF: Bank1State_01(); return 1;
     case 0x8EA2: Sub_B1_8EA2(); return 1;
@@ -253,8 +253,8 @@ static int bank1(uint16_t a) {
     case 0x9DEE: LoadEnemyAnimTableI(); return 1;
     case 0x9DFC: Bank1State09_ChooseAction(); return 1;
     case 0x9E20: Bank1State09_Shoot(); return 1;
-    case 0x9E98: Sub_B1_9E98(); return 1;
-    case 0x9ECA: Sub_B1_9ECA(); return 1;
+    case 0x9E98: UpdateEffectObject(); return 1;
+    case 0x9ECA: LoadEffectAnimTable(); return 1;
     case 0x9EE8: UpdateEnemyTypeJ(); return 1;
     case 0x9F53: LoadEnemyAnimTableJ(); return 1;
     case 0x9F61: SetEnemyAnim9(); return 1;
@@ -269,7 +269,7 @@ static int bank1(uint16_t a) {
     case 0xA0DA: AdvanceBossPhaseOnHit(); return 1;
     case 0xA178: Sub_B1_A178(); return 1;
     case 0xA89A: Sub_B1_A89A(); return 1;
-    case 0xA953: Sub_B1_A953(); return 1;
+    case 0xA953: UpdateObjectScreenXOnly(); return 1;
     case 0xA957: ApplyAnimTableFlags(); return 1;
     case 0xA9BD: Sub_B1_A9BD(); return 1;
     case 0xA9E2: Sub_B1_A9E2(); return 1;
@@ -289,7 +289,7 @@ static int bank1(uint16_t a) {
     case 0xABD1: Loc_B1_ABD1(); return 1;
     case 0xABE0: SpawnTemplatePair(); return 1;
     case 0xAC5B: InitObjectFromTemplate(); return 1;
-    case 0xAC8A: Sub_B1_AC8A(); return 1;
+    case 0xAC8A: CheckBossPhase3(); return 1;
     case 0xAD18: MultiplyBy12(); return 1;
     case 0xAD82: Sub_B1_AD82(); return 1;
     case 0xAE43: ApplyPickupEffect(); return 1;
@@ -298,7 +298,7 @@ static int bank1(uint16_t a) {
     case 0xAFC6: InitProjectileA(); return 1;
     case 0xAFE3: InitProjectileB(); return 1;
     case 0xB013: Sub_B1_B013(); return 1;
-    case 0xB09C: Sub_B1_B09C(); return 1;
+    case 0xB09C: DrawBossSprites(); return 1;
     case 0xB0EF: Sub_B1_B0EF(); return 1;
     }
     return 0;
@@ -664,7 +664,7 @@ static int bank4(uint16_t a) {
     case 0xB364: RemoveObjectWithPpuListD(); return 1;
     case 0xB36A: MazeObjType2C(); return 1;
     case 0xB39F: SpawnRandomDirectionParticle(); return 1;
-    case 0xB3B2: Sub_B4_B3B2(); return 1;
+    case 0xB3B2: InitObjectTimerAndSpawnSprite(); return 1;
     case 0xB3BC: Sub_B4_B3BC(); return 1;
     case 0xB3C2: Sub_B4_B3C2(); return 1;
     case 0xB3C7: ApplyObjectFallStep(); return 1;
@@ -773,7 +773,7 @@ static int bank5(uint16_t a) {
     case 0x86CC: Bank5Scene_5B(); return 1;
     case 0x86D2: Bank5Scene_5C(); return 1;
     case 0x86DD: Bank5Scene_5D(); return 1;
-    case 0x86EA: Sub_B5_86EA(); return 1;
+    case 0x86EA: AdvanceSceneWithTimer6(); return 1;
     case 0x86F5: WaitSceneTimerThenEnableRender(); return 1;
     case 0x8701: WaitSceneCounterZero(); return 1;
     case 0x870D: AdvanceSceneDisableRender(); return 1;
@@ -829,12 +829,12 @@ static int bank5(uint16_t a) {
     case 0x9237: AnimateSkylineWindows(); return 1;
     case 0x92DB: AnimateHelicopterSprite(); return 1;
     case 0x9438: MoveSceneSpriteRandomly(); return 1;
-    case 0x9681: Sub_B5_9681(); return 1;
+    case 0x9681: DrawBobbingSpriteGroup(); return 1;
     case 0x976B: AnimateIntroTile(); return 1;
     case 0x9848: DrawOfficeScene(); return 1;
-    case 0x986D: Sub_B5_986D(); return 1;
+    case 0x986D: DrawAnimatedSpriteGroup(); return 1;
     case 0x9895: DrawSpriteListToOam(); return 1;
-    case 0x9974: Sub_B5_9974(); return 1;
+    case 0x9974: DrawSpriteListOffset84(); return 1;
     case 0x997B: DrawSpriteListWithOffset(); return 1;
     case 0x9AE5: OrSpriteAttributes(); return 1;
     case 0xA000: SoundDriver(); return 1;

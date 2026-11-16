@@ -468,7 +468,7 @@ Bank5Tbl8065_38:
   lda #$15                     ; $8455
   jmp QueueSound               ; $8457
 Bank5Tbl8065_39:
-  jsr Sub_B5_98FB              ; $845A
+  jsr DrawSpriteListOffset84   ; $845A
   jsr MoveSceneSpriteRandomly  ; $845D
   lda SceneTimer               ; $8460
   beq Loc_B5_8473              ; $8463
@@ -490,7 +490,7 @@ Bank5Tbl8065_3A:
 Loc_B5_8483:
   rts                          ; $8483
 Bank5Tbl8065_3B:
-  jsr Sub_B5_97F4              ; $8484
+  jsr DrawAnimatedSpriteGroup  ; $8484
   lda $0505                    ; $8487
   bne Loc_B5_849C              ; $848A
   inc SceneState               ; $848C
@@ -615,7 +615,7 @@ Bank5Tbl8065_2F:
   jsr MmcWriteChr0             ; $857E
   lda #$1E                     ; $8581
   jsr SetPpuMask               ; $8583
-  jsr Sub_B5_9608              ; $8586
+  jsr DrawBobbingSpriteGroup   ; $8586
 Loc_B5_8589:
   bit PPU_STATUS               ; $8589
   bvs Loc_B5_8589              ; $858C
@@ -762,7 +762,7 @@ Loc_B5_8692:
   rts                          ; $8692
 Sub_B5_8693:
   rts                          ; $8693
-Sub_B5_8694:
+AdvanceSceneWithTimer6:
   inc SceneState               ; $8694
   lda #$06                     ; $8697
   sta $012A                    ; $8699
@@ -1942,7 +1942,7 @@ Data_B5_946F:
   .incbin "prg_bank_5.bin", $146F, $20  ; $946F
 Data_B5_948F:
   .incbin "prg_bank_5.bin", $148F, $179  ; $948F
-Sub_B5_9608:
+DrawBobbingSpriteGroup:
   ldy #$78                     ; $9608
   sty $0511                    ; $960A
   ldy #$4E                     ; $960D
@@ -2087,7 +2087,7 @@ Loc_B5_9739:
   sta SceneSpriteX             ; $974E
   lda #$00                     ; $9751
   sta $0510                    ; $9753
-  jsr Sub_B5_9608              ; $9756
+  jsr DrawBobbingSpriteGroup   ; $9756
   lda #$00                     ; $9759
   jmp QueueSound               ; $975B
 Data_B5_975E:
@@ -2112,7 +2112,7 @@ Loc_B5_97EE:
   tya                          ; $97EE
   ldx #$C0                     ; $97EF
   jmp DrawSpriteListToOam      ; $97F1
-Sub_B5_97F4:
+DrawAnimatedSpriteGroup:
   jsr HideAllSpritesB5         ; $97F4
   lda #$00                     ; $97F7
   tax                          ; $97F9
@@ -2179,7 +2179,7 @@ Data_B5_985C:
   .incbin "prg_bank_5.bin", $185C, $1  ; $985C
 Data_B5_985D:
   .incbin "prg_bank_5.bin", $185D, $9E  ; $985D
-Sub_B5_98FB:
+DrawSpriteListOffset84:
   ldy #$84                     ; $98FB
   sty $0511                    ; $98FD
   ldy #$00                     ; $9900
